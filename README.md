@@ -98,6 +98,7 @@ customer / operator workflow
 | [doctrine](https://github.com/mrodgersjs-web/doctrine) | Rules agents load before acting | `bash scripts/smoke.sh` |
 | [openwork](https://github.com/mrodgersjs-web/openwork) | Operator workstation shell | `bash scripts/smoke.sh` |
 | [patents](https://github.com/mrodgersjs-web/patents) | Patent **status** teaser only | `bash scripts/smoke.sh` |
+| [design-studio](https://github.com/mrodgersjs-web/design-studio) | Public tokens + UI review checklists | `bash scripts/smoke.sh` |
 
 Pinned: **resume · fde-portfolio · proof-studio · jake-studio · mesh-studio · agency-studio**
 
@@ -114,6 +115,10 @@ Public patent **titles/status only**: [`patents`](https://github.com/mrodgersjs-
 Private counsel-controlled index: `patents-vault` (private; metadata only by policy).
 
 ---
+
+### Video walkthroughs
+
+Pinned studios include `assets/demo.mp4` (75s captioned) plus `docs/video-script.md`.
 
 ### How I work
 
