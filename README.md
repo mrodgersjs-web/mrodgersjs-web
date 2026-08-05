@@ -2,6 +2,8 @@
 
 **Forward Deployed Engineer · I build AI systems that survive contact with production**
 
+*One operator. One machine. Every receipt public.*
+
 Denver, CO · [Resume](https://github.com/mrodgersjs-web/resume) · [LinkedIn](https://www.linkedin.com/in/mikerodgers/) · [Email](mailto:mrodgersjs@gmail.com) · [262.343.5680](tel:+12623435680) · [rodgersintelligence.com](https://rodgersintelligence.com/)
 
 I ship the layer between an impressive model demo and a system another team can still run next quarter: **control planes, gates, fleets, and proof**.
