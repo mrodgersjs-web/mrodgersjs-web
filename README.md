@@ -2,7 +2,7 @@
 
 **Forward Deployed Engineer · I build AI systems that survive contact with production**
 
-Denver, CO · [Resume](https://github.com/mrodgersjs-web/resume) · [LinkedIn](https://www.linkedin.com/in/mike-rodgers-14416414/) · [Email](mailto:mrodgersjs@gmail.com) · [262.343.5680](tel:+12623435680) · [rodgersintelligence.com](https://rodgersintelligence.com/)
+Denver, CO · [Resume](https://github.com/mrodgersjs-web/resume) · [LinkedIn](https://www.linkedin.com/in/mikerodgers/) · [Email](mailto:mrodgersjs@gmail.com) · [262.343.5680](tel:+12623435680) · [rodgersintelligence.com](https://rodgersintelligence.com/)
 
 I ship the layer between an impressive model demo and a system another team can still run next quarter: **control planes, gates, fleets, and proof**.
 
@@ -140,7 +140,7 @@ This account is a clean professional surface. It does **not** contain prospect d
 ### Contact
 
 - Resume: https://github.com/mrodgersjs-web/resume  
-- LinkedIn: https://www.linkedin.com/in/mike-rodgers-14416414/  
+- LinkedIn: https://www.linkedin.com/in/mikerodgers/  
 - Email: mrodgersjs@gmail.com  
 - Phone: 262.343.5680  
 - Site: https://rodgersintelligence.com/  
