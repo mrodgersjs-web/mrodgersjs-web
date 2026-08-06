@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/banner-profile.svg" alt="Mike Rodgers — Forward Deployed Engineer" width="100%" />
+</p>
+
 # Mike Rodgers
 
 > **I turn AI pilots into production systems you can defend in a board meeting.**
@@ -9,7 +13,17 @@
 
 ---
 
-## The one thing to clone first
+## Install me as a teammate
+
+```bash
+npx mrodgersjs-web --ask "how do proof gates work?"
+```
+
+> [`mrodgersjs-web-teammate`](https://github.com/mrodgersjs-web/mrodgersjs-web-teammate) — a pure-stdlib Node CLI that installs my FDE knowledge base locally. `--ask`, `--audit`, `--deploy`. Zero dependencies.
+
+---
+
+## The flagship
 
 ### [`proof-studio`](https://github.com/mrodgersjs-web/proof-studio) — catch AI agents when they lie about "done"
 
@@ -19,6 +33,15 @@ cd proof-studio/packages/rigforge && pip install -e . && rigforge demo
 ```
 
 > A forged `BUILD COMPLETE` fails the HMAC signature check. **If a gate cannot fail, it is theater.**
+
+Now also available as a **GitHub Action**: [`proof-gate-action`](https://github.com/mrodgersjs-web/proof-gate-action) — add proof verification to any CI pipeline.
+
+```yaml
+- uses: mrodgersjs-web/proof-gate-action@v1
+  with:
+    proofpacket-path: proofpacket.json
+    secret-key: ${{ secrets.PROOF_KEY }}
+```
 
 ---
 
@@ -32,8 +55,6 @@ cd proof-studio/packages/rigforge && pip install -e . && rigforge demo
 | **$4B+ M&A pipeline** managed | Oracle Cerner · $150M strategic initiative · $35M opex reduction |
 | **$10M Series A** raised mid-COVID | EmOpti telehealth · 35% CAGR |
 | **90-day** AI operating-system deployment | Built 3x from zero (83 Tech Harbor, InvestMKE, MICI OS) |
-
-> **Every number on this page has a source.** LinkedIn-verified career · public merger record · executable proof in every repo.
 
 ---
 
@@ -51,26 +72,29 @@ graph TD
     style F fill:#C8A96E,color:#000
 ```
 
-**The thesis:** *Code owns decisions. Models assist transformation. Gates decide if it ships.* No proof, no done.
-
 ---
 
-## Repos that matter (the rest are in the index)
+## Open-source systems
 
-| Repo | What it does | Verify |
+| System | What it does | Verify |
 | --- | --- | --- |
 | [**proof-studio**](https://github.com/mrodgersjs-web/proof-studio) | Catch false "done" — signed completion detection | `rigforge demo` |
+| [**proof-gate-action**](https://github.com/mrodgersjs-web/proof-gate-action) | GitHub Action: proof verification in any CI | 6/6 tests pass |
+| [**rig-deviate**](https://github.com/mrodgersjs-web/rig-deviate) | 40 deviation engines × 14σ rungs — push past the LLM median | `pip install rig-deviate` |
+| [**rig-ai-engineering**](https://github.com/mrodgersjs-web/rig-ai-engineering) | Prompt intelligence: 4-axis scoring, enhance, fix | `pip install rig-ai-engineering` |
+| [**rig-agent-firm**](https://github.com/mrodgersjs-web/rig-agent-firm) | GitHub-native agent firm: 6 role-agents + heartbeat telemetry | fork the constitution |
+| [**mrodgersjs-web-teammate**](https://github.com/mrodgersjs-web/mrodgersjs-web-teammate) | `npx mrodgersjs-web` — install me as a local CLI teammate | `npx mrodgersjs-web` |
 | [**fde-portfolio**](https://github.com/mrodgersjs-web/fde-portfolio) | Discovery → eval → handoff playbooks | `bash scripts/smoke.sh` |
 | [**rigforge**](https://github.com/mrodgersjs-web/rigforge) | ProofPacket platform package | `bash scripts/smoke.sh` |
 | [**jake-studio**](https://github.com/mrodgersjs-web/jake-studio) | Operator OS + L10 harness (38 core tests) | `bash scripts/smoke.sh` |
 | [**mesh-studio**](https://github.com/mrodgersjs-web/mesh-studio) | Fleet probe / boot / recover | `rig-mesh smoke` |
-| [**resume**](https://github.com/mrodgersjs-web/resume) | FDE resume (md · pdf · docx) | open RESUME.md |
 
 <details>
-<summary><b>Full studio index (14 repos)</b></summary>
+<summary><b>Full studio index</b></summary>
 
 | Studio | Promise | Verify |
 | --- | --- | --- |
+| [resume](https://github.com/mrodgersjs-web/resume) | FDE resume (md · pdf · docx) | open RESUME.md |
 | [app-factory-studio](https://github.com/mrodgersjs-web/app-factory-studio) | Spec → scaffold + prove | `bash scripts/smoke.sh` |
 | [agency-studio](https://github.com/mrodgersjs-web/agency-studio) | Role contracts (Builder ≠ Verifier) | `bash scripts/smoke.sh` |
 | [strategy-studio](https://github.com/mrodgersjs-web/strategy-studio) | Deterministic strategy routing | `bash scripts/smoke.sh` |
@@ -93,20 +117,6 @@ graph TD
 - **Human approval on real risk.** Confidence gates: auto-execute at 85%, validate at 70%, escalate below.
 - **Auditability is product quality.** Signed ProofPackets make "done" re-verifiable by anyone.
 - **Smallest useful loop, then harden.** Fewer repositories, deeper modules, clearer ownership.
-
----
-
-## 60-second proof
-
-Every studio ships a `smoke.sh` that must pass on a fresh clone — or the studio is broken.
-
-```bash
-# Clone any studio and verify:
-git clone https://github.com/mrodgersjs-web/proof-studio.git
-cd proof-studio && bash scripts/smoke.sh
-```
-
-The `proof-studio` smoke test plants a forged `BUILD COMPLETE` and proves the HMAC signature check catches it. **A gate that cannot fail is theater.**
 
 ---
 
