@@ -1,152 +1,120 @@
 # Mike Rodgers
 
-**Forward Deployed Engineer · I build AI systems that survive contact with production**
+> **I turn AI pilots into production systems you can defend in a board meeting.**
 
+**Forward Deployed Engineer · Fractional Chief AI Officer** — Denver, CO
 *One operator. One machine. Every receipt public.*
 
-Denver, CO · [Resume](https://github.com/mrodgersjs-web/resume) · [LinkedIn](https://www.linkedin.com/in/mikerodgers/) · [Email](mailto:mrodgersjs@gmail.com) · [262.343.5680](tel:+12623435680) · [rodgersintelligence.com](https://rodgersintelligence.com/)
-
-I ship the layer between an impressive model demo and a system another team can still run next quarter: **control planes, gates, fleets, and proof**.
-
-> **Code owns decisions. Models assist transformation. Gates decide if it ships.**
+[rodgersintelligence.com](https://rodgersintelligence.com/) · [LinkedIn](https://www.linkedin.com/in/mike-rodgers-14416414/) · [Resume PDF](https://github.com/mrodgersjs-web/resume/blob/main/Mike-Rodgers-Forward-Deployed-Engineer.pdf) · [mrodgersjs@gmail.com](mailto:mrodgersjs@gmail.com) · 262.343.5680
 
 ---
 
-### Employer summary (60 seconds)
+## The one thing to clone first
 
-If you hire Forward Deployed / AI Solutions / Applied AI engineers, this account answers:
-
-**Can this person turn an ambiguous AI mandate into a supportable deployment with evidence?**
-
-| Signal | Where to look |
-| --- | --- |
-| Resume + career receipts | [`resume`](https://github.com/mrodgersjs-web/resume) ([PDF](https://github.com/mrodgersjs-web/resume/blob/main/Mike-Rodgers-Forward-Deployed-Engineer.pdf)) |
-| Discovery → go-live discipline | [`fde-portfolio`](https://github.com/mrodgersjs-web/fde-portfolio) |
-| False-done detection / signed completion | [`proof-studio`](https://github.com/mrodgersjs-web/proof-studio) · [`rigforge`](https://github.com/mrodgersjs-web/rigforge) |
-| Operator OS + closed loops | [`jake-studio`](https://github.com/mrodgersjs-web/jake-studio) |
-| Fleet control plane | [`mesh-studio`](https://github.com/mrodgersjs-web/mesh-studio) |
-| Patent family status (no enabling IP) | [`patents`](https://github.com/mrodgersjs-web/patents) |
-
----
-
-### 60-second proof (do not take my word)
+### [`proof-studio`](https://github.com/mrodgersjs-web/proof-studio) — catch AI agents when they lie about "done"
 
 ```bash
 git clone https://github.com/mrodgersjs-web/proof-studio.git
-cd proof-studio && bash scripts/smoke.sh
+cd proof-studio/packages/rigforge && pip install -e . && rigforge demo
 ```
 
-Expected: a forged `BUILD COMPLETE` fails the HMAC signature check.
-
-Also green on fresh clone:
-
-```bash
-bash scripts/smoke.sh   # in jake-studio · mesh-studio · strategy-studio · app-factory-studio · …
-```
+> A forged `BUILD COMPLETE` fails the HMAC signature check. **If a gate cannot fail, it is theater.**
 
 ---
 
-### 8-minute review path
+## Track record (numbers, not narratives)
 
-1. **[`resume`](https://github.com/mrodgersjs-web/resume)** — career + artifacts  
-2. **[`fde-portfolio`](https://github.com/mrodgersjs-web/fde-portfolio)** — playbook, eval strategy, handoff  
-3. **[`proof-studio`](https://github.com/mrodgersjs-web/proof-studio)** — run the demo  
-4. **[`jake-studio`](https://github.com/mrodgersjs-web/jake-studio)** — operator + L10 (38 core tests)  
-5. **[`mesh-studio`](https://github.com/mrodgersjs-web/mesh-studio)** — `rig-mesh smoke`  
-6. **[`patents`](https://github.com/mrodgersjs-web/patents)** — IP teaser policy (claims withheld)  
-7. Open any `docs/public-boundary.md`  
+| Outcome | Evidence |
+| --- | --- |
+| **$6B → $32B** merger (Advocate Health + Atrium) | [Public record](https://en.wikipedia.org/wiki/Advocate_Health) — drove the growth thesis |
+| **ED wait: 3 hrs → 15 min** across 5 hospital systems | GWU Emergency Care Innovation Award · 130K+ patients |
+| **130+ AI agents** in governed production | MICI OS — 5-layer governance, confidence-gated (85/70) |
+| **$4B+ M&A pipeline** managed | Oracle Cerner · $150M strategic initiative · $35M opex reduction |
+| **$10M Series A** raised mid-COVID | EmOpti telehealth · 35% CAGR |
+| **90-day** AI operating-system deployment | Built 3x from zero (83 Tech Harbor, InvestMKE, MICI OS) |
+
+> **Every number on this page has a source.** LinkedIn-verified career · public merger record · executable proof in every repo.
 
 ---
 
-### What I build
+## What I ship
 
-```text
-customer / operator workflow
-        │
-        ▼
- context boundary (sources · tools · memory · policy)
-        │
-        ▼
- deterministic gates ──► agent steps (earned autonomy)
-        │
-        ▼
- eval harness + human approval (risk-tiered)
-        │
-        ▼
- ProofPacket / audit log
-        │
-        ▼
- operable handoff (runbooks · owners · rollback)
+```mermaid
+graph TD
+    A["Stuck AI pilot<br/>(ambiguous mandate)"] --> B["Discovery + ROI audit"]
+    B --> C["Production build on your data"]
+    C --> D["Governance gates<br/>confidence: 85% auto · 70% validate · <70% escalate"]
+    D --> E["Signed ProofPacket<br/>(artifact hash + HMAC signature)"]
+    E --> F["Operable handoff<br/>runbooks · owners · rollback"]
+    style A fill:#7a1a1a,color:#fff
+    style E fill:#1a4a2e,color:#fff
+    style F fill:#C8A96E,color:#000
 ```
 
-**Operating principles** (shared with top FDE portfolios): outcome first · ground every claim · evals before scale · human approval on real risk · auditability is product quality · smallest useful loop, then harden.
+**The thesis:** *Code owns decisions. Models assist transformation. Gates decide if it ships.* No proof, no done.
 
 ---
 
-### Public studios
+## Repos that matter (the rest are in the index)
+
+| Repo | What it does | Verify |
+| --- | --- | --- |
+| [**proof-studio**](https://github.com/mrodgersjs-web/proof-studio) | Catch false "done" — signed completion detection | `rigforge demo` |
+| [**fde-portfolio**](https://github.com/mrodgersjs-web/fde-portfolio) | Discovery → eval → handoff playbooks | `bash scripts/smoke.sh` |
+| [**rigforge**](https://github.com/mrodgersjs-web/rigforge) | ProofPacket platform package | `bash scripts/smoke.sh` |
+| [**jake-studio**](https://github.com/mrodgersjs-web/jake-studio) | Operator OS + L10 harness (38 core tests) | `bash scripts/smoke.sh` |
+| [**mesh-studio**](https://github.com/mrodgersjs-web/mesh-studio) | Fleet probe / boot / recover | `rig-mesh smoke` |
+| [**resume**](https://github.com/mrodgersjs-web/resume) | FDE resume (md · pdf · docx) | open RESUME.md |
+
+<details>
+<summary><b>Full studio index (14 repos)</b></summary>
 
 | Studio | Promise | Verify |
 | --- | --- | --- |
-| [resume](https://github.com/mrodgersjs-web/resume) | FDE resume (md · pdf · docx) | open RESUME.md |
-| [fde-portfolio](https://github.com/mrodgersjs-web/fde-portfolio) | Discovery → eval → handoff | `bash scripts/smoke.sh` |
-| [proof-studio](https://github.com/mrodgersjs-web/proof-studio) | Catch false “done” | `bash scripts/smoke.sh` |
-| [rigforge](https://github.com/mrodgersjs-web/rigforge) | ProofPacket platform package | `bash scripts/smoke.sh` |
-| [jake-studio](https://github.com/mrodgersjs-web/jake-studio) | Operator OS + L10 harness | `bash scripts/smoke.sh` |
-| [mesh-studio](https://github.com/mrodgersjs-web/mesh-studio) | Fleet probe / boot / recover | `bash scripts/smoke.sh` |
-| [agency-studio](https://github.com/mrodgersjs-web/agency-studio) | Role contracts (Builder ≠ Verifier) | `bash scripts/smoke.sh` |
 | [app-factory-studio](https://github.com/mrodgersjs-web/app-factory-studio) | Spec → scaffold + prove | `bash scripts/smoke.sh` |
+| [agency-studio](https://github.com/mrodgersjs-web/agency-studio) | Role contracts (Builder ≠ Verifier) | `bash scripts/smoke.sh` |
 | [strategy-studio](https://github.com/mrodgersjs-web/strategy-studio) | Deterministic strategy routing | `bash scripts/smoke.sh` |
 | [communications-studio](https://github.com/mrodgersjs-web/communications-studio) | Gated comms protocol engine | `bash scripts/smoke.sh` |
 | [doctrine](https://github.com/mrodgersjs-web/doctrine) | Rules agents load before acting | `bash scripts/smoke.sh` |
 | [openwork](https://github.com/mrodgersjs-web/openwork) | Operator workstation shell | `bash scripts/smoke.sh` |
-| [patents](https://github.com/mrodgersjs-web/patents) | Patent **status** teaser only | `bash scripts/smoke.sh` |
 | [design-studio](https://github.com/mrodgersjs-web/design-studio) | Public tokens + UI review checklists | `bash scripts/smoke.sh` |
+| [patents](https://github.com/mrodgersjs-web/patents) | Patent status (titles only, no claims) | `bash scripts/smoke.sh` |
+| [mike-rodgers-site](https://github.com/mrodgersjs-web/mike-rodgers-site) | Personal site → rodgersintelligence.com | open index.html |
 
-Pinned: **resume · fde-portfolio · proof-studio · jake-studio · mesh-studio · agency-studio**
-
----
-
-### Intellectual property
-
-Public patent **titles/status only**: [`patents`](https://github.com/mrodgersjs-web/patents)  
-- RIG-DE-001 Deviation Engine  
-- RIG-LAT-002 3D Governance Lattice  
-- RIG-PHR-003 PHRONEMA  
-
-**No claims, no enabling source, no cloneable invention packages** on the public internet.  
-Private counsel-controlled index: `patents-vault` (private; metadata only by policy).
+</details>
 
 ---
 
-### Video walkthroughs
+## How I work
 
-Pinned studios include `assets/demo.mp4` (75s captioned) plus `docs/video-script.md`.
-
-### How I work
-
-- Local-first and private by default  
-- Deterministic machinery before agent autonomy  
-- One canonical home per system  
-- No source → no number; no proof → no completion claim  
-- Fewer repositories, deeper modules, clearer ownership  
-- Public boundary on every studio  
+- **Outcome first.** Strategy before tech. The $32B merger wasn't a deck — it was patients getting seen faster.
+- **Ground every claim.** No source → no number. No proof → no completion claim.
+- **Evals before scale.** Deterministic machinery before agent autonomy.
+- **Human approval on real risk.** Confidence gates: auto-execute at 85%, validate at 70%, escalate below.
+- **Auditability is product quality.** Signed ProofPackets make "done" re-verifiable by anyone.
+- **Smallest useful loop, then harden.** Fewer repositories, deeper modules, clearer ownership.
 
 ---
 
-### Public boundary
+## 60-second proof
 
-This account is a clean professional surface. It does **not** contain prospect dumps, auth cookies, client-confidential monorepos, ToS-risk engagement bots, or enabling patent specifications.
+Every studio ships a `smoke.sh` that must pass on a fresh clone — or the studio is broken.
 
----
+```bash
+# Clone any studio and verify:
+git clone https://github.com/mrodgersjs-web/proof-studio.git
+cd proof-studio && bash scripts/smoke.sh
+```
 
-### Contact
-
-- Resume: https://github.com/mrodgersjs-web/resume  
-- LinkedIn: https://www.linkedin.com/in/mikerodgers/  
-- Email: mrodgersjs@gmail.com  
-- Phone: 262.343.5680  
-- Site: https://rodgersintelligence.com/  
+The `proof-studio` smoke test plants a forged `BUILD COMPLETE` and proves the HMAC signature check catches it. **A gate that cannot fail is theater.**
 
 ---
 
-*Built as an operator. Documented as a Forward Deployed Engineer. Verified with proof — not vibes.*
+## Contact
+
+[**rodgersintelligence.com**](https://rodgersintelligence.com/) — book a free 30-minute initial assessment.
+[LinkedIn](https://www.linkedin.com/in/mike-rodgers-14416414/) · [Email](mailto:mrodgersjs@gmail.com) · 262.343.5680
+
+---
+
+*Forward Deployed Engineer. Documented as an operator. Verified with proof — not vibes.*
