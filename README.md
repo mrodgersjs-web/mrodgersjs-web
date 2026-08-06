@@ -23,6 +23,10 @@
 ![Kubernetes](https://img.shields.io/badge/K8s-326CE5?style=flat-square&logo=kubernetes&logoColor=white)
 ![OpenTelemetry](https://img.shields.io/badge/OpenTelemetry-425CC7?style=flat-square)
 
+![C++](https://img.shields.io/badge/C%2B%2B-00599C?style=flat-square&logo=c%2B%2B&logoColor=white)
+![Fortran](https://img.shields.io/badge/Fortran-734F96?style=flat-square)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
+
 </div>
 
 <br/>
@@ -60,6 +64,11 @@
 - TypeScript (23 API routes, Next.js/React UIs)
 - Vite + deterministic build starters
 - REST APIs, Webhooks, OAuth, Idempotency
+
+**Systems & Scientific Computing**
+- C++ (performance-critical, HPC)
+- Fortran (scientific computing, numerical methods)
+- JavaScript (full-stack, operator-facing UIs)
 
 **AI / Agent Systems**
 - LLM & Multi-Agent orchestration (RAG, tool calling)
