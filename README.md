@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/banner-profile.svg" alt="Mike Rodgers — Forward Deployed Engineer" width="100%" />
+  <img src="assets/profile-banner-v2.jpg" alt="Mike Rodgers — Forward Deployed Engineer" width="100%" />
 </p>
 
 <br/>
