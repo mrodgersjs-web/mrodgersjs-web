@@ -11,7 +11,7 @@
 
 <div align="center">
   <strong>Forward Deployed Engineer · Enterprise AI Solutions Architect · Deployment Strategist</strong><br/>
-  <sub>Denver, CO · <a href="mailto:mrodgersjs@gmail.com">mrodgersjs@gmail.com</a> · 262.343.5680 · <a href="https://www.linkedin.com/in/mike-rodgers-14416414/">LinkedIn</a> · <a href="https://rodgersintelligence.com">rodgersintelligence.com</a></sub>
+  <sub>🛡️ <strong>Secret Security Clearance</strong> (U.S. Army Counterintelligence) · Denver, CO · <a href="mailto:mrodgersjs@gmail.com">mrodgersjs@gmail.com</a> · 262.343.5680 · <a href="https://www.linkedin.com/in/mike-rodgers-14416414/">LinkedIn</a> · <a href="https://rodgersintelligence.com">rodgersintelligence.com</a></sub>
 </div>
 
 <div align="center">
@@ -21,6 +21,7 @@
 ![Postgres](https://img.shields.io/badge/Postgres-4169E1?style=flat-square&logo=postgresql&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white)
 ![Kubernetes](https://img.shields.io/badge/K8s-326CE5?style=flat-square&logo=kubernetes&logoColor=white)
+![Terraform](https://img.shields.io/badge/Terraform-7B42BC?style=flat-square&logo=terraform&logoColor=white)
 ![OpenTelemetry](https://img.shields.io/badge/OpenTelemetry-425CC7?style=flat-square)
 
 ![C++](https://img.shields.io/badge/C%2B%2B-00599C?style=flat-square&logo=c%2B%2B&logoColor=white)
@@ -74,6 +75,9 @@
 - LLM & Multi-Agent orchestration (RAG, tool calling)
 - Model Context Protocol (MCP) servers
 - Guardrail architecture & evaluation harnesses
+- **Model Evaluation & LLM-as-Judge** (automated eval pipelines, acceptance gates)
+- **LLM Observability** (OpenTelemetry traces, drift detection, agent tracing)
+- **MLflow / Weights & Biases** (experiment tracking, model registry)
 - pgvector retrieval at 116K+ chunk scale
 
 </td>
@@ -81,15 +85,17 @@
 
 **Infrastructure & Data**
 - Docker, Kubernetes, self-hosted inference
+- **Terraform** (infrastructure-as-code, multi-cloud provisioning)
 - Postgres with row-level security
 - pgvector, schema validation, single-flight caching
+- **Airflow / Prefect** (data pipeline orchestration)
 - CI/CD, GitHub Actions, release gates
 
 **Enterprise & Deployment**
 - AWS, Azure, OCI, Cloudflare
 - EHR, CRM, ITSM integration
 - PII handling & regulated-environment compliance
-- OpenTelemetry observability (traces, logs)
+- **Stakeholder Translation** (executive ↔ engineering · clinical ↔ technical)
 - Customer-embedded discovery & scoping
 
 </td>
@@ -117,6 +123,15 @@ Data validation → test global-setup → change verification. **Fired in produc
 Ships with a sealed, hash-verifiable ProofPacket so a build's provenance travels with the artifact.
 
 ---
+
+## Case studies (anonymized)
+
+| Client type | Problem | What I shipped | Measured impact |
+| --- | --- | --- | --- |
+| **PE portfolio company** ($50M rev) | Stuck AI pilot — RAG chatbot hallucinating in customer-facing demos | 6-check ingestion gate + pgvector retrieval + confidence-gated responses | Pilot → production in 90 days · **0 hallucinations** in 30-day audit |
+| **Healthcare system** ($6B rev) | 3-hour ED wait times across 5 hospitals | EmOpti teletriage integration into clinical workflow | **3hrs → 15min** · 130K+ patients · GWU Innovation Award |
+| **Enterprise SaaS** (Oracle Cerner) | External consultants costing $2M+/yr for competitive intel | AI-powered CI system processing 150+ daily signals autonomously | **$35M opex reduction** · replaced consultants entirely |
+| **Healthcare startup** (EmOpti) | Stalled growth mid-COVID, no enterprise sales motion | Deployed telehealth into HCA + Advocate + Jefferson · built pipeline | **$10M Series A** · 35% CAGR · $1M revenue Y1 |
 
 ## Install me as a teammate
 
@@ -203,12 +218,11 @@ npx mrodgersjs-web --ask "how do proof gates work?"
 
 ## Credentials
 
-```
+🛡️ **Secret Security Clearance** — U.S. Army Counterintelligence & Communications (active vetting)
 B.S. Industrial Engineering · Iowa State · 3.63 GPA with Distinction
-Six Sigma Black Belt · PMP
-U.S. Army — Sergeant, Counterintelligence & Communications
-Primary Leadership Development Course with Distinction
-```
+Six Sigma Black Belt · Project Management Professional (PMP)
+Primary Leadership Development Course with Distinction · Primary Leadership Military Award
+AWS Certified Solutions Architect (in progress) · OCI Certified
 
 ---
 
