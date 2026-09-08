@@ -11,3 +11,27 @@ The unavailable code review setting is not claimed as enabled.
 ## Repository instructions
 
 `.github/copilot-instructions.md` is present in the profile repository and all six pinned repositories: `rigforge`, `proof-studio`, `proof-gate-action`, `mesh-studio`, `doctrine`, and `fde-portfolio`.
+
+## Claude Desktop stdio
+
+Install `uv`, clone the profile repository, and replace the example `cwd` with that clone's path. `uv` supplies the MCP package for the otherwise stdlib catalog server.
+
+```json
+{
+  "mcpServers": {
+    "github-public-catalog": {
+      "command": "uv",
+      "args": [
+        "run",
+        "--with",
+        "mcp[cli]<2",
+        "python",
+        "steward/catalog_mcp.py"
+      ],
+      "cwd": "/path/to/mrodgersjs-web"
+    }
+  }
+}
+```
+
+The resulting stdio command is `uv run --with "mcp[cli]<2" python steward/catalog_mcp.py`, launched from the profile clone.

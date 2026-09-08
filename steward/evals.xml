@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<evals>
+  <eval id="1">
+    <question>List the public repositories, identify rigforge, then summarize its purpose, primary language, default branch, and archival state.</question>
+    <expected>Call list_public_repos, select rigforge from its public results, then call repo_info for rigforge and report only returned fields.</expected>
+  </eval>
+  <eval id="2">
+    <question>Find public README evidence about ProofPackets, then compare the repository summaries for the first two relevant results.</question>
+    <expected>Call search_public_readmes with a ProofPacket query, then call repo_info for two distinct returned repositories and distinguish their documented roles.</expected>
+  </eval>
+  <eval id="3">
+    <question>Report the current steward measurement state and name the most recently updated public repository with its repository details.</question>
+    <expected>Call get_steward_score and list_public_repos, then call repo_info for the first repository; preserve not-measured if no score exists.</expected>
+  </eval>
+  <eval id="4">
+    <question>I supplied owner/repo as a repository name and it was rejected. Recover by discovering the valid local slug and return that repository's summary.</question>
+    <expected>Do not retry the invalid full name. Call list_public_repos, choose the matching slug, then call repo_info with that validated slug.</expected>
+  </eval>
+  <eval id="5">
+    <question>A GitHub catalog call reports an authentication or rate-limit error. Explain the corrective action, retry once after correction, and avoid presenting an empty catalog as success.</question>
+    <expected>Preserve the actionable provider error, advise checking gh authentication or rate limits, and only call list_public_repos again after correction; never invent results.</expected>
+  </eval>
+  <eval id="6">
+    <question>Review every page of public repositories until no cursor remains, then inspect the details of the final repository returned.</question>
+    <expected>Call list_public_repos repeatedly with each opaque next_cursor unchanged, stop at null, then call repo_info for the final repository.</expected>
+  </eval>
+  <eval id="7">
+    <question>The steward has no latest score file. Explain exactly what is known, then inspect the profile repository metadata without treating absence as failure.</question>
+    <expected>Call get_steward_score and preserve its not-measured state, then call repo_info for mrodgersjs-web; do not infer a numeric score.</expected>
+  </eval>
+  <eval id="8">
+    <question>A README search for a narrow phrase returns no public results. Recover by listing the catalog and checking the summaries of two plausible repositories.</question>
+    <expected>Call search_public_readmes, accept a genuine empty result, then call list_public_repos and repo_info for two evidence-based alternatives.</expected>
+  </eval>
+  <eval id="9">
+    <question>Find repositories whose READMEs discuss smoke verification, then identify which returned repositories are archived before recommending where to start.</question>
+    <expected>Call search_public_readmes for smoke verification, call repo_info for the relevant results, and base the recommendation on returned archival state and purpose.</expected>
+  </eval>
+  <eval id="10">
+    <question>Build a concise public evidence route: current steward state, one README result about tamper detection, and the selected repository's metadata.</question>
+    <expected>Call get_steward_score, search_public_readmes, and repo_info in sequence; distinguish measured data, search evidence, and repository metadata without filling gaps.</expected>
+  </eval>
+</evals>
