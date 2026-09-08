@@ -1,234 +1,77 @@
 <p align="center">
-  <img src="assets/profile-banner-v2.jpg" alt="Mike Rodgers — Forward Deployed Engineer" width="100%" />
+  <img src="assets/profile-banner-v2.jpg" alt="Mike Rodgers, Forward Deployed Engineer" width="100%" />
 </p>
 
-<br/>
-
 <div align="center">
-  <h3>Mike Rodgers</h3>
-  <p><em>I turn AI pilots into production systems you can defend in a board meeting.</em></p>
+  <h1>Mike Rodgers</h1>
+  <p><strong>I turn AI pilots into production systems you can defend in a board meeting.</strong></p>
 </div>
 
-<div align="center">
-  <strong>Forward Deployed Engineer · Enterprise AI Solutions Architect · Deployment Strategist</strong><br/>
-  <sub>🛡️ <strong>U.S. Army Counterintelligence veteran</strong> · Denver, CO · <a href="mailto:mrodgersjs@gmail.com">mrodgersjs@gmail.com</a> · <a href="https://www.linkedin.com/in/mike-rodgers-14416414/">LinkedIn</a> · <a href="https://rodgersintelligence.com">rodgersintelligence.com</a></sub>
-</div>
+<p align="center">
+  Forward Deployed Engineer · Denver · <a href="mailto:mrodgersjs@gmail.com">mrodgersjs@gmail.com</a> · <a href="https://www.linkedin.com/in/mike-rodgers-14416414/">LinkedIn</a> · <a href="https://rodgersintelligence.com/">rodgersintelligence.com</a>
+</p>
 
 <div align="center">
 
-![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
-![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
-![Postgres](https://img.shields.io/badge/Postgres-4169E1?style=flat-square&logo=postgresql&logoColor=white)
-![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white)
-![Kubernetes](https://img.shields.io/badge/K8s-326CE5?style=flat-square&logo=kubernetes&logoColor=white)
-![Terraform](https://img.shields.io/badge/Terraform-7B42BC?style=flat-square&logo=terraform&logoColor=white)
-![OpenTelemetry](https://img.shields.io/badge/OpenTelemetry-425CC7?style=flat-square)
-
-![C++](https://img.shields.io/badge/C%2B%2B-00599C?style=flat-square&logo=c%2B%2B&logoColor=white)
-![Fortran](https://img.shields.io/badge/Fortran-734F96?style=flat-square)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
+[![public repositories](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Fusers%2Fmrodgersjs-web&query=%24.public_repos&label=public%20repositories&logo=github)](https://github.com/mrodgersjs-web?tab=repositories)
+[![steward score](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fmrodgersjs-web%2Fmrodgersjs-web%2Fmain%2Fsteward%2Fscoreboard%2Fbadge.json)](https://github.com/mrodgersjs-web/mrodgersjs-web/tree/main/steward/scoreboard)
+[![rigforge smoke](https://github.com/mrodgersjs-web/rigforge/actions/workflows/smoke.yml/badge.svg?branch=main)](https://github.com/mrodgersjs-web/rigforge/actions/workflows/smoke.yml)
 
 </div>
-
-<br/>
-
----
 
 > **One operator. One machine. Every receipt public.**
->
-> *Code owns decisions. Models assist transformation. Gates decide if it ships.*
 
----
+## Pinned systems
 
-## What I operate in production (right now)
-
-| System | Scale | Stack |
+| System | What it demonstrates | Verify |
 | --- | --- | --- |
-| **Multi-agent platform** | 56 routes (31 Next.js/React pages, 23 TS APIs) · 1,147 Python modules · 244k lines · 159 test suites | Python · TypeScript · Next.js · Vercel |
-| **Retrieval layer** | 61,987 pages · 116,158 chunks · 100% embedding coverage | Postgres + pgvector · single-writer source-of-truth |
-| **Agent tooling** | 29 public repos · 3 public MCP servers you can run yourself | Model Context Protocol · permission-gated |
-| **Compute fleet** | 4-node self-hosted AI cluster · role-tiered (light/mid/heavy) · LAN-first with remote failover | Docker · Kubernetes · self-hosted inference |
-| **Data pipeline** | 6-check promote-on-pass ingestion gate · single-flight read cache · row-level security | Postgres · PostgREST · schema-validated |
+| [**rigforge**](https://github.com/mrodgersjs-web/rigforge) | Builds and checks ProofPacket evidence through a reproducible smoke path. | `git clone https://github.com/mrodgersjs-web/rigforge.git && (cd rigforge && python3 -m venv .venv && . .venv/bin/activate && bash scripts/smoke.sh)` |
+| [**proof-studio**](https://github.com/mrodgersjs-web/proof-studio) | Verifies signed completion evidence and detects tampering. | `git clone https://github.com/mrodgersjs-web/proof-studio.git && (cd proof-studio && python3 -m venv .venv && . .venv/bin/activate && bash scripts/smoke.sh)` |
+| [**proof-gate-action**](https://github.com/mrodgersjs-web/proof-gate-action) | Runs proof verification as a GitHub Action. | `git clone https://github.com/mrodgersjs-web/proof-gate-action.git && (cd proof-gate-action && node --test test/verify.test.js)` |
+| [**mesh-studio**](https://github.com/mrodgersjs-web/mesh-studio) | Probes, boots, and recovers a local agent-service mesh. | `git clone https://github.com/mrodgersjs-web/mesh-studio.git && (cd mesh-studio && python3 -m venv .venv && . .venv/bin/activate && bash scripts/smoke.sh)` |
+| [**doctrine**](https://github.com/mrodgersjs-web/doctrine) | Loads operating rules and checks them with a repository smoke script. | `git clone https://github.com/mrodgersjs-web/doctrine.git && (cd doctrine && bash scripts/smoke.sh)` |
+| [**fde-portfolio**](https://github.com/mrodgersjs-web/fde-portfolio) | Carries a discovery-to-evaluation-to-handoff example. | `git clone https://github.com/mrodgersjs-web/fde-portfolio.git && (cd fde-portfolio && bash scripts/smoke.sh)` |
 
-> This is not a portfolio. This is a production system in daily use by a live operator.
+## How a recruiter should spend 10 minutes
 
----
+1. **0–2 minutes.** Open [`rigforge`](https://github.com/mrodgersjs-web/rigforge) and its [latest smoke receipt](https://github.com/mrodgersjs-web/rigforge/actions/workflows/smoke.yml).
+2. **2–4 minutes.** Select the pinned system closest to the role.
+3. **4–6 minutes.** Copy its Verify command and run the public smoke path.
+4. **6–8 minutes.** Inspect the linked receipt's state, date, and commit SHA.
+5. **8–10 minutes.** Compare the three competencies with the credentials, then use the contact line above.
 
-## Core competencies
+## Recent receipts
 
-<table>
-<tr>
-<td valign="top" width="50%">
+<!-- recent_receipts starts -->
+Steward score. **not measured**
 
-**Languages & Frameworks**
-- Python (production services, 1,147+ modules)
-- TypeScript (23 API routes, Next.js/React UIs)
-- Vite + deterministic build starters
-- REST APIs, Webhooks, OAuth, Idempotency
-
-**Systems & Scientific Computing**
-- C++ (performance-critical, HPC)
-- Fortran (scientific computing, numerical methods)
-- JavaScript (full-stack, operator-facing UIs)
-
-**AI / Agent Systems**
-- LLM & Multi-Agent orchestration (RAG, tool calling)
-- Model Context Protocol (MCP) servers
-- Guardrail architecture & evaluation harnesses
-- **Model Evaluation & LLM-as-Judge** (automated eval pipelines, acceptance gates)
-- **LLM Observability** (OpenTelemetry traces, drift detection, agent tracing)
-- **MLflow / Weights & Biases** (experiment tracking, model registry)
-- pgvector retrieval at 116K+ chunk scale
-
-</td>
-<td valign="top" width="50%">
-
-**Infrastructure & Data**
-- Docker, Kubernetes, self-hosted inference
-- **Terraform** (infrastructure-as-code, multi-cloud provisioning)
-- Postgres with row-level security
-- pgvector, schema validation, single-flight caching
-- **Airflow / Prefect** (data pipeline orchestration)
-- CI/CD, GitHub Actions, release gates
-
-**Enterprise & Deployment**
-- AWS, Azure, OCI, Cloudflare
-- EHR, CRM, ITSM integration
-- PII handling & regulated-environment compliance
-- **Stakeholder Translation** (executive ↔ engineering · clinical ↔ technical)
-- Customer-embedded discovery & scoping
-
-</td>
-</tr>
-</table>
-
----
-
-## Engineering artifacts
-
-### ProofPacket verification layer
-Makes an AI agent's "done" claim **cryptographically re-verifiable** instead of taken on trust.
-- **60 modules · 252 tests passing** · CLI · MCP server · signed run ledger · OpenTelemetry hooks
-- Tamper-detection path covered by its own dedicated test suite
-- Built because agent output that cannot be re-verified is why enterprise pilots stall in review
-- → [`proof-studio`](https://github.com/mrodgersjs-web/proof-studio) · [`proof-gate-action`](https://github.com/mrodgersjs-web/proof-gate-action)
-
-### Multi-service agent orchestrator
-CLI that boots and supervises a multi-service agent system with **health checks and bounded restart behavior**.
-
-### Three-layer build gate
-Data validation → test global-setup → change verification. **Fired in production this week** and stopped a corrupt corpus from shipping.
-
-### Deterministic build starter (Vite + TypeScript)
-Ships with a sealed, hash-verifiable ProofPacket so a build's provenance travels with the artifact.
-
----
-
-## Case studies (anonymized)
-
-| Client type | Problem | What I shipped | Measured impact |
-| --- | --- | --- | --- |
-| **PE portfolio company** ($50M rev) | Stuck AI pilot — RAG chatbot hallucinating in customer-facing demos | 6-check ingestion gate + pgvector retrieval + confidence-gated responses | Pilot → production in 90 days · **0 hallucinations** in 30-day audit |
-| **Healthcare system** ($6B rev) | 3-hour ED wait times across 5 hospitals | EmOpti teletriage integration into clinical workflow | **3hrs → 15min** · 130K+ patients · GWU Innovation Award |
-| **Enterprise SaaS** (Oracle Cerner) | External consultants costing $2M+/yr for competitive intel | AI-powered CI system processing 150+ daily signals autonomously | **$35M opex reduction** · replaced consultants entirely |
-| **Healthcare startup** (EmOpti) | Stalled growth mid-COVID, no enterprise sales motion | Deployed telehealth into HCA + Advocate + Jefferson · built pipeline | **$10M Series A** · 35% CAGR · $1M revenue Y1 |
-
-## Install me as a teammate
-
-```bash
-git clone https://github.com/mrodgersjs-web/mrodgersjs-web-teammate.git
-cd mrodgersjs-web-teammate
-node bin/cli.js --ask "how do proof gates work?"
-```
-
-> [`mrodgersjs-web-teammate`](https://github.com/mrodgersjs-web/mrodgersjs-web-teammate) — pure-stdlib Node CLI. `--ask`, `--audit`, `--deploy`. Zero dependencies. Not on npm — run from the clone.
-
----
-
-## Career trajectory
-
-```
-2025–Now   RODGERS INTELLIGENCE GROUP     Founder & Forward Deployed Engineer
-           1,147 Python modules · 56 routes · 116K-chunk RAG · 4-node fleet
-           Consulting: PE portfolio companies · healthcare · professional services
-
-2021–2026  ORACLE (formerly CERNER)        Sr. Director, Strategy & Competitive Intel
-           AI-powered CI: 150+ daily signals · replaced external consultants
-           Post-acquisition integration · AI as core transformation driver
-
-2020–2021  EMOPTI, INC.                    VP, Business Development
-           Deployed telehealth into hospitals (vendor side — same platform bought as buyer)
-           $1M revenue Y1 · $10M Series A (COVID) · 35% CAGR
-
-2018–2020  ADVOCATE HEALTH (fka Aurora)   VP, Commercial & Strategic Innovation
-           Scaled EmOpti across 14 EDs · Founded 83 Tech Harbor (30 people, $27M budgets)
-           Architected $6B → $25B+ growth plan · $28M venture investments
-
-2016–2018  ADVOCATE HEALTH                 Director, Strategic Innovation
-           ED wait: 3hrs → 15min · 130K+ patients · GWU Innovation Award
-           $10M venture fund · $100M Wisconn Valley Fund · 5 workstreams ($60M+)
-
-2013–2015  ADVOCATE HEALTH                 Operations / Business Innovation Manager
-           Babyscripts: 200K+ mothers · $1M Noom partnership · First EmOpti deployment
-```
-
----
-
-## Open-source systems
-
-<div align="center">
-
-| System | What it does | Verify |
+| Pinned system | Latest release | Latest smoke run |
 | --- | --- | --- |
-| [**proof-studio**](https://github.com/mrodgersjs-web/proof-studio) | Catch false "done" — signed completion detection | `rigforge demo` |
-| [**proof-gate-action**](https://github.com/mrodgersjs-web/proof-gate-action) | GitHub Action: proof verification in any CI | `node --test` |
-| [**rig-deviate**](https://github.com/mrodgersjs-web/rig-deviate) | 40 deviation engines × 14σ rungs | `pip install "git+https://github.com/mrodgersjs-web/rig-deviate.git"` |
-| [**rig-ai-engineering**](https://github.com/mrodgersjs-web/rig-ai-engineering) | Prompt intelligence: 4-axis scoring | `pip install "git+https://github.com/mrodgersjs-web/rig-ai-engineering.git"` |
-| [**rig-enhanced-guardrails**](https://github.com/mrodgersjs-web/rig-enhanced-guardrails) | LLM validation with proof-gated completion | `pytest` |
-| [**rig-enhanced-evals**](https://github.com/mrodgersjs-web/rig-enhanced-evals) | L10 self-evolving eval harness | `pytest` |
-| [**rig-enhanced-agent-ops**](https://github.com/mrodgersjs-web/rig-enhanced-agent-ops) | Proof-gated agent ops + audit trail | `pytest` |
-| [**rig-doctrine-overlay**](https://github.com/mrodgersjs-web/rig-doctrine-overlay) | Make any AI repo 1000x governed | `./apply-overlay.sh` |
-| [**rig-agent-firm**](https://github.com/mrodgersjs-web/rig-agent-firm) | GitHub-native agent firm: 6 role-agents | fork the constitution |
-| [**mrodgersjs-web-teammate**](https://github.com/mrodgersjs-web/mrodgersjs-web-teammate) | CLI teammate from the clone | `node bin/cli.js --ask "..."` |
+| [rigforge](https://github.com/mrodgersjs-web/rigforge) | no release | [success](https://github.com/mrodgersjs-web/rigforge/actions/runs/32975681777) · `2026-08-26` · `1baac32` |
+| [proof-studio](https://github.com/mrodgersjs-web/proof-studio) | no release | [success](https://github.com/mrodgersjs-web/proof-studio/actions/runs/32977165587) · `2026-08-26` · `73ab0e4` |
+| [proof-gate-action](https://github.com/mrodgersjs-web/proof-gate-action) | no release | [success](https://github.com/mrodgersjs-web/proof-gate-action/actions/runs/34264456375) · `2026-09-08` · `122742c` |
+| [mesh-studio](https://github.com/mrodgersjs-web/mesh-studio) | no release | [success](https://github.com/mrodgersjs-web/mesh-studio/actions/runs/34260237394) · `2026-09-08` · `40ec9c8` |
+| [doctrine](https://github.com/mrodgersjs-web/doctrine) | no release | [success](https://github.com/mrodgersjs-web/doctrine/actions/runs/31114740549) · `2026-08-06` · `fef2004` |
+| [fde-portfolio](https://github.com/mrodgersjs-web/fde-portfolio) | no release | [success](https://github.com/mrodgersjs-web/fde-portfolio/actions/runs/34257652533) · `2026-09-08` · `c959125` |
+<!-- recent_receipts ends -->
 
-</div>
+## Competencies
 
-<details>
-<summary><b>Full studio index (12 additional repos)</b></summary>
-
-| Studio | Promise | Verify |
-| --- | --- | --- |
-| [fde-portfolio](https://github.com/mrodgersjs-web/fde-portfolio) | Discovery → eval → handoff | `bash scripts/smoke.sh` |
-| [rigforge](https://github.com/mrodgersjs-web/rigforge) | ProofPacket platform package | `bash scripts/smoke.sh` |
-| [jake-studio](https://github.com/mrodgersjs-web/jake-studio) | Operator OS + L10 (38 tests) | `bash scripts/smoke.sh` |
-| [mesh-studio](https://github.com/mrodgersjs-web/mesh-studio) | Fleet probe / boot / recover | `rig-mesh smoke` |
-| [resume](https://github.com/mrodgersjs-web/resume) | FDE resume (md · pdf · docx) | open RESUME.md |
-| [agency-studio](https://github.com/mrodgersjs-web/agency-studio) | Role contracts (Builder ≠ Verifier) | `bash scripts/smoke.sh` |
-| [app-factory-studio](https://github.com/mrodgersjs-web/app-factory-studio) | Spec → scaffold + prove | `bash scripts/smoke.sh` |
-| [strategy-studio](https://github.com/mrodgersjs-web/strategy-studio) | Deterministic strategy routing | `bash scripts/smoke.sh` |
-| [communications-studio](https://github.com/mrodgersjs-web/communications-studio) | Gated comms protocol engine | `bash scripts/smoke.sh` |
-| [doctrine](https://github.com/mrodgersjs-web/doctrine) | Rules agents load before acting | `bash scripts/smoke.sh` |
-| [design-studio](https://github.com/mrodgersjs-web/design-studio) | Public tokens + UI checklists | `bash scripts/smoke.sh` |
-| [patents](https://github.com/mrodgersjs-web/patents) | Patent status (titles only) | `bash scripts/smoke.sh` |
-
-</details>
-
----
+| Competency | Applied to |
+| --- | --- |
+| **Python** | Automation and backend systems |
+| **TypeScript** | Typed application interfaces |
+| **Postgres** | Relational data and retrieval |
 
 ## Credentials
 
-🛡️ U.S. Army Counterintelligence & Communications veteran
-B.S. Industrial Engineering · Iowa State · 3.63 GPA with Distinction
-Six Sigma Black Belt · Project Management Professional (PMP)
-Primary Leadership Development Course with Distinction · Primary Leadership Military Award
-AWS Certified Solutions Architect (in progress) · OCI Certified
-
----
+- U.S. Army Counterintelligence veteran
+- B.S. Industrial Engineering, Iowa State University
+- Six Sigma Black Belt
+- Project Management Professional (PMP)
 
 <div align="center">
 
-[**rodgersintelligence.com**](https://rodgersintelligence.com/) — book a free 30-minute assessment
-
-<sub>Built as an operator. Documented as an FDE. Verified with proof — not vibes.</sub>
+[**rodgersintelligence.com**](https://rodgersintelligence.com/) · [mrodgersjs@gmail.com](mailto:mrodgersjs@gmail.com)
 
 </div>
