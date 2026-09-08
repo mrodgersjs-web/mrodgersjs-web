@@ -11,7 +11,7 @@
 
 <div align="center">
   <strong>Forward Deployed Engineer · Enterprise AI Solutions Architect · Deployment Strategist</strong><br/>
-  <sub>🛡️ <strong>Secret Security Clearance</strong> (U.S. Army Counterintelligence) · Denver, CO · <a href="mailto:mrodgersjs@gmail.com">mrodgersjs@gmail.com</a> · 262.343.5680 · <a href="https://www.linkedin.com/in/mike-rodgers-14416414/">LinkedIn</a> · <a href="https://rodgersintelligence.com">rodgersintelligence.com</a></sub>
+  <sub>🛡️ <strong>U.S. Army Counterintelligence veteran</strong> · Denver, CO · <a href="mailto:mrodgersjs@gmail.com">mrodgersjs@gmail.com</a> · <a href="https://www.linkedin.com/in/mike-rodgers-14416414/">LinkedIn</a> · <a href="https://rodgersintelligence.com">rodgersintelligence.com</a></sub>
 </div>
 
 <div align="center">
@@ -46,7 +46,7 @@
 | --- | --- | --- |
 | **Multi-agent platform** | 56 routes (31 Next.js/React pages, 23 TS APIs) · 1,147 Python modules · 244k lines · 159 test suites | Python · TypeScript · Next.js · Vercel |
 | **Retrieval layer** | 61,987 pages · 116,158 chunks · 100% embedding coverage | Postgres + pgvector · single-writer source-of-truth |
-| **Agent tooling** | 48 external tool servers behind one governed orchestration layer · MCP servers (555 + 276 lines) | Model Context Protocol · permission-gated |
+| **Agent tooling** | 29 public repos · 3 public MCP servers you can run yourself | Model Context Protocol · permission-gated |
 | **Compute fleet** | 4-node self-hosted AI cluster · role-tiered (light/mid/heavy) · LAN-first with remote failover | Docker · Kubernetes · self-hosted inference |
 | **Data pipeline** | 6-check promote-on-pass ingestion gate · single-flight read cache · row-level security | Postgres · PostgREST · schema-validated |
 
@@ -136,10 +136,12 @@ Ships with a sealed, hash-verifiable ProofPacket so a build's provenance travels
 ## Install me as a teammate
 
 ```bash
-npx mrodgersjs-web --ask "how do proof gates work?"
+git clone https://github.com/mrodgersjs-web/mrodgersjs-web-teammate.git
+cd mrodgersjs-web-teammate
+node bin/cli.js --ask "how do proof gates work?"
 ```
 
-> [`mrodgersjs-web-teammate`](https://github.com/mrodgersjs-web/mrodgersjs-web-teammate) — pure-stdlib Node CLI. `--ask`, `--audit`, `--deploy`. Zero dependencies.
+> [`mrodgersjs-web-teammate`](https://github.com/mrodgersjs-web/mrodgersjs-web-teammate) — pure-stdlib Node CLI. `--ask`, `--audit`, `--deploy`. Zero dependencies. Not on npm — run from the clone.
 
 ---
 
@@ -179,20 +181,20 @@ npx mrodgersjs-web --ask "how do proof gates work?"
 | System | What it does | Verify |
 | --- | --- | --- |
 | [**proof-studio**](https://github.com/mrodgersjs-web/proof-studio) | Catch false "done" — signed completion detection | `rigforge demo` |
-| [**proof-gate-action**](https://github.com/mrodgersjs-web/proof-gate-action) | GitHub Action: proof verification in any CI | 6/6 tests ✅ |
-| [**rig-deviate**](https://github.com/mrodgersjs-web/rig-deviate) | 40 deviation engines × 14σ rungs | `pip install rig-deviate` |
-| [**rig-ai-engineering**](https://github.com/mrodgersjs-web/rig-ai-engineering) | Prompt intelligence: 4-axis scoring | `pip install rig-ai-engineering` |
-| [**rig-enhanced-guardrails**](https://github.com/mrodgersjs-web/rig-enhanced-guardrails) | LLM validation with proof-gated completion | 16/16 tests ✅ |
-| [**rig-enhanced-evals**](https://github.com/mrodgersjs-web/rig-enhanced-evals) | L10 self-evolving eval harness | 9/9 tests ✅ |
-| [**rig-enhanced-agent-ops**](https://github.com/mrodgersjs-web/rig-enhanced-agent-ops) | Proof-gated agent ops + audit trail | 20+14 tests ✅ |
+| [**proof-gate-action**](https://github.com/mrodgersjs-web/proof-gate-action) | GitHub Action: proof verification in any CI | `node --test` |
+| [**rig-deviate**](https://github.com/mrodgersjs-web/rig-deviate) | 40 deviation engines × 14σ rungs | `pip install "git+https://github.com/mrodgersjs-web/rig-deviate.git"` |
+| [**rig-ai-engineering**](https://github.com/mrodgersjs-web/rig-ai-engineering) | Prompt intelligence: 4-axis scoring | `pip install "git+https://github.com/mrodgersjs-web/rig-ai-engineering.git"` |
+| [**rig-enhanced-guardrails**](https://github.com/mrodgersjs-web/rig-enhanced-guardrails) | LLM validation with proof-gated completion | `pytest` |
+| [**rig-enhanced-evals**](https://github.com/mrodgersjs-web/rig-enhanced-evals) | L10 self-evolving eval harness | `pytest` |
+| [**rig-enhanced-agent-ops**](https://github.com/mrodgersjs-web/rig-enhanced-agent-ops) | Proof-gated agent ops + audit trail | `pytest` |
 | [**rig-doctrine-overlay**](https://github.com/mrodgersjs-web/rig-doctrine-overlay) | Make any AI repo 1000x governed | `./apply-overlay.sh` |
 | [**rig-agent-firm**](https://github.com/mrodgersjs-web/rig-agent-firm) | GitHub-native agent firm: 6 role-agents | fork the constitution |
-| [**mrodgersjs-web-teammate**](https://github.com/mrodgersjs-web/mrodgersjs-web-teammate) | `npx mrodgersjs-web` — CLI teammate | `npx mrodgersjs-web` |
+| [**mrodgersjs-web-teammate**](https://github.com/mrodgersjs-web/mrodgersjs-web-teammate) | CLI teammate from the clone | `node bin/cli.js --ask "..."` |
 
 </div>
 
 <details>
-<summary><b>Full studio index (16 additional repos)</b></summary>
+<summary><b>Full studio index (12 additional repos)</b></summary>
 
 | Studio | Promise | Verify |
 | --- | --- | --- |
@@ -206,11 +208,8 @@ npx mrodgersjs-web --ask "how do proof gates work?"
 | [strategy-studio](https://github.com/mrodgersjs-web/strategy-studio) | Deterministic strategy routing | `bash scripts/smoke.sh` |
 | [communications-studio](https://github.com/mrodgersjs-web/communications-studio) | Gated comms protocol engine | `bash scripts/smoke.sh` |
 | [doctrine](https://github.com/mrodgersjs-web/doctrine) | Rules agents load before acting | `bash scripts/smoke.sh` |
-| [openwork](https://github.com/mrodgersjs-web/openwork) | Operator workstation shell | `bash scripts/smoke.sh` |
 | [design-studio](https://github.com/mrodgersjs-web/design-studio) | Public tokens + UI checklists | `bash scripts/smoke.sh` |
 | [patents](https://github.com/mrodgersjs-web/patents) | Patent status (titles only) | `bash scripts/smoke.sh` |
-| [mike-rodgers-site](https://github.com/mrodgersjs-web/mike-rodgers-site) | Personal site | open index.html |
-| [birch-rig-boots](https://github.com/mrodgersjs-web/birch-rig-boots) | Boot configurator site | e2e tests |
 
 </details>
 
@@ -218,7 +217,7 @@ npx mrodgersjs-web --ask "how do proof gates work?"
 
 ## Credentials
 
-🛡️ **Secret Security Clearance** — U.S. Army Counterintelligence & Communications (active vetting)
+🛡️ U.S. Army Counterintelligence & Communications veteran
 B.S. Industrial Engineering · Iowa State · 3.63 GPA with Distinction
 Six Sigma Black Belt · Project Management Professional (PMP)
 Primary Leadership Development Course with Distinction · Primary Leadership Military Award
