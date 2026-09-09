@@ -8,7 +8,7 @@ This is the public GitHub profile repository for Mike Rodgers. Its executable su
 
 - `steward/`: pin source, README builder, tests, and scoreboard assets.
 - `assets/`: public profile imagery.
-- `.github/`: Copilot repository instructions.
+- `.github/`: Copilot repository instructions and the scheduled steward workflow.
 - `graft/`: generated cross-repository context. Read it when useful and preserve it unchanged.
 
 ## Proven commands

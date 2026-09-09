@@ -8,7 +8,7 @@ This public profile is backed by a stdlib README steward. The steward validates 
 
 - `steward/`: `PINNED.txt`, builder, unittest module, and scoreboard assets.
 - `assets/`: profile media.
-- `.github/`: Copilot repository instructions.
+- `.github/`: Copilot repository instructions and the scheduled steward workflow.
 - `graft/`: generated context; read when needed and leave unchanged.
 
 ## Commands

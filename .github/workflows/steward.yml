@@ -1,0 +1,40 @@
+name: GitHub FDE steward
+
+on:
+  schedule:
+    - cron: "0 12 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  steward:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Score and refresh receipts
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 steward/score_github.py
+          python3 steward/build_readme.py
+
+      - name: Commit changed steward outputs
+        run: |
+          git add -- README.md steward/scoreboard
+          if git diff --cached --quiet; then
+            echo "No steward changes to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "chore(steward): $(date -u +%F) scoreboard"
+          git push
