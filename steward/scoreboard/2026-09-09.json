@@ -1,12 +1,12 @@
 {
   "schema": 1,
   "date": "2026-09-09",
-  "generated_at": "2026-09-09T01:19:57Z",
+  "generated_at": "2026-09-09T15:31:52Z",
   "criteria_sha256": "68b827c394fa25bb70d2f81cd51909cab5db7fef8b4a9ae0b3e802ad3b9324c6",
   "summary": {
     "total": 100,
-    "green": 85,
-    "red": 10,
+    "green": 78,
+    "red": 17,
     "null": 5
   },
   "criteria": [
@@ -42,36 +42,36 @@
       "id": "bio-fde",
       "check": "gh",
       "description": "`gh api user --jq .bio` contains `Forward Deployed Engineer`",
-      "status": "green",
-      "evidence": "bio contains FDE=true"
+      "status": "red",
+      "evidence": "CatalogError: GitHub read failed (HTTP 403). Check gh authentication, repository access, and rate limits, then retry.. Resolve the check input or provider access, then rerun the steward."
     },
     {
       "id": "blog-url",
       "check": "gh",
       "description": "user.blog is `https://rodgersintelligence.com/` or with trailing slash",
-      "status": "green",
-      "evidence": "blog=https://rodgersintelligence.com"
+      "status": "red",
+      "evidence": "CatalogError: GitHub read failed (HTTP 403). Check gh authentication, repository access, and rate limits, then retry.. Resolve the check input or provider access, then rerun the steward."
     },
     {
       "id": "location-denver",
       "check": "gh",
       "description": "user.location contains `Denver`",
-      "status": "green",
-      "evidence": "location=Denver, CO"
+      "status": "red",
+      "evidence": "CatalogError: GitHub read failed (HTTP 403). Check gh authentication, repository access, and rate limits, then retry.. Resolve the check input or provider access, then rerun the steward."
     },
     {
       "id": "hireable",
       "check": "gh",
       "description": "user.hireable is true",
-      "status": "green",
-      "evidence": "hireable=true"
+      "status": "red",
+      "evidence": "CatalogError: GitHub read failed (HTTP 403). Check gh authentication, repository access, and rate limits, then retry.. Resolve the check input or provider access, then rerun the steward."
     },
     {
       "id": "linkedin-social",
       "check": "gh",
       "description": "`user/social_accounts` includes the LinkedIn URL above",
-      "status": "green",
-      "evidence": "LinkedIn social account present=true"
+      "status": "red",
+      "evidence": "CatalogError: GitHub read failed (HTTP 403). Check gh authentication, repository access, and rate limits, then retry.. Resolve the check input or provider access, then rerun the steward."
     },
     {
       "id": "pins-six",
@@ -84,8 +84,8 @@
       "id": "following-20",
       "check": "gh",
       "description": "following count ≥ 20",
-      "status": "green",
-      "evidence": "following count=20"
+      "status": "red",
+      "evidence": "CatalogError: GitHub read failed (HTTP 403). Check gh authentication, repository access, and rate limits, then retry.. Resolve the check input or provider access, then rerun the steward."
     },
     {
       "id": "live-repo-count",
@@ -127,35 +127,35 @@
       "check": "gh",
       "description": "birch-rig-boots isPrivate true or 404",
       "status": "green",
-      "evidence": "birch-rig-boots private=true"
+      "evidence": "birch-rig-boots returned 404"
     },
     {
       "id": "openwork-private",
       "check": "gh",
       "description": "openwork isPrivate true or 404",
       "status": "green",
-      "evidence": "openwork private=true"
+      "evidence": "openwork returned 404"
     },
     {
       "id": "omniscout-private",
       "check": "gh",
       "description": "rig-omniscout-l2 isPrivate true or 404",
       "status": "green",
-      "evidence": "rig-omniscout-l2 private=true"
+      "evidence": "rig-omniscout-l2 returned 404"
     },
     {
       "id": "legacy-site-private",
       "check": "gh",
       "description": "mike-rodgers-site isPrivate true or 404",
       "status": "green",
-      "evidence": "mike-rodgers-site private=true"
+      "evidence": "mike-rodgers-site returned 404"
     },
     {
       "id": "no-abs-home-paths",
       "check": "gh",
       "description": "grep public default-branch trees for `/Users/rig128gb` and `/home/operator` returns empty (skip LICENSE/docs quoting the steward itself)",
       "status": "red",
-      "evidence": "forbidden home path matches=['Startup-Intelligence-OS:jake-capabilities/khoj/docker-compose.yml', 'goals-variant-b-console:KICKOFF-CORE.md', 'goals-variant-b-console:KICKOFF.md', 'goals-variant-b-console:context/FLEET-PROTOCOL.md', 'goals-variant-b-console:proof/gate-G3-red-path.md', 'home-assistant-big-birch:.codex/AGENTS.openspec-bdd.md', 'mrodgersjs-web:steward/criteria.yaml', 'mrodgersjs-web:steward/score_github.py', 'mrodgersjs-web:steward/scoreboard/2026-09-08.json', 'mrodgersjs-web:steward/scoreboard/2026-09-09.json', 'mrodgersjs-web:steward/scoreboard/latest.json', 'mrodgersjs-web:steward/test_score_github.py', 'operation-get-a-job:GATES.md', 'operation-get-a-job:README.md', 'operation-get-a-job:START_OMP_PROMPT.md', 'operation-get-a-job:julie-recruiting/OMP_START.md', 'operation-get-a-job:julie-recruiting/ORCA-OMP-START.md', 'operation-get-a-job:julie-recruiting/README.md', 'operation-get-a-job:julie-recruiting/omp/julie-observer-bridge.ts', 'operation-get-a-job:julie-recruiting/research/job-automation-20/OMP_FIRST_PASS.md', 'operation-get-a-job:julie-recruiting/scripts/install-local.sh', 'operation-get-a-job:julie-recruiting/scripts/julie', 'operation-get-a-job:previous-deliverables/files/README.md', 'operation-get-a-job:previous-deliverables/files/scripts/install-local.sh', 'operation-get-a-job:previous-deliverables/omp-package/OMP_START.md', 'operation-get-a-job:previous-deliverables/omp-package/README.md', 'operation-get-a-job:previous-deliverables/omp-package/scripts/install-local.sh', 'operation-get-a-job:previous-deliverables/omp-package/scripts/julie', 'operation-get-a-job:previous-deliverables/setup-package/OMP_START.md', 'operation-get-a-job:previous-deliverables/setup-package/README.md', 'operation-get-a-job:previous-deliverables/setup-package/scripts/julie', 'operation-get-a-job:revenue-operation/CURRENT-STATE-V0.md', 'operation-get-a-job:revenue-operation/OMP-TODO.md', 'operation-get-a-job:revenue-operation/automation/ORCA-RUNBOOK.md', 'operation-get-a-job:revenue-operation/lanes/01-cash-now/V0-BASELINE.md', 'operation-get-a-job:revenue-operation/lanes/02-what-to-sell/V0-BASELINE.md', 'operation-get-a-job:revenue-operation/lanes/03-employment/INPUTS-OUTPUTS.md', 'operation-get-a-job:revenue-operation/lanes/03-employment/PLAN.md', 'operation-get-a-job:revenue-operation/lanes/03-employment/V0-BASELINE.md', 'operation-get-a-job:revenue-operation/lanes/03-employment/prompts/00-bootstrap.md', 'operation-get-a-job:revenue-operation/lanes/03-employment/prompts/02-implement.md', 'operation-get-a-job:revenue-operation/lanes/03-employment/prompts/03-independent-review.md', 'operation-get-a-job:revenue-operation/lanes/03-employment/prompts/04-daily-run.md', 'operation-get-a-job:revenue-operation/lanes/03-employment/prompts/05-recover.md', 'operation-get-a-job:revenue-operation/lanes/04-direction/V0-BASELINE.md', 'operation-get-a-job:revenue-operation/lanes/05-daily-priorities/V0-BASELINE.md', 'operation-get-a-job:revenue-operation/lanes/06-finish-projects/INPUTS-OUTPUTS.md', 'operation-get-a-job:revenue-operation/lanes/06-finish-projects/PLAN.md', 'operation-get-a-job:revenue-operation/lanes/06-finish-projects/V0-BASELINE.md', 'operation-get-a-job:revenue-operation/lanes/06-finish-projects/prompts/00-bootstrap.md', 'operation-get-a-job:revenue-operation/lanes/06-finish-projects/prompts/02-implement.md', 'operation-get-a-job:revenue-operation/lanes/06-finish-projects/prompts/04-daily-run.md', 'operation-get-a-job:revenue-operation/lanes/06-finish-projects/prompts/05-recover.md', 'operation-get-a-job:revenue-operation/lanes/07-new-ideas/INPUTS-OUTPUTS.md', 'operation-get-a-job:revenue-operation/lanes/07-new-ideas/PLAN.md', 'operation-get-a-job:revenue-operation/lanes/07-new-ideas/V0-BASELINE.md', 'operation-get-a-job:revenue-operation/lanes/07-new-ideas/prompts/00-bootstrap.md', 'operation-get-a-job:revenue-operation/lanes/07-new-ideas/prompts/02-implement.md', 'operation-get-a-job:revenue-operation/lanes/07-new-ideas/prompts/03-independent-review.md', 'operation-get-a-job:revenue-operation/lanes/07-new-ideas/prompts/04-daily-run.md', 'operation-get-a-job:revenue-operation/lanes/07-new-ideas/prompts/05-recover.md', 'operation-get-a-job:revenue-operation/projects/gtm-automation/PLAN.md', 'operation-get-a-job:revenue-operation/projects/gtm-automation/V0-BASELINE.md', 'operation-get-a-job:revenue-operation/projects/professional-ai-packages/PLAN.md', 'operation-get-a-job:revenue-operation/projects/professional-ai-packages/V0-BASELINE.md', 'operation-get-a-job:revenue-operation/projects/rigdesk/AUTOMATION.md', 'operation-get-a-job:revenue-operation/projects/rigdesk/PLAN.md', 'operation-get-a-job:revenue-operation/projects/rigdesk/V0-BASELINE.md', 'operation-get-a-job:revenue-operation/projects/traject/AUTOMATION.md', 'operation-get-a-job:revenue-operation/projects/traject/PLAN.md', 'operation-get-a-job:revenue-operation/projects/traject/V0-BASELINE.md', 'operation-get-a-job:revenue-operation/projects/transformfit/AUTOMATION.md', 'operation-get-a-job:revenue-operation/projects/transformfit/BUILD-PROMPTS.md', 'operation-get-a-job:revenue-operation/projects/transformfit/PLAN.md', 'operation-get-a-job:revenue-operation/projects/transformfit/V0-BASELINE.md', 'operation-get-a-job:revenue-operation/projects/website-design/PLAN.md', 'operation-get-a-job:revenue-operation/projects/website-design/V0-BASELINE.md', 'operation-get-a-job:revenue-operation/reports/daily/2026-09-08/SESSION.md', 'operation-get-a-job:revenue-operation/reports/daily/2026-09-08/automations-inventory.md', 'operation-get-a-job:revenue-operation/reports/daily/2026-09-08/cash-mission.md', 'operation-get-a-job:revenue-operation/reports/daily/2026-09-08/employment-live.md', 'operation-get-a-job:revenue-operation/reports/daily/2026-09-08/project-sources.md', 'operation-get-a-job:revenue-operation/reports/daily/2026-09-08/runtime-placement.md', 'operation-get-a-job:revenue-operation/reports/daily/2026-09-08/strategy-studio.md', 'operation-get-a-job:revenue-operation/shared/OPERATING-CONTRACT.md', 'operation-get-a-job:revenue-operation/shared/ORCA-AUTOMATION.md', 'rig-capabilities:capabilities/loops/36h-gtm-sprint.md', 'rig-capabilities:capabilities/loops/doer-checker-validator.md', 'rig-capabilities:capabilities/loops/hermes-conductor.md', 'rig-capabilities:capabilities/skills/rig-agent-team/SKILL.md', 'rig-capabilities:capabilities/skills/rig-office-docs/SKILL.md', 'rig-capabilities:docs/ADOPTION-PLAN.md', 'rig-capabilities:docs/HARNESS-COMPILE-REPORT.md', 'rig-memory-os:.mcp.json', 'rig-memory-os:RECONCILE-DRIFT.txt', 'rig-memory-os:docs/REVERSE-ENGINEERING.md', 'rig-memory-os:facade/tools_style.py', 'rig-memory-os:founder_runtime/prediction_backfill.py', 'rig-memory-os:founder_runtime/prediction_math.py', 'rig-memory-os:platform/founder-runtime/README.md', 'rig-memory-os:products/rig-memory-os/README.md', 'rig-memory-os:products/rig-memory-os/scripts/verify.py', 'rig-memory-os:scripts/deploy.sh', 'rig-memory-os:scripts/lib/facade_drain.py', 'rig-omniscout-l2:rig_omniscout/consensus_mcp.py', 'rig-omniscout-l2:rig_omniscout/omniscout_l2_factory.py', 'rig-omniscout-l2:rig_omniscout/omniscout_l2_produce100.py', 'rig-omniscout-l2:rig_omniscout/prefect_flows.py', 'rig-pattern-engines:tests/fixtures/l2-0437f3e9a18b3f67.json', 'rig-pattern-engines:tests/fixtures/l2-40510b211793548d.json', 'rig-pattern-engines:tests/fixtures/l2-43a48363baea9d97.json', 'rig-pattern-engines:tests/fixtures/l2-9f8bfd145bf3e378.json', 'rig-pattern-engines:tests/fixtures/l2-dde2b6a213404bb9.json', 'vibe-production-gauntlet:GATES.md', 'vibe-production-gauntlet:docs/PILOT-TRANSFORMFIT.md']"
+      "evidence": "ScoreError: gh read failed with exit 1. Resolve the check input or provider access, then rerun the steward."
     },
     {
       "id": "no-pycache",
@@ -498,7 +498,7 @@
       "check": "gh",
       "description": "rig-omniscout-l2 not public",
       "status": "green",
-      "evidence": "rig-omniscout-l2 private=true"
+      "evidence": "rig-omniscout-l2 returned 404"
     },
     {
       "id": "claude-desktop-snippet",
@@ -617,7 +617,7 @@
       "check": "gh",
       "description": "at least one public push or Action on profile repo in last 7 days",
       "status": "green",
-      "evidence": "recent public events=3"
+      "evidence": "recent public events=5"
     },
     {
       "id": "contact-path",
@@ -672,8 +672,8 @@
       "id": "orca-automation",
       "check": "file",
       "description": "`orca automations list --json` contains name `GitHub FDE steward` and `enabled: true`",
-      "status": "green",
-      "evidence": "enabled GitHub FDE steward automation=true"
+      "status": "red",
+      "evidence": "ScoreError: command unavailable: orca. Resolve the check input or provider access, then rerun the steward."
     },
     {
       "id": "local-first",
