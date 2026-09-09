@@ -1,0 +1,714 @@
+{
+  "schema": 1,
+  "date": "2026-09-08",
+  "generated_at": "2026-09-08T23:59:27Z",
+  "criteria_sha256": "68b827c394fa25bb70d2f81cd51909cab5db7fef8b4a9ae0b3e802ad3b9324c6",
+  "summary": {
+    "total": 100,
+    "green": 83,
+    "red": 12,
+    "null": 5
+  },
+  "criteria": [
+    {
+      "id": "profile-readme-exists",
+      "check": "gh",
+      "description": "mrodgersjs-web/mrodgersjs-web has README.md",
+      "status": "green",
+      "evidence": "profile README exists=true"
+    },
+    {
+      "id": "banner-200",
+      "check": "http",
+      "description": "assets/profile-banner-v2.jpg raw.githubusercontent.com HTTP 200",
+      "status": "green",
+      "evidence": "banner HTTP status=200"
+    },
+    {
+      "id": "no-phone",
+      "check": "regex",
+      "description": "profile README has no match of `\\d{3}[.\\-\\s]?\\d{3}[.\\-\\s]?\\d{4}`",
+      "status": "green",
+      "evidence": "profile phone pattern absent"
+    },
+    {
+      "id": "contact-email",
+      "check": "regex",
+      "description": "README contains `mrodgersjs@gmail.com`",
+      "status": "green",
+      "evidence": "profile email present=true"
+    },
+    {
+      "id": "bio-fde",
+      "check": "gh",
+      "description": "`gh api user --jq .bio` contains `Forward Deployed Engineer`",
+      "status": "green",
+      "evidence": "bio contains FDE=true"
+    },
+    {
+      "id": "blog-url",
+      "check": "gh",
+      "description": "user.blog is `https://rodgersintelligence.com/` or with trailing slash",
+      "status": "green",
+      "evidence": "blog=https://rodgersintelligence.com"
+    },
+    {
+      "id": "location-denver",
+      "check": "gh",
+      "description": "user.location contains `Denver`",
+      "status": "green",
+      "evidence": "location=Denver, CO"
+    },
+    {
+      "id": "hireable",
+      "check": "gh",
+      "description": "user.hireable is true",
+      "status": "green",
+      "evidence": "hireable=true"
+    },
+    {
+      "id": "linkedin-social",
+      "check": "gh",
+      "description": "`user/social_accounts` includes the LinkedIn URL above",
+      "status": "green",
+      "evidence": "LinkedIn social account present=true"
+    },
+    {
+      "id": "pins-six",
+      "check": "gh",
+      "description": "GraphQL pinnedItems names == the six in `steward/PINNED.txt` (one name per line)",
+      "status": "green",
+      "evidence": "pinned=['rigforge', 'proof-studio', 'proof-gate-action', 'mesh-studio', 'doctrine', 'fde-portfolio'] expected=['rigforge', 'proof-studio', 'proof-gate-action', 'mesh-studio', 'doctrine', 'fde-portfolio']"
+    },
+    {
+      "id": "following-20",
+      "check": "gh",
+      "description": "following count ≥ 20",
+      "status": "green",
+      "evidence": "following count=20"
+    },
+    {
+      "id": "live-repo-count",
+      "check": "gh",
+      "description": "README does not contain a repo count that differs from `gh repo list --json isPrivate` public length",
+      "status": "green",
+      "evidence": "live public count=29; static claims=[]"
+    },
+    {
+      "id": "public-cap",
+      "check": "gh",
+      "description": "public repo count ≤ 30",
+      "status": "green",
+      "evidence": "public repository count=29"
+    },
+    {
+      "id": "every-desc",
+      "check": "gh",
+      "description": "no public repo with empty description",
+      "status": "green",
+      "evidence": "repositories without descriptions=[]"
+    },
+    {
+      "id": "every-license",
+      "check": "gh",
+      "description": "every public repo has a LICENSE file (Contents API)",
+      "status": "green",
+      "evidence": "repositories without LICENSE=[]"
+    },
+    {
+      "id": "no-empty-stub",
+      "check": "gh",
+      "description": "every public repo has README.md and at least one non-asset file",
+      "status": "green",
+      "evidence": "empty or README-less repositories=[]"
+    },
+    {
+      "id": "birch-private",
+      "check": "gh",
+      "description": "birch-rig-boots isPrivate true or 404",
+      "status": "green",
+      "evidence": "birch-rig-boots private=true"
+    },
+    {
+      "id": "openwork-private",
+      "check": "gh",
+      "description": "openwork isPrivate true or 404",
+      "status": "green",
+      "evidence": "openwork private=true"
+    },
+    {
+      "id": "omniscout-private",
+      "check": "gh",
+      "description": "rig-omniscout-l2 isPrivate true or 404",
+      "status": "green",
+      "evidence": "rig-omniscout-l2 private=true"
+    },
+    {
+      "id": "legacy-site-private",
+      "check": "gh",
+      "description": "mike-rodgers-site isPrivate true or 404",
+      "status": "green",
+      "evidence": "mike-rodgers-site private=true"
+    },
+    {
+      "id": "no-abs-home-paths",
+      "check": "gh",
+      "description": "grep public default-branch trees for `/Users/rig128gb` and `/home/operator` returns empty (skip LICENSE/docs quoting the steward itself)",
+      "status": "red",
+      "evidence": "forbidden home path matches=['Startup-Intelligence-OS:jake-capabilities/khoj/docker-compose.yml', 'goals-variant-b-console:KICKOFF-CORE.md', 'goals-variant-b-console:KICKOFF.md', 'goals-variant-b-console:context/FLEET-PROTOCOL.md', 'goals-variant-b-console:proof/gate-G3-red-path.md', 'home-assistant-big-birch:.codex/AGENTS.openspec-bdd.md', 'operation-get-a-job:GATES.md', 'operation-get-a-job:README.md', 'operation-get-a-job:START_OMP_PROMPT.md', 'operation-get-a-job:julie-recruiting/OMP_START.md', 'operation-get-a-job:julie-recruiting/ORCA-OMP-START.md', 'operation-get-a-job:julie-recruiting/README.md', 'operation-get-a-job:julie-recruiting/omp/julie-observer-bridge.ts', 'operation-get-a-job:julie-recruiting/research/job-automation-20/OMP_FIRST_PASS.md', 'operation-get-a-job:julie-recruiting/scripts/install-local.sh', 'operation-get-a-job:julie-recruiting/scripts/julie', 'operation-get-a-job:previous-deliverables/files/README.md', 'operation-get-a-job:previous-deliverables/files/scripts/install-local.sh', 'operation-get-a-job:previous-deliverables/omp-package/OMP_START.md', 'operation-get-a-job:previous-deliverables/omp-package/README.md', 'operation-get-a-job:previous-deliverables/omp-package/scripts/install-local.sh', 'operation-get-a-job:previous-deliverables/omp-package/scripts/julie', 'operation-get-a-job:previous-deliverables/setup-package/OMP_START.md', 'operation-get-a-job:previous-deliverables/setup-package/README.md', 'operation-get-a-job:previous-deliverables/setup-package/scripts/install-local.sh', 'operation-get-a-job:previous-deliverables/setup-package/scripts/julie', 'operation-get-a-job:revenue-operation/CURRENT-STATE-V0.md', 'operation-get-a-job:revenue-operation/OMP-TODO.md', 'operation-get-a-job:revenue-operation/automation/ORCA-RUNBOOK.md', 'operation-get-a-job:revenue-operation/lanes/01-cash-now/V0-BASELINE.md', 'operation-get-a-job:revenue-operation/lanes/02-what-to-sell/V0-BASELINE.md', 'operation-get-a-job:revenue-operation/lanes/03-employment/INPUTS-OUTPUTS.md', 'operation-get-a-job:revenue-operation/lanes/03-employment/PLAN.md', 'operation-get-a-job:revenue-operation/lanes/03-employment/V0-BASELINE.md', 'operation-get-a-job:revenue-operation/lanes/03-employment/prompts/00-bootstrap.md', 'operation-get-a-job:revenue-operation/lanes/03-employment/prompts/02-implement.md', 'operation-get-a-job:revenue-operation/lanes/03-employment/prompts/03-independent-review.md', 'operation-get-a-job:revenue-operation/lanes/03-employment/prompts/04-daily-run.md', 'operation-get-a-job:revenue-operation/lanes/03-employment/prompts/05-recover.md', 'operation-get-a-job:revenue-operation/lanes/04-direction/V0-BASELINE.md', 'operation-get-a-job:revenue-operation/lanes/05-daily-priorities/V0-BASELINE.md', 'operation-get-a-job:revenue-operation/lanes/06-finish-projects/INPUTS-OUTPUTS.md', 'operation-get-a-job:revenue-operation/lanes/06-finish-projects/PLAN.md', 'operation-get-a-job:revenue-operation/lanes/06-finish-projects/V0-BASELINE.md', 'operation-get-a-job:revenue-operation/lanes/06-finish-projects/prompts/00-bootstrap.md', 'operation-get-a-job:revenue-operation/lanes/06-finish-projects/prompts/02-implement.md', 'operation-get-a-job:revenue-operation/lanes/06-finish-projects/prompts/04-daily-run.md', 'operation-get-a-job:revenue-operation/lanes/06-finish-projects/prompts/05-recover.md', 'operation-get-a-job:revenue-operation/lanes/07-new-ideas/INPUTS-OUTPUTS.md', 'operation-get-a-job:revenue-operation/lanes/07-new-ideas/PLAN.md', 'operation-get-a-job:revenue-operation/lanes/07-new-ideas/V0-BASELINE.md', 'operation-get-a-job:revenue-operation/lanes/07-new-ideas/prompts/00-bootstrap.md', 'operation-get-a-job:revenue-operation/lanes/07-new-ideas/prompts/02-implement.md', 'operation-get-a-job:revenue-operation/lanes/07-new-ideas/prompts/03-independent-review.md', 'operation-get-a-job:revenue-operation/lanes/07-new-ideas/prompts/04-daily-run.md', 'operation-get-a-job:revenue-operation/lanes/07-new-ideas/prompts/05-recover.md', 'operation-get-a-job:revenue-operation/projects/gtm-automation/PLAN.md', 'operation-get-a-job:revenue-operation/projects/gtm-automation/V0-BASELINE.md', 'operation-get-a-job:revenue-operation/projects/professional-ai-packages/PLAN.md', 'operation-get-a-job:revenue-operation/projects/professional-ai-packages/V0-BASELINE.md', 'operation-get-a-job:revenue-operation/projects/rigdesk/AUTOMATION.md', 'operation-get-a-job:revenue-operation/projects/rigdesk/PLAN.md', 'operation-get-a-job:revenue-operation/projects/rigdesk/V0-BASELINE.md', 'operation-get-a-job:revenue-operation/projects/traject/AUTOMATION.md', 'operation-get-a-job:revenue-operation/projects/traject/PLAN.md', 'operation-get-a-job:revenue-operation/projects/traject/V0-BASELINE.md', 'operation-get-a-job:revenue-operation/projects/transformfit/AUTOMATION.md', 'operation-get-a-job:revenue-operation/projects/transformfit/BUILD-PROMPTS.md', 'operation-get-a-job:revenue-operation/projects/transformfit/PLAN.md', 'operation-get-a-job:revenue-operation/projects/transformfit/V0-BASELINE.md', 'operation-get-a-job:revenue-operation/projects/website-design/PLAN.md', 'operation-get-a-job:revenue-operation/projects/website-design/V0-BASELINE.md', 'operation-get-a-job:revenue-operation/reports/daily/2026-09-08/SESSION.md', 'operation-get-a-job:revenue-operation/reports/daily/2026-09-08/automations-inventory.md', 'operation-get-a-job:revenue-operation/reports/daily/2026-09-08/cash-mission.md', 'operation-get-a-job:revenue-operation/reports/daily/2026-09-08/employment-live.md', 'operation-get-a-job:revenue-operation/reports/daily/2026-09-08/project-sources.md', 'operation-get-a-job:revenue-operation/reports/daily/2026-09-08/runtime-placement.md', 'operation-get-a-job:revenue-operation/reports/daily/2026-09-08/strategy-studio.md', 'operation-get-a-job:revenue-operation/shared/OPERATING-CONTRACT.md', 'operation-get-a-job:revenue-operation/shared/ORCA-AUTOMATION.md', 'rig-capabilities:capabilities/loops/36h-gtm-sprint.md', 'rig-capabilities:capabilities/loops/doer-checker-validator.md', 'rig-capabilities:capabilities/loops/hermes-conductor.md', 'rig-capabilities:capabilities/skills/rig-agent-team/SKILL.md', 'rig-capabilities:capabilities/skills/rig-office-docs/SKILL.md', 'rig-capabilities:docs/ADOPTION-PLAN.md', 'rig-capabilities:docs/HARNESS-COMPILE-REPORT.md', 'rig-memory-os:.mcp.json', 'rig-memory-os:RECONCILE-DRIFT.txt', 'rig-memory-os:docs/REVERSE-ENGINEERING.md', 'rig-memory-os:facade/tools_style.py', 'rig-memory-os:founder_runtime/prediction_backfill.py', 'rig-memory-os:founder_runtime/prediction_math.py', 'rig-memory-os:platform/founder-runtime/README.md', 'rig-memory-os:products/rig-memory-os/README.md', 'rig-memory-os:products/rig-memory-os/scripts/verify.py', 'rig-memory-os:scripts/deploy.sh', 'rig-memory-os:scripts/lib/facade_drain.py', 'rig-omniscout-l2:rig_omniscout/consensus_mcp.py', 'rig-omniscout-l2:rig_omniscout/omniscout_l2_factory.py', 'rig-omniscout-l2:rig_omniscout/omniscout_l2_produce100.py', 'rig-omniscout-l2:rig_omniscout/prefect_flows.py', 'rig-pattern-engines:tests/fixtures/l2-0437f3e9a18b3f67.json', 'rig-pattern-engines:tests/fixtures/l2-40510b211793548d.json', 'rig-pattern-engines:tests/fixtures/l2-43a48363baea9d97.json', 'rig-pattern-engines:tests/fixtures/l2-9f8bfd145bf3e378.json', 'rig-pattern-engines:tests/fixtures/l2-dde2b6a213404bb9.json', 'vibe-production-gauntlet:GATES.md', 'vibe-production-gauntlet:docs/PILOT-TRANSFORMFIT.md']"
+    },
+    {
+      "id": "no-pycache",
+      "check": "gh",
+      "description": "no `__pycache__` in public trees",
+      "status": "green",
+      "evidence": "repositories with __pycache__=[]"
+    },
+    {
+      "id": "no-env-files",
+      "check": "gh",
+      "description": "no `.env`, `.pem`, `id_rsa` in public trees",
+      "status": "green",
+      "evidence": "credential-like public paths=[]"
+    },
+    {
+      "id": "flagship-homepage",
+      "check": "gh",
+      "description": "rigforge, proof-studio, fde-portfolio homepage is rodgersintelligence.com or a docs URL (not empty)",
+      "status": "green",
+      "evidence": "flagships without approved homepage=[]"
+    },
+    {
+      "id": "topics-baseline",
+      "check": "gh",
+      "description": "every public repo topics include the 7 baseline",
+      "status": "green",
+      "evidence": "repositories missing baseline topics=[]"
+    },
+    {
+      "id": "topics-specific",
+      "check": "gh",
+      "description": "every public repo has ≥10 topics (7 baseline + ≥3 specific)",
+      "status": "green",
+      "evidence": "repositories with fewer than 10 topics=[]"
+    },
+    {
+      "id": "desc-no-typo",
+      "check": "gh",
+      "description": "no public description contains `ProofPates`",
+      "status": "green",
+      "evidence": "description typo repositories=[]"
+    },
+    {
+      "id": "default-main",
+      "check": "gh",
+      "description": "default_branch is `main` on every public repo",
+      "status": "green",
+      "evidence": "non-main default repositories=[]"
+    },
+    {
+      "id": "clone-org",
+      "check": "gh",
+      "description": "no public README contains `github.com/rodgemd1-lgtm` or `github.com/rig-intelligence/`",
+      "status": "green",
+      "evidence": "legacy clone organizations in=[]"
+    },
+    {
+      "id": "unique-desc",
+      "check": "gh",
+      "description": "no two public repos share an identical description string",
+      "status": "green",
+      "evidence": "duplicate descriptions=[]"
+    },
+    {
+      "id": "readme-exists",
+      "check": "gh",
+      "description": "every public repo has README.md",
+      "status": "green",
+      "evidence": "repositories without README.md=[]"
+    },
+    {
+      "id": "install-first",
+      "check": "regex",
+      "description": "README contains a fenced code block in the first 80 lines",
+      "status": "red",
+      "evidence": "repositories without early code fence=['mrodgersjs-web', 'rig-agent-directory', 'rig-domain-agents', 'rig-skills']"
+    },
+    {
+      "id": "how-it-works-visual",
+      "check": "llm",
+      "description": "README references `assets/` image or svg",
+      "status": null,
+      "evidence": null
+    },
+    {
+      "id": "live-ci-badge",
+      "check": "regex",
+      "description": "if `.github/workflows` exists, README badge URL contains `github/actions/workflow/status`",
+      "status": "red",
+      "evidence": "repositories without live CI badge=['agency-studio', 'app-factory-studio', 'doctrine', 'fde-portfolio', 'proof-studio', 'rigforge', 'strategy-studio']"
+    },
+    {
+      "id": "license-badge-match",
+      "check": "gh",
+      "description": "if README says MIT, LICENSE file exists",
+      "status": "green",
+      "evidence": "MIT claims without LICENSE=[]"
+    },
+    {
+      "id": "install-registry",
+      "check": "http",
+      "description": "if README has `pip install <name>` without `git+`, pypi.org/pypi/<name>/json is 200; same for `npx <name>` vs registry.npmjs.org",
+      "status": "green",
+      "evidence": "unregistered install claims=[]"
+    },
+    {
+      "id": "test-count-honest",
+      "check": "gh",
+      "description": "no `N/N tests` badge unless latest workflow conclusion is success",
+      "status": "green",
+      "evidence": "unbacked test-count claims=[]"
+    },
+    {
+      "id": "footer-site",
+      "check": "regex",
+      "description": "README contains `rodgersintelligence.com`",
+      "status": "red",
+      "evidence": "repositories without footer site=['agency-studio', 'app-factory-studio', 'communications-studio', 'design-studio', 'deviatrix-genesis', 'doctrine', 'fde-portfolio', 'jake-studio', 'mesh-studio', 'patents', 'rig-agent-directory', 'rig-domain-agents', 'rig-marketplace', 'rig-pattern-engines', 'rig-skills', 'strategy-studio']"
+    },
+    {
+      "id": "no-raw-json-tables",
+      "check": "regex",
+      "description": "README has no line matching `^\\|.*\\{&quot;|^\\\\|.*\\{\"`",
+      "status": "green",
+      "evidence": "READMEs with raw JSON tables=[]"
+    },
+    {
+      "id": "verify-command",
+      "check": "regex",
+      "description": "README contains `pytest` or `smoke` or `npm test` or `node --test` or `rigforge`",
+      "status": "red",
+      "evidence": "READMEs without verify command=['rig-domain-agents', 'rig-marketplace', 'rig-skills']"
+    },
+    {
+      "id": "hero-ok",
+      "check": "http",
+      "description": "referenced local images HTTP 200",
+      "status": "green",
+      "evidence": "broken local README images=[]"
+    },
+    {
+      "id": "no-false-e2e",
+      "check": "llm",
+      "description": "README does not contain `e2e` unless a workflow file name contains `e2e` or `smoke`",
+      "status": null,
+      "evidence": null
+    },
+    {
+      "id": "readme-size",
+      "check": "gh",
+      "description": "README.md ≤ 40000 bytes",
+      "status": "red",
+      "evidence": "READMEs over 40000 bytes=['rig-domain-agents']"
+    },
+    {
+      "id": "clone-url-self",
+      "check": "regex",
+      "description": "clone examples use `mrodgersjs-web/<this-repo>`",
+      "status": "red",
+      "evidence": "cross-repository clone examples=['fde-portfolio->mrodgersjs-web/proof-studio', 'resume->mrodgersjs-web/proof-studio', 'rig-agent-directory->mrodgersjs-web/rig-skills', 'rig-agent-directory->mrodgersjs-web/rig-domain-agents', 'rig-agent-directory->mrodgersjs-web/rig-doctrine-overlay']"
+    },
+    {
+      "id": "languages-honest",
+      "check": "gh",
+      "description": "language shields in README ⊆ linguist languages for that repo",
+      "status": "green",
+      "evidence": "unsupported language shields=[]"
+    },
+    {
+      "id": "details-collapse",
+      "check": "llm",
+      "description": "READMEs longer than 250 lines contain `<details>`",
+      "status": null,
+      "evidence": null
+    },
+    {
+      "id": "insight-quote",
+      "check": "regex",
+      "description": "profile README contains a blockquote",
+      "status": "green",
+      "evidence": "profile blockquote present=true"
+    },
+    {
+      "id": "no-secret-clearance-string",
+      "check": "regex",
+      "description": "profile README does not contain `Secret Security Clearance`",
+      "status": "green",
+      "evidence": "forbidden clearance string absent=true"
+    },
+    {
+      "id": "product-has-workflow",
+      "check": "gh",
+      "description": "the 6 pins each have ≥1 Actions workflow",
+      "status": "green",
+      "evidence": "pins without workflows=[]"
+    },
+    {
+      "id": "latest-success",
+      "check": "gh",
+      "description": "latest run conclusion on each pin is `success`",
+      "status": "green",
+      "evidence": "rigforge latest conclusion=success; proof-studio latest conclusion=success; proof-gate-action latest conclusion=success; mesh-studio latest conclusion=success; doctrine latest conclusion=success; fde-portfolio latest conclusion=success"
+    },
+    {
+      "id": "proof-gate-ci",
+      "check": "gh",
+      "description": "proof-gate-action has a successful run in last 14 days",
+      "status": "green",
+      "evidence": "recent successful proof-gate runs=2"
+    },
+    {
+      "id": "mesh-green",
+      "check": "gh",
+      "description": "mesh-studio latest ci.yml success",
+      "status": "green",
+      "evidence": "mesh-studio latest conclusion=success"
+    },
+    {
+      "id": "jake-green",
+      "check": "gh",
+      "description": "jake-studio latest smoke.yml success",
+      "status": "green",
+      "evidence": "jake-studio latest conclusion=success"
+    },
+    {
+      "id": "comms-green",
+      "check": "gh",
+      "description": "communications-studio latest ci.yml success",
+      "status": "green",
+      "evidence": "communications-studio latest conclusion=success"
+    },
+    {
+      "id": "deviatrix-green-or-unclaimed",
+      "check": "gh",
+      "description": "either latest ci success or README does not say MCP",
+      "status": "green",
+      "evidence": "deviatrix-genesis latest conclusion=success; README MCP claim=true"
+    },
+    {
+      "id": "resume-green",
+      "check": "gh",
+      "description": "resume latest smoke success",
+      "status": "green",
+      "evidence": "resume latest conclusion=success"
+    },
+    {
+      "id": "patents-green",
+      "check": "gh",
+      "description": "patents latest smoke success",
+      "status": "green",
+      "evidence": "patents latest conclusion=success"
+    },
+    {
+      "id": "no-continue-on-error",
+      "check": "gh",
+      "description": "pin workflows do not contain `continue-on-error: true`",
+      "status": "red",
+      "evidence": "workflows with continue-on-error true=['rigforge:.github/workflows/ci.yml']"
+    },
+    {
+      "id": "workflow-on-default",
+      "check": "gh",
+      "description": "Actions API total_count for non-dependabot workflows ≥1 on each pin",
+      "status": "green",
+      "evidence": "pins without non-Dependabot workflow=[]"
+    },
+    {
+      "id": "dependabot-rigforge",
+      "check": "gh",
+      "description": "rigforge has `.github/dependabot.yml`",
+      "status": "green",
+      "evidence": "rigforge dependabot file exists=true"
+    },
+    {
+      "id": "proof-gate-tag",
+      "check": "gh",
+      "description": "proof-gate-action has git tag `v1` after first green",
+      "status": "red",
+      "evidence": "tag v1 is lightweight; tagger timestamp is unverifiable"
+    },
+    {
+      "id": "no-skipped-jobs-as-pass",
+      "check": "gh",
+      "description": "latest run jobs all conclusion success or skipped=0 for required smoke job",
+      "status": "green",
+      "evidence": "pins without successful required smoke/test job=[]"
+    },
+    {
+      "id": "planted-failure-docs",
+      "check": "llm",
+      "description": "rigforge README mentions planted failure or ProofPacket",
+      "status": null,
+      "evidence": null
+    },
+    {
+      "id": "action-yml-valid",
+      "check": "gh",
+      "description": "proof-gate-action has `action.yml` or `action.yaml`",
+      "status": "green",
+      "evidence": "proof-gate action metadata exists=true"
+    },
+    {
+      "id": "public-mcp-count",
+      "check": "gh",
+      "description": "profile README MCP server count == number of repos whose tree contains a file matching `mcp_server.py` or `stdio_server` under the repo (recompute live)",
+      "status": "red",
+      "evidence": "live MCP repo count=3; claims=[]"
+    },
+    {
+      "id": "rigforge-mcp-file",
+      "check": "gh",
+      "description": "`rigforge/mcp_server.py` exists",
+      "status": "green",
+      "evidence": "rigforge/rigforge/mcp_server.py exists=true"
+    },
+    {
+      "id": "mesh-mcp-file",
+      "check": "gh",
+      "description": "`src/rig_mesh/mcp_server.py` exists",
+      "status": "green",
+      "evidence": "mesh-studio/src/rig_mesh/mcp_server.py exists=true"
+    },
+    {
+      "id": "catalog-mcp-file",
+      "check": "gh",
+      "description": "profile repo `steward/catalog_mcp.py` exists",
+      "status": "green",
+      "evidence": "mrodgersjs-web/steward/catalog_mcp.py exists=true"
+    },
+    {
+      "id": "comms-not-mcp",
+      "check": "regex",
+      "description": "communications-studio README does not call itself an MCP server",
+      "status": "green",
+      "evidence": "communications-studio MCP server claim absent=true"
+    },
+    {
+      "id": "omniscout-not-public-mcp",
+      "check": "gh",
+      "description": "rig-omniscout-l2 not public",
+      "status": "green",
+      "evidence": "rig-omniscout-l2 private=true"
+    },
+    {
+      "id": "claude-desktop-snippet",
+      "check": "regex",
+      "description": "rigforge README contains `\"mcpServers\"`",
+      "status": "green",
+      "evidence": "rigforge mcpServers snippet present=true"
+    },
+    {
+      "id": "catalog-readonly",
+      "check": "regex",
+      "description": "catalog_mcp.py contains no `gh api -X POST` / `PATCH` / `PUT` / `DELETE`",
+      "status": "green",
+      "evidence": "catalog contains no mutating gh method"
+    },
+    {
+      "id": "catalog-evals",
+      "check": "file",
+      "description": "profile `steward/evals.xml` has 10 `<eval` tags",
+      "status": "green",
+      "evidence": "catalog eval count=10"
+    },
+    {
+      "id": "local-57-unadvertised",
+      "check": "regex",
+      "description": "no public README contains `github-repo-mcp` or `228 tools`",
+      "status": "green",
+      "evidence": "READMEs advertising local adapter=[]"
+    },
+    {
+      "id": "no-public-mcp-port",
+      "check": "regex",
+      "description": "catalog_mcp.py run transport is stdio only",
+      "status": "green",
+      "evidence": "catalog transports=['stdio']"
+    },
+    {
+      "id": "mcp-no-plaintext-tokens",
+      "check": "regex",
+      "description": "MCP README snippets use `${env:GH_TOKEN}` or `gh auth` not `ghp_`",
+      "status": "green",
+      "evidence": "READMEs with plaintext GitHub token=[]"
+    },
+    {
+      "id": "copilot-instructions-pins",
+      "check": "gh",
+      "description": "each of 6 pins has `.github/copilot-instructions.md`",
+      "status": "green",
+      "evidence": "pins failing .github/copilot-instructions.md=[]"
+    },
+    {
+      "id": "copilot-instructions-profile",
+      "check": "gh",
+      "description": "profile repo has `.github/copilot-instructions.md`",
+      "status": "green",
+      "evidence": "profile Copilot instructions exist=true"
+    },
+    {
+      "id": "agents-md-pins",
+      "check": "gh",
+      "description": "each pin has `AGENTS.md`",
+      "status": "green",
+      "evidence": "pins failing AGENTS.md=[]"
+    },
+    {
+      "id": "copilot-file-short",
+      "check": "gh",
+      "description": "each copilot-instructions.md ≤ 8000 bytes",
+      "status": "green",
+      "evidence": "oversize Copilot instruction files=[]"
+    },
+    {
+      "id": "copilot-has-test-cmd",
+      "check": "regex",
+      "description": "each copilot-instructions.md contains the word `pytest` or `smoke` or `npm test`",
+      "status": "green",
+      "evidence": "Copilot instruction files without test command=[]"
+    },
+    {
+      "id": "codeowners-pins",
+      "check": "gh",
+      "description": "each pin has `.github/CODEOWNERS` containing `@mrodgersjs-web`",
+      "status": "green",
+      "evidence": "pins failing .github/CODEOWNERS=[]"
+    },
+    {
+      "id": "pin-narrative",
+      "check": "llm",
+      "description": "PINNED.txt order is rigforge, proof-studio, proof-gate-action, mesh-studio, doctrine, fde-portfolio (or evals stand-in documented in PINNED.txt with expiry date)",
+      "status": null,
+      "evidence": null
+    },
+    {
+      "id": "resume-pdf",
+      "check": "http",
+      "description": "`mrodgersjs-web/resume` contains a `.pdf` or README link that HTTP 200s",
+      "status": "green",
+      "evidence": "resume PDF paths=['Mike-Rodgers-Forward-Deployed-Engineer.pdf']"
+    },
+    {
+      "id": "directory-matches-public",
+      "check": "gh",
+      "description": "if `rig-agent-directory` is public, its listed repo count equals live public count",
+      "status": "green",
+      "evidence": "directory claims=[29, 29]; live=29"
+    },
+    {
+      "id": "no-star-farming",
+      "check": "gh",
+      "description": "do not star own repos; stargazerCount on own repos may stay 0",
+      "status": "green",
+      "evidence": "self-starred repositories=[]"
+    },
+    {
+      "id": "activity-7d",
+      "check": "gh",
+      "description": "at least one public push or Action on profile repo in last 7 days",
+      "status": "green",
+      "evidence": "recent public events=2; Actions runs=0"
+    },
+    {
+      "id": "contact-path",
+      "check": "regex",
+      "description": "profile README has LinkedIn and site and email",
+      "status": "green",
+      "evidence": "profile contact path complete=true"
+    },
+    {
+      "id": "fde-portfolio-smoke",
+      "check": "gh",
+      "description": "fde-portfolio latest smoke success",
+      "status": "green",
+      "evidence": "fde-portfolio latest conclusion=success"
+    },
+    {
+      "id": "no-clearance-overclaim",
+      "check": "regex",
+      "description": "profile README does not contain `active vetting`",
+      "status": "green",
+      "evidence": "active vetting claim absent=true"
+    },
+    {
+      "id": "criteria-count",
+      "check": "file",
+      "description": "criteria.yaml has exactly 100 `id:` keys",
+      "status": "green",
+      "evidence": "criteria count=100"
+    },
+    {
+      "id": "today-scoreboard",
+      "check": "file",
+      "description": "`steward/scoreboard/$(date -u +%F).json` exists after the daily run",
+      "status": "green",
+      "evidence": "this run atomically writes steward/scoreboard/2026-09-08.json"
+    },
+    {
+      "id": "latest-pointer",
+      "check": "file",
+      "description": "`steward/scoreboard/latest.json` exists",
+      "status": "green",
+      "evidence": "this run atomically writes steward/scoreboard/latest.json"
+    },
+    {
+      "id": "scoreboard-hash",
+      "check": "file",
+      "description": "latest.json includes `sha256` of criteria.yaml",
+      "status": "green",
+      "evidence": "criteria SHA-256=68b827c394fa25bb70d2f81cd51909cab5db7fef8b4a9ae0b3e802ad3b9324c6"
+    },
+    {
+      "id": "orca-automation",
+      "check": "file",
+      "description": "`orca automations list --json` contains name `GitHub FDE steward` and `enabled: true`",
+      "status": "red",
+      "evidence": "enabled GitHub FDE steward automation=false"
+    },
+    {
+      "id": "local-first",
+      "check": "file",
+      "description": "judge.py contains the string `FALLBACK_PAID` and calls `ollama list` before any other model",
+      "status": "green",
+      "evidence": "local-first judge source ordering=true"
+    },
+    {
+      "id": "issues-for-reds",
+      "check": "gh",
+      "description": "when latest.red > 0, an open issue labeled `github-steward` exists (checked the day after Orca run)",
+      "status": "green",
+      "evidence": "not due: no scoreboard exists for 2026-09-07"
+    },
+    {
+      "id": "readme-receipts-fresh",
+      "check": "regex",
+      "description": "profile README `recent_receipts` block date ≥ yesterday UTC",
+      "status": "green",
+      "evidence": "latest receipt date=2026-09-08; threshold=2026-09-07"
+    },
+    {
+      "id": "no-direct-main-from-orca",
+      "check": "file",
+      "description": "ORCA_PROMPT.md contains `Do not git push to main`",
+      "status": "red",
+      "evidence": "ORCA prompt blocks direct main push=false"
+    },
+    {
+      "id": "planted-failure",
+      "check": "file",
+      "description": "`python3 steward/score_github.py --plant missing-license` exits 0 and JSON has criterion 15 red; running without `--plant` after restore is green on 15 if LICENSE exists",
+      "status": "green",
+      "evidence": "in-memory planted status changes=[15]"
+    }
+  ]
+}

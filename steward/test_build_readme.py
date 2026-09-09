@@ -118,15 +118,19 @@ class StaticReadmeContractTests(unittest.TestCase):
         badge = json.loads(
             (root / "steward" / "scoreboard" / "badge.json").read_text(encoding="utf-8")
         )
-        self.assertEqual(
-            badge,
-            {
-                "schemaVersion": 1,
-                "label": "steward",
-                "message": "not measured",
-                "color": "lightgrey",
-            },
-        )
+        self.assertEqual(badge["schemaVersion"], 1)
+        self.assertEqual(badge["label"], "steward")
+        latest_path = root / "steward" / "scoreboard" / "latest.json"
+        if latest_path.exists():
+            latest = json.loads(latest_path.read_text(encoding="utf-8"))
+            summary = latest["summary"]
+            self.assertEqual(
+                badge["message"], f"{summary['green']}/{summary['total']}"
+            )
+            self.assertNotEqual(badge["color"], "lightgrey")
+        else:
+            self.assertEqual(badge["message"], "not measured")
+            self.assertEqual(badge["color"], "lightgrey")
 
     def test_pin_file_is_the_single_ordered_source(self) -> None:
         pin_path = Path(__file__).with_name("PINNED.txt")
@@ -161,7 +165,7 @@ class ScoreboardAndRenderingTests(unittest.TestCase):
                 json.dumps(
                     {
                         "date": "2026-09-07",
-                        "summary": {"total": 100, "green": 83, "red": 17},
+                        "summary": {"total": 100, "green": 83, "red": 17, "null": 0},
                         "criteria": [],
                     }
                 ),
@@ -169,9 +173,47 @@ class ScoreboardAndRenderingTests(unittest.TestCase):
             )
             self.assertEqual(
                 subject.load_scoreboard(path),
-                {"date": "2026-09-07", "total": 100, "green": 83, "red": 17},
+                {"date": "2026-09-07", "total": 100, "green": 83, "red": 17, "null": 0},
             )
             path.write_text("{not json", encoding="utf-8")
+            with self.assertRaises(subject.BuildError):
+                subject.load_scoreboard(path)
+
+    def test_partial_scoreboard_counts_null_and_renders_green_score(self) -> None:
+        payload = {
+            "schema": 1,
+            "date": "2026-09-08",
+            "generated_at": "2026-09-08T12:30:00Z",
+            "criteria_sha256": "a" * 64,
+            "summary": {
+                "total": 100,
+                "green": 84,
+                "red": 11,
+                "null": 5,
+            },
+            "criteria": [],
+        }
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "latest.json"
+            path.write_text(json.dumps(payload), encoding="utf-8")
+            parsed = subject.load_scoreboard(path)
+            self.assertIsNotNone(parsed)
+            self.assertEqual(
+                parsed["green"] + parsed["red"] + parsed["null"],
+                parsed["total"],
+            )
+            rendered = subject.render_recent_receipts(
+                parsed,
+                tuple(receipt(repo) for repo in EXPECTED_PINS),
+            )
+            self.assertTrue(
+                rendered.startswith(
+                    "Steward score. **84/100 green**. Measured `2026-09-08`."
+                )
+            )
+
+            payload["summary"]["null"] = 4
+            path.write_text(json.dumps(payload), encoding="utf-8")
             with self.assertRaises(subject.BuildError):
                 subject.load_scoreboard(path)
 
@@ -256,7 +298,7 @@ class ScoreboardAndRenderingTests(unittest.TestCase):
         self.assertEqual(subject.render_recent_receipts(None, receipts), expected)
         self.assertEqual(subject.render_recent_receipts(None, receipts), expected)
         measured = subject.render_recent_receipts(
-            {"date": "2026-09-07", "total": 100, "green": 83, "red": 17},
+            {"date": "2026-09-07", "total": 100, "green": 83, "red": 17, "null": 0},
             receipts,
         )
         self.assertTrue(

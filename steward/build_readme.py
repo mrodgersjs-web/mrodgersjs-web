@@ -132,7 +132,7 @@ def _parse_scoreboard(raw: object) -> dict[str, object]:
         raise BuildError("scoreboard summary must be an object")
 
     counts: dict[str, int] = {}
-    for name in ("total", "green", "red"):
+    for name in ("total", "green", "red", "null"):
         value = summary.get(name)
         if type(value) is not int:
             raise BuildError(f"scoreboard summary.{name} must be an integer")
@@ -140,10 +140,10 @@ def _parse_scoreboard(raw: object) -> dict[str, object]:
 
     if counts["total"] != 100:
         raise BuildError("scoreboard summary.total must equal 100")
-    if counts["green"] < 0 or counts["red"] < 0:
+    if any(counts[name] < 0 for name in ("green", "red", "null")):
         raise BuildError("scoreboard counts must be nonnegative")
-    if counts["green"] + counts["red"] != counts["total"]:
-        raise BuildError("scoreboard green and red counts must equal total")
+    if counts["green"] + counts["red"] + counts["null"] != counts["total"]:
+        raise BuildError("scoreboard green, red, and null counts must equal total")
     if not isinstance(raw.get("criteria"), list):
         raise BuildError("scoreboard criteria must be a list")
 
@@ -327,22 +327,23 @@ def _escape_markdown_text(value: str) -> str:
     return escaped
 
 
-def _normalized_scoreboard(scoreboard: Mapping[str, object]) -> tuple[str, int]:
+def _normalized_scoreboard(
+    scoreboard: Mapping[str, object],
+) -> tuple[str, int, int]:
     measured = _calendar_date(scoreboard.get("date"), "scoreboard date")
     counts: dict[str, int] = {}
-    for name in ("total", "green", "red"):
+    for name in ("total", "green", "red", "null"):
         value = scoreboard.get(name)
         if type(value) is not int:
             raise BuildError(f"scoreboard {name} must be an integer")
         counts[name] = value
     if (
         counts["total"] != 100
-        or counts["green"] < 0
-        or counts["red"] < 0
-        or counts["green"] + counts["red"] != counts["total"]
+        or any(counts[name] < 0 for name in ("green", "red", "null"))
+        or counts["green"] + counts["red"] + counts["null"] != counts["total"]
     ):
         raise BuildError("scoreboard counts are inconsistent")
-    return measured, counts["green"]
+    return measured, counts["green"], counts["total"]
 
 
 def _release_cell(repo: str, release: object) -> str:
@@ -388,8 +389,8 @@ def render_recent_receipts(
     if scoreboard is None:
         score_line = "Steward score. **not measured**"
     elif isinstance(scoreboard, Mapping):
-        measured, green = _normalized_scoreboard(scoreboard)
-        score_line = f"Steward score. **{green}/100 green**. Measured `{measured}`."
+        measured, green, total = _normalized_scoreboard(scoreboard)
+        score_line = f"Steward score. **{green}/{total} green**. Measured `{measured}`."
     else:
         raise BuildError("scoreboard must be an object or null")
 

@@ -43,16 +43,16 @@
 ## Recent receipts
 
 <!-- recent_receipts starts -->
-Steward score. **not measured**
+Steward score. **82/100 green**. Measured `2026-09-09`.
 
 | Pinned system | Latest release | Latest smoke run |
 | --- | --- | --- |
-| [rigforge](https://github.com/mrodgersjs-web/rigforge) | no release | [success](https://github.com/mrodgersjs-web/rigforge/actions/runs/32975681777) · `2026-08-26` · `1baac32` |
-| [proof-studio](https://github.com/mrodgersjs-web/proof-studio) | no release | [success](https://github.com/mrodgersjs-web/proof-studio/actions/runs/32977165587) · `2026-08-26` · `73ab0e4` |
-| [proof-gate-action](https://github.com/mrodgersjs-web/proof-gate-action) | no release | [success](https://github.com/mrodgersjs-web/proof-gate-action/actions/runs/34264456375) · `2026-09-08` · `122742c` |
-| [mesh-studio](https://github.com/mrodgersjs-web/mesh-studio) | no release | [success](https://github.com/mrodgersjs-web/mesh-studio/actions/runs/34260237394) · `2026-09-08` · `40ec9c8` |
-| [doctrine](https://github.com/mrodgersjs-web/doctrine) | no release | [success](https://github.com/mrodgersjs-web/doctrine/actions/runs/31114740549) · `2026-08-06` · `fef2004` |
-| [fde-portfolio](https://github.com/mrodgersjs-web/fde-portfolio) | no release | [success](https://github.com/mrodgersjs-web/fde-portfolio/actions/runs/34257652533) · `2026-09-08` · `c959125` |
+| [rigforge](https://github.com/mrodgersjs-web/rigforge) | no release | [success](https://github.com/mrodgersjs-web/rigforge/actions/runs/34283965430) · `2026-09-08` · `7ddca26` |
+| [proof-studio](https://github.com/mrodgersjs-web/proof-studio) | no release | [success](https://github.com/mrodgersjs-web/proof-studio/actions/runs/34275106974) · `2026-09-08` · `f69d800` |
+| [proof-gate-action](https://github.com/mrodgersjs-web/proof-gate-action) | no release | [success](https://github.com/mrodgersjs-web/proof-gate-action/actions/runs/34275157612) · `2026-09-08` · `5e742d4` |
+| [mesh-studio](https://github.com/mrodgersjs-web/mesh-studio) | no release | [success](https://github.com/mrodgersjs-web/mesh-studio/actions/runs/34284016416) · `2026-09-08` · `acc4149` |
+| [doctrine](https://github.com/mrodgersjs-web/doctrine) | no release | [success](https://github.com/mrodgersjs-web/doctrine/actions/runs/34285849231) · `2026-09-08` · `ddb865f` |
+| [fde-portfolio](https://github.com/mrodgersjs-web/fde-portfolio) | no release | [success](https://github.com/mrodgersjs-web/fde-portfolio/actions/runs/34275363108) · `2026-09-08` · `a706d39` |
 <!-- recent_receipts ends -->
 
 ## Competencies
