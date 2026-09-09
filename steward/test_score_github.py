@@ -1403,6 +1403,58 @@ class AcceptedScorerReviewTests(unittest.TestCase):
                 self.assertFalse(passed)
 
 
+    def test_orca_automation_accepts_supported_response_envelopes(self) -> None:
+        context = self.context()
+        automation = {"name": "GitHub FDE steward", "enabled": True}
+        payloads = (
+            [automation],
+            {"automations": [automation]},
+            {"ok": True, "result": {"automations": [automation]}},
+        )
+        for payload in payloads:
+            with self.subTest(payload=payload):
+                completed = subprocess.CompletedProcess(
+                    ("orca", "automations", "list", "--json"),
+                    0,
+                    json.dumps(payload),
+                    "",
+                )
+                with mock.patch.object(
+                    context, "command", return_value=completed
+                ):
+                    passed, evidence = context.evaluate(
+                        {"id": "orca-automation"}
+                    )
+                self.assertTrue(passed, evidence)
+
+    def test_no_direct_main_reads_only_committed_steward_prompt(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            steward = root / "steward"
+            steward.mkdir()
+            context = self.context(root)
+            committed = steward / "ORCA_PROMPT.md"
+            root_copy = root / "ORCA_PROMPT.md"
+
+            committed.write_text(
+                "Do not git push to main", encoding="utf-8"
+            )
+            root_copy.write_text("stale root copy", encoding="utf-8")
+            passed, evidence = context.evaluate(
+                {"id": "no-direct-main-from-orca"}
+            )
+            self.assertTrue(passed, evidence)
+
+            committed.unlink()
+            root_copy.write_text(
+                "Do not git push to main", encoding="utf-8"
+            )
+            passed, _ = context.evaluate(
+                {"id": "no-direct-main-from-orca"}
+            )
+            self.assertFalse(passed)
+
+
 class JudgeContractTests(unittest.TestCase):
     def test_judge_selects_first_local_model_before_any_remote_attempt(self) -> None:
         calls: list[tuple[str, ...]] = []

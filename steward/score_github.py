@@ -1394,7 +1394,20 @@ class ScoringContext:
         if identifier == "orca-automation":
             result = self.command(("orca", "automations", "list", "--json"))
             data = json.loads(result.stdout)
-            rows = data if isinstance(data, list) else data.get("automations", []) if isinstance(data, Mapping) else []
+            if isinstance(data, list):
+                rows = data
+            elif isinstance(data, Mapping) and isinstance(
+                data.get("automations"), list
+            ):
+                rows = data["automations"]
+            elif (
+                isinstance(data, Mapping)
+                and isinstance(data.get("result"), Mapping)
+                and isinstance(data["result"].get("automations"), list)
+            ):
+                rows = data["result"]["automations"]
+            else:
+                rows = []
             found = any(isinstance(row, Mapping) and row.get("name") == "GitHub FDE steward" and row.get("enabled") is True for row in rows)
             return found, f"enabled GitHub FDE steward automation={str(found).lower()}"
         if identifier == "local-first":
@@ -1442,7 +1455,7 @@ class ScoringContext:
             ok = bool(dates) and max(dates) >= threshold
             return ok, f"latest receipt date={max(dates).isoformat() if dates else 'missing'}; threshold={threshold.isoformat()}"
         if identifier == "no-direct-main-from-orca":
-            path = self.root / "ORCA_PROMPT.md"
+            path = self.root / "steward" / "ORCA_PROMPT.md"
             ok = path.exists() and "Do not git push to main" in path.read_text(encoding="utf-8")
             return ok, f"ORCA prompt blocks direct main push={str(ok).lower()}"
         if identifier == "planted-failure":
