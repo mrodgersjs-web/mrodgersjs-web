@@ -43,7 +43,7 @@
 ## Recent receipts
 
 <!-- recent_receipts starts -->
-Steward score. **70/100 green**. Measured `2026-09-15`.
+Steward score. **70/100 green**. Measured `2026-09-16`.
 
 | Pinned system | Latest release | Latest smoke run |
 | --- | --- | --- |
