@@ -42,6 +42,8 @@
 
 ## Recent receipts
 
+Per-repo scores and the next fix for each repo: [steward/scoreboard/SCORECARD.md](steward/scoreboard/SCORECARD.md).
+
 <!-- recent_receipts starts -->
 Steward score. **70/100 green**. Measured `2026-10-10`.
 

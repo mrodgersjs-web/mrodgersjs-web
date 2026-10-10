@@ -13,10 +13,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: "3.11"
 
@@ -26,6 +26,14 @@ jobs:
         run: |
           python3 steward/score_github.py
           python3 steward/build_readme.py
+
+      - name: Test repo scorecard
+        run: python3 -m unittest steward.test_repo_scorecard
+
+      - name: Measure and pick (per-repo scorecard)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 steward/repo_scorecard.py > /dev/null
 
       - name: Commit changed steward outputs
         run: |
