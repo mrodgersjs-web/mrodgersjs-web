@@ -50,11 +50,11 @@ Steward score. **70/100 green**. Measured `2026-10-10`.
 | Pinned system | Latest release | Latest smoke run |
 | --- | --- | --- |
 | [rigforge](https://github.com/mrodgersjs-web/rigforge) | no release | [success](https://github.com/mrodgersjs-web/rigforge/actions/runs/34283965430) · `2026-09-08` · `7ddca26` |
-| [proof-studio](https://github.com/mrodgersjs-web/proof-studio) | no release | [success](https://github.com/mrodgersjs-web/proof-studio/actions/runs/34714024965) · `2026-09-12` · `01db9f5` |
+| [proof-studio](https://github.com/mrodgersjs-web/proof-studio) | no release | [success](https://github.com/mrodgersjs-web/proof-studio/actions/runs/38095495217) · `2026-10-10` · `f967dec` |
 | [proof-gate-action](https://github.com/mrodgersjs-web/proof-gate-action) | no release | [success](https://github.com/mrodgersjs-web/proof-gate-action/actions/runs/34275157612) · `2026-09-08` · `5e742d4` |
-| [mesh-studio](https://github.com/mrodgersjs-web/mesh-studio) | no release | [success](https://github.com/mrodgersjs-web/mesh-studio/actions/runs/34714017870) · `2026-09-12` · `bf4d38e` |
+| [mesh-studio](https://github.com/mrodgersjs-web/mesh-studio) | no release | [success](https://github.com/mrodgersjs-web/mesh-studio/actions/runs/38095691096) · `2026-10-10` · `09555c9` |
 | [doctrine](https://github.com/mrodgersjs-web/doctrine) | no release | [success](https://github.com/mrodgersjs-web/doctrine/actions/runs/34285849231) · `2026-09-08` · `ddb865f` |
-| [fde-portfolio](https://github.com/mrodgersjs-web/fde-portfolio) | no release | [success](https://github.com/mrodgersjs-web/fde-portfolio/actions/runs/34714017762) · `2026-09-12` · `725791b` |
+| [fde-portfolio](https://github.com/mrodgersjs-web/fde-portfolio) | no release | [success](https://github.com/mrodgersjs-web/fde-portfolio/actions/runs/38095586032) · `2026-10-10` · `3dba090` |
 <!-- recent_receipts ends -->
 
 ## Competencies
