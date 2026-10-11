@@ -1,7 +1,8 @@
 name: steward-tests
 
-# Tests only. Runs the steward unit tests offline on pull requests and on
-# pushes to main. It does not score, rebuild the README, publish or commit;
+# Tests only. Runs the steward unit tests on pull requests and on pushes to
+# main, with Python socket connections and the PATH-resolved gh blocked (not
+# OS-level isolation: a subprocess such as curl can still reach the network). It does not score, rebuild the README, publish or commit;
 # the scheduled steward.yml workflow is unchanged.
 on:
   pull_request:
@@ -30,7 +31,7 @@ jobs:
       - uses: actions/setup-python@v6
         with:
           python-version: ${{ matrix.python-version }}
-      - name: Offline guard self-test (network and gh must be blocked)
+      - name: Guard self-test (Python sockets and PATH-resolved gh blocked)
         env:
           PYTHONPATH: .github/ci/offline
         run: |
@@ -40,7 +41,7 @@ jobs:
           fi
           if gh --version; then echo "gh shim not first on PATH"; exit 1; fi
           echo "guard OK"
-      - name: Run all steward unit tests (offline, no token)
+      - name: Run all steward unit tests (Python socket guard, gh shim, no token)
         env:
           PYTHONPATH: .github/ci/offline
           GH_TOKEN: ""

@@ -1,6 +1,8 @@
-"""Loaded by the steward-tests workflow via PYTHONPATH: makes any non-loopback
-network access fail, so a test that reaches GitHub or the web fails instead of
-silently depending on live data."""
+"""Loaded by the steward-tests workflow via PYTHONPATH. Makes non-loopback
+socket connects and DNS lookups made from this Python process fail, so a test
+that calls GitHub or the web through Python fails instead of silently depending
+on live data. This is not OS-level isolation: child processes (for example
+curl) are not affected."""
 import socket
 
 _connect = socket.socket.connect
