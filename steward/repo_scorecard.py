@@ -458,11 +458,17 @@ def score_ci(runs_payload: object, workflows: list[str], api_reason: Optional[st
         return _not_measured(api_reason or "actions runs not fetched")
     runs = _trim_runs(runs_payload)
     skipped = 0
+    # A workflow whose newest completed run was skipped has been switched off or
+    # gated; its older runs are stale history and must not be scored.
+    retired: set[object] = set()
     for run in runs:  # API order: newest first
         if run.get("status") != "completed":
             continue
+        if run.get("name") in retired:
+            continue
         if run.get("conclusion") in NEUTRAL_CONCLUSIONS:
             skipped += 1
+            retired.add(run.get("name"))
             continue
         conclusion = run.get("conclusion")
         return _dim(
@@ -623,7 +629,7 @@ def score_repo(
         "overall": overall,
         "measured_dimensions": len(measured),
         "dimensions": ordered,
-        "next_improvement": pick(ordered, th),
+        "next_improvement": pick(ordered, th, status),
     }
 
 
@@ -678,11 +684,24 @@ def action_for(key: str, evidence: Mapping[str, object], th: Optional[Mapping[st
     raise KeyError(key)
 
 
-def pick(dims: Mapping[str, Mapping[str, object]], th: Optional[Mapping[str, float]] = None) -> dict[str, object]:
-    """Lowest measured dimension; ties broken by DIMENSIONS order."""
+# For a SCAFFOLD repo the useful next step is to build the thing, so on a tie
+# Code vs docs, then Tests, come before every other dimension (Release included).
+SCAFFOLD_PRIORITY = ("code_vs_docs", "tests")
+
+
+def pick(
+    dims: Mapping[str, Mapping[str, object]],
+    th: Optional[Mapping[str, float]] = None,
+    status: Optional[str] = None,
+) -> dict[str, object]:
+    """Lowest measured dimension; ties broken by DIMENSIONS order, or for a
+    SCAFFOLD repo by SCAFFOLD_PRIORITY first and DIMENSIONS order after."""
+    order = list(DIMENSION_IDS)
+    if status == "SCAFFOLD":
+        order = [*SCAFFOLD_PRIORITY, *(k for k in DIMENSION_IDS if k not in SCAFFOLD_PRIORITY)]
     candidates = [
         (dims[key]["score"], index, key)
-        for index, key in enumerate(DIMENSION_IDS)
+        for index, key in enumerate(order)
         if key in dims and dims[key]["score"] is not None
     ]
     if not candidates:
