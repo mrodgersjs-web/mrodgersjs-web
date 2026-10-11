@@ -1,0 +1,72 @@
+name: steward-tests
+
+# Tests only. Runs the steward unit tests offline on pull requests and on
+# pushes to main. It does not score, rebuild the README, publish or commit;
+# the scheduled steward.yml workflow is unchanged.
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: steward-tests-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  unit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.13"]
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v6
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Offline guard self-test (network and gh must be blocked)
+        env:
+          PYTHONPATH: .github/ci/offline
+        run: |
+          export PATH="$GITHUB_WORKSPACE/.github/ci/offline/bin:$PATH"
+          if python -c "import urllib.request; urllib.request.urlopen('https://api.github.com', timeout=5)"; then
+            echo "network guard did not block"; exit 1
+          fi
+          if gh --version; then echo "gh shim not first on PATH"; exit 1; fi
+          echo "guard OK"
+      - name: Run all steward unit tests (offline, no token)
+        env:
+          PYTHONPATH: .github/ci/offline
+          GH_TOKEN: ""
+          GITHUB_TOKEN: ""
+        run: |
+          export PATH="$GITHUB_WORKSPACE/.github/ci/offline/bin:$PATH"
+          python -m unittest discover -s steward -p 'test_*.py' -v 2>&1 | tee unittest.log
+          test "${PIPESTATUS[0]}" -eq 0
+          for m in test_build_readme test_catalog_mcp test_repo_scorecard test_score_github; do
+            grep -q "(steward\.$m\.\|($m\." unittest.log || { echo "module $m did not run"; exit 1; }
+          done
+          ran=$(sed -nE 's/^Ran ([0-9]+) tests?.*/\1/p' unittest.log)
+          echo "ran=$ran"
+          test "${ran:-0}" -ge 92
+
+  actionlint:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - name: Install actionlint (pinned release, checksum verified)
+        run: |
+          curl -fsSL -o actionlint.tar.gz https://github.com/rhysd/actionlint/releases/download/v1.7.7/actionlint_1.7.7_linux_amd64.tar.gz
+          echo "023070a287cd8cccd71515fedc843f1985bf96c436b7effaecce67290e7e0757  actionlint.tar.gz" | sha256sum -c -
+          tar -xzf actionlint.tar.gz actionlint
+      - name: Lint every workflow
+        run: ./actionlint -color
