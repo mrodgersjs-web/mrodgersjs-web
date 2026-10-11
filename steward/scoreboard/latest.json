@@ -1,12 +1,12 @@
 {
   "schema": 1,
   "date": "2026-10-11",
-  "generated_at": "2026-10-11T01:48:51Z",
+  "generated_at": "2026-10-11T16:59:05Z",
   "criteria_sha256": "68b827c394fa25bb70d2f81cd51909cab5db7fef8b4a9ae0b3e802ad3b9324c6",
   "summary": {
     "total": 100,
-    "green": 66,
-    "red": 29,
+    "green": 65,
+    "red": 30,
     "null": 5
   },
   "criteria": [
@@ -155,7 +155,7 @@
       "check": "gh",
       "description": "grep public default-branch trees for `/Users/rig128gb` and `/home/operator` returns empty (skip LICENSE/docs quoting the steward itself)",
       "status": "red",
-      "evidence": "forbidden home path matches=['mrodgersjs-web:steward/criteria.yaml', 'mrodgersjs-web:steward/score_github.py', 'mrodgersjs-web:steward/scoreboard/2026-09-08.json', 'mrodgersjs-web:steward/scoreboard/2026-09-09.json', 'mrodgersjs-web:steward/scoreboard/2026-09-10.json', 'mrodgersjs-web:steward/scoreboard/2026-09-11.json', 'mrodgersjs-web:steward/scoreboard/2026-09-12.json', 'mrodgersjs-web:steward/scoreboard/2026-09-13.json', 'mrodgersjs-web:steward/scoreboard/2026-09-14.json', 'mrodgersjs-web:steward/scoreboard/2026-09-15.json', 'mrodgersjs-web:steward/scoreboard/2026-09-16.json', 'mrodgersjs-web:steward/scoreboard/2026-09-17.json', 'mrodgersjs-web:steward/scoreboard/2026-09-18.json', 'mrodgersjs-web:steward/scoreboard/2026-09-19.json', 'mrodgersjs-web:steward/scoreboard/2026-09-20.json', 'mrodgersjs-web:steward/scoreboard/2026-09-21.json', 'mrodgersjs-web:steward/scoreboard/2026-09-22.json', 'mrodgersjs-web:steward/scoreboard/2026-09-23.json', 'mrodgersjs-web:steward/scoreboard/2026-09-24.json', 'mrodgersjs-web:steward/scoreboard/2026-09-25.json', 'mrodgersjs-web:steward/scoreboard/2026-09-26.json', 'mrodgersjs-web:steward/scoreboard/2026-09-27.json', 'mrodgersjs-web:steward/scoreboard/2026-09-28.json', 'mrodgersjs-web:steward/scoreboard/2026-09-29.json', 'mrodgersjs-web:steward/scoreboard/2026-09-30.json', 'mrodgersjs-web:steward/scoreboard/2026-10-01.json', 'mrodgersjs-web:steward/scoreboard/2026-10-02.json', 'mrodgersjs-web:steward/scoreboard/2026-10-03.json', 'mrodgersjs-web:steward/scoreboard/2026-10-04.json', 'mrodgersjs-web:steward/scoreboard/2026-10-06.json', 'mrodgersjs-web:steward/scoreboard/2026-10-07.json', 'mrodgersjs-web:steward/scoreboard/2026-10-08.json', 'mrodgersjs-web:steward/scoreboard/2026-10-09.json', 'mrodgersjs-web:steward/scoreboard/2026-10-10.json', 'mrodgersjs-web:steward/scoreboard/latest.json', 'mrodgersjs-web:steward/test_score_github.py', 'rig-pattern-engines:tests/fixtures/l2-0437f3e9a18b3f67.json', 'rig-pattern-engines:tests/fixtures/l2-40510b211793548d.json', 'rig-pattern-engines:tests/fixtures/l2-43a48363baea9d97.json', 'rig-pattern-engines:tests/fixtures/l2-9f8bfd145bf3e378.json', 'rig-pattern-engines:tests/fixtures/l2-dde2b6a213404bb9.json']"
+      "evidence": "ScoreError: gh read failed with exit 1. Resolve the check input or provider access, then rerun the steward."
     },
     {
       "id": "no-pycache",
@@ -259,8 +259,8 @@
       "id": "install-registry",
       "check": "http",
       "description": "if README has `pip install <name>` without `git+`, pypi.org/pypi/<name>/json is 200; same for `npx <name>` vs registry.npmjs.org",
-      "status": "green",
-      "evidence": "unregistered install claims=[]"
+      "status": "red",
+      "evidence": "unregistered install claims=['rig-marketplace:pypi:.:404']"
     },
     {
       "id": "test-count-honest",
@@ -288,7 +288,7 @@
       "check": "regex",
       "description": "README contains `pytest` or `smoke` or `npm test` or `node --test` or `rigforge`",
       "status": "red",
-      "evidence": "READMEs without verify command=['nanobrowser', 'rig-domain-agents', 'rig-marketplace']"
+      "evidence": "READMEs without verify command=['nanobrowser', 'rig-domain-agents']"
     },
     {
       "id": "hero-ok",
@@ -617,7 +617,7 @@
       "check": "gh",
       "description": "at least one public push or Action on profile repo in last 7 days",
       "status": "green",
-      "evidence": "recent public events=8"
+      "evidence": "recent public events=15"
     },
     {
       "id": "contact-path",
