@@ -45,16 +45,16 @@
 Per-repo scores and the next fix for each repo: [steward/scoreboard/SCORECARD.md](steward/scoreboard/SCORECARD.md).
 
 <!-- recent_receipts starts -->
-Steward score. **70/100 green**. Measured `2026-10-10`.
+Steward score. **66/100 green**. Measured `2026-10-11`.
 
 | Pinned system | Latest release | Latest smoke run |
 | --- | --- | --- |
 | [rigforge](https://github.com/mrodgersjs-web/rigforge) | [v0.1.0](https://github.com/mrodgersjs-web/rigforge/releases/tag/v0.1.0) · `2026-10-11` | [success](https://github.com/mrodgersjs-web/rigforge/actions/runs/34283965430) · `2026-09-08` · `7ddca26` |
-| [proof-studio](https://github.com/mrodgersjs-web/proof-studio) | no release | [success](https://github.com/mrodgersjs-web/proof-studio/actions/runs/38095495217) · `2026-10-10` · `f967dec` |
-| [mesh-studio](https://github.com/mrodgersjs-web/mesh-studio) | no release | [success](https://github.com/mrodgersjs-web/mesh-studio/actions/runs/38095691096) · `2026-10-10` · `09555c9` |
+| [proof-studio](https://github.com/mrodgersjs-web/proof-studio) | [v0.1.0](https://github.com/mrodgersjs-web/proof-studio/releases/tag/v0.1.0) · `2026-10-11` | [success](https://github.com/mrodgersjs-web/proof-studio/actions/runs/38102541137) · `2026-10-11` · `bfe3b50` |
+| [mesh-studio](https://github.com/mrodgersjs-web/mesh-studio) | [v0.1.0](https://github.com/mrodgersjs-web/mesh-studio/releases/tag/v0.1.0) · `2026-10-11` | [success](https://github.com/mrodgersjs-web/mesh-studio/actions/runs/38102533234) · `2026-10-11` · `2481cb5` |
 | [communications-studio](https://github.com/mrodgersjs-web/communications-studio) | [v0.1.0](https://github.com/mrodgersjs-web/communications-studio/releases/tag/v0.1.0) · `2026-10-11` | [success](https://github.com/mrodgersjs-web/communications-studio/actions/runs/38095627254) · `2026-10-10` · `682de64` |
-| [deviatrix-genesis](https://github.com/mrodgersjs-web/deviatrix-genesis) | no release | [success](https://github.com/mrodgersjs-web/deviatrix-genesis/actions/runs/38095719351) · `2026-10-10` · `18d9b01` |
-| [jake-studio](https://github.com/mrodgersjs-web/jake-studio) | [v0.1.0](https://github.com/mrodgersjs-web/jake-studio/releases/tag/v0.1.0) · `2026-10-11` | [success](https://github.com/mrodgersjs-web/jake-studio/actions/runs/38095782441) · `2026-10-10` · `c301856` |
+| [deviatrix-genesis](https://github.com/mrodgersjs-web/deviatrix-genesis) | [v0.1.0](https://github.com/mrodgersjs-web/deviatrix-genesis/releases/tag/v0.1.0) · `2026-10-11` | [success](https://github.com/mrodgersjs-web/deviatrix-genesis/actions/runs/38102545402) · `2026-10-11` · `bb714b1` |
+| [jake-studio](https://github.com/mrodgersjs-web/jake-studio) | [v0.1.0](https://github.com/mrodgersjs-web/jake-studio/releases/tag/v0.1.0) · `2026-10-11` | [success](https://github.com/mrodgersjs-web/jake-studio/actions/runs/38102604124) · `2026-10-11` · `65f4c4b` |
 <!-- recent_receipts ends -->
 
 ## Competencies
