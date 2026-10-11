@@ -19,6 +19,8 @@ Gh = Callable[[tuple[str, ...]], object]
 START = "<!-- recent_receipts starts -->"
 END = "<!-- recent_receipts ends -->"
 _PIN_COUNT = 6
+# Pins whose smoke proof runs in a workflow other than smoke.yml.
+_SMOKE_WORKFLOWS = {"mrodgersjs-web/deviatrix-genesis": "ci.yml"}
 _PIN_PATTERN = re.compile(r"mrodgersjs-web/[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")
 
 
@@ -269,7 +271,7 @@ def _collect_smoke(repo: str, gh: Gh) -> dict[str, object] | None:
                 repo,
                 "--all",
                 "--workflow",
-                "smoke.yml",
+                _SMOKE_WORKFLOWS.get(repo, "smoke.yml"),
                 "--branch",
                 "main",
                 "--limit",

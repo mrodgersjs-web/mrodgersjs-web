@@ -27,10 +27,10 @@
 | --- | --- | --- |
 | [**rigforge**](https://github.com/mrodgersjs-web/rigforge) | Builds and checks ProofPacket evidence through a reproducible smoke path. | `git clone https://github.com/mrodgersjs-web/rigforge.git && (cd rigforge && python3 -m venv .venv && . .venv/bin/activate && bash scripts/smoke.sh)` |
 | [**proof-studio**](https://github.com/mrodgersjs-web/proof-studio) | Verifies signed completion evidence and detects tampering. | `git clone https://github.com/mrodgersjs-web/proof-studio.git && (cd proof-studio && python3 -m venv .venv && . .venv/bin/activate && bash scripts/smoke.sh)` |
-| [**proof-gate-action**](https://github.com/mrodgersjs-web/proof-gate-action) | Runs proof verification as a GitHub Action. | `git clone https://github.com/mrodgersjs-web/proof-gate-action.git && (cd proof-gate-action && node --test test/verify.test.js)` |
 | [**mesh-studio**](https://github.com/mrodgersjs-web/mesh-studio) | Probes, boots, and recovers a local agent-service mesh. | `git clone https://github.com/mrodgersjs-web/mesh-studio.git && (cd mesh-studio && python3 -m venv .venv && . .venv/bin/activate && bash scripts/smoke.sh)` |
-| [**doctrine**](https://github.com/mrodgersjs-web/doctrine) | Loads operating rules and checks them with a repository smoke script. | `git clone https://github.com/mrodgersjs-web/doctrine.git && (cd doctrine && bash scripts/smoke.sh)` |
-| [**fde-portfolio**](https://github.com/mrodgersjs-web/fde-portfolio) | Carries a discovery-to-evaluation-to-handoff example. | `git clone https://github.com/mrodgersjs-web/fde-portfolio.git && (cd fde-portfolio && bash scripts/smoke.sh)` |
+| [**communications-studio**](https://github.com/mrodgersjs-web/communications-studio) | Scores a draft message against formulas and hard gates, then emits or rejects it, with pytest as the claim under test. | `git clone https://github.com/mrodgersjs-web/communications-studio.git && (cd communications-studio && python3 -m venv .venv && . .venv/bin/activate && bash scripts/smoke.sh)` |
+| [**deviatrix-genesis**](https://github.com/mrodgersjs-web/deviatrix-genesis) | Runs an idea through three diamonds, three expeditions and seven stages, with a verifier that signs each sealed proof packet. | `git clone https://github.com/mrodgersjs-web/deviatrix-genesis.git && (cd deviatrix-genesis && python3 -m venv .venv && . .venv/bin/activate && pip install sympy && PYTHONPATH=. python3 -m unittest deviatrix_genesis.tests.test_deviatrix deviatrix_genesis.v3.tests.test_v3 deviatrix_genesis.v4.tests.test_memory_export deviatrix_genesis.v5.tests.test_v5)` |
+| [**jake-studio**](https://github.com/mrodgersjs-web/jake-studio) | Checks the L10 harness modules offline: certainty engine, cognition stack, nocturne and agent factory. | `git clone https://github.com/mrodgersjs-web/jake-studio.git && (cd jake-studio && python3 -m venv .venv && . .venv/bin/activate && bash scripts/smoke.sh)` |
 
 ## How a recruiter should spend 10 minutes
 
@@ -49,12 +49,12 @@ Steward score. **70/100 green**. Measured `2026-10-10`.
 
 | Pinned system | Latest release | Latest smoke run |
 | --- | --- | --- |
-| [rigforge](https://github.com/mrodgersjs-web/rigforge) | no release | [success](https://github.com/mrodgersjs-web/rigforge/actions/runs/34283965430) · `2026-09-08` · `7ddca26` |
+| [rigforge](https://github.com/mrodgersjs-web/rigforge) | [v0.1.0](https://github.com/mrodgersjs-web/rigforge/releases/tag/v0.1.0) · `2026-10-11` | [success](https://github.com/mrodgersjs-web/rigforge/actions/runs/34283965430) · `2026-09-08` · `7ddca26` |
 | [proof-studio](https://github.com/mrodgersjs-web/proof-studio) | no release | [success](https://github.com/mrodgersjs-web/proof-studio/actions/runs/38095495217) · `2026-10-10` · `f967dec` |
-| [proof-gate-action](https://github.com/mrodgersjs-web/proof-gate-action) | no release | [success](https://github.com/mrodgersjs-web/proof-gate-action/actions/runs/34275157612) · `2026-09-08` · `5e742d4` |
 | [mesh-studio](https://github.com/mrodgersjs-web/mesh-studio) | no release | [success](https://github.com/mrodgersjs-web/mesh-studio/actions/runs/38095691096) · `2026-10-10` · `09555c9` |
-| [doctrine](https://github.com/mrodgersjs-web/doctrine) | no release | [success](https://github.com/mrodgersjs-web/doctrine/actions/runs/34285849231) · `2026-09-08` · `ddb865f` |
-| [fde-portfolio](https://github.com/mrodgersjs-web/fde-portfolio) | no release | [success](https://github.com/mrodgersjs-web/fde-portfolio/actions/runs/38095586032) · `2026-10-10` · `3dba090` |
+| [communications-studio](https://github.com/mrodgersjs-web/communications-studio) | [v0.1.0](https://github.com/mrodgersjs-web/communications-studio/releases/tag/v0.1.0) · `2026-10-11` | [success](https://github.com/mrodgersjs-web/communications-studio/actions/runs/38095627254) · `2026-10-10` · `682de64` |
+| [deviatrix-genesis](https://github.com/mrodgersjs-web/deviatrix-genesis) | no release | [success](https://github.com/mrodgersjs-web/deviatrix-genesis/actions/runs/38095719351) · `2026-10-10` · `18d9b01` |
+| [jake-studio](https://github.com/mrodgersjs-web/jake-studio) | [v0.1.0](https://github.com/mrodgersjs-web/jake-studio/releases/tag/v0.1.0) · `2026-10-11` | [success](https://github.com/mrodgersjs-web/jake-studio/actions/runs/38095782441) · `2026-10-10` · `c301856` |
 <!-- recent_receipts ends -->
 
 ## Competencies
