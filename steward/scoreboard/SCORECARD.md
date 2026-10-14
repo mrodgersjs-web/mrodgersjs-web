@@ -1,6 +1,6 @@
 # Repo scorecard
 
-Measured `2026-10-13T18:40:14Z` by `steward/repo_scorecard.py`. Each dimension is scored 0 to 1; `n/a` means it could not be measured this run (skipped CI runs count as n/a, not pass or fail). Raw evidence is in `repos.json`.
+Measured `2026-10-14T16:11:16Z` by `steward/repo_scorecard.py`. Each dimension is scored 0 to 1; `n/a` means it could not be measured this run (skipped CI runs count as n/a, not pass or fail). Raw evidence is in `repos.json`.
 
 | Repo | Status | Overall | CI | Tests | Code vs docs | Entrypoint | LICENSE + SECURITY | Release | Demo image | Topics + description | Freshness | Old issues |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -15,8 +15,8 @@ Measured `2026-10-13T18:40:14Z` by `steward/repo_scorecard.py`. Each dimension i
 | [agency-studio](https://github.com/mrodgersjs-web/agency-studio) | LIVE | 0.77 | 1.00 | 0.40 | 0.81 | 1.00 | 1.00 | 0.00 | 0.50 | 1.00 | 1.00 | 1.00 |
 | [rig-agent-directory](https://github.com/mrodgersjs-web/rig-agent-directory) | LIVE | 0.72 | 1.00 | 1.00 | 0.72 | 1.00 | 0.50 | 0.00 | 0.00 | 1.00 | 1.00 | 1.00 |
 | [rigforge](https://github.com/mrodgersjs-web/rigforge) | LIVE | 1.00 | 1.00 | 1.00 | 1.00 | 1.00 | 1.00 | 1.00 | 1.00 | 1.00 | 1.00 | 1.00 |
-| [proof-gate-action](https://github.com/mrodgersjs-web/proof-gate-action) | SCAFFOLD | 0.65 | 1.00 | 0.20 | 0.54 | 1.00 | 0.50 | 0.00 | 0.50 | 1.00 | 0.74 | 1.00 |
-| [doctrine](https://github.com/mrodgersjs-web/doctrine) | SCAFFOLD | 0.67 | 1.00 | 0.00 | 0.00 | 1.00 | 1.00 | 0.00 | 1.00 | 1.00 | 0.74 | 1.00 |
+| [proof-gate-action](https://github.com/mrodgersjs-web/proof-gate-action) | SCAFFOLD | 0.65 | 1.00 | 0.20 | 0.54 | 1.00 | 0.50 | 0.00 | 0.50 | 1.00 | 0.72 | 1.00 |
+| [doctrine](https://github.com/mrodgersjs-web/doctrine) | SCAFFOLD | 0.67 | 1.00 | 0.00 | 0.00 | 1.00 | 1.00 | 0.00 | 1.00 | 1.00 | 0.72 | 1.00 |
 | [fde-portfolio](https://github.com/mrodgersjs-web/fde-portfolio) | SCAFFOLD | 0.62 | 1.00 | 0.00 | 0.17 | 1.00 | 1.00 | 0.00 | 0.00 | 1.00 | 1.00 | 1.00 |
 
 ## Next improvement per repo
