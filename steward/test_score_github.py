@@ -385,6 +385,18 @@ class ObservedFalsePositiveTests(unittest.TestCase):
         self.assertTrue(passed, evidence)
         self.assertEqual(read_paths, [".github/workflows/smoke.yml"])
 
+    def test_latest_run_ignores_dependabot_dynamic_runs(self) -> None:
+        context = self.context()
+        rows = [
+            {"id": 3, "event": "dynamic", "name": "github_actions in / for actions/checkout"},
+            {"id": 2, "event": "push", "name": "smoke"},
+            {"id": 1, "event": "push", "name": "ci"},
+        ]
+        with mock.patch.object(context, "runs", return_value=rows):
+            self.assertEqual(context.latest_run("mesh-studio")["id"], 2)
+        with mock.patch.object(context, "runs", return_value=rows[:1]):
+            self.assertIsNone(context.latest_run("mesh-studio"))
+
     def test_successful_proof_gate_test_job_is_a_required_job(self) -> None:
         context = self.context()
         with mock.patch.object(

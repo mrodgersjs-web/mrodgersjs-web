@@ -577,7 +577,10 @@ class ScoringContext:
         return [row for row in data["workflow_runs"] if isinstance(row, dict)]
 
     def latest_run(self, name: str, workflow: str = "") -> Optional[dict[str, object]]:
-        rows = self.runs(name, workflow)
+        # Dependabot and other GitHub-managed runs report event "dynamic" and carry
+        # none of the repository's own jobs, so they must not stand in for the
+        # latest push/schedule/dispatch run when judging the repository's CI.
+        rows = [row for row in self.runs(name, workflow) if row.get("event") != "dynamic"]
         return rows[0] if rows else None
 
     def pins(self) -> tuple[str, ...]:
