@@ -1,12 +1,12 @@
 {
   "schema": 1,
   "date": "2026-10-20",
-  "generated_at": "2026-10-20T08:12:52Z",
+  "generated_at": "2026-10-20T08:18:14Z",
   "criteria_sha256": "d9688d8e2a10b506b19939c0e5e2d6ad32a987461cdd90f1405c781653b9a6a9",
   "summary": {
     "total": 100,
-    "green": 77,
-    "red": 18,
+    "green": 76,
+    "red": 19,
     "null": 5
   },
   "criteria": [
@@ -357,8 +357,8 @@
       "id": "latest-success",
       "check": "gh",
       "description": "latest run conclusion on each pin is `success`",
-      "status": "green",
-      "evidence": "rigforge latest conclusion=success; proof-studio latest conclusion=success; mesh-studio latest conclusion=success; communications-studio latest conclusion=success; deviatrix-genesis latest conclusion=success; jake-studio latest conclusion=success"
+      "status": "red",
+      "evidence": "rigforge latest conclusion=success; proof-studio latest conclusion=success; mesh-studio latest conclusion=skipped; communications-studio latest conclusion=skipped; deviatrix-genesis latest conclusion=success; jake-studio latest conclusion=skipped"
     },
     {
       "id": "proof-gate-ci",
@@ -442,7 +442,7 @@
       "check": "gh",
       "description": "latest run jobs all conclusion success or skipped=0 for required smoke job",
       "status": "red",
-      "evidence": "pins without successful required smoke/test job=['proof-studio', 'mesh-studio', 'communications-studio', 'deviatrix-genesis', 'jake-studio']"
+      "evidence": "pins without successful required smoke/test job=['proof-studio', 'mesh-studio', 'communications-studio', 'jake-studio']"
     },
     {
       "id": "planted-failure-docs",
