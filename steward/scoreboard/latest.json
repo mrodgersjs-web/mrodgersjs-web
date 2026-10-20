@@ -1,12 +1,12 @@
 {
   "schema": 1,
-  "date": "2026-10-19",
-  "generated_at": "2026-10-19T17:55:52Z",
-  "criteria_sha256": "68b827c394fa25bb70d2f81cd51909cab5db7fef8b4a9ae0b3e802ad3b9324c6",
+  "date": "2026-10-20",
+  "generated_at": "2026-10-20T05:20:06Z",
+  "criteria_sha256": "d9688d8e2a10b506b19939c0e5e2d6ad32a987461cdd90f1405c781653b9a6a9",
   "summary": {
     "total": 100,
-    "green": 65,
-    "red": 30,
+    "green": 71,
+    "red": 24,
     "null": 5
   },
   "criteria": [
@@ -41,37 +41,37 @@
     {
       "id": "bio-fde",
       "check": "gh",
-      "description": "`gh api user --jq .bio` contains `Forward Deployed Engineer`",
-      "status": "red",
-      "evidence": "CatalogError: GitHub read failed (HTTP 403). Check gh authentication, repository access, and rate limits, then retry.. Resolve the check input or provider access, then rerun the steward."
+      "description": "`gh api user --jq .bio` contains `Head of AI`",
+      "status": "green",
+      "evidence": "bio contains Head of AI=true"
     },
     {
       "id": "blog-url",
       "check": "gh",
       "description": "user.blog is `https://rodgersintelligence.com/` or with trailing slash",
-      "status": "red",
-      "evidence": "CatalogError: GitHub read failed (HTTP 403). Check gh authentication, repository access, and rate limits, then retry.. Resolve the check input or provider access, then rerun the steward."
+      "status": "green",
+      "evidence": "blog=https://rodgersintelligence.com"
     },
     {
       "id": "location-denver",
       "check": "gh",
       "description": "user.location contains `Denver`",
-      "status": "red",
-      "evidence": "CatalogError: GitHub read failed (HTTP 403). Check gh authentication, repository access, and rate limits, then retry.. Resolve the check input or provider access, then rerun the steward."
+      "status": "green",
+      "evidence": "location=Denver, CO"
     },
     {
       "id": "hireable",
       "check": "gh",
       "description": "user.hireable is true",
-      "status": "red",
-      "evidence": "CatalogError: GitHub read failed (HTTP 403). Check gh authentication, repository access, and rate limits, then retry.. Resolve the check input or provider access, then rerun the steward."
+      "status": "green",
+      "evidence": "hireable=true"
     },
     {
       "id": "linkedin-social",
       "check": "gh",
       "description": "`user/social_accounts` includes the LinkedIn URL above",
-      "status": "red",
-      "evidence": "CatalogError: GitHub read failed (HTTP 403). Check gh authentication, repository access, and rate limits, then retry.. Resolve the check input or provider access, then rerun the steward."
+      "status": "green",
+      "evidence": "LinkedIn social account present=true"
     },
     {
       "id": "pins-six",
@@ -84,8 +84,8 @@
       "id": "following-20",
       "check": "gh",
       "description": "following count ≥ 20",
-      "status": "red",
-      "evidence": "CatalogError: GitHub read failed (HTTP 403). Check gh authentication, repository access, and rate limits, then retry.. Resolve the check input or provider access, then rerun the steward."
+      "status": "green",
+      "evidence": "following count=23"
     },
     {
       "id": "live-repo-count",
@@ -246,7 +246,7 @@
       "check": "regex",
       "description": "if `.github/workflows` exists, README badge URL contains `github/actions/workflow/status`",
       "status": "red",
-      "evidence": "repositories without live CI badge=['agency-studio', 'app-factory-studio', 'doctrine', 'fde-portfolio', 'mrodgersjs-web', 'nanobrowser', 'proof-studio', 'rig-agent-directory', 'rig-doctrine-overlay', 'rig-domain-agents', 'rig-marketplace', 'rigforge', 'strategy-studio']"
+      "evidence": "repositories without live CI badge=['app-factory-studio', 'fde-portfolio', 'mrodgersjs-web', 'nanobrowser', 'proof-studio', 'rig-agent-directory', 'rig-doctrine-overlay', 'rig-domain-agents', 'rig-marketplace', 'rigforge', 'strategy-studio']"
     },
     {
       "id": "license-badge-match",
@@ -274,7 +274,7 @@
       "check": "regex",
       "description": "README contains `rodgersintelligence.com`",
       "status": "red",
-      "evidence": "repositories without footer site=['agency-studio', 'app-factory-studio', 'communications-studio', 'design-studio', 'deviatrix-genesis', 'doctrine', 'fde-portfolio', 'jake-studio', 'mesh-studio', 'nanobrowser', 'patents', 'rig-agent-directory', 'rig-domain-agents', 'rig-marketplace', 'rig-pattern-engines', 'strategy-studio']"
+      "evidence": "repositories without footer site=['app-factory-studio', 'communications-studio', 'design-studio', 'deviatrix-genesis', 'fde-portfolio', 'jake-studio', 'mesh-studio', 'nanobrowser', 'patents', 'rig-agent-directory', 'rig-domain-agents', 'rig-marketplace', 'rig-pattern-engines', 'strategy-studio']"
     },
     {
       "id": "no-raw-json-tables",
@@ -652,7 +652,7 @@
       "check": "file",
       "description": "`steward/scoreboard/$(date -u +%F).json` exists after the daily run",
       "status": "green",
-      "evidence": "this run atomically writes steward/scoreboard/2026-10-19.json"
+      "evidence": "this run atomically writes steward/scoreboard/2026-10-20.json"
     },
     {
       "id": "latest-pointer",
@@ -666,7 +666,7 @@
       "check": "file",
       "description": "latest.json includes `sha256` of criteria.yaml",
       "status": "green",
-      "evidence": "criteria SHA-256=68b827c394fa25bb70d2f81cd51909cab5db7fef8b4a9ae0b3e802ad3b9324c6"
+      "evidence": "criteria SHA-256=d9688d8e2a10b506b19939c0e5e2d6ad32a987461cdd90f1405c781653b9a6a9"
     },
     {
       "id": "orca-automation",
@@ -687,14 +687,14 @@
       "check": "gh",
       "description": "when latest.red > 0, an open issue labeled `github-steward` exists (checked the day after Orca run)",
       "status": "red",
-      "evidence": "2026-10-18 red criteria without open issue=['bio-fde', 'blog-url', 'location-denver', 'hireable', 'linkedin-social', 'following-20', 'no-env-files', 'topics-baseline', 'topics-specific', 'default-main', 'install-registry', 'latest-success', 'proof-gate-ci', 'no-skipped-jobs-as-pass', 'copilot-instructions-pins', 'copilot-file-short', 'copilot-has-test-cmd', 'codeowners-pins', 'issues-for-reds']"
+      "evidence": "2026-10-19 red criteria without open issue=['bio-fde', 'blog-url', 'location-denver', 'hireable', 'linkedin-social', 'following-20', 'no-env-files', 'topics-baseline', 'topics-specific', 'default-main', 'install-registry', 'latest-success', 'proof-gate-ci', 'no-skipped-jobs-as-pass', 'copilot-instructions-pins', 'copilot-file-short', 'copilot-has-test-cmd', 'codeowners-pins', 'issues-for-reds']"
     },
     {
       "id": "readme-receipts-fresh",
       "check": "regex",
       "description": "profile README `recent_receipts` block date ≥ yesterday UTC",
       "status": "green",
-      "evidence": "latest receipt date=2026-10-18; threshold=2026-10-18"
+      "evidence": "latest receipt date=2026-10-19; threshold=2026-10-19"
     },
     {
       "id": "no-direct-main-from-orca",
