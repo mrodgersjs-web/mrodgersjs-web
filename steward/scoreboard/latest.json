@@ -1,12 +1,12 @@
 {
   "schema": 1,
   "date": "2026-10-20",
-  "generated_at": "2026-10-20T05:20:06Z",
+  "generated_at": "2026-10-20T08:07:45Z",
   "criteria_sha256": "d9688d8e2a10b506b19939c0e5e2d6ad32a987461cdd90f1405c781653b9a6a9",
   "summary": {
     "total": 100,
-    "green": 71,
-    "red": 24,
+    "green": 77,
+    "red": 18,
     "null": 5
   },
   "criteria": [
@@ -246,7 +246,7 @@
       "check": "regex",
       "description": "if `.github/workflows` exists, README badge URL contains `github/actions/workflow/status`",
       "status": "red",
-      "evidence": "repositories without live CI badge=['app-factory-studio', 'fde-portfolio', 'mrodgersjs-web', 'nanobrowser', 'proof-studio', 'rig-agent-directory', 'rig-doctrine-overlay', 'rig-domain-agents', 'rig-marketplace', 'rigforge', 'strategy-studio']"
+      "evidence": "repositories without live CI badge=['mrodgersjs-web', 'nanobrowser', 'rig-doctrine-overlay', 'rig-domain-agents']"
     },
     {
       "id": "license-badge-match",
@@ -274,7 +274,7 @@
       "check": "regex",
       "description": "README contains `rodgersintelligence.com`",
       "status": "red",
-      "evidence": "repositories without footer site=['app-factory-studio', 'communications-studio', 'design-studio', 'deviatrix-genesis', 'fde-portfolio', 'jake-studio', 'mesh-studio', 'nanobrowser', 'patents', 'rig-agent-directory', 'rig-domain-agents', 'rig-marketplace', 'rig-pattern-engines', 'strategy-studio']"
+      "evidence": "repositories without footer site=['nanobrowser', 'patents', 'rig-domain-agents']"
     },
     {
       "id": "no-raw-json-tables",
@@ -316,7 +316,7 @@
       "check": "regex",
       "description": "clone examples use `mrodgersjs-web/<this-repo>`",
       "status": "red",
-      "evidence": "cross-repository clone examples=['fde-portfolio->mrodgersjs-web/proof-studio', 'nanobrowser->nanobrowser/nanobrowser', 'resume->mrodgersjs-web/proof-studio']"
+      "evidence": "cross-repository clone examples=['nanobrowser->nanobrowser/nanobrowser', 'resume->mrodgersjs-web/proof-studio']"
     },
     {
       "id": "languages-honest",
@@ -357,15 +357,15 @@
       "id": "latest-success",
       "check": "gh",
       "description": "latest run conclusion on each pin is `success`",
-      "status": "red",
-      "evidence": "rigforge latest conclusion=success; proof-studio latest conclusion=skipped; mesh-studio latest conclusion=success; communications-studio latest conclusion=skipped; deviatrix-genesis latest conclusion=skipped; jake-studio latest conclusion=skipped"
+      "status": "green",
+      "evidence": "rigforge latest conclusion=success; proof-studio latest conclusion=success; mesh-studio latest conclusion=success; communications-studio latest conclusion=success; deviatrix-genesis latest conclusion=success; jake-studio latest conclusion=success"
     },
     {
       "id": "proof-gate-ci",
       "check": "gh",
       "description": "proof-gate-action has a successful run in last 14 days",
-      "status": "red",
-      "evidence": "recent successful proof-gate runs=0"
+      "status": "green",
+      "evidence": "recent successful proof-gate runs=10"
     },
     {
       "id": "mesh-green",
@@ -393,7 +393,7 @@
       "check": "gh",
       "description": "either latest ci success or README does not say MCP",
       "status": "green",
-      "evidence": "deviatrix-genesis latest conclusion=success; README MCP claim=true"
+      "evidence": "deviatrix-genesis latest conclusion=success; README MCP claim=false"
     },
     {
       "id": "resume-green",
@@ -413,8 +413,8 @@
       "id": "no-continue-on-error",
       "check": "gh",
       "description": "pin workflows do not contain `continue-on-error: true`",
-      "status": "red",
-      "evidence": "workflows with continue-on-error true=['rigforge:.github/workflows/ci.yml']"
+      "status": "green",
+      "evidence": "workflows with continue-on-error true=[]"
     },
     {
       "id": "workflow-on-default",
@@ -442,7 +442,7 @@
       "check": "gh",
       "description": "latest run jobs all conclusion success or skipped=0 for required smoke job",
       "status": "red",
-      "evidence": "pins without successful required smoke/test job=['rigforge', 'proof-studio', 'communications-studio', 'deviatrix-genesis', 'jake-studio']"
+      "evidence": "pins without successful required smoke/test job=['proof-studio', 'mesh-studio', 'communications-studio', 'deviatrix-genesis', 'jake-studio']"
     },
     {
       "id": "planted-failure-docs",
@@ -504,8 +504,8 @@
       "id": "claude-desktop-snippet",
       "check": "regex",
       "description": "rigforge README contains `\"mcpServers\"`",
-      "status": "green",
-      "evidence": "rigforge mcpServers snippet present=true"
+      "status": "red",
+      "evidence": "rigforge mcpServers snippet present=false"
     },
     {
       "id": "catalog-readonly",
@@ -546,8 +546,8 @@
       "id": "copilot-instructions-pins",
       "check": "gh",
       "description": "each of 6 pins has `.github/copilot-instructions.md`",
-      "status": "red",
-      "evidence": "pins failing .github/copilot-instructions.md=['communications-studio', 'deviatrix-genesis', 'jake-studio']"
+      "status": "green",
+      "evidence": "pins failing .github/copilot-instructions.md=[]"
     },
     {
       "id": "copilot-instructions-profile",
@@ -567,22 +567,22 @@
       "id": "copilot-file-short",
       "check": "gh",
       "description": "each copilot-instructions.md ≤ 8000 bytes",
-      "status": "red",
-      "evidence": "NotFoundError: File path not found in this revision.. Resolve the check input or provider access, then rerun the steward."
+      "status": "green",
+      "evidence": "oversize Copilot instruction files=[]"
     },
     {
       "id": "copilot-has-test-cmd",
       "check": "regex",
       "description": "each copilot-instructions.md contains the word `pytest` or `smoke` or `npm test`",
-      "status": "red",
-      "evidence": "NotFoundError: File path not found in this revision.. Resolve the check input or provider access, then rerun the steward."
+      "status": "green",
+      "evidence": "Copilot instruction files without test command=[]"
     },
     {
       "id": "codeowners-pins",
       "check": "gh",
       "description": "each pin has `.github/CODEOWNERS` containing `@mrodgersjs-web`",
-      "status": "red",
-      "evidence": "pins failing .github/CODEOWNERS=['communications-studio', 'deviatrix-genesis', 'jake-studio']"
+      "status": "green",
+      "evidence": "pins failing .github/CODEOWNERS=[]"
     },
     {
       "id": "pin-narrative",
@@ -694,7 +694,7 @@
       "check": "regex",
       "description": "profile README `recent_receipts` block date ≥ yesterday UTC",
       "status": "green",
-      "evidence": "latest receipt date=2026-10-19; threshold=2026-10-19"
+      "evidence": "latest receipt date=2026-10-20; threshold=2026-10-19"
     },
     {
       "id": "no-direct-main-from-orca",
