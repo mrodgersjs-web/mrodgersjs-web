@@ -34,7 +34,7 @@ class StaticReadmeContractTests(unittest.TestCase):
 
         sentinels = (
             "assets/profile-banner-v2.jpg",
-            "Forward Deployed Engineer · Denver ·",
+            "Head of AI · Denver ·",
             "[![public repositories]",
             "> **One operator. One machine. Every receipt public.**",
             "## Pinned systems",

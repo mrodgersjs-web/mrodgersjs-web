@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/profile-banner-v2.jpg" alt="Mike Rodgers, Forward Deployed Engineer" width="100%" />
+  <img src="assets/profile-banner-v2.jpg" alt="Mike Rodgers, Head of AI" width="100%" />
 </p>
 
 <div align="center">
@@ -8,7 +8,7 @@
 </div>
 
 <p align="center">
-  Forward Deployed Engineer · Denver · <a href="mailto:mrodgersjs@gmail.com">mrodgersjs@gmail.com</a> · <a href="https://www.linkedin.com/in/mike-rodgers-14416414/">LinkedIn</a> · <a href="https://rodgersintelligence.com/">rodgersintelligence.com</a>
+  Head of AI · Denver · <a href="mailto:mrodgersjs@gmail.com">mrodgersjs@gmail.com</a> · <a href="https://www.linkedin.com/in/mike-rodgers-ai/">LinkedIn</a> · <a href="https://rodgersintelligence.com/">rodgersintelligence.com</a>
 </p>
 
 <div align="center">

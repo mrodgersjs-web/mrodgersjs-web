@@ -682,8 +682,8 @@ class ScoringContext:
             if not isinstance(user, Mapping):
                 raise ScoreError("authenticated GitHub user response is malformed")
             if identifier == "bio-fde":
-                ok = "Forward Deployed Engineer" in str(user.get("bio") or "")
-                return ok, f"bio contains FDE={str(ok).lower()}"
+                ok = "Head of AI" in str(user.get("bio") or "")
+                return ok, f"bio contains Head of AI={str(ok).lower()}"
             if identifier == "blog-url":
                 value = str(user.get("blog") or "").rstrip("/")
                 ok = value == "https://rodgersintelligence.com"
@@ -698,7 +698,7 @@ class ScoringContext:
             if not isinstance(rows, list):
                 raise ScoreError("social account response is malformed")
             urls = {str(row.get("url")) for row in rows if isinstance(row, Mapping)}
-            expected = "https://www.linkedin.com/in/mike-rodgers-14416414/"
+            expected = "https://www.linkedin.com/in/mike-rodgers-ai/"
             return expected in urls, f"LinkedIn social account present={str(expected in urls).lower()}"
         if identifier == "pins-six":
             actual, expected = self.pinned_names(), self.pins()
