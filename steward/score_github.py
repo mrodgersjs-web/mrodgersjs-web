@@ -678,7 +678,7 @@ class ScoringContext:
             ok = "mrodgersjs@gmail.com" in profile()
             return ok, f"profile email present={str(ok).lower()}"
         if identifier in {"bio-fde", "blog-url", "location-denver", "hireable"}:
-            user = self.api("user")
+            user = self.api(f"users/{OWNER}")
             if not isinstance(user, Mapping):
                 raise ScoreError("authenticated GitHub user response is malformed")
             if identifier == "bio-fde":
@@ -694,7 +694,7 @@ class ScoringContext:
             ok = user.get("hireable") is True
             return ok, f"hireable={str(ok).lower()}"
         if identifier == "linkedin-social":
-            rows = self.api("user/social_accounts")
+            rows = self.api(f"users/{OWNER}/social_accounts")
             if not isinstance(rows, list):
                 raise ScoreError("social account response is malformed")
             urls = {str(row.get("url")) for row in rows if isinstance(row, Mapping)}
@@ -704,7 +704,7 @@ class ScoringContext:
             actual, expected = self.pinned_names(), self.pins()
             return actual == expected, f"pinned={list(actual)} expected={list(expected)}"
         if identifier == "following-20":
-            rows = self.api("user/following?per_page=100")
+            rows = self.api(f"users/{OWNER}/following?per_page=100")
             if not isinstance(rows, list):
                 raise ScoreError("following response is malformed")
             return len(rows) >= 20, f"following count={len(rows)}"
