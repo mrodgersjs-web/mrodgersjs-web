@@ -1,6 +1,6 @@
 # Repo scorecard
 
-Measured `2026-10-25T15:16:08Z` by `steward/repo_scorecard.py`. Each dimension is scored 0 to 1; `n/a` means it could not be measured this run (skipped CI runs count as n/a, not pass or fail). Raw evidence is in `repos.json`.
+Measured `2026-10-26T17:53:59Z` by `steward/repo_scorecard.py`. Each dimension is scored 0 to 1; `n/a` means it could not be measured this run (skipped CI runs count as n/a, not pass or fail). Raw evidence is in `repos.json`.
 
 | Repo | Status | Overall | CI | Tests | Code vs docs | Entrypoint | LICENSE + SECURITY | Release | Demo image | Topics + description | Freshness | Old issues |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
