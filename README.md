@@ -26,7 +26,7 @@
 
 | | Public | With CI | Licensed |
 |---|---|---|---|
-| Systems you can clone and run today | **32 repositories** | **29 of 32** | **31 of 32** |
+| Systems you can clone and run today | **32 repositories** | **29 of 32** | **32 of 32** |
 
 Languages on this profile: Python, TypeScript, JavaScript. The fleet that runs my company is 64 repositories; 35 stay private because they carry client data, and that split has been deliberate rather than tidy. Nothing here is a demo directory.
 
@@ -97,7 +97,7 @@ Cross-checked against the requirement language in 108 live Head-of-AI, VP-AI, Fo
 
 ## What happens next, in order
 
-1. `rig-os-agency`: add `smoke.yml` and turn on an enforced build, so nothing public ships without a receipt. The MIT license landed the same day it went public.
+1. `rig-os-agency`: add `smoke.yml` and turn on an enforced build, so nothing public ships without a receipt. Licensing already closed the same day it went public — every public repository here now declares one.
 2. `jev-route` in Rust: the routing policy that already governs this fleet, as a standalone binary with a benchmark.
 3. Strip client identifiers out of `rig-memory-os` and make it public.
 4. Retire the `rodgemd1-lgtm` handle into this one so there is a single hiring-facing estate.
