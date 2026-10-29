@@ -90,16 +90,16 @@ Cross-checked against the requirement language in 108 live Head-of-AI, VP-AI, Fo
 ## Known gaps, before you find them
 
 - **Steward score: 75/100.** The badge up top is honest and it is red. It is a self-audit of repository hygiene, not a benchmark, and the 25 points missing are documentation and release discipline on the smaller studios.
-- **`rig-os-agency` has no CI workflow and no license file yet.** It went public on 29 October and it is the weakest evidence in the TypeScript column. It builds with `npm run build`; the workflow and the license are the first two commits after this README.
+- **`rig-os-agency` has no enforced CI yet.** It went public on 29 October and carries an MIT license, but its only workflow, `rig-lattice.yml`, is gated behind a repository variable that is currently off: inherited from an unpublished scorer, not a passing build. `ai-user-testing-mcp` is the stronger TypeScript evidence, with `ci.yml`, `rig-lattice.yml` and `weekly-catalog-refresh.yml`. A smoke workflow for the console is item one below.
 - **`rig-memory-os` is still private.** It is the strongest retrieval-and-memory artifact in the estate and the one FDE interviewers ask about. It comes out once the client identifiers are stripped.
 - **No compiled-language artifact yet.** At the leadership tier that is a non-issue. Against the AI-infra bar it is a real one, and the fix is the Rust CLI above rather than a claim.
 - **No distributed serving layer, no training runs.** I deploy and govern systems other people trained. I am not going to imply otherwise.
 
 ## What happens next, in order
 
-1. `rig-os-agency`: add `smoke.yml` and an MIT license, so nothing public ships without a receipt.
+1. `rig-os-agency`: add `smoke.yml` and turn on an enforced build, so nothing public ships without a receipt. The MIT license landed the same day it went public.
 2. `jev-route` in Rust: the routing policy that already governs this fleet, as a standalone binary with a benchmark.
 3. Strip client identifiers out of `rig-memory-os` and make it public.
 4. Retire the `rodgemd1-lgtm` handle into this one so there is a single hiring-facing estate.
 
-Public repositories here are deliberate release surfaces, and each one that clears its security, licensing and documentation boundary ships. Reach me at [rodgersintelligence.com](https://rodgersintelligence.com).
+Public repositories here are deliberate release surfaces, and each one that clears its security, licensing and documentation boundary ships. Two TypeScript surfaces cleared that boundary on 29 October. Reach me at [rodgersintelligence.com](https://rodgersintelligence.com).
