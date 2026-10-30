@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import re
 import tempfile
 import unittest
 from pathlib import Path
@@ -28,99 +29,61 @@ def receipt(
 
 
 class StaticReadmeContractTests(unittest.TestCase):
-    def test_readme_has_the_ten_blocks_and_six_public_pins(self) -> None:
+    def test_profile_links_resolve_and_selected_projects_match_pins(self) -> None:
         root = Path(__file__).resolve().parents[1]
         readme = (root / "README.md").read_text(encoding="utf-8")
+        static = readme.split(subject.START, 1)[0]
+        selected = re.findall(r"\[\*\*[^]]+\*\*\]\(https://github.com/([^)/]+/[^)/]+)\)", static)
+        self.assertEqual(tuple(selected), subject.load_pins(root / "steward/PINNED.txt"))
+        self.assertIn("mailto:mrodgersjs@gmail.com", static)
+        self.assertIn("https://www.linkedin.com/in/mike-rodgers-ai/", static)
 
-        sentinels = (
-            "assets/profile-banner-v2.jpg",
-            "Head of AI · Forward-Deployed AI Engineering · Denver ·",
-            "[![public repositories]",
-            "> **One operator. One machine. Every receipt public.**",
-            "## Pinned systems",
-            "## How a recruiter should spend 10 minutes",
-            "## Recent receipts",
-            "## Competencies",
-            "## Credentials",
-            "[**rodgersintelligence.com**](https://rodgersintelligence.com/)",
-        )
-        positions = [readme.index(sentinel) for sentinel in sentinels]
-        self.assertEqual(positions, sorted(positions))
-        self.assertTrue(all(readme.count(sentinel) == 1 for sentinel in sentinels))
-        self.assertEqual(
-            readme.count("I turn AI pilots into production systems you can defend in a board meeting."),
-            1,
-        )
-        self.assertEqual(readme.count("[!["), 4)
-        self.assertIn(
-            "https%3A%2F%2Fapi.github.com%2Fusers%2Fmrodgersjs-web&query=%24.public_repos",
-            readme,
-        )
-        self.assertIn(
-            "steward%2Fscoreboard%2Fbadge.json",
-            readme,
-        )
-        self.assertIn(
-            "img.shields.io/github/actions/workflow/status/mrodgersjs-web/rigforge/smoke.yml",
-            readme,
-        )
-        self.assertEqual(readme.count(subject.START), 1)
-        self.assertEqual(readme.count(subject.END), 1)
+        documents = [root / "README.md", *sorted((root / "docs").glob("*.md"))]
+        self.assertGreaterEqual(len(documents), 3)
+        for path in documents:
+            content = path.read_text(encoding="utf-8")
+            for target in re.findall(r"\]\(([^)]+)\)", content):
+                if ":" in target or target.startswith("#"):
+                    continue
+                with self.subTest(document=path.name, target=target):
+                    self.assertTrue((path.parent / target.split("#", 1)[0]).is_file())
+            lines = content.splitlines()
+            for index, line in enumerate(lines):
+                if line.startswith("| ") and (index == 0 or not lines[index - 1].startswith("| ")):
+                    with self.subTest(document=path.name, table=line):
+                        self.assertRegex(lines[index + 1], r"^\|(?:\s*:?-{3,}:?\s*\|)+$")
 
-        headings = [line for line in readme.splitlines() if line.startswith("## ")]
-        self.assertEqual(
-            headings,
-            [
-                "## What this estate measures",
-                "## The fleet behind the profile",
-                "## Pinned systems",
-                "## Which requirement each system answers",
-                "## Languages, stated plainly",
-                "## How I work",
-                "## How a recruiter should spend 10 minutes",
-                "## Recent receipts",
-                "## Competencies",
-                "## Credentials",
-                "## Boundaries, stated once",
-            ],
-        )
+        banner = re.search(r'<img src="([^"]+)" alt="([^"]+)"', readme)
+        self.assertIsNotNone(banner)
+        self.assertTrue((root / banner.group(1)).is_file())
+        self.assertGreater(len(banner.group(2).split()), 3)
 
-        pinned = readme.split("## Pinned systems\n", 1)[1].split(
-            "## Which requirement each system answers\n", 1
-        )[0]
-        pin_rows = [
-            line for line in pinned.splitlines() if line.startswith("| [**")
-        ]
+    def test_receipt_refresh_preserves_current_profile_content(self) -> None:
+        root = Path(__file__).resolve().parents[1]
+        readme = (root / "README.md").read_text(encoding="utf-8")
+        prefix, interior = readme.split(subject.START)
+        _, suffix = interior.split(subject.END)
+        refreshed = subject.replace_recent_receipts(readme, "No public workflow receipt is available.")
         self.assertEqual(
-            [row.split("**", 2)[1] for row in pin_rows],
-            [slug.rsplit("/", 1)[1] for slug in EXPECTED_PINS],
+            refreshed,
+            prefix + subject.START + "\nNo public workflow receipt is available.\n" + subject.END + suffix,
         )
+        self.assertEqual(subject.replace_recent_receipts(refreshed, "No public workflow receipt is available."), refreshed)
 
-        competencies = readme.split("## Competencies\n", 1)[1].split(
-            "## Credentials\n", 1
-        )[0]
-        competency_rows = [
-            line for line in competencies.splitlines() if line.startswith("| **")
-        ]
-        self.assertEqual(
-            [row.split("**", 2)[1] for row in competency_rows],
-            ["Python", "TypeScript", "Postgres"],
-        )
-        credentials = readme.split("## Credentials\n", 1)[1]
-        credential_lines = [
-            line for line in credentials.splitlines() if line.startswith("- ")
-        ]
-        self.assertEqual(
-            credential_lines,
-            [
-                "- U.S. Army Counterintelligence veteran",
-                "- B.S. Industrial Engineering, Iowa State University",
-                "- Six Sigma Black Belt",
-                "- Project Management Professional (PMP)",
-            ],
-        )
-        self.assertNotIn("clearance", credentials.lower())
+    def test_credentials_remain_in_profile(self) -> None:
+        root = Path(__file__).resolve().parents[1]
+        readme = (root / "README.md").read_text(encoding="utf-8")
+        for credential in (
+            "U.S. Army Counterintelligence veteran",
+            "B.S. Industrial Engineering, Iowa State University",
+            "Six Sigma Black Belt",
+            "Project Management Professional (PMP)",
+        ):
+            self.assertIn(credential, readme)
+        self.assertNotIn("clearance", readme.lower())
 
+    def test_scoreboard_badge_matches_measurement(self) -> None:
+        root = Path(__file__).resolve().parents[1]
         badge = json.loads(
             (root / "steward" / "scoreboard" / "badge.json").read_text(encoding="utf-8")
         )
