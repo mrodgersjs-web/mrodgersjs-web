@@ -61,7 +61,7 @@ class StaticReadmeContractTests(unittest.TestCase):
             readme,
         )
         self.assertIn(
-            "rigforge/actions/workflows/smoke.yml/badge.svg?branch=main",
+            "img.shields.io/github/actions/workflow/status/mrodgersjs-web/rigforge/smoke.yml",
             readme,
         )
         self.assertEqual(readme.count(subject.START), 1)

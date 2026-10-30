@@ -14,7 +14,7 @@
 <div align="center">
 
 [![public repositories](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Fusers%2Fmrodgersjs-web&query=%24.public_repos&label=public%20repositories&logo=github)](https://github.com/mrodgersjs-web?tab=repositories)
-[![CI covered](https://img.shields.io/badge/CI%20on%20public%20repos-31%20of%2032-brightgreen)](https://github.com/mrodgersjs-web?tab=repositories)
+[![CI covered](https://img.shields.io/badge/CI%20on%20public%20repos-33%20of%2034-brightgreen)](https://github.com/mrodgersjs-web?tab=repositories)
 [![steward score](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fmrodgersjs-web%2Fmrodgersjs-web%2Fmain%2Fsteward%2Fscoreboard%2Fbadge.json)](https://github.com/mrodgersjs-web/mrodgersjs-web/tree/main/steward/scoreboard)
 [![rigforge smoke](https://img.shields.io/github/actions/workflow/status/mrodgersjs-web/rigforge/smoke.yml?label=rigforge%20smoke&logo=github-actions&branch=main)](https://github.com/mrodgersjs-web/rigforge/actions/workflows/smoke.yml)
 
@@ -31,9 +31,9 @@ git clone https://github.com/mrodgersjs-web/mrodgersjs-web.git && (cd mrodgersjs
 
 | | Public | With CI | Licensed |
 |---|---|---|---|
-| Systems you can clone and run today | **32 repositories** | **31 of 32** | **32 of 32** |
+| Systems you can clone and run today | **34 repositories** | **33 of 34** | **34 of 34** |
 
-Languages on this profile: Python, TypeScript, JavaScript, and Rust. The fleet that runs my company is 65 in total; 33 stay private because they carry client data, and that split has been deliberate rather than tidy. 3 public MCP servers ship inside these repositories. Nothing here is a demo directory.
+Languages on this profile: Python, TypeScript, JavaScript, Rust, and C++. The fleet that runs my company is 65 in total; 33 stay private because they carry client data, and that split has been deliberate rather than tidy. 3 public MCP servers ship inside these repositories. Nothing here is a demo directory.
 
 ## Pinned systems
 | System | What it demonstrates | Verify |
@@ -54,12 +54,12 @@ Cross-checked against the requirement language in 108 live Head-of-AI, VP-AI, Fo
 |---|---|---|
 | "eval infrastructure" · reliability, observability, drift | 60% leadership · 32% FDE | [rig-enhanced-evals](https://github.com/mrodgersjs-web/rig-enhanced-evals), [rig-enhanced-guardrails](https://github.com/mrodgersjs-web/rig-enhanced-guardrails) — schema, format, toxicity and fact checks that sign a receipt |
 | "write and review production-grade code across frontend and backend using JavaScript or Python" | 50% FDE · named in OpenAI and Anthropic leadership reqs | [ai-user-testing-mcp](https://github.com/mrodgersjs-web/ai-user-testing-mcp) (pnpm workspace, CI-tested), [rig-os-agency](https://github.com/mrodgersjs-web/rig-os-agency) (Next.js console), [mrodgersjs-web-teammate](https://github.com/mrodgersjs-web/mrodgersjs-web-teammate) (`npx mrodgersjs-web`) |
-| "agents, tool-calling, orchestration" | 58% leadership · 41% FDE | [rig-agent-firm](https://github.com/mrodgersjs-web/rig-agent-firm), [rig-domain-agents](https://github.com/mrodgersjs-web/rig-domain-agents), [mesh-studio](https://github.com/mrodgersjs-web/mesh-studio) |
+| "agents, tool-calling, orchestration" | 58% leadership · 41% FDE | [agentic-workflows](https://github.com/mrodgersjs-web/agentic-workflows) — six designers (n8n, Flowise, Dify, Trigger.dev, LangGraph, CrewAI), one router, checked-in run proofs · [rig-agent-firm](https://github.com/mrodgersjs-web/rig-agent-firm), [mesh-studio](https://github.com/mrodgersjs-web/mesh-studio) |
 | "retrieval, data integration, ontology" | 27% leadership · 45% FDE | `rig-memory-os` — Brier-scored prediction memory with signed provenance and paged retrieval. Private today; it ships once client identifiers are stripped |
 | "governance, model risk, compliance, approval boundaries" | 73% leadership | [doctrine](https://github.com/mrodgersjs-web/doctrine), [proof-gate-action](https://github.com/mrodgersjs-web/proof-gate-action), [rig-doctrine-overlay](https://github.com/mrodgersjs-web/rig-doctrine-overlay) |
 | "measurable business value, ROI, cost" | 61% leadership | [fde-portfolio](https://github.com/mrodgersjs-web/fde-portfolio) — discovery to handoff as data · [resume](https://github.com/mrodgersjs-web/resume) with the sourced numbers |
 | "did it actually ship?" | every tier | [rigforge](https://github.com/mrodgersjs-web/rigforge), [proof-studio](https://github.com/mrodgersjs-web/proof-studio), [doneseal](https://github.com/mrodgersjs-web/doneseal) — hash-verifiable, Ed25519-signed completion evidence |
-| "at least one systems language such as Go, Rust, or C/C++" | 0% leadership · 46% of infra reqs name Rust, 42% name C++ | [jev-route](https://github.com/mrodgersjs-web/jev-route) — a routing-policy CLI in dependency-free Rust: std-only, 11 tests, checked-in benchmark, CI on every push |
+| "at least one systems language such as Go, Rust, or C/C++" | 0% leadership · 46% of infra reqs name Rust, 42% name C++ | [jev-route](https://github.com/mrodgersjs-web/jev-route) (Rust CLI + wasm) and [latency-probe](https://github.com/mrodgersjs-web/latency-probe) (C++17 histogram + token bucket, sanitizer matrix CI) — both dependency-free, both with checked-in benchmarks |
 
 ## Languages, stated plainly
 
@@ -67,11 +67,11 @@ Cross-checked against the requirement language in 108 live Head-of-AI, VP-AI, Fo
 
 **TypeScript** — the delivery surface, and the half of the Forward-Deployed bar my public profile used to hide. Ten TypeScript repositories exist in the estate; `ai-user-testing-mcp` and `rig-os-agency` are public and CI-covered, so the claim is checkable instead of asserted.
 
-**JavaScript** — [mrodgersjs-web-teammate](https://github.com/mrodgersjs-web/mrodgersjs-web-teammate), installable with `npx`, with a green CI run.
+**JavaScript** — [mrodgersjs-web-teammate](https://github.com/mrodgersjs-web/mrodgersjs-web-teammate), installable with `npx`, with a green CI run, plus the `jev-route-wasm` package (JS wrapper, node:test contract suite, browser playground) heading to npm.
 
-**Rust** — `jev-route`: the routing policy that governs this fleet, as a standalone dependency-free binary. Task and candidates in, choice + confidence + fallback verdict out; hard exclusions, scored right-sizing, a confidence floor, deterministic tie-breaks. 11 tests and a 7-case benchmark are checked into the repo and gate every push. What the exit codes mean is in the README, not in your imagination.
+**Rust** — `jev-route`: the routing policy that governs this fleet, as a standalone dependency-free binary and a WebAssembly build (`wasm/`, raw four-export ABI, no bindgen, node test suite). Task and candidates in, choice + confidence + fallback verdict out; hard exclusions, scored right-sizing, a confidence floor, deterministic tie-breaks. 14 tests and a 7-case benchmark gate every push. What the exit codes mean is in the README, not in your imagination.
 
-**C++** — I read and profile serving and kernel stacks. No authorship claim until there is a repo behind it.
+**C++** — `latency-probe`: header-only C++17 p99/p999 histogram and token-bucket limiter, the primitives you'd write yourself before reaching for a library. Constant-memory log buckets with an upper-bound guarantee (never underestimates), lazy-refill limiter, 32ns/observe benchmark checked in, CI on gcc and clang across Linux and macOS plus an ASan/UBSan job.
 
 ## How I work
 
@@ -93,7 +93,7 @@ Cross-checked against the requirement language in 108 live Head-of-AI, VP-AI, Fo
 ## Recent receipts
 
 <!-- recent_receipts starts -->
-Steward score. **90/100 green**. Measured `2026-10-30`.
+Steward score. **89/100 green**. Measured `2026-10-30`.
 
 | Pinned system | Latest release | Latest smoke run |
 | --- | --- | --- |
@@ -101,8 +101,8 @@ Steward score. **90/100 green**. Measured `2026-10-30`.
 | [proof-studio](https://github.com/mrodgersjs-web/proof-studio) | [v1.0.0](https://github.com/mrodgersjs-web/proof-studio/releases/tag/v1.0.0) · `2026-10-20` | [success](https://github.com/mrodgersjs-web/proof-studio/actions/runs/40977587451) · `2026-10-30` · `8f808f0` |
 | [communications-studio](https://github.com/mrodgersjs-web/communications-studio) | [v11.1.0](https://github.com/mrodgersjs-web/communications-studio/releases/tag/v11.1.0) · `2026-10-20` | [success](https://github.com/mrodgersjs-web/communications-studio/actions/runs/40977564667) · `2026-10-30` · `a96f96b` |
 | [deviatrix-genesis](https://github.com/mrodgersjs-web/deviatrix-genesis) | [v0.2.0](https://github.com/mrodgersjs-web/deviatrix-genesis/releases/tag/v0.2.0) · `2026-10-20` | [success](https://github.com/mrodgersjs-web/deviatrix-genesis/actions/runs/40977569733) · `2026-10-30` · `5b00262` |
-| [ai-user-testing-mcp](https://github.com/mrodgersjs-web/ai-user-testing-mcp) | no release | [success](https://github.com/mrodgersjs-web/ai-user-testing-mcp/actions/runs/40980126513) · `2026-10-30` · `79da6b8` |
-| [jev-route](https://github.com/mrodgersjs-web/jev-route) | no release | [success](https://github.com/mrodgersjs-web/jev-route/actions/runs/40979860191) · `2026-10-30` · `a1ce384` |
+| [ai-user-testing-mcp](https://github.com/mrodgersjs-web/ai-user-testing-mcp) | no release | [success](https://github.com/mrodgersjs-web/ai-user-testing-mcp/actions/runs/40980588870) · `2026-10-30` · `61b969a` |
+| [jev-route](https://github.com/mrodgersjs-web/jev-route) | no release | [in_progress](https://github.com/mrodgersjs-web/jev-route/actions/runs/40990218966) · `2026-10-30` · `394239f` |
 <!-- recent_receipts ends -->
 
 ## Competencies
@@ -120,10 +120,10 @@ Rust and JavaScript ride alongside: `jev-route` ships the routing policy as a de
 - Six Sigma Black Belt
 - Project Management Professional (PMP)
 
-GitHub Achievements: Pull Shark x2, Quickdraw. 141 commits of original work on the public `rig-os-agency` fork. MIT-licensed public surface, 32 of 32.
+GitHub Achievements: Pull Shark x2, Quickdraw. 141 commits of original work on the public `rig-os-agency` fork. MIT-licensed public surface, 34 of 34.
 
 ## Boundaries, stated once
 
 I deploy and govern systems other people trained: no distributed serving layer, no training runs. `rig-memory-os` is the strongest retrieval artifact in the estate and is still private while client identifiers get stripped. Everything public here has a license, a description, and a build or smoke path that CI has actually run.
 
-Public repositories here are deliberate release surfaces, and each one that clears its security, licensing and documentation boundary ships. Three shipped on 29 October: two TypeScript surfaces and a Rust CLI. Reach me at [**rodgersintelligence.com**](https://rodgersintelligence.com/).
+Public repositories here are deliberate release surfaces, and each one that clears its security, licensing and documentation boundary ships. Five shipped across 29 October: the console's CI, a Rust CLI with a wasm build, a C++17 probe, and the six-designer workflow farm. Reach me at [**rodgersintelligence.com**](https://rodgersintelligence.com/).
