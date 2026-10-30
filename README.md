@@ -6,7 +6,7 @@
 
 **Head of AI at [Rodgers Intelligence Group](https://rodgersintelligence.com/). I take AI from pilot to production in regulated operations, and I build the checks that prove an agent's work is actually done.**
 
-20+ years leading technology into operations, from a Caterpillar fabrication line to five hospital systems to a $6B health-tech business unit. Programs I've led add up to $35M in combined operating impact. Today I run RIG, my own multi-node AI fleet, and publish the verification tools I built to keep it honest.
+20+ years leading technology into operations, from a Caterpillar fabrication line to five hospital systems to a $6B health-tech business unit. Programs I've led add up to $35M in combined operating impact. In 2025 I founded Rodgers Intelligence Group (RIG), my AI practice. I run it on a private multi-node AI fleet and publish the verification tools I built to keep that fleet honest.
 
 Denver · [Email](mailto:mrodgersjs@gmail.com) · [LinkedIn](https://www.linkedin.com/in/mike-rodgers-ai/) · [rodgersintelligence.com](https://rodgersintelligence.com/)
 
@@ -34,9 +34,11 @@ Six open-source tools from RIG. Each repo ships tests, CI, and instructions to v
 - **Enterprise AI.** At Oracle Health (formerly Cerner), built an internal AI-powered competitive-intelligence capability that processed 150+ market signals a day and was adopted across every market segment.
 - **Startups.** At EmOpti, delivered $1M in first-year revenue and supported a $10M Series A.
 
+<sub>Career figures are from my resume, available on request.</sub>
+
 ## What I run day to day
 
-RIG is my private AI fleet: Apple Silicon hosts, a Linux GPU server, and NAS storage, running local inference, MCP servers, and agents that work through real applications. Recent operating work:
+I build and operate RIG's private AI fleet hands-on: Apple Silicon hosts, a Linux GPU server, and NAS storage, running local inference, MCP servers, and agents that work through real applications. I set the architecture and acceptance criteria; AI coding agents help implement and verify. Recent operating work:
 
 - **Moved 66 container images across hosts** with rollback data retained and database and service checks.
 - **Fixed an MCP process leak** of orphaned stdio servers, then tested disconnects and LAN cycles with 21 tools exposed.
