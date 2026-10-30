@@ -20,7 +20,11 @@ START = "<!-- recent_receipts starts -->"
 END = "<!-- recent_receipts ends -->"
 _PIN_COUNT = 6
 # Pins whose smoke proof runs in a workflow other than smoke.yml.
-_SMOKE_WORKFLOWS = {"mrodgersjs-web/deviatrix-genesis": "ci.yml"}
+_SMOKE_WORKFLOWS = {
+    "mrodgersjs-web/deviatrix-genesis": "ci.yml",
+    "mrodgersjs-web/ai-user-testing-mcp": "ci.yml",
+    "mrodgersjs-web/jev-route": "ci.yml",
+}
 _PIN_PATTERN = re.compile(r"mrodgersjs-web/[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")
 
 

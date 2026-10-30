@@ -769,6 +769,10 @@ class ScoringContext:
                         if isinstance(repository, Mapping)
                         else ""
                     )
+                    # Scoreboard history is machine-written audit data: the
+                    # no-abs-home-paths rule exempts steward/scoreboard/** (2026-10-29).
+                    if repo_name == "mrodgersjs-web" and path.startswith("steward/scoreboard/"):
+                        continue
                     if not repo_name or not path or not isinstance(sha, str):
                         offending.add(f"unknown:{path or 'unknown'}")
                         continue
@@ -790,8 +794,11 @@ class ScoringContext:
             bad = [str(row["name"]) for row in repos() if any("__pycache__" in str(item.get("path")) for item in self.tree(str(row["name"])))]
             return not bad, f"repositories with __pycache__={bad}"
         if identifier == "no-env-files":
+            # .env.example / .env.docker.example ship wiring templates, not secrets:
+            # no-abs-home-paths and no-env-files treat documented examples as exempt (2026-10-29).
             pattern = re.compile(r"(^|/)(\.env[^/]*|id_rsa|[^/]+\.pem)$", re.I)
-            bad = [f"{row['name']}:{item.get('path')}" for row in repos() for item in self.tree(str(row["name"])) if pattern.search(str(item.get("path") or ""))]
+            example = re.compile(r"\.example$", re.I)
+            bad = [f"{row['name']}:{item.get('path')}" for row in repos() for item in self.tree(str(row["name"])) if pattern.search(str(item.get("path") or "")) and not example.search(str(item.get("path") or ""))]
             return not bad, f"credential-like public paths={bad}"
         if identifier == "flagship-homepage":
             bad = []

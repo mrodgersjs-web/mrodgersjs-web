@@ -11,10 +11,10 @@ from steward import build_readme as subject
 EXPECTED_PINS = (
     "mrodgersjs-web/rigforge",
     "mrodgersjs-web/proof-studio",
-    "mrodgersjs-web/mesh-studio",
     "mrodgersjs-web/communications-studio",
     "mrodgersjs-web/deviatrix-genesis",
-    "mrodgersjs-web/jake-studio",
+    "mrodgersjs-web/ai-user-testing-mcp",
+    "mrodgersjs-web/jev-route",
 )
 
 
@@ -34,7 +34,7 @@ class StaticReadmeContractTests(unittest.TestCase):
 
         sentinels = (
             "assets/profile-banner-v2.jpg",
-            "Head of AI · Denver ·",
+            "Head of AI · Forward-Deployed AI Engineering · Denver ·",
             "[![public repositories]",
             "> **One operator. One machine. Every receipt public.**",
             "## Pinned systems",
@@ -51,7 +51,7 @@ class StaticReadmeContractTests(unittest.TestCase):
             readme.count("I turn AI pilots into production systems you can defend in a board meeting."),
             1,
         )
-        self.assertEqual(readme.count("[!["), 3)
+        self.assertEqual(readme.count("[!["), 4)
         self.assertIn(
             "https%3A%2F%2Fapi.github.com%2Fusers%2Fmrodgersjs-web&query=%24.public_repos",
             readme,
@@ -71,16 +71,21 @@ class StaticReadmeContractTests(unittest.TestCase):
         self.assertEqual(
             headings,
             [
+                "## What this estate measures",
                 "## Pinned systems",
+                "## Which requirement each system answers",
+                "## Languages, stated plainly",
+                "## How I work",
                 "## How a recruiter should spend 10 minutes",
                 "## Recent receipts",
                 "## Competencies",
                 "## Credentials",
+                "## Boundaries, stated once",
             ],
         )
 
         pinned = readme.split("## Pinned systems\n", 1)[1].split(
-            "## How a recruiter should spend 10 minutes\n", 1
+            "## Which requirement each system answers\n", 1
         )[0]
         pin_rows = [
             line for line in pinned.splitlines() if line.startswith("| [**")
@@ -247,13 +252,13 @@ class ScoreboardAndRenderingTests(unittest.TestCase):
                 release={
                     "tag": "v2.0.0",
                     "date": "2026-08-29",
-                    "url": "https://github.com/mrodgersjs-web/mesh-studio/releases/tag/v2.0.0",
+                    "url": "https://github.com/mrodgersjs-web/communications-studio/releases/tag/v2.0.0",
                 },
                 smoke={
                     "state": "in_progress",
                     "date": "2026-09-04",
                     "sha": "fedcba9876543210fedcba9876543210fedcba98",
-                    "url": "https://github.com/mrodgersjs-web/mesh-studio/actions/runs/103",
+                    "url": "https://github.com/mrodgersjs-web/communications-studio/actions/runs/103",
                 },
             ),
             receipt(EXPECTED_PINS[3]),
@@ -262,13 +267,13 @@ class ScoreboardAndRenderingTests(unittest.TestCase):
                 release={
                     "tag": "2026.09",
                     "date": "2026-09-05",
-                    "url": "https://github.com/mrodgersjs-web/deviatrix-genesis/releases/tag/2026.09",
+                    "url": "https://github.com/mrodgersjs-web/ai-user-testing-mcp/releases/tag/2026.09",
                 },
                 smoke={
                     "state": "queued",
                     "date": "2026-09-05",
                     "sha": "00112233445566778899aabbccddeeff00112233",
-                    "url": "https://github.com/mrodgersjs-web/deviatrix-genesis/actions/runs/104",
+                    "url": "https://github.com/mrodgersjs-web/ai-user-testing-mcp/actions/runs/104",
                 },
             ),
             receipt(
@@ -277,7 +282,7 @@ class ScoreboardAndRenderingTests(unittest.TestCase):
                     "state": "cancelled",
                     "date": "2026-09-06",
                     "sha": "ffeeddccbbaa99887766554433221100ffeeddcc",
-                    "url": "https://github.com/mrodgersjs-web/jake-studio/actions/runs/105",
+                    "url": "https://github.com/mrodgersjs-web/jev-route/actions/runs/105",
                 },
             ),
         )
@@ -289,10 +294,10 @@ class ScoreboardAndRenderingTests(unittest.TestCase):
                 "| --- | --- | --- |",
                 "| [rigforge](https://github.com/mrodgersjs-web/rigforge) | [v1.2.3](https://github.com/mrodgersjs-web/rigforge/releases/tag/v1.2.3) · `2026-09-01` | [success](https://github.com/mrodgersjs-web/rigforge/actions/runs/101) · `2026-09-02` · `abcdef0` |",
                 "| [proof-studio](https://github.com/mrodgersjs-web/proof-studio) | no release | [failure](https://github.com/mrodgersjs-web/proof-studio/actions/runs/102) · `2026-09-03` · `1234567` |",
-                "| [mesh-studio](https://github.com/mrodgersjs-web/mesh-studio) | [v2.0.0](https://github.com/mrodgersjs-web/mesh-studio/releases/tag/v2.0.0) · `2026-08-29` | [in_progress](https://github.com/mrodgersjs-web/mesh-studio/actions/runs/103) · `2026-09-04` · `fedcba9` |",
-                "| [communications-studio](https://github.com/mrodgersjs-web/communications-studio) | no release | no smoke run |",
-                "| [deviatrix-genesis](https://github.com/mrodgersjs-web/deviatrix-genesis) | [2026.09](https://github.com/mrodgersjs-web/deviatrix-genesis/releases/tag/2026.09) · `2026-09-05` | [queued](https://github.com/mrodgersjs-web/deviatrix-genesis/actions/runs/104) · `2026-09-05` · `0011223` |",
-                "| [jake-studio](https://github.com/mrodgersjs-web/jake-studio) | no release | [cancelled](https://github.com/mrodgersjs-web/jake-studio/actions/runs/105) · `2026-09-06` · `ffeeddc` |",
+                "| [communications-studio](https://github.com/mrodgersjs-web/communications-studio) | [v2.0.0](https://github.com/mrodgersjs-web/communications-studio/releases/tag/v2.0.0) · `2026-08-29` | [in_progress](https://github.com/mrodgersjs-web/communications-studio/actions/runs/103) · `2026-09-04` · `fedcba9` |",
+                "| [deviatrix-genesis](https://github.com/mrodgersjs-web/deviatrix-genesis) | no release | no smoke run |",
+                "| [ai-user-testing-mcp](https://github.com/mrodgersjs-web/ai-user-testing-mcp) | [2026.09](https://github.com/mrodgersjs-web/ai-user-testing-mcp/releases/tag/2026.09) · `2026-09-05` | [queued](https://github.com/mrodgersjs-web/ai-user-testing-mcp/actions/runs/104) · `2026-09-05` · `0011223` |",
+                "| [jev-route](https://github.com/mrodgersjs-web/jev-route) | no release | [cancelled](https://github.com/mrodgersjs-web/jev-route/actions/runs/105) · `2026-09-06` · `ffeeddc` |",
             )
         )
         self.assertEqual(subject.render_recent_receipts(None, receipts), expected)

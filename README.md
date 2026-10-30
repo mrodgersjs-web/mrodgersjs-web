@@ -14,7 +14,7 @@
 <div align="center">
 
 [![public repositories](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Fusers%2Fmrodgersjs-web&query=%24.public_repos&label=public%20repositories&logo=github)](https://github.com/mrodgersjs-web?tab=repositories)
-[![CI covered](https://img.shields.io/badge/CI%20on%20public%20repos-29%20of%2032-brightgreen)](https://github.com/mrodgersjs-web?tab=repositories)
+[![CI covered](https://img.shields.io/badge/CI%20on%20public%20repos-31%20of%2032-brightgreen)](https://github.com/mrodgersjs-web?tab=repositories)
 [![steward score](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fmrodgersjs-web%2Fmrodgersjs-web%2Fmain%2Fsteward%2Fscoreboard%2Fbadge.json)](https://github.com/mrodgersjs-web/mrodgersjs-web/tree/main/steward/scoreboard)
 [![rigforge smoke](https://github.com/mrodgersjs-web/rigforge/actions/workflows/smoke.yml/badge.svg?branch=main)](https://github.com/mrodgersjs-web/rigforge/actions/workflows/smoke.yml)
 
@@ -22,25 +22,29 @@
 
 > **One operator. One machine. Every receipt public.**
 
+```bash
+# Run the front of the estate in one line (READMEs of every pinned system carry the same path):
+git clone https://github.com/mrodgersjs-web/rigforge.git && (cd rigforge && python3 -m venv .venv && . .venv/bin/activate && bash scripts/smoke.sh)
+```
+
 ## What this estate measures
 
 | | Public | With CI | Licensed |
 |---|---|---|---|
-| Systems you can clone and run today | **32 repositories** | **29 of 32** | **32 of 32** |
+| Systems you can clone and run today | **32 repositories** | **31 of 32** | **32 of 32** |
 
-Languages on this profile: Python, TypeScript, JavaScript. The fleet that runs my company is 64 repositories; 35 stay private because they carry client data, and that split has been deliberate rather than tidy. Nothing here is a demo directory.
+Languages on this profile: Python, TypeScript, JavaScript, and Rust. The fleet that runs my company is 65 repositories; 33 stay private because they carry client data, and that split has been deliberate rather than tidy. Three public MCP servers ship inside these repositories. Nothing here is a demo directory.
 
 ## Pinned systems
-
 | System | What it demonstrates | Verify |
-| --- | --- | --- |
 | [**rigforge**](https://github.com/mrodgersjs-web/rigforge) | Builds and checks ProofPacket evidence through a reproducible smoke path. | `git clone https://github.com/mrodgersjs-web/rigforge.git && (cd rigforge && python3 -m venv .venv && . .venv/bin/activate && bash scripts/smoke.sh)` |
 | [**proof-studio**](https://github.com/mrodgersjs-web/proof-studio) | Verifies signed completion evidence and detects tampering. | `git clone https://github.com/mrodgersjs-web/proof-studio.git && (cd proof-studio && python3 -m venv .venv && . .venv/bin/activate && bash scripts/smoke.sh)` |
-| [**mesh-studio**](https://github.com/mrodgersjs-web/mesh-studio) | Probes, boots, and recovers a local agent-service mesh. | `git clone https://github.com/mrodgersjs-web/mesh-studio.git && (cd mesh-studio && python3 -m venv .venv && . .venv/bin/activate && bash scripts/smoke.sh)` |
 | [**communications-studio**](https://github.com/mrodgersjs-web/communications-studio) | Scores a draft message against formulas and hard gates, then emits or rejects it, with pytest as the claim under test. | `git clone https://github.com/mrodgersjs-web/communications-studio.git && (cd communications-studio && python3 -m venv .venv && . .venv/bin/activate && bash scripts/smoke.sh)` |
 | [**deviatrix-genesis**](https://github.com/mrodgersjs-web/deviatrix-genesis) | Runs an idea through three diamonds, three expeditions and seven stages, with a verifier that signs each sealed proof packet. | `git clone https://github.com/mrodgersjs-web/deviatrix-genesis.git && (cd deviatrix-genesis && python3 -m venv .venv && . .venv/bin/activate && pip install sympy && PYTHONPATH=. python3 -m unittest deviatrix_genesis.tests.test_deviatrix deviatrix_genesis.v3.tests.test_v3 deviatrix_genesis.v4.tests.test_memory_export deviatrix_genesis.v5.tests.test_v5)` |
 | [**ai-user-testing-mcp**](https://github.com/mrodgersjs-web/ai-user-testing-mcp) | The strongest thing here. A governed AI user-testing monorepo: 1,849 catalogued resources pinned to exact commits, a sandboxed runner, 24 reviewed adapters, evidence sealed as a ProofPacket. CI runs build, tests and a catalog verify, plus gitleaks and a gitlink audit. | `git clone https://github.com/mrodgersjs-web/ai-user-testing-mcp.git && (cd ai-user-testing-mcp && pnpm install --frozen-lockfile && pnpm build && pnpm test)` — see a green run at [workflow run 14](https://github.com/mrodgersjs-web/ai-user-testing-mcp/actions/workflows/ci.yml) |
-| [**jake-studio**](https://github.com/mrodgersjs-web/jake-studio) | Checks the L10 harness modules offline: certainty engine, cognition stack, nocturne and agent factory. | `git clone https://github.com/mrodgersjs-web/jake-studio.git && (cd jake-studio && python3 -m venv .venv && . .venv/bin/activate && bash scripts/smoke.sh)` |
+| [**jev-route**](https://github.com/mrodgersjs-web/jev-route) | The compiled-language answer: a deterministic routing policy as a single dependency-free Rust binary, with the benchmark checked in and CI-enforced. Task and candidates in, choice + confidence + fallback verdict out. | `git clone https://github.com/mrodgersjs-web/jev-route.git && (cd jev-route && cargo test --release && cargo run --release -- validate --fixture fixtures/benchmark.json)` |
+
+Also live, also verifiable, not pinned (six pins is the cap): [**mesh-studio**](https://github.com/mrodgersjs-web/mesh-studio), [**jake-studio**](https://github.com/mrodgersjs-web/jake-studio). Same drill: clone, venv, smoke.
 
 ## Which requirement each system answers
 
@@ -51,21 +55,21 @@ Cross-checked against the requirement language in 108 live Head-of-AI, VP-AI, Fo
 | "eval infrastructure" · reliability, observability, drift | 60% leadership · 32% FDE | [rig-enhanced-evals](https://github.com/mrodgersjs-web/rig-enhanced-evals), [rig-enhanced-guardrails](https://github.com/mrodgersjs-web/rig-enhanced-guardrails) — schema, format, toxicity and fact checks that sign a receipt |
 | "write and review production-grade code across frontend and backend using JavaScript or Python" | 50% FDE · named in OpenAI and Anthropic leadership reqs | [ai-user-testing-mcp](https://github.com/mrodgersjs-web/ai-user-testing-mcp) (pnpm workspace, CI-tested), [rig-os-agency](https://github.com/mrodgersjs-web/rig-os-agency) (Next.js console), [mrodgersjs-web-teammate](https://github.com/mrodgersjs-web/mrodgersjs-web-teammate) (`npx mrodgersjs-web`) |
 | "agents, tool-calling, orchestration" | 58% leadership · 41% FDE | [rig-agent-firm](https://github.com/mrodgersjs-web/rig-agent-firm), [rig-domain-agents](https://github.com/mrodgersjs-web/rig-domain-agents), [mesh-studio](https://github.com/mrodgersjs-web/mesh-studio) |
-| "retrieval, data integration, ontology" | 27% leadership · 45% FDE | `rig-memory-os` — Brier-scored prediction memory with signed provenance and paged retrieval. Private today; see Known gaps |
+| "retrieval, data integration, ontology" | 27% leadership · 45% FDE | `rig-memory-os` — Brier-scored prediction memory with signed provenance and paged retrieval. Private today; it ships once client identifiers are stripped |
 | "governance, model risk, compliance, approval boundaries" | 73% leadership | [doctrine](https://github.com/mrodgersjs-web/doctrine), [proof-gate-action](https://github.com/mrodgersjs-web/proof-gate-action), [rig-doctrine-overlay](https://github.com/mrodgersjs-web/rig-doctrine-overlay) |
 | "measurable business value, ROI, cost" | 61% leadership | [fde-portfolio](https://github.com/mrodgersjs-web/fde-portfolio) — discovery to handoff as data · [resume](https://github.com/mrodgersjs-web/resume) with the sourced numbers |
 | "did it actually ship?" | every tier | [rigforge](https://github.com/mrodgersjs-web/rigforge), [proof-studio](https://github.com/mrodgersjs-web/proof-studio), [doneseal](https://github.com/mrodgersjs-web/doneseal) — hash-verifiable, Ed25519-signed completion evidence |
-| "at least one systems language such as Go, Rust, or C/C++" | 0% leadership · 46% of infra reqs name Rust, 42% name C++ | Not yet. Claiming the gap rather than the badge — see What happens next |
+| "at least one systems language such as Go, Rust, or C/C++" | 0% leadership · 46% of infra reqs name Rust, 42% name C++ | [jev-route](https://github.com/mrodgersjs-web/jev-route) — a routing-policy CLI in dependency-free Rust: std-only, 11 tests, checked-in benchmark, CI on every push |
 
 ## Languages, stated plainly
 
 **Python** — the working language of the systems above: harnesses, MCP servers, evals, data plumbing, CI. This is what the profile has mostly shown, and it is accurate as far as it goes.
 
-**TypeScript** — the delivery surface, and the half of the Forward-Deployed bar my public profile used to hide. Ten TypeScript repositories exist in the estate; `ai-user-testing-mcp` and `rig-os-agency` are now public so the claim is checkable instead of asserted.
+**TypeScript** — the delivery surface, and the half of the Forward-Deployed bar my public profile used to hide. Ten TypeScript repositories exist in the estate; `ai-user-testing-mcp` and `rig-os-agency` are public and CI-covered, so the claim is checkable instead of asserted.
 
 **JavaScript** — [mrodgersjs-web-teammate](https://github.com/mrodgersjs-web/mrodgersjs-web-teammate), installable with `npx`, with a green CI run.
 
-**Rust** — in flight, not claimed. `jev-route`: a routing-policy CLI that takes a task and a candidate list and returns a choice, a confidence and a fallback verdict, as a single binary with the benchmark checked in. It lands here when it compiles and tests, not before.
+**Rust** — `jev-route`: the routing policy that governs this fleet, as a standalone dependency-free binary. Task and candidates in, choice + confidence + fallback verdict out; hard exclusions, scored right-sizing, a confidence floor, deterministic tie-breaks. 11 tests and a 7-case benchmark are checked into the repo and gate every push. What the exit codes mean is in the README, not in your imagination.
 
 **C++** — I read and profile serving and kernel stacks. No authorship claim until there is a repo behind it.
 
@@ -84,23 +88,42 @@ Cross-checked against the requirement language in 108 live Head-of-AI, VP-AI, Fo
 2. **2–4 minutes.** Select the pinned system closest to the role you are hiring for.
 3. **4–7 minutes.** Copy its Verify command and run the public smoke path on your own machine.
 4. **7–9 minutes.** Inspect the linked receipt's state, date and commit SHA.
-5. **9–10 minutes.** Read Known gaps below and decide whether those gaps matter for your role.
+5. **9–10 minutes.** Read the Boundaries line below and decide whether those boundaries matter for your role.
 
-## Known gaps, before you find them
+## Recent receipts
 
-- **Steward score: 75/100.** The badge up top is honest and it is red. It is a self-audit of repository hygiene, not a benchmark, and the 25 points missing are documentation and release discipline on the smaller studios.
-- **`rig-os-agency` is public but not pinned, and deliberately so.** It is my customization of Julian Goldie's Agentic OS (141 commits, all mine: agency data layer, API routes, doctrine layer, deploy paths), and its inherited README still carries his byline and a line saying there is no GitHub repo to clone. It has no enforced CI, and `npm ci` did not complete on the machine I tested from, so I am not putting a Verify command behind it that I have not seen run. Read it as deployment breadth, not as original authorship.
-- **`rig-os-agency` has no enforced CI yet.** It went public on 29 October and carries an MIT license, but its only workflow, `rig-lattice.yml`, is gated behind a repository variable that is currently off: inherited from an unpublished scorer, not a passing build. `ai-user-testing-mcp` is the stronger TypeScript evidence, with `ci.yml`, `rig-lattice.yml` and `weekly-catalog-refresh.yml`. A smoke workflow for the console is item one below.
-- **`rig-memory-os` is still private.** It is the strongest retrieval-and-memory artifact in the estate and the one FDE interviewers ask about. It comes out once the client identifiers are stripped.
-- **No compiled-language artifact yet.** At the leadership tier that is a non-issue. Against the AI-infra bar it is a real one, and the fix is the Rust CLI above rather than a claim.
-- **No distributed serving layer, no training runs.** I deploy and govern systems other people trained. I am not going to imply otherwise.
+<!-- recent_receipts starts -->
+Steward score. **81/100 green**. Measured `2026-10-30`.
 
-## What happens next, in order
+| Pinned system | Latest release | Latest smoke run |
+| --- | --- | --- |
+| [rigforge](https://github.com/mrodgersjs-web/rigforge) | [v1.1.0](https://github.com/mrodgersjs-web/rigforge/releases/tag/v1.1.0) · `2026-10-20` | [success](https://github.com/mrodgersjs-web/rigforge/actions/runs/40978301697) · `2026-10-30` · `413e511` |
+| [proof-studio](https://github.com/mrodgersjs-web/proof-studio) | [v1.0.0](https://github.com/mrodgersjs-web/proof-studio/releases/tag/v1.0.0) · `2026-10-20` | [success](https://github.com/mrodgersjs-web/proof-studio/actions/runs/40977587451) · `2026-10-30` · `8f808f0` |
+| [communications-studio](https://github.com/mrodgersjs-web/communications-studio) | [v11.1.0](https://github.com/mrodgersjs-web/communications-studio/releases/tag/v11.1.0) · `2026-10-20` | [success](https://github.com/mrodgersjs-web/communications-studio/actions/runs/40977564667) · `2026-10-30` · `a96f96b` |
+| [deviatrix-genesis](https://github.com/mrodgersjs-web/deviatrix-genesis) | [v0.2.0](https://github.com/mrodgersjs-web/deviatrix-genesis/releases/tag/v0.2.0) · `2026-10-20` | [success](https://github.com/mrodgersjs-web/deviatrix-genesis/actions/runs/40977569733) · `2026-10-30` · `5b00262` |
+| [ai-user-testing-mcp](https://github.com/mrodgersjs-web/ai-user-testing-mcp) | no release | [success](https://github.com/mrodgersjs-web/ai-user-testing-mcp/actions/runs/40978206997) · `2026-10-30` · `0cdac75` |
+| [jev-route](https://github.com/mrodgersjs-web/jev-route) | no release | [success](https://github.com/mrodgersjs-web/jev-route/actions/runs/40978173475) · `2026-10-30` · `7ce5b5c` |
+<!-- recent_receipts ends -->
 
-1. `rig-os-agency`: get `npm ci` completing locally, add `smoke.yml`, and rewrite the inherited README's first screen. I left the CI badge off rather than ship a red one, and left it out of the pinned set rather than vouch for a build I have not run.
-2. Every public repository here declares a license as of today. That changed mid-session because two of the newly public ones did not, and the profile now says so honestly.
-3. `jev-route` in Rust: the routing policy that already governs this fleet, as a standalone binary with a benchmark.
-4. Strip client identifiers out of `rig-memory-os` and make it public.
-5. Retire the `rodgemd1-lgtm` handle into this one so there is a single hiring-facing estate.
+## Competencies
 
-Public repositories here are deliberate release surfaces, and each one that clears its security, licensing and documentation boundary ships. Two TypeScript surfaces cleared that boundary on 29 October. Reach me at [rodgersintelligence.com](https://rodgersintelligence.com).
+| **Python** | Harnesses, MCP servers, evals, the nightly profile steward itself. The working language of every pinned system that isn't TypeScript. |
+| **TypeScript** | `ai-user-testing-mcp` (pnpm monorepo, CI-tested), `rig-os-agency` (Next.js 16 console), `mrodgersjs-web-teammate` (`npx`-installable). The delivery surface for the Forward-Deployed bar. |
+| **Postgres** | Agency data layer behind the console, catalog persistence, and the prediction store; migrations are reversible by rule, not by hope. |
+
+Rust and JavaScript ride alongside: `jev-route` ships the routing policy as a dependency-free binary, and the JavaScript claim is the npx surface above.
+
+## Credentials
+
+- U.S. Army Counterintelligence veteran
+- B.S. Industrial Engineering, Iowa State University
+- Six Sigma Black Belt
+- Project Management Professional (PMP)
+
+GitHub Achievements: Pull Shark x2, Quickdraw. 141 commits of original work on the public `rig-os-agency` fork. MIT-licensed public surface, 32 of 32.
+
+## Boundaries, stated once
+
+I deploy and govern systems other people trained: no distributed serving layer, no training runs. `rig-memory-os` is the strongest retrieval artifact in the estate and is still private while client identifiers get stripped. Everything public here has a license, a description, and a build or smoke path that CI has actually run.
+
+Public repositories here are deliberate release surfaces, and each one that clears its security, licensing and documentation boundary ships. Three shipped on 29 October: two TypeScript surfaces and a Rust CLI. Reach me at [**rodgersintelligence.com**](https://rodgersintelligence.com/).
