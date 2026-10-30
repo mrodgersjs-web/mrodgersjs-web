@@ -16,7 +16,7 @@
 [![public repositories](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Fusers%2Fmrodgersjs-web&query=%24.public_repos&label=public%20repositories&logo=github)](https://github.com/mrodgersjs-web?tab=repositories)
 [![CI covered](https://img.shields.io/badge/CI%20on%20public%20repos-31%20of%2032-brightgreen)](https://github.com/mrodgersjs-web?tab=repositories)
 [![steward score](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fmrodgersjs-web%2Fmrodgersjs-web%2Fmain%2Fsteward%2Fscoreboard%2Fbadge.json)](https://github.com/mrodgersjs-web/mrodgersjs-web/tree/main/steward/scoreboard)
-[![rigforge smoke](https://github.com/mrodgersjs-web/rigforge/actions/workflows/smoke.yml/badge.svg?branch=main)](https://github.com/mrodgersjs-web/rigforge/actions/workflows/smoke.yml)
+[![rigforge smoke](https://img.shields.io/github/actions/workflow/status/mrodgersjs-web/rigforge/smoke.yml?label=rigforge%20smoke&logo=github-actions&branch=main)](https://github.com/mrodgersjs-web/rigforge/actions/workflows/smoke.yml)
 
 </div>
 
