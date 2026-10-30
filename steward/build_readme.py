@@ -335,7 +335,7 @@ def _escape_markdown_text(value: str) -> str:
 
 def _normalized_scoreboard(
     scoreboard: Mapping[str, object],
-) -> tuple[str, int, int]:
+) -> tuple[str, int, int, int, int]:
     measured = _calendar_date(scoreboard.get("date"), "scoreboard date")
     counts: dict[str, int] = {}
     for name in ("total", "green", "red", "null"):
@@ -349,7 +349,7 @@ def _normalized_scoreboard(
         or counts["green"] + counts["red"] + counts["null"] != counts["total"]
     ):
         raise BuildError("scoreboard counts are inconsistent")
-    return measured, counts["green"], counts["total"]
+    return measured, counts["green"], counts["total"], counts["red"], counts["null"]
 
 
 def _release_cell(repo: str, release: object) -> str:
@@ -395,8 +395,11 @@ def render_recent_receipts(
     if scoreboard is None:
         score_line = "Steward score. **not measured**"
     elif isinstance(scoreboard, Mapping):
-        measured, green, total = _normalized_scoreboard(scoreboard)
-        score_line = f"Steward score. **{green}/{total} green**. Measured `{measured}`."
+        measured, green, total, red, null = _normalized_scoreboard(scoreboard)
+        score_line = (
+            f"Steward score. **{green} of {total} checks green**, "
+            f"{red} red, {null} not measured. Measured `{measured}`."
+        )
     else:
         raise BuildError("scoreboard must be an object or null")
 

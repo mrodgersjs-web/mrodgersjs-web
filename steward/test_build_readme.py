@@ -253,7 +253,7 @@ class ScoreboardAndRenderingTests(unittest.TestCase):
             )
             self.assertTrue(
                 rendered.startswith(
-                    "Steward score. **84/100 green**. Measured `2026-09-08`."
+                    "Steward score. **84 of 100 checks green**, 11 red, 5 not measured. Measured `2026-09-08`."
                 )
             )
 
@@ -348,7 +348,7 @@ class ScoreboardAndRenderingTests(unittest.TestCase):
         )
         self.assertTrue(
             measured.startswith(
-                "Steward score. **83/100 green**. Measured `2026-09-07`.\n\n"
+                "Steward score. **83 of 100 checks green**, 17 red, 0 not measured. Measured `2026-09-07`.\n\n"
             )
         )
         with self.assertRaises(subject.BuildError):
