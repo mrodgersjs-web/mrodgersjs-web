@@ -4,7 +4,7 @@
 
 This map connects employer needs to Mike Rodgers' public projects and internal RIG operating history. It describes demonstrated work and its limits, not a proficiency score or a claim that every listed technology is in customer production.
 
-Mike directs architecture, priorities, operating decisions, and acceptance criteria. AI agents assist code implementation, diagnostics, and verification. Repository contribution history and individual receipts are the appropriate sources for authorship of a particular change.
+Mike directs architecture, priorities, operating decisions, and acceptance criteria. AI agents assist code implementation, diagnostics, and verification. Repository contribution history and individual receipts are the appropriate sources for authorship of a particular change. The condensed public form of this map, one row per capability area, is the [skills-to-project matrix](https://github.com/mrodgersjs-web/fde-portfolio/blob/main/SKILLS-MATRIX.md); the workflow doctrine behind the evidence tiers is [here](https://github.com/mrodgersjs-web/fde-portfolio/blob/main/AI-ENGINEERING-WORKFLOW.md).
 
 ## Role fit
 

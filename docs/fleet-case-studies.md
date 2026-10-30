@@ -4,6 +4,8 @@
 
 These case studies summarize a historical technical audit completed on October 30, 2026. RIG is Mike Rodgers' internal engineering environment. Mike directs its architecture, priorities, operating decisions, and acceptance criteria, with AI agents assisting implementation and verification. The audit does not assign every command or code change to Mike personally.
 
+This record is summarized for external readers, in runnable form, as the public [case-study set in fde-portfolio](https://github.com/mrodgersjs-web/fde-portfolio/blob/main/CASE-STUDIES.md); that file states evidence tiers per case and is sanitized of internal paths and ports.
+
 The work spans Apple Silicon hosts, a Linux GPU server, NAS storage, desktop applications, and hosted providers. It is evidence of internal engineering and operations, not customer production deployment or a current availability report.
 
 ## Evidence and scope

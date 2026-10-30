@@ -48,7 +48,7 @@ git clone https://github.com/mrodgersjs-web/mrodgersjs-web.git && (cd mrodgersjs
 | Systems you can clone and run today | **34 public repos** | **33 of 34** | **34 of 34** |
 | The private fleet behind them | **366 repos owned** | Actions on every release surface | licensed at ship |
 
-Languages on this profile: Python, TypeScript, JavaScript, Rust, and C++. The fleet that runs my company counts 366 repositories I wrote or own (118 on GitHub under two handles, 34 of them public on this handle, 248 local and in-flight; the census script and method ship at [`steward/fleet.json`](steward/fleet.json)), plus 441 vendored research clones I run against but did not write. 3 public MCP servers ship inside these repositories. Nothing here is a demo directory.
+Languages on this profile: Python, TypeScript, JavaScript, Rust, and C++. The fleet that runs my company counts 366 repositories I wrote or own (118 on GitHub under two handles, 34 of them public on this handle, 248 local and in-flight; the census script and method ship at [`steward/fleet.json`](steward/fleet.json)), plus 441 vendored research clones I run against but did not write. Where each capability lives in the estate: [skills-to-project matrix](https://github.com/mrodgersjs-web/fde-portfolio/blob/main/SKILLS-MATRIX.md). 3 public MCP servers ship inside these repositories. Nothing here is a demo directory.
 
 ## The fleet behind the profile
 
@@ -75,7 +75,7 @@ Dated results from the October 30 audit, each with what it did not prove:
 - Qualified inference routes **test by test**: chat, streaming, tools, continuation, embeddings, vision, context limits. A route that chats but fails tools does not get used for tools.
 - Verified **47 application archives** on QNAP storage with SHA-256 checks before anything was removed; bounded extraction, so full restoration stayed open.
 
-I set architecture, priorities, and acceptance criteria; AI coding agents help implement and verify. This is internal RIG work, not customer production. [Technical case studies and their evidence limits →](docs/fleet-case-studies.md) · [Capabilities by role →](docs/career-capabilities.md)
+I set architecture, priorities, and acceptance criteria; AI coding agents help implement and verify. This is internal RIG work, not customer production. [Technical case studies and their evidence limits →](docs/fleet-case-studies.md) · [Capabilities by role →](docs/career-capabilities.md) · [The public field record, with per-case not-proven lines →](https://github.com/mrodgersjs-web/fde-portfolio/blob/main/CASE-STUDIES.md)
 
 ## Pinned systems
 
