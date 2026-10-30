@@ -2,15 +2,15 @@
 
 [Profile](../README.md) · [Fleet case studies](fleet-case-studies.md)
 
-This map connects employer needs to Mike Rodgers' public projects and internal RIG operating history. It describes demonstrated work and its limits, not a proficiency score or a claim that every listed technology is in customer production.
+This map connects employer needs to my public projects and my internal RIG operating history. It describes demonstrated work and its limits, not a proficiency score or a claim that every listed technology is in customer production.
 
-Mike directs architecture, priorities, operating decisions, and acceptance criteria. AI agents assist code implementation, diagnostics, and verification. Repository contribution history and individual receipts are the appropriate sources for authorship of a particular change. The condensed public form of this map, one row per capability area, is the [skills-to-project matrix](https://github.com/mrodgersjs-web/fde-portfolio/blob/main/SKILLS-MATRIX.md); the workflow doctrine behind the evidence tiers is [here](https://github.com/mrodgersjs-web/fde-portfolio/blob/main/AI-ENGINEERING-WORKFLOW.md).
+I direct architecture, priorities, operating decisions, and acceptance criteria. AI agents assist code implementation, diagnostics, and verification. Repository contribution history and individual receipts are the right sources for who authored a particular change. The condensed public form of this map, one row per capability area, is the [skills-to-project matrix](https://github.com/mrodgersjs-web/fde-portfolio/blob/main/SKILLS-MATRIX.md); the workflow doctrine behind the evidence tiers is [here](https://github.com/mrodgersjs-web/fde-portfolio/blob/main/AI-ENGINEERING-WORKFLOW.md).
 
 ## Role fit
 
 | Role | Relevant work | Evidence to review |
 | --- | --- | --- |
-| AI engineering leadership | Define acceptance criteria, choose model and tool boundaries, prioritize reliability work, and make release decisions from evidence. | [Verification projects](../README.md#selected-work) and [operating decisions](fleet-case-studies.md#service-recovery-that-respects-active-workloads). |
+| AI engineering leadership | Define acceptance criteria, choose model and tool boundaries, prioritize reliability work, and make release decisions from evidence. | [Verification projects](../README.md#pinned-systems) and [operating decisions](fleet-case-studies.md#service-recovery-that-respects-active-workloads). |
 | Forward-deployed AI engineering | Diagnose tool and client incompatibilities, integrate applications and data, preserve existing workflows, and test the user's actual path. | [MCP repair](fleet-case-studies.md#mcp-process-lifecycle-and-schema-repair), [desktop persistence](fleet-case-studies.md#database-recovery-and-desktop-persistence), and [ai-user-testing-mcp](https://github.com/mrodgersjs-web/ai-user-testing-mcp). |
 | AI platform and inference engineering | Operate pretrained models, reconcile routing and contexts, test tools and streaming, and manage GPU and host constraints. | [Inference case studies](fleet-case-studies.md#model-serving-and-client-compatibility) and [jev-route](https://github.com/mrodgersjs-web/jev-route). |
 | Infrastructure and reliability engineering | Diagnose service startup, migrate containers and data, protect archives, trace process leaks, and retain rollback evidence. | [Infrastructure case studies](fleet-case-studies.md#fleet-infrastructure-and-recovery). |
@@ -48,7 +48,7 @@ A technology can appear in both operational and research records. The case study
 
 ## How to assess the work
 
-1. Pick a [public repository](../README.md#selected-work) that matches your role's technical problem.
+1. Pick a [public repository](../README.md#pinned-systems) that matches your role's technical problem.
 2. Review its source, tests, verification instructions, and dated [workflow receipt](../README.md#recent-receipts).
 3. Use a [fleet case study](fleet-case-studies.md) to discuss the operating constraint, decision, observed result, and remaining acceptance work.
 4. Separate Mike's architecture and operating ownership from AI-assisted implementation and from third-party software used in the solution.
