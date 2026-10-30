@@ -1,12 +1,12 @@
 {
   "schema": 1,
   "date": "2026-10-30",
-  "generated_at": "2026-10-30T00:17:13Z",
+  "generated_at": "2026-10-30T00:23:29Z",
   "criteria_sha256": "7a55570a78754c52119f10678e41d6203051a49d9cdf6fdf8b6c0a46b2a927cc",
   "summary": {
     "total": 100,
-    "green": 81,
-    "red": 14,
+    "green": 86,
+    "red": 9,
     "null": 5
   },
   "criteria": [
@@ -77,8 +77,8 @@
       "id": "pins-six",
       "check": "gh",
       "description": "GraphQL pinnedItems names == the six in `steward/PINNED.txt` (one name per line)",
-      "status": "red",
-      "evidence": "pinned=['rigforge', 'proof-studio', 'mesh-studio', 'communications-studio', 'deviatrix-genesis', 'ai-user-testing-mcp'] expected=['rigforge', 'proof-studio', 'communications-studio', 'deviatrix-genesis', 'ai-user-testing-mcp', 'jev-route']"
+      "status": "green",
+      "evidence": "pinned=['rigforge', 'proof-studio', 'communications-studio', 'deviatrix-genesis', 'ai-user-testing-mcp', 'jev-route'] expected=['rigforge', 'proof-studio', 'communications-studio', 'deviatrix-genesis', 'ai-user-testing-mcp', 'jev-route']"
     },
     {
       "id": "following-20",
@@ -92,7 +92,7 @@
       "check": "gh",
       "description": "README does not contain a repo count that differs from `gh repo list --json isPrivate` public length",
       "status": "red",
-      "evidence": "live public count=32; static claims=[32, 64]"
+      "evidence": "live public count=32; static claims=[32, 65]"
     },
     {
       "id": "public-cap",
@@ -105,8 +105,8 @@
       "id": "every-desc",
       "check": "gh",
       "description": "no public repo with empty description",
-      "status": "red",
-      "evidence": "repositories without descriptions=['ai-user-testing-mcp']"
+      "status": "green",
+      "evidence": "repositories without descriptions=[]"
     },
     {
       "id": "every-license",
@@ -155,7 +155,7 @@
       "check": "gh",
       "description": "grep public default-branch trees for `/Users/rig128gb` and `/home/operator` returns empty (skip LICENSE/docs quoting the steward itself)",
       "status": "red",
-      "evidence": "forbidden home path matches=['NeoMatrix:RIG_v100/COORDINATION.md', 'NeoMatrix:rig_orca/adapters/ORCA_INSTALL.md', 'NeoMatrix:rig_orca/scripts/orca-workspace-session', 'Startup-Intelligence-OS:jake-capabilities/khoj/docker-compose.yml', 'behavioral-science-studio:README.md', 'fde-portfolio:examples/playbook_demo/README.md', 'goals-variant-b-console:KICKOFF.md', 'goals-variant-b-console:proof/gate-G3-red-path.md', 'home-assistant-big-birch:.codex/AGENTS.openspec-bdd.md', 'human-agency-goals:docs/plans/KERNEL-FREEZE.md', 'human-agency-goals:docs/plans/ORCA-LIVE.md', 'human-agency-goals:omp-kickoffs/LANE3-strategy.md', 'human-agency-goals:omp-kickoffs/LANE4-personas.md', 'human-agency-goals:omp-kickoffs/LANE5-vc-pack.md', 'human-agency-goals:omp-kickoffs/LANE6-deck.md', 'human-agency-goals:omp-kickoffs/LANE7-design-qa.md', 'human-agency-goals:omp-kickoffs/SHARED-INTEL.md', 'human-agency-goals:omp-kickoffs/watchdog.sh', 'human-agency-goals:omp-lanes/watchdog.sh', 'jacob-x-studio:GATES.md', 'jacob-x-studio:HANDOFF-RUN-7BB75B.md', 'jacob-x-studio:automation/agents/film-editor.md', 'jacob-x-studio:automation/agents/identity-panel.md', 'jacob-x-studio:automation/agents/qc-verifier.md', 'jacob-x-studio:automation/durable/JACOB-BOT.md', 'jacob-x-studio:automation/durable/README.md', 'mrodgersjs-web:steward/criteria.yaml', 'mrodgersjs-web:steward/score_github.py', 'mrodgersjs-web:steward/test_score_github.py', 'operation-get-a-job:GATES.md', 'operation-get-a-job:README.md', 'operation-get-a-job:START_OMP_PROMPT.md', 'operation-get-a-job:julie-recruiting/ORCA-OMP-START.md', 'operation-get-a-job:revenue-operation/CURRENT-STATE-V0.md', 'rig-agent-directory:examples/catalog_drift_demo/README.md', 'rig-capabilities:capabilities/loops/doer-checker-validator.md', 'rig-capabilities:capabilities/skills/rig-agent-team/SKILL.md', 'rig-gtm-studio-v2:bin/deploy_all_teasers.sh', 'rig-gtm-studio-v2:bin/deploy_teaser_v2.sh', 'rig-gtm-studio-v2:bin/extract_lane1_firms.py', 'rig-gtm-studio-v2:bin/fix_vercel_next.sh', 'rig-gtm-studio-v2:bin/rig_gtm_daily_loop.sh', 'rig-gtm-studio-v2:docs/crm/gtm-crm-bridge.md', 'rig-gtm-studio-v2:studio/reference-harness/C/context.md', 'rig-jobsearch-strategy:SHARED-CONTEXT.md', 'rig-jobsearch-strategy:implementation/LEAK-FIX-RUNBOOK.md', 'rig-jobsearch-strategy:jen/SHARED-CONTEXT-JEN.md', 'rig-linkedin-studio-luca:_check_db.py', 'rig-linkedin-studio-luca:_check_today.py', 'rig-linkedin-studio-luca:campaign_engine/README.md', 'rig-linkedin-studio-luca:check_connected.py', 'rig-linkedin-studio-luca:check_connected2.py', 'rig-linkedin-studio-luca:check_data.py', 'rig-linkedin-studio-luca:check_db.py', 'rig-linkedin-studio-luca:check_dm_status.py', 'rig-linkedin-studio-luca:check_sources.py', 'rig-linkedin-studio-luca:cockpit-v2/README.md', 'rig-linkedin-studio-luca:config/apply_ops.crontab', 'rig-linkedin-studio-luca:config/cockpit_v5.crontab', 'rig-linkedin-studio-luca:deploy/campaign_daily.sh', 'rig-linkedin-studio-luca:deploy/campaign_weekly.sh', 'rig-linkedin-studio-luca:deploy/fleet_health.sh', 'rig-linkedin-studio-luca:docs/DAILY_WORKFLOW.md', 'rig-linkedin-studio-luca:goal-engine/DEPLOY-v2.md', 'rig-linkedin-studio-luca:inspect_pipeline.py', 'rig-linkedin-studio-luca:luca/julie/bin/scrape_jobs.py', 'rig-linkedin-studio-luca:riglinkedin/engine/models.py', 'rig-linkedin-studio-luca:run_dm_pipeline.py', 'rig-linkedin-studio-luca:scripts/apply_ops_schedule.sh', 'rig-linkedin-studio-luca:scripts/find_feed_posts.py', 'rig-linkedin-studio-luca:scripts/regen_post_images.py', 'rig-linkedin-studio-luca:scripts/regen_posts_dws.py', 'rig-linkedin-studio-luca:scripts/regen_rest.py', 'rig-linkedin-studio-luca:scripts/verify_comment.py', 'rig-linkedin-studio-luca:scripts/verify_engine.py', 'rig-linkedin-studio-luca:select_target.py', 'rig-linkedin-studio-luca:studio/spec/spec_generator.py', 'rig-linkedin-studio-luca:system_audit.py', 'rig-linkedin-studio-luca:workflows/cockpit-v5/COMMAND_CARD.md', 'rig-memory-os:RECONCILE-DRIFT.txt', 'rig-memory-os:facade/tools_style.py', 'rig-memory-os:platform/founder-runtime/README.md', 'rig-memory-os:products/rig-memory-os/README.md', 'rig-memory-os:scripts/deploy.sh', 'rig-omniscout-l2:rig_omniscout/consensus_mcp.py', 'rig-omniscout-l2:rig_omniscout/omniscout_l2_factory.py', 'rig-omniscout-l2:rig_omniscout/omniscout_l2_produce100.py', 'rig-omniscout-l2:rig_omniscout/prefect_flows.py', 'rig-os-agency:BUILD-YOUR-OWN.md', 'rig-os-agency:HANDOFF_SLICE2.md', 'rig-os-agency:ecosystem.config.cjs', 'rig-os-agency:ops/redeploy.sh', 'rig-os-agency:src/lib/agency-feeds.ts', 'rig-os-agency:src/lib/dept-calibration.ts', 'rig-os-agency:src/lib/dept-head-wiring.ts', 'rig-pattern-engines:tests/fixtures/l2-0437f3e9a18b3f67.json', 'rig-pattern-engines:tests/fixtures/l2-40510b211793548d.json', 'rig-pattern-engines:tests/fixtures/l2-43a48363baea9d97.json', 'rig-pattern-engines:tests/fixtures/l2-9f8bfd145bf3e378.json', 'rig-pattern-engines:tests/fixtures/l2-dde2b6a213404bb9.json', 'rig-skills:doctrine/acs-commands/INDEX.md', 'rig-skills:knowledge/last30days-research/SKILL.md', 'rig-skills:platform/first-mate-handoff/SKILL.md', 'rig-website:content/v2-productionization-notes.md', 'transformfit-flutter:.codex/AGENTS.openspec-bdd.md', 'transformfit-flutter:MISSION_STATUS.md', 'transformfit-flutter:README.md', 'transformfit-flutter:design/README.md', 'transformfit-flutter:docs/STATUS-REMAINING-COMPLETE.md', 'transformfit-flutter:docs/handoff/CODEX-KICKOFF.md', 'transformfit-flutter:store/PROOF_PACKET.md', 'transformfit-flutter:store/google/OAUTH_SHA1_VALUES.md', 'vibe-production-gauntlet:GATES.md']"
+      "evidence": "forbidden home path matches=['NeoMatrix:RIG_v100/COORDINATION.md', 'NeoMatrix:rig_orca/adapters/ORCA_INSTALL.md', 'Startup-Intelligence-OS:jake-capabilities/khoj/docker-compose.yml', 'fde-portfolio:examples/playbook_demo/README.md', 'goals-variant-b-console:KICKOFF.md', 'home-assistant-big-birch:.codex/AGENTS.openspec-bdd.md', 'human-agency-goals:docs/plans/KERNEL-FREEZE.md', 'human-agency-goals:docs/plans/ORCA-LIVE.md', 'human-agency-goals:omp-kickoffs/LANE3-strategy.md', 'human-agency-goals:omp-kickoffs/LANE4-personas.md', 'human-agency-goals:omp-kickoffs/LANE5-vc-pack.md', 'human-agency-goals:omp-kickoffs/LANE6-deck.md', 'human-agency-goals:omp-kickoffs/LANE7-design-qa.md', 'human-agency-goals:omp-kickoffs/SHARED-INTEL.md', 'human-agency-goals:omp-kickoffs/watchdog.sh', 'human-agency-goals:omp-lanes/watchdog.sh', 'jacob-x-studio:GATES.md', 'jacob-x-studio:HANDOFF-RUN-7BB75B.md', 'jacob-x-studio:automation/agents/film-editor.md', 'jacob-x-studio:automation/agents/identity-panel.md', 'jacob-x-studio:automation/agents/qc-verifier.md', 'jacob-x-studio:automation/durable/JACOB-BOT.md', 'jacob-x-studio:automation/durable/README.md', 'mrodgersjs-web:steward/criteria.yaml', 'mrodgersjs-web:steward/score_github.py', 'mrodgersjs-web:steward/test_score_github.py', 'operation-get-a-job:GATES.md', 'operation-get-a-job:README.md', 'operation-get-a-job:START_OMP_PROMPT.md', 'operation-get-a-job:julie-recruiting/ORCA-OMP-START.md', 'operation-get-a-job:revenue-operation/CURRENT-STATE-V0.md', 'rig-agent-directory:examples/catalog_drift_demo/README.md', 'rig-capabilities:capabilities/loops/doer-checker-validator.md', 'rig-capabilities:capabilities/skills/rig-agent-team/SKILL.md', 'rig-gtm-studio-v2:bin/deploy_all_teasers.sh', 'rig-gtm-studio-v2:bin/deploy_teaser_v2.sh', 'rig-gtm-studio-v2:bin/extract_lane1_firms.py', 'rig-gtm-studio-v2:bin/fix_vercel_next.sh', 'rig-gtm-studio-v2:bin/rig_gtm_daily_loop.sh', 'rig-gtm-studio-v2:docs/crm/gtm-crm-bridge.md', 'rig-jobsearch-strategy:SHARED-CONTEXT.md', 'rig-jobsearch-strategy:implementation/LEAK-FIX-RUNBOOK.md', 'rig-jobsearch-strategy:jen/SHARED-CONTEXT-JEN.md', 'rig-linkedin-studio-luca:_check_db.py', 'rig-linkedin-studio-luca:_check_today.py', 'rig-linkedin-studio-luca:campaign_engine/README.md', 'rig-linkedin-studio-luca:check_connected.py', 'rig-linkedin-studio-luca:check_connected2.py', 'rig-linkedin-studio-luca:check_data.py', 'rig-linkedin-studio-luca:check_db.py', 'rig-linkedin-studio-luca:check_dm_status.py', 'rig-linkedin-studio-luca:check_sources.py', 'rig-linkedin-studio-luca:cockpit-v2/README.md', 'rig-linkedin-studio-luca:config/apply_ops.crontab', 'rig-linkedin-studio-luca:config/cockpit_v5.crontab', 'rig-linkedin-studio-luca:deploy/campaign_daily.sh', 'rig-linkedin-studio-luca:deploy/campaign_weekly.sh', 'rig-linkedin-studio-luca:deploy/fleet_health.sh', 'rig-linkedin-studio-luca:docs/DAILY_WORKFLOW.md', 'rig-linkedin-studio-luca:goal-engine/DEPLOY-v2.md', 'rig-linkedin-studio-luca:inspect_pipeline.py', 'rig-linkedin-studio-luca:run_dm_pipeline.py', 'rig-linkedin-studio-luca:scripts/find_feed_posts.py', 'rig-linkedin-studio-luca:scripts/regen_posts_dws.py', 'rig-linkedin-studio-luca:scripts/regen_rest.py', 'rig-linkedin-studio-luca:scripts/verify_comment.py', 'rig-linkedin-studio-luca:scripts/verify_engine.py', 'rig-linkedin-studio-luca:select_target.py', 'rig-linkedin-studio-luca:system_audit.py', 'rig-linkedin-studio-luca:workflows/cockpit-v5/COMMAND_CARD.md', 'rig-memory-os:RECONCILE-DRIFT.txt', 'rig-memory-os:facade/tools_style.py', 'rig-memory-os:platform/founder-runtime/README.md', 'rig-memory-os:products/rig-memory-os/README.md', 'rig-memory-os:scripts/deploy.sh', 'rig-omniscout-l2:rig_omniscout/consensus_mcp.py', 'rig-omniscout-l2:rig_omniscout/omniscout_l2_factory.py', 'rig-omniscout-l2:rig_omniscout/omniscout_l2_produce100.py', 'rig-omniscout-l2:rig_omniscout/prefect_flows.py', 'rig-os-agency:BUILD-YOUR-OWN.md', 'rig-os-agency:HANDOFF_SLICE2.md', 'rig-os-agency:ecosystem.config.cjs', 'rig-os-agency:ops/redeploy.sh', 'rig-os-agency:scripts/google_oauth_reauth.py', 'rig-os-agency:src/app/api/agency-agents/route.ts', 'rig-os-agency:src/app/api/agency/deals/route.ts', 'rig-os-agency:src/app/api/agency/fleet/route.ts', 'rig-os-agency:src/app/api/agency/goals/route.ts', 'rig-os-agency:src/app/api/agency/social/route.ts', 'rig-os-agency:src/app/api/agency/stripe/route.ts', 'rig-os-agency:src/app/api/agency/turn/route.ts', 'rig-os-agency:src/app/api/proof/packets/route.ts', 'rig-os-agency:src/app/api/voltagents/route.ts', 'rig-os-agency:src/lib/agency-feeds.ts', 'rig-os-agency:src/lib/dept-calibration.ts', 'rig-os-agency:src/lib/dept-head-wiring.ts', 'rig-os-agency:src/lib/deptBridge.ts', 'rig-pattern-engines:tests/fixtures/l2-0437f3e9a18b3f67.json', 'rig-pattern-engines:tests/fixtures/l2-40510b211793548d.json', 'rig-pattern-engines:tests/fixtures/l2-43a48363baea9d97.json', 'rig-pattern-engines:tests/fixtures/l2-9f8bfd145bf3e378.json', 'rig-pattern-engines:tests/fixtures/l2-dde2b6a213404bb9.json', 'rig-skills:doctrine/acs-commands/INDEX.md', 'rig-skills:knowledge/last30days-research/SKILL.md', 'rig-skills:platform/first-mate-handoff/SKILL.md', 'transformfit-flutter:.codex/AGENTS.openspec-bdd.md', 'transformfit-flutter:README.md', 'transformfit-flutter:design/README.md', 'transformfit-flutter:docs/STATUS-REMAINING-COMPLETE.md', 'transformfit-flutter:docs/handoff/CODEX-KICKOFF.md', 'transformfit-flutter:store/PROOF_PACKET.md', 'transformfit-flutter:store/google/OAUTH_SHA1_VALUES.md', 'vibe-production-gauntlet:GATES.md']"
     },
     {
       "id": "no-pycache",
@@ -231,8 +231,8 @@
       "id": "install-first",
       "check": "regex",
       "description": "README contains a fenced code block in the first 80 lines",
-      "status": "red",
-      "evidence": "repositories without early code fence=['mrodgersjs-web', 'rig-domain-agents']"
+      "status": "green",
+      "evidence": "repositories without early code fence=[]"
     },
     {
       "id": "how-it-works-visual",
@@ -246,7 +246,7 @@
       "check": "regex",
       "description": "if `.github/workflows` exists, README badge URL contains `github/actions/workflow/status`",
       "status": "red",
-      "evidence": "repositories without live CI badge=['ai-user-testing-mcp', 'jev-route', 'mrodgersjs-web', 'rig-capabilities', 'rig-doctrine-overlay', 'rig-os-agency']"
+      "evidence": "repositories without live CI badge=['ai-user-testing-mcp', 'jev-route', 'mrodgersjs-web', 'rig-capabilities', 'rig-doctrine-overlay', 'rig-domain-agents', 'rig-os-agency']"
     },
     {
       "id": "license-badge-match",
@@ -259,8 +259,8 @@
       "id": "install-registry",
       "check": "http",
       "description": "if README has `pip install <name>` without `git+`, pypi.org/pypi/<name>/json is 200; same for `npx <name>` vs registry.npmjs.org",
-      "status": "red",
-      "evidence": "unregistered install claims=['rig-marketplace:pypi:.:404']"
+      "status": "green",
+      "evidence": "unregistered install claims=[]"
     },
     {
       "id": "test-count-honest",
@@ -288,7 +288,7 @@
       "check": "regex",
       "description": "README contains `pytest` or `smoke` or `npm test` or `node --test` or `rigforge`",
       "status": "red",
-      "evidence": "READMEs without verify command=['jev-route']"
+      "evidence": "READMEs without verify command=['rig-domain-agents']"
     },
     {
       "id": "hero-ok",
@@ -308,15 +308,15 @@
       "id": "readme-size",
       "check": "gh",
       "description": "README.md ≤ 40000 bytes",
-      "status": "red",
-      "evidence": "READMEs over 40000 bytes=['rig-domain-agents']"
+      "status": "green",
+      "evidence": "READMEs over 40000 bytes=[]"
     },
     {
       "id": "clone-url-self",
       "check": "regex",
       "description": "clone examples use `mrodgersjs-web/<this-repo>`",
-      "status": "green",
-      "evidence": "cross-repository clone examples=[]"
+      "status": "red",
+      "evidence": "cross-repository clone examples=['mrodgersjs-web->mrodgersjs-web/rigforge']"
     },
     {
       "id": "languages-honest",
@@ -693,8 +693,8 @@
       "id": "readme-receipts-fresh",
       "check": "regex",
       "description": "profile README `recent_receipts` block date ≥ yesterday UTC",
-      "status": "red",
-      "evidence": "latest receipt date=missing; threshold=2026-10-29"
+      "status": "green",
+      "evidence": "latest receipt date=2026-10-30; threshold=2026-10-29"
     },
     {
       "id": "no-direct-main-from-orca",

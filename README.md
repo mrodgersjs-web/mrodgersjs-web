@@ -24,7 +24,7 @@
 
 ```bash
 # Run the front of the estate in one line (READMEs of every pinned system carry the same path):
-git clone https://github.com/mrodgersjs-web/rigforge.git && (cd rigforge && python3 -m venv .venv && . .venv/bin/activate && bash scripts/smoke.sh)
+git clone https://github.com/mrodgersjs-web/mrodgersjs-web.git && (cd mrodgersjs-web && python3 -m unittest discover -s steward -t . -v)
 ```
 
 ## What this estate measures
@@ -33,7 +33,7 @@ git clone https://github.com/mrodgersjs-web/rigforge.git && (cd rigforge && pyth
 |---|---|---|---|
 | Systems you can clone and run today | **32 repositories** | **31 of 32** | **32 of 32** |
 
-Languages on this profile: Python, TypeScript, JavaScript, and Rust. The fleet that runs my company is 65 repositories; 33 stay private because they carry client data, and that split has been deliberate rather than tidy. Three public MCP servers ship inside these repositories. Nothing here is a demo directory.
+Languages on this profile: Python, TypeScript, JavaScript, and Rust. The fleet that runs my company is 65 repos in total; 33 stay private because they carry client data, and that split has been deliberate rather than tidy. 3 public MCP servers ship inside these repositories. Nothing here is a demo directory.
 
 ## Pinned systems
 | System | What it demonstrates | Verify |
@@ -93,7 +93,7 @@ Cross-checked against the requirement language in 108 live Head-of-AI, VP-AI, Fo
 ## Recent receipts
 
 <!-- recent_receipts starts -->
-Steward score. **81/100 green**. Measured `2026-10-30`.
+Steward score. **83/100 green**. Measured `2026-10-30`.
 
 | Pinned system | Latest release | Latest smoke run |
 | --- | --- | --- |
@@ -102,7 +102,7 @@ Steward score. **81/100 green**. Measured `2026-10-30`.
 | [communications-studio](https://github.com/mrodgersjs-web/communications-studio) | [v11.1.0](https://github.com/mrodgersjs-web/communications-studio/releases/tag/v11.1.0) · `2026-10-20` | [success](https://github.com/mrodgersjs-web/communications-studio/actions/runs/40977564667) · `2026-10-30` · `a96f96b` |
 | [deviatrix-genesis](https://github.com/mrodgersjs-web/deviatrix-genesis) | [v0.2.0](https://github.com/mrodgersjs-web/deviatrix-genesis/releases/tag/v0.2.0) · `2026-10-20` | [success](https://github.com/mrodgersjs-web/deviatrix-genesis/actions/runs/40977569733) · `2026-10-30` · `5b00262` |
 | [ai-user-testing-mcp](https://github.com/mrodgersjs-web/ai-user-testing-mcp) | no release | [success](https://github.com/mrodgersjs-web/ai-user-testing-mcp/actions/runs/40978206997) · `2026-10-30` · `0cdac75` |
-| [jev-route](https://github.com/mrodgersjs-web/jev-route) | no release | [success](https://github.com/mrodgersjs-web/jev-route/actions/runs/40978173475) · `2026-10-30` · `7ce5b5c` |
+| [jev-route](https://github.com/mrodgersjs-web/jev-route) | no release | [success](https://github.com/mrodgersjs-web/jev-route/actions/runs/40979311204) · `2026-10-30` · `3a8951c` |
 <!-- recent_receipts ends -->
 
 ## Competencies
