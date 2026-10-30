@@ -29,18 +29,94 @@ def receipt(
 
 
 class StaticReadmeContractTests(unittest.TestCase):
-    def test_profile_links_resolve_and_selected_projects_match_pins(self) -> None:
+    def test_readme_locks_the_merged_profile_contract(self) -> None:
         root = Path(__file__).resolve().parents[1]
         readme = (root / "README.md").read_text(encoding="utf-8")
         static = readme.split(subject.START, 1)[0]
-        selected = re.findall(r"\[\*\*[^]]+\*\*\]\(https://github.com/([^)/]+/[^)/]+)\)", static)
-        self.assertEqual(tuple(selected), subject.load_pins(root / "steward/PINNED.txt"))
+
+        # Block order is the contract: identity, career receipts, estate scale,
+        # fleet, pins, requirement map, languages, method, recruiter walk, receipts.
+        headings = [line for line in readme.splitlines() if line.startswith("## ")]
+        self.assertEqual(
+            headings,
+            [
+                "## Track record",
+                "## What this estate measures",
+                "## The fleet behind the profile",
+                "## Pinned systems",
+                "## Which requirement each system answers",
+                "## Languages, stated plainly",
+                "## How I work",
+                "## How a recruiter should spend 10 minutes",
+                "## Recent receipts",
+                "## Competencies",
+                "## Credentials",
+                "## Boundaries, stated once",
+                "## Let's talk",
+            ],
+        )
+
+        sentinels = (
+            "assets/profile-banner-v2.jpg",
+            "I turn AI pilots into production systems you can defend in a board meeting.",
+            "Head of AI · Forward-Deployed AI Engineering · Denver ·",
+            "[![public repositories]",
+            "[![CI covered]",
+            "[![steward score]",
+            "[![rigforge smoke]",
+            "130,000+ patients",
+            "$27M in operating budgets",
+            "150+ market signals a day",
+            "> **One operator. Four machines. Every receipt public.**",
+            "366 repos owned",
+            "## Pinned systems",
+            "docs/rigforge-demo.gif",
+            "## How a recruiter should spend 10 minutes",
+            "## Recent receipts",
+            "## Competencies",
+            "## Credentials",
+            "[**rodgersintelligence.com**](https://rodgersintelligence.com/)",
+        )
+        positions = [readme.index(sentinel) for sentinel in sentinels]
+        self.assertEqual(positions, sorted(positions), "profile blocks appeared out of contract order")
+        for sentinel in sentinels:
+            self.assertEqual(readme.count(sentinel), 1, f"{sentinel!r} must appear exactly once")
+        self.assertEqual(readme.count("[!["), 4)
+        self.assertEqual(readme.count(subject.START), 1)
+        self.assertEqual(readme.count(subject.END), 1)
+
+        # Six pins, in pin order, and no other bolded repository in the static body.
+        pinned = readme.split("## Pinned systems\n", 1)[1].split("## Which requirement each system answers\n", 1)[0]
+        pin_rows = [line for line in pinned.splitlines() if line.startswith("| [**")]
+        self.assertEqual(
+            [row.split("**", 2)[1] for row in pin_rows],
+            [slug.rsplit("/", 1)[1] for slug in subject.load_pins(root / "steward/PINNED.txt")],
+        )
+        bold_outside = [m for m in re.findall(r"\[\*\*[^]]+\*\*\]\(https://github\.com/[^)/]+/([^)/]+)\)", static) if m not in pin_rows[0].split("**")[1:]]
+        self.assertEqual(sorted(set(bold_outside) - {slug.rsplit("/", 1)[1] for slug in subject.load_pins(root / "steward/PINNED.txt")}), [])
+
+        competencies = readme.split("## Competencies\n", 1)[1].split("## Credentials\n", 1)[0]
+        self.assertEqual(
+            [line.split("**", 2)[1] for line in competencies.splitlines() if line.startswith("| **")],
+            ["Python", "TypeScript", "Postgres"],
+        )
+
+        credentials = readme.split("## Credentials\n", 1)[1].split("## Boundaries", 1)[0]
+        credential_lines = [line for line in credentials.splitlines() if line.startswith("- ")]
+        for required in (
+            "- U.S. Army Counterintelligence veteran",
+            "- B.S. Industrial Engineering, Iowa State University",
+            "- Six Sigma Black Belt",
+            "- Project Management Professional (PMP)",
+        ):
+            self.assertIn(required, credential_lines)
+        self.assertNotIn("clearance", readme.lower())
+
         self.assertIn("mailto:mrodgersjs@gmail.com", static)
         self.assertIn("https://www.linkedin.com/in/mike-rodgers-ai/", static)
 
-        documents = [root / "README.md", *sorted((root / "docs").glob("*.md"))]
-        self.assertGreaterEqual(len(documents), 3)
-        for path in documents:
+        # Every relative link resolves, and every table has a delimiter row.
+        for path in [root / "README.md", *sorted((root / "docs").glob("*.md"))]:
             content = path.read_text(encoding="utf-8")
             for target in re.findall(r"\]\(([^)]+)\)", content):
                 if ":" in target or target.startswith("#"):
@@ -49,7 +125,7 @@ class StaticReadmeContractTests(unittest.TestCase):
                     self.assertTrue((path.parent / target.split("#", 1)[0]).is_file())
             lines = content.splitlines()
             for index, line in enumerate(lines):
-                if line.startswith("| ") and (index == 0 or not lines[index - 1].startswith("| ")):
+                if line.startswith("|") and (index == 0 or not lines[index - 1].startswith("|")):
                     with self.subTest(document=path.name, table=line):
                         self.assertRegex(lines[index + 1], r"^\|(?:\s*:?-{3,}:?\s*\|)+$")
 
