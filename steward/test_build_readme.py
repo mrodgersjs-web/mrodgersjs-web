@@ -72,6 +72,7 @@ class StaticReadmeContractTests(unittest.TestCase):
             headings,
             [
                 "## What this estate measures",
+                "## The fleet behind the profile",
                 "## Pinned systems",
                 "## Which requirement each system answers",
                 "## Languages, stated plainly",

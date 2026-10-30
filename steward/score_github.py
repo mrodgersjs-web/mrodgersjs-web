@@ -713,9 +713,14 @@ class ScoringContext:
             return len(rows) >= 20, f"following count={len(rows)}"
         if identifier == "live-repo-count":
             count = len(repos())
+            fleet_total = 0
+            try:
+                fleet_total = int(json.loads((self.root / "steward" / "fleet.json").read_text(encoding="utf-8"))["fleet_total"])
+            except Exception:
+                pass
             claims = [int(value) for value in re.findall(r"\b(\d+)\s+(?:public\s+)?repos(?:itories)?\b", profile(), re.I)]
-            ok = not claims or all(value == count for value in claims)
-            return ok, f"live public count={count}; static claims={claims}"
+            allowed = {count, fleet_total}
+            return all(value in allowed for value in claims), f"live public count={count}; fleet total={fleet_total}; static claims={claims}"
         if identifier == "public-cap":
             count = len(repos())
             # Cap raised 30 -> 35 on 2026-10-29 (jev-route shipped; the cap

@@ -13,8 +13,8 @@
 
 <div align="center">
 
-[![public repositories](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Fusers%2Fmrodgersjs-web&query=%24.public_repos&label=public%20repositories&logo=github)](https://github.com/mrodgersjs-web?tab=repositories)
-[![CI covered](https://img.shields.io/badge/CI%20on%20public%20repos-33%20of%2034-brightgreen)](https://github.com/mrodgersjs-web?tab=repositories)
+[![public repositories](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Fusers%2Fmrodgersjs-web&query=%24.public_repos&label=public%20repositories&logo=github&color=64748b)](https://github.com/mrodgersjs-web?tab=repositories)
+[![CI covered](https://img.shields.io/badge/CI%20on%20public%20repos-33%20of%2034-64748b)](https://github.com/mrodgersjs-web?tab=repositories)
 [![steward score](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fmrodgersjs-web%2Fmrodgersjs-web%2Fmain%2Fsteward%2Fscoreboard%2Fbadge.json)](https://github.com/mrodgersjs-web/mrodgersjs-web/tree/main/steward/scoreboard)
 [![rigforge smoke](https://img.shields.io/github/actions/workflow/status/mrodgersjs-web/rigforge/smoke.yml?label=rigforge%20smoke&logo=github-actions&branch=main)](https://github.com/mrodgersjs-web/rigforge/actions/workflows/smoke.yml)
 
@@ -31,9 +31,28 @@ git clone https://github.com/mrodgersjs-web/mrodgersjs-web.git && (cd mrodgersjs
 
 | | Public | With CI | Licensed |
 |---|---|---|---|
-| Systems you can clone and run today | **34 repositories** | **33 of 34** | **34 of 34** |
+| Systems you can clone and run today | **34 public repos** | **33 of 34** | **34 of 34** |
+| The private fleet behind them | **366 repos owned** | Actions on every release surface | licensed at ship |
 
-Languages on this profile: Python, TypeScript, JavaScript, Rust, and C++. The fleet that runs my company is 65 in total; 33 stay private because they carry client data, and that split has been deliberate rather than tidy. 3 public MCP servers ship inside these repositories. Nothing here is a demo directory.
+Languages on this profile: Python, TypeScript, JavaScript, Rust, and C++. The fleet that runs my company counts 366 repositories I wrote or own (118 on GitHub under two handles, 248 local and in-flight; the census script and method ship below), plus 441 vendored research clones I run against but did not write. 3 public MCP servers ship inside these repositories. Nothing here is a demo directory.
+
+## The fleet behind the profile
+
+Not a repo list — an infrastructure. The machine-readable inventory is [`steward/fleet.json`](steward/fleet.json), re-censusable with the script beside it.
+
+| Layer | What runs | The proof |
+|---|---|---|
+| Compute | Mac Studio 256GB (model serving, agent cluster) + MacBook cockpit + QNAP NAS + OWC container volume | `node_uname_info` on Prometheus, 100 launchd services, docker contexts |
+| OS & virtualization | macOS hosts; **Ubuntu 24.04 LTS** on three Colima VMs (2/16/8 vCPU profiles); QTS (Debian family) on the NAS | `os-release` captured from the offload VM; `colima list` |
+| Containers & orchestration | Docker Engine (macOS + Ubuntu VMs), launchd watchdog network, **Temporal** for durable workflows — no kubernetes, and I won't claim it | systemd/launchd unit lists, Temporal UI on :8233-equivalent, restart policies |
+| Model serving | **LiteLLM router** fronting local models (`long-context-local` and aliases); the designer farm runs against it with zero cloud keys | run proofs in [agentic-workflows](https://github.com/mrodgersjs-web/agentic-workflows) |
+| Network | **Tailscale** tailnet-only for every service; published ports via `tailscale serve`, never 0.0.0.0 | this very URL space; documented outage postmortems |
+| Edge | **Cloudflare** installed and ready (zone migration pending — stated as pending, not claimed as running); **Vercel** live: the console demo at rig-os-agency-demo.vercel.app | `dig NS`, the demo itself |
+| Observability | Prometheus + node_exporter + Grafana dashboards; swap-pressure alerts that caught a real thrash before ssh died | metrics endpoints, incident notes in commit history |
+| Agent tooling | **MCP** (3 public servers + a six-designer driver), n8n, Flowise, Dify, Trigger.dev, LangGraph core, CrewAI, LangChain ecosystem in evals | each named tool has a repo, config, or run log — no exceptions |
+| CI/CD | GitHub Actions on 33 of 34 public repos, fmt/clippy/sanitizer matrices, gitleaks, catalog verify | the badges on this page, all live |
+
+Everything a benchmark profile puts in prose — roles, books, one-off cloud mentions — I put in configs that fail loudly when they drift.
 
 ## Pinned systems
 | System | What it demonstrates | Verify |
@@ -93,7 +112,7 @@ Cross-checked against the requirement language in 108 live Head-of-AI, VP-AI, Fo
 ## Recent receipts
 
 <!-- recent_receipts starts -->
-Steward score. **89/100 green**. Measured `2026-10-30`.
+Steward score. **94/100 green**. Measured `2026-10-30`.
 
 | Pinned system | Latest release | Latest smoke run |
 | --- | --- | --- |
@@ -102,7 +121,7 @@ Steward score. **89/100 green**. Measured `2026-10-30`.
 | [communications-studio](https://github.com/mrodgersjs-web/communications-studio) | [v11.1.0](https://github.com/mrodgersjs-web/communications-studio/releases/tag/v11.1.0) · `2026-10-20` | [success](https://github.com/mrodgersjs-web/communications-studio/actions/runs/40977564667) · `2026-10-30` · `a96f96b` |
 | [deviatrix-genesis](https://github.com/mrodgersjs-web/deviatrix-genesis) | [v0.2.0](https://github.com/mrodgersjs-web/deviatrix-genesis/releases/tag/v0.2.0) · `2026-10-20` | [success](https://github.com/mrodgersjs-web/deviatrix-genesis/actions/runs/40977569733) · `2026-10-30` · `5b00262` |
 | [ai-user-testing-mcp](https://github.com/mrodgersjs-web/ai-user-testing-mcp) | no release | [success](https://github.com/mrodgersjs-web/ai-user-testing-mcp/actions/runs/40980588870) · `2026-10-30` · `61b969a` |
-| [jev-route](https://github.com/mrodgersjs-web/jev-route) | no release | [in_progress](https://github.com/mrodgersjs-web/jev-route/actions/runs/40990218966) · `2026-10-30` · `394239f` |
+| [jev-route](https://github.com/mrodgersjs-web/jev-route) | no release | [success](https://github.com/mrodgersjs-web/jev-route/actions/runs/40990218966) · `2026-10-30` · `394239f` |
 <!-- recent_receipts ends -->
 
 ## Competencies

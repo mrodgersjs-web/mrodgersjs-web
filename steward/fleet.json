@@ -1,0 +1,83 @@
+{
+ "schema": "rig.fleet-inventory/v1",
+ "measured": "2026-10-30",
+ "fleet_total": 366,
+ "method": "Git roots with .git directories, excluding vendored dependency trees (node_modules, venvs, build outputs). Own = remote matches one of the two RIG GitHub handles or the rig-intelligence org; local-only = no remote (in-flight work, client-lane repos). Every own remote re-checked against the GitHub API on the measurement date. Re-runnable: the census script ships at steward/fleet_census.py.",
+ "breakdown": {
+  "github_owned": 118,
+  "local_only": 248,
+  "vendored_research_clones": 441,
+  "github_public": 34,
+  "github_private_including_retired_handle": null
+ },
+ "language_bytes_top": {
+  "HTML": 185234858,
+  "Python": 171371246,
+  "TypeScript": 92829213,
+  "JavaScript": 19396611,
+  "MDX": 16358232,
+  "C#": 9851568,
+  "PHP": 4607215,
+  "Dart": 4233150,
+  "Shell": 2731589,
+  "Vue": 2652473
+ },
+ "machines": [
+  {
+   "name": "mac studio 256GB",
+   "os": "macOS (Darwin arm64)",
+   "role": "model serving, agent cluster, workflow engine",
+   "evidence": [
+    "Prometheus node_exporter uname",
+    "100 registered launchd services",
+    "Temporal server and CLI",
+    "3 Colima VMs (Ubuntu 24.04 LTS) at 2/16/8 CPU",
+    "Docker Engine"
+   ]
+  },
+  {
+   "name": "macbook pro 128GB",
+   "os": "macOS",
+   "role": "cockpit: browser agent, builds, keychain vault",
+   "evidence": [
+    "this session",
+    "launchd agent set"
+   ]
+  },
+  {
+   "name": "QNAP NAS",
+   "os": "QTS (Debian family)",
+   "role": "storage, secondary docker host",
+   "evidence": [
+    "registered docker context"
+   ]
+  },
+  {
+   "name": "OWC volume",
+   "role": "container bind root on the studio",
+   "evidence": [
+    "Colima mounts, verified during a documented outage"
+   ]
+  }
+ ],
+ "network": {
+  "overlay": "Tailscale; published ports via tailscale serve, never public",
+  "observability": "Prometheus + node_exporter + Grafana",
+  "edge": "Cloudflare ready (CLI installed, zone migration pending); domain registrar-parked today"
+ },
+ "runtime": [
+  "Docker Engine (macOS + Ubuntu 24.04 Colima VMs)",
+  "launchd (100 services, one watchdog)",
+  "Temporal (durable workflows)",
+  "LiteLLM router serving the designer farm, zero cloud keys for proofs",
+  "Prometheus + Grafana",
+  "n8n, Flowise, Dify, Trigger.dev, LangGraph core, CrewAI (see agentic-workflows)",
+  "3 public MCP servers",
+  "GitHub Actions on 33 of 34 public repos"
+ ],
+ "honest_gaps": {
+  "aws": "CLI configured, no live account wired into the fleet yet",
+  "cloudflare": "installed, zone pending",
+  "kubernetes": "not claimed: the fleet runs Colima + Docker + launchd, honestly labelled"
+ }
+}
