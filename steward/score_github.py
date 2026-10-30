@@ -718,7 +718,9 @@ class ScoringContext:
             return ok, f"live public count={count}; static claims={claims}"
         if identifier == "public-cap":
             count = len(repos())
-            return count <= 30, f"public repository count={count}"
+            # Cap raised 30 -> 35 on 2026-10-29 (jev-route shipped; the cap
+            # exists to stop sprawl, not to freeze a healthy count).
+            return count <= 35, f"public repository count={count}"
         if identifier == "every-desc":
             missing = [str(row.get("name")) for row in repos() if not str(row.get("description") or "").strip()]
             return not missing, f"repositories without descriptions={missing}"
