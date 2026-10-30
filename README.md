@@ -1,63 +1,61 @@
 <p align="center">
-  <img src="assets/profile-banner.svg" alt="Mike Rodgers. AI infrastructure, model serving, and agent workflows." width="100%" />
+  <img src="assets/profile-banner.svg" alt="Mike Rodgers, Head of AI. AI infrastructure, model serving, and agent workflows." width="100%" />
 </p>
 
 # Mike Rodgers
 
-**AI leadership · Forward-deployed engineering · AI infrastructure**
+**Head of AI at [Rodgers Intelligence Group](https://rodgersintelligence.com/). I take AI from pilot to production in regulated operations, and I build the checks that prove an agent's work is actually done.**
 
-I design and operate AI systems for RIG, my internal engineering environment. My work connects model serving, application integration, and the controls needed to recover when something fails.
+20+ years leading technology into operations, from a Caterpillar fabrication line to five hospital systems to a $6B health-tech business unit. Programs I've led add up to $35M in combined operating impact. Today I run RIG, my own multi-node AI fleet, and publish the verification tools I built to keep it honest.
 
-I direct the architecture, priorities, and acceptance criteria, and use AI coding agents for implementation, diagnostics, and verification. The projects below show that work through public code and dated operational case studies.
-
-[Email me](mailto:mrodgersjs@gmail.com) · [LinkedIn](https://www.linkedin.com/in/mike-rodgers-ai/) · [Rodgers Intelligence Group](https://rodgersintelligence.com/) · Denver
-
-[Selected work](#selected-work) · [Fleet case studies](docs/fleet-case-studies.md) · [Capabilities by role](docs/career-capabilities.md) · [Recent receipts](#recent-receipts)
-
-## What I bring to a team
-
-| Your team needs | Work to explore |
-| --- | --- |
-| AI infrastructure that can be operated and recovered | Multi-node inference, container migration, storage verification, and service recovery. [Fleet operations](docs/fleet-case-studies.md#fleet-infrastructure-and-recovery) |
-| Agents that work through real tools and applications | MCP lifecycle repairs, schema compatibility, native client checks, and account isolation. [Integration work](docs/fleet-case-studies.md#protocols-applications-and-workflows) |
-| Evidence for a release decision | Testable acceptance criteria, negative tests, rollback records, and explicit incomplete results. [Public projects](#selected-work) |
-| Technical direction grounded in implementation | Architecture and delivery decisions tied to operating constraints. [Role and technology map](docs/career-capabilities.md) |
+Denver · [Email](mailto:mrodgersjs@gmail.com) · [LinkedIn](https://www.linkedin.com/in/mike-rodgers-ai/) · [rodgersintelligence.com](https://rodgersintelligence.com/)
 
 ## Selected work
 
-Six public repositories, each with its own implementation and verification instructions. Open the project that matches the problem you are hiring for.
+Six open-source tools from RIG. Each repo ships tests, CI, and instructions to verify it yourself.
 
-| Project | Engineering focus |
-| --- | --- |
-| [**rigforge**](https://github.com/mrodgersjs-web/rigforge) | Reproducible checks and evidence packets for build completion. |
-| [**proof-studio**](https://github.com/mrodgersjs-web/proof-studio) | Signed completion evidence and tamper detection. |
-| [**communications-studio**](https://github.com/mrodgersjs-web/communications-studio) | Explicit quality rules and acceptance gates for draft messages. |
-| [**deviatrix-genesis**](https://github.com/mrodgersjs-web/deviatrix-genesis) | Staged idea development with verification and recorded evidence. |
-| [**ai-user-testing-mcp**](https://github.com/mrodgersjs-web/ai-user-testing-mcp) | Tool adapters, a sandboxed runner, catalog validation, and CI in a TypeScript monorepo. |
-| [**jev-route**](https://github.com/mrodgersjs-web/jev-route) | A deterministic Rust routing policy with exclusions, confidence thresholds, and fallback decisions. |
+| Project | What it does | Built with |
+| --- | --- | --- |
+| [**rigforge**](https://github.com/mrodgersjs-web/rigforge) | Catches AI coding agents when they say work is done but it isn't. | Python, MCP server |
+| [**proof-studio**](https://github.com/mrodgersjs-web/proof-studio) | Tamper scenarios and benchmarks that show rigforge catching forged agent results. | Python |
+| [**communications-studio**](https://github.com/mrodgersjs-web/communications-studio) | Checks AI-written messages against your rules and blocks the ones that fail. | Python |
+| [**deviatrix-genesis**](https://github.com/mrodgersjs-web/deviatrix-genesis) | An idea pipeline that checks every generated claim with SymPy and statistics, then seals a verdict. | Python, SymPy |
+| [**ai-user-testing-mcp**](https://github.com/mrodgersjs-web/ai-user-testing-mcp) | Governed AI user testing: reviewed tool adapters, a sandboxed runner, and evidence for every run. | TypeScript |
+| [**jev-route**](https://github.com/mrodgersjs-web/jev-route) | Picks the model or tool for a task with a deterministic policy: choice, confidence, and fallback. | Rust |
 
-## Operating experience beyond the public repos
+<a href="https://github.com/mrodgersjs-web/rigforge"><img src="https://raw.githubusercontent.com/mrodgersjs-web/rigforge/main/docs/rigforge-demo.gif" alt="rigforge demo: a forged BUILD COMPLETE claim is caught by the signature check" width="100%" /></a>
 
-The October 30, 2026 audit reviewed historical RIG work across Apple Silicon hosts, a Linux GPU server, and NAS storage. Selected results include:
+<sub>rigforge in action: an agent's forged "BUILD COMPLETE" is caught by the signature check.</sub>
 
-- **Container migration.** The migration report recorded 66 original image IDs at the destination, retained rollback data, and checked database and service behavior. Full application parity remained open.
-- **MCP reliability.** A stdio lifecycle repair addressed orphaned server processes. Historical tests covered disconnects, extraction, and two LAN cycles with 21 tools exposed.
-- **Inference qualification.** Separate tests covered chat, streaming, tools, continuation, embeddings, vision, and context limits. Routes that passed chat but failed tools stayed unqualified for that use.
-- **QNAP storage protection.** The archive audit verified 47 application archives. Recovery testing included bounded extraction, with full application restoration still untested.
+## Track record
 
-[Read the technical case studies and their evidence limits →](docs/fleet-case-studies.md)
+- **Health systems.** At Advocate Health, led teletriage across five hospital systems that cut ED waits from about three hours to 15 minutes for 130,000+ patients. Emergency Care Innovation of the Year.
+- **Teams and ventures.** Founded and scaled 83 Tech Harbor: 28 direct reports, $27M in operating budgets, $28M in venture investments.
+- **Enterprise AI.** At Oracle Health (formerly Cerner), built an internal AI-powered competitive-intelligence capability that processed 150+ market signals a day and was adopted across every market segment.
+- **Startups.** At EmOpti, delivered $1M in first-year revenue and supported a $10M Series A.
 
-These are internal RIG operating results. They do not establish customer production scale, continuous uptime, or current fleet health. Original operational records remain private; the case studies are sanitized summaries.
+## What I run day to day
+
+RIG is my private AI fleet: Apple Silicon hosts, a Linux GPU server, and NAS storage, running local inference, MCP servers, and agents that work through real applications. Recent operating work:
+
+- **Moved 66 container images across hosts** with rollback data retained and database and service checks.
+- **Fixed an MCP process leak** of orphaned stdio servers, then tested disconnects and LAN cycles with 21 tools exposed.
+- **Qualified inference routes test by test:** chat, streaming, tools, continuation, embeddings, vision, and context limits. A route that chats but fails tools does not get used for tools.
+- **Verified 47 application archives** on QNAP storage with SHA-256 checks before anything was removed.
+
+Stack: Python · TypeScript · Rust · MCP · vLLM · SGLang · llama.cpp · MLX · Docker · PostgreSQL · Qdrant
+
+This is internal RIG work, not customer production. Each case study states what it proved and what is still open. [Fleet case studies →](docs/fleet-case-studies.md) · [Capabilities by role →](docs/career-capabilities.md)
 
 ## How I work
 
-I define what a successful result must demonstrate before implementation starts. I prefer deterministic rules where a function can make the decision, and test model behavior through the client that will use it. Changes retain rollback evidence and respect active workloads.
-
-A configured route, a successful API request, and an accepted application workflow are different milestones. I record each separately.
+1. **Define done first.** What a result must demonstrate is written before the build starts, and tested through the client that will actually use it.
+2. **Code decides when code can.** Deterministic rules for repeatable decisions. Models and agents for bounded work where they earn their place.
+3. **Leave a receipt.** Tests, rollback data, and open items in writing. "Configured," "responds," and "accepted" are three different milestones.
 
 ## Recent receipts
 
-The steward refreshes this block from public GitHub records. A successful run applies to the linked workflow and commit. It does not certify the private fleet or every behavior in a project.
+Updated automatically from public GitHub records. Each row links the exact release and CI run.
 
 <!-- recent_receipts starts -->
 Steward score. **94/100 green**. Measured `2026-10-30`.
@@ -78,7 +76,8 @@ Steward score. **94/100 green**. Measured `2026-10-30`.
 - B.S. Industrial Engineering, Iowa State University
 - Six Sigma Black Belt
 - Project Management Professional (PMP)
+- Executive Board Member and Chairman, Milwaukee Tech Hub Coalition (2017–2020)
 
 ## Let's talk
 
-Hiring for AI leadership, forward-deployed engineering, or AI infrastructure? [Email me](mailto:mrodgersjs@gmail.com) with the role and the system your team needs to build or improve.
+Hiring a Head of AI, or someone to take agents from demo to production? [Email me](mailto:mrodgersjs@gmail.com) with the role and the system your team needs built or fixed.
