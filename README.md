@@ -147,7 +147,7 @@ Cross-checked against the requirement language in 108 live Head-of-AI, VP-AI, Fo
 ## Recent receipts
 
 <!-- recent_receipts starts -->
-Steward score. **93 of 100 checks green**, 2 red, 5 not measured. Measured `2026-10-30`.
+Steward score. **93 of 100 checks green**, 2 red, 5 not measured. Measured `2026-10-31`.
 
 | Pinned system | Latest release | Latest smoke run |
 | --- | --- | --- |

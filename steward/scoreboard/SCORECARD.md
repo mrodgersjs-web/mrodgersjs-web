@@ -1,6 +1,6 @@
 # Repo scorecard
 
-Measured `2026-10-30T17:27:46Z` by `steward/repo_scorecard.py`. Each dimension is scored 0 to 1; `n/a` means it could not be measured this run (skipped CI runs count as n/a, not pass or fail). Raw evidence is in `repos.json`.
+Measured `2026-10-31T16:31:04Z` by `steward/repo_scorecard.py`. Each dimension is scored 0 to 1; `n/a` means it could not be measured this run (skipped CI runs count as n/a, not pass or fail). Raw evidence is in `repos.json`.
 
 | Repo | Status | Overall | CI | Tests | Code vs docs | Entrypoint | LICENSE + SECURITY | Release | Demo image | Topics + description | Freshness | Old issues |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -36,4 +36,4 @@ Measured `2026-10-30T17:27:46Z` by `steward/repo_scorecard.py`. Each dimension i
 - **doctrine** (Code vs docs, 0.40): Build the working code the README describes: 545 code lines vs 1950 markdown lines today.
 - **fde-portfolio** (Demo image, 0.00): Add a short GIF of the tool running near the top of the README.
 
-API calls this run: 56 (token); quota left: 4689.
+API calls this run: 56 (token); quota left: 4690.
