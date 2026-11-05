@@ -1,6 +1,6 @@
 # Repo scorecard
 
-Measured `2026-11-04T19:05:13Z` by `steward/repo_scorecard.py`. Each dimension is scored 0 to 1; `n/a` means it could not be measured this run (skipped CI runs count as n/a, not pass or fail). Raw evidence is in `repos.json`.
+Measured `2026-11-05T19:15:29Z` by `steward/repo_scorecard.py`. Each dimension is scored 0 to 1; `n/a` means it could not be measured this run (skipped CI runs count as n/a, not pass or fail). Raw evidence is in `repos.json`.
 
 | Repo | Status | Overall | CI | Tests | Code vs docs | Entrypoint | LICENSE + SECURITY | Release | Demo image | Topics + description | Freshness | Old issues |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -16,7 +16,7 @@ Measured `2026-11-04T19:05:13Z` by `steward/repo_scorecard.py`. Each dimension i
 | [rig-agent-directory](https://github.com/mrodgersjs-web/rig-agent-directory) | LIVE | 0.90 | 1.00 | 1.00 | 0.95 | 1.00 | 1.00 | 1.00 | 0.00 | 1.00 | 1.00 | 1.00 |
 | [rigforge](https://github.com/mrodgersjs-web/rigforge) | LIVE | 1.00 | 1.00 | 1.00 | 1.00 | 1.00 | 1.00 | 1.00 | 1.00 | 1.00 | 1.00 | 1.00 |
 | [proof-gate-action](https://github.com/mrodgersjs-web/proof-gate-action) | LIVE | 0.87 | 1.00 | 0.60 | 0.60 | 1.00 | 1.00 | 1.00 | 0.50 | 1.00 | 1.00 | 1.00 |
-| [doctrine](https://github.com/mrodgersjs-web/doctrine) | LIVE | 0.89 | 1.00 | 1.00 | 0.40 | 1.00 | 1.00 | 1.00 | 0.50 | 1.00 | 0.99 | 1.00 |
+| [doctrine](https://github.com/mrodgersjs-web/doctrine) | LIVE | 0.89 | 1.00 | 1.00 | 0.40 | 1.00 | 1.00 | 1.00 | 0.50 | 1.00 | 0.97 | 1.00 |
 | [fde-portfolio](https://github.com/mrodgersjs-web/fde-portfolio) | LIVE | 0.84 | 1.00 | 0.80 | 0.63 | 1.00 | 1.00 | 1.00 | 0.00 | 1.00 | 1.00 | 1.00 |
 
 ## Next improvement per repo
