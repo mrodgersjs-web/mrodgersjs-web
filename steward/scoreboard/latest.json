@@ -1,12 +1,12 @@
 {
   "schema": 1,
-  "date": "2026-11-07",
-  "generated_at": "2026-11-07T17:09:20Z",
+  "date": "2026-11-08",
+  "generated_at": "2026-11-08T17:22:16Z",
   "criteria_sha256": "7a55570a78754c52119f10678e41d6203051a49d9cdf6fdf8b6c0a46b2a927cc",
   "summary": {
     "total": 100,
-    "green": 91,
-    "red": 4,
+    "green": 83,
+    "red": 12,
     "null": 5
   },
   "criteria": [
@@ -91,15 +91,15 @@
       "id": "live-repo-count",
       "check": "gh",
       "description": "README does not contain a repo count that differs from `gh repo list --json isPrivate` public length",
-      "status": "green",
-      "evidence": "live public count=34; fleet total=366; static claims=[34, 366, 366, 34]"
+      "status": "red",
+      "evidence": "live public count=35; fleet total=366; static claims=[34, 366, 366, 34]"
     },
     {
       "id": "public-cap",
       "check": "gh",
       "description": "public repo count ≤ 35 (raised 2026-10-29 when jev-route shipped; the cap exists to stop sprawl, not to freeze a healthy count)",
       "status": "green",
-      "evidence": "public repository count=34"
+      "evidence": "public repository count=35"
     },
     {
       "id": "every-desc",
@@ -112,8 +112,8 @@
       "id": "every-license",
       "check": "gh",
       "description": "every public repo has a LICENSE file (Contents API)",
-      "status": "green",
-      "evidence": "repositories without LICENSE=[]"
+      "status": "red",
+      "evidence": "repositories without LICENSE=['stageshow']"
     },
     {
       "id": "no-empty-stub",
@@ -182,15 +182,15 @@
       "id": "topics-baseline",
       "check": "gh",
       "description": "every public repo topics include the 7 baseline",
-      "status": "green",
-      "evidence": "repositories missing baseline topics=[]"
+      "status": "red",
+      "evidence": "repositories missing baseline topics=['stageshow']"
     },
     {
       "id": "topics-specific",
       "check": "gh",
       "description": "every public repo has ≥10 topics (7 baseline + ≥3 specific)",
-      "status": "green",
-      "evidence": "repositories with fewer than 10 topics=[]"
+      "status": "red",
+      "evidence": "repositories with fewer than 10 topics=['stageshow']"
     },
     {
       "id": "desc-no-typo",
@@ -273,8 +273,8 @@
       "id": "footer-site",
       "check": "regex",
       "description": "README contains `rodgersintelligence.com`",
-      "status": "green",
-      "evidence": "repositories without footer site=[]"
+      "status": "red",
+      "evidence": "repositories without footer site=['stageshow']"
     },
     {
       "id": "no-raw-json-tables",
@@ -287,15 +287,15 @@
       "id": "verify-command",
       "check": "regex",
       "description": "README contains `pytest` or `smoke` or `npm test` or `node --test` or `rigforge`",
-      "status": "green",
-      "evidence": "READMEs without verify command=[]"
+      "status": "red",
+      "evidence": "READMEs without verify command=['stageshow']"
     },
     {
       "id": "hero-ok",
       "check": "http",
       "description": "referenced local images HTTP 200",
-      "status": "green",
-      "evidence": "broken local README images=[]"
+      "status": "red",
+      "evidence": "broken local README images=['stageshow:.github/assets/stageshow.png:404']"
     },
     {
       "id": "no-false-e2e",
@@ -602,8 +602,8 @@
       "id": "directory-matches-public",
       "check": "gh",
       "description": "if `rig-agent-directory` is public, its listed repo count equals live public count",
-      "status": "green",
-      "evidence": "directory claims=[34]; live=34"
+      "status": "red",
+      "evidence": "directory claims=[34]; live=35"
     },
     {
       "id": "no-star-farming",
@@ -617,7 +617,7 @@
       "check": "gh",
       "description": "at least one public push or Action on profile repo in last 7 days",
       "status": "green",
-      "evidence": "recent public events=4"
+      "evidence": "recent public events=5"
     },
     {
       "id": "contact-path",
@@ -652,7 +652,7 @@
       "check": "file",
       "description": "`steward/scoreboard/$(date -u +%F).json` exists after the daily run",
       "status": "green",
-      "evidence": "this run atomically writes steward/scoreboard/2026-11-07.json"
+      "evidence": "this run atomically writes steward/scoreboard/2026-11-08.json"
     },
     {
       "id": "latest-pointer",
@@ -687,14 +687,14 @@
       "check": "gh",
       "description": "when latest.red > 0, an open issue labeled `github-steward` exists (checked the day after Orca run)",
       "status": "green",
-      "evidence": "2026-11-06 red criteria without open issue=[]"
+      "evidence": "2026-11-07 red criteria without open issue=[]"
     },
     {
       "id": "readme-receipts-fresh",
       "check": "regex",
       "description": "profile README `recent_receipts` block date ≥ yesterday UTC",
       "status": "green",
-      "evidence": "latest receipt date=2026-11-06; threshold=2026-11-06"
+      "evidence": "latest receipt date=2026-11-07; threshold=2026-11-07"
     },
     {
       "id": "no-direct-main-from-orca",
