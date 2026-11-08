@@ -1,0 +1,130 @@
+System design is all about making the
+right trade-offs, whether building
+something from scratch or scaling an
+existing application. Understanding
+these core trade-offs will help us make
+better architectural decisions. Let's
+explore some essential system design
+trade-offs related to data management
+that every engineer should
+understand. When it comes to data
+storage, SQL and NoSQL databases
+represent fundamentally different
+approaches with clear trade-offs. SQL
+databases provides strong consistency,
+structure, schemas, and powerful query
+capabilities. This structure ensures
+data integrity, but it creates
+challenges for horizontal scaling and
+when modifying schemas. NoSQL databases
+invert this priorities. They often
+sacrifice some consistency and query
+capabilities to gain horizontal
+scalability and schema flexibility. With
+SQL, we are trading scalability for
+consistency and structure. With NoSQL,
+we're trading consistency guarantees and
+query capability for scalability and
+flexibility. This isn't simply about
+which is better. It's about
+understanding the application's specific
+needs. Do we need rocksolid transactions
+and complex query capabilities? SQL
+might be the answer. Need to scale
+massively with evolving data models? No
+SQL could be the better choice.
+Database design typically starts with
+normalization, organizing data into
+separate tables to minimize redundancy
+and ensure each piece of information is
+stored in only one place. This creates a
+clean model that maintains data
+integrity. But as application scale and
+performance becomes critical, the cost
+of joins between normalized tables can
+become prohibitive. This is when
+denormalization enters the picture.
+deliberately duplicating data across
+tables to eliminate expensive joins and
+speed up common queries. The trade-off
+is clear. Normalization optimizes for
+data integrity and storage efficiency,
+while denormalization optimizes for read
+performance at the cost of increased
+complexity in right operations and
+potential inconsistencies.
+Most large-scale systems evolve from
+fully normalized designs to award
+strategic denormalization only where
+query performance demands it. This
+evolution reflects the shifting
+priorities as applications mature from
+correctness and simplicity to
+performance and
+scale. In distributed systems, the cap
+theorem tells us we can't have it all.
+Consistency is the assurance of getting
+the most recent data every single time
+we make a request. Availability is about
+ensuring that the system is always up
+and running even if some parts are
+having problems. When network partitions
+occur, we have to choose one over the
+other. Banking systems might favor
+consistency to ensure account balances
+are always accurate, while social media
+platforms might favor availability so
+users can always access the service.
+This fundamental trade-off shapes how a
+system behaves under failure conditions
+and determines which guarantees we can
+provide to
+users. But consistency itself isn't
+binary. It's a spectrum. Strong
+consistency is when data updates are
+immediately reflected across all nodes
+in the system. It requires
+synchronization which can affect
+performance. Eventual consistency is
+when data updates are delay before being
+available across nodes. This approach is
+faster and more scalable, but users
+might temporarily see stale data. The
+trade-off is between speed and scale
+versus the immediacy and accuracy of
+updates. The business requirements
+dictate where on this spectrum a system
+should
+operate. The way we process data present
+another fundamental trade-off. Batch
+processing accumulates data and process
+it at scheduled intervals. This offers
+computational efficiency and simpler
+error handling. but introduces
+significant latency. Users wait hours
+for insights. Stream processing handles
+data in real time as it arrives,
+providing immediate results and enabling
+instant reactions to events. However,
+this introduces complexity because out
+of order data arrivals and variable
+latency can compromise correctness
+requiring sophisticated state management
+and processing guarantees. The core
+trade-off is between efficiency and
+simplicity versus immediacy and
+responsiveness. Many modern systems end
+up with hybrid architectures using
+streams for time-sensitive processing
+and batch for comprehensive analysis.
+Understanding these trade-offs is
+essential for designing systems that
+meet our specific requirements. There
+are no universally correct choices, only
+trade-offs that align better with our
+particular use case.
+If you like our videos, you might like
+our system design newsletter as well. It
+covers topics and trends in large scale
+system design, trusted by 1 million
+readers. Subscribe at blog.byg.com.

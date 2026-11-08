@@ -1,0 +1,368 @@
+uh hi folks welcome to this short Series
+where I try to give an intuitive
+explanation of calderon's Matrix
+adaptation Evolution strategy or CMA yes
+this first part is intended to be a
+gentle introduction to what evolution
+fatalities are in general and what it
+means to quote unquote uh adapt
+covarence Matrix
+I will be using a lot of material from
+this autolo tutorial which is a
+fantastic tutorial for intuitions and I
+highly recommend that you check it out
+but if you are already familiar with
+this content then you can skip this
+first part
+and after we play the foundation we're
+going to dive a bit deeper and look at
+the formal CMAs specifications as given
+in this paper
+there will be some math but I plan to
+mostly stay on the intuition level and
+focus more on what the math means and
+what are the motivations and how they
+relate to the aforementioned Apollo
+tutorial instead of getting entangled
+with the derivations
+so let's get started
+so what is evolution strategy Revolution
+strategy is a family of algorithms that
+generally follow the principle of
+survival of the fittest which got its
+inspiration from the evolution in nature
+there are many variants but they usually
+go in the following Loop you generate a
+number of individuals as your population
+you sort the population of four things
+their Fitness you get a subset of the
+population that have high Fitness and
+you call them your so-called Elites and
+then you use the Elise to produce
+individuals that will go into your next
+generation
+this new Lambda notation you see on the
+upper left is a common notation used to
+categorize Evolution strategies
+Lambda here represents the number of
+individuals that you produce for each
+generation essentially the pop size the
+population size but it gets a bit more
+nuance and hopefully it will become
+clear later
+the new here represents the number of
+Elites the parents that you use to
+produce those Lambda individuals so for
+example you might be crossing over the
+top five individuals or top ten and
+those five ten those numbers are the new
+if it's mu plus Lambda then the new
+individuals that you produce go into
+your current population which now
+contain individuals from both the old
+population and the old generation and
+the new generation
+and the parents are essentially given a
+chance to compete with their children
+on the contrary it is new common Lambda
+then upon producing the new generation
+individuals from the old generation are
+simply discarded regardless of their
+Fitness
+this might seem a bit counter-intuitive
+at first but then remember that animals
+in nature die of old age regardless of
+their how well they've been doing for
+this life so this concept of the
+discarding parents is not unfounded
+and moreover It is believed that
+discarding the parents uh will help
+Evolution overcome local Optima which is
+actually one of the one of the Prime
+reasons that you might use Evolution
+strategy in place of gradient-based
+methods
+there needs to be a way to generate
+individuals from Elite parents and one
+way of doing so is through sampling from
+a normal distribution just a quick recap
+a normal distribution is characterized
+by the mean and the standard deviation
+and essentially the further a value
+deviates from the mean in units of
+standard deviation uh the less likely
+this value is to be sampled and
+therefore you have this little mountain
+shaped probability distribution function
+with the highest sampling probability at
+the center I mean and decreasing
+probability going either direction
+this is for when an axis just a scalar
+but most likely EO wants to evolve
+multiple variables together in which
+case you'll need to extend to the
+multivarity case of normal distribution
+is quite similar except now the data
+points and the mean are both vectors and
+in place of a standard deviation you
+have the covaries Matrix covariance
+Matrix is a matrix arranged in such a
+way that the diagonal terms are the
+variances within each variable from X1
+to x n whereas the off techno terms are
+the covariances of variables with one
+another with no variance variance is
+just the square of standard deviation
+and measures how much does a variable
+fluctuate and by extension it controls
+kind of how flat the distribution is
+along the direction of that one variable
+on the other hand covariance measures
+the association between the changes of
+two variables
+um so for example if you have a large
+covariance between X1 and X2 then given
+an X1 value that is much larger than the
+mean of X1 you can kind of expect its
+corresponding X2 value to also be much
+larger than the mean of X2
+or if the covariance is zero between X1
+and X2 then you essentially cannot tell
+how much how large X2 is given just the
+value of X1 because they are not
+associated
+I have prepared a simple visualization
+that will hopefully help with your
+understanding
+this is a simple visualization of a two
+variable multivariate thermal
+distribution that is characterized by
+the zero mean and the covariance Matrix
+as shown on the top right
+this circle is a representation of how
+widely spread the distribution is and it
+essentially consists of points that all
+have the same certain probability of
+being sampled I think in this case 0.2
+as you can see if we increase one of the
+diagonal terms I.E a variance is going
+to stretch the distribution wider along
+that one One Direction
+on the other hand changing the
+covariance has the approximate effect of
+sharing the distribution
+and as you can see uh with a large
+covariance between X and Y it is more
+likely to sample points uh that have
+those large acts and large y or both
+small X and small Y and of course if
+we're given a set of data points we can
+also calculate the covariance Matrix
+from this set of data points and we do
+that according to the equation given
+here uh the E symbol here stands for
+expectation and for our purpose we can
+just treat it as the average
+so now this equation reads we take a
+data point x we subtract it by the mean
+of the data set M uh and we then kind of
+do an outer product of the difference
+with itself
+and notice that if m is the zero Vector
+I.E if the data set is centered then
+this equation just becomes this much
+easier expression here
+so now we have all the necessary
+materials to build a simple Evolution
+strategy out of multivariate thermal
+distribution and the loop goes as
+follows so first we generate Lambda
+individuals by sampling from this normal
+distribution Lambda times
+since we're just trying to start simple
+and not bother with how to update the
+covariance Matrix we are just going to
+keep it constant throughout evolution
+and then we add those Lambda new
+individuals to the population and stored
+the population according to their
+Fitness as usual
+and then we get the new top fitness
+individuals and make them our Elites and
+then we updates the mean of the normal
+distribution to be the average across
+all these IDs notice that since uh this
+Elites are expected to have higher
+Fitness uh the new mean is expected to
+be an improvement over the odd name
+which is the whole reason why this whole
+thing works
+I think it's going to become clear after
+we see a simple demo
+in this simple demo we are trying to
+Target this region of high performance
+on the lower right and the circle here
+again represents um how widely spread
+our current distribution is
+similar to what we just saw earlier in
+the covariance Matrix demo
+the Green Dots here represents the
+individuals that we just sampled from
+the current distribution
+and now they turn yellow because they're
+just added to our population
+foreign
+we are going to select the top three
+individuals in terms of fitness and make
+them our Elites
+and as you can see we also update the
+mean of the distribution to the average
+across these three deletes but for
+Simplicity we do not change the
+covariance Matrix just yet
+now we sample some new individuals
+we add them to the population but you
+can also see here that some of the
+individuals turn red this is because
+they have low Fitness and they are going
+to be discarded in the next iteration I
+forgot to mention this step earlier but
+strictly speaking you do not need this
+step in order to make the algorithm work
+it's just there to save you some issues
+with the memory
+um because it you can imagine right uh
+if we did not discard these individuals
+um we're going to have some individuals
+in this data in this direction but
+because we are using rank-based Elite
+selection these are still going to be
+um these top three individuals in the
+lower right so the elite so the elite
+section is not affected and by extension
+the sampling is not affected
+just a few more iterations
+yeah and as you can see it hits
+pretty much hits the region of high
+performance
+in this simple Evolution strategy we
+kept our covariance Matrix constant and
+have the same variance for all our
+variables
+which results in this round the shaped
+distribution
+but if you think about it this is not
+really the best distribution for this
+problem right because what we really
+want is an ellipse that biases the
+search
+along this direction
+so something that looks like
+this probably
+sorry for the bad drawing
+and how can we accomplish that and we
+should also remember that the algorithm
+does not have a global view on the
+fitness landscape as we do and the only
+information it has are the individuals
+and their fitnesses so how can it find
+out the distribution shape on its own
+given such limited information
+well imagine if you are in front of a
+vending machine and you do not know how
+the vending machine works but you try
+pressing the button on the left and it
+doesn't give you anything and you try
+pressing the button on the right and it
+gives you a can of cola
+so even if you do not know how the
+vending machine works there's still a
+reasonable course of action for you
+which is to keep pressing the button on
+the right
+it's kind of the same deal for the
+evolution
+so if it generates an individual and
+this individual has high Fitness then
+it's kind of an indication that it
+should keep generating individuals along
+that direction
+and which individuals have high Fitness
+they leads
+and therefore next we're going to see
+how we can use the elites to figure out
+the covariance Matrix and to change the
+shape of our distribution
+so this equation here shows a simple way
+of how we can adapt The covariance
+Matrix from the elites and again we are
+just taking the difference with the mean
+and then doing an outer product with the
+transpose and eventually just taking the
+average across all these events which
+all seems pretty normal but notice
+that's the mean here is not the mean
+from the current generation Elites which
+if it were we would just be simply
+calculating the covariance Matrix of the
+Elite Samples but we do not want that
+and instead we want the covarence Matrix
+of the steps
+of how we arrived from the previous mean
+to these new um Elite individuals
+because intuitively we want to exploit
+that information right and we want to
+reproduce those steps of how we got from
+the previous mean to the events
+and for this reason uh the mean we are
+using here is actually the mean from the
+previous generation
+and by doing so this difference is going
+to give us information about which
+direction do we want to explore
+this other equation shows how to update
+the mean and it's just the same as what
+we've been doing
+this GIF on the right shows how it is
+supposed to work but as we will see soon
+this simple way of adapting The
+covariance Matrix has its deficiencies
+so we are not quite there yet
+so this is an implementation of the idea
+and let's see how it works
+as you can see it is successfully
+adapting the shape of the distribution
+but it doesn't quite work right because
+later in the evolution
+um the distribution just pretty much
+becomes very thin and doesn't allow much
+exploration in either Direction that's
+the first problem
+and you might also spot a second problem
+and that's the shape of the distribution
+at the size of the distribution kind of
+shrinks a bit too quickly and it's not
+hard to see why because if at any point
+during Evolution
+um the size of the distribution is
+shrunk uh the release that you sample
+from that distribution are likely going
+to be closer to one another
+and as a result The covariance Matrix
+you calculate from this new Elite
+is likely going to shrink the
+distribution even more and the trend
+just kind of reinforce itself from now
+on so this is just a quick summary for
+what we did in part one the pseudocodes
+and all this part is is the sampling and
+these two are the equations we just saw
+in the previous slide accept their order
+is swapped because you know we want the
+mean from the previous generation and we
+saw this method is has its flaws so in
+the next part we are going to look at
+the actual CMA yes and see how it
+addresses some of the problems we've
+seen so far
+see you then

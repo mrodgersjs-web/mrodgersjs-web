@@ -1,0 +1,745 @@
+Diffusion models are now used in just&nbsp;
+about every domain you can think of:
+generating images, videos, music, 3D models&nbsp;
+— and even discovering new molecules.
+But while the results are very impressive, the&nbsp;
+underlying theory can feel a bit, well… dense.
+There are lots of important details, and the&nbsp;
+math isn’t always friendly at first glance.
+We’ll try to untangle the key&nbsp;
+ideas behind diffusion models by
+following step by step the research&nbsp;
+paper that made them so popular.
+The paper that brought diffusion models&nbsp;
+into the spotlight is called "Denoising
+Diffusion Probabilistic Models", or&nbsp;
+DDPM, by Jonathan Ho and collaborators,
+and it was published in 2020.
+Despite its reputation,
+this paper did not introduce diffusion&nbsp;
+models, nor did it coin the term.
+The earliest known reference to diffusion&nbsp;
+models as we know them comes from a 2015
+paper titled "Deep Unsupervised Learning&nbsp;
+using Nonequilibrium Thermodynamics",
+by Jascha Sohl-Dickstein and colleagues.
+In 2015, GANs were considered state of
+the art in image generation research, and&nbsp;
+diffusion models received little attention.
+In contrast, the 2020 DDPM paper&nbsp;
+quickly gained traction—it is now
+the most cited work in the field, with more&nbsp;
+than twenty thousand citations as of 2025.
+If you look up diffusion models&nbsp;
+on any search engine, this is
+probably the first paper you'll come across.
+The main contribution of this paper was to
+take diffusion models from a theoretical&nbsp;
+concept—previously limited to simple toy
+datasets—into a state-of-the-art&nbsp;
+technique for image generation.
+On the technical side, it mainly&nbsp;
+introduced a much simpler training
+objective compared to the 2015 version.
+This made the method more accessible,
+and highlighted interesting connections&nbsp;
+to earlier works on denoising models.
+Now, let’s break down the core idea.
+In the context of data generation,
+we start with a probability distribution p&nbsp;
+of x, which represents our training data.
+For instance in the case of images, we can&nbsp;
+think of this distribution as representing
+all natural images, or even just a subset&nbsp;
+of natural images containing only faces.
+Of course, this distribution is so complex&nbsp;
+that we can't really find a single expression
+to describe it completely, and there&nbsp;
+are probably no such expression anyway.
+But even without an explicit formula,&nbsp;
+we still want to generate new images,
+which is equivalent to sampling new&nbsp;
+points from this underlying distribution.
+So the challenge is to find a way to create&nbsp;
+new samples without actually having a good,
+comprehensive, way of describing the distribution.
+Diffusion models tackle this problem with
+a seemingly unrelated process — by&nbsp;
+removing Gaussian noise from images.
+First, we gradually corrupt the&nbsp;
+images by adding Gaussian noise.
+At each step, a small amount of noise is added,&nbsp;
+slowly erasing the structure of the image.
+If we continue this process for many steps,&nbsp;
+the image eventually turns into pure noise.
+The key idea is then to train a model&nbsp;
+that learns to slowly reverse these steps,
+and remove the noise bit by bit.
+If the model is effective,
+it should be able to start from random noise and&nbsp;
+refine it step by step into a meaningful image.
+Now, let’s see how the DDPM paper&nbsp;
+formulates this process mathematically.
+Let's begin with an image, which&nbsp;
+we'll call x-zero, since it's
+the starting point of the noising process.
+For now this image does not contain any noise.
+To generate the next image, x-one, we use a&nbsp;
+conditional distribution: q of x-one given x-zero.
+We produce x-one by adding some&nbsp;
+amount of Gaussian noise epsilon.
+The amount of noise is controlled&nbsp;
+by a scalar value, beta.
+Then actually the distribution describing&nbsp;
+x-one is just a Gaussian centered on
+x-zero with noise of variance beta.
+So rather than seeing this as adding
+noise to x-zero, we can just imagine that we&nbsp;
+take a sample from a Gaussian distribution of
+variance beta, centered on x-zero.
+Then, to go to the next step,
+we do the same thing.
+This time we label the
+distribution as q of x-two knowing x-one.
+Again the operation is simply taking the
+previous step and adding some&nbsp;
+amount beta of Gaussian noise.
+Which is the same as taking a&nbsp;
+sample from a Gaussian distribution
+centered on x-one with variance beta.
+Now since we just sum the noise terms,
+we can go straight from x-zero to x-two.
+We created x-two by adding twice as much noise,
+which is the same as sampling from a Gaussian&nbsp;
+centered on x-zero, with variance two beta.
+Now we keep repeating this process, step&nbsp;
+by step, until we reach the timestep t.
+If we think a little, we can write a&nbsp;
+simple formula to describe what happens
+at any given step: we simply add t times&nbsp;
+beta amount of Gaussian noise to x-zero.
+So at timestep t, x-t knowing&nbsp;
+x-zero is a Gaussian distribution
+centered at x-zero, with variance t-beta.
+Now we have an issue with this process.
+What we wanted was a process&nbsp;
+that gradually transforms our
+data into a standard normal distribution;&nbsp;
+clearly, that's not what's happening here.
+The mean always stays fixed at x-zero and&nbsp;
+is never modified by the process, while the
+variance keeps increasing indefinitely.
+So in this setup, there is absolutely
+no chance that our diffusion process&nbsp;
+converges to the normal distribution.
+In this diffusion process, the variance just keeps&nbsp;
+growing without bound: in the litterature we often
+say that the variance explodes; and we call&nbsp;
+this process the variance exploding diffusion.
+In the DDPM paper, the authors made the choice to&nbsp;
+use a noising process that converges to a normal
+distribution, which is often called variance&nbsp;
+preserving, so let's see how they do it.
+Let’s now define a diffusion process that&nbsp;
+actually works — one that gradually transforms
+our data into a standard normal distribution.
+For this, we need to satisfy two conditions:
+the mean has got to converge to&nbsp;
+zero and the variance to one.
+To do that we'll modify the way we&nbsp;
+go from a given step to the next.
+Obviously, we'll need to change the&nbsp;
+mean of our distribution at each step.
+And so we'll need a coefficient in front&nbsp;
+of the mean to make it decrease to zero.
+This magic number that we will use is&nbsp;
+square root of one minus the variance beta.
+Hm well, why do we choose&nbsp;
+this number in particular ?
+To be honest, multiple other valid choices&nbsp;
+exist — however, the authors of the DDPM paper
+specifically opted for this coefficient.
+The main reason for this choice
+is probably its simplicity.
+I'll skip the derivations because
+this is quite honestly pretty boring, but the&nbsp;
+important thing is that this choice results in
+a straightforward and convenient expression for&nbsp;
+the conditional distribution at any time step.
+So to go from the noiseless input x-zero, to&nbsp;
+a given time step of our diffusion process,
+we just have to apply this little formula.
+It depends on the term alpha-t bar,
+which is simply defined as one minus&nbsp;
+beta, raised to the power of t.
+Now does this thing actually&nbsp;
+converge to the normal distribution ?
+Well if we choose beta strictly between zero&nbsp;
+and one, it is easy to see that alpha-t-bar
+will converge to zero as t grows to infinity.
+Then the mean of the conditional distribution
+goes to zero, while the variance goes to one.
+And just like that, we finally have a proper
+variance preserving diffusion process.
+So, this formula is supposed to take our
+distribution of data p of x, and slowly&nbsp;
+transform it into a normal distribution:
+let's see this on a simple 1D example.
+Let's say this is our original
+noiseless data distribution p of x.
+After applying just one diffusion step,
+the distribution barely changes.
+However, if we repeat this process
+for about a hundred steps, we can clearly&nbsp;
+see the effect: the mean approaches zero,
+and the spread of the distribution stabilizes.
+And the nice thing is that we can go directly
+from the input image to a given time-step !
+Now, if you've explored the DDPM paper yourself,
+you might have noticed they use a slightly&nbsp;
+different definition for alpha-bar.
+In practice, diffusion models&nbsp;
+commonly apply varying amounts of
+noise at each step, rather than a fixed beta.
+Indeed, any noise schedule can be chosen as
+long as each beta remains between zero and one.
+How does that fact impact our formula to go from
+the noiseless image to any timestep ?
+Well when beta varies at each step,
+alpha-bar at step t simply becomes the product&nbsp;
+of one minus beta at every previous step,
+which is the expression you can find in the paper.
+So we have now defined a proper diffusion process
+that will progressively transform any&nbsp;
+distribution into a normal distribution.
+Let's now move onto how we can reverse this&nbsp;
+diffusion process using a neural network.
+Just for the sake of illustration, let's&nbsp;
+represent once again the forward process
+that enables us to go from our clean image&nbsp;
+'x-zero' to a Gaussian noise sample 'x-T',
+using the probability densities q.
+Now let's assume there is a way to
+reverse these individual steps, and let's&nbsp;
+represent it with a probability density p,
+which produces x-t-minus-one given x-T.
+So, just like we defined conditional
+distributions q to go forward from one step to&nbsp;
+the next, we now define conditional distributions
+p to go backward in the opposite direction.
+While in the forward process all parameters
+are fixed, for the reverse process our goal&nbsp;
+is actually to find the best parameters theta
+that allow us to remove the noise effectively.
+And as you've probably guessed, these parameters
+theta will be the weights of a neural network.
+Now you may ask: how do we train
+this neural network?
+Well, we'll adopt a very
+standard approach in Bayesian statistics, which&nbsp;
+is to minimize the negative log likelihood of
+producing a sample with our model.
+If you're not familiar with these
+types of objectives, don't worry.
+It simply means finding the set of
+parameters theta that maximizes the likelihood&nbsp;
+of generating real samples x-zero from our
+data distribution, using the neural network.
+But instead of maximizing p theta of x-zero
+directly, we minimize the negative log likelihood,&nbsp;
+which in practice is easier in many cases.
+Ok, before we go further, let's&nbsp;
+define some useful notations clearly.
+The joint probability describing the distribution&nbsp;
+of all the variables from x-one to x-T given
+x-zero represents our complete forward process.
+Using Bayes' theorem, we can decompose this joint
+probability into individual&nbsp;
+conditional distributions.
+And the neat thing is that since our forward&nbsp;
+process is a Markov chain, each noising step
+depends only on the previous step, which&nbsp;
+simplifies these conditional probabilities.
+Another notation we use is that instead&nbsp;
+of writing three dots every time we want
+to mention the complete forward process, we&nbsp;
+use this simplified version with two dots.
+And now let's rewrite this product&nbsp;
+in an even more compact form,
+using the standard notation for products.
+We use the same compact notation for the
+joint distribution describing&nbsp;
+our complete reverse process.
+As you may have noticed, the reverse&nbsp;
+process is not conditioned on anything:
+indeed, we will start from pure Gaussian&nbsp;
+noise, without prior knowledge, whereas the
+forward process requires an input image x-zero.
+Ok, now that we have expressions describing
+clearly our complete forward and reverse&nbsp;
+processes, let's try to find an expression
+for the negative log likelihood.
+Generally speaking, when dealing
+with joint probabilities, a useful&nbsp;
+first step is often to marginalize the
+distribution with respect to the other variables.
+Doing this gives us that p theta of x-zero is
+simply the integral of the joint probability&nbsp;
+with respect to all the other variables.
+Now could we compute the&nbsp;
+likelihood using just this formula?
+Hmm well, no; not really.
+What this integral means is that to
+compute the probability that our neural network&nbsp;
+generates a sample x-zero, we would have to sum
+over all possible paths capable of generating it.
+Let's visualize it this way: on the left we have
+the density of natural images, and on the&nbsp;
+right the pure Gaussian noise density.
+We know that there are paths connecting images to&nbsp;
+noise, such as our forward process, and we assume
+that there exist paths connecting noise to images.
+The formula tells us that we should sum over all
+these possible paths to obtain&nbsp;
+the negative log likelihood.
+Of course, there are way too many possible&nbsp;
+paths for us to compute this quantity.
+We say this quantity is intractable, meaning&nbsp;
+we can't realistically compute it exactly.
+Ok, but that does not mean we can't&nbsp;
+compute the negative log likelihood at all!
+Let's now use a very well-known&nbsp;
+trick: we multiply and divide by
+the density representing our forward process.
+We can rewrite this integral as an expectation,
+making the expression slightly more compact.
+And here comes another very well-known trick:
+Jensen's inequality.
+Since the negative log function is convex,
+we can put the log inside the expectation&nbsp;
+at the cost of introducing an inequality.
+And now we obtain an upper bound on our&nbsp;
+negative log likelihood, often called the
+evidence lower bound, or ELBO.
+Why is it called a lower bound?
+Well, since it's an upper bound on the&nbsp;
+negative log likelihood, it corresponds to
+a lower bound on the likelihood itself.
+Now, we'll try to make sense of this
+training objective by modifying and&nbsp;
+simplifying its expression further.
+I'm going to skip the detailed derivations&nbsp;
+here, because they're honestly a bit tedious,
+and the video is already pretty math-heavy.
+Just know that with some straightforward algebra
+and Bayes' theorem, we can rewrite the ELBO&nbsp;
+from this form to this more useful expression.
+If you're interested in the full&nbsp;
+computations leading to this expression
+of the ELBO, it's covered in part A of the&nbsp;
+supplementary materials of the DDPM paper.
+It's actually quite detailed and&nbsp;
+worth checking out if you're curious.
+Now, this new expression might look&nbsp;
+intimidating at first glance, but as usual,
+there's some intuition behind it.
+The first thing you might notice
+is the Kullback–Leibler divergence&nbsp;
+term, which we refer to as D–K–L.
+The Kullback–Leibler divergence is a way&nbsp;
+of measuring how close two probability
+distributions are — you can think of it as&nbsp;
+a kind of distance in probability space.
+If the distributions are very different —&nbsp;
+for example, they have different means or
+variances — the KL divergence will be large.
+On the other hand, if the distributions are
+very similar, the KL divergence becomes small.
+And it actually reaches zero only when the
+two distributions are exactly the same.
+So, going back to our loss expression,
+we see that it's essentially measuring how far&nbsp;
+apart certain probability distributions are.
+Before we see what these distributions are,&nbsp;
+we can simplify this expression further.
+The first term on the left doesn’t&nbsp;
+depend on our model parameters,
+so we can ignore it when optimizing the model.
+The last term on the right does depend on the
+weights of the network, and it measures&nbsp;
+how likely the model is to reconstruct a
+clean image from a slightly noisier one&nbsp;
+— more precisely, from x–1 back to x–0.
+But remember, in diffusion models, we usually&nbsp;
+take about a thousand denoising steps.
+So by the time we go from x–1 to x–0,&nbsp;
+there’s barely any noise left — the model
+has already recovered most of the image.
+As a result, this term is pretty small and
+doesn’t provide much extra learning signal.
+In practice, including it in the loss
+makes little to no difference, so we&nbsp;
+usually drop it from the final loss.
+That leaves us with the main part: a big sum&nbsp;
+of KL divergences between some distributions.
+We know that p–theta of x–t–minus–1&nbsp;
+given x–t is our reverse diffusion step.
+But what exactly is this other distribution,&nbsp;
+q of x–t–minus–1 given x–t and x–0 ?
+Well, this distribution is what&nbsp;
+we call the true posterior.
+If we have our forward process — q of x-t given&nbsp;
+x-t-minus-one — we know there's a reverse process,
+which we're trying to approximate, by&nbsp;
+adjusting the parameters of a distribution p.
+Now, if we also condition on&nbsp;
+the original image, x-zero,
+we can actually compute the exact reverse process.
+This true reverse process, which uses the clean
+image x-zero, is what we call the true posterior.
+And the nice thing is, we actually have a
+closed-form expression for this true posterior.
+You might be wondering — why do we need a neural
+network if we already have a closed-form&nbsp;
+expression for reversing the noise?
+The answer is: using this true posterior&nbsp;
+is cheating, because it requires us to know
+x-zero — and during inference, our goal is&nbsp;
+to generate x-zero starting from pure noise.
+So of course, we can’t use the true posterior&nbsp;
+conditioned on x-zero to produce new samples.
+But we can apply it when x-zero&nbsp;
+is known, like during training,
+which is exactly what we're doing here.
+So what we’re really doing with this loss
+function is training the neural network&nbsp;
+to match the true posterior — the one we
+could compute if we had access to x-zero — even&nbsp;
+though, in practice, the network only sees x-t.
+Now, about the expression of this true posterior&nbsp;
+— I’ll skip the derivations again, because it’s
+just some tedious algebra and Bayes’ rule.
+In the end, it turns out that the true
+posterior is Gaussian, with a mean&nbsp;
+mu-tilde and a variance beta-tilde.
+Alright, now we need to choose a&nbsp;
+form for our approximate posterior.
+Naturally, we’ll make it Gaussian,&nbsp;
+and there are two reasons for that.
+First, there's a theorem that&nbsp;
+says the reverse of a Gaussian
+Markov chain is also Gaussian — so&nbsp;
+choosing a Gaussian makes sense.
+And second, everything is just&nbsp;
+simpler when working with Gaussians.
+Our neural network will therefore predict the&nbsp;
+parameters of this Gaussian — its mean, mu-theta,
+and its variance, sigma-theta,&nbsp;
+which controls its spread.
+To simplify things even further,&nbsp;
+the authors choose to fix the
+variance of the approximate posterior to&nbsp;
+a constant sigma-t, which is not learned.
+That means the neural network only has&nbsp;
+to learn the mean of the distribution.
+Since we’re trying to match two Gaussian&nbsp;
+distributions, but can only control the
+mean of the approximate one, the best we can&nbsp;
+do is bring its mean as close as possible
+to the mean of the true posterior.
+Said differently, we aim to minimize
+the distance between the two means.
+And in fact, that’s exactly how the
+KL divergence behaves in this case.
+As you can see, in this setting,
+the KL divergence simplifies to a plain squared&nbsp;
+distance between the means of the Gaussians.
+So, zooming out: minimizing the sum of&nbsp;
+KL divergences in our objective function
+really just means bringing each approximate&nbsp;
+posterior closer to its true counterpart.
+And since we can only control the mean of each&nbsp;
+approximate posterior, we just try to reduce
+its distance to the mean of each true posterior.
+Now that we have a better intuition of the elbo,
+we'll simplify it further to state&nbsp;
+the final training objective.
+We just saw that each of the KL divergence&nbsp;
+terms in this sum simplifies into a squared
+distance — so overall, we’re&nbsp;
+minimizing a sum of L2 distances.
+Each of these terms measures how far the&nbsp;
+predicted-mean mu-theta is from the true
+posterior-mean mu-tilde, and the distance is&nbsp;
+weighted by a factor that depends on sigma-t.
+Now let’s simplify this loss even&nbsp;
+further, to reach the final expression.
+We do have a closed-form expression&nbsp;
+for the true posterior mean mu-tilde,
+but it is a bit complicated.
+As you can see, it’s a weighted
+combination of x-zero and x-t, which&nbsp;
+is not very convenient to work with.
+Now thanks to the reparameterization trick,&nbsp;
+the same as we used in the beginning of this
+video — and the same one used in V-A-Es —&nbsp;
+we can write x-t as being the sum between
+x-zero and epsilon, a pure Gaussian noise.
+Conversely, with a tiny bit of algebra,
+we can also write x-zero as&nbsp;
+depending only on x-t and epsilon.
+If we plug this into the expression&nbsp;
+of mu-tilde, we also get an expression
+that depends only on x-t and epsilon.
+Then comes the key idea: since the denoiser
+also has access to x-t, we can apply the same&nbsp;
+trick to the network’s predicted mean mu-theta,
+and we write it as a function of x-t and&nbsp;
+a predicted noise term epsilon-theta.
+What we did was simply to express&nbsp;
+mu-tilde and mu-theta with x-t and
+epsilon by using the reparameterization trick.
+Now if we plug both of these expression into
+the loss, the terms in x-t cancel out,&nbsp;
+revealing our final objective function.
+We’re left with a much simpler&nbsp;
+loss: a plain squared distance
+between epsilon and epsilon-theta.
+So epsilon-theta becomes the network’s
+estimate of the noise that was added to x-zero to&nbsp;
+produce x-t — and minimizing the loss just means
+making this prediction as accurate as possible.
+Ok great, I think it's time to recap the whole
+process of how we got to&nbsp;
+this final loss expression.
+We started by saying we want to optimize&nbsp;
+the negative log-likelihood of x-zero,
+which represents the probability that a&nbsp;
+sample comes from our underlying distribution.
+Since that’s intractable,&nbsp;
+we introduced a surrogate
+called the ELBO — the evidence lower bound.
+Using Bayes' theorem and a lot of computations,
+we can express this surrogate&nbsp;
+as a sum of several terms.
+One of these terms did not depend on our model's&nbsp;
+parameters, and the other was negligible,
+so we dropped both of them, which left us&nbsp;
+with a sum of Kullback-Leibler divergences.
+Then, by choosing the approximate&nbsp;
+posterior as being Gaussian,
+we saw that the KL terms reduce to L-2 distances&nbsp;
+between the true and estimated posterior means.
+Next, using the reparameterization&nbsp;
+trick, we rewrote those means in
+terms of epsilon — the actual noise —&nbsp;
+and epsilon-theta, the predicted noise.
+That gave us our final loss: the squared&nbsp;
+distance between real and predicted noise.
+And this is how we go from&nbsp;
+the negative log likelihood,
+to the ELBO, to a final L2 loss function.
+However we can do a final simplification;
+as you can see, summing over hundreds of&nbsp;
+timesteps for every sample is pretty expansive.
+Instead of summing over all timesteps, we&nbsp;
+simply pick a random timestep t for each sample,
+and we know that for a large number of samples&nbsp;
+this will converge towards the original objective.
+That’s it — we now have a very simple&nbsp;
+and efficient training objective.
+Let’s now see how to implement this in practice,
+and what the actual training&nbsp;
+and inference look like.
+Alright, for this python implementation&nbsp;
+we’ll mainly rely on two libraries
+that we'll import right away.
+The first one is PyTorch — no surprise
+there — which gives us all the necessary&nbsp;
+tools to define and train neural networks.
+The second one is a library called&nbsp;
+DeepInverse — or 'deepinv' for short.
+It’s built on top of PyTorch and is designed&nbsp;
+specifically for solving imaging inverse problems,
+which is what I research in real life.
+We’ll use it here because it provides
+a ready-to-use implementation of the&nbsp;
+neural network architecture used in DDPM,
+along with several pretrained weights.
+The first thing we do after importing
+the libraries is set up the dataset.
+We’re using MNIST — a dataset of small
+grayscale images with handwritten digits.
+We’ll use a batch size of 32 and resize
+each image to 32 by 32 pixels.
+Next, we define everything related
+to the neural network and the training setup.
+With DeepInverse, this is straightforward:
+we just instantiate the Diffusion UNet class, and&nbsp;
+specify the number of input and output channels.
+In our case, we’re training the model from&nbsp;
+scratch, so we won’t load any pretrained weights.
+For optimization, we’ll simply use the Adam&nbsp;
+optimizer with a standard learning rate.
+And for the loss function, as we&nbsp;
+discussed earlier in the video,
+we’ll use the simple mean squared error.
+The next step is to define all the constants
+that will be used for diffusion.
+First, the beta schedule — this
+describes the noise level added at&nbsp;
+each step of the diffusion process.
+We’ll use a linear interpolation from a&nbsp;
+small beta-start to a larger beta-end,
+just like in the original DDPM paper.
+We can actually change this interpolation,
+for instance we can choose a cosine&nbsp;
+schedule, but, for now, let's keep it simple
+and stick with the usual linear interpolation.
+From this, we compute the alphas, the cumulative
+products alpha-bar, and other common terms like&nbsp;
+the square root of alpha-bar, and its complement.
+Now that the constants are set,&nbsp;
+we can start the training loop.
+At each step, we sample a random&nbsp;
+timestep t between 0 and 1000,
+and draw a noise sample epsilon&nbsp;
+from a standard normal distribution.
+We then compute the noisy image&nbsp;
+using the variance-preserving
+formulation we derived earlier.
+As you can see, the formula we use
+in theory is exactly the same one&nbsp;
+used in the actual implementation.
+This noisy image and the timestep&nbsp;
+are then fed into the network.
+The model output the estimation of the noise&nbsp;
+present in the image, and we compute the loss
+between this prediction and epsilon.
+Now in the code you see that we
+don't use the exact loss we derived&nbsp;
+earlier, but an even simpler version.
+We assign uniform weights equal to&nbsp;
+one to all timesteps in the loss,
+which is also what the original DDPM paper did&nbsp;
+— and interestingly, it often leads to better
+results than using time-dependent weighting.
+We repeat this whole process of noising an image,
+then computing the MSE, until the model is&nbsp;
+trained, which here takes around 100 epochs.
+At the end of the training, we save the weights&nbsp;
+of the network to be able to reuse them later.
+During training, we can see that the MSE drops&nbsp;
+rather quickly, even with this very simple setup,
+and then stabilizes to a very low value.
+If we display some denoised samples at the
+end of each epoch, we can track&nbsp;
+the model’s progress visually.
+Here on the left you can see the original&nbsp;
+image, then its noisy version at different
+timesteps, and the denoised estimate&nbsp;
+computed using the neural network.
+During the early stages of the training, the&nbsp;
+outputs are quite poor for high noise levels,
+but already decent when noise is low.
+As training continues, the model gets
+better and better at denoising across all&nbsp;
+timesteps, but at very high noise levels it
+still struggles to output the correct digit.
+Actually, it's totally ok for the denoiser to
+struggle at these high timesteps;&nbsp;
+it can still perform really well
+when we use it to generate new samples.
+Now that training is done, we’ll move
+on to the inference code and generate&nbsp;
+new samples from pure Gaussian noise.
+Let’s now implement the inference&nbsp;
+code in a separate file.
+We start by importing our libraries again&nbsp;
+and instantiating the neural network using
+the pretrained weights we just saved.
+Next, we re-define all the diffusion
+constants we used during training —&nbsp;
+including the linear variance schedule.
+These parameters must match perfectly&nbsp;
+between training and inference; otherwise,
+the amount of noise at a given timestep&nbsp;
+during inference will not correspond to
+the same amount of noise seen during training.
+And now we implement the actual sampling loop.
+The first step is to sample pure Gaussian noise,&nbsp;
+which corresponds to our initial variable x-t.
+This noise is then fed into the neural network&nbsp;
+along with the timestep t to predict epsilon-theta
+— an estimate of the noise inside this image.
+This noise estimate can now be used to produce
+x-t-minus-one, which is a sample&nbsp;
+from the approximate posterior.
+To do this we plug the noise estimate&nbsp;
+into the posterior mean formula and
+add a little bit of noise to actually&nbsp;
+sample from the approximate posterior.
+As you can see once again this is exactly&nbsp;
+the same formula used here in the code.
+Then we repeat the same process: feed&nbsp;
+the updated image into the network,
+compute the posterior mean, and sample the next&nbsp;
+image — and we typically do this a thousand times.
+Let's take a look at a few samples, and see&nbsp;
+how they evolve during these iterations.
+At the beginning of the diffusion process,&nbsp;
+not much happens — there is still way too
+much noise to see anything — but when&nbsp;
+we reach the last few hundred steps,
+we see the details emerging from the noise.
+Eventually, we obtain very clean samples,
+all different from each other.
+That's pretty incredible right;
+we’ve just generated high-quality handwritten&nbsp;
+digits, entirely from scratch, using only a
+denoiser and a few diffusion equations.
+What’s even more impressive is that
+the core sampling loop fits in&nbsp;
+fewer than thirty lines of code.
+Now here’s the cool part: thanks to DeepInverse,&nbsp;
+we can easily swap in pretrained weights from
+different datasets — just by changing one&nbsp;
+or two lines when instantiating the model.
+For example, here we load a model trained on&nbsp;
+F-F-H-Q — a dataset of high-quality portraits.
+Once again, for the first half of the&nbsp;
+diffusion, we can't see much within
+all that noise — but once we reach the final&nbsp;
+iterations, we now see human faces emerging.
+I don't know about you, but to me these faces&nbsp;
+are almost indistinguishable from real pictures.
+And again, the sampling code stayed the same —&nbsp;
+we’ve just changed the training distribution.
+Now if we compare these results&nbsp;
+to those produced by VAEs,
+the difference in visual quality is pretty clear.
+Of course, this improvement comes at a cost:
+instead of running the network once,&nbsp;
+we’re evaluating it a thousand times.
+So in essence, we’re just trading more&nbsp;
+computations for a better image quality.
+What we’d really want, though, is to&nbsp;
+keep this high visual fidelity — but
+get it in just a few inference steps.
+Surprisingly, this was achieved just a
+few months after the release of the DDPM paper —&nbsp;
+but that will be the topic of another video.
+Well, it's time to wrap up; in this video,&nbsp;
+you learned all the basics of DDPMs — how
+to define a diffusion process, train a denoising&nbsp;
+network, and generate new samples from pure noise.
+But there's also a second, more general&nbsp;
+formulation — one that replaces discrete
+Markov chains with continuous-time&nbsp;
+stochastic differential equations.
+This perspective, known as score-based&nbsp;
+diffusion, will be the focus of the next video.
+Thanks a lot for watching — if you&nbsp;
+found this helpful, feel free to like
+and subscribe to support the channel.
+See you next month for the next video.

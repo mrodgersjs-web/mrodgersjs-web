@@ -1,0 +1,1923 @@
+good morning everyone I think we are now
+just about ready to begin so I will
+start with the introduction good morning
+and welcome welcome to our distinguished
+lecture series on Advanced quantitative
+methods this lecture series is sponsored
+by the partnership for urban health
+research here at Georgia State
+University I am Scott Weaver with the
+Department of psychology and the
+partnership for urban health research
+and it is my great pleasure to to
+introduce today's distinguished speaker
+Dr Juda Pearl Dr Pearl comes to us from
+the University of California Los Angeles
+where he is Professor of computer
+science and
+statistics over the duration of his
+distinguished career his contributions
+to science spanning areas such as uh
+computer science artificial intelligence
+statistics and the philosophy of science
+have been both of great
+significance and and plentiful and
+marked by nearly 400 Publications in
+scolly journals and
+books Professor Pearl has much to share
+with a so I will just briefly mention a
+few of the accolades that his research
+has
+garnered he is um published three books
+heris sixs prob probabilistic reasoning
+and causality he's a member of the
+National Academy of engineering and a
+founding fellow of the American
+Association of artificial
+intelligence Judea Pearl is a recipient
+of the JC AI research Excellence award
+in 1999 the London School of Economics
+Laos award for
+2001 and the ACM Allen new award for
+2004 more recently in 2018 he received
+the Benjamin Franklin medal for computer
+and cognitive science from the Franklin
+Institute Professor Pearl is here with
+us today to share his theoretical
+contributions with respect to causal
+inference it's a topic that I Believe by
+the virtue of the fact that you're here
+that it impacts and is the most
+relevance to all the work that we do so
+without further delay please join
+me and giving um Dr Juda Pearl a warm
+welcome thank
+you thank you Scott for the warm
+introduction and I'm happy to be
+here uh I'm going to talk about cation
+indeed that is my the field that I spent
+the past 15 years of my career maybe
+more
+20 and uh I can share with you some
+results but more than the results I want
+to share with you a
+conception overall theme that makes the
+result flow out uh
+automatically without any effort namely
+I'm going to present to you a general
+scheme which is both friendly and formal
+so that you can use the
+mathematics easily to answer most of
+your questions and I'm going to uh make
+a daring decaration here that every
+questions that has to do with cause and
+effect can today be algorithmic sized or
+mathematized and reduced to algorithmic
+detail and get an answer the answer
+could be you don't have enough
+information but it's still a very useful
+answer an
+outline I'm going to start with actually
+this is supposed to work right I don't
+need to tie myself to the location how
+do I turn this
+on it's okay it is okay you
+can can anyone hear me can anyone not
+hear
+me it's okay I can walk okay my outline
+will be first to contrast statistical
+versus causal inference and the distin
+between them very scis distinction and
+the mental barriers that makes us be
+here today if it weren't for this mental
+barriers H then causal reasoning will be
+as simple as the high school
+mathematics uh unfortunately something
+got screwed up in our education that we
+have to have a special session on on
+causal inference it should be uh second
+nature to every scientist and to every
+uh graduate
+student I'm going then to present once
+we overcome the mental barriers here we
+are going to present a unified
+conceptualization of counterfactual
+these are the building blocks of
+scientific thinking and the building
+blocks of causal
+reasoning using structural equations and
+graph many of you how many are doing
+structural equations or heard about it
+it's I know many people are good so I'm
+going to base everything on something on
+the
+familiar uh then I'll show the fruits of
+that effort using three types of
+applications first U finding the effect
+of potential intervention some people
+call it program
+evaluation policy evaluation fancy
+names and attribution find the cause of
+effect and the third one according to
+Scott I should elaborate on that because
+it is the focus of interest of many of
+you it's a question of mediation
+decomposing effects into its direct and
+indirect
+component and then Frills if we have the
+time and then question answers by the
+way stop me any time I like to be uh
+challenged this is statistics one
+slide because it's p that's why it's one
+slide statistic is is the exercise of
+imagining that you have a model in the
+form of a joint distribution function
+and that can answer all your questions
+if you had it but you don't have it so
+you have to estimate things okay so that
+Santa Claus splits out data and your job
+is to take the data and infer some
+property of the Santa
+Claus like estimate the mean for
+instance okay if you had the uh joint
+distribution in some form you wouldn't
+have to go through the exercise you
+don't have it so you look at the data
+and try to infer the mean the variance
+many properties some conditional
+probability for instance here's the task
+that you can answer in Fair we customers
+who bought product a would also buy
+product B many people make a good living
+by just solving this problem no and it
+here the qu the property that we're
+trying to estimate can be articulated in
+as a function of the joint distribution
+it's just the conditional probability of
+B given
+a I finish with Statistics that's all we
+need to know that of course Q can be
+very complex the number of variables
+here can can be very large they can be
+very temporarily a long time along with
+noise with all kind of things but this
+is a scheme that overrides every
+exercise in statistical
+analysis that's what you learn
+in statistics
+101 2011 203 and so forth and this
+constitute unfortunately the main quanti
+training of researchers today but we're
+not who is interested in properties of
+this kind of Oracle in descriptive
+properties we want to have to understand
+how nature Works how and primarily we
+want to find effect to predict effect of
+interventions of actions of programs
+okay what is intervention is a certain
+changes in the Environ
+I take students and I pass them through
+some training program okay they have
+gone into some some experience that they
+didn't have before that's a change okay
+so let's go to the real stuff the real
+stuff is when you have data coming up
+from a joint probability
+P but you perform a change and you find
+want to find the impact of the change by
+searching by inferring properties of P
+Prime after the change that's what the
+income of the students that went through
+your training program okay oh here's an
+example find out whether or infer
+whether the customers who bought product
+a would still buy a if we were to double
+the price so here you have a change the
+sales manager of a company wakes up one
+morning extremely G
+what if we double the
+price why can't he infer it because the
+data was taken from a 50 years of
+company record you can find how the
+price varies with sales under the
+history of the company where price was
+uh determined by another sales manager
+or by a certain strategy always track
+the competitor always track inflation or
+by certain considerations which don't
+exist today today the guy woke up with a
+greedy mood and he wants to find out
+what will happen if we were to double
+the price so you cannot infer it from
+the data because the price was never
+varied by
+Whimsical
+urges how do we do that that's that's an
+example of an intervention
+the idea is to find out how P Prime is
+related to P if it was completely
+different then we wouldn't be able to
+solve it and we just say we can't
+everything can vary everything can
+change but we assume that certain things
+remain invariant and this is indeed the
+uh definition of causality is inferences
+under under change and causal model is a
+symbolic system that encodes
+invariance what remains constant that is
+a causal model once we know what remain
+constant we can infer the property that
+we want on P Prime okay we know one
+thing is about the P
+Prime the price is going to be
+double but that's not the only thing
+there will be other things it's not the
+same as conditioning on the price being
+double that we also know because
+conditioning doesn't work for inter
+vention if it work then if it was the
+same then curing symptoms will be the
+same as curing diseases but it's not the
+same right you know you you're with me
+right conditioning doesn't work for
+intervention if it were then you would
+manipulate the barometer to prevent the
+storm the two are correlated but they're
+not they do not stand in causal relation
+to each other
+okay see simply p is an oracle that
+doesn't contain information about how
+it's going to change as a result of how
+one property is going to change when you
+vary another property you can vary the
+mean without varying the variance you
+can vary uh the median without varying
+anything else okay so P itself doesn't
+contain information of how it's going to
+change as a result of an interv mention
+it contains information how it's going
+to change the result of observation
+that's beautiful about P very powerful
+device you know if You observe any
+evidence and if evidence is part of the
+definition of p then you can condition
+on the evidence and find out how your
+beliefs are going to change as the
+result of this observation so p is a
+powerful uh Oracle for observations but
+it doesn't contain the information about
+intervention so you have to have
+additional assumptions here these
+assumptions we call causal assumptions
+what remains
+invariance and that already defines a
+dichotomy between causal Notions and
+statistical Notions I put them down with
+some examples here's a definition now
+and even if we have an earthquake now
+and I don't manage to finish the lecture
+except for this one
+I I find my trip here to be
+worthwhile that's all normally confused
+here's
+definition a statistical notion is any
+notion and any concept that can be
+defined in terms of the joint
+distribution of observed
+variables regression if I give you a
+joint distribution can you compute the
+regression coefficient you can can you
+find that things are dependent or
+independent just look if the product
+equal to the Joint right easy
+conditional independent the same thing
+okay add and risk ratio give me
+distribution I'll compute it for you uh
+collapsibility if you want to be really
+sophisticated gr of causality propensity
+score ah is it causal no it's
+statistical because it defines the
+conditional probability of a treatment
+giving some predictors
+statistical look at here here are
+Notions which cannot be defined in terms
+of joint distributions yeah spirous
+correlation if you find correlation do
+you know if it's spirous or
+organic no way okay
+randomization every it's true that every
+statistic textbooks contain a chapter on
+randomization it is not a statistical
+notion proof proof help me prove
+it if I give you a by a by normal
+by by VAR normal distribution and with
+two variables okay I tell you one of
+them is no is randomized can you tell me
+which one X and Y no way right
+so it must be on the left hand side okay
+if you cannot tell it canot test it
+using the distribution of of their
+variables then it's not part of
+Statistics you need additional
+assumptions and we know that no
+randomization indeed involves
+intervention how do you randomize
+experiment you take subject you flip a
+coin send some subject to smoke some
+subject not to smoke and you force them
+to smoke whether they want to smoke or
+don't right so you have you intervene on
+the subject to do to behave according to
+the experimental protocol against their
+natural
+inclination that is why randomization is
+on the right left hand side confounding
+I wouldn't elaborate here many people
+think that confounding is a statistical
+notion I have a chapter in my book
+saying why they're almost right but
+basically wrong confounding cannot be
+defined in terms of statistics and
+instrumental variable until today last
+last week I got a my paper reviewed by
+some reviewer and he said you have to
+explain why instrumental variable is is
+not
+statistical until today that's 10 years
+after appearance of my book it's
+tough well I I decided to quote this uh
+review where in all my lectures so in
+case he isn't in the audience
+here he or she should be
+embarrassed okay strong
+exogeneity uh explanatory varable an
+example of things that we
+get that appear frequently in our
+language as we talk in cafeteria and
+sometimes they appear also
+in Publications but they are not
+statistical now because there is such a
+clear cleavage between the
+two and because this cannot be defined
+in terms of statistical notion it means
+that if
+you if you would like to get to do a
+study whose conclusions are caal claims
+if you want to get causal conclusion you
+must have some causal assumptions in the
+input you cannot have causal conclusion
+just from statistical assumptions and
+data give me an example of statistical
+assumption normal distribution
+right typical one or Independence I
+assume that X is independent on B given
+C okay it's not enough to have such
+assumptions Plus data to give you a
+causal conclusion you must have these
+ingredients causal assumption because
+only those encode the
+invariance okay you might say I'm
+willing to take caal assumptions
+in this is one of the mental barrier
+because you have to rely on judgment
+where do they come from the causal
+assumptions either from our
+understanding of how the world works and
+I have in my abstract an example that
+the rooster crow does not cause the sun
+to rise we all agree with that or you
+conduct experiments if somebody conduct
+experimental studies and come up with a
+conclusion that certain drug is
+effective in preventing certain disease
+then this this causal claim can be used
+used in your study as a causal
+assumption you rely on the finding of
+another uh study experimental study it
+becomes now an assumption or you can
+tickle the
+rooster okay and conduct randomized
+experiment on a certain days you tickle
+the rooster and see if the sun rises and
+other days you don't tickle the rooster
+or something like
+that anyhow
+so you say I'm willing to accept
+judgmental causal assumptions in my
+study I grant you that the RTO cow does
+not cause the sun to rise I'm going to
+use it together with data to get some
+other conclusions okay how can you
+articulate it I challenge people to
+write down a mathematical equation for
+the sentence the RTO cow does not cause
+a sun toise unfortunately we cannot do
+it with the standard language of
+statistics
+proof If you were able to write it down
+in the standard level statistic then it
+will be um definable in term of a joint
+distribution right of observed variable
+but we just called it causal so it
+cannot be defined so no
+way the uh no way you can write down
+your assumption in the language of
+Statistics that's what what was a
+challenge how do you write down the
+rooster crow does not cause the sun to
+ride I cannot say that not cause at
+highly correlated I can even put the
+time and say one comes before the other
+but I cannot say it in the language of
+probability calculus that the roost does
+not cause the sun to
+rise I have to invent a new language and
+this is a second crisis the second um
+barrier mental barrier people hate
+to uh adapt to new notation but it has
+to be done so anyone who wants to stay
+within the language of statistics and do
+scientific
+studies causal studies they all
+causal any quantitative studies in
+Psychology social social uh sociology
+education
+uh economics okay must learn a new
+language that's my conclusion here and I
+it's not only my conclusion you find out
+that such a language you have been using
+it
+unwittingly here it
+is structural equation models okay it's
+a new language it was invented by civil
+right in the 1920s path diagrams was P
+picked up by Economist in the 1950s and
+60s okay that language is a new one
+because those arrows that you find in a
+diagram are
+symbols they have as much
+um uh respect the command as much
+respect as your X and Y and beta and
+Alpha they are just symbolic
+system um many have used them many
+researchers use them without knowing
+what they're doing many are still using
+them without knowing what they are doing
+but I don't want to to to blame
+anyone because it's very uh easy to to
+use them without knowing that they
+constitute the building block of causal
+Theory and then there are
+counterfactuals it's a new language
+invented by Neiman in the
+1920s and it has a subscript Don ruin
+spoke here uh last year and he is using
+this language you see y subx stands for
+the value of
+y had X been equal to small X had the
+treatment been
+given okay and why is the outcome so you
+talk about the potential outcome that
+the person would have if he or she were
+treated okay it's a new notation take a
+capital letter and put a subscript under
+it it doesn't appear in kogoro axioms
+for probability Theory it doesn't appear
+in probability
+101 it's a new
+notation two ways of treating that
+notation one is like Dan Rubin saying it
+call it a variable like any other
+variable Sometimes You observe it some
+you don't observe it so you have a
+missing missing data
+problem that's one way of looking at it
+another way of looking at it is looking
+at it as a new syntax like a computer
+scientist looking at a new programming
+language why subx it demands to have a
+syntactic rules semantic rules axio s
+and treat it nicely like it deserves and
+that what was done similar work was done
+by Louis a philosopher in the 1970s okay
+and I'll show you some of his work he
+wrote it in this way if x were true no
+why would be true had X been
+true why would be would be true had X
+been true and put a square between to
+designate as a counterfactual not
+Material implication If X and Y
+but in a subjunctive mode
+okay so you have now
+languages and we'll see what I what
+first I want to claim
+that that is
+science the language of science is the
+language of
+counterfactuals so if you if you have
+taken physics 101 you have been doing
+counteract take for instance Hook's law
+Hook's law is the uh ra ratio between
+the proportionality between the length
+of a spring and the weight that you hang
+on a spring it was one of the first law
+in physics in
+1675 I
+believe uh and the idea is that you
+write it like that why is equal to a
+constant time x the weight okay and uh I
+claim this this is a counterfactual and
+I prove it to you this is not ordinary
+equations it's a counterfactual equation
+why because from that you can
+infer
+what what y would do what the length
+would be for any X not in only the one
+that you observe now not only for one
+kilogram but for any X okay so it it
+looks even for xes that contradict the
+current X right now I hang 1 kilogram
+but I can tell tell you what the length
+of the string is going to be if I were
+to hang 20 and I just said where to hang
+counterfactual okay so it gives you
+information about all many possible
+weights that you can hang there
+okay compare this to that this is the
+solution for these two equations right
+okay according to the definition of
+algebra two sets of equations are
+algebraically equivalent if they
+preserve solutions that was a you to
+move terms from one side of the equation
+to the other because you preserve the
+solution right now is this are these
+equations equivalent to that they
+preserve solution correct but they're
+not the same these convey more
+information than that from here I can
+tell you what the Y what the length is
+going to be if I were to hang 3 kilogram
+not one from this I cannot tell you you
+see the difference even though the the
+solutions are the same the information
+that this contain is richer than you
+have information on the on the right
+therefore these are not
+equivalent they are equivalent
+algebraically but not equivalent in
+terms of information content is contain
+more information what is information
+count of factual information it tells
+you how to figure out what the length is
+going to be for any weight that you're
+going to hang
+there how do you do
+that but let's wait for that my
+conclusion is that most of the equation
+in science in physics are counterfactual
+equations because they relate to Any
+X
+thermodynamics uh particle
+physics they're all counterfactual
+equations and we all learn it in high
+school
+okay only when we come to college and we
+come to graduate school we have to
+relearn counteracts with the subscript
+there why it's already there you have
+counterfactual information right there
+in the equation of
+physics now how do we do
+that we reason now our mind if you tell
+me the x is equal to 3 I just substitute
+here three and I have that Y is equal to
+6 very simple right in your mind
+a robot cannot do that a robot will say
+hey I get a contradiction X is equal to
+1 what do you mean x equal to
+3 it contradicts one of the equation so
+what do you tell a robot to do to wipe
+out this equation and replace it with a
+new observation now the weight is three
+okay so you see already that it is not
+an operation that you learn in high
+school algebra
+in high school algebra you were not
+allowed to cross out equations from a
+system of equations the real the real
+connective here is an
+assignment conne connection not
+algebraic equality this is the the a
+precise um
+uh formulation of the physical law or if
+you want you can put it an arrow there
+it's different than
+equality now it already looks like a
+graph and that's what I'm heading
+it but notice that to do that I had to
+wipe out this equation because it will
+come out later on as a definition of
+counterfactual now we are ready to do
+things correctly we don't have to rely
+on one Oracle we really rely on sorry
+our Oracle that we rely on will be a
+data generating model okay what is the
+data generating model it's a collection
+of laws or mechanisms that decide for
+each variable in the domain which value
+it ought to
+take temperature of this object is going
+to be 23° okay there's some mechanism
+around it in the environment that looks
+at the pressure and various things and
+decides that the temperature here is
+going to be
+23° there certain mechanism that decide
+that the a patient will be
+cured very complex but it still depends
+on a number of variables so m is the
+strategy by which nature assigns value
+to is the variables of interest in
+analysis
+and the lessons of that will be we have
+to think nature not experiments and this
+would make it different than statistics
+statistician constantly ask how do we
+measure
+that how you what's your design okay
+forget about the design for for at least
+half an hour later on we'll get to how
+do we measure it but we must put if you
+want to do cation you must transfer your
+thinking into nature what's going on in
+the world think nature not experiment
+everything will fall into place later on
+we're going to ask can we measure it
+do we have enough information can we
+estimate it is the estimator consistent
+we're going to ask all this nice
+statistical questions later but first we
+have to think about nature itself here's
+an example of a causal
+model every variable here is a signed of
+value what's nice about it is that it
+can
+answer Interventional and counterfactual
+questions with no difficulty
+it's if anyone is engineering here has
+an engineering degree or engineering
+training every engineer can look at that
+and tell you not only what the output is
+going to be for given input but also
+what the output is going to be for given
+intervention if I were to replace this
+end gate with an or gate I Engineer can
+predict what's going to be output if I
+were to uh I can tell you what Z is
+going to be if y I we 23 how engineer
+can Envision connecting that point to a
+power supply with 23 volts and figure
+out what's going to happen so you see
+this simple device it's a symbolic
+system enables you to answer
+Interventional and counterfactual
+questions all with
+what just symbolic description of
+functions what is the trick
+here the trick is the assumption that
+when you vary one thing the rest of the
+gates remain intact are not touched if I
+VAR if I change this the other Gates
+remains what they were before that is a
+encoding of invariance so we have a
+collection of mechanism here we make a
+change in one but we assume that the
+others do not change okay so the point
+of causal modeling is to encode
+invariance and this does a very nice job
+it is tremendously powerful device
+because it can answer three billion
+counterfactual
+questions very
+parsimoniously okay once we get over
+that I'm generalizing it now why should
+there be only logic gate why not any
+general functions so imagine that you
+have inputs background variable some
+call it exogenous variable inputs you
+have
+variables whose um values are assigned
+by uh other VAR value variables in the
+system so you can explain why they
+attain their values those are
+unexplainable we War and Peace price of
+beans in China okay it's not part of
+your study okay they are external
+variables they vary on their own you
+don't care to ask why it happens why the
+weather change unless you are doing a
+weather forecast right okay
+now every you have a collection of
+function that is a working course of
+that every
+variable attains a value which is a
+function of other variables in your
+model that's all we need here so now you
+have a causal model and if you want to
+be really sophisticated and you don't
+know the inputs you put a probability on
+the input and now you have a stochastic
+causal model or probabilistic causal
+model and P of U because of this
+functionality
+functional mapping induces distribution
+over all variables endogenous as well as
+exogenous that's all there is and that
+was going to be the new
+Oracle that is going to
+replace the um joint Distribution on
+observed variables so statistics works
+with a an oracle of joint
+distribution causal modeling depends on
+that kind of oracles it's much more
+details and now immediately at this
+point I get five people raising their
+hands how do you know the
+functions and how do you know the use
+and how do you know the P of fuse and
+all kind of question wait a second first
+let's let's go through an exercise of
+make believe if we were to know all the
+functions and all the use okay would we
+then be able to answer the questions
+that's a first step science is an
+exercise of Make Believe constantly make
+believe I make believe now that if I
+turn my head Scott is still
+there the fact that I see it doesn't
+prove what I my assumption but it's a
+very nice and working assumption that
+helps us go through life and predict
+things okay so here I'm I'm going to a
+make believe exercise assuming that you
+have all the functions all the
+details let's define things in that make
+believe world then we're going to ask
+the question which is the hard question
+I don't have the functions all I have is
+data all I have is some qualitative
+constraints over that okay can I then
+identify my quantity of Interest
+identify means I can estimate it
+consistently from data can I then do the
+thing that I really want to do but first
+we Define things in that domain Rich
+it's a very rich detailed domain if you
+can Define things in that domain then
+you can ask the harder question whether
+you can learn them from data whether you
+can estimate it in all kind but first is
+that well you think it's easy and
+unfortunately very few people go through
+that let let themselves be carried away
+in this make believe world and go
+through that exercise it's against the
+grains of what we learn in college you
+know don't talk about things that you
+cannot observe I say yes do talk about
+things you cannot observe I know ahead
+of time I'm never going to find these
+functions but I want to imagine that
+they exist and they connect the
+variables just this exercise of
+imagining that there exist such
+functions enables me to answer questions
+that other people will not be able to
+answer if they didn't go to this make
+believe uh
+hump okay you have to I'll demonstrate
+typical example if this function are
+linear then you have a linear structural
+equations like the one you are used to
+okay it's a typical example but notice
+this are structural equations it are not
+regression equation and I'll talk about
+the difference now let's say take some
+examples how graph emerge from that
+whenever you have a collection of
+functions and you don't know their form
+all you know is who affects whom you
+have a graph right
+like here for instance supply and demand
+or Supply in quantity the price is
+determined by quantity and by wages the
+quantity by price and income you have a
+graph see those the elements on the
+right hand side are the parents of the
+fellow on the left hand side on the
+dependent variable is are independent
+they are dependent you have a graph here
+I and U determines q and P because they
+appear on the right hand side so I put
+arrows between them and you have a
+graph
+okay if assuming now that the government
+wants to impose a a price fixing on this
+commodity what is going to happen well
+let's see first the definition of
+intervention have a set of variables let
+Define an action do
+X as a as by simulating the action of
+fixing X to a constant what does it mean
+to fix X to a constant it mean to dis
+large x from its current
+influences and subject x to the power of
+your muscles then you do X if Government
+decid to fix the price then the price
+will no longer depend on the wages and
+U2 and the quantity but depends on the
+government
+decree here you have okay government
+comes here you should charge no less no
+more than p
+0 so no longer the previous variables
+play any role what do it involves wiping
+out and wiping up or wiping wiping out
+an equations and replacing it with a
+constant so here we simulate the
+intervention of fixing or setting a a
+variable to a constant
+right like we had before with the spring
+you wipe out the equation replace it
+with a constant and that simulate the
+intervention do X we form what I call
+the mutilated model with one equation
+missing if x is set you have several
+equation missing okay and now you have a
+new graph you can solve it and this will
+answer your question about what the P
+what the quantity will be if govern
+government were to fix the price at p 0
+you solve these two you have p 0 here
+you find it here
+easy but in general we can define a
+count of factual now we can say first
+notation y subx of U equal to Y will be
+the sentence y would be small Y in
+situation you had X been small X complex
+sentence right it's a we call it
+counterfactual we think o it's imaginary
+it's
+mystical because you cannot measure it
+but it's simple because it has a very
+simple definition how do you what is the
+definition of that sentence it means you
+form a mutilated model with an equation
+of X removed you replace x with a
+constant small X and you ask whether the
+solution for y is equal to small
+y then if it is equal to small y then
+this sentence is true in the mod you see
+now we have reduced the complex and
+mystical notion of
+counterfactual by high school algebra
+solve an equation with one equation
+replaced by a
+constant no more
+Mystic that's that's the most import the
+second most important part I want to
+leave here contactual high school
+algebra very simple
+and because of this is simple the whole
+causal inference business is just
+friendly and
+easy and this is the fundamental
+equation for
+counterfactual y subx of U is equal to
+the solution for y in a system of
+equation after you remove you mutilated
+by the equation that previously
+determined X now it becomes a constant
+find the
+solution it's true that we never we were
+never asked in high school to remove
+equations and then solve it it's an
+operation that we did that's why it's
+non algebraic okay but it gives us the
+semantics for counterfactual and whereas
+whereas my colleague Dan ruin takes that
+as a primitive I take it as a derived
+quantity if you start with a set of
+structural equation then the
+counterfactual is derived from a
+structure equation all of you all of you
+that are doing structural equations are
+dealing with Machinery of
+counterfactuals you can Define it you
+can uh derive it you can derive
+consequences of it you can find even
+more important things look what I can do
+hey Mom no
+hands look what I can do you can Define
+joint probabilities on counterfactual
+it's something that certain stitutions
+resist
+very
+vehemently to find
+joint Distribution on contactual that
+make conflict I say here that what's the
+probability that variable y would attain
+the value small y had X been equal to
+small X and
+simultaneously variable Z would be
+taking the value small Z had W been
+equal to small W what about if x is
+equal contradict with small W here okay
+you have a contradiction how can you
+find probability distribution on
+contradiction okay it's not a
+contradiction because these are model
+mutilated in different way here I
+mutilate by removing X here I mutilate
+by removing W and I solve it in one room
+or the other and I check if the two
+solution uh match the requirement of
+small y small Z and I can put
+probability on the
+input that leads to such a consistent
+solution and I sum all the probabilities
+I have a definition of for joint
+counterfactual when you have a
+definition for joint counterfactual you
+do onto counterfactual what you do to
+normal variables you can define
+independence among contactual
+conditional Independence all the things
+that people like to do and don't know
+what what they're doing just thinking
+mechanically you can derive them from
+your structural
+equations I can tell you the probability
+of a joint counter Factor give me any
+structural equation assuming that you
+have all the equations there all the
+parameters defined um
+specified and I can find it if you don't
+have then comes the question under what
+condition can we learn them from
+data here's an example of something that
+uh definition of the probability of
+intervention or the result of
+intervention same thing here is a
+contrafactual that looks
+contradictory Mr
+Mr J Mr Joe okay is alive and he took a
+drug what's the probability that he
+would be dead had they not taken the
+drug excuse me yeah um earlier when you
+was uh talking about the joint
+probabilities uh let us say you you
+mutilated the graph in one way and you m
+you mutilated the graph in the other way
+and those two ways are not um they they
+both can never exist at the same time
+would you say that the joint probability
+would be
+zero yeah yeah so per that definition of
+what that
+is um even if those two mutilations
+can't exist at the same time that it's
+it's you solve it in two different rooms
+one room you have mutilation on X the
+other room you have mutilation on
+W you ask Joe what did you get as the
+result of of a y tells you I got
+fiveo what did you get for the answer
+for Z it tell you three in said this is
+what I want I asked what's the
+probability that why would we obain the
+value five and X will be equal to three
+it's fairly consistent because I I did
+it on two different mutilation and two
+different room and I got an answer that
+I required and I have a probability
+distribution why because I have a
+certain input that will give rise to
+this solution in this room and this
+solution in this room
+okay so although they cannot happen in
+real life at the same time okay but they
+can the two solution can occur under two
+different mutilations at two different
+rooms at the same
+time solving equation is an
+event when you hear hear a probability
+on joint event but the event here is
+finding a solution for why in in one
+room finding solution for w whatever in
+the other room a joint event and they're
+not contradicted because they doing
+different
+mutilation in real life I could not do
+the mutilation suddenly but I can ask
+the question
+hypothetically here here look at the
+answer here is a simple very simple
+query it comes again and again it's
+called the probability of
+causation let's say you have a patient
+here that that died at Y and took a drug
+X so we know he died he took a drug the
+question is would it be alive had they
+not taken the drug okay I find the
+probability of y equal to Y Prime okay
+which means alive this is die and this
+is being alive had not taken the drug
+this contradicts that right X is
+contradict X Prime but I can ask this
+question because this involves a me
+ation given that the solution for X and
+Y are small X and small
+y okay what's the probability if you
+have to mutilate the model mutilate the
+equations under X you find that Y is
+equal to
+zero it's kind of like all the different
+possible mutilations to the graph are
+kind of allowing you to look at uh All U
+all possible world all possible worlds
+absolutely how you got it philosophers
+like to talking possible world right but
+here we talking about options Available
+to You possible that you are in control
+at least theoretically hypothetically
+had they not taking the
+drug
+okay once you have Jo probability on
+counterfactuals you are allmighty
+everything can be derived and done yes
+sir
+uh maybe we can come up with several
+structural models to describe a certain
+situation use these things but I can do
+it with one why should I think about
+several yes if I'm not sure about my
+model of course I'll have to consider
+several possible mod but I I'm sticking
+to one now what can you do with one a
+lot of things that we didn't realize we
+can do how can you compare the one with
+the other
+different question let me first explain
+what you can do with one structural
+mod so the so the sum on the previous
+page the sum is the sum over all
+possible worlds is what you're saying
+the sum is on you know here on some of u
+u is not exactly world world is a
+combination of u and v all assignment of
+values to all variables in the system
+that's a world in the philosophical
+sense yeah
+I will skip over the philosophical stuff
+of Louis which has to do with the
+closest world it's a definition of
+counter factual in philosophical
+literature it's identical it I can
+explain the my definition of stral
+equations in terms of operation on
+possible worlds but let's skip that
+because I want to get to to mediation
+this operation or this definition can be
+uh fortified with axiomatic
+characterization this is a a list of
+axioms which the counterfactual must
+satisfy and they are complete in the
+sense we haven't forgotten any logician
+can prove
+completeness okay and you can do a
+derivation that if you have assumption
+in the form of counterfactual you can
+apply those as inference Rule and get
+new counteracts that's a logic of
+counteract CHS but let me go to
+something which I think very important
+which is the difference between uh
+structural equations and regression
+equations because I keep on seeing that
+confusion in the paper that I review and
+it's really it saddens
+me uh
+so now that we understand what
+structural equations are and they have
+really a counterfactual meaning
+we can tell the difference regression
+equation is
+claims when you write down equation like
+that then before you determine the value
+of a you haven't made any Claim about
+the world everything can happen all you
+Proclaim now is I want to estimate why
+and I want to find the best estimate of
+why given observation on X that's all
+you claim your desires okay but nothing
+about the world when you write down a
+structural equation you claim something
+about the world outside you okay you
+claim for instance that the expected
+value of y given that you do X you set
+its value to something is going to be
+only a function of x b of X is not going
+to be a function of any other
+manipulation in any other variable which
+may be uh in some other equations in the
+system so imagine this is one equation
+among
+200 and the 200 equations involve X and
+W and others by saying by putting down
+this equation you made a claim that if
+you manipulate X Y is going to change
+only as a result of X or if you
+manipulate X and any other Z okay Y is
+not going to
+change this is a very important thing to
+distinguish we're making a empirical
+claim it's
+falsifiable when you put down a
+structural equation because you can
+conduct experiments and find out if it's
+true that wiggling X will not change the
+expected value of y once you set X to a
+constant it's a basic differ between the
+two and the mixing between them leads to
+all kind of equation for instance when
+would b equal to a we have a criteria
+for I'll show you in a second okay or
+question of uh
+when is B estimable by regression method
+we have a Criterion all this is part of
+the theory but first we have to
+understand what the meaning is of a
+structural equation it's a statement
+about
+intervention it's really a statement
+about counterfactuals which is more
+detailed than
+intervention an
+individual Mr U okay will react that way
+to a manipulation of x
+now that we got this under
+control let me make uh a statement about
+the methodology that comes out of that
+in every qualitative studies in
+behavioral and social sciences must go
+through these four
+steps
+Define define your quantity of Interest
+what are you
+after and this is the most neglected
+part of many of many of the studies that
+I
+see you start writing an article and you
+didn't find what your target quantity
+is I would like to see for instance you
+said my purpose is to study the effect
+of drug a on recovery type B or effect
+of a training program on the population
+uh on the earning of uh future earning
+of a certain population okay
+that is very
+important I proved to Scott today that
+people are doing mediation all people
+are doing mediation without defining the
+quantity what they the way they Define
+quantity is by the estimator that they
+hope will give them the quantity but not
+by the quantity itself now what does it
+mean to define the quantity you go to
+your model you assume it you have this
+Santa Claus or this Oracle structural
+equation
+fully specified with all the use and all
+the parameters okay would I be able to
+find the answer to my question to my
+quantity had I had I have all the
+parameters specified that's it would
+mean but Define it so the input is going
+to be a model the output is going to be
+a number for your quantity it's an
+algorithm second step is to
+Define your assumption articulate your
+assumption and we talked already about
+it that every study has every study in
+causal reasoning must begin with
+assumption the claims are only as good
+as your
+assumption therefore you have to express
+them in a language that will make your
+assumption
+transparent I'll show you some
+non-transparent
+languages I recommend using graphs as a
+language where your assumptions are
+transparent your colleagues can look at
+your graph and discuss whether your
+assumptions are plausible whether you've
+forgotten the variable whether
+additional assumptions are wanted and so
+forth right and indeed most of my work
+has to do with a long graphs because
+it's easier because many of the
+conclusions can be obtained just for the
+graph with not making any assumptions
+about the form of the functions in the
+structural equation so I leave them
+totally
+nonparametric not make any distribution
+assumptions about the exogenous
+variables about the noise variables
+okay most of the results can be obtained
+directly from the graph namely as close
+as possible to where the assumptions are
+generated and they're generated in your
+mind it are judgmental assumptions are
+based on your
+understanding of the physics of the
+problem I like to be as close as
+possible to the source of your
+assumptions so anything goes on goes
+wrong in the derivation you can correct
+it because you're close to where to to
+the scientific
+knowledge then comes the exercise of
+identifiability find out if Q is defined
+here is identifiable namely if it can be
+estimated consistently from
+observational data if you're doing
+observational studies or from
+experimental or combination
+thereof and then estimation I wouldn't
+spend any time on estimation because
+statisticians are better than me in
+doing it I cannot contribute much
+there here's an example how doing on
+time almost D no I'm going to go to
+mediation I promise
+you let me go quickly over that just
+tell you that you can flip in different
+um quantities here which have a name
+like here you evaluate the policy do X
+and do Z and do W okay it's a policy of
+treatment over time
+okay look look how I defined
+it has a very clear definition you give
+me a model all the function I can give
+you a quantity this what I think to you
+don't have the model you don't have any
+partial specification I can go to the
+next step and make assumption and see if
+identifiable but that's the first step
+so let's go into the uh
+first task find effect of intervention
+the problem is predict the impact of
+proposed intervention using data
+obtained prior to the
+intervention we know that the solution
+must be a a policy claim on the basis of
+data combined with causal assumptions we
+have mathematic tool for a caal
+assumption and now we have to decide
+whether the assumptions are sufficient
+for obtaining a consistent estimate of
+that quantity which is the prediction
+under
+intervention the nice thing about this
+theory is if the answer is no but if the
+answer is yes then it gives you an
+expression a close form expression for
+the quantity of Interest
+and if it's not then it can
+suggest measurements or experiment that
+if performed would render a consistent
+estimate
+feasible this is the quantity P of Y
+given
+tox I would like to compare
+two languages or three languages for
+articulating
+assumptions first English we're all
+familiar with it
+right here is a language English
+assuming it will have to decide the
+effect of smoking on
+cancer we understand that smoking goes
+through a intermediate State uh by
+accumulation of tar in the lungs it
+cause that and that can cause cancer we
+also are suspicious of the fact that
+whatever correlation that we might find
+between smoking and cancer might be
+confounded by a genotype that makes
+people crave for nicotine and at the
+same time makes put them in cancer risk
+okay that's a story I gave you in
+English I just finished two sentences we
+understand what it is we have to we have
+to
+evaluate the effect of CA effect there
+no other effect it's a causal effect
+excuse me if I just the effect of
+smoking on cancer given a possibility of
+confounding through a genotype U okay I
+describe to you the uh
+story in
+English Okay you understood it your
+colleague understand it okay okay now
+you want to go to formal language okay
+here's one
+possibilities it's called
+the uh potential
+outcome potential outcome framework Dan
+ruin spoke to you a year ago this is how
+the assumption the story going to look
+like if you articulate it in the
+language of potential outcome any
+counter factual for instance this will
+be the fact that Z the T accumulation is
+a function of smoking it's not a
+function of the
+cancer so why that which is the output
+cancel is not a determiner of the tar
+deposit that's how it looks in the
+language of potential outcome all these
+are subscript variable which mean are
+counterfactual here you have conditional
+or
+independencies between a joint
+counterfactual and a
+counterfactual okay this is
+encapsulation of the English sentence
+that I gave you about that that's one
+way of articulating in the formal
+language but I give you a third
+possibility which is my preference here
+it is
+right so these four lines of equations
+which are very hard and not too friendly
+and we don't know if they are consistent
+we don't know if they're complete we
+don't know if they're redundant okay are
+encapsulated in this graph the
+equivalent formally equivalent I can
+take the that and and write down that I
+can take that and write down that okay I
+think it's more
+friendly and this is one advantage the
+structural equation has as opposed to
+the um nean Ruben potential outcome
+formalism okay it's easy to articulate
+assumptions it's very important to
+articulate them in a transparent way I
+explain to you why because you want it
+to go through
+a
+um through scrutiny of your
+colleagues it may it has assumption here
+for assumption the genotype is not
+affecting the tar independently tar is
+only a function of the of
+smoking identifiability is defined
+formally and what identifiability means
+it's that exactly what we talked earlier
+I don't know the functions and I don't
+know the probability on the use
+and I'm asking under what conditions the
+details of the models won't
+matter that
+okay that is idea of
+identifiability when can I identify the
+desired quantity from data alone plus
+the graph I know the graph
+structure not annotated by any functions
+okay if I can take this pair and come
+out with a my qu the tar Target quality
+then the details of the models won't
+matter so that's the question of
+identifiability any questions about that
+you ask about how we going to find the
+functions under certain condition we
+don't need the
+[Music]
+functions here's an example
+confounding we talked about that you
+have to find the effect of X on Y and
+you have a bunch of
+attributes for your counties participate
+counties don't participate okay you have
+economic social economic conditions
+genotypes all this business okay some of
+them affect the treatment some of them
+affect the outcome some affect some
+affect each other okay and you ask under
+what condition the effect of X on y can
+be consistently estimated from the
+data without knowing the functions
+without knowing the distribution of the
+arrows just looking at the structure and
+the answer is yes there is a simple
+Criterion it's called back door and if
+here's the
+solution if there is a set of
+confounders of observed
+confounders that separate X from y
+separate all the back door path between
+X and Y then they are admissible for
+adjustment then you adjust for them and
+you get the the
+desired um policy evaluation effect of X
+on y okay it's given to you in the
+famous adjustment formula you condition
+on both x and z the set of Co variat
+okay you average over Z and you get what
+you ask
+for the effect of X on y yeah go ahead
+this this may be a strange question in
+these in in these types of um causal
+graphs is it possible to have a loop yes
+as I showed you I started with a loop in
+economics right price determines the
+quality
+qualty determines uh price yeah the back
+door
+formula would not work for for Loops it
+works only for
+but the entire Theory works for
+Loops good good
+question okay so you have a graphical
+Criterion that you look at the graph and
+you said yes this set of coari would be
+sufficient if I can measure them I can
+adjust for them and I get I'm guarantee
+to get my results with no
+bias assuming of course that the graph
+structure is
+correct if your graph structure is
+incorrect like for instance you forgot
+the link between Z1 and Z2 then your
+answers is going to be
+wrong but at least you can discuss your
+assumptions with something which is
+transparent meaningful cognitively
+meaning
+meaningful
+okay this is a on that basis I okay we
+have extension for that some sometimes
+you can find the causal effects with no
+adjustment with some know or double
+adjustment or all kind of tricks which
+is which necessitate not only finding a
+coari set and adjusting on them but more
+intricate kind of analysis okay and
+there is a general Criterion today
+graphical Criterion that tells you under
+what condition you can do that this is
+something which is surprising okay
+suppose you cannot measure any of the
+Compounders here Z not Z1 Z4 Z you
+cannot measure them they exist there and
+you cannot touch them hidden but you can
+measure that
+fellow the answer is yes you can still
+identify the effect of X on Y and there
+all kind of graphs and subgraphs that
+allow you to do that and we have a
+calculus here's an example that I got
+from a
+sports uh physician concerning about the
+effect of warm-up exercis that's on
+injury and you have here a graph tells
+you very measurable and some of them may
+be unmeasurable and the question is
+which one are sufficient for
+adjustment as sufficient in the sense
+that you can get the correct causal
+effect
+unbiased here's an example the parents
+of the outcome are
+sufficient they obey the backd door
+criteria no
+no previous injury is a bad one because
+it is a Collider
+what does collider do if you condition
+it it connects a back door here z z not
+good here's one which is not
+uh very well known how about the parents
+of
+X it looks like they they um disconnect
+all back door path they're correct but
+you have to watch out because among them
+there could be an IV an instrumental
+variable in which case if you left any
+conf any confounder
+unobserved you adjust for an an
+instrumental variable and you amplify
+instead of reduce the bias it's not very
+well known it's just a new results by
+wri which are Amplified in the paper I
+showed you what about
+that it turns out yes I don't it's it's
+a graphical condition
+that it's part of the theory okay I but
+anyhow we have now graphical Criterion
+you look at the graph you can tell me I
+can only observe the subset of things is
+it sufficient and the answer is yes or
+no it's an
+algorithm okay let's I want to jump
+to mediation because that
+is uh also a topic which is oh sorry so
+here's a good one prop this score we go
+to estimation now same graph okay you
+have a thousand variables
+here very sparse data you cannot really
+uh adjust for all the variables that you
+need because you're going to have many
+empty cells that's the idea of
+propensity score instead of that you are
+looking for a function of the
+variables okay if you find a function of
+particular kind you can adjust just for
+that function just L and instead of you
+get adjustment on a scalar variable
+instead of a
+multi-dimensional uh
+Vector that's a propensity score it
+turns out that if L is equal to the
+probability of x given those if this is
+you take the function then it's um
+adjusting for L is the same as adjusting
+for for the Z okay now which
+means that if you select for the z a
+sufficient set then L would also be a
+sufficient but if you select for L
+something else which is not sufficient
+or introduce bias then L will be as
+screwed up as your
+bias so that sympotic bias of propensity
+score is equal to that of ordinary
+adjustment for the same Z
+the propensity score does
+not uh including additional coverance in
+the analysis can spoil the bias
+reduction potential of other variables
+or other Co variant for instance if you
+introduce a collider that can spoil
+things choosing sufficient sets for
+propensity score requires knowledge
+about the
+model you cannot choose things correctly
+unless you have the graph or at least
+some properties of of the model itself
+okay and here is an example which I
+present which coari should you adjust
+for say you you want to find the causal
+effect of treatment on outcome and you
+have hygiene
+assignment some observable which is a an
+effect of both age B2 a follow up after
+the outcome
+it turns out well if you do things by
+the back door Criterion you should
+adjust for age you should not adjust for
+B1 because you're going to collect a
+collider here you should not adjust for
+assignment even though assignment is a
+good predictor of the
+treatment because if you because of this
+this new paper okay that holding an
+assignment fixed
+amplifies um an the bias code caused by
+unobserved confounder unadjusted
+Compounders so all this can be done by
+just looking at the
+graph I want to go now to
+mediation because because we talked
+it GE I have so much material bing
+bing it's amazing did I expect guilty
+with probability
+one it's it's chapter nine in my book so
+mediation or effect
+decomposition why decompose effect what
+is the definition of direct and indirect
+effects and what is the policy
+implication of them and when can they be
+inferred from experimental as well as
+observational studies okay three reasons
+why you want to look at the uh the
+composition first to understand how
+nature
+works and that's why the paper by Baron
+and Kenny got 177,000 citations 17 one
+of the most cited papers in the history
+of qualitative method right because
+people are interested to know if things
+are caus directly or indirectly and if
+indirectly through what variables
+because you might do something about
+those other
+variables sometimes legal requirements
+behooves you to estimate direct effect
+and not indirect
+effect and then leave the rest now
+what's the difficulty here let's look at
+the effect of of hiring
+discrimination sex bias in hiring
+okay the law says that employer should
+not discriminate on the basis of sex
+it's a qualification are the same the
+law does not say that you should not
+discriminate on the basis of
+qualification
+even though the qualification can be
+gender
+dependent
+okay uh so which means the law behooves
+you to estimate if you want to prove an
+employer uh biased then you have to
+prove that there is a direct
+effect between gender and
+hiring notice that I'm talking the
+effect even though gender is not a
+manipulated
+variable that's also a difference
+between me ruin
+okay no cation without manipulation
+forget it there is manipul there is
+causation without manipulation otherwise
+there wouldn't be any laws like that on
+books okay now the problem with that is
+um if you have linear model there's no
+problem you have Alpha Beta gamma you
+just you trying to estimate Alpha the
+direct effect but when you have
+nonlinear the level at which you
+condition
+Z2 will affect the direct
+effect in non linear system so the
+question is what do you do do what do
+you set Z to what
+value you should not just condition on
+Z because if you condition on Z you're
+going to get a spous correlations coming
+from possible latent variables here
+through that collider okay so the
+definition could of direct effect could
+not be articulated in terms of
+conditioning on the mediator I'm going
+to use Z for the mediator all the the
+whole literature on
+mediation is treats a direct effect as
+if you condition on Z by beijan
+conditioning or just for Z that's all
+wrong it has you have to set Z to a
+constant by intervention set it constant
+okay um just for Z no no you got
+it now what do you do in nonlinear
+system we have this is a nonlinear
+system but Z is some f of x and noise Y
+is some G of X in the mediator and some
+noise definition of direct
+effect direct effect from a certain
+level of x to another level unit
+increase in X okay is equal to the
+expected change in Y when you change X
+from x0 to X1 and for each U you keep Z
+at what constant at a constant at a
+value that Z Would attain before the
+change and look at what I done now I'm
+using now the language of contactual to
+tell you at what level to keep Z
+constant I feel free with counteract I
+know they can be computed by high school
+algebra right that's what gives me the
+confidence and theah okay to talk about
+counterfactual nested counterfactual all
+with such freedom and comfort I know I
+can compute
+it no fear okay so here's an example
+this is the expression this is
+definition of direct effect look at what
+I have here expected value of y had X
+been X1 I wiggle X from x0 to X1 and Z
+is kept constant what value whatever
+value Z would
+get under be before the transition when
+X was x0 it's an expression it's a
+algebraic question in the language of
+contactual but I have no fear as I
+explain to you why because I know I can
+compute
+it whether I can estimate is a different
+question I can Define it now now it's
+defined for all
+nonlinear
+systems or nonparametric systems I don't
+have to decide for the function I don't
+have to find f and g and I'm asking the
+question under what condition it can be
+here here it is is n counterfactual
+defined sure you can look at the set of
+equation and find out what value Z Would
+obtained before the
+transition then mutilate the equations
+again with the value that you got for Z
+the solution you got for Z so you
+mutilate Z mutilate x with two different
+values and find out the solution for why
+it's well defined if it's well defined
+then I can ask the question about
+identifiability but first let's go to
+indirect effect because that's
+a tough issues one of the teachers of
+structural equation model wrote to me
+and said I have hard time explaining to
+my students what indirect direct effect
+stands for we know the direct effect
+means you keep that constant okay and
+then you wiggle X and that's what
+happens to Y but what about indirect
+effect what do I keep
+constant I have to disable this line I
+cannot keep anything constant and
+disable this
+line I cannot bias the fact that I
+cannot circumvent the fact that I have
+here an arrow between X and Y
+so how do I disable that
+thing here's a definition in terms again
+of nested counterfactual it allows you
+to um allows you to articulate your
+understanding of what indirect effect is
+it's expected value of expect to change
+in y when we kep X we keep x constant we
+only vary Z to what value to the value
+that Z would get had exchanged
+you see the tricky here you very Z but
+to what value counterfactually if x were
+to change from zero to one then Z would
+get some
+value so change Z to that
+value tricky huh double
+counterfactual but it has expression
+once you can express it forget about the
+trickiness it's just a solution of
+equations and the answer is
+the answer is first let go here that it
+has conditions under which you can
+estimate it from data empirical data
+experimentally and also observational
+studies okay and by the way if you have
+no not unobserved confounding you have
+the mediation formulas this is normally
+assumed in literature we have no
+confounding so look what happens to the
+direct and indirect effect direct effect
+indirect effect in the direct
+effect you set both x and z to a
+constant but you vary X from X to X
+Prime so you ask for the change of
+Y
+of when you when you wiggle X from X to
+X Prime Holding Z constant it's under
+the do but at what value you average
+over the value of Z
+and the condition where X is set to uh
+prior to the
+transition and you look at the
+distribution of Z under this condition
+that is a waiting function when you do
+the average of all possible value of
+Z the indirect effect is different you
+don't find such a nice intuitive
+explanation but it is a Formula that can
+be um can be
+estimated by regression if you have no
+unobserved Compounders because all the
+do operators are reducible to ordinary
+conditioning if you have no unobserved
+Compounders in the
+graph this movian model okay so it's
+done the mediation problem is solved
+because we have a graphical condition or
+to find uh under what
+circumstances um it can be identified
+from empirical as well as observational
+studies what is that ah I told you
+causality is
+simple I presented to you a formal basis
+and counterfactual
+inference it unifies the graphical
+potential outcome and structal equation
+approaches those of you are doing
+structural equations be aware that
+you're holding in your hand the uh ution
+to all causal questions but you just
+have to do it right that you're holding
+in your hand the Machinery the symbolic
+Machinery that can provide the answers
+to all causal
+questions H it's friendly and it's gives
+you a formal solution to Century old
+problems and
+confusions and as my friend
+said was the Aristotle not really he is
+wise who bases causal influence
+on an explicit causal structure that is
+defensible on scientific ground it
+wasn't really Aristotle I just wanted to
+um to draw respect from
+you I put his name it's really Charlie
+pool what it one of
+his one of his
+papers and the question will be answered
+do we have time to answer questions we
+over time but I think if people can say
+we have the room to one so we can think
+a few oh good ah I could have
+continued no no it's time for you to ask
+questions uh can you use the mechanisms
+direct to make statements about the
+assumptions of your way to build
+very have to go
+back yes it's very important let's look
+at the graph
+here the graph has arrows has a double
+arrows and has missing arrows okay a
+missing Arrow like for instance here
+okay it tells you all that if I were to
+wiggle X okay then there will be no
+effect on y it's in the interpretation
+of all first of all the assumptions in
+the graph lie in the missing arrows not
+in the arrows erors tells you there
+could be some connection there some
+causal connection I'm not sure the
+coefficient can be zero the strength can
+be zero everything can happen the
+missing error is a statement about the
+world if you were to wiggle X here
+nothing is going to happen to why if you
+were to randomize it it's a it's a
+claim the assumptions the the missing uh
+link a double error it's a statement
+about um independent
+of the arot terms okay it's also a
+causal assumptions it's not a
+statistical assumption because the aror
+terms are
+unobserved they have only meaning if
+when you talk about causal
+models they are not the residual of the
+regression okay they have only meaning
+in in a causal context therefore for a
+missing Double Arrow which stands for
+Independence of the arrow terms in is a
+causal statement about the
+world it has you can verify it
+empirically if you had the chance to do
+randomiz experiment okay okay that these
+are two
+assumptions did I answer your questions
+so one way of looking at the graph is as
+encoding of um who affects whom under
+experimental conditions
+so you have to think about is it true
+that if I were to change X there nothing
+would happen to Y you imagine wiggling
+with your hand or with some external
+forces with some encouragement in social
+science for instance if I encourage
+students to take a history class okay
+would there be any effect on their
+earning capacity or things like
+that any other question
+hey no questions I can continue with
+it I think this would be a good time to
+end thank you for your uh
+words thank you for being so
+[Applause]
+attentive
+Professor our Urban Health uh Institute
+would like to give you this little token
+of appreciation for your uh lecture here
+W thank you taking time out of your busy
+travels is coming just came from Boston
+this morning got up really early to come
+and be with us today and has to be out
+on a flight soon to Florida heading back
+to California well the such friendly
+audience I'm am glad I I woke up at 4:00
+a.m. tonight
+today it was worth it thank you thank
+you I appreciate it

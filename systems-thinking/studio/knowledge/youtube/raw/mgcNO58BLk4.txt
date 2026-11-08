@@ -1,0 +1,269 @@
+You've probably heard the expression
+it's a small world before, but what
+exactly does a small world mean? Well,
+to answer this question, I'm very
+delighted to have my student Cla on the
+channel who has a lovely video for you
+answering that very question. Take it
+away.
+&gt;&gt; So, as Trevor was saying, there's
+actually a way to quantify how small the
+world really is. So, before we kind of
+look into that, let's just start by
+looking at the people that you know.
+you're all connected to them, but
+chances are several of them are
+connected to each other. So in the real
+world, we would call this a clique. In
+math, we do too. Except in math, it
+means that for every two people, there
+is guaranteed to be a connection between
+them. There's a couple of other
+interesting things about small world
+graphs. One of them is hubs, which you
+might be familiar with because of
+cities. But while we can just look at
+cities, we can also look at the flight
+path between them. Here it's pretty easy
+to see where the hubs are. There's one
+more thing that sets a small world graph
+apart. This is that it has a high
+clustering coefficient. The clustering
+coefficient measures how much vertices
+or these tend to cluster together. We'll
+start by looking at the local clustering
+coefficient. The local clustering
+coefficient focuses on one vertex and it
+quantifies how close its neighbors are
+to being a clique. In this case, the
+vertex has three neighbors. So let's
+look at how we calculate the local
+clustering coefficient or CL. We
+calculate it by dividing the number of
+links between the neighbors by the
+number of possible links that could
+occur between them. When we say links,
+this is what we're talking about. Now
+let's look at some examples. Firstly, we
+can look at what happens if there's no
+connection between the neighbors, which
+is what you can see here with the dotted
+pink lines. So in this case, we would
+divide 0 by 3, which is just going to be
+a clustering coefficient of zero. What
+if there's one connection between the
+neighbors? Well, in this case, it's
+pretty easy. The local clustering
+coefficient is just going to be 1/3.
+Well, what if there's connections
+between all of the neighbors? In this
+case, we have a local clustering
+coefficient of one, which is the highest
+that it could possibly be. This helps to
+explain if a group of neighbors is a
+clique or not. But how do we look at the
+overall clustering of the graph? For
+this, we look at the global clustering
+coefficient. The global clustering
+coefficient is based on the concept of
+triplets of vertices. Here you can see
+we have an open triplet or we have a
+closed triplet which we also just call a
+triangle. But this is a little bit
+complicated to just think about. So we
+should probably look at it in action.
+The way that we calculate the global
+clustering coefficient is by taking
+three multiplied by the number of
+triangles in the graph divided by the
+number of all triplets in the graph.
+Let's look at an example because it's a
+little bit confusing to think of. So
+let's take this example. We'll work our
+way through it. First counting the
+triangles and then counting the
+triplets. To start, we've got first
+triangle, the second triangle, and the
+third triangle. So we've got three in
+total. But what about the triplets? So
+let's just start by looking at this
+triangle right here. This triangle has
+three different vertices, which the
+three different vertices can have three
+different combinations and orders that
+would make up three different triplets.
+So each triangle contains three
+triplets. So we've got that for our
+first triangle. Now we've got it for our
+second triangle. And we've got it for
+our third triangle. So we've got nine in
+total. But what about the triplets that
+aren't a part of these triangles? Well,
+we've got five of those. So we've got 14
+triplets and three triangles. Putting
+that together, we have 9 over 14 or 0.64
+as our clustering coefficient. But how
+do we tell if our graph is a small world
+graph? To do this, we compare it against
+a random graph. So, I'm going to be
+showing a bunch of different random
+graphs that you can get a good feel for
+what they are, which all of these were
+generated through the Erdos Rainy model
+that generates all of these different
+types of graphs. But how do we choose
+which random graph to compare our
+suspected small world graph against? To
+do this, we choose a random graph that
+has an equivalent density as our small
+world graph. But what is density? We
+take 2 and we multiply it by the number
+of edges in the graph divided by the
+number of vertices times the number of
+vertices minus one. So if you're still
+wondering what density is, we can look
+at these two graphs as an example. We
+can clearly see which one is denser
+here. We can also do an example to
+clarify this further. Here in this small
+graph, we've got five edges and four
+vertices. So we can calculate this
+pretty easily. We've got 2 * 5 / 4 * 3.
+So 10 / 12, which is just 0.833. So
+density is really just a measure of how
+many edges are between all of the
+vertices in a graph. The more edges, the
+higher the density. Well, this is all
+interesting, but how do we actually
+compare it? We've chosen our random
+graph with an equivalent density. But
+what do we do now? So in order to
+compare the graphs, we're going to use
+the clustering coefficient, which we
+know how to calculate, and the average
+distance between the vertices, which we
+know how to calculate an average. So,
+there's a couple different ways of
+measuring the likelihood that a graph is
+a small world graph. Today, we're just
+going to be looking at the small world
+coefficient, but we'll put a link in the
+description if you're curious about the
+other ones. So, for the small world
+coefficient, we divide the clustering
+coefficient of the suspected small world
+graph by the clustering coefficient of
+the random graph divided by the average
+distance between the vertices of the
+small world graph divided by the average
+random graph. to be a small world graph,
+sigma must be greater than one. And
+there's a couple different ways that
+this will happen. So our average
+distance between nodes for our small
+world graph is going to be roughly
+equivalent to the average distance
+between nodes of our random graph
+because they have that equivalent
+density, which means our denominator is
+going to be roughly equal to one. As for
+our numerator, well, if we suspect that
+something is a small world graph, it's
+probably going to have a very high
+clustering coefficient. Well, for a
+random graph, it's going to be a much
+lower clustering coefficient. Which
+means if we divide our suspected small
+world graph's clustering coefficient by
+a random graph's clustering coefficient,
+sigma should be greater than one, which
+meets that condition. So this is all
+cool. We know how to find out if a graph
+is a small world graph. But this can be
+a lot of work. So instead, what if we
+just want to have an algorithm that
+creates a guaranteed small world graph
+for us? There's actually a very cool way
+of doing this. We take a watt stroats
+model. The watts strogats model takes a
+random lattice graph which I'm just
+about to show and uses an algorithm in
+order to turn it into a small world
+graph. So the first thing that we're
+going to do is we're going to take a
+ring lattice with n vertices. In this
+case we're choosing 12. And we will
+connect each verticy to k neighbors
+which in this case k is equal to four.
+So we'll do this and we'll connect each
+vertex to four of its nearest neighbors
+like this. So now we have the next step
+which is a little bit more complicated.
+So for each vertex, we're going to take
+every edge that connects it to its
+rightmost neighbor and we're going to
+rewire it with probability P, which
+sounds super confusing when I say it out
+loud. So we'll run through several
+examples to kind of explain what we
+mean. So we'll start with zero. We're
+going to take its rightmost neighbor and
+rewire it with probability P. So the
+rewiring is done. But this begs the
+question, what is P and what does it
+even mean? Well, rewiring is done by
+replacing 010 with let's say 0 L where L
+is chosen uniformly at random between
+all of the other vertices in the
+lattice. Keep in mind we can't have
+duplicates or self looping. Before I
+explain anymore, it might help to do
+some more examples. Let's take one. So,
+we've got 1 11 and rewires it to 1 4.
+Now, let's take two. We'll take 2 0 and
+rewire it to 28. And we'll take three.
+So, we've got 3 1 and rewire it to 311.
+So, we kind of keep going on and on and
+on with every single vertex until we
+have something that looks sort of like
+this. Okay. So, now you can see what the
+algorithm does. But why does this work?
+Well, remember earlier how I was talking
+about rewiring with probability P, where
+P is a number between 0 and one that
+represents the likelihood that an edge
+between two vertices is going to be
+rewired. Well, there's a really
+interesting thing that happens when we
+combine lattice graphs which are
+extremely uniform that have a
+probability of zero because there's no
+rewiring which when we combine it with
+something like a random graph that has a
+p equal to 1 where every single edge
+between a verticy has been rewired and
+we get something like this graph where p
+is somewhere in the middle between that
+zero and one. So this develops a small
+world graph because we get to have the
+best of both worlds. A lattice graph has
+a high clustering coefficient where each
+vertex is connected to many of its
+neighbors. Where a random graph has
+short path lengths on average. To
+explain a path length, we can kind of
+look at this graph here where previously
+in order to get from 8 to two, we would
+have to take three different paths.
+Whereas now, because we have that
+shortcut, we only take one. So when we
+combine these two things, we get the
+best of both worlds having that high
+clustering coefficient with short path
+length. Or in other words, we get a
+small world graph. So now you know how
+to create your very own small world
+graph. So why should you care? Well,
+whether it's looking at your friend
+group or neural networks or pandemics or
+supply chains, they're everywhere.

@@ -1,0 +1,101 @@
+{
+  "schema": "rig.systems-thinking-studio.integration-proof.v1",
+  "status": "PARTIAL_CUTOFF_USER_APPROVED",
+  "mission": "Bring evidence-backed systems thinking changes into the canonical Systems Thinking Studio package and Jake PAI.",
+  "user_scope_change": {
+    "original_raw_target_bytes": 5000000000,
+    "approved_cutoff_bytes": 3428312570,
+    "reason": "User instructed: that is enough, analyze and bring in what we need to change to the systems thinking studio repo."
+  },
+  "prefect": {
+    "campaign_deployment": "omniscout-systems-thinking-campaign/rig-systems-thinking-5gb",
+    "campaign_flow_records": [
+      "78314dd8-a97e-4a87-8576-1d952de2c7d0",
+      "560245dc-dcb5-4952-8527-273ae3ee1800",
+      "c639708d-5183-4648-b83e-ddd9b4e60d0e",
+      "a373b4b7-546e-4ae1-a60e-62d6d99daa85",
+      "86625fe0-92c2-4388-8b3a-df7b210fa2a8"
+    ],
+    "distillation_deployment": "omniscout-systems-thinking-distillation/rig-systems-thinking-distill",
+    "distillation_flow_records": [
+      "ebd39f4e-b701-46e4-825f-eefd01c9e095",
+      "d300db9c-8725-4ff3-97f0-365f2f9f28f9"
+    ],
+    "notes": [
+      "Raw collection was frozen via user-approved cutoff rather than represented as a completed 5GB campaign.",
+      "Manual direct Prefect executors preserved flow records while the global runner was degraded by stale auto-scheduled records.",
+      "Remote child guardian was plant-tested: cancellation left zero campaign workers after TERM/KILL window."
+    ]
+  },
+  "corpus": {
+    "artifact_count": 1677,
+    "artifact_bytes": 3428312570,
+    "artifact_chain_sha256": "e43767b42c8d834645be46c2c9c8a7e074faa8a100092ddcd7f41a9b5fa5b380",
+    "source_classes": {
+      "paper": {"items": 1657, "bytes": 3424063913},
+      "hn": {"items": 14, "bytes": 290536},
+      "youtube_captions": {"items": 6, "bytes": 3958121}
+    },
+    "topic_count": 18,
+    "topic_anchor_gate": "18/18 green",
+    "two_source_class_topics": "12/12 required green",
+    "cutoff_proof_sha256": "dd0d93ab410bfa96fce6c44c65586e0f88b4f697aa265d28d625a2c6b10f93f2"
+  },
+  "l2": {
+    "model": "qwen3:4b fallback; resident qwen3-coder:30b blocked the 27B slot",
+    "pass_cards": 12,
+    "quarantined_cards": 0,
+    "not_ready_topics": [
+      "multi-agent-coordination",
+      "workflow-scheduler-authority",
+      "knowledge-organizational-learning",
+      "complex-adaptive-systems",
+      "incident-learning-postmortems",
+      "decision-calibration"
+    ],
+    "summary_sha256": "48919a3d5aac4e26fe363cfdfeb4c281862dfa3fafe066dabbcb1e8851d33e15",
+    "schema_repair": {
+      "topic": "governance-auditability",
+      "only_change": "citation_sha25 -> citation_sha256",
+      "precondition": "all listed citation values exactly equaled captured source hashes",
+      "before_card_sha256": "60352d0b737fc0923b7bcbbdd9320e4fd6d42119de32a2b8ffd9cb832dafe46c",
+      "after_card_sha256": "49b95e878d8ed038eb674aea7ff0422cc77f8f4676fa6a91716786fdb8f7d49c"
+    }
+  },
+  "canonical_studio_package": {
+    "path": "/Users/rig128gb/Developer/rig-intelligence/packages/systems-thinking-studio",
+    "changes": [
+      "data/curated-mechanisms-20260830.json",
+      "processes/source-gated-tranche.md",
+      "processes/phases.md",
+      "scripts/studio.py",
+      "SKILL.md",
+      "proofpacket/systems-thinking-tranche-20260830.json"
+    ],
+    "registry_sha256": "6d86c72b0a0429876e161c113658fdc034a5bfdc7a6aa1bc4019d2a2135c0d39",
+    "package_proof_sha256": "4c5d0fb7c65056dbb606c30ad91e4e4a1f3b1a99dae72f80766be0a7d131f2d2",
+    "verification": [
+      "python3 scripts/studio.py doctor",
+      "python3 scripts/studio.py mechanisms governance",
+      "python3 proofpacket/verify.py proofpacket/systems-thinking-tranche-20260830.json --base ."
+    ]
+  },
+  "jake_v3": {
+    "module": "/Users/rig128gb/.jake/JAKE_SYSTEMS_THINKING.md",
+    "backup": "/Users/rig128gb/.jake/JAKE_SYSTEMS_THINKING.md.v2-backup-20260829",
+    "before_sha256": "d9095e5a38c6962283e3e2956a0b6dea3ab364972c6c5a1814d396dbdcabf8dd",
+    "after_sha256": "a27dc79bc4db8db227973542f34bad2a534017c9f5fabb38999031180f1ccb67",
+    "curated_appendix_sha256": "68b2f28acd7659b2bc9cf44ff367f51ed7835d67babe91c84f2a23a653184b3f",
+    "curated_mechanisms": 11,
+    "source_l2_pass_cards": 12,
+    "authority_state": "STAGED_NOT_PROMOTED",
+    "wiring": "all four jake-pai skill mirrors retain exactly one JAKE_SYSTEMS_THINKING reference"
+  },
+  "known_gaps": [
+    "The raw collection did not reach the original 5GB target; user-approved cutoff is explicit.",
+    "Six systems topics require a second source class before they may enter L2 policy.",
+    "The generic Prefect runner has stale auto-schedule backlog/API degradation; bounded cleanup code was added and unit-tested, but the global runner needs a clean live watchdog cycle to prove recovery.",
+    "Repository-wide scripts/verify.sh is blocked by independent registry-policy drift: verifier expects hard ceiling 29, canonical registry reports 55. Package-native ProofPacket verification is green.",
+    "No frozen doctrine or external action was promoted/authorized by this tranche."
+  ]
+}

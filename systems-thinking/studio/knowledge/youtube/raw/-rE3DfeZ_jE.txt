@@ -1,0 +1,699 @@
+and we're all very excited to hear
+Alan's talk so Ellen why don't you take
+it away
+thank you very much thank you for coming
+to my talk about long tail distributions
+I'm Alan Downey I'm a producer at
+brilliant which means that I write
+online courses and I was for a long time
+a professor at Olin College
+I am also working on a book called
+probably overthinking it what I'm
+talking about today is chapter 8 from
+this book
+it is about long tail distributions and
+my claim is that these are common in
+natural and engineered systems
+they violate our intuition they defy
+prediction and they leave us unprepared
+for disaster and let me explain what I
+mean I'm going to start with a small
+data set which is a list of natural and
+human made disasters from Wikipedia and
+I'm going to look at the distribution of
+the total cost of that disaster and if
+we plot on the x-axis here the cost in
+billions of
+inflation-adjusted dollars on the y-axis
+this is the tail distribution that means
+the percentage of these disasters that
+exceed a given threshold cost and what
+we can see on a linear linear scale is
+that most of these disasters are smaller
+cost less than a hundred billion dollars
+but a few of them extend out into a long
+tail
+if we look at this on a linear scale all
+of the data is mashed up against the
+axes which is always your warning that
+you are not visualizing something well
+so the first step is to put the x-axis
+onto a log scale so this is the
+logarithms of the costs in billions of
+dollars and now the distribution moves
+through the middle of this figure which
+means that we're visualizing it well and
+it has this characteristic shape the
+sigmoid which resembles a gaussian
+distribution so a gaussian on a log
+scale is a log normal distribution
+what this suggests is that that might be
+a good model for this data so I'm going
+to put up a picture this is the same
+data again but the gray line here is
+showing a log normal model that fits the
+data and it looks pretty good if you
+plotted this you would say the model
+fits the data well there's a gray area
+there that doesn't come out well on the
+projector that shows the range of
+variability that we expect due to chance
+and if you can squint and see that the
+data fall almost entirely within that
+range
+so this model looks good maybe there are
+a few more disasters near 100 billion
+but it's within the amount of
+variability that we expect by chance and
+then a Black Swan comes along and
+suggests what if we look at this on a
+why with the y-axis on a log scale and
+to demonstrate this I'm going to show
+you a fake lesson that I made using the
+brilliant site so this is not something
+that we've published we don't have a
+class about long tail distributions
+quite yet but when we do one of the
+things that it might show is that when
+we look at this distribution on a linear
+y-axis most of the information is on the
+left part of the curve the left third of
+this distribution is taking up about
+half of my vertical space and the tail
+the right most third of this
+distribution is only getting about a
+tenth of the visible space and again the
+information that I want is mashed up
+against the axis which means that I
+can't see it clearly if I go to a log
+scale
+it compresses the left hand side so now
+it's only getting about a tenth of my
+vertical space and my tail has expanded
+substantially the right most third now
+is taking up about half of my available
+visual information
+just to give you a sense of how that
+transformation is causing this to happen
+I'm going to show you what happens as we
+slide smoothly between a linear and
+logarithmic transformation so here on a
+linear scale the left side is big and
+the right side is small and as I move
+smoothly from a linear to a log scale
+you can see that right hand side being
+nice and and stretched out so I like
+this visualization because it lets us
+see the expansion and contraction of the
+two parts however if you're of a
+mathematical bent and you're asking
+yourself what does this mean in between
+when we're halfway between a linear and
+a log scale you realize that from a
+mathematical point of view this makes no
+sense whatsoever but it is showing you
+how that tail gets stretched so if
+somebody asks you which of these scales
+is best for visualizing the tail
+Behavior you would say I think the log
+distribute is the way to go
+all right so if we put this onto a y
+axis log scale it is like a microscope
+for zooming in on that extreme right
+hand part of the distribution and now if
+we go back to this visualization again
+linear scale looks okay seems pretty
+good
+put it on this log y scale and now we
+can see that there's a serious
+discrepancy at the extremes the log
+normal model is dropping off much more
+steeply than the data and there's a
+substantial gap on the right hand side
+which means that the model is
+underestimating the probability of these
+rare events
+when we're talking about preparing for
+disasters that is a bad thing because
+your model is telling you that a
+disaster that exceeds 500 billion
+dollars should happen only one time in a
+thousand but in reality it is 16 times
+out of a thousand a factor of 16 is
+pretty bad
+we're going to see that it's going to
+get worse
+so the model underestimates the
+probability of large rare disasters
+we're going to need a better model
+there are a few long-tailed models to
+choose from I'm not going to get deep
+into this but I will point you to this
+paper and if you download the slides
+there's a link on the right hand side
+there where you can get the slides and
+from there links to everything else that
+I'm going to talk about this paper is a
+good survey of the history and the
+different models that we can use for
+this kind of data
+the particular one that I'm going to use
+is students T distribution
+this is William Gossett who wrote about
+this distribution using the pseudonym
+student because he was working doing
+quality assurance at the Guinness
+Factory at the time but this is similar
+to a gaussian distribution except that
+it has a longer tail so it is described
+by three parameters location and scale
+like a gaussian plus an additional
+parameter which is degrees of freedom
+represented by new that controls the
+thickness of the tail so taking
+advantage of this nice figure from
+Wikipedia we can see how the shape of
+the distribution varies as we change new
+when new it was one that is like the
+super long-tailed behavior that is the
+orange curve in this figure with the
+very thick Tails going out to the
+extremes
+at the other end as new goes to Infinity
+this converges to a gaussian
+distribution so with very large new it's
+basically just a gaussian
+the middle the range of about three to
+ten is what you tend to see in data sets
+in the real world so that's the space
+that we're going to explore
+this is an example this is a standard
+normal distribution plotted against a
+student T distribution with the
+parameter 10. new or degrees of freedom
+equal to 10 and you can see on a linear
+scale they don't look super different
+and you could fool yourself into
+thinking that the gaussian model was
+good enough but one more time when you
+put that y-axis on a log scale the
+discrepancy in the extreme of the tail
+becomes really apparent in this example
+it's a couple of orders of magnitude of
+difference
+turns out if we estimate the parameters
+to fit that distribution that I was
+showing you a minute ago Nu equals 3.5
+fits the data pretty well
+so this I'm now going to show you some
+figures with the linear scale on top and
+the log scale on the bottom the same
+x-axis and this is useful because in the
+top figure we can see most clearly the
+middle part of the curve which you can
+think of as normal cases and in the
+lower figure with the log transform we
+can see the tail more clearly those are
+the extreme values so both of them fit
+pretty well the log T model is doing a
+pretty good job for the normal part of
+the curve and a pretty good job for the
+tail part of the Curve
+just to reiterate because we're going to
+see that figure over and over the top is
+on a linear scale the bottom is on the
+log scale
+one other thing I'm fitting this the T
+distribution to the logarithms so in the
+same way that if your logarithms fit a
+normal distribution that means that the
+values are log normal
+if your logarithms fit a t distribution
+I'm going to call that the log T
+distribution as far as I know this name
+doesn't exist that's just what I'm
+calling it
+all right
+I claim that this is common in natural
+and engineered systems let me start to
+look at some examples earthquakes data
+from the Southern California earthquake
+data center I have to say thank you to
+the people from the USGS that I had
+breakfast with this morning this is
+their data they have almost a million
+earthquakes going back to 1981 in this
+region of Southern California
+and this is the distribution of those
+magnitudes now the magnitude scale that
+we use for earthquakes is already sort
+of logarithmic it's the logarithm of
+energy so no transform on the x-axis
+required again I've got linear on top
+log y-axis on the bottom and we see
+again that the log normal model is
+dropping off much more steeply than the
+data it's underestimating the
+probability of
+rare events if you only looked at the
+top figure you might think that this
+model was okay when you look at that
+bottom figure you see that Gap and
+numerically it's pretty bad
+predict the fraction of earthquakes with
+magnitude of four or more the model says
+33 per million the data says 1800 per
+million you're off by a factor of 55.
+wow that's bad wait it's worse
+because we really care about our large
+earthquakes things like magnitude 7. if
+you ask the model it would say okay
+that's going to happen five times out of
+10 to the 18th
+effectively never
+the data is saying that that's going to
+happen six times per million which is 12
+orders of magnitude more likely
+and in fact a magnitude 7 earthquake is
+not a super super rare event we have had
+one in California as recently as 2019.
+so the model says that this should never
+happen recent memory says it just
+happened
+so that is how bad that is this is an
+example of what Nicholas taleb calls
+Nasim to lab calls a Black Swan
+the definition that he gives is that
+this is a large impactful event it's
+considered extremely unlikely based on a
+model of Prior events and I want to
+emphasize the model in this definition
+because it's limited by both the data
+and the model that you choose
+so in the case of the earthquake data
+the log normal model is a bad choice and
+we want to see whether the log T
+distribution does better now I'm using
+an extra parameter so we expect it to
+fit the data better but it fits the data
+pretty remarkably well this is the kind
+of fit where when you're experimenting
+and you find something like this you
+think that you might be on to something
+and I'll get back to why the
+distribution might work might have this
+shape but this is suggesting that we
+have a pretty good model here for the
+tail of the distribution of earthquakes
+which means that we might have tamed
+this Black Swan and again this is
+taleb's idea that if you have enough
+data and you use an appropriate model
+you can make good predictions and in
+that case you've taken a Black Swan and
+tamed it and he terms that to be a gray
+swan
+so that's the good news there's bad news
+coming but that's that's the good news
+I want to propose this Black Swan
+hypothesis in two forms there is a weak
+form that says that if you choose a bad
+model your predictions will be bad
+this is entirely unsurprising that
+part's not really that big a deal in
+fact I'm going to put it into meme form
+if your model is bad your predictions
+will be bad
+I think no argument there the strong
+form of the Black Swan hypothesis is I
+think more interesting and it's the
+claim that some black swans Cannot Be
+Tamed or maybe you just can't know
+whether you have tamed them or not
+I'm going to give an example which is
+solar flares I think these are a good
+candidate for untameable black swans I'm
+going to use data from the space weather
+prediction center this is from the goes
+satellite Network which has been
+observing our sun and monitoring solar
+flares since about 1997 we have tens of
+thousands of solar flares that we have
+observed and we have the energy that
+they would
+radiate per square meter
+this is what those distributions look
+like compared to a log normal model one
+more time if you looked at that top
+figure you might think that this model
+was good enough when you look at the
+bottom figure on a log y scale there's a
+big gap there where the model
+underestimates the probability of large
+events
+the log T model substantially better
+in terms of a curved fit pretty good in
+terms of a visual evaluation you might
+look at that and say your data has some
+curvature there that seems like a pretty
+consistent pattern that your model is
+not capturing which is one reason that
+you might want to be nervous about this
+model
+so let's see what we could do with this
+model we want to make predictions
+particularly we might be worried about
+super flares this is something we have
+seen from other stars
+flares that are 10 000 times bigger than
+anything we have seen our sun produce
+it would be very bad if our sun produced
+a solar flare so this is something of
+some urgency to know whether our sun can
+produce a super flare the question is
+can we use the model that we have so far
+to answer that here's what it looks like
+to extrapolate from the data that we
+have out four more orders of magnitude
+to make this prediction
+we might ask how much confidence would
+we have in the prediction coming out of
+that model and the Black Swan suggests
+not much
+for a couple of reasons one we have even
+though there are tens of thousands of
+observations that is a relatively small
+sample for what we're trying to do
+we see a hint that this model might not
+be quite the right shape because of that
+curvature and we are extrapolating four
+orders of magnitude beyond the data
+these are all reasons to think that to
+tame this one we need more data and we
+need more astrophysics
+so far in 20 years we've seen 36 000
+flares
+if we observed for 500 more years we
+would be up to a million observations
+and that would still be two orders of
+magnitude less than we would need to
+make a confident prediction about this
+extreme Tale
+and we don't have the astrophysics to
+know whether it's just a different kind
+of star that produces super flares and
+our sun will never do that or whether we
+just haven't seen one yet so this is a
+limit of how far you can get with a
+purely statistical model without some
+Physics behind it
+to have some ideas about where these
+distributions come from why do things
+follow long tail distributions
+there are a few mechanisms that people
+have proposed one of them is
+preferential attachment which is
+phenomena where the rich get richer and
+this is sometimes called the Matthew
+effect it has a few other names because
+it has been independently discovered in
+every field of natural and social
+science but in general when you have
+these aggregating processes where the
+rich get richer you see long tail
+distributions
+there are also models based on
+self-organized criticality that produce
+these long-tailed distributions and
+that's been proposed in particular as a
+possible explanation for earthquakes
+the other piece of this in particular
+for student T distributions where they
+come from mathematically is they are a
+mixture of log of of normal
+distributions with different variants or
+if you like on a log scale a mixture of
+log normals so we could look for
+physical phenomena that are generating
+lots of log normals with different
+variants and aggregating
+there's one other one other donation for
+this that comes from mendelbrot's book
+The fractal geometry of nature what what
+He suggests is that the data that we
+observe that have this long tail they
+are the joint effect of a fixed
+underlying true distribution and a
+highly variable filter that leaves the
+asymptotic behavior unchanged that was
+his language I'm going to decode that by
+showing you a particular example which
+is lunar craters
+one more data set the robins data set of
+moon craters contains I forget how many
+a large number of uh creators that are a
+one kilometer or larger in diameter I'm
+going to skip over the log normal
+distribution and take you straight to
+the log T it fits these okay again we're
+seeing some departures there that say
+maybe this isn't everything that's going
+on but nature is not obligated to follow
+simple mathematical models nevertheless
+this seems like a reasonable description
+of the distribution of craters
+why should they have that shape one way
+to think about it is these craters got
+formed by the late heavy bombardment
+which were asteroids that were displaced
+from the main asteroid belt and hit the
+Moon
+what is the distribution of ask asteroid
+sizes look like NASA can help us with
+this they have the small body database
+they have more than 100 asteroids with
+known diameters
+and compared to a log T model this is
+what the distribution of asteroids looks
+like
+world that are not in our model but as a
+three parameter model it's doing okay
+now let's look at the relationship
+between the size of a crater sorry the
+size of an asteroid and the size of the
+crater that it makes it depends on its
+size velocity density angle of impact a
+couple of other factors
+so we can simulate that so I'm going to
+choose a random asteroid from the
+asteroid belt throw it at the moon and
+Generate random parameters from these
+other factors for these other
+um
+parts of that equation that we were just
+looking at and if we compare the result
+of the simulation with the actual
+distribution of crater sizes they look
+pretty good now I've got some free
+parameters there in my simulations so
+this isn't too surprising but this does
+suggest that if the distribution of
+asteroids is long-tailed then the
+distribution of craters will be long
+tailed
+so this is an example of the mechanism
+that Mendel brought proposed which is
+that maybe the craters are long-tailed
+because the asteroids are long-tailed
+and maybe the asteroids are long-tailed
+because one of these rich get richer
+processes like accretion where a large
+asteroid is more likely to collide with
+another particle and stick to it
+so in mandelbrot's vocabulary the
+underlying process is accretion and the
+highly variable filter is the formation
+of these craters
+all right let me wrap this up
+I claim long tail distributions appear
+in many fields
+a bad model can seem okay if you look at
+it on a linear scale but if you look at
+it on a log log scale which is this
+microscope for the extreme values you
+can see the discrepancies if you use a
+good model you can sometimes tame these
+black swans
+but it may be practically impossible or
+maybe theoretically impossible to tame
+them all
+before we go I'm going to suggest some
+sources and further reading starting
+with my book probably overthinking it
+this is chapter eight this is coming out
+in the fall and just happens to be
+available for pre-order now
+the other book I mentioned of course is
+an assem taleb's book The Black Swan
+and if so that book is written for a
+general audience if you would like more
+technical details on this there's a
+paper on archive that's quite good it is
+extensive and detailed but a lot of good
+information there and Mendel brought's
+book The fractal geometry of nature is
+the other one that I mentioned
+and there are five different ways to get
+in touch with me if you want to follow
+up but we are I think have a little bit
+of time to take some questions
+[Applause]
+thank you thank you so much for the very
+engaging talk
+um for those of you that have any
+questions in person please raise your
+hand
+and if we have any remote questions I
+will read them out loud right now we
+don't so
+uh just mention that I have an example
+that I cut so one question you could ask
+me is Alan is there a really interesting
+example that you cut but go ahead
+you did that question for somebody
+that's a that's a great question but
+I've actually got a different one so
+um in all the examples you showed you're
+using models that have support negative
+Infinity to Infinity but all your data
+sets are support zero to Infinity could
+you talk about that a little bit yes
+okay so the data set are all positive
+values because I'm measuring something
+in the world the models some of them
+extend to negative Infinity
+um the once we're on a log X scale we're
+okay because that now goes to negative
+Infinity as well so and I think
+after my first example everything was on
+a log X scale so that that solves my my
+domain problem
+um I have a question why not um long
+necked swans
+why is it long tailed and not long neck
+yeah the vocabulary here is weird
+there's there's they're long-tailed
+fat-tailed heavy-tailed and they all
+sometimes mean the same thing people
+have tried to give them more specific
+definitions but it hasn't stuck I guess
+heavy necked would be weird that would
+be weird
+thanks for the great talk as always
+um so in the the models that you were
+showing here uh obviously for this talk
+you chose very simple pedagogical ones
+but then even at the end you were
+showing that okay we can use simulation
+to try and get at these uh but still a
+pretty uh using actual information
+actual physics but uh not all of it so I
+guess in your can you give a bit of
+insight into for these uh these black
+swans that might be untameable at what
+point do you uh you know should we as
+analysts be thinking about
+how much more physics how much more
+science do I am I lacking that I need to
+go work with other experts on to try and
+pull in versus at what point am I kind
+of tapped out and should I just more be
+considering the question am I able to
+make meaningful predictions with my
+models period or to have am I beat in
+some sense
+[Music]
+make them more physical one is if you
+have a physical law that puts an up or
+bound on things like if we knew that our
+sun could not produce solar flares you
+could add a filter that trims the
+extreme tail
+some of the ones that I showed where
+there were some bumps those are
+naturally modeled using mixtures so if
+you had a reason to think that different
+asteroids formed at different times
+through different processes that might
+explain a mixture
+or if you had reason to think that those
+sampling process was not random like the
+asteroids that were displaced during
+this event might not have been a random
+sample of all of the asteroids and you
+could model that sampling process that
+would be another filter
+that would make your models more
+realistic and it would also demonstrate
+mandelbrot's point which is that none of
+those filters change the asympt the
+qualitative asymptotic Behavior it's
+still this long-tailed shape
+thank you
+so when you're showing the the first
+example with the earthquakes
+um it looked like using the log normal
+distribution that model was under
+sampling the Tails and then some of your
+later examples it looks like your models
+were had thicker Tails than the data
+suggested so do you have anything you
+can say about that with regards to these
+Black Swan scenarios because if you're
+trying to make sure you're accounting
+for these rare highly impactful events
+or things well if your model
+over predicts them is that better than
+underpredicting them
+right yes so your observation is right
+the log normal model compared to a long
+tail distribution is always going to
+underpredict
+the student T model is pretty flexible
+it can have on that log scale positive
+or negative curvature and in some of the
+examples as you said it's overshooting
+the data and predicting a really
+probably unrealistic long tail
+is that a feature or a bug I'm not sure
+the fact that it can be over or under
+probably that's better than always being
+wrong in the same direction but it means
+you've you have to worry about two kinds
+of errors and it's not it which kind of
+error is better or worse depends on your
+domain
+you could be you know if if you
+underestimate the probability of
+disaster
+you will likely suffer a disaster that
+you're unprepared for but if you
+overestimate it then you're probably
+over budgeting preparation that should
+be spent on something else so it's bad
+either way
+okay so that's all we have that's all
+the time we have so I saw that there's
+several other people with questions
+please post them in the chat and Alan I
+think you can get to them we do have a
+started question of uh is there an
+example that you left out so I really
+hope we get to hear that um on on slack
+okay I'll do that on slack and actually
+it's in the slides oh okay great and one
+more time the URL for the slides is
+there and so you can get to all the
+links from there thank thank you all
+very much
+can you link it

@@ -1,0 +1,279 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Harness Engineering Playbook",
+    "subtitle": "Deterministic harness around a non-deterministic agent \u2014 Shopify theme migration as the worked example",
+    "output": "harness-playbook.html",
+    "quality_profile": "showcase",
+    "views": [
+      {
+        "id": "page-loop",
+        "label": "The page loop",
+        "focus": [
+          "queue",
+          "ralph",
+          "runner",
+          "agent",
+          "theme",
+          "gate"
+        ],
+        "note": "One page per fresh-context session: build, converge, gate, visual-verify \u2014 loop until deltas are zero."
+      },
+      {
+        "id": "capture-and-seal",
+        "label": "Plan and seal",
+        "focus": [
+          "router",
+          "plan",
+          "queue"
+        ],
+        "note": "Discovery turns a source site into a sealed queue and evidence packs before any theme code exists."
+      },
+      {
+        "id": "feedback-convergence",
+        "label": "Gate feedback",
+        "focus": [
+          "gate",
+          "ralph",
+          "theme"
+        ],
+        "note": "The visual contract diff is the only done-signal; non-zero deltas route work back into the loop."
+      }
+    ]
+  },
+  "layout": {
+    "mode": "grid",
+    "cols": 5,
+    "cellW": 180,
+    "cellH": 90,
+    "gapX": 60,
+    "gapY": 70
+  },
+  "components": [
+    {
+      "id": "operator",
+      "type": "external",
+      "label": "Operator",
+      "sublabel": "starts \u00b7 changes",
+      "row": 3,
+      "col": 0
+    },
+    {
+      "id": "router",
+      "type": "backend",
+      "label": "AGENT_GUIDE.md",
+      "sublabel": "read-on-demand",
+      "tag": "entry point",
+      "row": 1,
+      "col": 1
+    },
+    {
+      "id": "plan",
+      "type": "backend",
+      "label": "plan.sh",
+      "sublabel": "capture per page",
+      "row": 3,
+      "col": 2
+    },
+    {
+      "id": "queue",
+      "type": "messagebus",
+      "label": "migrations/",
+      "sublabel": "sealed \u00b7 evidence",
+      "tag": "contract",
+      "row": 2,
+      "col": 2
+    },
+    {
+      "id": "ralph",
+      "type": "backend",
+      "label": "ralph.sh",
+      "sublabel": "state machine",
+      "tag": "the loop",
+      "row": 1,
+      "col": 2
+    },
+    {
+      "id": "runner",
+      "type": "backend",
+      "label": "agent-runner.sh",
+      "sublabel": "provider plug",
+      "row": 1,
+      "col": 3
+    },
+    {
+      "id": "agent",
+      "type": "external",
+      "label": "LLM Agent",
+      "sublabel": "fresh context",
+      "row": 1,
+      "col": 4
+    },
+    {
+      "id": "theme",
+      "type": "frontend",
+      "label": "theme/",
+      "sublabel": "Dawn + sections",
+      "tag": "the product",
+      "row": 0,
+      "col": 4
+    },
+    {
+      "id": "gate",
+      "type": "security",
+      "label": "visual-diff gate",
+      "sublabel": "contract-diff",
+      "tag": "THE GATE",
+      "row": 0,
+      "col": 2
+    },
+    {
+      "id": "shopify",
+      "type": "cloud",
+      "label": "Shopify target",
+      "sublabel": "unpublished only",
+      "row": 0,
+      "col": 0
+    },
+    {
+      "id": "followup",
+      "type": "backend",
+      "label": "follow-up.sh",
+      "sublabel": "same gates",
+      "row": 2,
+      "col": 3
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "security-group",
+      "label": "Deterministic harness (everything except the product)",
+      "wraps": [
+        "router",
+        "plan",
+        "queue",
+        "ralph",
+        "runner",
+        "gate",
+        "followup"
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "operator-router",
+      "from": "operator",
+      "to": "router",
+      "label": "reads first",
+      "variant": "emphasis"
+    },
+    {
+      "id": "router-plan",
+      "from": "router",
+      "to": "plan",
+      "label": "start migration"
+    },
+    {
+      "id": "plan-queue",
+      "from": "plan",
+      "to": "queue",
+      "label": "seal _queue.tsv"
+    },
+    {
+      "id": "queue-ralph",
+      "from": "queue",
+      "to": "ralph",
+      "label": "next page \u00b7 resumable"
+    },
+    {
+      "id": "ralph-runner",
+      "from": "ralph",
+      "to": "runner",
+      "label": "prompt per page"
+    },
+    {
+      "id": "runner-agent",
+      "from": "runner",
+      "to": "agent",
+      "label": "provider args"
+    },
+    {
+      "id": "agent-theme",
+      "from": "agent",
+      "to": "theme",
+      "label": "BUILD sections"
+    },
+    {
+      "id": "theme-gate",
+      "from": "theme",
+      "to": "gate",
+      "label": "source vs target capture"
+    },
+    {
+      "id": "gate-shopify",
+      "from": "gate",
+      "to": "shopify",
+      "label": "push unpublished"
+    },
+    {
+      "id": "gate-ralph",
+      "from": "gate",
+      "to": "ralph",
+      "label": "deltas \u2260 0 \u2192 converge",
+      "variant": "dashed",
+      "labelAt": [
+        580,
+        154
+      ]
+    },
+    {
+      "id": "followup-runner",
+      "from": "followup",
+      "to": "runner",
+      "label": "re-enters loop"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Offline proofs",
+      "items": [
+        "41 self-tests: plan 12 \u00b7 ralph 13 \u00b7 runner 12 \u00b7 follow-up 4 \u2014 stub agents, no store",
+        "Every exit path exercised before any live credential is needed"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Trust marks",
+      "items": [
+        "\u2705 verified-here vs \u26a0\ufe0f doc-derived on every platform fact (docs/validation-status.md)",
+        "Brakes: publish is a separate explicit step, never part of a migration iteration"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Runtime state",
+      "items": [
+        ".ralph/ (ignored): ACTIVE_PAGE \u00b7 BLOCKED \u00b7 runs/<id>/ logs \u00b7 token cache",
+        "Resumable: the loop re-enters from the queue after any interruption"
+      ]
+    },
+    {
+      "dot": "cyan",
+      "title": "Loop states",
+      "items": [
+        "Each page: BUILD \u2192 CONVERGE \u2192 INTERACTIONS \u2192 GATE \u2192 VISUAL-VERIFY",
+        "Done = machine gate-verified visual parity, never a ticked checkbox"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Learning loop",
+      "items": [
+        "ralph-retro.sh reads .ralph/runs logs, improves the harness, commits",
+        "Durable discoveries append to LEARNINGS.md and route back into docs/"
+      ]
+    }
+  ]
+}

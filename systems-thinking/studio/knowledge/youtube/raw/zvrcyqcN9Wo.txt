@@ -1,0 +1,2785 @@
+Great pleasure to welcome Unes Pas uh
+from the University of Copenhagen. Uh
+UNESC has very kindly agreed to uh give
+an extra 8 hour uh C miniourse on top of
+the 50 minutes seminar that we invited
+originally for and uh it's great to Yas
+is a a great lecturer. He's uh he's
+given courses at uh machine learning
+summer school and tuning in. Yas got his
+u not sure where he got his PhD. He has
+three adviserss uh behoving
+and Peter Kman. I think he ended at ETH
+because he got a medal from the ETH for
+best thesis. Then he went on for a short
+time to be leading the Kazali group at
+Tubingan and then now he's um I guess an
+associate professor at the University of
+Copenhagen. I'm gonna take more of his
+time and uh let you join the lectures.
+Thanks Phipe. Um thanks everybody for
+coming. I'm super glad to be here. I
+already said this. It's a bit of a funny
+coincidence that I'm back because I was
+the last time I was in Boston was
+actually in 2001. This was after 9/11
+and I visited my brother who was
+studying here and for me it was the
+first New Year's in Boston. So I brought
+a lot of fireworks because I thought
+this should be a good thing to
+celebrate. But then it turned out that
+there are no fireworks allowed in
+public. So I ended up uh bringing all
+the fireworks back to Germany. But I
+forgot to take them out of my hand
+luggage. So I discovered this at the
+gate actually. So no one found the
+fireworks and my sister freaked out. So
+we ended up dumping them in a bit of a
+trash can. I'm glad that nobody nobody
+found this because otherwise I would
+probably not be here today, I guess. So
+this this miniourse I will talk about
+causality and for me I'm very glad to
+see so many people. Um I'm a bit unsure
+about uh your background. Um what I'm
+trying to do is I'm trying to introduce
+you to some of the concepts of causality
+and I'm trying to keep it basic. Um if
+it's going too slowly or too quickly
+please do interrupt me at any time. So
+if you don't understand anything it's
+pro most likely because of me not
+because of you. So please do interrupt.
+Um okay I will I have a couple of slides
+that I prepared but again I'm a bit
+flexible. So um if you want to hear more
+about one of the specific topics also
+please come to talk to me in the break
+or afterwards and maybe we can adjust
+even a bit. So I will talk about many
+things and this is a very incomplete
+lists of people who contributed ideas to
+this talk. So I just go over a couple of
+them. Jude Pearl is um one of the early
+figures in this field. Um he's at UCLA
+received the Turing award for his work
+on causality and graphical models. Um
+there's a bunch of people at CMU working
+on this topic for some historical
+reasons. They are all in the philosophy
+department although they are pretty
+strong in mathematics as well. Um we
+have Donard Rubin and Jamie Robbins at
+Harvard. I personally was working with
+Peter Bman Nikolai Mines at DTH Zurich
+and Dominic Jansing and Bennard Chukov
+at the MTI. Yurus Moy contributed a lot
+to the ideas here. The UN he's now at
+the University of Amsterdam. Patrick
+Hoya there are many many others. So
+please do not feel offended if I forgot
+your name here.
+Okay. So um what I will do is I will try
+to introduce you into the topic in four
+slides and if you take back anything
+from these eight hours it will be uh
+please let it be the first four slides
+they are quite important to me. So they
+describe the essence problem of um of
+causality. So consider the following
+problem. So we have data from u some
+genes. So let's say this is some measure
+of the activity of a certain gene a and
+we measure some phenotype at the same
+time. So think about a flowering time or
+something. What you see is that there's
+a dependence. So the more this gene is
+expressed. So think about the lock
+expression level here. The more um the
+gene is active, the more of the
+phenotype you find. The question is now
+um in statistics the question you're
+answering is often a question of
+prediction. So it says well now assume
+that you for example observes that the
+activity of this gene A lies around six
+what is then the best prediction for the
+phenotype and this is a problem that we
+have studied for many many years in
+statistics and that is well understood.
+So you have all these prediction
+techniques here you can use a linear
+model if you like and then you the
+answer would probably something like
+well if the activity is around six then
+you expect the phenotype to lie around
+15.
+In costality however we are addressing a
+different problem and this is very
+essential to understand. So here we are
+asking the the question as follows. So
+we are saying well now what happens if
+we actively intervene on the system. So
+here for example what happens if we
+delete the gene A? What is our best
+prediction for the phenotype if we
+delete the gene A? And this means that
+we set the activity to zero let's say.
+So here
+would you have a stronger laser? It's a
+little hard to see. I don't know if
+anybody else is.
+I don't have any other lasers, but maybe
+there's an analog pointer. I could use a
+long stick or something like a finger.
+That's the start when
+Okay. So here the question is what is
+the best prediction for the phenotype if
+we delete the gene? So if you set the
+activity to zero and this now is a very
+different question. Why is this the
+case? So if you want to answer this
+question, the only thing that you what
+you need to to include is causality and
+that's my my argument here. So in order
+to answer this question, you have to
+talk about the causal structure of the
+underlying problem. And why is this? So
+I'm trying to show this with these two
+slides here. Imagine now that there's a
+different gene B, not gene A but gene B
+and that shows the a very similar
+dependent structure. Now what we will
+see is that depending on the causal
+structure the answer to this problem
+will be different. Okay. So assume that
+we will make this more precise later but
+assume that the gene A is really causal
+for the phenotype. So then what do we
+expect if we delete the gene A? So we
+see set the activity to zero. So you can
+think about a hammer and you're changing
+the gene A. So then we expect to see a
+difference a change in the phenotype as
+well. And this is why the best thing so
+now to predict the phenotype is to say
+well it probably lies around this
+interval.
+This is at least intuitively hopefully
+clear. So if we have a gene A that is
+causing the phenotype we delete the gene
+A then the phenotype drops down as well.
+The gene B for in this case um this
+works this example works different. Why?
+So we have the same dependent structure
+but now we have a very different causal
+structure that lead can lead to a very
+similar dependent structure here. So
+assume that the gene B is now not causal
+for the phenotype but there's a hidden
+common cause. So something that we call
+a confounder and this is causing both
+the gene B and the phenotype at the same
+time. But now what happens? So if we now
+intervene on gene B. So if we delete the
+G&amp;B B we again set the activity to zero.
+Then what do we expect the phenotype to
+do? Well basically we expect the
+phenotype to do what it always does. So
+it stays in the area that we have
+observed it. So this means the best
+prediction for the phenotype is to say
+well it does what it always does. So
+here if we put a hammer on gene B and
+delete it we don't see we don't expect a
+change in the phenotype.
+Yeah.
+So just to just to be very very clear
+you're saying the it's an intervention
+not an observation right? Yes.
+So that you're actually deleting gene
+activity as opposed to just observing a
+case and predicting
+exactly that's that's the correct
+notation that we're going to use. So the
+question here is we want to predict what
+the system does after an intervention.
+Right. And also there's nothing special
+about the value of zero complete
+deletion any active change how the
+system will respond to it.
+Yeah. So gene deletion is only one
+special case of an intervention that I
+chose here. And the take-home message is
+really if you want to answer this
+question you have to talk about
+causality. And I understand that
+causality is also a um rather young
+research topic I would say and there are
+many subtleties that we are going to
+discuss with causality and it's fine if
+you don't want to talk about causality
+but then I think it's important to
+realize that then the best thing you can
+do to answer this question is to say I
+do not know if you want to give an
+answer then you have to talk about
+causality
+any other questions about this example
+good so then step number three what is
+what is a causal model? Um so usually
+what we are doing in statistics is we
+are creating a model for some
+distribution. So let's say you have a
+data generating process and we want to
+model the distribution. So you're saying
+it's a it's a Gaussian uh distribution
+with a certain mean and a certain
+variance. Now a causal model is
+something slightly different because if
+you have a causal model you want to do
+several things at the same time. You
+also want to be able to model a
+distributions that you observe. So these
+are the data points that you have seen
+on the last slide. But at the same time
+you want the causal model to be able to
+say how the system reacts under these
+interventions. So this is the the gene
+deletion that you have seen on the last
+slide.
+Then what usually also comes with a
+causal model is something like a causal
+graph. This you have already seen as
+well. So this is something that is very
+convenient for example to get an
+overview of the causal structure. Right?
+And then something that if time allows
+we're also going to discuss a bit are
+counterfactuals. So this is also that
+something that comes out of uh some of
+these causal models. These are
+statements like these whatif statements
+uh that we will discuss later. If anyone
+wants to sell you a causal model on the
+street make sure that these properties
+are satisfied otherwise it's not a
+causal model. So here we want to be able
+to model the distribution and most
+importantly also the other
+interventional distributions.
+And this is what we are going to discuss
+in this uh mini course.
+Then step number four, if you want to
+start doing research in causality, it's
+super easy because what you will see is
+that um all the concepts are quite
+basic. Uh there's there are lots of open
+questions and I guess most of you are
+smart enough to immediately uh start
+doing great research on this. So what
+are some of the questions that are are
+studied in this research field? Um so
+one is how does the causal model
+actually work. This is also something
+that we're going to discuss but there
+are lots of subtleties um that people
+are still thinking about. Something
+which is very important also for
+practical applications is things get
+more complicated if you have a lot of
+hidden variables involved um or
+feedback.
+Another question is the question about
+graphical representations. So in this
+miniourse we will mostly talk about
+so-called DAX directed asyclic graphs.
+So we do not assume feedbacks and we do
+not allow for hidden variables mostly.
+Um but if you want to then these
+graphical representations become rather
+complicated. So these are these mags and
+pegs that you have may have heard of for
+example.
+Counterfactual statements something that
+people um investigate is is it actually
+possible to test counterfactual
+statements in in practice. And then a
+very important question that we have
+been also studying a lot is um in
+practice often we are not given the
+graph but we are rather rather giving
+given data and the question is can we
+somehow infer the graphical structure
+the causes structure from the data
+something that uh this last question
+here um that I think is a very
+interesting research topic but that's uh
+still in its infancy so to say this is
+the question whether causality is useful
+in classical machine learning or um
+statistical problems and the reasoning
+is as follows. So usually you would say
+that causality becomes important
+whenever you are interested in answering
+these interventional questions.
+But now then you would say well on a
+first order approximation if you're not
+interested in interventions you don't
+care about causality so much. But
+whenever you have systems that evolve
+over time so that are not stationary. So
+you can think about problems like domain
+adaptation or transfer learning. Then
+the question arises whether these uh
+causality point of views whether they
+can help to make the system the
+statistical system more efficient in
+terms of making use of the data and this
+is something that we are beginning to
+investigate as well.
+Okay. So these are the four steps into
+causality.
+Any questions?
+Yeah. So how many samples are needed to
+basically you know discover the
+causality that's one question maybe and
+what is the computational complexity in
+actually uncovering the causal
+structure.
+Okay so the question I repeat is how
+many data points are needed to recover
+the causal structure um and what is the
+computational complexity of the methods.
+So this is something that is of course a
+very difficult question to answer. So
+what is causal discovery? So you're
+referring to this question here. So we
+are given some sample from the joint
+distribution and we are trying to
+recover the causal model and of course
+this um this question now I would say is
+not well posed yet because what you're
+what we are going to see is that this
+step backwards so recovering the causal
+model from the distribution um or from
+the from a sample from the distribution
+this is only possible under further
+assumptions and this you can think of
+there's an analog actually in
+statistical learning theory um so it's
+very similar in statistics because there
+you also have that if you're receiving
+data from an underlying distribution
+then to recover the underlying
+distribution is only possible under
+smoothness assumptions for example. So
+if you think about a regression problem
+if you don't make assumptions about the
+smoothness of the uh function that
+you're trying to learn then of course
+you will also not be able to to learn
+the function. So this certainly has to
+to play a role in there. And then the qu
+the second question that I think we
+should discuss as well is like do the
+assumptions that we make in order to um
+get this link from the distribution to
+the causal model do they do they hold in
+practice. So these are the questions we
+maybe have to answer first and then I
+can point you to some results that look
+at statistical efficiency. Yeah. Um so
+one thing and it might be encapsulated
+in some of this is the question is what
+data would be most useful in order to
+infer
+what data would be most useful in order
+to infer the the causal structure.
+Exactly.
+Um okay so this this all goes to the
+sort of the uh the second part of this
+this miniourse again it's the uh the
+question about inferring the causal
+structure. So a short answer. So maybe
+what I should say at the beginning is
+that this research field is still rather
+young and I will present to you some
+ideas how to do this step. How can we
+learn causal causal models? And what I
+would say at the moment what I think is
+most promising is if you have actually a
+a system uh that evolves a bit over time
+that changes. So we call these different
+environments. So it is possible under
+some assumptions to learn the causal
+structure from just observational data.
+Um and I can show you some of these
+ideas and they have some promising
+results in real data but it's a very
+difficult problem. I think you gain a
+lot if you some if you somehow have a
+perturbation of the system and you don't
+even need to specify how the system was
+perturbed. But I think this helps a lot
+for learning the cost structure. The
+second point is the second answer maybe
+is that a time series structure also
+helps a lot because whenever you have a
+time series structure in the in your
+system you at least know that time
+probably is not uh the causal errors are
+probably not going to point backwards.
+So if you have a measuring system that
+measures like one step at a time at
+least then you can sure if you find
+causal errors they should always point
+um forwards in time. This also helps
+Okay. Um, so these are the three parts
+that I I would like to discuss. So how
+does the model work? So we need to
+introduce a bit of a language.
+Okay. Thanks. So we need a bit we need
+to introduce a bit of the language and
+then we are discussing this questions
+that you were referring to. Can we infer
+the causal graph structure? And then at
+at the last point I would like to
+discuss these machine learning
+questions.
+Good. If if there's anything else that
+you would like to talk about again,
+please approach me in the break.
+This is one one picture that I would
+like to show you as well. Um, so what
+you see here on the bottom,
+even though this is stronger,
+a bit okay, I still use the analog
+pointer maybe. So what you see here is
+the on the bottom is sort of a classical
+statistical setting. So what you do
+first in statistic 101 I guess or
+probability theory you start with a
+probabilistic model and then you um do
+what we would call probabilistic
+reasoning. So you're saying well if I
+get a a sample what is the distribution
+of the mean for example if I have 50
+data points then statistics or
+statistical learning now goes in the
+other direction. So there you would say
+well if there is an underlying
+probabilistic model that I do not know
+but that I want to infer how do I do it?
+So I get some observations and then I
+want to infer something. I want to
+estimate a parameter. For example, I
+want to infer some property of my
+underlying probabilistic model
+in causality. Now things are slightly
+different. Why? You can do sort of a
+similar graph here. So you can say well
+we have a causal model and now the
+causal reasoning would be to say well we
+don't only make statements about
+observations but we also make statements
+about changes and interventions.
+Now if you want to go back this is
+something that we discussed we would we
+usually call causal learning or causal
+discovery or some people would call it
+structure learning. So we are given some
+data and what we want to infer something
+about the causal structure. So we're
+going backwards. So it looks like
+there's a is correspondency to the usual
+statistical world but there's one
+crucial difference and this is as
+follows. Usually in statistics if you're
+given an infinite amount of data points
+you're done. So if you are interested in
+a in a parameter let's say the mean and
+someone gives you an infinite amount of
+data points you just read it off. So if
+you are given the full distribution you
+don't have to do anything anymore. And
+this is different in causality because
+in this step even we will see this even
+if you have an infinite amount of data
+points this step does not become
+trivial. So even if you have an
+infinitely many data it's still a
+question well what is the underlying
+cause of structure? And you have seen
+the the example at the beginning with
+the data points with the genes. It's not
+a question of like how many data points
+you see. I can give you as many data
+points as you like. Both of these
+distributions could have been produced
+by two different causal structures which
+mean that they would make very different
+sort of statements about what happens
+under interventions.
+And in this uh mini course mostly due to
+time I will like it at mo for most of
+the time I will not talk about the
+finite d finite sample setting but I
+will show you sort of the ideas. I will
+in many cases I will just discuss well
+what happens if you have knowledge about
+the full distribution
+and then of course you have the full
+statistical machinery you have on top of
+this. Does this make sense?
+Yeah observation do I think about a time
+series here or just um
+this doesn't matter so this is more
+general this can have a time structure
+or not it's actually so I will the
+causal models I will introduce are not
+regarding time but this is you can write
+them down immediately I think um by
+yourself there's there's no um
+conceptual difference to including time
+good so I will start with a couple of
+examples some of you may have you may
+have seen before. This is by now a
+classical one, but it's still one of my
+favorites. So, this is a study from 2012
+and what you see here is the chocolate
+consumption in kilogram per year per
+person for different countries. And then
+on the y-axis, you see the number of
+Nobel Prize winners uh per 10 million.
+And there's a very strong correlation.
+And what you see here, what I think is
+nice is that sort of Sweden is an
+outlier. This should make you
+suspicious. And uh the the other one
+that I think is interesting is that uh
+the Swiss chocolate seems to be much
+better than the German chocolate and at
+least it tastes better as well. But here
+of course I mean the question is well
+this is a dependent structure. What's
+the causal structure? And you may have
+seen these examples before. It's quite
+funny to see that immediately you get
+like uh statements like eating chocolate
+produces Nobel Prize winner says
+studies. is from confectionarynews.com.
+Maybe should be taken with a grind of
+salt. But this is of course the reason
+why I brought chocolate for Philip as
+well. So we can try we can do the
+experiment and see whether it really
+helps. You you find the the other
+direction you find as well. So here on
+Forbes they say chocolate a Nobel Prize
+in studies. So they say geniuses are
+more likely to eat lots of chocolate
+which is claiming the other causal
+direction which of course is probably
+false either. But we will have a look at
+the data set later.
+This is a data set uh that I think is
+very important for a historical reason.
+So this is a paper from 1950 about
+smoking and lung cancer. It's a very
+well done study. I recommend uh looking
+at this paper. So where they found the
+dependence between smoking and lung
+cancer and this is some data that you
+see. Um the details here are not
+important but the most important thing
+is that the more cigarettes you smoke
+the higher the the chance of lung cancer
+get. It's pretty impressive how many
+cigarettes some people smoke. So this is
+more than half a million. So it's used
+to be very popular. But then here of
+course the question is um well
+relatively soon after the study also the
+politicians said well there's a cause
+link between smoking and lung cancer.
+And here you really do have the same
+problem right because this study doesn't
+show it. So here they said well smoking
+is causing lung cancer so we should
+introduce a tobacco tax um in order to
+reduce the lung cancer. But the tobacco
+industry of course said no no no no. So
+there's a dependent structure but it may
+be due to a hidden common cause that we
+have not measured. And this was for
+historical reasons. This was a super
+important example. And it's really the
+question how well how do you find out
+whether there's a cause link or not.
+Look at this example as well.
+There's another study um that was a
+nature publication. So here what you
+would find is there these I don't know
+what you call them in in English. So
+some children apparently um are afraid
+in the darkness. So what you do is you
+put some light bulbs into the plug and
+then it's like almost daylight in the in
+the room. And the study found that
+whenever you have these night lights um
+then you are more likely to develop as a
+kid you're more likely to develop
+myopia. So shortsights sightedness. So
+here the more light you have the more
+myopia you get. So now what you do with
+this study? Of course the authors didn't
+want to claim causality. hand they write
+something like this. Uh the strength of
+the association does suggest that the
+absence of a daily period of darkness
+during childhood is a potential
+precipitating factor in the development
+of myopia. So you of course don't
+mention the word cause but you write
+what is it a precipitating factor which
+means the same thing but you haven't
+said the cword. Okay. So what do you do?
+What do you do with such a study? Well,
+if you're a statistician you can try to
+analyze uh this. If you are clever then
+you're inventing something like this. So
+this is a patent a nightlight with sleep
+timer. So this is basically something
+you plug in and then it's like almost
+daylight but then after half an hour
+this thing switches off and it's dark
+again. And the idea of course is uh well
+this helps because if I reduce the the
+room light then uh the chances of
+obtaining uh shortsightedness decreases
+and this is a causal interpretation of
+the study.
+And we will see that this was actually
+not not the case. But this is this is
+again just looking at the dependence and
+claiming that it's causal.
+Here the question is does the nightlight
+with SL with sleep timer really help.
+This is an example that we will have a
+look at. Uh this is also a very famous
+one. This is about kidney stones um and
+how you recover. So this is something
+that is known in the name of the
+Simpsons paradox. um and we will resolve
+this and hopefully you agree with me
+after this that this is not so much a
+paradox but uh rather just a question of
+causal causal phrasing. So what we have
+is we have patients with kidney stones
+and we have two different treatments
+treatment A and treatment B and these
+are the recovery rates. So here you see
+that there were in total 700 patients
+and uh 350 obtained treatment A, 350
+obtained treatment B. And what you see
+is that uh it looks like treatment B is
+better than treatment A because the
+recovery rate is is higher.
+And now comes the magic. What I'm now
+showing you is exactly the same data
+set, but I'm providing you with more
+information. So you can it actually
+turns out you can classify the kidney
+stones into small stones and large
+stones and I now show you the results on
+this these subcategories. So for small
+stones
+the treatment A was actually better than
+the treatment B and for large stones the
+same happened. So also there the
+treatment A was better than treatment B.
+So here you can see look at the numbers
+they really do add up. So 87 + 263
+equals 350 I hope. So now this is known
+under Simpsons product. So how can it
+be? How can it be that in both
+subcategories treatment A is better than
+treatment B? But then overall it looks
+like treatment B is better.
+You have an intuition for this? How can
+this happen?
+Exactly. So the answer is somehow it's
+an unfair comparison because treatment A
+had to deal with many more of the large
+stones and the large stones what you can
+see here the large stones are the more
+difficult cases. So here the recovery
+rates are smaller than for the small
+stones. So these are the difficult cases
+and it's a bit unfair because treatment
+A got assigned to many more of the uh
+the difficult cases and indeed it was
+the case that in this study the doctors
+or the medical doctors already thought
+that probably treatment A works better.
+So whenever they had a patient coming in
+with large stones, they felt pity and
+said, "Well, you probably get treatment
+A."
+And so in terms of causality, this is
+not so difficult to to write down. So
+here, this is the causes structure. So
+we have the recovery and it's indeed
+influenced by the treatment, but we have
+a confounding factor, which is the size
+of the stone.
+The question is we are interested in
+this this causal link here, right? And
+this is something that we are going to
+compute. So here what is the expected
+recovery for example if all get
+treatment B. So this would be an
+intervention.
+It's still a bit astonishing to me. So I
+talked about this example once in a
+class in Tubingan and during the break
+one of the students left and the next
+week he came back and asked what I'm
+going to talk about like the following
+week and I was wondering what do you
+mean? And it turned out he felt stomach
+ache during this lecture and he had
+kidney stones. I'm not kidding. So he
+went like in the break of his lecture he
+went to the hospital and had was
+diagnosed kidney stones and he got
+treatment A. So I hope that no one of
+you today is leaving the class. Very
+weird coincidence.
+Okay this is a very famous example
+something that goes into the direction
+of these applications to machine
+learning. Uh so this is an example an
+advertisement. Um so if you are using at
+block as I do I suggest to switch it off
+for at least an hour is browsing the web
+is a very different experience then so
+here this is if you use Google and type
+in something like buy coffee beans then
+what you find is above the search result
+this is the first search result you find
+all these ads and these are called the
+mainline ads they are the the ones that
+make the most money um so here you see
+the small ad indicating uh that This is
+an advertisement and you can buy
+something like the kicking horse that I
+would be curious kind of coffee this is
+but this is a machine learning system so
+it's mostly nowadays it's mo mostly uh
+trained with data um so you have data
+from a lot of customers you know after
+um after they have searched for
+something what did they click on and I
+would want to argue that it's also
+beneficial to at least think about
+causality in this concept
+why so this is a very simplified uh uh
+picture of this this underlying causes
+structure. So what you have something is
+the user intention. So whether the user
+is looking for some information or wants
+to buy something and this is something
+that is hopefully hidden. Then you have
+a lot of user data especially if you're
+using Gmail or something. So they know
+of course where you're from. They know
+like uh they know anyhow your IP
+address. They know the time of the day
+and so on and the search query what you
+were looking for. And then you have a
+parameter that is called the mainline
+reserve. And this determines how many of
+these mainline ads you want to show. So
+it's between zero and four. And then you
+have something that is the number of ads
+in the mainline. There are some other
+factors going in there as well. And then
+at the end you have uh whether the
+person clicks on the ad or not. So this
+is a system that uh very simplified of
+course but that is underlying this
+machinery. And what I want to want to
+argue later that you can actually
+benefit from uh looking at this causal
+structure. So here the the research
+question of course is well this is the
+parameter that we can tweak like if
+you're Google for example this is the
+parameter that you can change and the
+question is well how do we choose an
+optimal mainline reserve given all the
+other stuff that I have and this is also
+something that uh you know for example
+from reinforcement learning maybe uh so
+something that you have seen before but
+so this is also something you can phrase
+in a causal way.
+Last example and then we will start
+doing some real stuff. Uh so this is is
+some data that we have been working
+with. So this is these are gene
+interactions. So this is a data set from
+yeast. So what do we have? We have about
+6,000 genes and we measure their
+activity.
+And we have 160 what they call wild
+types. I'm not a biologist, but this you
+can consider as being observational
+data. And then what is nice about this
+data set is that you have a lot of gene
+deletions as well. So you have about
+1,500
+of those gene deletions where the target
+is known. So for example, the first data
+point here means I have deleted on gene
+number 5,34.
+And then I measure all of these genes.
+In fact, the biologists have even
+repeated the experiment five times, but
+they only provided us with a mean. So
+you even have some uh statistical
+um uh confidence here.
+So now here for example you see one
+example for the observational data
+points. So here you see uh two genes uh
+5,954 and 4,710
+and you see that there's a um a
+dependence between those those two and
+here what you see is these are now all
+these 1,500
+gene deletions. So this is the if you
+like a lot of interventional data
+and the goal is to sort of predict
+causal interactions between these genes.
+So we are given the data and we want to
+see well can we predict that let's say
+gene 17 is causing a gene number 120
+and something that we will make use of
+and this is something that may be
+interesting to see directly from the
+picture. So somehow these these causal
+models they have a stability guarantee.
+And what do I mean by this? So if you
+find a causal model then what often
+happens if you intervene somewhere in
+the system except for the target then
+often this dependence remains the same.
+And here you see this this observation.
+So indeed I chose the gene such that
+this gene is really causal for this
+gene. And what you find is that the
+dependence it's a if you model it with a
+linear model for example it does not
+change if you intervene somewhere else
+in the system. And this is something
+that is a very interesting property of
+causal structures as well. But so we
+will use this data set mainly as really
+trying to infer some of these causal
+relationships.
+Would that be true if they're downstream
+of one other gene that's causing both of
+them? They would and that other gene is
+doing whatever it does.
+Yeah. But if you have something like
+this,
+so you have these two genes,
+let's say X and Y. And then indeed if
+you now intervene on on W, you can tweak
+the example such that the dependent
+structure remains the same. But now
+imagine you intervene on this guy. Then
+suddenly it's not stable anymore. Right?
+But the points there, maybe I didn't
+understand the points that you're
+showing there are all these uh
+perturbations combined.
+Or are you talking about in each
+deletion?
+You're right. So these are these are
+1,500 different deletions. These are
+very different dimensions. Yeah.
+Right. So that one point would might
+correspond to a one outlier in that
+graph. But right that the deletion of Z
+you're right.
+Yeah. But it's it's very unlikely that
+even if you intervene on this guy then
+the dependent structure remains the
+same. I mean I said you can tweak it
+such that but usually you don't expect
+this because imagine that you have some
+variance that comes from a from a
+different angle here from a different
+part and then if this suddenly becomes
+very large then suddenly the dependent
+structure here is much stronger right
+because this this part if this doesn't
+change then these become much more
+dependent because then if this is very
+large and this this component is very
+large here then the other component from
+the from V that is independent of X
+doesn't matter anymore.
+So what you what you would get so this I
+mean taking a bit early maybe but what
+you would find is that if you now look
+at the model where you sort of condition
+Y on Z and V then it really doesn't
+matter at all where you intervene. So
+the conditional distribution of Y given
+its parents and this is what I mean by a
+causal model. This will really be the
+stable no matter where you intervene. It
+doesn't matter. Whereas if you're not
+like if you're not sort of shielding off
+by using the parents then you won't get
+the stability.
+Good. That's the last uh motivating
+example and now I'd like to if there are
+no further questions I would like to
+talk a bit about how do you do it.
+Good. So what are what are causal
+models? So this is the first part causal
+language and causal reasoning. Uh so how
+are these causal models built and there
+are a couple of ways to do it and I will
+mostly focus on so-called structural
+causal models and this is the picture
+you should have in mind. So we are now
+trying to build a causal model that is
+really able to do all these parts here.
+Okay. So here you see the first
+structural causal model and you will see
+immediately that it's something very
+easy.
+So what is it? It's basically if you're
+looking for a structural causal model
+and we start with two variables x and y
+and um a structural causal model is just
+a collection of two equations in this
+case we will write x as a function of
+noise and y as a function of x and some
+noise. So these are sometimes called
+structural equations uh we use the word
+structural causal models sometimes some
+people would use structural equation
+models basically the same thing. So
+formally it's now a set of two equations
+and you have these noise variables and
+for now let's assume that these noise
+variables are independent
+as an example uh you can think about uh
+x being something like the altitude of a
+location and y is the average
+temperature of this location. So we know
+that uh if you're sort of this is
+roughly correct at least for a certain
+range if you go up 100 mters then
+roughly the temperature decreases by
+0.6°C. 6° C. Of course, this is only an
+approximation. It's not going to be a
+linear effect and we will see some data
+later. But let's say it's a linear model
+for now. So then we are saying well X is
+just some distribution. So you have a
+distribution of different locations in a
+country let's say. And then the average
+temperature is now a function of this
+altitude. And again you have some uh
+noise that you model as being
+independent um of the altitude which
+could be something like some other ge
+geographic features here.
+So then formally so you have the set of
+equations that we call s and then you
+have a distribution of the noise
+variables and here we assume they are
+iod let's say gausian 01
+then you can draw um a corresponding
+causal graph and how do you do this?
+Well, it's trivial. You always check
+which of the variables appear on the
+left hand side. And if they do, then you
+draw an edge from the variables on the
+left hand side to the variable on the
+right hand side.
+Now, first thing we need to check why
+does this induce or entail a joint
+distribution over X and Y. So this
+hopefully you see
+what is the corresponding so if I write
+down this model you can now guess maybe.
+So what is the corresponding
+distribution over X and Y?
+I'm telling you this is a Gaussian 01
+distribution. So certainly X must be a
+Gaussian 01 distribution. And this is
+again Gaussian 01. So what is the
+distribution of Y for example? What's
+the marginal distribution of Y?
+Gaussian. Yes. What is the mean?
+Zero. And what's the variance?
+37. Exactly. And now what is the we have
+a dependent structure of course. So what
+is the coariance here?
+between X and Y.
+I think it's minus six. Yeah, I heard it
+correctly. So this is a this induces if
+you write down a model like this, this
+induces a joint distribution over X and
+Y. So in this case, it's a B varied
+Gaussian with a certain mean and a
+certain coarian structure.
+So we will see that this holds in
+general even if you have more than two
+random variables. But now comes the
+important part. How do we model
+interventions? And this is actually
+something something very easy as well.
+So what you do is you just take one of
+these equations and replace it by
+something else. So if this is a very
+hypothetical intervention in this case,
+but if you take your city and put it to
+like raise it up. So you I don't know
+they did something similar in Seattle I
+think. No, where they just raised it up
+by was it 10 meters or something. So you
+take the same city and then you rise it
+by let's say 300 meter by building a
+giant wall. Then what what happens is
+that you are sort of replacing this this
+is the mathematical expression for this
+you're replacing this structural
+assignment by another one and then what
+you see is that this is now sort of
+you're starting from the same structure
+causal model but this of course induces
+a new distribution
+and what is it well in this case we
+certainly have x we just put to three
+this is what we call an intervention so
+x is always three now so the probability
+of x being three is one and what happens
+to y in this case well the distribution
+of Y now changes because now when if you
+have that X is always three well then
+the mean of Y is minus 18 and the
+variance is one right so this is the
+mathematical formalization of an
+intervention here yeah
+so how intervention differs from just
+conditioning
+yeah very good question I come back to
+this many times and uh on the next slide
+maybe it's it becomes clearer
+this is another intervention so what you
+can also do is you can intervene on the
+temperature. So now we are saying well
+we don't care about the altitude
+anymore. What we're doing is we building
+a a giant uh compartment around this
+city and we just say well we have a
+heating giant heating machine and we
+always set the temperature to 2° C with
+a variance of two. So what happens now?
+So this is another intervention you can
+do and what you will see and I've
+already depicted this in the graph that
+if you do this then the altitude and the
+temperature don't matter anymore because
+you have this this giant compartment
+over the whole city. So therefore in a
+in a sense x and y now become uh become
+independent.
+Again this distri this sort of induces
+or entails a distribution over x and y
+and now it looks very different. So the
+dist the marginal distribution of x is
+very important. This did not change. So
+here we have that the marginal
+distribution of X is still 01 right as
+before it didn't change but now the
+distribution of Y equals in Gaussian
+with mean two and variance two and what
+we have done is we have created some
+independence between X and Y. So this is
+a we will see later that here you can
+already guess. So if you don't put in a
+Gaussian 22, but if you set y equals to
+four for example, you would have the
+same thing. You would still have that x
+and y are independent. Whereas if you
+condition this is not the case, but we
+could see this uh more clearly later.
+Okay. But here this is a super easy
+mathematical process of interventions.
+But this is how we formally do it. Any
+questions? Yeah.
+Yeah. Maybe I'm not kind of fully
+getting the picture here. So what I have
+is that I have basically a set of
+samples like you know sample x1 y1 x2 y2
+x and yn. Now x and y are basically
+jointly gaussian. Now when they are
+jointly gaussian x is a linear function
+of y is also a linear function of x. So
+now I'm looking at the second picture.
+After getting these n samples of x i yi,
+how do I draw the arrow between x to y?
+Because I I can technically write you
+know draw an order between x to y where
+I can do it from y to x.
+Yes. So the question is how do I how do
+I find out that this is sort of the
+error points from x to y not from y to
+x. Two questions about this one. You
+talked about sampled a sample. This is
+really about distributions. There's no
+finite sample involved so far. This is
+about distributions. So this is not
+about a finite sample. So this is about
+building a model. What does it mean to
+be a causal model? So we will talk about
+samples very soon but not not now. The
+other question is how do we find out
+whether it's a linear model from X to Y
+or Y from Y to X. This is a very
+important question and we will talk
+about this in the second part about
+causal inference. Right now I'm giving
+this to you. So right now in the first
+part we assume that someone is giving
+you the correct structural causal model.
+And of course we want to relax this
+because in practice this will never
+happen. But what we have to make sure is
+that we have we are able to like work
+with these structural causal models if
+someone gives it gives it to you and
+then of course at the end of the day we
+want to infer it from the data ourselves
+but this is the first step. So here we
+assume it's given
+I mean mathematically you write writing
+y as a function of x or x y is
+equivalent but I think you are saying
+the notation here is important the fact
+that in that equation you're writing x
+that means that x is the cause of
+yes so this is so you can formally do
+this if you but now we have the language
+already no so if you would write the
+same model but now you replace x and y
+so you're writing x as a linear function
+of y then you have a model that you you
+can it induces exactly the same
+observational distribution but it would
+induce very different interventional
+distributions because if this is the
+correct I go back one slide if if this
+is the correct causal structure then it
+means that if you intervene on X you
+will see a change in Y whereas if you
+exchange the roles then if you would
+intervene on X you would not see a
+change in Y. So this means it really
+does matter how you write it here. How
+you write it here and the question of
+course in practice how do we find it out
+this I have to apologize we only do in
+the second part but it's important that
+this makes a difference here and right
+now we assume it's given
+okay so here um you can do this for an
+arbitrary number of of random variables
+of course. So here I just um drew four.
+So it's the same idea. You have four
+random variables X1 to X4. A structural
+causal model is just a set of equations
+and a joint distribution over the noise
+variables which are all assumed to be
+independent. And for now we assume that
+the corresponding graph does not have
+cycles. You can draw the corresponding
+graph very easily by saying well here x1
+appears on the right hand side for the
+equation for x2. So we draw an edge from
+x1 to x2. That's just it. Yeah. Sorry
+just to clarify the prior point that
+also is implicit in that structure is
+you cannot have like it's a directed
+graph right so so in other words it
+would be impossible to say you know x is
+a function of y and y is a function of
+of of x in in this under this
+instruction
+the question is is it okay so I repeat
+the question is it possible to introduce
+feedback here so can we say x1 is a
+function of x2 and x2 is a function of
+x1 so um let we we come back to this So
+the first question is and this relates
+to this why do you see why can I always
+why does this construction here always
+induce a joint distribution over x1 to
+x4
+this is the first property that we
+needed to check right we computed it by
+hand in the biariate example but why is
+this the case here so so why do you see
+this why
+sorry
+so why is it the case that whenever I
+draw a structure like this I write down
+these equations and I give you the joint
+distribution so I'm telling You again
+think about a Gaussian 01 case or
+something and I'm telling you the
+functions here. So I'm saying this is x3
+squar plus sinus of n1.
+Why does this always entail a joint
+distribution over x1 to x4?
+Say again.
+Okay. Because there's no cycle. And can
+you make this more specific?
+Start at the source.
+Exactly. You start at the source. So
+think about a computer program. So think
+about sampling from this distribution.
+What you could do is you start at the
+source variable in this case X3. You
+first sample from the noise distribution
+N3. So let's say it's given right let's
+say it's a Gaussian 01 distribution.
+Then you get a data point for X3. We are
+generating the first data point. And
+then what you're doing is you you then
+go to the next variable. So we now
+already have the value for X3. So then
+we can solve this equation. So you
+sample from N1 and then you already have
+the data point for X3. So you pluck it
+through this function and you get the
+corresponding value for x1. So this is
+exactly what you're doing. You start at
+the source and then you propagate down.
+And this relates now to the question. So
+is there any way of still if you now
+introduce cycles because this as
+cyclicity we have used for obtaining the
+source right. So if you have a cycle
+there's no source node. So is it still
+possible to somewhat write down a
+distribution that is entailed by this
+model?
+And the answer is yes. Often it is,
+sometimes it's not, but often it is.
+This is the only thing you have to
+answer. So if you have cycles, you have
+to say what is the distribution that we
+are talking about. And one solution is
+what people sometimes look at is
+something like an equilibrium
+distribution. So they say, okay, if you
+now do the do this procedure and you let
+the system evolve over time, does this
+converge to a stable distribution? And
+if it does, then this is a well-
+definfined object. But this is really
+the crucial point here. We somehow need
+to make sure that our causal model is
+entailing a joint distribution. Does
+this answer your question?
+So here it's just a triangle triangular
+system, right? If the f_sub_1, f_sub_2,
+f3, f4 were linear, it was it would be a
+triangular system. So you just need this
+to have almost surely a solution.
+Yeah, exactly. So this is if you have an
+isylicity, it's everything is easy.
+Yeah, you can this is also I mean this
+goes now if you want to prove it, you do
+it exactly like this. If you think about
+generating samples, you think about a
+computer program. Yeah.
+So could be a vague question, but what
+it takes to convert an STM into a
+dynamical system?
+Uh not much. You just introduce time. So
+think about copying this. For example,
+you you can model now these as being the
+instantaneous effects. So this is all at
+time point t. And then you for example
+could copy this this whole thing to t+1.
+And then you just draw edges from the
+variable x4 t to x4 t+1. But you can
+write down the exactly the same way. And
+this is actually also what what we have
+done. It's it's very easy.
+Good. So here just for notation. So the
+observational distributions we often
+call P and the interventional
+distribution you can now exactly as you
+have seen before what we are doing now
+interventional distribution just
+replaces one of these structurally uh
+structural equations and this is what we
+this is this famous dual notation that
+Judia Pearl introduced. Uh so this is
+because it induces a new distribution
+and this is the name that we give to
+this distribution. So we say do x1
+equals zero. So this indicates we have
+started with a certain structural causal
+model and then we have replaced the
+structural equation for X1 by X1 being
+zero. And I go back one slide because
+here what you see now is if you put X1
+zero to zero. Think about the computer
+program. Before X1 was depending on X3,
+right? But now it doesn't depend on X3
+anymore. We just always set it to zero.
+So what you get is that this arrow here,
+this edge disappears.
+Okay? You can do many other
+interventions as well. So here you can
+for example intervene on X4 and set it
+to 13 and then you would call this uh do
+X4 equals 13. And now I'm coming back to
+the question well is it the same as
+conditioning? It's not. And this I would
+like
+sort of to make clear here. Think about
+this system and and think about these
+all being linear sort of equations. So
+x2 is just a linear function of x1 plus
+some noise or something. And let's say
+it's a positive linear function. Now I
+go back to the original SCM. Imagine now
+that we know that x4 is very large. It's
+like45.
+What does it tell you about x1? It
+increases the chance that x1 was also
+large, right? Or maybe x3 was large. But
+something had to be large. It's pretty
+unlikely that x4 is very large by
+itself. So if you condition on the fact
+that X4 was very large then probably one
+of these variables or these other
+variables have been large as well. So
+this propagates this information
+propagates sort of up the graph whereas
+if you intervene so now I'm setting
+again going to the intervened um uh
+distribution. So then the distributions
+of these guys don't change right. So now
+we are setting this to 13. This is very
+different from conditioning because if
+you think about the computer program
+these assignments for the these three
+variables they didn't change right so
+they they don't change so they still
+have the same distribution whereas if we
+condition this means well probably
+something was large so the distribution
+changes so this is why the do notation
+here the do and the do distribution is
+very different from the conditional
+distribution and this we will see a
+couple of times yeah
+consider assignments that are the form
+of constants uh No. So the question is
+do we always have to um consider
+assignments that are constant? The
+answer is no. So actually the other ones
+are more informative.
+So we will if you think about randomized
+experiments this is just one way of
+looking at interventions. So there you
+don't want to set it to 13 but you want
+to randomize. So you're saying maybe you
+set it to 13 with a certain variance in
+the Gaussian variable or something.
+You can even
+so if you think about this advertisement
+example, we were setting the mainline
+reserve depending on the user data.
+Now if we change the mainline reserve,
+we want to see well how does the system
+perform? How many clicks do I receive if
+I intervene on the mainline reserve? And
+of course it would be stupid to always
+set it to three to always show three
+ads. So there an intervention is
+actually even more complicated. So there
+an intervention is even a conditional.
+So you're saying I still want to
+condition on let's say the user data but
+I want to condition in a different way.
+So this is also something you could do.
+So here you could intervene on X2 but
+still make it dependent on X1 but in a
+different way. So this is why these
+interventions are are quite flexible.
+Yeah. And you use this in practice as
+well.
+Just understand the the notation that
+you have. So what is the distribution
+that uh that we're talking about when
+you say P? Uh is is a joint distribution
+or
+Yeah. P is a joint distribution or by
+X1, X2, X3, X4. Yeah.
+Okay. So it it is a joint distribution
+of all the variables when one of the
+variables takes one value.
+Distribution is if you like it's just a
+measure, right? So this is just a a
+distribution on R to the 4. So this is
+just a measure on R to the 4. But the
+important point is that this is a
+different distribution now, right? So if
+you do not intervene you get a
+distribution that we call P and if you
+do intervene you get a different
+distribution. So here for example X4 can
+take many different values whereas if I
+intervene and set it to 13 it always is
+13. So therefore it must be a different
+distribution. And this is just the
+notation for this new distribution. If
+you don't like it you can call it P
+tilda. But I'm telling you it will be
+convenient later on to call it this way.
+Yeah. But so far it's just a name.
+one equation at a time.
+No, we can alsine at several equations
+simultaneously. And that's also a good
+question because sometimes we will need
+to do that.
+Sorry.
+Yeah. Could you maybe tell us what p sub
+do x1= 13 would be?
+It's the same thing. So let's say we
+start with this structural cause model
+and now you intervene on x1 being 13. So
+you replace this equation here by X1
+being 13. And how does the corresponding
+graph look like? You can probably answer
+this yourself.
+So X1 is now always 13. So one of the
+edges disappears.
+Yeah, this one, right? Because X1 is
+always 13. So the corresponding graph
+would actually be looking like this.
+Um, good. I I think we do a a short
+short break and then we look at a
+concrete example with the um with the
+kidney stones. So just five minute break
+or so.
+Okay, let's continue.
+You want some water?
+I have some. Thanks.
+Good. So let's look at an a concrete
+Not the correct one. So this is the this
+is the example of the kidney stones. So
+now what do we have? So we are
+interested as I tried to argue before we
+interested in saying well what happens
+if if you set the treatment to let's say
+A. So all get treatment A. So this is an
+intervention. And the the point here is
+now that I'm giving you the causal
+structure but I'm not giving you the
+structure causal model. So I don't know
+what exactly these functions are and
+what the noise distributions are. We are
+just given the observational
+distribution and the causal structure.
+In fact, we are given I'm lying a bit
+because we are given a a finite amount
+of data. But let's say uh this is very
+close to the observational distribution
+because I want to not focus on the
+statistics part here. So then what do we
+do? So the question is can we now so we
+given data from this observ from this
+observational distribution and can we
+somehow infer something about this
+interventional distribution there we
+infer the treatment and the answer is
+yes we can and there's something that uh
+leads
+to this to the answer that is I think a
+very nice tutology so here again we want
+to compute the distribution for the
+intervention due treatment being a okay
+so this is what we're interested in but
+we have data from the wrong
+distribution.
+So now this is a mute what I call mute
+the most useful tology ever. So how does
+it read? If you intervene only on XJ,
+you intervene only on XJ. So this is
+clearly antology. But why does it help?
+So look at this example here. This is
+the observational distribution where we
+have the data from. So the size of the
+stone is causing treatment and recovery.
+And we have an interventional
+distribution where we set the treatment
+to a interested in this distribution. So
+for example, you're interested in the
+question what is the probability of
+recovery under this do intervention but
+we only have data from this
+distribution. And here comes now the
+tology into play.
+What are we doing? We are intervening on
+the treatment right? So we intervening
+we setting the treatment to a. So what
+this implicitly also means is that we
+are not changing the way the recovery
+depends on the size of the stone on the
+treatment. So here what we are doing is
+we are intervening on this guy. We are
+changing the treatment but this all
+implicitly means we are not intervening
+on the recovery.
+So the structural equation for the
+recovery remains the same after the
+intervention. And this now means you can
+think about this if you like in a break.
+This now means that the conditional
+distribution of recovery given treatment
+and size this does not change and this
+is written down here. So the
+distribution of recovery given size and
+treatment is still the same in the
+observational distribution and in the
+interventional distribution
+and this is in a way this follows from
+the tautology but this is a very useful
+thing and this we are going to use now.
+Is this clear this statement? So this is
+what we are looking for and this is what
+we can use.
+What is the other conditional that
+remains the same here? Do you see that?
+There's one more thing. So I wrote down
+one, but there's another one.
+What about the distribution of the
+treatment? Of course, this changes,
+right? This is where we intervened. But
+there's one more conditional that
+remains the same. Do you see that?
+Yes, size of the stone. So the marginal
+distribution of the size of the stone is
+exactly the same, right? Because we are
+not intervening here. So the structure
+equation for the size of the stone
+remains the same. And now I would like
+to ask you to take a pen and paper and
+see whether you can compute this. So
+just five minutes. So this is the
+target. This we want to compute and this
+is what you can use.
+And now see whether you can come up with
+a strategy.
+And so this is the one thing that we can
+use. And I write down the other one.
+Two. This is P of S equals P do
+treatment
+A of S. So this doesn't change either.
+So now what you have to do is you
+somehow have to massage this bit to make
+it dependent on like this is a
+distribution right think about this as
+being p tilda. Now you have to massage
+this a bit so that it only depends on
+terms that are sort of looking like this
+and like this because then you can
+transfer this to the observational
+So do it now.
+Anyone? Yeah,
+I don't have a pen. So, but the
+condition on the two size stones and
+because they're actually about the same
+and the treatments, they should be close
+to the average of the two values for the
+treatment of a I think. So,
+yes. So, the what's the average here?
+It's 0.83, right? And that's even even
+the right intuition without formulas and
+without pen. That's that's correct. We
+will see if shall I show you how to do
+it formally. So um I'm always using
+so this is how you would do it. So this
+is the thing I mean the details here
+don't matter too much but this is the
+thing that we want to compute right but
+we don't have data from this. We have
+data from the observational distribution
+which is not the interventional
+distribution. And now we are using these
+these nice tricks where we are saying
+well some of the things remain the same
+in both distributions. These are just
+these conditionals. Right? So what
+you're now doing is you're trying to
+massage this formula to get something
+that is exactly look like what you you
+suggested. So the first step for example
+is just to say well we now marginalize
+over s. So this we can do right and
+because t is always a we can also add
+that t equals a because this always
+happens in this distribution where we
+intervened on t and set it to a right
+now the next thing is to just define the
+conditional distribution look at the
+definition of a conditional
+distribution. So what you're saying now
+well this is the joint and this equals
+the conditional of r given sn time sn
+the margin over sn. So now the next step
+is you don't have to copy this of course
+I can put the slides online if you like.
+So the next thing is to say well get rid
+of this T equals A again. And then what
+you have is this is the only important
+part here. We have an expression that of
+course still like looks as P do T equals
+A. So the the interventional
+distribution but now we can use our most
+useful topology ever because this guy
+here is the same in the observational
+distribution and in the interventional
+distribution. So we can replace these
+the same here and then what you end up
+is is exactly what you suggested. So we
+are looking at the recovery
+given that the size of this stone is
+let's say small and large and tree
+treatment is a and then we multiply by
+the uh chance of having a small stone or
+a large stone and because these groups
+were roughly the same roughly 50% we
+just have to take the average over the
+recoveries of the treatment. So I go
+back to the data. So this is the
+recovery. This is the probability of
+recovering given that you have a small
+stone and treatment A. This is the
+probability of recovering given that you
+have a large stone and treatment A. So
+then you get something like the average.
+It should be tiny bit closer to this guy
+because this is a tiny bit larger. So
+this is why you get 0.832.
+Okay. And you can do the same thing for
+the treatment B. And what you will see
+is that well if you force the person to
+get treatment B then the probability of
+recovery is 87%.
+So what does this mean? Now this answers
+our first important question namely
+which of the ones is better. This is
+exactly what you want to look at if you
+if you're wondering which of the
+treatments is better because you cannot
+just look at the data as it is because
+it's messed up by these doctors
+assigning the treatment A to more
+difficult cases. So this is the question
+you're interested in. you want to so if
+you have if you are a patient and you
+don't know whether you have like a small
+stone or a large stone you just have to
+decide do I get treatment A or B this is
+exactly what you're looking for so you
+want to say well what is the probability
+to recover if I get treatment A if I
+force myself to get treatment A or
+treatment B and here you see now that
+treatment A is indeed better than
+treatment treatment B yeah
+um why do you need the causal
+framework for this. I mean this is if
+you look at the data it's kind of
+there's a confounder there the way the
+groups were split and you can
+very good question why do we need the
+cause framework very good transition to
+the next two slides I hope so it turns
+out so here by the way just as a
+reminder because we have seen this
+already this is different from the
+recovery given treatment A this I want
+to stress once more right because this
+means if you're given treatment A so if
+you see yourself and you just don't
+think about interventions you see
+yourself being in the study and you you
+you realize aha I got treatment A what
+is my recovery rate the probability of
+recovery this means this carries
+information right because if you got
+assigned treatment A this probably means
+you're a hard case so this means that
+the the recovery rate is lower right so
+this is here it's a different thing to
+condition or to intervene this once more
+you see this all over the place but this
+I would like you to take home
+so now why do we need this causal
+framework work. It turns out that this
+idea holds very gen in a very general
+sense and uh this is the definition of
+what is called an adjustment set. So if
+you imagine that there's not the size of
+the stone but there are like many many
+other variables as well then what we
+need to do is we need to adjust for them
+and we formally we saying okay we given
+a structural causal model over X and Y
+and some coariantss W and we are
+interested in the causal effect from X
+to Y very similar to what we have seen
+before we interested in saying what
+happens if like we treat ourself at
+treatment A or B so here this is the
+treatment the X and the Y is the outcome
+the recovery rate and then we are saying
+no this is a valid adjustment that if we
+can compute this interventional
+distribution by what is called adjusting
+for Z. So what we are now doing is and
+this is sort of the averaging right this
+was the recovery
+like for treatment A and we adjusted for
+this for the size of the stone. So we
+took the average over the size of the
+stone you can think about taking
+averages here. Again you see this is
+different from just conditioning Y on X
+um because it would be the same if you
+would have another Z given X here but
+it's not. So this is really a different
+thing.
+So now the proposition is for example if
+what you what you want to to have is you
+want to have such an adjustment set
+because then you can do this what we
+just did for the example of the kidney
+stones in a very general manner. So
+you're given like data from the
+observational distribution and we can
+compute like the interventional
+distribution from just the observational
+distribution. Right? This is like magic.
+We don't have to intervene at all. We
+just can if you're given the cause of
+structure we can just read it off. And
+so this parent adjustment is the easiest
+form of adjusting. This means that you
+can always use the causal parents of X
+for adjustment adjusting. This is always
+a valid adjustment set for XY.
+Okay. So this is maybe even a bit more
+interesting and we will see a more
+complicated graph in a second.
+Um I want to say one word about
+adjusting and linear models.
+Um
+yeah how do I do it? So in a way this is
+a full distribution right and sometimes
+you want to see the difference between
+if you want to talk about causal effects
+from X to Y for example it what you
+could do is you could always compare
+you can always compare P of let's say Y
+and P of Y where you intervene on X
+right so you can compare these two
+things if you like so and if you see
+that these are very different then
+probably X has a strong effect on Y
+right so you intervene on X and if you
+see there's a big difference between the
+the distribution of Y so if Y changes a
+lot then you would say there's a strong
+causal effect from X to Y there's one
+way of sort of summarizing this and this
+is especially interesting in linear
+models and how does it work so if you
+want to just give one number then what
+you can sometimes do is to do the
+following so this is sometimes called
+the causal strength or the causal effect
+from X to high. So what do you do? How
+do we define it? We are saying well how
+much does the expectation change? So
+this is like a one number summary of the
+difference between these two
+distributions. So what you're doing is
+you're taking the expectation
+oops sorry you're taking the expectation
+of y.
+You're looking at this in this new
+distribution do x= x. And now what we
+are doing is we are taking the
+derivative with respect to x.
+So this is sometimes called the causal
+effect.
+And now just intuitively this means I
+mean it's the same idea right. So if you
+change x a tiny bit and you see a
+dramatic change in in the expectation of
+y you would say well there's a very
+strong effect from x to y right? So this
+is sometimes what people use as a sort
+of a summary of the causal effect. And
+now this has a very nice uh sort of
+property because in linear if you have
+linear Gaussian models. So if all these
+structural equations are linear and
+Gaussian what you can do is you can just
+read this effect off. So
+think about a graph that looks maybe
+like this
+and you have a Z here
+and you have now coefficients. Can you
+read this or is this too loud
+on that board?
+Yeah, I don't
+ah I can even use this graph here. So if
+you have a a causes structure that like
+this
+and now if all of these are linear
+structural equations in a Gaussian
+setting for example we have a
+coefficient here 2 - 3 4 1 5 7 - 7 and
+now if you're interested in the causal
+effect from X to Y and now I'm talking
+about this guy here so you can read this
+off from the graph and how you just
+multiply the causal graphs the causal
+paths here. So there in this in this
+case the causal effect from X to Y
+equals 1 * 5 which is five and this is a
+in a way this is intuitive right so we
+have another path here but this is not
+really causal you don't care about this
+this path here right because whenever
+you think about you intervene on X
+you're changing X and you're interested
+in how much does Y change and here you
+look at the change in the expectation so
+what you see as well if you change X a
+lot Then what really matters for the
+change in y is this path here, right? So
+you multiply one and five. Any guesses
+if there's a second path? So what do you
+do if you have this?
+Yes. Then it's minus two because then
+you add all these parts. These are
+called I think rights parts rules or
+something. So this is a small exercise
+if you like to make sure that this is
+really the case. I mean I'm just
+claiming this now but this is this is
+nice I think for the intuition because
+in linear causal models this is what you
+would expect. No you are really
+interested in the causal paths from X to
+Y and these are these are not
+interesting.
+Yeah
+over there why are you comparing the
+marginal distribution of Y and not the
+conditional distribution of Y X to the
+DX.
+You can also do that but in a way I
+think you want to be
+yeah I mean here I mean this is here we
+are not comparing this anyhow right
+we're just looking at the intervention
+but there's one thing that you want to
+maybe this is now a hand wavy a bit but
+if you have a situation like this
+you want the conditional you want the
+effect from x to y to be zero right but
+the conditional really changes so if x
+is large then y is probably also large
+So one has to be a bit careful there. I
+mean it's possible this is not I'm not
+saying by any any means that this is
+optimal. So there are many different
+ways that one can choose this
+but now we will come we will see like
+that this is actually quite useful in
+the following sense. So these were
+adjusting
+adjusting sets right. So now how does
+adjustment come into play?
+adjusting if you now are interested in
+so sort of finding this
+finding this effect here. So this we can
+read off. But if you want to find this
+in practice, what you can do is you just
+if you if you know that Z is a valid
+adjustment set, there's another way of
+getting this this number five or in this
+case minus two here. And how does it
+work? You just do a linear regression.
+So this is the first way is sort of
+looking at this path.
+And there's an alternative right over
+there.
+And this is now very important for
+practical reasons because if you have
+data is exactly what you want to do. So
+the alternative
+if Z is valid adjustment set
+and this proposition for example tells
+you one way whether this is the case or
+not. What you can do is z x to y equals
+the regression coefficient
+for x
+in a linear model
+why you regress y on x and z.
+Okay, this is the same thing and this is
+very useful in practice. So if you know
+that you can adjust for z. So this is a
+valid adjustment set. All what you have
+to do is if you want to find the correct
+causal like effect from X to Y, you just
+have to include Z and a linear model. So
+let's see let's look at this in example
+then hopefully this becomes clearer. So
+this is now a causal graph that is a bit
+more complicated. Okay. And we are
+to Y.
+So how can we do this? How can we
+compute this? So one way is to say well
+we're looking first of this this
+criterion what is a valid adjustment set
+right and what was the criterion so it
+said that we can always use the parents
+of x as a valid adjustment set and why
+is this intuitively the case
+because you cannot just like condition y
+on x or just use the regression model
+from y on x. Why not? Because this what
+we call a back door path. This messes
+messes the the relation up. Because if
+you think about the kidney stones
+example, right? So this was the
+treatment and this was the recovery. But
+we could not just condition Y on X
+because we had this weird dependence on
+the size of the stone, right? And these
+are the ones you want to adjust for. So
+if you now I mean at least intuitively
+what happens is if you now condition on
+the parents, you sort of block all the
+backdrop paths. Okay, this is the at
+least the intuition formally the
+proposition tells us well if you adjust
+for the parents in this case A and C you
+are you are doing fine. So then you are
+blocking all this and this happens
+exactly right. So you're blocking all
+these parts that you're not interested
+in. You're only interested in this this
+causal path here from X to Y. Okay. The
+parent parent set is a valid adjustment
+set. So that's fine. So we can somehow
+correct for A and still obtain the
+correct causal coefficient from X to Y.
+Can you guess whether there are other
+valid adjustment sets?
+So somehow I mean is it really necessary
+to adjust for C? Somehow no, right?
+Because it doesn't really I mean A seems
+important because it blocks this path
+but C somewhat doesn't matter. And
+there's a more general sort of criteria
+and then the parent adjustment. This is
+called the backd dooror adjustment. So
+what you want to do is you really want
+to block all these backdoor parts. So
+it's called a backdoor because it enters
+X through the back door so to say. So we
+have seen that CA is a valid adjustment
+set.
+This is the parent adjustment. But I'm
+telling you without proof that you can
+also for example use K for adjustment.
+And you can also use F, C and K for
+adjustment. This doesn't matter. It's
+all the same thing.
+And now this becomes a bit more
+interesting, right? Because what happens
+is that if someone is giving you this
+sort of causal structure and you obtain
+data from this structure and you're
+to Y, you know, aha, I can adjust for A
+and C. But now imagine you are not
+observing A. So A is something hidden. A
+you have no data about A. So then this
+theory tells you aha, you can also
+adjust for K. So this is especially
+important if you have a lot of hidden
+variables and you need to adjust somehow
+like for this spectral path. But there's
+a theory that tells you exactly how to
+do it.
+And I just want to show you one example.
+So
+maybe that's that's helpful. I mean it
+only takes two minutes. So if you have
+um if you have now a linear model, you
+put coefficients on all of these edges
+and let's say um I now generate a data
+set where I have exactly these
+coefficients. So this is minus2 and this
+is minus one. And then we can have a
+look what happens. So what is the causal
+effect that we would like to recover?
+It's plus two of course right it's the
+product of these path coefficients but
+in practice we don't know that this is
+minus2 and minus one we just have data
+we just have data and want to recover
+this plus two what we are given as data
+and the causal structure here the graph
+structure so what you would do in
+practice is as follows so hopefully this
+works now
+so this is just a very small R program
+so what I'm doing is can you see that is
+this too small
+How do I make this bigger?
+Okay, it doesn't work.
+Okay, so what do we do here? So
+we are just generating data from this
+structurally like this structure that I
+just showed you, right? And these are
+all linear structural equation models
+and I just I mean I use Gaussian, but of
+course you can use anything else if you
+like. So I'm generating 500 data points
+and this is how you generate data from
+the structural equation right. So you
+just you start as we have seen before
+you start at the source node. I show you
+the picture once more. So hopefully C is
+a source node. Yes it is. So you start
+with C and then probably you want to
+simulate from A and then you propagate
+down. Right? Let me see whether I did
+this correctly. So we start with C then
+we simulate from A and then you
+propagate down. So far so good. And now
+we want to recover this causal
+coefficient from X to Y. So we are now
+just simulating data. So we have our
+data set. So you can look at this
+and for example
+you do something like this. I mean you
+find that I don't know you have some
+distribution here some data and now the
+question is well what is the the causal
+coefficient from X to Y? And if you just
+I put this up if this works. If you just
+regress Y on X, this will not do the
+trick. So then you get
+so these are the coefficients that you
+that you get. If you just regress Y on
+X, the coefficient that you get is 1.3.
+It's biased. It's not the correct cause
+of coefficient. And why is this? Because
+you had this weird backdrop path that
+you're not controlling for, right?
+Instead, what the parent adjustment
+says, it it says, well, you should
+adjust for the parents A of C, A and C.
+Or what you can also do is you can
+adjust for K. So what what this means in
+practice you just use a linear model and
+you're including K. So we are saying do
+a linear model from Y on X and K and
+then you look at the regression
+coefficient of X and suddenly now we get
+an unbiased estimate. So this is much
+closer to two. So you can also as I said
+you can also use FC and K.
+This example is chosen on purpose
+because I'm a big fan of FTC cologne
+which is a circuit team but it doesn't
+matter. So here X X is also very close
+to two right so it's 1.99 98. So again
+if you adjust for these variables then
+again you get an unbiased estimator but
+and this of course is important you
+cannot do this for all sets right it's
+not that if you the more you include the
+better so if you also include h for
+example
+then again you get a biased estimate so
+then you're not close to two and this
+this sort of the this theory of
+adjusting tells you exactly what you can
+adjust for and what not. Can you remind
+us where a Y?
+Yes.
+So here if you if you just for K that
+was fine and intuitively why because
+we're blocking this path. If you include
+F for example, it doesn't matter as
+well. This is a bit more tricky maybe to
+see. But you can imagine it doesn't
+really have an influence on this path.
+Right? If you include H or G, this is a
+bit more tricky to see. But this you are
+not allowed to do because if you're
+including G, you are sort of messing up
+with this path here. Whether you include
+C or not just doesn't matter. But this
+theory tells you exactly what is a valid
+adjustment set and what not. So we I
+showed you a a sufficient condition, but
+you can also have necessary conditions.
+So I I'm missing the the part where
+because a valid adjustment set the
+definition of valid adjustment set is
+just that the
+it's different like the
+Yeah, it's different but it's not so
+different. So I don't do the proof here.
+The valid adjustment set looks like
+this, right? It's the same thing. So if
+you it's an exercise. So you can show
+this is what I meant by this guy. If Z
+is a valid adjustment set then you
+obtain the causal coefficient by regress
+this is the regression coefficient for X
+in a linear model where you regress Y on
+X and Z
+and this needs to be proven. So if
+there's a then this is
+if you go back to your the the diagram
+the dag
+uh
+ah it's ac
+oh wait why is d for instance not a a a
+a valid
+because the you need the parents of x if
+I wrote something else then this is
+wrong
+go back to the definition again then
+yeah it's the parents of x
+but but I don't understand why is not a
+valid like given the definition
+no no the Ah yeah but this this is a bit
+more tricky right I'm not claiming it is
+I'm I'm telling you it is not but it's
+not so clear from the definition so
+there you have to work it takes you
+seven minutes I guess but there there's
+something to show and this is in general
+there's a characterization of valid
+adjustment sets with if and only if and
+it's really based this I think it's
+funny I mean you can so we have written
+a book on cosality which is going to
+appear
+next door at MIT press. It's already
+online now. So you can have a look at
+this. And there we are going through
+this this valid adjustment set. And what
+you see is that it really it only is
+based on this tautology on this mute on
+this most useful tautology ever. This is
+the only thing you're only interested
+you always have to see well which of the
+conditionals remains the same and which
+change and then you can compute the if
+and only if condition for what is a
+valid adjustment set. And here you have
+to trust me that D is not intuitively
+what you're doing if you're adjusting
+for D you can think of something like
+conditioning and what when you condition
+you sort of block the path that you
+don't want to block you want to block
+these paths but this is I know that this
+is hand w maybe it's not a mathematical
+proof but the proof is really based on
+this idea
+is
+then from practical standpoint if in
+terms of if you measure the change in c
+of x for different factors. Does that
+give you evidence of where things may
+lie on the pathway?
+So if you can you repeat that? If you're
+measuring the change in C of X
+like C like the the regression
+coefficient, right? So CX with respect
+to Y. If you do that when you're
+adjusting for different factors.
+Ah this is a very interesting idea. So
+if you want now compute the CXY if you
+don't know the if I understand correctly
+you want to say if I don't know the
+causal structure I'm computing the CXY
+and then I'm doing this several times
+and this may give me a hint about the
+structure. A very good point. I don't
+know I I thought about this once but I
+don't know about any method that is
+exploiting this but I think it's an
+interesting uh I more than welcome you
+to look at this. I think it's an
+interesting thing. Yeah.
+There's one what we are talk discussing
+maybe tomorrow or late today. There's
+one method that comes close to this that
+looks at this conditional dependencies.
+Okay. So this is just the code. Now back
+to one example and this I think is quite
+nice. Think you're in 1950. Think you're
+working for a tobacco industry. Now the
+politicians tell you well smoking is
+causing lung cancer. We have to put a a
+tax on tobacco. So you're working for
+this tobacco industry. What do you say?
+Obviously the first thing you say this
+is rubbish. But then they ask you what
+do you mean? So what do you tell the
+politicians?
+The tax lung cancer.
+The tax is causing lung cancer. Okay. So
+you might get a bonus from the tobacco
+industry, but I think it will be a very
+small one.
+Anyone like willing to get a larger
+bonus? Yeah. Just correlation.
+It's just correlation. So, but how you
+have to explain the correlation, right?
+So, you explain this by this hidden
+factor, right? So, what do you think it
+is? What do you claim it is?
+Social economic status.
+Social economic status. Very good. You
+get a a medium bonus. No, it's a high
+bonus, but it's not the highest bonus
+ever. Why not? Because this it's a good
+idea. So, you're saying it's a
+socioeconomic status, but the problem is
+by this idea of adjusting, right? So
+imagine this is soioeconomic status. So
+we write the dollar here. So what you
+now can do is if you're interested in
+the causal effect from smoking to lung
+cancer. What do you have to do? You have
+to adjust by this guy. Right? So we know
+how to do this. So we are saying well we
+get data from this causal structure then
+what we can just do is we measure the
+socioeconomic status adjust for it for
+example include it in a linear model or
+use this formula that I've shown you
+before. And what you get out is the
+causal effect from smoking to lung
+cancer. And this paper has done a lot of
+this stuff. So if you read this paper
+then they adjust for many many things.
+They adjust for like age and stress
+factors for sex obviously for like where
+you coming from and so they always
+adjust and they always see well there's
+a causing there's a effect from smoking
+to lung cancer
+else in the cigarettes that is not the
+tobacco and you really can't adjust for
+it.
+Okay. So you're saying well there's
+something else in the cigarettes. That's
+also a nice idea. But I mean then the
+tobacco the politicians would say well
+we don't care then we just text not the
+tobacco but the cigarettes
+but I mean it's all good ideas. I'm just
+using for the idea that they used
+looking for the idea that they used
+so you say it's a genetic disposition of
+the smokers something like this.
+Yes. So then you get a very very high
+bonus. So if you're saying and this is
+what they did it's pretty clever. They
+said, "Well, this is this is a hidden
+factor and it's a genetic uh um a
+genetic factor because it's 1950s.
+There's no way of measuring this." So,
+you can I mean, no, seriously. I mean,
+of course, from nowadays, it's it sounds
+ridiculous because you're saying they
+really claim there's one gene and if
+this gene is expressed, you feel the
+desire for smoking and you get like lung
+cancer with a very large probability.
+Nowadays, we know that it's stupid.
+There's no G not a single gene causing
+anything but like and even like two of
+such very diverse things in encoded in
+one gene is very unlikely but it's 9050
+and if this would be the case what you
+have to do is you would need to adjust
+for this and there's no way to do it. So
+the only valid adjustment set you find
+in this causal graph is to include this
+guy. But if this guy is not measurable
+then there's no way of adjusting for it.
+And this is what they did. And this
+these guys are pretty clever and I'm
+pretty sure they got a very good bonus
+for this. Um and so something that
+astonished me a bit. This is a book that
+I recommend. I enjoyed it a lot reading
+Merchants of Doubt. So it turned out
+that these um uh these scientists that
+were experts on uh lung cancer and
+smoking were also experts on climate
+change. So they also they also find very
+good ideas of sort of claiming that
+either climate change does not happen or
+that it's not caused by humans. And this
+is like um this described in this book
+merchants of doubt. So how you can
+actually try to influence the
+interpretation of science. I think it's
+nice read
+to know specific genes to I mean you can
+ask in family trees about how heritable
+is smoking and cancer and at least part
+partially addressed this.
+Yes. Yeah. This is what they did. They
+also looked at uh different this I mean
+they're it's coming close to this. They
+did some serious stuff because this was
+a very important question right. They
+looked at for example populations in
+different countries as well and there
+you can also say if you don't have a lot
+of mixture you can if you see the same
+increase like in two very different
+genetic population structures and then
+you can try to argue but it becomes
+messy right it becomes very hard
+good um there's one last thing I would
+like to talk about um today or any other
+questions about this example the
+adjusting is this roughly clear
+good yeah
+just a comment if I'm not mistaken This
+came on the background of previous
+studies that showed correlation between
+lung cancer and soot and like uh in the
+air I think in in England. So there was
+a background unrelated to smoking that
+supported something like this.
+Yep. Also good point. So what you're
+doing then is you're I mean you're
+trying to broader your model class,
+right? This is what you have to do and
+we will see actually in these so-called
+independence or constraint based methods
+that this is something useful also from
+a mathematical point of view. You can
+argue why this is the case.
+There's one more thing that I want to
+mention and this is a bit maybe
+surprising that it only comes now
+because it's so essential for causality
+and this is the idea of randomized
+studies. So it turned out that a couple
+of centuries ago um a scurvy was
+actually a big problem and I read that
+in the 18th century this caused more
+deaths of British soldiers than any
+enemy any other enemy action. So this
+was a big problem on the ships and James
+Lind, I think he was a Scottish medical
+doctor, he um conducted one of the first
+randomized experiments. They usually
+what you often see is in these
+randomized experiments. You see examples
+from a different field. So I have an
+idea what the Facebook and Google from
+like two centuries ago was. It was
+agriculture. So this is where all the
+statistician worked. But this is an
+example from the British Navy that I
+like. H So what do you do in a
+randomized experiment? And this is I
+mean you maybe I'm biased but I think
+this is really a genius idea. What we
+have seen a couple of times now is we
+have a treatment and a recovery and we
+are interested in the causal effect from
+the treatment to the recovery. But then
+you always have to adjust right because
+you have these stupid backropaths. It
+was the size of the stone. Um, in the
+example that I showed you in many other
+studies, I mean in the you have the
+chocolate, it's the same game. No, you
+have the chocolate and the Nobel Prize
+winners. The problem is you always have
+these hidden lat hidden causes. In the
+chocolate case, it's probably something
+like the economic strength of the
+country or something. So, rich countries
+are probably more spending more money on
+research and on chocolate at the same
+time. But you you always have these
+hidden factors and you can try to
+correct for them as it was done for the
+lung cancer study. But you never you can
+never be sure like that there's not
+another one that you didn't think of
+that you have to correct for or adjust
+for. Now what do you do in a randomized
+study I think is really genius. So what
+you do is you randomize food. You
+randomize the treatment. So you're not
+distributing like you're not observing
+anything but what you're saying is
+you're throwing some dice and then if
+the outcome is one to three you get the
+treatment. If it's four to six you you
+get a placebo or not a treatment. It
+turned out apparently that throwing the
+dice is not random enough. So what they
+did is that the the doctors at some
+point the medical doctors had to call a
+number and then this number the person
+on the other side of the phone told them
+a random number and then they had to
+take this because apparently what the
+medical doctors did for some time they
+threw the dice and if they didn't like
+the result they threw it again which is
+maybe not what you want to have in a
+randomized study and apparently if
+another person tells you the random
+number that's more trustable for some
+reason but anyhow how this is I mean any
+these are implementation details which
+are important But the idea is really
+that you randomize the treatment and
+what happens? It automatically kills all
+incoming errors. So then you're getting
+data from a causal structure where the
+treatment does not have any incoming
+errors. So this means what is a valid
+adjustment set? Well, the parent
+adjustment says it's the empty set. We
+have to use the parents of F. There are
+no parents or food or the treatment.
+There are no parents. So we do not have
+to adjust at all. So we just run a
+linear regression or any model that you
+like from the recovery on the treatment
+and this is I think it's really genius
+because no matter how complicated life
+is if you have a way of randomizing this
+then it's very easy to find the causal
+link and this is what our society um
+sort of makes use of nowadays no I mean
+this is these are the randomized studies
+that we're doing in the medical regime
+which are like used everywhere and these
+are somehow this is seems to be
+something that we trust
+In formulas this is like saying this no
+I mean the the distribution of recovery
+if we intervene now is the same as
+conditioning usually it's not but
+because there are no incoming arrows
+into f this is the same thing. So this
+is we can just read it off from our
+data.
+So how does it do in how does it work in
+practice? So in this this was one of the
+first studies. So James Lind what he did
+is he was of one of the ships and then
+um we can read this together. So on the
+20th of May in 1747 I selected 12
+patients in the scurvy. So there was a
+scurvy outbreak on board the celisbury
+at sea. Um so what they thought is that
+this is something like um you need some
+sort of acid to cure it. For some reason
+they didn't know uh anything better. So
+what they did is they distributed uh
+sort of different treatments. They all
+related to uh to acid. So two were
+ordered each a quart of cider a day.
+Those were the lucky ones. to others
+took 25 drops of alexic vitriol. This is
+basically sulfuric acid. So this these
+were the less lucky ones three times a
+day. Two others took two spoonfuls of
+vinegar three times a day. Two of the
+first patients were put on a course of
+sea water.
+Here you see that this is actually a bad
+thing to do. It's not a well done
+randomized study because you should not
+look at the whether they are bad
+outbreaks or not. And to others had each
+two oranges and one lemon given them
+every day. Aha. So they didn't know
+about the concept of vitamin C. This was
+not found yet. But those were the ones
+that got better. As you can imagine, the
+two remaining patients took an electtory
+recommended by a hospital surgeon. Uh
+this is some weird stuff that was common
+those days. The consequence was that the
+most sudden invisible good effects were
+perceived from the use of oranges and
+lemons. One of those who had taken them
+being at the end of six days fit for
+duty. So it tech it took some more time
+to like really get this published and
+like acknowledged and repeated
+experiments but this was one of the very
+first randomized experiments and this
+guy had the correct idea.
+Any questions about this?
+Okay. So but is it clear how this
+randomized study they fit into the
+picture?
+Important for me.
+Um good. So there's one thing that is
+this is only a side comment it's also
+not important for the remainder of the
+the miniourse but somehow this was
+important for me at some point because
+what you're doing now so far and
+hopefully will get better in the next
+sessions but so far we are somehow
+working only on sort of in the math
+world right this is all mathematics so
+we are defining a structural causal
+model um we are sort of defining what an
+intervention is we are defining
+adjustment but this is all in math and
+we somehow have to link this to reality
+at some point. So what is the cause in
+reality? And I think this notion is
+pretty useful. So if you have causal
+models, you can say that two models are
+called either probabilistic or
+interventionally equivalent if in the
+first case they have the same they
+entail the same observational
+distributions or in the second one you
+have to agree on the observational and
+interventional distributions. This is a
+trivial definition in a way, but for me
+this is really important to sort of link
+this to reality because it turns out
+that it is actually it doesn't matter
+what kind of interventions you look at.
+It suffices if you always look at
+interventions. We have heard that there
+are many many interventions you can do
+but it suffices if you only look at
+interventions where you randomize a
+variable XJ and you put it to a fully
+supported noise variable. And this is
+the idea of a randomized treatment. So
+it suffices to look at interventions
+where you take one of the variables like
+let's say the treatment and you
+randomize it. So you put it to a random
+var variable.
+Now this I think establishes the link to
+reality because in reality we have a
+model right so this is not different
+from statistics. You're writing you're
+writing down a model that somewhat
+describes the data generating process.
+So let's say you're saying this is a
+you're claiming this a Gaussian
+distribution. Now you're receiving data
+and at some point you want according to
+papa at least you want to be able to
+falsify this model. So what do you do?
+You construct tests for this right? So
+you're saying well I get more and more
+data and then I test whether the the
+data looks like it's if it's Gaussian or
+not and if it's not I reject my model.
+And this I think is very important for
+uh for science if you do it like papa uh
+thought about it at least roughly. And
+here you can now do the same thing. So
+now we are not looking at a statistical
+model but we are looking at a causal
+model and we should somehow be able to
+falsify it otherwise it's a bit of a
+question what are we doing what is the
+game we are playing and here you can do
+this because we are saying well a causal
+model you can falsify now if you look at
+the data generating process and if the
+observational distribution does not seem
+to come from the model then you can
+reject it that's the game we have played
+before as well but now what we can also
+do is we can link it to interventions so
+we can say well if it's a causal model
+that predicts that something happens
+under a randomized experiment and I
+actually perform the randomized
+experiment and I see the outcome is very
+different the distribution of Y is very
+different then I would say well then
+it's probably the wrong causal model and
+this link I think is nice that you only
+have to look at this randomized
+experiments but this is really a link
+how you can falsify these causal models
+I think like from a philosophical point
+of view it's important
+sorry just take one step back in the
+kidney stone if that was randomized
+properly
+then we wouldn't have needed to adjust.
+Yeah. So if the kidney stones would have
+been a randomized study, then it could
+not have been that the size of the stone
+is causing the treatment, right? It
+would be completely random and then you
+don't have to adjust. But in a way, it's
+an interesting thought. No, because if
+you already think that treatment A is
+better, it's a bit question whether you
+should randomize, right? Because if it's
+there if there's a way it's a bit tricky
+but if there's a way to say that it only
+depends on the size of the stone or
+nothing else then we can actually adjust
+for this right and then you save more
+lives at the end of the day. So you can
+it's actually a trade-off during the
+study how much like how many people sort
+of get hurt or not but in in some
+studies it's very difficult to do
+because if you see the patient then
+suddenly you would need to correct for a
+lot of lot of things. Yeah.
+Yeah. I mean in in cases of randomized
+trials I mean we we may there's still
+sometimes adjustment there. Yes. And
+that's but that has more to do with like
+sample size and like
+okay so I mean maybe two comments. So
+the question is we still have adjustment
+in randomized trials. So one point that
+I don't address here but this is of
+utterly importance in practice is the
+question of statistics right? So you can
+adjust but you have seen that the the
+values that I got in the program in the
+R program they vary about two right. So
+the question is what are the correct
+confidence intervals there and also are
+some adjustment sets better than others?
+This I didn't address. The second
+question is well the randomized
+experiments sometimes you still need
+adjustment and the reason is that it
+becomes I mean there are some experts on
+this also not far from here. So Jamie
+Robbins for example is working a lot on
+this. The the point is they become
+arbitrarily complex somehow because
+often you have sequential treatments. So
+this is one effect. So you treat
+someone, you randomize and then
+depending on the outcome, so maybe you
+you don't see a result or you see like
+certain side effects, you change the
+treatment later on. So then in these
+things you sometimes need to adjust.
+Another problem that turns out to be
+very important practice is that um some
+people if they think they got the
+placebo, they drop out. So they stop
+taking it and this is something you need
+to correct for. This is also I mean then
+in practice you get all these these
+problems. So therefore I mean this is a
+simplified picture maybe no like a very
+easy case but this is a full line of
+research if you like. Yeah.
+I'm just trying to reflect on your last
+definition. I wonder so if you have a
+series of interventions where I have
+actually played with all these variables
+can I actually infer the causal graph?
+Um yeah so the question is if you have a
+lot of interventions can I infer the
+causal graph? The answer is yes. So the
+simple answer is or the simple way to
+see this is imagine you have intervened
+on all the variables. So let's say
+there's an underlying cause structure
+that is cyclic and you have like you
+have 12 variables and you have performed
+12 interventional experiments. So then
+you see of course if I intervene on X5
+and I see seven and 11 change they must
+be downstream. No, but if like some
+others don't change then I mean if if
+you know for every variable which is
+like what other variables are downstream
+then you can infer the structure but
+it's there exist much more efficient
+ways and um I might may not be able to
+talk about this in this mini course but
+on Friday I will also talk about in this
+seminar talk I will talk a bit about one
+of these methods
+uh good
+uh I've learned that one should
+sometimes do visual breaks. This is my
+visual break uh from Copenhagen. And uh
+I think this is a very good uh place to
+stop. I'm actually not sure when we
+reconvene if you're interested. 2 p.m.
+2 p.m. Okay. Thanks for your attention.

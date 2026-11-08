@@ -1,0 +1,376 @@
+So, in my previous video, I introduced
+the concept of policy as code and tried
+to make the argument of why it exists.
+If you missed that video, in short,
+policy as code is basically a tool that
+we've had tremendous success with
+pairing with your traditional AI agentic
+limiting tools, like your rule files,
+your skills, etc. And it introduces a
+static set of rules and scripts that
+basically contain drift at scale.
+You want to see that whole video, check
+it out. It's on my YouTube channel. In
+today's video, what I want to get into
+is actually what this looks like and how
+you can build out these policies. This
+is not going to be a getting started
+video. I'll have another one of those on
+the channel, so you can find that. But,
+it is going to be trying to show you
+like how this works at scale and how you
+can run it and how you can build it.
+What you can see right here is this is
+actually one of the rule sets I have for
+this Elixir suite. So, with that, let's
+get into it. Look forward to diving in.
+&gt;&gt; [music]
+&gt;&gt; Okay, before we get into it, as a
+reminder, my name is Ben Fellows. I do a
+lot of content on QA as well as now just
+general engineering, things like agentic
+pipelines, things like policy as code,
+living documentation, all kinds of
+things. So, if you like that, please
+subscribe to this channel. Goes a long
+ways. Trying to do a lot more videos. I
+also want feedback on this cuz like
+generally speaking, I've not done a ton
+of
+videos and I think I could probably be
+better at it.
+Okay, so once again, if you're new to
+this, what is policy as code? I have a
+whole video on this, but essentially,
+the concept is that you introduce a set
+of rules that are extraordinarily
+comprehensive that govern everything
+from architecture to rules on what you
+can import where to frankly even what
+documentation needs to be available. And
+the idea basically is that you run this
+every time you're also doing agentic
+development. So, you give a prompt, it
+tries to run code, and then it runs its
+policy as code suite and it flags
+errors. And I actually might have, let's
+see if I have it. An example of its
+one that I did. Okay, yeah.
+So, let me pull it up. Great. So, this
+is an example of the in output. Now, in
+this case, I haven't
+worried about cleaning it too much into
+a report or anything like that.
+It's just more for me and and some work
+I was doing. In short, you can see, so I
+did some development earlier this
+morning.
+I ran the suite. It currently takes
+around 4 to 5 minutes. I think I can
+probably optimize that much further
+because it does feel like it takes way
+too long, but the code base is quite
+large.
+And in short,
+from the development this morning, it
+found around 302 errors. Now, I had also
+messed a little bit with some of the
+rules. So, you have to be really careful
+with changing the rules. Generally
+speaking, you want to be never changing
+them. Like your rules should not be
+changed. Like they are your source of
+truth. They guide everything. Uh and you
+can see now it's found all these
+violations, right? And this is anything
+from missing attributes to missing test
+IDs to this is my component library and
+looking for like where it's supposed to
+live and what six apps missing their
+observatory observability things as
+well, right? So, this is the output of
+it.
+And the concept is this idea that you
+use this to constrain AI drift and it
+frankly works really well. So, how do
+you build it and what is it at scale,
+right? And so, what is at scale is three
+core levels. You have your evidence
+gathering, you have your rules, and then
+you have your gates. So, the evidence
+gathering at scale, why it becomes
+complex is a couple things. One is you
+want to figure out how to optimize the
+scraping of your code base essentially,
+right? Like you don't want every rule to
+do a full scrape of the code base. So,
+you end up essentially creating like
+evidence buckets that basically
+different rules need to look for
+different things, right? And so, you
+create a bunch of different evidence
+buckets that the rules all then are
+mapped to
+and the rules look at. And then you also
+have your whole gate system, which is
+basically determining when and how stuff
+fails.
+This is more important when you try to
+introduce it into maybe the idea of a
+CI/CD flow. Most of what we're doing
+right now is for like local development,
+but it is an interesting tool that I got
+to introduce this idea like release
+warn. For the most part, we try to
+always clean up anything that is either
+a hard fail or a warn. And then you have
+all your rules and we'll we'll talk
+about that. All right, so one pipeline,
+seven subsystems. Let me zoom in on
+this. It goes clearly, probably it's
+going to be too hard to read.
+You have your source code, your AST
+parser, that then compiles into an
+artifact reader. You have your manifests
+and routes, right? That all then goes
+into evidence cache, which is basically
+I forget what that is. I'll have to get
+back to you about that. And then that
+becomes evidence store and rule
+registry. So, like the benefit of this
+is that you can then add logic like when
+you're doing changes, if you've only
+changed certain files, and then the
+rules are not mapped to those files, you
+can use some of the evidence cache and
+you don't have to run full scans every
+single time. Transparently, some of this
+stuff I have yet to sit down and really
+fully go through. I need to work on
+continuing to optimize this. So, I'd
+love people's feedback on how and what
+to do. You have your runner, and then
+you have your findings, you have your
+waiver concept. Waiver concept is
+basically the idea that
+you want to either allow for certain
+exceptions, right? So, like my general
+belief is that code is just a massive
+set of patterns. For the most part, you
+can almost codify all of those patterns
+and how they should work. But at the
+same point, there are times when you
+want waivers. And so, you have the
+ability to do waivers. This is probably
+the biggest risk point in the whole
+concept though, because as soon as you
+introduce the idea that waivers are
+possible, AI tries to introduce them
+like everywhere. So, we have a whole
+system around AI not allowed to
+introduce waivers and then we
+periodically audit what it has been
+flagged as a waiver. And then you have
+the output here, which is your report or
+HTML, which I just showed you. And then
+you have the gate evaluator. Eventually,
+I think you should do something like an
+HTML roll up. That's like very easy to
+do. We've done stuff like that, but it's
+worth doing. So, what does the repo
+actually look like? So, right now, we're
+not like packaging this or anything like
+that. Like eventually, there's a world
+in which maybe you would just turn this
+into an NPM package or I think it's hex
+files for Elixir. But, if you're just
+doing it yourself and building it
+yourself, and
+you want the fully built out version of
+it, you have basically policy as code
+repo, your SDK, which has all rules,
+findings, context. You have an engine
+concept, your extractor concept, and
+then you have all your rules sorted
+here.
+And then you have a reporter concept and
+so forth. So, in terms of the full-blown
+architecture of it, I will just say the
+same thing, be super transparent that
+I've been more focused on general on
+trying to make sure that all the rules
+are accurate than I have been on like
+optimizing the actual whole concept.
+That's probably going to be a priority
+for me in the next like month or so as
+we're doing more of this. This is going
+to be very hard to read, but what
+happens when you actually run it, it
+goes down this whole process, right? So,
+first, you have your CLC CLI, excuse me,
+which at this point we just have AI do.
+So, like part of our agentic pipelines
+now at this point is that after a
+change, AI is just told to run the
+policy rule system, any errors, make
+sure the code is compliant. And the key
+thing is that the code, like it always
+has to make sure the code becomes
+compliant with the rule system, not ever
+that the rule system should somehow
+become compliant with the code. This
+whole thing fails if you are not capable
+of building out
+a set of rules that govern software
+development. And like genuinely, what
+we're talking about is like thousands
+and rules possibly long term, right?
+It's everything from patterns to
+anti-patterns to architecture, etc.
+Which once again, like I'll pause and
+say this was never I think feasible or
+that great. Let me move my face, by the
+way. This was never particularly
+feasible before AI. Oh, wait, my mouse
+is over here. And
+what's interesting about it is just this
+idea that like now with AI,
+writing and governing all these rules
+and going through them and figuring out
+like what I like or not, it wrote all
+the rules in an afternoon. I spent a
+couple hours with a couple other folks
+going through all the rules, deciding if
+we liked them and they were valid. And
+now we have 100,000 lines of rules that
+govern software development on this
+project. I never would have sat down and
+write 100,000 lines of rules before
+this, particularly that are bespoke to
+this project. And like I can show you,
+by the way, what's unique about this
+project and challenging is
+the whole concept of the project is that
+you have multiple apps that are being
+developed against a shared module system
+that basically presents a menu system
+for contracts. This is a whole different
+thing. But the idea that
+what's imagine you have a billing,
+right? This billing module actually has
+hooked up to Stripe. It has multiple
+different concepts of how you could do
+billing, per seat, usage, variety of
+other ones. And then you have your apps
+that basically subscribe to the module
+with the contract. It decides what you
+want, how it wants to use billing, what
+kinds of billing, the schema, the UX/UI
+all lives in the module. So, then that
+just is basically imported into the app.
+And then the app is just a shell
+basically for
+that concept. A lot of our rules are
+based around to like what contracts need
+to be in place and what rules, like all
+of these different ways. And so, like we
+have rules governing how the shared
+modules work, we have rules governing
+how the apps work, etc. And so, when you
+run it, right, and we can talk about
+this, but basically you have your
+runner, it goes down,
+it goes through all your checks,
+filters, right, and then evaluates and
+then it emits it, right? This is
+repeating it a little bit. Build
+evidence context, build rule registry,
+preload.
+Yep. Metadata, one predicate, that's it.
+Yep, every rule is a module with
+declarative, right? So,
+four types carry the whole engine. This
+is probably the simplest way of
+explaining it. You have your rules, you
+have the context component in the code,
+and then you have the evidence objects,
+and then you have all your findings, and
+then you have your waivers, right? Right
+now, I guess what I would say is this is
+not packaged and put up into GitHub. If
+there's interest, I guess I can package
+this and put it into GitHub. Generally
+speaking, my belief though is that like
+in the world of AI, like people should
+take something like this and run with it
+as opposed to just like pulling down a
+package, but certainly I guess if you
+want a general like framework packaged
+up and to all you have to do is just
+write the rules, more than happy to do
+that. Yeah, and then maybe basically
+it's like that, right? And then it comes
+down to Yeah, here's the whole gating
+system. Is it waved and then how does it
+gate and then so forth?
+Three shapes, markdown, this is all the
+reporting concept, great. And then eight
+design decisions you have to make. Let's
+see here, evidence for semantics.
+Declarative rules as data. Yeah, this is
+not super important to go through all of
+doing this stuff. So and once again, I
+think I had another In the previous
+video I talked about all the different
+kinds of things that we do as rules, but
+I'll mention this.
+Basically you have your visual UI
+boundaries.
+Like architecture things, web where like
+we just look, right? So this is
+everything from like route structure to
+how the HTTP works to imports to
+middleware order, etc. It is truly
+governing everything about in theory,
+basically every decision that a
+developer could make that is in that is
+possible to be turned into a pattern,
+right? And personally speaking, I think
+it works really well. I have a lot of
+evidence to say it does work really
+well. I'll be publishing that evidence,
+but yeah, this is what it is from an
+architecture perspective, how it breaks
+down. And then once you have it in
+place, it's as simple as just hey, run
+the policy rules. Is it clean, good?
+Then you run all your test automation.
+Is it clean, good? Then you can be very
+confident at an agentic perspective that
+the code is both compliant with how you
+want everything architected, done, etc.
+as well as all the tests, right? Is it
+perfect? Absolutely not. Is it my still
+finding rules that I need to be added?
+What I tend to do now
+is when I find drift, I then ask AI like
+what what how did this get around the
+rules? And most often is the case is I
+just didn't have a rule for it, right?
+Now, it's what's really cool about it is
+I'm getting so much less drift than I've
+ever gotten before, so there's less and
+less rules that I'm having to add and to
+me that's an indicative component that
+this is really working. Yeah, if you
+have questions, drop them in the
+comments below. I will be doing more
+videos on this. Hit me up, LinkedIn,
+YouTube, anything. My name is Ben
+Fellows. I run a company called Whip QA.
+If you actually want like consulting or
+a course on this stuff, we're
+considering launching that stuff, too.
+Feel free to comment if you're
+interested. Otherwise, then subscribe. I
+appreciate it. Talk to you. Bye.

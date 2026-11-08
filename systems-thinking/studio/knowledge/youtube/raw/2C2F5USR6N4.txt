@@ -1,0 +1,1283 @@
+good morning everyone
+welcome to srecon i'm laura mcguire the
+lead researcher at jelly
+and when i got started as a researcher
+looking into the world of
+digital service delivery of site
+reliability engineering
+i used to tell my friends and my family
+that i was studying the work of people
+who
+kept society from collapsing and they
+kind of
+look at me and be like who is it are you
+studying
+politicians police social workers
+bartenders with all the
+considerable confidence of a first-year
+phd student
+i shake my head slowly and i'd say nah
+software engineers you could see their
+brains kind of
+short-circuiting trying to draw this
+relationship between complete societal
+annihilation
+and the archetype of a software engineer
+with their hoodies and their sneakers
+and their dr peppers
+and so i'd walk them through how over
+the last 10 years the world has been
+fundamentally changing in ways that the
+average person had
+really little to no idea of
+and i'd say things like you know how we
+need
+services like 911
+services to never fail and
+you know how you'd like your electronic
+health records to be always available to
+your doctor
+you know how you never ever like
+ever want netflix to go down
+while keeping these systems not only
+well maintained but also continually
+getting better
+and faster it takes considerable effort
+and so these are the people that i'm
+studying this is the
+work that i'm studying and in doing so
+what i'm doing is i'm increasing our
+understanding of how
+despite rampant complexity continual
+change
+massive scales and speeds despite
+all of this this is how they keep these
+systems up and running
+and driving many of the core functions
+within society
+i study how they strive for near perfect
+reliability
+as they build and grow and maintain the
+systems that we rely on for everything
+from
+entertainment to financial markets to
+telecommunications to transportation
+to governance and i think that like
+most people would kind of crocket they'd
+be
+okay cool that sounds interesting
+then inevitably they changed the subject
+until the pandemic happened
+and then all of a sudden
+it became immediately
+personally relevant
+and they realized the critical
+dependencies that they had on their
+technology
+for work for relaxation
+for connection and
+at the start of the pandemic out of
+nowhere i got emails from these friends
+and family being like so
+is your research finished how's those uh
+software engineers are we good
+and i actually don't entirely know how
+to answer that
+because i'm not sure if we are good
+because we've placed a lot on the
+shoulders of sres
+the demands of rapidly scaling 24 7
+of critical digital infrastructure it's
+not inconsequential
+and as we increasingly move operations
+to the cloud and towards continuous
+deployment
+everything we stretch the capabilities
+of the technology
+much of it which is still emerging and
+changing itself
+and we exponentially stretch the
+knowledge
+and the competency requirements for
+those who build and grow
+and maintain the technology when the
+speed of digital transformation
+already makes highly skilled workers a
+scarcity
+and importantly we stretch the
+capacities of those who are tasked with
+keeping these systems upright
+because the demands of a life on call
+and of living up to four
+four nines reliability metrics are very
+taxing on the people that we can't
+afford to burn out
+as we make this transformation
+but if there's one thing that i do know
+it's the way that we're currently
+thinking about sre work
+and organizing sre work and coordinating
+across these tangled layered networks of
+highly interdependent systems
+is insufficient and we
+are in a lot of trouble if we continue
+to oversimplify the sophisticated
+the nuanced and the highly technical
+nature of the work that
+you do but the future is
+not all bleak because what i saw
+and what i heard in the three years that
+i spent looking over engineer shoulders
+and listening in on 3 a.m conference
+calls
+and of talking with sres about
+the stresses and the aspirations of this
+kind of work
+was that there is a sort of profound
+resilience and adaptive capacity
+in many of you and this is often in
+spite of
+counterproductive organizational demands
+and practices and technologies
+that sort of kind of but not quite help
+you out during really high pressured
+incident response
+and this is often a very collective
+resilience
+as you're working with people that you
+know and often many that you don't
+and it really shows up in the ways that
+you're able to detect
+to diagnose to repair and respond
+restore your systems
+despite conditions of uncertainty and of
+ambiguity and
+importantly of time pressure but
+it's often hidden it's hidden amongst
+the deploys and the pages and the
+backups and the migrations and the
+failovers
+it's a kind of secret life these
+unrevealed complexities and nuances
+of what it really means to do site
+these are hidden in the written formal
+representations that don't actually
+account for the full
+extent of the cognitive work involved in
+being an sre
+and today that's what we're going to do
+we're going to focus directly on these
+things
+to shine a light on these subtle and
+often hidden efforts that go unnoticed
+because a socio-technical systems
+analysis
+looks at the real world of work the good
+the bad the
+well not so pretty because in doing so
+it means that we can fundamentally shift
+how we
+level up new engineers how we develop
+new work practices how we design
+the tooling how we learn from our
+incidents
+also that we can support our engineers
+to more quickly understand the nature of
+the problems that they face
+its implications for their actions or
+their inactions
+and to be able to draw in and organize
+the right people
+so that ultimately they can resolve
+incidents faster
+but how do we get there well
+we often start by understanding the
+world as it is today
+and the lens that i'll use is one of
+cognitive systems engineering
+because for the last 30 years we've
+looked at
+the work of experts like astronauts and
+surgeons and fighter pilots
+and we use a variety of methods that can
+help surface insights about the
+cognitive work that's inherent
+in highly technical complex adaptive
+environments
+where hazards arise from multiple
+compounding
+and interactive variables and where risk
+is largely emergent
+and if this doesn't already sound like
+the world that you live in
+what sres also share in common with them
+is that
+successful performance actually requires
+finely tuned adaptive capacity to very
+rapidly and precisely adjust to
+uncertain
+and changing conditions and where
+despite the best
+planning and the best deployment
+processes
+highly automated it systems running at
+speed and scale can generate these
+partially or completely unstructured
+problems
+that force you to bring your knowledge
+to bear in new
+and different ways and
+so this is really where my interest as a
+researcher comes from
+because well of course there's obvious
+differences between space exploration
+and software engineering
+there's many similarities that can be
+abstracted out of the specific
+details of the type of work that you're
+doing to focus on
+what's really central here how do we
+define
+expert performance in these complex
+adaptive and uncertain environments
+and so as your tour guide into the
+secret lives of sres
+i'm leaning not only on the knowledge
+that i gained in my master's degree
+in human factors and system safety and
+in my dissertation research where i
+looked in depth at 62 cases of difficult
+but also on my own experiences as a
+frontline practitioner
+and it's precisely this experience of
+working in forestry operations that
+actually grounds me
+in both my academic research and in the
+work that i do as
+lead researcher at jelly it's that i've
+spent a good
+chunk of my career on the sharp end on
+the front lines of having to make
+decisions and take actions
+under uncertainty and what it's taught
+me
+is that there's always more to the story
+than initially appears when something
+goes wrong
+there's more nuance there's more history
+involved there's more hidden
+interdependencies
+that can strain available actions
+and there's more complexity in the
+decisions that are faced
+and more uncertainty about what's
+actually going on
+when you're in the middle of an
+unexpected incident
+and so there's a few key ideas that have
+guided me as i looked into this world of
+critical
+digital service delivery the first idea
+is
+grounded in the need to coordinate
+multiple diverse perspectives in real
+time
+because in complex adaptive systems
+where things are always changing
+you need overlapping sets of knowledge
+and experience to handle a wider range
+of problems
+because the cognitive demands of
+troubleshooting a live system
+under time pressure are really
+substantial
+and so you have to draw from across a
+set of capabilities to both
+meet the demands of the issue but also
+to limit the duration
+of the the outage
+in this way it gives rise to a bit of a
+coordination paradox
+well if we know everyone's mental model
+is going to be partial and incomplete
+and we need these multiple diverse
+perspectives to bring to
+together to handle these difficult cases
+but there's also cognitive load that's
+involved in trying to organize and
+coordinate all these multiple
+perspectives
+there's a really interesting tension
+there and
+that's the tension that i looked at how
+is it
+that responders manage the substantial
+technical work of
+detecting diagnosing and repairing
+faults in live production environments
+with the additional demands that are
+brought about by needing to
+also manage the coordination of these
+multiple perspectives
+in real time and this
+coordinated effort comes with additional
+cognitive costs
+there's always cognitive load that's
+inherent in communicating and
+coordinating work across multiple groups
+and as we'll talk about the more diverse
+those groups
+and the less they've worked together the
+less common ground they have to be able
+to keep those costs
+low during an escalating event
+and it's worth actually noting that
+these things matter
+even more today than they have at any
+other point in the past
+because previously most forms of
+critical incident response were held in
+control rooms
+like this one where we can see the nasa
+engineers during the apollo 13 event
+and in these kinds of contexts these
+co-located contexts
+a well-designed control room has
+benefits over the distributed context
+that we're in today
+it takes substantially more cognitive
+effort to coordinate in a
+remote setting than when you're all in
+the same room
+largely because when you're in the same
+room you get a lot of information
+implicit information about the state of
+the event
+about your fellow responders and
+their their ability to coordinate and to
+help
+with your problems when you're in this
+when you're in a shared space
+so this is this problem space that
+you're working in
+this complex adaptive environment where
+you need multiple perspectives
+those multiple perspectives have costs
+of drawing together
+and being in a remote distributed
+environment adds an additional layer of
+complexity
+so this is the reason why understanding
+the hidden work
+is so important because if we get a
+better understanding of it
+we can design better tools better
+practices we can improve the training
+that can reduce the demands on engineers
+in already demanding work
+and so to bring some of the findings
+from my research
+to life i want to introduce you to three
+engineers that i met
+in my research because i think that
+their stories help
+illustrate the key points that what i
+want that i want to make
+about the work that's often hidden in
+sre life
+and so they personify these patterns
+that emerged
+over and over and over again in the
+cases that i studied
+and who knows maybe you'll see a part of
+yourself
+in them as well so
+to talk a little bit about the
+complexity in sre work
+and to shine some light on the realities
+of socio-technical systems
+i'm going to introduce you to sean and
+so sean was the product lead for a
+really popular project management and
+ticketing tool
+on an internal tools team this was a
+large company that provided business to
+business i t
+infrastructure to a global market and
+sean's team helped support modern
+software development methods by
+resourcing the company's dev's teams
+with tooling
+so they were a new team running lean
+while they resourced up
+and because they'd recently taken over
+as service owners
+and because it was sean's first time as
+a product lead
+it was decided that they would manage
+the tool in a semi-customized
+sas offering with the infrastructure
+being hosted on the company's
+internal cloud services um
+and so this distributed the management
+of the service between
+the virtual machine provider the
+internal cloud services
+the tool vendor and sean's team itself
+and so uh in this case over the past
+couple of weeks the tool had been
+experiencing some performance
+degradations and
+users were getting pretty angry so sean
+and his team had actually planned a
+six-hour system maintenance window
+they were going to upgrade memory and
+cpu and then just
+reboot the hosting infrastructure and
+improve the user experience
+and so the friday evening maintenance
+began as
+planned and sean started taking a backup
+and a snapshot
+but his attempts to take a backup failed
+he actually noticed while he was
+investigating that
+the previous upgrade had included a new
+version of the backup utilities
+but there were no indications of this in
+the release notes from the vendor
+as he started investigating further he
+found that the
+backup system had been reporting false
+positives and in fact
+no backups had been occurring the last
+good backup had been done
+23 days prior however
+since the backup process was configured
+to only save five days of backups when
+the job runs successfully
+there were actually no good backups
+available on the backup server
+in fact the last good backup that he
+found was from
+six weeks prior because this one had
+been used to test the restore process
+and had
+actually been saved to a different
+directory
+so sean's in a tough spot here because
+he knows that users are going to be
+really difficult to deal with if they
+had to endure another week of
+performance issues
+but at the same time the time pressure
+is mounting because the cloud services
+team is scheduled to start the upgrade
+and sean wasn't going to have time to
+install the new version of backup
+utilities before the plan maintenance
+began
+so he calls another engineer on the team
+and you know
+talks it over and they decide that
+taking a full disk snapshot of the vm
+would provide
+suitable safety for the maintenance to
+proceed
+and then they could resolve the backups
+issues on the following day
+so he does that takes the snapshot cloud
+services team conducts the maintenance
+and after the maintenance sean installs
+the new version of the backup utilities
+and they run as normal
+this backup reports success but as
+sean would find out later this would
+also turn out to be a false positive
+so while these backups were running he
+also noticed that the hypervisor storage
+was showing at
+95 so he deleted some log files to
+create a bit more space
+until more storage could be added
+sean finished up his work he was ready
+to go home
+but shortly afterwards monitoring
+started alerting that the system was
+down
+and users were experiencing 503 errors
+because the hypervisor storage had been
+exceeded
+so sean was a bit perplexed here he
+attempted to free up some space by
+deleting some logs and
+turning off the vms but because it was
+the weekend
+he didn't have very many support
+personnel available for a
+consultation so he opens up a high
+severity ticket
+with the internal cloud services teams
+requesting that additional space be
+added so that
+when the teams come back online for
+monday
+he's going to be able to prevent some
+additional issues
+but he also needs help now so
+efforts to engage the cloud computing
+and the virtualization support were
+actually delayed
+because his team didn't have the
+appropriate level of support contract
+for off-hour support so
+sean's now feeling really uncomfortable
+with the amount of
+issues that are starting to stack up
+he's also super frustrated that he can't
+get help
+so he calls his manager at home who
+begins
+negotiating for concurrent support
+while the service agreement is being
+established
+and so finally the vm provider agrees to
+and their technician starts trying to
+diagnose the problem
+but the log files that had been deleted
+to save space
+actually made it difficult to determine
+where the problem was
+so at this point we're really only an
+hour
+into when the issues were first reported
+and already
+the complexities and the difficulties
+that have arisen
+are pretty substantial so
+this is a fascinating case that we could
+analyze for several
+hours but even in looking at the first
+hour of the incident
+it clearly shows that there's a lot of
+hidden complexity that shawn
+and likely you have to deal with in
+as new service owners the team was still
+learning about their dependencies
+the complexities that were inherent in
+past decisions about how to host the
+service
+they were learning about their
+constraints to actually manage outages
+and what kinds of coordination was
+needed to bring the right people to the
+problem at the right point in time
+so there's this confluence of factors
+technical failures with the backups the
+vendor failing to report the full extent
+of the changes in the backup utility
+time pressure to meet this maintenance
+window
+siloing that actually set up the cloud
+provider as a really inflexible
+component
+and these trade-off decisions that had
+been made at some point in the past
+about support agreements all of these
+factors
+compounded the problems that were
+experienced in this incident
+in fact this case is a textbook example
+of what's known in cognitive systems
+engineering as an
+escalation as problems cascade
+they produce this escalation of
+cognitive and coordinative demands
+and as new problems are encountered or
+actions start to bring about unexpected
+results
+there's this expansion of uncertainty
+around
+what's happening why it's happening
+what's going to happen next
+these all produce substantial cognitive
+demands
+and as the problems grow or the event
+drags on
+more and more roles get involved which
+actually
+drives the demands for communication and
+coordination
+and so as you might notice in this event
+these escalating demands are actually
+hard to see
+and how they get handled is hidden in
+the secret life of being an sre
+and it's a core reason why incident
+and any retrospective judgments about
+how well an incident has been handled
+needs to account for the cognitive and
+coordinative demands
+because these increase or decrease
+depending on the kinds of problems that
+are faced
+and in fact it's actually one of the
+limitations
+of using a metric like mean time to
+resolve as a basis for
+assessing performance and incident
+response because
+it just doesn't account for the
+difficulties of the case
+that you might actually be comparing
+apples to oranges
+in these kinds of measurements so this
+kind of brings up an interesting point
+but now you might kind of be saying hold
+on hold on this
+this sounds totally like an outlier
+event there's
+too many multiple compounding aspects it
+sounds too radical the team sounds too
+unprepared
+our organization would like never have
+these kinds of
+incidents but i'll tell you
+that in the 62 incidents that i looked
+at
+each had escalating demands and
+and social and organizational factors
+that represented
+additional demands for the incident
+responders
+each incident was full of seemingly
+trivial incidents
+or issues that independently wouldn't
+amount to much
+but jointly they create this very novel
+and cascading series of issues
+some of which are latent in the system
+but they have to be dealt with
+and the extent of these contributing
+made it really challenging to know whose
+skills
+knowledge access to the system and
+expertise was actually needed
+in what kinds of combinations
+given that the actual of these
+availabilities of people
+are always shifting in this case because
+the
+formal support relationships that may or
+may not have been established and
+also because of the timing of the event
+and at what point in time is it relevant
+and useful to bring them in
+as the incident unfolds so
+understanding these dynamics can help to
+inform
+how you design and resource
+cross-functional interactions
+whether you need accessibility to needed
+data or expertise
+and what vulnerabilities exist when
+these needed support structures are
+not actually in place
+and next i want to actually introduce
+you to sarah
+because the problems that surfaced with
+sean's team
+were not isolated again and again in
+incident after incident i studied
+i saw a lot of these same difficulties
+and i saw how poorly designed
+added cognitive demands to the sres
+but i also saw examples of this where
+you know teams were able to overcome
+these additional burdens and they were
+still
+able to smoothly resolve the incident
+and i actually
+first noticed how this was happening
+with sarah
+she was a senior staff engineer at a
+very
+uh high-performing team once i saw this
+pattern
+in how it was that she coped with poor
+coordination design
+i began actually seeing it to a greater
+and lesser extent
+across multiple teams and so i began
+cataloging what are her sources of
+that helps make her indispensable
+i mean it's obvious she had like deep
+technical knowledge of her service and
+of the systems that she managed
+she was often brought into these really
+tough challenging incidents
+and she quickly had an understanding of
+the potential problems
+even in incidents that had been going on
+for several hours
+and i realized that part of what set
+sarah apart
+was how she looked at the problem she
+knew
+who to get involved when the incident
+got real spicy
+she knew what information others would
+before they got involved in the problem
+and she provided that
+she knew she'd need to bring in experts
+from across dependent services to
+provide
+more context about how a proposed
+solution
+might actually impact others
+so she had this really deep technical
+knowledge of the system
+and it wasn't just about how the
+components sort of fit together
+she knew what normal system behavior was
+she knew what abnormal or anomalous
+system behavior was
+and what the implications for for their
+service was
+she knew where the technical debt was
+legacy code or otherwise like
+less stable parts of the architecture
+were likely to cause problems for them
+she could recall previous
+non-routine or exceptional events and
+the responses that they'd actually taken
+and she used this basis of knowledge to
+be able to
+reason about problems about potential
+mitigations
+about the impact users about potential
+goal conflicts or trade-off decisions
+and also how to sequence how service
+restoration should go
+and while she'd often like
+verify or validate her initial thoughts
+by
+say looking at dashboards or prior
+incident reports
+she actually held a lot of context in
+her head
+which made her really efficient and
+effective at being able to connect the
+dots in an incident
+and the second base of knowledge that i
+started seeing in her was
+it had to do with her knowledge of other
+responders that she worked with
+she knew what they knew about the system
+she knew who amongst her teammates could
+carry out certain actions
+she understood the pressures and the
+constraints that her team was under
+and how the collective group responded
+to those pressures and constraints
+she knew what was the usual course of
+action
+and how would they handle exceptions she
+understood
+roles and functions and how those
+interact in practice
+she understood the limits and the
+boundary of individuals authorities
+and of the responsibilities and this
+really translated into knowing
+when the team could handle an outage and
+when to get
+others involved either because they
+needed their access
+their authority or their specific
+vantage point
+on the problem to be able to expand her
+own team's capabilities to handle the
+disruption
+for example she knew stuff like if an
+incident ran late
+her colleague alex would have to leave
+because he'd have to go pick up his
+daughter because his husband worked out
+of town
+so she could proactively think about the
+things that she needed him to do before
+he left
+and who else she could recruit into the
+event so that she could maintain the
+team's momentum
+to handle the disruption so
+you know it's interesting because the
+software industry like
+distinguishes between the social and the
+technical aspects of the system
+but they're actually inextricably linked
+an individual's ability to bring their
+technical knowledge to bear in context
+is critically dependent on the context
+in which that takes place
+and this got me really interested in
+what engineers needed to know about
+the organization as a whole that aided
+them
+in helping make like helping make them
+the rock stars that like
+everybody wanted in their incidents and
+as i looked at what sarah and others
+knew about the organization
+it was that they had this really keen
+sense about
+organizational demands like shifting
+priorities
+like what was the orientation of the new
+management that was coming in and
+what kinds of disruptions that might
+bring about
+the shifting dynamics of how production
+pressure
+or code freezes in one part of the
+company
+might impact other parts including her
+own
+and she and others knew
+that goal conflicts are an inherent part
+of the work that they were doing and
+they knew how they were typically
+handled and how decisions got made
+they were pretty astute about who had
+formal and informal decision-making
+authority
+and how quickly or slowly those
+decisions got made
+they learned a lot about the boundaries
+for organizational silos
+and the implications of those silos for
+how they got their work done
+they also knew a lot about historical
+events that had actually
+influenced the way that coordination and
+work takes place in their organization
+and the more i dug in i also realized
+there was a fourth element that was
+related but distinct about this
+foundational knowledge and it's this
+more broad
+understanding of others including
+stakeholders users managers
+vendors regulators and they applied this
+about the others that they had to work
+with
+to be able to anticipate problems to
+see opportunities to engage others and
+to proactively
+reach out and coordinate with someone to
+minimize the blast radius of the events
+that they faced
+and collectively the more that this
+knowledge was shared
+across team members or across an ad hoc
+team
+it actually provided this solid common
+ground that responders used
+individually to be better sres but also
+collectively to lower the amount of
+extraneous communication
+and the effort that goes into working
+jointly
+but as you can imagine with this basis
+for common ground
+there's a substantial investment that
+has to be made to both
+establish it and continually update
+updated
+and in the sarahs in an organization
+they're not just good at what they do
+because of their system knowledge
+they're good because they see this
+bigger picture and they can understand
+what the uh the options for action
+actually are so this makes
+coping with moving with fast moving with
+complex with cascading problems
+much easier to handle and the exciting
+thing that
+uh about the research that i conducted
+was that
+this this this basis for common ground
+it's only one of 14 coordinative
+elements and functions that i was able
+to identify that aids inefficient
+so while i'd love to cover more of them
+there is actually a final point that i
+want to make
+because it's critical to in how we think
+about
+organizing for incident response
+and so jesse and his team are indicative
+of this pattern that emerged from the
+high performing teams that i studied
+and so jesse's company ascribed to this
+pretty typical and generally accepted
+incidents progress and at a very high
+level you could certainly say that
+yeah incident response handles you know
+handling
+follows a pretty linear progression you
+see it
+you figure it out you repair it you fix
+it you move on
+and for straightforward or known issues
+like those that you might see in a
+really stable or mature system
+that has very few code changes this flow
+might actually work reasonably well
+but what i saw in the cases that i
+studied
+these difficult problems was that
+for systems that are operating at speed
+and at scale
+this is actually an oversimplification
+because incident response
+is rarely if ever a linear sequential
+process with discrete
+phases instead
+there's actually a lot of uncertainty in
+you might need to uh to take action
+to safeguard a system before you even
+really know what's going on
+a huge aspect of the response is
+figuring out
+who can help you and then recruiting and
+bringing them up to speed
+it's also not always clear why something
+worked
+you might end up getting interrupted in
+your response to respond to that vp who
+sends an email to ask
+what is going on there's always this
+sort of residual
+uncertainty that can create additional
+and importantly knowing the impacts of
+past incidents on future actions
+is actually crucial for keeping this
+very current mental model about
+what are the exploding bits in your
+system
+and so it's this interplay between the
+cognitive work
+of an incident progression and the need
+to coordinate
+that actually began to reveal some very
+problematic elements with how
+incident response teams are typically
+structured to handle these
+overlapping and concurrent demands
+and typically organizations will use a
+model that's based on the incident
+command system
+to tame the often overwhelming and
+sometimes frantic demands of these high
+high tempo events and of course central
+to this idea
+is the incident commander who wades into
+this chaotic mess
+to try and stem the issues and create
+order commanding the incident
+into submission and according to the
+google sre chapter on incident command
+they hold this high level state about
+the incident
+they structure the response they assign
+the responsibility
+and they hold all the other positions
+that haven't been delegated
+but here's the thing though in a highly
+complex and fast-moving
+incident this is exceptionally
+cognitively demanding work
+it also requires a very broad basis of
+common ground
+to be able to handle successfully one
+that's
+not often often found in just a single
+responder
+so inevitably the incident commander's
+ability to
+keep track of the changing conditions to
+coordinate the multiple streams of
+activity that are underway
+and to execute that coordination in real
+time it
+falls apart the demands of the event
+overwhelm their ability to stay in front
+of the pace of the work
+and so what you see when this happens is
+that
+the ic will slow things down or
+sometimes
+stop them entirely to allow the group to
+to come back together and get on the
+same page
+and so on the surface this seems kind of
+logical
+well if escalating demands overcome your
+capacity
+of any one person to manage them in real
+you need to artificially slow it down
+but to users that slow down adds to the
+frustration
+or worse and in effect
+your team could be moving faster but
+designing coordination in this way
+actually sets up a workload bottleneck
+where the information processing
+capabilities of a single participant
+define the collective speed of the
+response
+but doesn't make any sense why would you
+intentionally put a speed bump into your
+incident response practices
+we design incident response schedules
+across geographic time zones to make
+sure that there is no delay in dealing
+with problems for global users
+and on a microcognitive level slowing
+down the potential pace of the response
+to the speed of the incident commander
+is like having europe wait until north
+america wakes up
+to manage the incident response
+so i began to wonder what would it look
+like if we distributed the coordination
+and incident response
+the way we do distributed computing
+where
+even though the components are spread
+out across multiple computers
+they run as one system what if the
+elements of coordination
+were spread out across multiple
+yet they still run as one system
+and about the same time that i started
+thinking about this
+i started studying the incidents that
+jesse managed
+and jesse's team was structured in a
+very typical
+incident command fashion where as the
+incident commander
+jesse owned all these coordinated
+functions
+but instead of seeing the expected
+workload bottlenecks
+and the slowed down response efforts
+him and his team actually worked quite
+well
+they actually worked when they looked
+closer something more like this
+where the coordinative elements such as
+the need to gather information
+to synthesize its meaning and then
+communicate that out to maintain common
+ground
+was a shared responsibility the
+recruitment of needed expertise
+and then bringing them up to speed with
+information relevant to make them useful
+sequencing and synchronizing of activity
+was a shared responsibility so
+there was still the role of an incident
+commander
+because there's certainly times where
+decisions have to be made
+and you know you want to make sure that
+someone is looking at the bigger picture
+but these roles played a very different
+function
+in supporting the adaptive choreography
+of real-time incident response
+because what i found in these
+high-performing teams was that in
+multi-party
+high pressure events very rapid and
+direct
+interactions among the responders
+typically worked quite well
+so does this seem a little too wild for
+your incidents
+i'd actually suggest that you're
+probably doing this to a greater or
+lesser extent
+if you think about the last incident
+that you were in
+you get kind of paged into the event and
+it's not your first rodeo
+so you join slack and right away you
+type
+i'm checking the logs in this one little
+sentence you've already disrupted the
+incident command model
+you've taken initiative you haven't been
+delegated to
+and you do this based on your knowledge
+of the system the most recent code
+deploys
+any events or expected loads on the
+system that you're aware of
+you do this because you're usually the
+first one to respond to a
+page and you know that others are going
+to be piling in behind you shortly
+and you want them to do something useful
+so you state out
+your actions out loud it's an example of
+providing observability
+into your actions so others know what
+activities are underway
+and what other kinds of activities are
+likely to be useful
+if you say i'm going to kill the jobs
+you've also provided
+insight into your orientation towards
+the problem and towards potential
+mitigating actions
+without fully explaining it you've
+provided a basis for
+understanding what you think might be
+going on and what actions
+are likely to either produce more
+diagnostic information
+what might eliminate noise in the system
+or what might prevent a cascade
+of effects from muddying waters
+so expert practitioners speak in a
+highly encoded language
+and these small utterances often mean
+very little to outsiders but to an
+insider to a fellow responder it reveals
+a lot
+now for this implicit coordination to
+work
+you've got to have a basis for common
+ground like sarah showed
+because if your statement violates
+others expectancies
+it offers an opportunity for them to
+question your thinking
+further so either you can be
+recalibrated
+or they can you move towards in a way
+that's shared from this shared
+understanding
+and monitoring whether you're all on the
+same page or not
+and this function can't and shouldn't
+only be left to the incident commander
+continuously maintaining common ground
+enables the
+full complement of responders to be able
+to aid in decision making
+to identify potential courses for action
+and ultimately to keep the speed up
+so as i went back over the other cases
+that i'd reviewed i noticed a pattern
+that none of the teams actually followed
+the incident command structure entirely
+on paper their processes were all in
+alignment and if you ask them
+they'd say they did incident command but
+upon
+closer analysis it was clear that the
+functional
+requirements of coordination were
+distributed
+across the team and they carried out
+coordinated functions
+as they carried out their techno
+technical tasks
+and so this maintaining a low level but
+continuous
+awareness about the state of the event
+they're able to provide
+continual input into critical decisions
+and point out potential threats or
+implications for different courses of
+and the more common ground that that
+team had the smoother the adaptive
+choreography of the event
+they're able to anticipate what needed
+to be done next
+and then take the initiative to do it
+and as they listened in
+on what others were doing they were
+better able to sequence the timing of
+their own actions
+the responders in these groups actually
+recognized
+more readily when someone had an
+incomplete understanding of the problem
+or when they were acting on erroneous
+beliefs and they're able to quickly
+with quick exchanges help everyone
+update their mental model
+and to repair that common ground in
+other words
+because everyone has kept this low-level
+awareness about the event progression
+they're able to share the
+responsibilities of coordination
+and support the incident commander to
+better
+coordinate the event not command it
+so these lessons that i learned from
+sean and from sarah and from jesse and
+the countless
+other engineering teams that shared
+their incident data
+help me validate these patterns across a
+broad range of circumstances
+this represents a really exciting new
+way to reconsider
+how we think about and organize sre work
+in these modern complex adaptive systems
+and so i've covered a lot of ground i
+wanted to shine a light on these secret
+lives of sres
+and my hope is that in revealing the
+complexity of
+socio-technical systems and these
+cognitive
+and coordinated demands that we're
+providing some promising directions for
+how we can better support
+efforts in critical incident response
+and
+that you'll take what you've heard
+you'll dig deeper into your own
+to learn more that can help yourself and
+your team
+with establishing and maintaining common
+and that you'll consider the ways in
+which your existing practices could be
+more finely tuned to better support the
+challenges inherent
+in difficult outages and
+while myself and my colleagues
+can play a role in kind of surfacing
+these deeper
+insights it's ultimately up to the
+software industry to support
+engineers and the critical functions
+that they're going to manage
+on behalf of society
+so in that way the question that i was
+that i was asked isn't really one that i
+should answer
+instead it's up to you all
+so what do you think are we good
+thank you very much

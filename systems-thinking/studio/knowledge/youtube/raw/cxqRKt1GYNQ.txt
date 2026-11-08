@@ -1,0 +1,1004 @@
+Hello community, so great that you're
+back.
+You know, there are topics that are
+solved or already solved in artificial
+intelligence like a prompt optimization.
+Well, I was wrong. As it turns out, the
+very latest research paper shows clearly
+that there is something happening that
+produces an error. And here's exactly
+where it happens, at the original human
+user prompt at the input.
+So, let's talk about the latest research
+about automatic prompt optimization,
+APE. [clears throat]
+And why do we need this? Because it
+turns out
+the human prompt is the most complex
+thing for any AI system on this planet.
+And let me say, "Wait, we have our
+beautiful prompt engineering, yeah? I
+start with my human prompt and I know
+that I have to structure and formulate
+it in a particular way."
+And then we have context engineering.
+So, we have all our Rex system bring an
+additional context in from the internet,
+databases, whatever.
+Yes, but we encounter now a new set of
+problems that we can only detect via
+automated evolution-driven optimization.
+Let's have a look at my workflow.
+Normally, I have I start with prompt
+engineering, yeah? This is my initial
+seed prompt.
+And then I have APE that optimizes here
+the static layer, yeah?
+And then I have context engineering,
+Rex, beautiful, manages the dynamic
+layer, brings in everything here in
+context learning, few short examples,
+everything that we need, yeah?
+Now, it turns out that this is now a
+complexity that the AI cannot really
+handle.
+So, therefore, this interaction surface
+at the interface of human-to-machine
+it becomes combinatorial large.
+Think about all the instruction we
+provide. Think about the very
+instruction length in the prompt, the
+field ordering in the prompt, the chain
+of sort placement in my particular
+prompt, the output schema specification
+that I provide. The future example that
+I have to select, the framing that I do,
+the persona that I might choose, where
+tell the AI, "Hey, now act like a PhD
+student."
+This joint optimization of all these
+dimensions is not anymore tractable by
+hand. We need [clears throat] now a
+machine to do here the search over this
+mathematical space systematically.
+And I thought it was already solved, no?
+Remember, July 2024.
+Prompt engineering as a prompt engineer.
+University of Southern California and
+Microsoft are here, InstructZero.
+Efficient instruction optimization for
+black box LLM, University of Maryland.
+And it turns out that every company,
+if you go to OpenAI or to Anthropic or
+Meta that still exist,
+we have a prompt optimization. So, I put
+in my simple human prompt and we do have
+an AI optimizer for a model-specific
+optimization process. And then the AI
+model says, "Okay, now I optimize the
+human prompt in this way."
+And then then I allow this prompt to
+further proceed here in the workflow.
+And you know that here we have February
+2026,
+GEPA. And all come together and UC
+Berkeley and Stanford University and
+Databricks and MIT came together and
+said, "Let's do something. Let's write
+here the very latest GEPA, the
+reflective prompt evolution
+that can even outperform a reinforcement
+learning for our LLMs." [clears throat]
+And it was amazing because the data
+showed us, and if you have here the
+performance curve here in orange, this
+is here GRPO,
+or you go here in green with MyPro
+version two,
+the blue one, the GEPA, outperforms
+everything.
+Different benchmark when they used the
+QN38B
+and they even beat in the performance of
+GRPO reinforcement learning with 24,000
+rollouts.
+So, this means our AI system has an
+inherent intelligence.
+We just have to design the prompt in the
+most perfect way.
+Great. Yeah. It is an active GitHub repo
+here, GEPA. Look, 2 days ago, 3 weeks
+ago, have a look. It's really beautiful.
+But do you remember the first author of
+GEPA?
+UC Berkeley. UC Berkeley published now 2
+days ago a new paper.
+Berkeley with Huazhong University of
+Science and Technology and Haifa
+University of Technology, March 19,
+2026.
+Reflection in the dark.
+And if Berkeley starts reflection in the
+dark, you know, this is going to be an
+interesting paper.
+Exposing and escaping the black box. And
+we are back to the black box
+for an LLM in a reflective prompt
+optimization.
+&gt;&gt; [snorts]
+&gt;&gt; So, for me it is a little bit amazing
+that here mid-March or end of March
+2026, we are still talking about prompt
+optimization because the AI has no
+understanding of what we human want when
+we define a prompt. What is the human
+intent and so on?
+What is beautiful in this study is
+because sometimes you write me and say,
+"Okay, they used eight Nvidia R6000
+GPUs, yeah?" This study was done on a
+single Nvidia RTX 4090 with just 24
+gigabytes.
+So, maybe you have some infrastructure.
+So, you can do this if you want at home.
+We are still there that you can have new
+AI research insight with, let's say, a
+normal AI infrastructure.
+But at first you have to understand the
+theory. What was the point?
+The GEPA authors understood GEPA is not
+really finding the perfect solution.
+Let's say we have a prompt space. This
+is some any mathematical space. And we
+have here a local optimum.
+Now, it turns out there is
+an absolute global optimum that GEPA is
+not able to discover.
+GEPA will go, let's say in very simple
+terms, to the next local optimum and
+stay there.
+Stop.
+Okay. So, the idea was, so we have to
+invent now a new methodology. Let's call
+this methodology Vista. And Vista will
+come up with solution.
+Now, of course, Vista has to be a
+multi-agent APE framework, yeah? Because
+we are now encountering a complexity you
+are not going to believe.
+We're building a framework that will
+decouple now the hypothesis generation
+from the prompt rewriting itself.
+It will enable us to semantically label
+hypothesis that the agents will come up
+with.
+And then we will build some parallel
+mini-batch verification run where we can
+validate the hypothesis by these agents.
+And if it is successful, we will have an
+interpretable optimization trace of the
+agents.
+And this is the easy explanation. So,
+let's have a look. I just wanted you get
+a feeling of the problem that we
+encounter. What is GEPA not able to
+solve?
+And this is now an effective seed
+prompt. And it looks so innocent. And it
+is so simple. But this is the root cause
+that GEPA fails.
+We tell the AI, "You are an AI
+assistant. You solve some mathematical.
+You do this. Provide the answer.
+Beautiful."
+And then
+imagine just in the output format
+definition as a JSON object,
+we make a mistake. Now, this is a simple
+case, but imagine you have 10 lines
+and you just mix up line four and line
+six.
+So, there is now in the logic just how
+the result is presented in as a JSON
+object,
+um logical inconsistency.
+This format problem will cause
+massive problems that the AI model will
+not be able to execute this job.
+And I know that you're not going to
+believe this because I did not believe
+this.
+So, they show us here the complete run
+of the system.
+And there's a beautiful
+um reasoning trace now, some beautiful
+reasoning on a particular job. Says,
+"No, this is not possible. Wait, yeah,
+let's calculate." And they went through
+every possibility here.
+And more and more and more, but in the
+end it failed.
+This system failed. And I would ask,
+"Why did it fail?" And the answer is
+simple, because the field order defect
+is still preserved across all 10
+iteration. All modification targeted
+something else, reasoning quality,
+problem-solving guiding, domain-specific
+heuristic.
+But the structural root cause was never
+identified by the system.
+So, the authors decided, "Let's change
+this."
+Let's come to the geometry of
+self-referencing AI system. And this
+will become really important if we talk
+later about self-learning systems.
+I give you here a very simple example,
+yeah?
+If you have no idea about AI, this will
+give you the insight.
+Imagine you have a detective, you know?
+And there's a crime scene. Beautiful.
+But all the evidence was done and
+collected by the first officer who
+happened to be colorblind.
+So, every photograph, every annotation,
+everything
+omits color, a specific feature, as a
+distinguishing feature.
+And the detective now cycles in his mind
+through thousands of hypothesis, what
+was the method, the motive, alibi,
+timing.
+But the critical piece of evidence,
+for example, that this is a red fiber.
+Is assorted simply never enters the
+space of possibilities. It is not that a
+detective lacks the reasoning
+capability.
+Go to a GPT-6 or GPT-7. It is not about
+reasoning.
+It is
+at the very beginning collecting the
+evidence.
+The LLM that collected the evidence was
+not able to understand color.
+Therefore, the category color was never
+ever presented [clears throat]
+or re-presented
+in the evidence base, in the
+mathematical fields that we built.
+&gt;&gt; And this means no amount of additional
+reasoning would help us. No scaling
+would ever solve this.
+No number of additional iterations will
+produce now this hypothesis. Because the
+detective epistemic closure, I mean
+really close in a mathematical sense, is
+structurally determined by the evidence
+base and not by the intelligence we
+apply trying to understand the evidence.
+If I transfer this simple example now in
+mathematics.
+So now I reframe the identical topic,
+now. So we say consider now a prompt
+space P as a high-dimensional manifold
+to make it easy that is embedded here in
+a particular space. Every point pi is
+now a prompt. And the optimization
+objective is simply a scalar valued
+function measuring the task performance.
+Why? Because our reflective AI process
+performs a gradient free optimization
+generating candidate directions through
+the model's own inference process.
+So this means we do not have real
+feedback from the environment. We just
+let the system run and run and run. But
+a gradient free optimization is
+something that you have to be careful
+and you never want that you encounter a
+gradient free optimization process.
+Because what is happening?
+If you look at the model that defines a
+probability measure over the tangent
+space at the current prompt pi, each
+candidate hypothesis that we come up
+with now as a detective, as an LLM, H
+corresponds now to a vector in a
+particular direction.
+And the reflector can only propose
+direction with non-negligible
+probability mass.
+So what it means, it defines from a
+starting point where you start a cone, a
+three-dimensional cone structure. And
+whatever is in this cone, you can
+explore. You can reason about. You can
+detect. You can say, "Ah, there is
+something." Like a red fiber. But
+whatever is outside of this explorable
+cone
+is outside of your world forever.
+Whatever AI system and how many hundred
+data centers you will build.
+This is not here similar to a local
+minimum trap in a convex optimization in
+mathematics, now. This is more
+structurally severe. This is a
+dimensionality
+collapse of the search space itself for
+the LLM optimization, for the agent
+Because what is happening, the now the
+optimizer effectively lives on a lower
+dimensional sub-manifold from which it
+cannot exit without any external
+perturbation.
+So you see, this is now the main root
+cause from a systemic interpretation.
+And I've given you a detective storyline
+and a mathematical interpretation
+that we see what's happening. So here
+again, here with Claude visual, here I
+try to do my best.
+So we have our starting point here.
+Beautiful.
+And then we have here this
+three-dimensional cone.
+And Claude is somehow
+gives me only a two-dimensional cone.
+Okay, you can imagine this
+three-dimensional. But it turns out, you
+see, our argumentation always zigzag is
+just inside this cone.
+We start with a performance of 23% and
+we find here a local minimum just at
+13%. Then this is worse at the seed
+prompt.
+But this is only the thing that is
+available to GePA.
+So somehow and they knew in this field
+of the prompt feature space, there is a
+global minimum optimum pi star with
+87.6% accuracy. It is there. We just
+cannot find it.
+And they said, "So what we have to do?"
+And they came up with a new idea.
+And is that simple?
+This global optimum requires moving in a
+direction that is orthogonal in a
+mathematical sense, high-dimensional
+sense, to everything the model knows,
+the AI model knows how to explore. So we
+have to break everything, we really we
+have to break out of this
+three-dimensional cone structure.
+So the observation is that the
+optimization process itself has
+structured failure modes.
+And you say, "Oh, great.
+Now let's do a more complex analysis."
+And there are four failure modes they
+could identify.
+So these four failure modes, I can give
+you here a very simple explanation or
+you look it up in the paper and you see
+the mathematical explanation. I go for
+mode one.
+So we have here in red the GePA failure
+chain.
+And then here Vista has a solution.
+So we have L1 to L4
+are our problems if you want.
+So what is the first one? The seed trap.
+The optimizer's search space is
+implicitly constrained by our seed
+prompt. And the structural defects in pi
+zero propagate silently through all the
+runs. This means no mechanism exists to
+question here the seed level assumptions
+if we use GePA.
+Second, there's an attribution blind
+spot. And the paper demonstrated
+beautifully that this true structural
+root cause receives zero attribution
+across all the runs, across all the
+reasoning by AI, across all the
+reflector strength and here go from a
+Qwen 3 8B
+to a GPT-4-Omni
+confirming that the blind spot is prior
+structural, not capability driven, not
+depending on the intelligence of our AI
+system.
+This is outside the reasoning horizon of
+AI.
+L3 is interesting because we do have a
+trajectory opacity. So even when the
+attribution points correctly, the
+optimization trajectory is entire label
+free. We don't know what it is. So the
+optimizer knew that there's a delta
+accuracy it has to handle, but it does
+not know what hypothesis
+produced it. What idea is here the root
+cause? What is the category of the
+mistake of the failure mode that I have
+to deal with to come up with a solution.
+And L4 is a transfer fragility. Because
+they find out the prompts optimized
+against a strong base model may mask
+latent defects. So if you go with a
+GPT-5.4,
+maybe it can solve it, but it is
+[clears throat]
+there is because it's a huge model and
+it comes up with so many options, now.
+But if you only have an 8 billion free
+trainable parameter model,
+then it cannot up with these options,
+now.
+So a strong base model may mask the
+latent defects that the model's
+robustness compensates for.
+So when we transfer here our insights to
+a weaker, smaller LLM or original
+language model, the latent defect is
+exposed with no detection signal.
+Smaller models here show us we do have a
+structural problem with AI.
+&gt;&gt; So where is now the core algorithmic
+innovations in its dealing with L1 to
+L4?
+It is about more or less, and we have
+two agents and the first agent will only
+focus on the hypothesis generation with
+a heuristic coverage.
+And this is a strong point, but there's
+also a weak point hidden and I will talk
+about the weak point in about 2 minutes
+time.
+So each hypothesis, each explanation the
+AI comes up why it is not working, is
+now I say, "Let's build it as a tuple,
+now." And in the simplest case, it is a
+CIDI where CI, element of C, is a
+category label from an extensible
+taxonomy. And DI is a natural language
+description.
+And you say, "Okay, but we need
+something else. We need also a fixture,
+now."
+So before we have a look now at the
+solution, I want to give you the results
+because this is interesting. Remember,
+this was done on a single NVIDIA 4090
+with 24 GB VRAM. So you can do this at
+home. There's still space and
+availability. You can publish your new
+AI research with your computer at home.
+Result. Under the defective seed that I
+showed you, the seed prompt here using a
+particular benchmark,
+GePA degrades here from 23 from the seed
+performance down to 13%.
+So you even lose against the seed
+performance, now.
+And Vista recovers this now to 87%.
+And under the transfer condition, we go
+from a GPT-4.1 to a Qwen 3 4B,
+GePA achieves 22% and Vista achieves
+86%. So you see, oh yeah, there's
+something happening, now. On such a
+simple benchmark.
+So what is it? Let's try to explain
+Now we already discussed that Vista
+decouples here something. It decouples
+the hypothesis generation, the question
+what happened here, what is going wrong,
+from the prompt rewriting via a
+multi-agent design. Of course, what
+else, now? So we have a hypothesis agent
+proposes here semantically labeled
+hypothesis and a reflection agent that
+only job is to rewrite the prompt
+targeting each hypothesis independently.
+So each prompt update and we are really
+here at the level of a prompt.
+Each prompt update is grounded in
+explicit verifiable hypothesis making
+now the optimization process
+interpretable at every step even for the
+humans because we can read those files.
+So remember hypothesis consists here of
+the category label C and a natural
+language description of the suspected
+failure mode. And then of course we have
+a set of failure cases
+for a particular domain that maybe as a
+starting point you can provide to the
+eye so that you don't start at blank.
+Now this CI here is as I told you an
+extensible taxonomy of heuristic failure
+modes that we know or that we don't
+know. It doesn't matter how you start,
+But it's great if you have some idea
+what is a failure mode
+correlated from representative cases so
+you don't start at zero.
+So each entry here specifies now a
+failure mode category. I'll show you
+one. A description and a suggested fix
+direction.
+How to solve it.
+Simple, no? Couldn't be simpler.
+Well, let's go now through every step.
+You have a task, let's say it's my task,
+my prompt.
+And I have now a broken starting prompt
+that I did not understand that there's a
+mistake in my human prompt, no? Maybe I
+mixed up here in the JSON output format,
+the positioning, you know, four and six
+are mixed up or whatever or I was not
+precise enough in my human writing or
+whatever.
+And you want now that the eye
+automatically can fix this and
+understand it. So we need this new
+methodology VISTA.
+Now VISTA runs now
+&gt;&gt; [clears throat]
+&gt;&gt; one loop, not many many loops. In every
+round it does five things.
+This is the main idea. First, it picks
+the best current prompt from a pool of
+candidates that the small, let's say we
+are talking with Claude, that Claude has
+been building up from experience. Maybe
+it knows my personal data, maybe it
+knows, ah, somebody's coming up with
+theoretical physics so those are the
+prompts that work in the last time or
+people upvoted here as the best prompts
+for theoretical physics, no?
+So it more or less ignores here my
+prompt, it just uses here my human
+prompt and says, ah, I have an idea what
+the human wants but now let's map this
+here to a prompt that I know that is
+working for me.
+Now it turns out we need a little bit
+more as an input, yeah? So we have to
+give VISTA also something, some data
+because we want to have it as a
+professional solution. So we give VISTA
+four things, a task data set
+split classically into the training and
+the validation data set
+my incorrect seed prompt pi zero which
+may be defective
+then maybe if you want that you don't
+pay Anthropic for hours and hours, a
+budget B of total model calls and a
+heuristic set C, this is this taxonomy
+of the known failure modes and the
+categories.
+So with this we have now a validation
+that is possible because we have a
+validation set, we have a training set
+and we have our seed prompt, we have our
+budget and we have if we start here with
+a little bit of intelligence
+and our heuristic set C, the taxonomy of
+known failure modes in theoretical
+physics.
+And then we start. Okay, one we talked
+about.
+Second.
+VISTA now asks, should I throw
+everything out and start completely
+fresh? So with a small random chance it
+will do exactly that. So it shows the
+model a single example, a one-shot
+example of theoretical physics like
+quantum field theoretical, watches what
+the model naturally produces
+and builds a brand new prompt from
+scratch based on the raw output that
+examines.
+There's no inheritance from the broken
+starting point from my original human
+If you want this is the escape hatch.
+This is the solution to gaper.
+It says, listen, what you human are
+asking me, your prompt, I just throw it
+out. I know what you want, you want
+something on quantum field theory so I
+just run here an empty run and I see
+here what is my knowledge and then from
+this knowledge I build a new prompt.
+You might be surprised but okay, this is
+it.
+Number three.
+If it did not restart VISTA
+it runs now the current prompt on a
+small batch of examples and now comes
+the interesting part. Now it collects
+the one that failed.
+Because it then generates several
+distinct theories
+about why those examples failed and each
+theory has a name, a description and a
+suggested direction how to fix it.
+So you see, it is now important to know
+what can go wrong theoretically.
+And all those theories
+come now from a pre-built catalog of
+known failure types like, hey, your
+output schema has the fields in the
+wrong order.
+Or your task instruction are a little
+bit too ambitious.
+So you see a fraction of the theories
+are allowed to go off catalog entirely
+in case the real problem has never been
+seen before.
+But we create now here this
+our agent will create here this theories
+and from the zero we can build a catalog
+of new failures. So we just have
+failures identified.
+Now for each theory the system now will
+be the agent of course
+produces a separate revised prompt
+specifically targeting the theory, the
+background knowledge of the theory, the
+mathematics of this particular theory,
+the experience,
+let's say Claude has with this theory
+and then it will test all revised
+prompts on the same batch and will pick
+the best one with the highest improved
+accuracy.
+So it is arguing but it produces a set
+of possible revised prompts and then it
+tested on the test data set.
+Measure the accuracy and then we have a
+winner.
+And then if it's the winner, beautiful.
+As I told you, we have a pool
+then it puts internally Claude puts this
+single prompt here as the winner in its
+pool and knows I can work with this
+prompt and it writes now a labeled
+record.
+Which theory was tested, what change was
+made in particular
+and how much accuracy improved.
+So it has now learned somewhere right
+down in the memory or somewhere else
+here exactly the learning process
+itself.
+And this accumulates across rounds and
+rounds into a readable history that the
+system uses to avoid repeating the same
+mistakes again.
+Okay, let's have now a look at the
+agent. What are the agents doing, you
+know? The first one is the hypothesis
+agent. The hypothesis agent receives
+three inputs, the current prompt, my
+human prompt
+the failure cases, what went wrong and
+heuristic set C plus the accumulated
+semantic trace from all the previous
+round, from all the experience.
+And this agent produces now, let's say
+three hypotheses.
+And what is the hypothesis? It is a
+structured tuple of course for
+mathematics we need this, yeah? We have
+our CI, our DI and our fixture, yeah?
+DI is the natural language description
+and CI is the category label that is
+drawn here from the features.
+Let's do this.
+What we're doing then is what they call
+an epsilon greedy hypothesis sampling.
+So what I say, now you define certain
+epsilon, let's say it's 0.1
+and with a probability one minus epsilon
+so for 90% of cases the hypothesis agent
+is instructed to select the best fitting
+category from C and generate a
+hypothesis that is anchored to that
+particular label. So this is if you want
+the exploitation branch. It guarantees
+that the known failure modes from the
+catalog are always represented.
+You deal with known failures.
+But it could be that they are completely
+new
+modes of failure, no? And therefore, and
+here the authors choose 10% of all
+cases, the hypothesis agent now
+generates freely without consulting here
+our theory pool at all. This is the pure
+exploration branch. It allows here for
+a, if you want, free discovery of
+failure modes that have never been
+cataloged by the CI.
+So creative thinking by AI.
+Agent two is the pure reflection agent.
+It also receives three input from each
+hypothesis, the current human prompt,
+the hypothesis, what it is, why it
+failed, what is the fix
+and the failure cases.
+And now it produces
+one revised prompt per hypothesis.
+Now this is now very specific to this
+agent, to this core LLM.
+It should operate independently for each
+but of course you do have common
+knowledge, no?
+Okay, but it is a rewrite, the rewrite
+is targeted and addresses only the
+hypothesized root cause and everything
+else is not touched at all.
+If you have interwoven causal sequences,
+this might be not an easy exercise but
+let's say let's let's do this.
+Okay. So, with our budget now, let's say
+we have 10 runs, Vista returns now Pi
+star, the best prompt. Remember, we are
+still at a prompt level.
+Seen across all validation, all
+evaluations,
+together with the full semantic trace,
+our tree structure.
+Now, the beauty is that this trace is
+now a complete audible record of every
+hypothesis it tested, every attribution
+made, and every accuracy gain
+observed, and tested, noted for the
+optimization run.
+So, this is this is great because we
+humans can now read this protocol, you
+understand exactly, okay, your AI
+understood this is was the mistake, then
+it tried to find a solution, and it
+attributed this to this particular
+failure mode, and then it came up with a
+solution, and then it tested this
+solution again for a particular metric,
+let's say it was the accuracy of the
+model, and how much accuracy gain it got
+with this optimization run.
+So, in theory, this is a beautiful,
+clear, structured sequence
+how to proceed if you really want to
+optimize the system.
+This here is a screenshot from the
+paper, and there's everything I just
+told you, now. Here we have our
+reflection agent
+in blue, here in whatever
+orange yellow, we have here our
+greedy epsilon hypothesis sampling.
+And here we have also our hypothesis
+agent, now.
+Our mini-batch evaluation.
+And we feed back into the Pareto
+candidate pool.
+So, you see this is it. If we have a
+seed prompt, if you have my human
+prompt, now.
+The system immediately looks, hey, do I
+have a better prompt that really
+specifies what a human wants, and it has
+a Pareto candidate pool, now, where it
+has structure, format, reasoning,
+instruction following, everything there
+as a semantic trace tree
+that it already discovered. Now, this
+Pareto candidate pool is a very
+interesting thing because imagine you
+are, I don't know,
+Claude Opus 4.6,
+and you are running, I don't know, 1
+million queries per second, or whatever
+it is, now.
+So, you deeply understand what the human
+are asking you, what task the humans are
+asking you to perform, and what is the
+perfect structure of a prompt so that
+the humans upvote here your answer.
+So, this is interesting. I would say
+this is kind of a what humans have as an
+experience, now. If you're a
+professional in your job, and after some
+years you know exactly what your
+customer, what your client want.
+And this is now for an AI the Pareto
+candidate pool, where you know exactly,
+hey, those things work.
+So, this is what is really valuable,
+maybe,
+if you think about an AI and the ability
+to reason, to understand, to come up
+with new solution.
+This I I never valued here this
+experience candidate pool that it is
+really valuable to all of this, now.
+Yeah, and then, of course, and this is
+now interesting, the heuristic set
+You have to come up here, now, what
+could be a mistake? What what failure
+modes, what could happen here that goes
+wrong?
+And this is also a screenshot from the
+paper, and the authors
+decided to come up here with this
+heuristic set prompt, and you're not
+going to believe it, in the very first
+place they have exactly what we
+encountered here
+in this seed prompt, now. This is
+exactly the problem that we encounter.
+So, of course it is a simplification
+that they tell you, hey, yeah, we
+identified the chain of thought to field
+ordering could be a problem in this
+particular domain. So, the description
+of this error is the output schema
+requires the final answer before the
+reasoning step, preventing the chain of
+thought from influencing now the result,
+and this is a mistake we identified,
+The current heuristic set is, by the
+way, it was manually curated from
+representative failure cases and modes,
+tell us the authors.
+So,
+you have also then have somehow find
+here an automatization that the AI comes
+up here, if you start here with those
+seven cases, and just adds, concatenates
+here the new heuristic set prompts that
+it identified.
+Absolutely interesting for a
+self-learning AI system. It needs
+experience.
+Now, look at this, and don't tell me you
+immediately have the idea that the job
+for the future for this AI system are
+three points. Let's collect large-scale
+optimization trajectories for all the
+models across diverse task and
+reflectors.
+Cluster all those failure cases, what
+can go wrong, let's understand the
+mistake an AI system, or just a GPT 5.4
+does.
+Let's cluster those failure cases, let's
+build,
+I don't know, thematic failure clusters,
+and let's have a semantic similarity, so
+we really identify here, oh wow, those
+are 90% of the failure modes that we
+encounter with GPT 5.4.
+And then let's distill all the recurring
+patterns, and let's put it into a
+heuristic category, like this one,
+automatically.
+If the system could learn automatically,
+self-learn
+from its mistake,
+put its mistake in this list of
+heuristics, and say, ah, this are all
+the the problems I have all the times,
+those are the failures I do all the
+times. So, before I even start to output
+your answer, I just check that this is
+not the case here in my current
+analysis, in my current chain of thought
+reasoning process.
+So, this is an optimization we can
+implement immediately, and maybe I do it
+here for my case, now.
+But do you see the similarity, by the
+way, because in this video, where I
+showed you Skill MD, a skill markdown
+file is not enough. And in this video, I
+opted here,
+maybe we should think about that we need
+an experience loop, now. It is great if
+you have a strategic skill library. You
+can import 10,000 skill markdown files,
+it's great.
+But if you don't have the experience how
+to do it, how to integrate multiple
+skills,
+and the way to do it, a Skill MD is
+definitely not enough. And I think what
+we see here on a different complexity
+level is real similar to the insight
+from this video.
+But yeah, what you think? Leave me a
+comment.
+So, here we have it, now. If you want,
+we discovered, or the authors, sorry, UC
+[clears throat] Berkeley and at all,
+discovered the four systematic
+limitations for a reflective April.
+L1 to L3 form a causal chain, L4 can
+apply even when we have the optimization
+process succeeding here in the
+transition regularity, where will it
+work? Will I need a GPT 5.4, or will it
+work here on a QN 3.5 8 billion, now?
+So, very interesting to understand,
+those are problems we ignored up until
+now. This is the reason why our current
+problems, our current models are not
+working
+with the precision that we hope, while
+we got stuck in local optima and local
+minima,
+and why our system like GePa could never
+recover from a local trap.
+Now, with Vista,
+hopefully we can do this, and this is
+also a step for a self-learning system,
+And I just want to stress this. If we
+have here Vista, where we have this
+hypothesis H1 that the chain of thought
+field ordering, we have to check with
+them because maybe this is the mistake.
+If you compare this versus the GePa
+reflector why it fails, I just want to
+stress it is not because the model is
+not intelligent, it is not because the
+model is a weak reasoner, it is not
+because the chain of thoughts are not, I
+don't know, how many the length of your
+chain of thought that you want to have.
+No.
+It is because
+the category that happened, the mistake
+that we happen here, chain of thought
+field ordering,
+simply does not exist in its hypothesis
+space at all.
+So, GePa has some massive structural
+problems that Vista addresses now.
+I love it.
+And there you have it. So, what is the
+main insight, if you want?
+Just want to mention this was done on a
+4090 with just 24 GB VRAM.
+This is now the architectural insight we
+get here for the latest in prompt
+optimization, and yes, we have to talk
+about prompt optimization again.
+We have to have an empirical
+verification
+because it is only the empirical
+verification that will decouple
+the hypothesis quality
+that we need to understand what is
+happening, what is going wrong, from the
+selection quality.
+And in Vista, they implemented this via
+a two-agent system.
+I hope you enjoyed this video. I hope
+you had a little bit of fun. It is
+simply amazing that we are back to a
+prompt optimization. But yeah, this is
+life, we continue to learn every single
+second, it is just unbelievable. I hope
+you had a little bit fun. Would be great
+to see you in my next video.

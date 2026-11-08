@@ -1,0 +1,255 @@
+foreign
+[Music]
+hello and welcome
+hello and welcome today we're going to
+be looking at the unit model
+architecture
+since 2015 this has been a go-to
+architecture for many machine learning
+tasks but more recently it's gained even
+more popularity down to its incredible
+performance in image Generation all of
+the images in the introduction will
+occur to see if the Dali 2 diffusion
+model however almost all of The Cutting
+Edge generator models whether they be
+generative adversarial networks or any
+of the diffuse model variants such as
+stable diffusion imagine or Dali 2 will
+be using the unit in one way or another
+so now you know how radical units are
+let's have a closer look at them
+the unit architecture was initially
+proposed as a solution to Medical image
+segmentation problems it was quickly
+adopted for all sorts of tasks
+it has a unique structure that makes it
+particularly effective for tasks with
+high resolution inputs and outputs
+that could be tasks such as image
+segmentation
+will remapping images to segmentation
+masks
+hip resolution while we're upscaling low
+resolution to high resolution images
+or as I've already mentioned diffusion
+models were transforming gaussian noise
+to newly generated images
+well why not try Cascada diffusion where
+we simply strap three units in a row for
+even higher resolution generative
+creations
+let's rule
+as you may have noticed all of these
+tasks taken image's input and produce a
+new image for example in segmentation we
+are trying to learn a mapping from the
+pixels of an image into the pixels of
+the segmentation mask
+if we have ground truth data such as
+hand labeled segmentation masks then we
+can train a machine learning model such
+as the unit to predict these masks and
+hopefully generalize to new unseen
+images
+for example with a set of input images
+and hand-annotated segmentation masks we
+can train a unit model
+by passing in our images to our model we
+can produce an initial guess at the
+ground truth mask initially our guess
+won't be very good however we can still
+use it to compare against our ground
+truth label this comparison gives us an
+error we can use to adjust our model's
+parameters meaning that the next time we
+pass in an image we'll have a slightly
+better prediction
+so why is this model so effective when
+working with high resolution inputs and
+outputs
+well the unit model consists of an
+encoder followed by a decoder the
+encoder is responsible for extracting
+features from the input image whilst the
+decoder is responsible for up sampling
+intermediate features and producing the
+final output
+the funky thing about units is that the
+encoder and the decoder are symmetrical
+and are connected by paths
+this design gives the model its namesake
+the U
+the unit is known as a convolutional
+neural network with an encoder decoder
+type architecture
+this means we process images such as
+this man on a bike and attempt to
+extract useful features such as
+recognizing these two bike wheels
+once we have a rough idea that this area
+probably contains a bike we then decode
+these features back to their formal
+resolution in an attempt to get a Pixel
+Perfect representation of where the bike
+is in the original image
+have another look at the architecture
+and see if it makes a bit more sense
+let's have a closer look at the encoder
+the decoder and the connections in
+between them based upon the original
+paper features a pass-through and
+encoder consisting of repeated
+convolutional layers and Max pooling
+layers that extract intermediate
+features
+these extracted features are then
+upsampled by a corresponding decoder
+where saved copies of the encoder's
+features are concatenated onto the
+decoders features via connecting parts
+final layer produces the output for
+example this could be a segmentation
+mask
+you can then simply calculate your loss
+with respect to a ground shoes mask and
+back propagate the gradients through the
+network to improve your model's
+predictions
+let's recover what we just learned and
+go over each of the model components in
+a little more detail
+let's check out our first protagonist
+the encoder is made up of a series of
+repeated 3x3 convolutional layers at
+each of the stages after each
+convolutional layer the reloot
+activation function is applied
+element-wise to each of the features in
+between the stages a two by two Max
+pooling operation down samples the
+features this is a stride of two and is
+the equivalent depicting the largest
+value in a non-overlapping window rolled
+across the image
+this of course reduces the spatial
+dimensions of the features
+and to compensate for this the channels
+are doubled after each down sampling
+operation
+now let's have a look at the next part
+of the network the decoder
+the decoder in many ways is the reverse
+of the encoder it is also made up of a
+series of 3x3 convolutional layers Each
+of which is followed by the re-loot
+activation function
+instead of down sampling with Max
+pooling a decoder up samples the current
+set of features and then applies a 2x2
+convolutional layer that halves the
+number of channels
+the up sampling operation is used to
+restore the spatial resolution of the
+features that were lost during the
+encoding phase
+there are two type of connections
+between the encoder and the decoder
+these are known as the bottleneck and
+the connecting parts
+first let's look at the connecting pads
+the connecting paths are simple they
+simply take a copy of the features from
+the symmetrical part of the encoder and
+concatenate them onto their opposing
+stage in the decoder this simply means
+Place alongside the decoder's features
+meaning subsequent convolutional layers
+can operate over both the decoders and
+the encoders features the intuition here
+is that the decoded features might
+include more semantic information such
+as this area as a bike
+whereas the encoded features contain
+more spatial information such as these
+are the pixels where the object is
+when you combine both the decoded and
+the encoded features together you can
+see how you can get Pixel Perfect
+now let's have a look at the bottleneck
+the bridge between the intermediary
+features of the network this is where
+the encoder switches into the decoder
+firstly we down sample the features
+then we pass them through the
+recognizable convolutional layers
+before finally up sampling them again to
+their previous resolution
+let's run through an example
+first we pass our input image through
+the encoder passing them through the 3X3
+convolutional layers and radio functions
+at each stage we down sample them with a
+2x2 Max pooling layer and double the
+channels before passing them through the
+convolutional layers for the stage this
+repeats all the way down to the
+bottleneck at the bottom neck we down
+sample pass the features through the
+convolutional layers and then up sample
+the features to get back to the
+corresponding resolution before the
+bottleneck we now pass the features up
+the decoder up sampling the features as
+we go and at each stage we also
+concatenate the features via the
+connecting paths
+this pattern of up sampling passing
+through convolutional layers and
+concatenating the features repeats all
+the way to the final output layer and
+there you have it that's the overview of
+the unap machine learning model
+as we've seen the uni the unit
+architecture is pretty simple when you
+break it down into its components
+it uses ideas similar to that of
+residual networks where we only need to
+learn the difference between the input
+and output pixels
+since the connecting paths passing
+copies of the input features it makes it
+easier to gain Pixel Perfect accuracy
+for tasks such as segmentation
+the unit can have impressive performance
+even on small data sets by applying data
+augmentation techniques such as flipping
+rotating color altering and scaling
+these techniques help create new
+training examples from existing ones and
+make the model robust to visual
+Transformations a bike is still a bike
+even if I rotate it 30 degrees or flip
+it
+in recent work researchers have found
+great success by trading conditional
+units for example in the diffusion model
+framework we can train a unit that has
+been conditioned on both time and
+conditioning text
+this helps us guide a generative process
+to convert gaussian noise into any image
+Under the Sun given enough training data
+the unit model is a powerful tool in
+computer vision
+its unique architecture has been shown
+to be useful across a wide variety of
+tasks
+please let me know in the comment
+section down below if you have found
+this video useful and understanding the
+unit and let me know what you'd like to
+see in the next video
+thanks for watching and be sure to
+subscribe if you want to catch the next
+video

@@ -1,0 +1,37 @@
+{
+  "schema": "rig.systems_thinking.1000x_proof.v1",
+  "generated_at": "2026-08-29T22:15:00Z",
+  "mandate": "make this 1000x better — target: Jake systems-thinking capability",
+  "axes": {
+    "static_to_executable": "rig-systems-verify.sh: scan (observe JSON) + verify (9 gates, exit 0/1)",
+    "manual_to_always_on": "launchd com.rig.systems-verify @900s writes ~/.rig/live/systems-verify.json",
+    "symptom_to_loop": "watchdog v2 anti-oscillation + backup resurrected via docker-context root cause"
+  },
+  "commands_and_results": [
+    {"command": "bash ~/.rig/bin/rig-systems-verify.sh scan", "exit": 0, "evidence": "JSON: 1 mount at scan time, services {jarvis: running, qnap-watchdog: running}, backup_last_ok 2026-08-28T02Z (43h stale — caught live)"},
+    {"command": "bash ~/.rig/bin/rig-systems-verify.sh verify (baseline)", "exit": 1, "evidence": "G1 R G2 R G3 G G4 G G5 G G6 R G7 R(age_h=37.0) G8 R G9 G — truthful baseline incl. API-dead drift"},
+    {"command": "docker --context colima ps", "exit": 0, "evidence": "8+ containers Up 29h (healthy) incl. rig-openbot-postgres-1 — fleet was never down; plain docker ps queried empty Docker Desktop context"},
+    {"command": "bash rig-pg-backup-qnap.sh (after context fix)", "exit": 0, "evidence": "openbot-2026-08-29T21Z.sql.gz (49K) written to QNAP vault; '[2026-08-29T21Z] OK' logged — first success in 43h"},
+    {"command": "bash -n qnap-mount-watchdog.sh v2 + tick", "exit": 0, "evidence": "0.8s tick, both shares held, no destructive STALE; log shows STALE-SUSPECT -> STALE-CONFIRMED (two-tick) and SETTLE-CHECK 'NOT unmounting' damping"},
+    {"command": "launchctl bootstrap gui/501 com.rig.systems-verify.plist", "exit": 0, "evidence": "first unattended tick ran; exposed+fixed launchd PATH gap in suite"},
+    {"command": "PLANTED: API_PORT=3999 JARVIS_PORT=9999 PGURL=bogus QNAP_LOG=forged-storm verify", "exit": 1, "evidence": "G1 R G2 R G5 R G6 R G8 R while G3 G4 G7 G9 stayed green — plant-failure certification, reds causal"},
+    {"command": "RESTORED defaults verify", "exit": 1, "evidence": "8/9 GREEN: G1 G2 G3 G4 G5 G6 G7 G9; G8 sole red = v1-era STALE events still inside trailing-hour window, auto-clears ~15:57 local via launchd"}
+  ],
+  "misdiagnoses_corrected": [
+    "fleet 'honest DOWN' -> Up 29h in Colima (docker context mismatch, watchdog read Colima's ssh mux as foreign)",
+    "backup 'PG may be down' -> docker context mismatch; fixed + fresh dump produced",
+    "API death mid-round -> eventsource@3.0.7 ESM-via-CJS crash (Bun); watchdog respawned loopback-bound; dep fix queued as Q7"
+  ],
+  "oscillation_evidence": {
+    "v1_total_stale_events": 13496,
+    "v1_events_today": 2212,
+    "v2_mechanism": "bounded 3s checks x2 + two-tick confirm-before-unmount + lockfile + settle-observe",
+    "root_physical_cause": "QNAP LAN IP 192.168.68.84 absent from segment (ARP incomplete, 100% ping loss); all SMB over Tailscale 100.64.83.55 which flaps under load",
+    "queued": "Q1' restore LAN path (physical infra)"
+  },
+  "claims_not_made": [
+    "G8 not yet green at seal time — window holds v1 damage until ~15:57 local; the launchd suite's own transition to green is the standing always-on proof",
+    "LAN restoration and eventsource dependency fix NOT built (queued Q1', Q7)",
+    "QNAP server-side health not diagnosed (out of host scope)"
+  ]
+}

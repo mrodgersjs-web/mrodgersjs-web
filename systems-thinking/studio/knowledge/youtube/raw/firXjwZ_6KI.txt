@@ -1,0 +1,403 @@
+[Music]
+Hello there. If you've been wondering
+what the difference between flow
+matching models and diffusion models is,
+then this video is for you. You might
+have noticed that while diffusion models
+like stable diffusion or imagine made
+the state of the art image generators
+just a couple of years ago, these days
+diffusion models see competitors in flow
+matching models like flux and stable
+diffusion 3 that seem to be steadily
+taking over the spotlight. So, what
+changed? Why are researchers suddenly
+shifting from diffusion to flow
+matching? I was asking myself this
+question since I already knew how
+diffusion models work, but I kept
+wondering what does flow matching
+actually do differently. So, in this
+video we'll unpack exactly that
+difference. We'll start with a recap of
+how diffusion models are trained and how
+they generate images, and then we'll
+dive into flow matching models
+step-by-step, side-by-side with
+diffusion models so you can see
+precisely where they diverge. All right,
+grab your coffee and let's dive in.
+Before we get to flow matching, let's
+see how diffusion models work. At their
+core, diffusion models learn to reverse
+noise. They get an image of pure noise
+as input and learn how to transform it
+step-by-step into a realistic image. But
+how to teach the neural network inside
+the diffusion model to do that?
+To find out, let's see what happens
+during diffusion model training. First,
+we take a real image from our training
+data set. Let's call it X1. Then we pick
+a random time step T between 0 and 1,
+where T equals 1 stands for a clean
+image with no noise, T equals 0 stands
+for an image with just noise, and we
+call it 0 because it contains 0
+information. And T between 0 and 1
+stands for something between noise and
+no noise. So, that's what a time step T
+represents, how far along we are in the
+denoising process. Now, during training,
+we start from the clean image X1, and we
+have sampled T as a random value between
+0 and 1, and we are ready to generate
+our training data in the so-called
+forward diffusion step. By adding
+Gaussian noise epsilon to each pixel of
+X1, we generate a noisy version of X1,
+which we call XT. The amount of noise we
+add depends on a predefined schedule
+called BT, which increases with
+increasing value of T, such that at T
+equals 1 we have our clean image, and at
+T equals we have so much noise that the
+image becomes just pure Gaussian noise.
+And everything in between are partially
+corrupted versions of the image. And of
+course, to keep the image values of XT
+in the same range as X1, we also need to
+consider here only a fraction AT of X1.
+But we're not quite done in writing the
+forward diffusion formula because we can
+define a relationship between AT and BT
+to combine them into just one variable.
+How? By assuming the input X1 to be unit
+variance and constraining the resulting
+noisy image XT to stay unit variance as
+well. The noise epsilon has a variance
+of 1 by construction because we draw
+epsilon from a normal distribution with
+mean 0 and variance 1. So, to keep the
+total variance of XT also equal to 1,
+the variances from the two parts must
+add up correctly to 1. By defining alpha
+T to be AT squared, we can deduce that
+AT is square root of alpha T, and BT is
+square root of 1 minus alpha T.
+With that, we can write the forward
+diffusion formula that is generating our
+training data for our diffusion model
+like this.
+Mathematically, this diffusion process,
+which we use to generate the noisy data
+sample XT from a clean data sample X1,
+can also be viewed as learning a
+stochastic differential equation, or
+short SDE, where dWt is just Gaussian
+noise. Just mentioning this because it
+will make it easier to see the parallel
+to flow matching models later. Now, you
+can forget about this SDE because we're
+back to the training of our diffusion
+model, where for this training step, we
+sampled the time step T and generated a
+noisy image XT via the forward diffusion
+process. So, now we ask our neural
+network, usually a unit, but it can also
+be a transformer, which gets the time
+step T as positional embeddings, to
+execute the backward diffusion process.
+How? By letting the neural network
+predict the noise epsilon that we added
+in the forward diffusion.
+Of course, the neural network, after
+initialization, does not predict the
+right noise epsilon because the neural
+network is just a bunch of random
+weights. So, the network will predict
+something like epsilon hat. Thus, we
+need to train those weights to predict
+epsilon hats that match the real
+epsilons. So, we just use a loss
+function to train this. We train the
+neural network with a simple L2 loss
+between the predicted noise epsilon hat
+and the true noise epsilon that we
+actually added.
+That's it. The network learns to
+estimate how much noise there is in a
+given noisy image. So, to recap, the
+entire training process is you pick a
+random image from the data set, you
+choose a random time step, add the
+corresponding amount of noise to the
+clean image, and train the model to
+predict the noise that you just added.
+That's the entire training loop, and we
+get a really powerful neural net that
+can predict the noise which was added to
+the image by doing this over many
+different images over the entire
+training data set with many random time
+steps T. And then, we can use this
+powerful neural network model that has
+learned to predict noise epsilons from
+any image to do useful stuff with it,
+like generating clean images. How? We
+use the epsilon predicted by the network
+to reverse the diffusion process. That
+means we take the formula we used for
+adding noise and rearrange it to solve
+for the clean image instead. In other
+words, all we did here is pulling X1 to
+the left-hand side and rename it to XT
+plus 1. That's it. It's just the same
+equation turned around, and feel free to
+do this exercise on paper.
+And with this backward diffusion
+formula, we can now start the image
+generation process. We begin by giving
+our trained diffusion model a completely
+noisy image as input, and we let the
+model predict the noise present in the
+image. Then, using our formula, we
+combine the noisy input X0 and the
+predicted epsilon, which effectively
+means that we subtract the predicted
+noise from the image to get a cleaner
+image. And we do not subtract all the
+noise in one go, though. We start from
+pure noise and use our trained model to
+iteratively remove a bit of noise at a
+time. At each step, we ask, "What
+direction should I move this noisy
+sample to make it look more like a real
+image?" And we nudge it into that
+direction repeatedly until the noise
+slowly transforms into a coherent image.
+Why don't we just subtract all the
+predicted noise in one go? Because the
+model only learned to denoise specific
+amounts of noise at time steps T, which
+are often not T equals 0. So, what the
+model learns is, given an image that's
+been corrupted by a specific amount of
+noise corresponding to the time step T,
+what direction, so what noise should I
+remove to slightly move the sample
+towards the data distribution? And if we
+try to jump all at once, we'd end up far
+off the data manifold and get a blurry
+mess. And the model never directly sees
+transitions across noise levels. It just
+learns the gradient of the data
+distribution at that level of noise. So,
+when we use the model for generation, we
+can't just predict the noise once and
+subtract it all at once. We must
+integrate these small steps over the
+whole noise schedule from T equals 0 to
+T equals 1, using the model's prediction
+at each step to guide us. So, the model
+takes hundreds or even thousands of
+small denoising steps, gradually walking
+through image space until we reach a
+realistic sample. So, to recap, here are
+the training and inference loops for a
+diffusion model. Diffusion models learn
+to reverse the denoising process
+described by this stochastic
+differential equation. During training,
+we take a real image, sample a random
+time step, add Gaussian noise according
+to a schedule corresponding to the
+sampled time step, and teach a model, a
+neural network, to predict exactly that
+noise. The model is trained with a
+simple L2 loss between the predicted and
+true noise. Then, at inference time, to
+generate new images, we start from pure
+noise and iteratively apply the model in
+reverse. Each step slightly denoises the
+image until we end up with a realistic
+sample at T equals 1.
+And if you want to know how to generate
+images from text, watch our previous
+videos on this. Okay, so far so good. It
+was for diffusion models. Now, enter
+flow matching models. While diffusion
+was reversing this stochastic
+differential equation,
+flow matching says, "Let's simplify this
+and think about making this completely
+deterministic by removing the Gaussian
+noise term here." So, now we have this
+ordinary differential equation instead.
+It's not stochastic anymore, which is
+much simpler to solve. And flow matching
+solves this by learning V, the velocity
+field, via a neural network. And let's
+take a moment to see how simple this ODE
+really is. You might remember from high
+school physics that velocity is just the
+change in position over time. So, if we
+know the velocity field, meaning that we
+know the velocity at every point in
+time, we can recover the end trajectory
+by integrating it over time. In our
+case, that means that the final state X1
+is simply the starting point X0 plus the
+integral of the velocity field at every
+point in time from 0 to 1. So, if we
+train a neural network that learns this
+velocity field V, we can use it to move
+from a random noise X0 all the way to a
+clean image X1 just by following this
+equation. What does this concretely mean
+and how do we train a flow matching
+model? Like for diffusion models, we
+take X1, a data point from our image
+database we use for training. Then
+again, we sample a time step T between 0
+and 1, but now it gets much simpler. We
+also sample X0, which is just an image
+with complete noise of the same size as
+X1.
+Then from X1, X0, and T, we generate XT,
+which is just a linear interpolation of
+X1 and X0. Linear interpolation, which
+we also visualize here again on the
+right. We can compute the ground truth
+velocity field just by subtracting X0
+from X1. By computing the derivative of
+XT with respect to T, we can see that
+this constant velocity field is the
+right one for our linearly interpolated
+XT.
+Now, we can instantiate our model, a
+neural network to predict V. It takes as
+input the current point XT and the time
+step T, which we can provide, for
+example, through positional embeddings.
+If we use a vision transformer where XT
+can be represented as image patches
+along the sequence dimension.
+To train the network, we use a simple
+mean squared error loss between the
+predicted velocity V hat from the model
+and the ground truth velocity V that we
+computed earlier. By minimizing this
+loss over many random samples of images,
+noise, and time steps, the model
+gradually learns to predict the correct
+flow field, that is, how to move from
+noise to data at any point in time.
+Now, to generate images with our trained
+flow matching model, we simply start by
+generating random noise X0, let the
+network predict V, and integrate the ODE
+forward in time via our formula here to
+arrive at X1. Since we don't know the
+final image X1, we rely on our neural
+network to tell us the velocity field V.
+We can let a numerical solver like
+adaptive Runge-Kutta to do our
+integration for us, and the solver
+starts at T equals 0 from pure noise,
+repeatedly evaluates V to see in which
+direction to move and takes adaptive
+steps, larger when the vector field is
+smooth and smaller when it changes
+rapidly, until we reach T equals 1, the
+final image. And you might ask, why do
+we need multiple steps instead of just
+one?
+Even if in theory the true velocity is
+constant if learned perfectly, in
+practice the model has only learned an
+approximation of this global path, and
+the velocity might vary along the path,
+especially if it hasn't converged well.
+The ODE solver, which can be Euler or
+Runge-Kutta, needs to query the model at
+multiple time steps to integrate safely
+and track this curve. And the best part
+is that, unlike diffusion models who
+needs hundreds of denoising steps, with
+flow matching, we need 5 to 15 model
+calls, which are forward passes, during
+inference. So, depending on your
+integration step size and tolerance, you
+can really get away with way fewer
+forward passes than with a diffusion
+model. That's why flow matching models
+can generate high-quality images in a
+fraction of the time. But on the other
+hand, diffusion models are extremely
+stable to train, so they've been refined
+for years. The noise prediction loss is
+simple and well-behaved, and flow
+matching models can be a bit trickier
+because they don't rely on random noise
+at each step, so their training can
+become unstable if the estimated flow
+field isn't accurate everywhere. But
+modern methods like rectified flow have
+solved many of those issues, and
+mathematically, diffusion models and
+flow matching are almost two sides of
+the same coin, so let's have them side
+by side again.
+Flow matching models skip the randomness
+of diffusion and replace it with a
+smooth deterministic flow, simplifying
+the SDE to just a simple ODE. For
+training flow matching models, we sample
+a data point from our data set, then a
+time step T, and a random noise sample
+X0. Then we interpolate between the real
+image and the noise and compute the
+ground truth velocity. The neural
+network learns to predict this velocity.
+So, in contrast to diffusion models
+where the neural net has learned to
+predict the noise we had added, we now
+predict velocities. We use a mean
+squared error loss to enforce the neural
+network to predict the right velocity.
+And at inference, we start from noise
+and integrate the learned velocity field
+using a solver, which takes adaptive
+steps to trace the flow all the way to
+the final image. So, that was it. Now,
+you have them here side by side.
+Diffusion models work by learning to
+undo random noise, taking hundreds of
+tiny stochastic steps to gradually turn
+pure noise into an image. And flow
+matching models, on the other hand,
+learn a deterministic flow, a smooth
+path that directly transports points
+from the noise distribution to the data
+distribution.
+Because the velocity field in flow
+matching is continuous and
+deterministic, we can use efficient ODE
+solvers to trace that path in just a
+handful of steps, sometimes tens instead
+of hundreds like with diffusion. That's
+why modern flow matching models can
+generate high-quality images so much
+faster. They use this flow-based
+formulation instead of classic
+diffusion. So, in a sense, the flow
+matching keeps the best parts of
+diffusion, so the powerful training
+objective, but replaces the random walk
+with a guided shortcut. That was it for
+today's explainer. If you like this
+breakdown, give the video a like and hit
+subscribe for more AI Coffee Breaks. See
+you next time.
+Okay, bye.

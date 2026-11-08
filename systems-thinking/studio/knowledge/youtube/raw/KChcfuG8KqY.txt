@@ -1,0 +1,1364 @@
+Welcome to NextGen AI. This lecture is
+brought to you by author, innovator, and
+technology leader Juan Achurra. With
+over 25 years of experience designing AI
+strategies, SRE frameworks, and
+enterprise platforms for Fortune 500
+companies and government agencies, Juan
+brings the kind of knowledge most
+organizations pay thousands of dollars
+to access. So, grab your drink, open
+your mind, and get ready for the flow of
+knowledge. Let's get started.
+Welcome.
+If you have ever been the engineer who
+gets paged at 3:00 in the morning
+because a production system is down,
+or if you want to become the engineer
+who prevents that from ever happening,
+this course is for you.
+I am going to take you through the
+complete foundation of site reliability
+engineering, and we are going to do it
+through the lens of modern AI-powered
+operations.
+By the end of this video, you will
+understand not just what SRE is, but why
+it exists, how it works, and where it is
+going.
+Let us get started.
+Here is what we are going to cover in
+this video. We will start with the
+origin story of SRE, why Google invented
+it, and what problem it was solving.
+We will move into the core principles
+and the five-pillar focus areas that
+define the discipline.
+We will cover how to measure reliability
+using SLIs, SLOs, and error budgets.
+We will explore observability, the
+difference between monitoring and truly
+understanding your system.
+We will introduce AIops and generative
+AI, and show you how they are
+transforming the role of the SRE.
+And we will close with the SRE maturity
+model, so you know exactly where your
+organization stands today and where it
+needs to go.
+This is a complete foundation.
+Everything that follows in this series
+builds on what you learn here.
+Let me start with the problem.
+Not a hypothetical problem, a real one
+that plays out in organizations every
+single day.
+A production system goes down. It is
+3:00 in the morning. An engineer gets
+paged. They have no runbook. They have
+no clear ownership.
+They start manually digging through
+logs, restarting services, and hoping
+something works.
+Meanwhile, every minute of downtime is
+costing the business money.
+Research from Gartner puts the average
+cost of IT downtime at over $300,000
+per hour.
+And for large enterprises,
+that number can exceed $5,000,000
+Hope is not a strategy.
+Reacting to failures after they happen
+is not engineering.
+It is firefighting.
+And that is exactly the problem that
+site reliability engineering was
+designed to solve.
+Let us look at where it came from.
+In 2003,
+Google had a problem. Their systems were
+growing faster than their ability to
+operate them reliably.
+The traditional approach, hire more
+operations staff, write more runbooks,
+respond faster to alerts, was not
+scaling.
+So, an engineer named Ben Treynor Sloss
+proposed something radical.
+He said, "What if we treat operations as
+a software engineering problem?
+What if we apply the same rigor, the
+same automation, the same measurement
+discipline to reliability that we apply
+to building software?"
+That idea became site reliability
+engineering.
+Trainor's law defined it simply,
+SRE is what happens when you ask a
+software engineer to design an
+operations function.
+The result is a discipline that uses
+engineering to build and run reliable
+systems at scale, not by hiring more
+people to react faster, but by building
+systems that fail less, recover
+automatically, and improve continuously.
+That is the foundation.
+Now, let us understand how SRE relates
+to DevOps.
+&gt;&gt; One of the most common questions in this
+field is, what is the difference between
+SRE and DevOps? The honest answer is
+that they are complementary, not
+competing. DevOps is a philosophy, a
+cultural movement that breaks down the
+wall between development and operations
+teams. It says developers and operations
+engineers should share ownership, share
+tools, and work together toward the same
+goal.
+SRE is an implementation of that
+philosophy. It is the specific set of
+practices, metrics, and engineering
+disciplines that make the DevOps vision
+real. Think of it this way. DevOps tells
+you what to do. SRE tells you how to do
+it. Where they overlap, shared
+ownership, automation, continuous
+improvement, measurement, that is the
+heart of modern engineering culture. And
+when you add AI into that overlap, you
+get something even more powerful. But
+before we get there, let us understand
+the business case for why organizations
+invest in SRE in the first place.
+&gt;&gt; Site reliability engineering sits at the
+intersection of two disciplines that
+have historically been separate,
+software engineering and systems
+engineering. Software engineers build
+features. Systems engineers keep
+infrastructure running.
+SRE says those two things are not
+separate concerns. They are the same
+concern. Reliability is a feature. It
+has to be designed in from the start,
+not bolted on after the fact. When you
+combine software engineering rigor with
+systems engineering depth, you get a
+team that can build systems that are
+both functional and durable.
+And when you measure the output of that
+combination using availability metrics,
+latency targets, and error rates, you
+get reliability as a quantifiable
+engineering outcome.
+That is the core of what SRE is as a
+discipline.
+Now, let us look at why organizations
+actually invest in building it.
+&gt;&gt; The business case for SRE is
+straightforward. The cost of
+unreliability is enormous, and the
+investment in SRE consistently delivers
+measurable returns.
+On the cost side, downtime costs money,
+customer trust, and competitive
+position.
+On the benefit side, SRE reduces mean
+time to recovery, increases deployment
+frequency, reduces change failure rates,
+and frees engineering capacity from
+reactive firefighting to proactive
+improvement.
+The DORA research program, which has
+surveyed tens of thousands of
+engineering teams, consistently shows
+that high-performing organizations
+deploy code more frequently, recover
+from failures faster, and have
+significantly lower change failure rates
+than low performers.
+Those are not soft metrics. They
+translate directly to revenue, customer
+retention, and engineering velocity.
+The question is not whether your
+organization can afford to invest in
+SRE. The question is whether it can
+afford not to.
+With that foundation established, let us
+look at the framework that makes SRE
+work, starting with the Dickerson
+hierarchy of reliability.
+&gt;&gt; The Dickerson hierarchy of reliability
+is one of the most important frameworks
+in SRE.
+It was created by Mike Dickerson, who
+led the rescue of the healthcare.gov
+website in 2013, one of the most
+high-profile reliability failures in
+government technology history.
+The hierarchy works like Maslow's
+pyramid. You cannot address higher-level
+concerns until the lower-level
+foundations are solid.
+At the base is monitoring. If you cannot
+see what your system is doing, nothing
+else matters. You cannot respond to
+incidents you cannot detect.
+Above monitoring is incident response,
+the ability to react quickly and
+effectively when things go wrong.
+Then comes post-mortems and root cause
+analysis, learning from failures so they
+do not repeat.
+Then testing and release engineering,
+ensuring that changes do not introduce
+new failures.
+Then capacity planning, ensuring your
+system can handle the load it will face.
+And at the top is product development,
+the ability to ship new features
+reliably and continuously.
+Every organization needs to build from
+the bottom up. And today, observability
+has replaced simple monitoring at the
+base, because in complex distributed
+systems, you need more than dashboards.
+You need the ability to ask arbitrary
+questions about your system's behavior.
+We will cover that in depth shortly.
+SRE is built on six core principles that
+define how practitioners think and work.
+First, reliability is a feature. It is
+not an afterthought. It must be designed
+in from the beginning.
+Second, reduce toil. Toil is manual,
+repetitive, automatable work that does
+not produce lasting value.
+Every hour spent on toil is an hour not
+spent improving the system.
+Third, anticipate failure. Do not wait
+for systems to break. Design for
+failure, test failure, and build
+recovery into the architecture.
+Fourth, blameless culture. When
+incidents happen, the goal is to
+understand the system failure, not to
+punish the individual.
+Blame stops learning. Blameless
+postmortems accelerate it.
+Fifth, service level awareness.
+Every reliability decision should be
+grounded in explicit service level
+objectives, the commitments you make to
+your users.
+And sixth, shared ownership. Reliability
+is not the operations team's problem. It
+is everyone's problem. Developers, SREs,
+and product teams share accountability
+for the systems they build and run.
+These six principles are not just
+philosophy. They are the operating
+system for a high-performing engineering
+organization.
+Now, let us look at the five pillar
+focus areas that translate these
+principles into practice.
+&gt;&gt; The five pillar focus areas of SRE
+define where engineering effort is
+concentrated to achieve reliability at
+scale.
+The first pillar is observability, the
+ability to understand the internal state
+of your system from its external
+outputs. Without observability, you are
+flying blind.
+The second pillar is efficiency, doing
+more with less, eliminating waste,
+reducing toil, and ensuring that
+engineering capacity is directed toward
+high-value work.
+The third pillar is resiliency,
+designing systems that degrade
+gracefully, recover automatically, and
+maintain acceptable service levels even
+when components fail.
+The fourth pillar is operational
+excellence, the continuous improvement
+of processes, runbooks, on-call
+practices, and incident response.
+And the fifth pillar is automation,
+replacing manual, error-prone human
+tasks with reliable, repeatable
+automated processes.
+These five pillars work together.
+Observability tells you what is
+happening. Efficiency ensures you have
+the capacity to act. Resiliency limits
+the blast radius of failures.
+Operational excellence ensures your
+response is consistent. And automation
+scales all of it beyond what any team of
+humans could do manually.
+Now, let us look at how SRE measure
+success starting with the YBYO model.
+&gt;&gt; YBYO stands for you build it, you own
+it, you operate it.
+It is a cultural and operational model
+that places end-to-end accountability
+with the team that builds the service.
+In traditional organizations, developers
+build software and throw it over the
+wall to operations. Operations runs it.
+When something breaks, there is a blame
+game.
+YBYO eliminates that wall entirely. The
+squad that builds the service is also
+responsible for its reliability, its
+on-call rotation, and its incident
+response.
+This creates a powerful incentive
+alignment. When developers are on call
+for the systems they build, they write
+more reliable code. They instrument
+their services properly. They care about
+error rates and latency because those
+metrics wake them up at night.
+YBYO does not mean every developer is a
+full SRE.
+&gt;&gt; [snorts]
+&gt;&gt; It means that reliability is a shared
+responsibility, and the team closest to
+the code is also closest to the
+operational reality of running it.
+This model is foundational to how modern
+engineering organizations scale
+reliability without scaling headcount.
+Now, let us look at how we measure that
+reliability with SLIs, SLOs, and SLAs.
+&gt;&gt; The SLX framework is how SRE makes
+reliability measurable.
+Let me break down each component.
+An SLI, service level indicator, is a
+specific quantitative measure of service
+behavior. It is the raw signal. For
+example, the percentage of HTTP requests
+that return a successful response within
+200 milliseconds.
+An SLO, service level objective, is the
+target you set for that indicator. For
+example, 99.9%
+of requests should succeed within 200
+milliseconds, measured over a rolling
+30-day window.
+The SLO is your internal reliability
+commitment, the standard your team holds
+itself to.
+An SLA, service level agreement, is the
+contractual commitment you make to your
+customers. It is typically set below the
+SLO because you need a buffer between
+your internal target and the promise you
+make externally.
+If you breach your SLO, you have an
+engineering problem. If you breach your
+SLA, you have a legal and business
+problem.
+The SLX framework turns reliability from
+a vague aspiration into a precise
+engineering target. It gives every team
+a shared language for discussing risk,
+prioritizing work, and making trade-off
+decisions. And it connects directly to
+the concept of error budgets, which we
+will cover next.
+The error budget is one of the most
+powerful concepts in SRE. Here is the
+core idea.
+If your SLO is 99.9%
+availability, that means you are allowed
+0.1% unavailability.
+Over a 30-day month, that works out to
+approximately 43 minutes of allowable
+downtime.
+That 43 minutes is your error budget. It
+is not a failure target. It is a risk
+allowance.
+It gives your team explicit permission
+to take risks, ship new features, and
+run experiments, as long as you stay
+within budget.
+When the budget is healthy, you can move
+fast. When the budget is nearly
+exhausted, you slow down. You stop new
+deployments, focus on reliability work,
+and protect the remaining budget.
+This creates a rational, data-driven
+conversation between product teams and
+SRE teams about risk. Instead of arguing
+about whether a deployment is safe, you
+look at the error budget. The budget
+makes the decision. It is objective, it
+is shared, and it removes the politics
+from reliability tradeoffs.
+Error budgets are the mechanism that
+makes SRE a business-aligned discipline,
+not just a technical one.
+Now, let us look at what we actually
+measure to track that budget, the four
+golden signals.
+&gt;&gt; The Google SRE book identifies four
+golden signals that every service should
+measure. These are the minimum viable
+observability signals for any production
+system.
+The first is latency, how long it takes
+to service a request. Not just average
+latency, but the tail latency, the 95th
+and 99th percentile, because the slowest
+requests are often the most important
+ones to fix.
+The second is traffic, the demand being
+placed on your system. Requests per
+second, transactions per minute, active
+connections. Traffic tells you the scale
+of the problem when something goes
+wrong.
+The third is errors, the rate of
+requests that fail.
+This includes explicit failures, like
+HTTP 500 errors, and implicit failures,
+like requests that succeed but return
+wrong data.
+The fourth is saturation, how full your
+service is.
+CPU utilization, memory pressure, disk
+IO, network bandwidth. Saturation is a
+leading indicator. When a resource
+approaches its limit, degradation is
+coming.
+If you instrument nothing else,
+instrument these four signals. They will
+tell you when something is wrong, how
+bad it is, and where to look.
+Now, let us go deeper into how we
+observe these signals and why
+observability is fundamentally different
+from traditional monitoring.
+&gt;&gt; Traditional monitoring asks, is the
+system up? Is CPU above 80%? Did the
+health check pass? These are known
+unknowns. You define the checks in
+advance, and the system tells you
+whether those specific conditions are
+met.
+Observability asks a different question.
+What is the system doing and why?
+Observability is the ability to
+understand the internal state of a
+system from its external outputs without
+having to define in advance every
+possible failure mode.
+In modern distributed systems,
+microservices, containers, serverless
+functions, failures are often novel.
+They emerge from the interaction of
+components in ways that no one
+anticipated. A monitoring dashboard
+cannot catch what it was not designed to
+look for.
+Observability can because it gives you
+the raw data, logs, metrics, and traces
+to ask arbitrary questions about system
+behavior in real time.
+The shift from monitoring to
+observability is not just a tooling
+change. It is a philosophical change in
+how you think about understanding
+complex systems, and it is the
+foundation of everything that AIOps and
+AI-driven operations are built on.
+Let us look at the three pillars that
+make observability possible.
+&gt;&gt; Observability rests on three data types,
+and each one answers a different
+question about your system.
+Logs answer the question, what happened?
+A log is a timestamped record of a
+discrete event. A user logged in. A
+payment failed. A service threw an
+exception.
+Logs are the most detailed signal you
+have, but they are also the most
+expensive to store and the hardest to
+query at scale.
+Metrics answer the question, "How is the
+system performing right now?"
+A metric is a numeric measurement
+sampled over time.
+CPU utilization at 73%.
+Request rate at 4200 per second.
+Error rate at 0.02%.
+Metrics are cheap to store and fast to
+query, but they lose the detail of
+individual events.
+Traces answer the question, "Where did
+the time go?"
+A trace follows a single request as it
+travels through every service in a
+distributed system. It shows you exactly
+which service added latency, which
+database query was slow, and where the
+bottleneck lives.
+Together, logs, metrics, and traces give
+you a complete picture of system
+behavior.
+And the technology that makes it
+possible to collect all three in a
+standardized, vendor-neutral way is
+OpenTelemetry, which we will cover next.
+OpenTelemetry is the most important
+observability standard in the industry
+today.
+It is an open-source, vendor-neutral
+framework for collecting and exporting
+telemetry data, logs, metrics, and
+traces from any application in any
+language running on any infrastructure.
+Before OpenTelemetry, every
+observability vendor had its own SDK,
+its own agent, and its own data format.
+Switching from one platform to another
+meant re-instrumenting your entire
+application.
+OpenTelemetry solves that problem.
+You instrument your application once
+using the OpenTelemetry SDK.
+The OpenTelemetry Collector receives
+that data, processes it, and exports it
+to any back end you choose, Splunk,
+Dynatrace, Prometheus, Grafana, or any
+other platform.
+Your instrumentation code never changes,
+regardless of which back end you use.
+Open Telemetry is now a graduated
+project under the Cloud Native Computing
+Foundation, and it is supported by every
+major cloud provider and observability
+vendor.
+For any organization building a modern
+observability practice, Open Telemetry
+is not optional. It is the foundation.
+Now, let us look at what happens when
+you add artificial intelligence to this
+observability foundation and how AI ops
+is transforming the SRE role.
+&gt;&gt; This is a pivotal moment in the video.
+The shift to AI.
+AI ops, artificial intelligence for IT
+operations, is the application of
+machine learning and AI to automate and
+enhance IT operations.
+It is not a replacement for SRE. It is
+an amplifier.
+Traditional operations is reactive. An
+alert fires, an engineer investigates, a
+fix is applied.
+AI ops moves that model through four
+stages of maturity.
+At stage one, you have reactive
+operations. Manual everything. Alerts
+are noise, and humans are the only
+decision makers.
+At stage two, you have assisted
+operations. AI helps correlate alerts,
+reduce noise, and surface the most
+important signals.
+At stage three, you have augmented
+operations. AI [snorts] recommends
+actions, predicts failures before they
+occur, and automates routine
+remediation.
+At stage four, you have autonomous
+operations. AI detects, diagnoses, and
+resolves incidents with minimal human
+intervention.
+Most organizations today are between
+stage one and stage two.
+The leading organizations are pushing
+into stage three.
+Stage four is the horizon, and it is
+closer than most people think.
+The SRE who understands how to design
+systems for AI ops, instrument them for
+AI-driven analysis, and work alongside
+autonomous agents will be the most
+valuable engineer in any organization.
+Let us look at the specific role that
+generative AI is playing right now.
+&gt;&gt; Generative AI is not a future technology
+for SRE. It is being used in production
+today, and the use cases are expanding
+rapidly. Let me walk you through the six
+most impactful applications. First,
+automated runbook generation. Large
+language models can analyze incident
+history, system topology, and past
+resolutions to generate step-by-step
+runbooks for new failure patterns in
+seconds. Second, intelligent alert
+triage. AI models can correlate
+thousands of alerts, suppress noise, and
+surface the three alerts that actually
+matter before a human would even open
+their laptop. Third, natural language
+log analysis. Instead of writing complex
+queries, an SRE can ask in plain
+English, "Show me all errors related to
+the payment service in the last hour."
+The AI translates that into a precise
+query and returns the results.
+Fourth, predictive failure detection.
+Machine learning models trained on
+historical telemetry can identify
+anomalies and predict failures hours
+before they occur, giving teams time to
+act proactively. Fifth, automated
+postmortem drafting. AI can analyze the
+timeline of an incident, correlate the
+relevant signals, and produce a first
+draft postmortem in minutes, reducing
+the cognitive load on engineers who just
+survived a major outage. And sixth,
+AI-assisted capacity planning. Models
+can forecast traffic growth, identify
+resource constraints, and recommend
+scaling actions before saturation
+becomes a crisis.
+This is not science fiction. These
+capabilities exist today, and the SREs
+who know how to leverage them will
+define the next generation of the
+discipline. Now, let us talk about one
+of the most important concepts in SRE
+practice, toil.
+Toil is the enemy of engineering.
+In SRE, toil has a specific definition.
+It is work that is manual, repetitive,
+automatable, tactical, and devoid of
+enduring value.
+Restarting a service every Monday
+morning because it leaks memory.
+Manually rotating credentials on a
+schedule.
+Copying and pasting data between systems
+because no integration exists.
+Responding to the same alert for the
+sixth time this month.
+Every hour your team spends on toil is
+an hour not spent making the system
+better.
+And toil compounds. The more toil you
+accept, the more toil you accumulate. It
+is a trap.
+The Google SRE model sets a hard limit.
+No more than 50% of an SRE's time should
+be spent on toil. If it exceeds that
+threshold, it is a signal that something
+is wrong with the system and the team
+should stop and fix it.
+The antidote to toil is automation.
+And increasingly, AI is the most
+powerful automation tool available.
+When an AI agent can handle the routine,
+the repetitive, and the predictable,
+your engineers can focus on the work
+that actually requires human judgment.
+toil is not eliminated fast enough.
+Incidents.
+Every incident follows a life cycle, and
+understanding that life cycle is
+critical to managing it effectively.
+The six stages are detect, triage,
+respond, mitigate, resolve, and learn.
+Detection is the first challenge. The
+faster you detect an incident, the
+smaller its impact. This is where
+observability, alerting, and AI ops earn
+their value.
+Triage is the process of understanding
+what is happening and how severe it is.
+Is this a P1 that requires immediate
+escalation or a P3 that can wait until
+morning?
+Respond is the mobilization phase.
+Assembling the right people,
+establishing an incident commander, and
+opening a communication channel.
+Mitigation is the immediate action to
+reduce user impact, even before the root
+cause is understood. Roll back a
+deployment, redirect traffic, increase
+capacity.
+Resolve is the full fix, addressing the
+root cause and restoring normal service.
+And learn is the most important stage
+that most organizations skip. The
+blameless postmortem, the retrospective,
+the action items that prevent the
+incident from recurring.
+AIOps is transforming the first three
+stages, detect, triage, and respond, by
+automating correlation, reducing noise,
+and accelerating the time from a boot to
+action.
+The last stage, learn, is where
+generative AI is beginning to make its
+mark. Let us talk about that next.
+The blameless postmortem is one of the
+most powerful cultural tools in SRE.
+When an incident occurs, the instinct in
+many organizations is to find someone to
+blame. Who pushed the bad deployment?
+Who missed the alert? Who made the wrong
+call? Blame feels satisfying in the
+moment, but it is catastrophically
+counterproductive.
+When engineers fear blame, they hide
+mistakes. They avoid taking risks. They
+stop sharing information during
+incidents. And the same failures repeat
+because the systemic causes were never
+addressed.
+The blameless postmortem takes a
+different approach. It assumes that
+every engineer who was involved in an
+incident was acting with the best
+intentions and the best information
+available to them at the time.
+The goal is not to find the guilty
+party. The goal is to understand the
+system conditions that made the failure
+possible and to fix those conditions.
+A good postmortem documents the
+timeline, the contributing factors, the
+impact, and most importantly, the action
+items that will prevent recurrence.
+It is a learning document, not a
+punishment document.
+Organizations that do this well get
+better over time. Organizations that
+assign blame get worse.
+The choice is that simple.
+Now let us look at how organizations
+measure their overall SRE maturity.
+&gt;&gt; The SRE maturity model describes four
+stages of organizational evolution in
+reliability engineering. Stage one is
+reactive. The organization responds to
+incidents after they occur. There are no
+SLOs. On-call is chaotic. Postmortems
+are rare or blame-focused. Most
+organizations start here.
+Stage two is proactive. The organization
+has defined SLOs, established on-call
+rotations, and begun automating common
+remediation tasks. Incidents are tracked
+and postmortems are conducted. This is
+where many organizations plateau.
+Stage three is predictive. The
+organization uses observability data and
+machine learning to detect anomalies
+before they become incidents. Error
+budgets drive prioritization. Chaos
+engineering is practiced. Toil is
+actively measured and reduced.
+Stage four is cognitive. This is the
+AI-native SRE organization. AI agents
+handle routine incident triage and
+remediation autonomously. Generative
+[snorts] AI assists with postmortems,
+runbook generation, and capacity
+planning. The SRE team's role shifts
+from firefighting to system design and
+AI oversight.
+&gt;&gt; Here's the question I want you to sit
+with.
+Where is your organization on this model
+right now? And more importantly, what
+would it take to move to the next stage?
+That question is the starting point for
+every SRE transformation.
+Now, let us look at the tools that make
+this transformation possible.
+&gt;&gt; The modern SRE tool chain spans six
+categories, and knowing these tools is
+essential for any practitioner.
+For observability, the dominant
+platforms are Splunk for log analysis
+and security intelligence, Dynatrace for
+full stack APM with AI-powered root
+cause analysis, Prometheus for metrics
+collection in cloud-native environments,
+and Grafana for visualization and
+dashboarding.
+For incident management, PagerDuty and
+OpsGenie handle alerting and on-call
+scheduling.
+For infrastructure and automation,
+Terraform manages infrastructure as
+code, Ansible handles configuration
+management, and Kubernetes orchestrates
+containerized workloads.
+For CI/CD and release engineering,
+GitHub Actions, Jenkins, and Argo CD
+enable continuous delivery pipelines.
+For chaos engineering, Chaos Monkey and
+Litmus Chaos provide controlled failure
+injection.
+And for AIOps, platforms like Dynatrace
+Davis AI, IBM Watson AIOps, and BigPanda
+provide AI-driven event correlation and
+autonomous remediation.
+You do not need to master all of these
+tools immediately, but you need to
+understand what each category does and
+why it matters.
+In the videos that follow this one, we
+will go hands-on with Splunk, Dynatrace,
+Prometheus, and Grafana, the four
+platforms at the core of the
+observability practice.
+Now, let us continue building the
+foundation.
+&gt;&gt; Chaos engineering sounds
+counterintuitive.
+You are deliberately breaking your own
+production systems, on purpose.
+Why would any rational engineer do that?
+Because the alternative is worse.
+If you do not test your system's failure
+modes in a controlled way, you will
+discover them in an uncontrolled way at
+the worst possible moment with the
+maximum possible impact.
+Chaos engineering, pioneered by Netflix
+with their Chaos Monkey tool, is the
+practice of deliberately injecting
+failures into a system to verify that it
+behaves as expected under adverse
+conditions.
+The methodology has four steps.
+First, define a steady state. What does
+normal look like?
+Second, hypothesize. What do you expect
+to happen when this specific failure
+occurs?
+Third, introduce the failure. Terminate
+an instance, inject latency, drop
+network packets.
+Fourth, observe. Did the system behave
+as expected? Did it degrade gracefully?
+Did it recover automatically?
+If the answer is yes, you have increased
+your confidence in the system's
+resilience.
+If the answer is no, you have found a
+gap and you found it safely before real
+incident exposed it.
+Chaos engineering is not for
+organizations that are afraid of
+failure. It is for organizations that
+are serious about reliability.
+Now, let us look at another proactive
+discipline, capacity planning.
+&gt;&gt; Capacity planning is the practice of
+ensuring that your system has the
+resources it needs to handle the load it
+will face before that load arrives. It
+sounds obvious, but in practice, most
+organizations discover capacity problems
+reactively. The system slows down,
+alerts fire, and engineers scramble to
+add resources under pressure.
+Effective capacity planning has three
+components.
+First, understand your current resource
+utilization.
+How much CPU, memory, storage, and
+network bandwidth are you using today?
+And how is that trending over time?
+Second, forecast future demand.
+Based on business growth projections,
+seasonal patterns, and planned feature
+launches, how much load will the system
+need to handle in the next 30, 90, and
+180 days?
+Third, identify the constraints. Which
+resource will hit its limit first? What
+is the lead time to provision additional
+capacity?
+What is the cost of over-provisioning
+versus the cost of under-provisioning?
+AI is transforming capacity planning by
+enabling more accurate demand
+forecasting, automated scaling
+recommendations, and anomaly detection
+that identifies unexpected growth
+patterns before they become capacity
+crises.
+The goal is to never be surprised by
+Now, let us talk about the human side of
+SRE operations, on-call culture.
+&gt;&gt; On-call is one of the most human aspects
+of SRE, and it is also one of the most
+abused. In unhealthy on-call cultures,
+engineers are paged constantly, alerts
+are noisy and low quality, and being
+on-call means chronic sleep deprivation
+and burnout. Engineers dread their
+rotation, turnover is high, reliability
+suffers because exhausted engineers make
+mistakes.
+Healthy on-call culture looks completely
+different. Alerts are meaningful. Every
+page represents a real, actionable issue
+that requires human judgment. Alert
+fatigue is actively measured and
+On-call rotations are fair with adequate
+recovery time between shifts.
+Runbooks exist for every common failure
+scenario, and the on-call engineer has
+the tools, the access, and the authority
+to resolve issues without waiting for
+approval.
+The goal is not to eliminate on-call.
+The goal is to make on-call sustainable.
+AIOps is a critical enabler here. When
+AI handles the noise, the low-priority
+alerts, the routine remediations, the
+false positives, the human on-call
+engineer is only paged for situations
+that genuinely require human judgment.
+That is the on-call experience that
+retains great engineers.
+Now, let us look at how reliable
+software gets delivered in the first
+place, CI/CD and release engineering.
+&gt;&gt; Continuous integration and continuous
+delivery, CI/CD,
+is the engineering practice that enables
+organizations to ship software reliably
+and frequently.
+CI is the practice of automatically
+building and testing every code change
+as it is committed. If a change breaks a
+test, the pipeline stops, and the
+developer is notified immediately before
+the broken code reaches production.
+CD is the practice of automatically
+deploying validated changes through a
+series of environments, development,
+staging, production, with automated
+gates at each stage.
+The result is a deployment pipeline that
+can move code from a developer's laptop
+to production in minutes with high
+confidence that it will not break
+anything.
+Two release engineering techniques are
+particularly important for SRE.
+Canary deployments route a small
+percentage of traffic, say 1%, to the
+new version of a service before rolling
+it out fully.
+If the canary shows elevated error rates
+or latency, the deployment is
+automatically rolled back.
+Feature flags allow new functionality to
+be deployed to production in a disabled
+state, then enabled for specific user
+segments without a new deployment.
+Together, these techniques dramatically
+reduce the blast radius of any
+individual change.
+The DORA research shows that
+high-performing organizations deploy to
+production multiple times per day with
+lower change failure rates than
+organizations that deploy monthly.
+Frequency and reliability are not in
+tension. They are correlated.
+Now, let us look at runbooks and
+automation.
+A runbook is a documented procedure for
+responding to a specific operational
+event. When service X goes down, do
+these steps. When disk utilization
+exceeds 90%, do these steps.
+Runbooks are the institutional knowledge
+of your operations team, written down so
+that any engineer at any hour can
+respond effectively without having to
+improvise.
+Manual runbooks are better than no
+runbooks, but they have a ceiling. A
+human following a manual runbook takes
+30 to 45 minutes to complete a complex
+remediation procedure. They can make
+mistakes. They can miss steps. They get
+tired at 3:00 a.m.
+Automated runbooks, executed by a
+script, a workflow engine, or an AI
+agent, can complete the same procedure
+in under 3 minutes every time, without
+error, without fatigue.
+The progression is, first, document the
+runbook. Then, automate it. Then, let AI
+execute it autonomously when the
+triggering condition is detected. This
+is the toil elimination flywheel.
+Every runbook you automate is one less
+page that wakes up a human. One less
+opportunity for human error under
+pressure.
+One more step toward the autonomous
+operations model.
+Now, let us look at the metrics that
+measure whether all of this is working.
+DORA.
+&gt;&gt; The DORA metrics from the DevOps
+Research and Assessment Program are the
+industry standard for measuring software
+delivery and operational performance.
+There are four metrics.
+Deployment frequency. How often does
+your organization deploy code to
+production? High performers deploy
+multiple times per day. Low performers
+deploy monthly or less frequently.
+Lead time for changes. How long does it
+take for a committed code change to
+reach production. High performers
+measure this in hours. Low performers
+measure it in weeks or months.
+Change failure rate. What percentage of
+deployments cause a production incident
+that requires a hot fix or rollback?
+High performers are below 15%.
+Low performers are above 45%.
+And mean time to recovery.
+When a production incident occurs, how
+long does it take to restore service?
+High performers recover in under 1 hour.
+Low performers take days.
+These four metrics tell you everything
+about the health of your software
+delivery system. They are not vanity
+metrics. They are predictive of business
+outcomes.
+Organizations in the top quartile on
+Dora metrics have significantly higher
+revenue growth, customer satisfaction,
+and employee retention than those in the
+bottom quartile.
+If you are not measuring these four
+metrics today, start tomorrow.
+Now, let us look at the architectural
+context in which modern SRE operates.
+Microservices and the service mesh.
+&gt;&gt; The shift from monolithic applications
+to microservices architecture has been
+one of the defining trends in enterprise
+software over the past decade.
+A monolith is a single large application
+where all components are tightly coupled
+and deployed together.
+Microservices decompose that application
+into dozens or hundreds of small
+independent services, each responsible
+for a specific business capability, each
+deployable independently.
+The benefits are real. Faster
+development, independent scaling,
+technology flexibility, and smaller
+blast radius for individual failures.
+But the operational complexity is
+dramatically higher.
+In a monolith, a request is a function
+call.
+In a microservices architecture, that
+same request might traverse 15 different
+services, each with its own database,
+its own failure modes, and its own
+latency profile.
+This is where the service mesh comes in.
+A service mesh, implemented by tools
+like Istio, Linkerd, or Consul, provides
+a dedicated infrastructure layer for
+service-to-service communication.
+It handles traffic management, mutual
+TLS encryption, load balancing, circuit
+breaking, and critically for SRE,
+distributed tracing.
+The service mesh makes the invisible
+visible. It turns the chaotic web of
+service interactions into observable,
+controllable, policy-governed
+communication.
+For an SRE operating in a microservices
+environment, the service mesh is not
+optional. It is the foundation of
+operational control.
+Now, let us look at the platform that
+orchestrates all of these services,
+Kubernetes.
+&gt;&gt; Kubernetes has become the operating
+system of the cloud-native world. It is
+the platform that orchestrates
+containerized workloads at scale, and it
+has profound implications for how SRE is
+practiced.
+At its core, Kubernetes manages the
+deployment, scaling, and operation of
+containerized applications across a
+cluster of machines.
+The control plane, consisting of the API
+server, the scheduler, and Etsy, makes
+decisions about where to run workloads
+and how to maintain desired state.
+Worker nodes execute those workloads as
+pods, the smallest deployable unit in
+For SRE, Kubernetes provides three
+capabilities that are transformative.
+Self-healing. If a pod fails, Kubernetes
+automatically restarts it. If a node
+fails, Kubernetes reschedules the
+affected pods to healthy nodes. This is
+reliability built into the
+infrastructure.
+Autoscaling. The horizontal pod
+autoscaler can automatically increase or
+decrease the number of pod replicas
+based on CPU utilization, memory
+pressure, or custom metrics.
+This is capacity management that
+responds in real time.
+Rolling updates. Kubernetes can deploy
+new versions of a service gradually,
+monitoring health at each step, and
+automatically rolling back if the new
+version fails health checks.
+This is zero downtime deployment by
+default.
+Kubernetes does not eliminate the need
+for SRE expertise. It elevates it. The
+SRE who understands Kubernetes deeply
+can design systems that are resilient,
+scalable, and self-managing at a level
+that was simply not possible 5 years
+ago.
+Now, let us look at how AI is reshaping
+the SRE role itself.
+&gt;&gt; There is a conversation happening in the
+industry right now about whether AI will
+replace SREs. I want to address it
+directly. The answer is no, but the role
+is changing. And the engineers who
+understand that change will thrive.
+AI is exceptionally good at pattern
+recognition, speed, and scale. It can
+process millions of log lines in
+seconds, correlate signals across
+hundreds of services simultaneously, and
+execute remediation procedures without
+fatigue.
+What AI cannot do is exercise judgment
+in novel situations. It cannot
+understand the business context behind a
+decision. It cannot communicate with a
+panicked executive during a major
+outage. It cannot design the
+architecture that makes a system
+resilient in the first place.
+The future SRE is not competing with AI.
+The future SRE is directing it. They
+design the systems that AI monitors.
+They define the runbooks that AI
+executes. They review the postmortems
+that AI drafts. They make the judgment
+calls that AI escalates.
+The partnership between human SRE
+expertise and AI capability produces
+outcomes that neither could achieve
+alone. Faster detection, faster
+resolution, higher reliability, and less
+burnout.
+The engineers who embrace this
+partnership now will be the most
+valuable practitioners in the field for
+the next decade.
+Now, let us look at the career path that
+leads there.
+The SRE career path is one of the most
+rewarding in technology, both
+intellectually and financially.
+Let me walk you through the progression.
+At the junior SRE level, you are
+learning the fundamentals, on-call
+rotations, runbook execution, monitoring
+basics, and incident response.
+This is where you build the operational
+intuition that everything else depends
+on.
+At the SRE engineer level, you are
+owning SLOs, building automation, and
+leading incident response. You are
+starting to influence architecture
+decisions and drive reliability
+improvements.
+At the senior SRE level, you are
+designing systems for reliability,
+running chaos engineering programs, and
+integrating AI ops tooling.
+You are the person the team looks to
+when the hard problems arrive.
+At the staff SRE level, you are setting
+platform strategy, establishing
+reliability standards across multiple
+teams, and mentoring the next generation
+of practitioners.
+And at the principal or SRE manager
+level, you are defining the vision for
+reliability across the organization,
+aligning engineering culture with
+business objectives, and building the
+teams that build the future.
+Compensation reflects this progression.
+Junior SREs typically earn between 120
+and 160,000 dollars.
+Senior SREs and staff SREs command 180
+to 250,000 dollars.
+Principal and management roles at
+top-tier organizations can exceed
+280,000 dollars in total compensation.
+The skills that accelerate this path,
+Python and Go for automation, Kubernetes
+for infrastructure, deep observability
+expertise, and increasingly, the ability
+to design and operate AI-augmented
+systems.
+Now, let us see what this looks like in
+the real world.
+Let me show you SRE in practice through
+three organizations that have defined
+the discipline.
+Google invented SRE in 2003 because
+their search infrastructure was faster
+than their ability to operate it
+reliably.
+The solution, error budgets, SLOs, and a
+dedicated SRE function became the
+blueprint for the entire industry.
+Today, Google Search maintains 99.99%
+availability across billions of daily
+queries.
+SRE is not just a team at Google, it is
+the operating model for the entire
+company.
+Netflix faced a different challenge,
+streaming video to over 200 million
+subscribers simultaneously with zero
+tolerance for the kind of outage that
+would send users to a competitor.
+Their solution was radical, build
+systems that assume failure is
+inevitable and design for graceful
+degradation.
+Chaos Monkey, which randomly terminates
+production instances, was not a testing
+tool, it was a cultural statement. We
+are serious about resilience.
+The result is 99.97%
+availability for one of the world's most
+demanding streaming platforms.
+Amazon built AWS on the premise that it
+must be the most reliable cloud
+infrastructure on Earth because every
+customer who runs on AWS is trusting
+Amazon with their own reliability.
+Cell-based architecture, game day
+exercises, and automated remediation at
+scale have produced the industry-leading
+SLAs that make AWS a $90 billion
+business.
+The common thread across all three,
+reliability is not an accident. It is an
+engineering outcome and it is
+achievable.
+Now, let us bring this all together.
+&gt;&gt; Let me leave you with six takeaways from
+this video.
+First,
+SRE is a discipline, not a job title.
+It is a way of thinking about
+reliability as an engineering problem.
+One that can be measured, designed for,
+and continuously improved.
+Second, measure everything.
+SLIs, SLOs, error budgets, and Dora
+metrics are your compass.
+Without measurement, you are guessing.
+Third, observe. Do not just monitor.
+Logs, metrics, and traces together give
+you the ability to understand your
+system's behavior, not just whether it
+is up or down.
+Fourth,
+automate toil away.
+Every manual task is a debt. Runbooks
+and automation pay it down.
+The goal is to free your engineers for
+work that requires human judgment.
+Fifth, embrace failure.
+Error budgets, chaos engineering, and
+blameless postmortems are not signs of
+weakness. They are the practices that
+build the most resilient systems in the
+world.
+And sixth, AI is your partner.
+AIOps and generative AI amplify every
+SRE capability. The engineers who learn
+to leverage them now will define the
+next generation of the discipline.
+These six principles are your
+foundation. Everything else we cover in
+this series builds on them. Let us look
+at what comes next.
+&gt;&gt; That is the complete foundation of SRE
+and AIOps. In the next video, we go deep
+on observability, hands-on with Splunk,
+Dynatrace, Prometheus, and Grafana. You
+will see exactly how these platforms
+work, what they look like in a real
+enterprise environment, and how AI is
+being built into each of them.
+If this video gave you value, subscribe
+and turn on notifications so you do not
+miss it. Drop a comment below. Where is
+your organization on the SRE maturity
+model? I read every comment, and your
+answer might shape what we cover in a
+future video.
+And if you know an engineer who needs to
+see this, share it with them. The more
+practitioners who understand this
+foundation, the better the industry gets
+for all of us.
+I will see you in the next one.
+Thank you for watching. If you found
+this valuable, please connect with Juan
+on LinkedIn and subscribe to NextGen AI
+for future next-generation technology
+lectures.

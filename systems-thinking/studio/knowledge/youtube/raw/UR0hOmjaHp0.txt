@@ -1,0 +1,205 @@
+welcome back to control system lectures
+in this video we're going to begin our
+conversation on PID control this video
+is just an introduction to the topic and
+we'll hopefully provide some good
+background information on PID
+controllers now to describe what PID
+control is and why we use it let me
+first describe more generally what a
+controller is and one way to write an
+open loop system is like this where
+inputs act on a plant or the system to
+be controlled and then some output
+signal is
+generated often in these open loop
+scenarios the performance of the system
+isn't good enough to meet your
+requirements let me give you an example
+of what I mean you're tasked to build a
+robot that needs to move from this spot
+here over to this red X you could figure
+out how fast the robot moves and then
+from that determine how long the robot
+needs to drive for before it gets to the
+Red X this type of commanding is called
+open loop because the amount of time the
+robot drives is not adjusted based on
+the actual position of the robot and
+open loop commanding is perfectly fine
+for systems that don't change much or
+where accuracy isn't as important
+however what if there's some dirt in one
+of the wheels and the robot veers off to
+the side or if the robot slightly faster
+than you had predicted in both of these
+cases the robot won't stop on the Red X
+because it has no way of compensating
+for these errors and making adjustments
+on its own now the solution then is
+feedback control which is essentially
+means you're sensing the output of the
+plant and feeding it back so that the
+system can make adjustments
+accordingly now in a feedback system
+there's a reference signal and this is
+the desired value or the ultimate goal
+and you compare that to the measured
+value and what you're left with is the
+error or the Delta between where you are
+and where you want to be so in the case
+of the robot the error would be the
+difference from the reference position
+which is the distance from the start to
+the red X in meters and the robot
+current position which is measured by
+the robot also in meters so at this
+point we need to figure out how to
+convert an error signal that has units
+the same as the output of the plant into
+an input signal that has units that may
+or may not be the same as the output and
+in addition to just changing the units
+the error needs to be adjusted in such a
+way that the input into the robot causes
+it to eventually reach the Red
+X and this is exactly what a controller
+does it takes the error signal and
+converts it into a command that is then
+sent into the plant and one of the goals
+of a control engineer is to design this
+controller so that as time progresses
+the error or the difference between the
+current location and the goal is driven
+to zero and zero error means that the
+measured position is exactly where you
+want it to be which means that the
+system meets all of its requirements
+well at least this particular one now
+there's many types of controllers and
+we're going to touch on a lot of them as
+these videos progress however in this
+lecture I'm only going to talk about PID
+controllers and its variations I'll
+explain what I mean by that in a second
+the PID controller is a great place to
+start because it's simple efficient and
+effective in a wide array of
+applications in fact it's the majority
+of controller types in industrial
+applications so it's well worth
+learning let me start with the term PID
+P ID is an acronym and it stands for
+proportional integral derivative and
+each of these terms describe how the
+error term is treated prior to being
+summed and sent into the plant in one of
+its block diagram forms a PID controller
+can be written like this in the
+proportional path the error term is
+multiplied by a constant KP in the
+integral path the error is multiplied by
+Ki and then integrated and in the
+derivative path it's multiplied by KD
+and then
+differentiated the three paths are then
+summed together to produce the
+controller
+output now the three k terms are called
+gains and they can be adjusted or tuned
+to a particular plant with a defined set
+of requirements and by changing these
+values you're adjusting how sensitive
+the system is to each of these different
+paths either the p i or D path let me
+explain what I mean with a few plots
+here let's say the error in the system
+is changing over time like this red line
+in the proportional path the output is
+the error scaled by the gain KP so you
+can see here that when the error is
+large the proportional path will produce
+a large output when the error is zero
+the output in the path is zero and when
+it's negative the output is negative in
+the integral path as the error moves
+over time the integral will continually
+sum it up and multiply it by the
+constant Ki in this plot it's easy to
+see that the integral path is the area
+under the curve where this blue section
+is positive area and this green section
+here is negative area now the integral
+path is used to remove constant errors
+in a control system since no matter how
+small the constant error eventually the
+summation of that error will be
+significant enough to adjust the
+output now in the derivative path it's
+the rate of change of the error that
+contributes to the output signal when
+the change in error is moving relatively
+slowly like it is at the beginning here
+then the derivative path is small and
+the faster the error changes the larger
+the derivative path
+becomes now at this point you can just
+sum up each of these three paths and
+you've got the output of a PID
+controller but you don't always need all
+three paths you can remove a path
+completely by setting its Associated
+gain to zero when you do this you
+generally refer to the controller with
+the letters of the path that are left
+for example you can have a proportional
+integral controller or Pi if you set k k
+d to zero and just a p controller if KD
+and Ki are both zero so why would you
+simplify the controller like that why
+not just make the biggest best
+controller you can with all paths intact
+and super
+complicated well typically when I'm
+designing a control law I try to make
+the logic as simple as I can while still
+meeting all design requirements I do
+this for several reasons one is a simple
+controller is easy to implement two a
+simple controller is easy to tune test
+and troubleshoot when there's problem s
+and three a simple controller is easy
+for other people to understand which is
+important when you work in a large
+project and interface with other groups
+that have to buy into the control Logic
+for example a software Hardware team
+that has to implement it so simple
+controllers can save you time and money
+over the life of the program as long as
+they still meet your design requirements
+and this is why despite having a lot of
+really complicated Control Systems out
+there the majority of Industry still
+uses PID control or some
+variation now you're probably thinking
+right now all right you've given me the
+definition of a PID controller but that
+really didn't help that much because if
+you're like me I don't usually
+understand something by definition alone
+and I need some examples for it to sync
+in but I want to end this video here so
+that it doesn't become too long that you
+lose interest but next week I'm going to
+have a video that runs through a thought
+exercise on PID control and then show
+some of the math to back up that
+exercise I'm going to link a video here
+in this box once it's complete so you
+can just click on through if this box is
+empty that means I haven't finished it
+yet so if you don't want to miss it and
+you haven't subscribed already don't
+forget to hit the Subscribe button and
+thanks for watching

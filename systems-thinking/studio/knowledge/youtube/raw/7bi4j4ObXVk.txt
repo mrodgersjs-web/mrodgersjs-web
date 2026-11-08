@@ -1,0 +1,266 @@
+Claude design is something Anthropic
+launched recently. The core idea is that
+instead of a chat box that just
+describes what a design could look like,
+the model actually produces a working
+artifact you can preview right there.
+So you ask for a landing page, a slide
+deck, a mobile screen, or a dashboard,
+and you get an actual visual output
+back.
+It blew up on Twitter when it came out,
+and honestly, when Anthropic announced
+Claude design back in April, Figma's
+stock dropped pretty hard in the days
+that followed. That gives you a sense of
+how seriously the industry took it.
+People were building full landing pages,
+pitch decks, and mobile mock-ups within
+hours of launch. So as a product, it
+absolutely delivered. The catch with
+Claude design is the obvious one. It is
+closed source. It runs only on
+Anthropic's cloud, only on their model,
+with their skill set behind a paid plan.
+There is no self-host story. You cannot
+deploy it on Vercel. You cannot swap in
+Codex, Gemini, or any other agent. If
+you already pay for Cursor, or Claude
+Code, or Codex CLI, you are still
+expected to pay separately for Claude
+design on top of that. And for a lot of
+folks, especially indie devs and small
+teams, that stacking gets old fast. That
+gap is what Open Design is trying to
+fill.
+It is a project on GitHub under the
+next-io organization. And the whole
+pitch is that it is a fully open source
+replacement for Claude design. The repo
+describes itself as local first, web
+deployable, and BYOK at every layer.
+BYOK just means bring your own key. So
+instead of bundling its own model, or
+its own agent, Open Design scans your
+machine for whatever coding CLI you
+already have installed. It supports
+Claude Code, Codex CLI, Cursor Agent,
+Gemini CLI, Open Code, and Q and Code,
+and some other.
+It also has an Anthropic API fallback if
+none of those CLIs are on your path. So
+the model running the design work is
+whatever you are already paying for, and
+the cost stays on your side of the
+table.
+The license is Apache 2.0, which is
+permissive enough that you can fork it,
+deploy it internally, modify it,
+whatever you need. And the project is
+structured around two big building
+blocks. There are 19 skills that ship in
+the box, and there are 71 design
+systems. These two pieces are doing most
+of the heavy lifting. The skills cover a
+wide range of surfaces. You get web
+prototype, SaaS landing, dashboard,
+pricing page, docs page, blog post,
+mobile app, simple deck, and a bundled
+magazine-style PPT skill called Guizong
+PPT that handles slide decks. On top of
+those, there are 10 work product
+templates. Things like PM specs, weekly
+updates, meeting notes, engineering run
+books, finance reports, HR onboarding,
+invoices, Kanban boards, OKRs, and
+mobile onboarding flows. So this is not
+just a marketing page generator. It is
+trying to cover real day-to-day work
+artifacts, too. The design systems are
+stored as plain markdown files. Each one
+is a nine-section design.md
+that defines color, typography, spacing,
+layout, components, motion, voice, brand
+rules, and anti-patterns.
+The 71 systems include styles inspired
+by Linear, Stripe, Vercel, Airbnb,
+Notion, Apple, Anthropic, Cursor,
+Superbase, Figma, and a lot more. The
+library is imported from an upstream
+project called Awesome Design MD, and
+you can resync it whenever new systems
+land.
+There are a few smart ideas baked into
+the prompt stack that I want to call
+out. The first one is a discovery form.
+When you submit a fresh brief, the agent
+does not start writing code.
+It returns a question form first that
+asks about the surface, the audience,
+the tone, the brand context, the scale,
+and any constraints. The whole point is
+that 30 seconds of radio buttons saves
+you from 30 minutes of redirecting a
+model that picked the wrong direction.
+The second one is a direction picker. If
+you do not have a brand spec, the agent
+gives you five curated visual
+directions: editorial monacle, modern
+minimal, tech utility, brutalist, and
+soft warm. Each one ships a
+deterministic OKLCH palette and a font
+stack, so the model is not freestyling
+the vibe. The architecture is
+straightforward. The front end is Vite
+with React and TypeScript. The back end
+is a Node and Express daemon with SQLite
+for projects, conversations, messages,
+and tabs.
+The daemon is the only privileged
+process, and it spawns whichever CLI you
+picked with the working directory set to
+a per-project folder under a hidden
+{dot}od directory. So the agent gets
+real read, write, bash, and web fetch
+tools against a real file system. When
+it generates an artifact, it is actually
+writing files to disk that you can open,
+edit, and export. Let me show you the
+install. First, you clone the repo from
+the GitHub URL. Then CD into the
+open-design folder. Then run PNPM
+install. Heads up, this part takes a
+while because it pulls down a bunch of
+dependencies. Once it is done, run PNPM
+tools dev run web, and you can open it
+in your browser. On first load, it pops
+a setup dialog. Mine is showing the
+configure execution mode screen.
+You can see in the sidebar, there are
+tabs for execution mode, media providers
+for image, video, and audio, language
+switcher. On the main panel, it lists
+the agents it detected by scanning my
+path. I have Claude Code. Open Code is
+installed. Gemini CLI, GitHub Copilot,
+and the rest like Codex, Hermes, Kimmy,
+Cursor Agent, Qwen, and Kiro are not
+installed on my machine. There is also
+the Anthropic API option on the right if
+you want to go BYOK without a CLI. I am
+going to pick Open Code for this run,
+just to test the non-Claude path. After
+I pick the agent, the welcome dialog
+closes, and the main interface drops in.
+And honestly, the layout looks really
+close to Claude design.
+You have got tabs at the top for
+designs, examples, design systems, image
+templates, and video templates. The left
+rail has the project creator with
+prototype, slide deck, from template,
+and image tabs.
+There is a project name field, a design
+system drop-down that defaults to none
+for free form, a fidelity toggle between
+wireframe and high fidelity, and a
+create button. Below that, there is also
+an import Claude design zip option,
+which is a nice touch for people
+migrating off Claude design. For this
+comparison, I want to build the same
+thing in both tools and see how the
+outputs stack up. I am going to switch
+to slide deck mode here. The form
+changes a bit. Now I get a project name
+field, the design system drop-down, and
+a use speaker notes toggle that keeps
+the slides cleaner by pushing the
+talking points into notes. I will give
+it a project name, leave the design
+system as none for now to test the
+direction picker, and hit create. Next,
+I'll type the prompt. Something like
+build a seed round pitch deck for a
+fintech app called FinPro. Include a
+hero, problem, solution, traction, and
+ask slide, and hit send.
+After you send the prompt, the agent
+does not always jump straight into the
+design. Sometimes it asks a few
+clarifying questions first. Things like
+who the audience is, the tone, the
+length, or whether you have a brand
+reference. So you fill those in. The
+discovery form locks the brief, and then
+it starts working.
+While Open Design is grinding through
+the plan, let me open Claude design in
+another tab and paste the same exact
+prompt there. Same wording, same brief,
+no extra context. Just to see how the
+two stack up side by side. Okay, so Open
+Design is done. The deck rendered in the
+sandboxed iframe on the right side. And
+once it finishes, you can see the output
+is not as bad. It created the required
+slides as expected. And if anything
+looks wrong, we can ask the agent again
+to fix it. We get a share menu in the
+corner with the export options. For Open
+Design with Open Code as the agent, the
+menu shows export as PDF, download as a
+{dot}zip, export as standalone HTML, and
+open in new tab. That is it. Four
+options. Clean, but limited. Now flip
+over to Claude design. Same prompt, same
+deck idea. The output looks more
+polished out of the box, which makes
+sense because it is running on Opus 4.7
+with skills tuned for that exact model.
+And share menu give you so many options.
+Claude design gives you duplicate
+project, duplicate as template, download
+project as a {dot}zip, export, and some
+others. That trade-off is the whole
+story of this comparison. Claude design
+wins on polish, on export breadth. Open
+design wins on the part that actually
+matters for a lot of people. It is free.
+The repo is Apache 2.0. You bring your
+own agent, and you bring your own key.
+You can pick Open Code, Codex, Gemini,
+Cursor, Qwen, or Claude Code, depending
+on what you already pay for. The model
+selection piece is also a quiet
+superpower here. You are not stuck with
+one provider. If Anthropic raises prices
+tomorrow, or you want to test how Gemini
+handles a layout versus how Claude does,
+you just switch the agent in the
+drop-down and rerun. Same skill, same
+design system, different model behind
+it. That kind of flexibility does not
+exist in Claude design at all. A few
+honest notes before I wrap up. Open
+Design is still early, so this is
+research preview territory. Claude Code
+gets the best streaming experience
+because it speaks structured stream
+JSON. The other CLIs are line buffered,
+so the live updates feel a little less
+rich.
+The output quality is going to depend
+heavily on which model you point it at.
+A weak model with a good design system
+file will still produce weak output. And
+some features like comment mode for
+surgical edits and the AI tweaks panel
+are on the road map, not in the current
+build. All right, that's open design.
+Let me know in the comments which agent
+you would run it with and whether you
+would actually swap off Claude design
+for this. If you found this useful, hit
+the thumbs up and subscribe. See you in
+the next one.

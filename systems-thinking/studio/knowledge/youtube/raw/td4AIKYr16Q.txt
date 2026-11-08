@@ -1,0 +1,213 @@
+Hey, everyone! That is an amazing talk to
+follow. I'm obviously excited here, but also
+nervous to follow that. But fortunately I'm
+excited and humbled to speak to you all today.
+It's been a great conference so far. I'm gonna
+talk about one of my favorite things, resilience
+engineering. Now, resilience engineering is
+a vast, vast field we're starting to break
+into. My break-in was working as a facilitator
+for retrospectives. And as part of that, we
+tend to attribute them to being blame-aware.
+Part of this, as we're busting myths, we want
+to remember that we're not looking to point
+fingers. We're looking to improve.
+Now, resilience is something that's been worked
+on far before the software industry has really
+gotten a hold onto it. It's been worked on
+in medicine, in transportation, in nuclear
+power safety. So it's something very specific
+we have in mind when we say resilience. Here's
+this great definition from Dr. Erik Hollnagel,
+one of the leading researchers in the field.
+This is way too much to remember. Come back
+to it later. But we'll take a quick shortcut
+from all this and stick to three words: Can
+it adapt? A system can be said to be resilient
+if it can adapt. What do we mean by adapting?
+Can it make decisions? This is different from
+using conditional logic. Can it change course?
+Can it use experience and expertise it's developed?
+Taking hints and clues to chart a different
+path forward?
+Only with this can we say something is displaying
+resilience. And so with that, let's talk about
+our first myth. We're building resilience
+into our servers and software. Now, we kind
+of hear this a lot, and we probably mean robustness
+when we're saying resilience. Our code, our
+infrastructure, our servers -- they can't
+think. They can't develop any kind of experience
+or expertise. Whatever we have in them is
+already preplanned. Any software as a service
+company that says: Hey, buy our product! We're
+gonna make your product resilient! They probably
+mean robustness, and they're probably trying
+to sell you on something.
+So let's differentiate for a second between
+robustness and resilience. Robustness is how
+the system performs under predetermined, expected
+boundaries. Something like adding high availability
+to your stack, a database that can fell over.
+Maybe it's a load balancer that can pull in
+a node or your frontend infrastructure that
+can cache static assets. These are all examples
+of robustness, but they do not display resilience.
+There's no expertise being built here. The
+contrary point is: Resilience. Now, try to
+understand: Can something adapt? When we go
+beyond the predetermined expected boundaries?
+This might mean you're on call and you're
+unsure of how to handle a situation, so you
+page and try to get someone else in to bring
+their expertise. It's not the normal workflow.
+You're trying to bring in this graceful extensibility.
+Maybe you've got a runbook in front of you
+and it's a little out of date or not quite
+mapping one to one with the situation.
+So you need to go off-book or even disagree
+with the runbook sometimes. That's displaying
+resilience. Myth number two. Complexity is
+the enemy of a well maintained system. Now,
+this might seem counterintuitive. I mean,
+we want to reduce complexity, right? Systems
+are hard to understand. And when they're less
+complex, they're easier to, and we can handle
+them better. But sometimes we need that functionality.
+That's built in with this complexity. We're
+building in complexity whenever we add to
+our stacks. And so the question isn't always
+how can we reduce complexity. Sometimes the
+question is: How do we cope with the necessary
+complexity that exists in our stack?
+And this is what resilience engineering is
+all about. It's the practice of continuously
+adding and expanding on the effort of understanding
+our systems to look into the unknown. How
+we prepare for the unknown situations. This
+investment also is uncertain. We don't know
+when we're going to need it. And so we need
+to invest in it continuously. Myth number
+three. Always follow best practices to ensure
+system availability. And we hear this term
+used a lot. I mean, they're "best". And they're
+practiced! They must be right!
+(laughter)
+But best practices don't always map one to
+one with the company. Sometimes you need to
+shoehorn it into your company, or sometimes
+you even need to push back on what is considered
+a best practice. An example: Deploying on
+a Friday. You never, ever, ever deploy on
+a Friday. Unless...
+Unless maybe there's a security vulnerability
+we just discovered. Or there's business needs
+that require us to have something ready for
+a weekend. Or maybe you want to run a test
+over a couple days, and you need that built-in
+time. And suddenly the question becomes: What
+happens when you need to push back against
+best practices? Now, best practices are not
+going to guarantee safety. If it goes right,
+well, then, we were right to be risky. You
+did the right thing. But what happens when
+it goes wrong? When you push back against
+best practices and something blows up? It
+inherently becomes a little bit blameful.
+Well, you should have followed best practices.
+Why didn't you follow them? What were you
+thinking, not following the standard, what
+you were supposed to do?
+And so what best practices are eliminating
+is this idea that there's decision making
+happening all the time. And it's glossing
+over that. I believe that we need to remove
+the term "best practices" from our verbiage.
+Myth number four. Effective retrospectives
+require actionable follow-up items. I see
+this a lot. Especially with templates built
+into our retrospectives. Here are root causes.
+And that's something else we need to eliminate
+from our verbiage. We need to get to the root
+cause, or the plural, root causes, as part
+of this. And here are the actionable items
+that are gonna prevent this, and we'll never
+hit it again. But of course our failures have
+a fun way of routing around our best efforts.
+It's tempting, because we want to have a control
+over our systems.
+We want to say: Okay. We know what the problem
+is. Here's the root cause. Here's how we're
+gonna solve it. Here's how we're gonna move
+past it. But retrospectives are a place for
+learning. This is how we understand things,
+how we develop expertise for the unknown later
+on. But how do we know our retrospectives
+are effective? I might ask the same question
+of, say, attending a conference. I mean, our
+companies are flying us out here. They're
+putting us up in hotels. Paying for the ticket,
+the time we spend here. That's an investment.
+And yet we all agree: This is worth our time!
+We're bringing something out of this.
+I want to see us apply that same idea to our
+retrospectives. What can we learn from them?
+Actionable items are great. But they're not
+a requirement for our retrospectives. Number
+five: The frequency and severity of our incidents
+are good indicators of how safe we are. You
+might see this. It's been X days since a SEV1.
+That's how safe we are. Look how many days
+it's been. We haven't had any problems in
+this number of days. But this is obscuring
+a lot of stuff. Failures are constantly happening
+in our systems, for starters. We're ignoring
+all those failures, those little parts, that
+eventually add up, that cascade. There's a
+concept called "dark debt" that we're ignoring.
+That the decisions we're making have unforeseen
+consequences that we don't even know are in
+our systems.
+And that the number between failures or mean
+time to response are ignoring. And we can
+also game these numbers, often. Maybe the
+SEV1 is actually a SEV2, because I'm looking
+for promotion and I don't want to seem like
+I'm not doing my job. Who recognizes these
+logos? Yeah. These are the Meltdown and Specter
+logos from last year's exploit hardware vulnerability.
+That code was written in the '90s, decades
+ago. It went through prod and QA and smart
+engineers wrote it. And it was in production
+for so long. We would have said absolutely
+that code is safe, 100%. And then the exploit
+was released, and all of a sudden... Wow.
+We need to roll our kernels now. We absolutely
+need to change everything. This is not safe!
+Nothing about the code actually changed. Just
+our understanding of it.
+And so what I'll suggest is: Instead of trying
+to juggle all these numbers, all these metrics,
+to say how safe we are, talk to your experts.
+Share that knowledge. Share that expertise.
+Get an understanding of what people who are
+at the front lines believe are the safe things
+that we need to handle and the unsafe things
+that we need to put effort into. Here's a
+bit of homework for all of you. These are
+three great resources. I'm a huge fan of them.
+I highly suggest going through. In particular,
+how complex systems fail is a document you
+can find online for free. Search for that.
+It is about four pages long. Bullet list of
+things to think about. I highly recommend
+going through this. It'll take you 10, 15
+minutes, and you will nod your head vigorously
+throughout the entire thing. I'm gonna thank
+everyone for coming tonight to listen to this.
+Please find me. I would love to talk more
+about this. I'll have to bring more people
+into it. Especially not just straight white
+dudes coming on stage and talking about this.
+Bring other people into this too. We need
+your expertise as well. Thank you so much.

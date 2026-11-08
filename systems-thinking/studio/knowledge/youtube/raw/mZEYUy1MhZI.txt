@@ -1,0 +1,1100 @@
+What is going on, guys? Welcome back. In
+this video, today, we're going to learn
+how to implement durable AI agents in
+Python using an open-source platform and
+package called Agent-Span. What do I
+mean by durable? Durable basically means
+that if the process crashes or if there
+is some human step needed that can take
+for days, maybe, until a human gives
+actual approval, that the agent can keep
+the state and it can keep running
+smoothly without having to restart just
+because of a crash or because of a
+delayed approval by human. And while we
+can use Agent-Span to implement the
+entire thing, we can also use LangGraph,
+so existing code, basically, without
+changing it and just run it on top of
+Agent-Span to get the same effects. This
+is going to be super interesting today,
+so if you like this video, let me know
+by hitting a like button and
+subscribing. But now, let us get right
+into it.
+&gt;&gt; [music]
+&gt;&gt; All right. So, as always, I like to get
+started right away. We're going to open
+up a terminal and navigate to a working
+directory of our choice. In my case,
+that's going to be the tutorial
+directory. And in here, now, you can
+create a new project either by just
+writing a Python file or if you're using
+a special package manager, like in my
+case, UV, you can initialize a project.
+So, I'm going to do UV init. If you're
+not using UV, you don't have to do that.
+You can just use Python to run stuff and
+you can use pip or pip3 install to
+install packages. Since I'm using UV,
+I'm going to do UV init and UV add to
+install the packages. Now, if you also
+want to use UV, you can install it
+either using the pip package manager or
+the cargo package manager because it's a
+Rust-based Python package manager, but
+you don't have to care about UV if you
+don't want to. I'm just going to use it
+here. So, of course, since we're
+covering Agent-Span in this video today,
+we're going to have to install it. So,
+either run pip or pip3 install or you
+can say UV add Agent-Span.
+That is the package that we're going to
+use here to build durable AI agents in
+this video today. Now, what is
+Agent-Span? It's an open-source
+platform/framework/SDK
+for durable AI agents. Now, to be
+transparent here, they're sponsoring
+this video today, but as I mentioned,
+it's completely open-source. It's free.
+It's self-hostable. You don't have to
+pay for anything. You can go to the
+GitHub, download the entire code base.
+This is not a paid product. It's an
+open-source platform that you can use to
+develop durable AI agents. And the idea
+of a durable AI agent, maybe I can
+briefly use my fancy touchscreen that I
+have here to sketch something very
+basic. What do we have is we have an
+agent, let's say, and the agent has to
+go through a certain workflow. So, there
+might be a step one, there might might
+be a step two, then maybe it splits into
+sub-working steps, so we could have
+something like 3A, and then maybe 3B,
+and then maybe 3C. It's not going to be
+the most beautiful graph here. And then
+maybe we have some aggregation step, and
+then we have step four, which is the
+end. So, again, not the most beautiful
+graph here, but the basic idea is now,
+if the agent now goes and executes this
+flow, let's say we get here and now
+these have to be executed. And then
+maybe one of them already finishes and
+the other two are still working. Now, if
+this agent crashes here, so if there is
+a crash in the program that executes the
+agent stuff, the tool use and
+everything, basically, what happens in a
+normal setup is everything's lost and
+the next time you start it, everything
+starts from scratch. So, you have to go
+again through the entire process.
+Now, with a durable agent, what happens
+is that we decouple the agent um the
+agent logic and the execution workflow.
+So, the idea is we have whatever the
+agent does, the actual tool execution is
+happening on the program side, but the
+entire thing here is saved as a state on
+a server. This is what Agent-Span
+basically does. So, all of this is
+stored on a server, and if the program
+now crashes, what happens is this state
+is still on the server. We can reconnect
+to the state and just continue working
+through everything here without having
+to start all all over again because we
+basically have the entire information on
+the server. Same thing can be done with
+human in the loop. You don't have to
+crash the program. Maybe there is a step
+that requires human in the loop
+approval. A human has to say, "Okay,
+let's do this." Otherwise, the program
+cannot proceed. And maybe this human is
+on a vacation right now, needs 3 weeks
+to respond. And what we want to happen
+if there's a long process before that
+approval step, we don't want to lose
+everything just because the human takes
+days, weeks, or maybe even months to
+respond. We want to keep track of the
+state. We want to store the state, and
+then the human can approve and we can
+continue from there, so we can keep
+track of the entire thing. We don't have
+to start from scratch just because the
+human takes too long to approve. So,
+long story short, that is what
+Agent-Span does. You can also see how
+they describe it here in the docs.
+Basically, this is what most frameworks
+do. We have the process, the agent loop,
+we call the LLM, execute a tool, call
+the LLM again until we're done. And
+here, basically, we have the Agent-Span
+server, where we outsource the tool
+work, we delegate the tool work, and the
+execution happens here. And this
+decouples the entire thing, so the
+server, it also has a monitoring tool
+that we're going to take a look at, uh
+keeps track of everything and makes it
+durable. So, without going too much now
+into theoretical detail land, we're
+going to start by building a working
+version of a crash and resume mechanism.
+So, I want to show you how we can build
+with Agent-Span a program, an agent
+workflow, where the agent can crash and
+then continue where it left off instead
+of starting from scratch. After that,
+we're also going to do a human in the
+loop example, and finally then I'm going
+to show you a LangGraph example, so an
+already working workflow in LangGraph,
+and we're going to see how easy it is to
+put it on top of Agent-Span without
+changing any of the logic, without
+changing any of the code, but still
+having the benefits of Agent-Span. So,
+as I said in the introduction, we can
+use Agent-Span in two different ways. We
+can build the entire thing with
+Agent-Span or we can combine it with
+something like LangGraph without
+changing any of the existing logic. The
+first two examples are going to be in
+Agent-Span. The third one is going to be
+LangGraph with Agent-Span.
+So, let's open up a main.py file here,
+and we're going to start with some
+imports. The first one is import os. Why
+do we import os? Because we need to keep
+track of the execution ID of the
+workflow that we want to resume. So,
+sometimes you might want to actually
+start a script and start a new process,
+a new workflow, a new execution. Now, if
+the execution is interrupted, we're
+going to save a file with an ID of the
+execution because we can have multiple
+that are interrupted. And the ID that we
+find in this file will be the one that
+we continue with, that we resume, so to
+say. However, we need to check if it
+exists, and this is what we're going to
+use os for.
+Also, we're going to import time because
+we're going to delay the execution just
+so we have time to interrupt the
+workflow. This is just artificially
+doing some work here so that we have
+time to intercept and say crash the
+script. Um and we're going to use random
+to do some random work and random
+delays, as well.
+Uh now, the actual important imports
+here are from Agent-Span. So, from
+Agent-Span.agents,
+we're going to import the agent class,
+the tool decorator, the start function,
+the agent runtime, and the agent handle.
+And before we talk about all this, let
+us just define two basic tools. So,
+we're going to have one tool that is
+just going to process stuff in chunks.
+So, this is going to literally be a
+tool. It takes some ID in, produces some
+random output, and that's it. The second
+tool will be for aggregating these
+results. So, we have the results from
+multiple chunks, we're going to
+aggregate them, and then give a final
+response. This is, as I said, a mock
+example, so this is just to have
+something that takes time and gives us
+something so that we can simulate an
+actual workflow. Of course, you can do
+this with any real example that you
+want.
+So, @tool def analyze_chunk,
+we're going to pass a chunk ID, which is
+an integer,
+and this is going to return a
+dictionary. And of course, since this is
+a tool, we need to provide a docstring,
+a simple function that processes
+a data chunk and returns metrics.
+And what we're going to do actually here
+is we're going to sleep for a random
+amount of time, randint,
+anything between 3 and 8 seconds, let's
+say. And then we're going to also return
+a dictionary, and the dictionary will
+contain information about this chunk.
+So, on one hand, of course, the chunk ID
+itself that was passed here to this
+function, then we're going to say
+processed equals true. This is just a
+mock object. You can do whatever you
+want, actually. And we're going to have
+metrics, and metrics is going to be
+another dictionary, which will contain
+metrics and numbers. So, basically,
+count,
+let's say, and then random, randint,
+anything between 5 and 8. I don't know.
+Just make something up. Whatever.
+Um so, that's going to be a mock
+function that takes some time and
+returns some data. And the second tool
+will take multiple outputs of this
+function, of this tool call, and will
+aggregate it. So, it's going to be tool
+def aggregate_results.
+results.
+The input here is going to be chunk
+Or actually, let's just call it results.
+And that's going to be a list of
+dictionaries.
+And the result here is also going to be
+a dictionary. Now, for this, we don't
+need a delay. I'm just going to say here
+results is equal to results or empty
+list. Now, very important side fact here
+for those of you who don't know, you
+don't want to use a list an empty list
+here as default parameter because it's
+initialized one at once a definition
+time, uh and can lead to all sorts of
+problems. So, anyone who tells you that
+you can do something like equals and
+then empty list, uh doesn't know Python.
+That's uh just a little caveat. So, we
+do this uh like this. So, just give me
+an empty list if there is no uh input,
+and then we're going to return the
+aggregated result, which is going to be
+just the sum of the count. So, it's
+going to be total
+count, and it's going to be sum of a
+list comprehension, which is going to be
+x.metrics.
+Uh and then count.
+So, just for the individual object, and
+this is going to be for x in results.
+And then maybe we can add one more field
+just so we have something else here,
+summary, and we can say analysis
+complete. Whatever. Just so the LLM
+knows that this is now done. And of
+course, don't forget to doc string
+because otherwise it's going to not
+allow me to do that. Aggregates
+&gt;&gt; [snorts]
+&gt;&gt; metrics from all chunks into a final
+report.
+There you go.
+So these are the two tools that our
+agent will have. And as you see, the
+analyze chunk takes some time so we can
+interrupt it. So now let's define the
+actual agent. This basically works like
+in most other agentic frameworks as
+well. You just have an agent class, you
+specify the model, you specify the
+tools. So first of all, we give it a
+name. Let's say this is going to be our
+data analysis agent.
+Then the model is going to be equal to
+OpenAI. Here we use the slash notation.
+It always depends on the framework.
+Sometimes you use slash, sometimes you
+use colon. In this case, OpenAI GPT-4o
+is going to allow us to use GPT-4o. And
+then the tools are going to be a list of
+tools which are going to be the
+functions passed as entities. So analyze
+chunk and aggregate results like this
+without parentheses because we're not
+calling them. And then we provide
+instructions, which is basically the
+system prompt. Now to not waste any time
+here, I copy-pasted this. What we're
+going to say is analyze data in chunks
+using analyze chunk, then aggregate them
+with aggregate results. Process each
+chunk sequentially so we have more time
+in this case. After calling analyze
+chunk for every chunk, call aggregate
+results and pass the list of all chunk
+results as the results argument. Report
+progress as you go. That is what our
+agent is made for. And now what we're
+going to do is we're going to see how we
+can make this durable. So of course, if
+you just have a basic agent like this,
+you can run it. It can crash. It will
+just lose the state and that's it. What
+we want to do instead is we want to make
+sure that interrupted executions are
+going to be resumed. So there is going
+to be a file maybe called interrupted
+execution ID. Let's call it this.
+And if this file exists, we need to
+proceed. Otherwise or to resume. And if
+this file does not exist, we're going to
+start from scratch. So we need to
+actually check here first of all if
+os.path.exists.
+And we're going to negate this. So we're
+going to say if not os.path.exists.
+Uh and then we're going to choose a file
+name. Um I'm going to say here
+interrupted execution
+ID. So if this path does not exist, this
+file is not here, what we're going to do
+is we're going to just start the process
+with agent span. So we're going to have
+a handle. We're going to
+um use the runtime and we're going to
+write down the current execution ID. So
+the idea is we're going to always create
+this file, interrupted execution ID, to
+make sure that our ID is stored
+somewhere. Now of course, you don't have
+to do that with a file. You can also
+have an admin dashboard in your
+application. You can find any way to
+handle these execution IDs. The only
+thing that you need to understand is
+that you have an execution ID when you
+start an execution and you need to have
+this execution ID if you want to resume
+that execution. Whether you store it in
+a file, in a database, in the admin
+dashboard, in a JSON file, doesn't
+matter. You just need to have a way to
+get this ID back into the program so it
+knows what to resume. But in our case,
+this file does not exist. So what we're
+going to do here is we're going to say
+handle is equal to and then we're going
+to use the start function. So the start
+function returns an agent handle. We
+don't have to use the agent handle class
+for this. The start function actually
+does that. And here we're going to pass
+our agent. And the start function
+basically instruct the agent instructs
+the agent to do something. So it's like
+prompting the agent. Let's say analyze
+the chunks with IDs 1, 2, and 3. Now in
+this case, of course, since we have a
+mock application, all that's going to
+happen is it's going to call this tool
+with 1, 2, 3 and it's going to return
+some random values. But in reality, this
+would be a workflow. This would be some
+work that has to be done. Now in order
+to get now from this handle the
+execution ID, we first need to get the
+status. So I can say here status is
+equal to handle.get_status.
+So this gives us the status object. Now
+I can also print the status if I want
+to. So I can go here and say
+status. Actually not dot something, just
+status is going to print the status
+which maybe add a string here.
+This is going to tell us running or
+failed or completed or something like
+this. In this case, running of course.
+And from this status object, we can also
+get the execution ID. So I can say here
+execution ID is going to be equal to
+status.execution_id.
+So this is the thing. This is the
+identifier of what we're doing right
+now. If this crashes, I need to have
+this ID so I can resume. So what I'm
+going to do is I'm going to export it
+into the interrupted execution ID file.
+With open interrupted execution ID in
+writing mode as f, I'm going to say
+f.write
+execution ID. So now we have it stored.
+Now maybe you're asking, okay, why do we
+call this interrupted if it's not
+interrupted? The idea is that if it's
+not interrupted, we're going to delete
+it at the end. So if it's not deleted,
+there was an interruption. That's the
+idea. So we call it like this and we
+create it beforehand and then we're
+going to the actual work. Now to not
+have to write if else a lot of times,
+we're just going to always, regardless
+of whether the file existed in the first
+place or we just created it, we're going
+to load the ID from the file directly.
+So I'm going to say here with agent
+runtime as runtime, we're going to load
+the ID from the file. So with open
+interrupted execution ID in reading mode
+as f,
+and it's going to be execution ID is
+equal to f.read. So that's either going
+to be the ID that existed in the first
+place or if there was no execution to be
+resumed, it's going to be the ID that
+was just created. Now next what we want
+to do is we want to serve using the
+runtime. So we're going to say
+runtime.serve
+and we're going to serve the agent. And
+we're going to say blocking is equal to
+false. And now basically, we need to get
+the handle back in case that it was not
+started here for example. We need to get
+the handle, the agent handle
+uh based on the ID, based on the
+execution ID. So I'm going to say here
+handle is equal to agent handle
+and I'm going to pass execution ID is
+execution ID. So what happens now is we
+have the runtime, we have the handle and
+the handle is going to reattach itself
+to the execution ID, either to the new
+one that was just created here or to the
+old one that is now being resumed. And
+of course, we need to also pass the
+runtime here. Now one thing that's
+important, in case you're playing around
+with this and wondering why it doesn't
+work in a different script, it's
+important that when you do this, when
+you actually serve the agent and
+everything, when you uh reattach the
+handle so to say, that you do have the
+tools here. So you need to have the same
+agent here. Otherwise, it's not going to
+recognize that you can reattach uh the
+agent or the handle here to the process.
+So if want to, we can also print the
+status again. So I can use the print
+state a statement. I can say status is
+equal to handle.get_status
+And then to get the results, I can say
+result is equal to handle.stream
+and then get result. And if I want to, I
+can then say print results
+to actually see the final result.
+Actually, I should not use plural here.
+It's just result. Result is equal to
+handle.stream.get_result. Result. Print
+result is going to just print the final
+output of the execution. And then this
+is important. We need to remove with
+os.remove, we need to remove the
+interrupted execution ID because
+otherwise, it's going to try to continue
+next time. And finally, we can print
+completed.
+All right. So if I didn't make any
+stupid mistakes here, this should work
+and show us how such a crash and resume
+mechanism works. So I can say uvi run
+main.py in my case. If you're not using
+uvi, you say python main.py. So I'm
+running this now and this is going to
+either start in your case now an agent
+uh span server. In my case, this server
+already exists and I can go to
+localhost:6767
+and then you can see here the different
+execution IDs that are running. Now in
+this case, I'm not even interrupting it.
+I can just take a look at it and see
+what's happening here. So I can monitor
+here in the web UI that we started with
+a prompt, then we had the LLM call. The
+LLM call decided to do analyze chunk
+one, then another LLM call, analyze
+chunk two, another LLM call. And then if
+I refresh here, it's going to be another
+one. And then the aggregate and then we
+have the final result. And also in our
+command line here, we can see agent
+output. The analysis of chunk with uh
+chunks with IDs 1, 2, and 3 has been
+completed. Aggregate result, total count
+20. Probably correct. We had random
+numbers so we cannot really check. We
+had four tool calls and this happened
+now without interruption. So this didn't
+really show a crash and resume
+mechanism, but we can see that there is
+no uh interrupted ID that we can
+continue with here. So if I run this
+again, it's going to start a new
+execution as you can see here. Now what
+I can do is I can take a look at this
+execution. Maybe it does a tool call
+already. And now I'm going to control C
+to crash the script. So the script is
+now dead.
+Now the execution is not dead. It still
+has the status running. So right now,
+there was uh the prompt, there was the
+LLM call. The LLM call decided to call
+the tool analyze chunk and I interrupted
+it. I crashed the script basically.
+What you see now is I have an
+interrupted execution ID. We can also
+take a look at that. Interrupted
+execution ID. There you go.
+And this thing is
+now stored on the server. Now one thing
+that's important, if you want to run the
+agent span server, it's going to
+automatically run when you start a
+script if it's not running. Otherwise,
+you can also say uvi run agent span
+server start. You can also say server
+stop. The important thing is you need to
+run a command called uvi run or just
+agent span if you're using uh pip. Agent
+span and then doctor. This is going to
+tell you if you have an API key
+exported. Now I started the server
+already in a different instance. So I
+had an API key. If you don't have an API
+key, you're going to see here no AI
+providers configured.
+So what you want to do is you want to
+say export open
+AI API key for example or anthropic or
+Gemini or whatever and then the API key
+and this is going to have the API key in
+the environment and then you can run
+agent span doctor again. It's going to
+tell you everything works and then you
+want to start the server because that is
+going to then allow the server to
+actually use the open AI API. Otherwise,
+of course, you don't have an API key.
+How do you want to send request requests
+to the to the models?
+So, what you can see here is it's stuck.
+Nothing is happening. It's still
+running. It's not failed. It it isn't
+stopped or anything and now I can go and
+say UV run main again.
+This is going to pick it up again. There
+you go. You can see analyze chunk now
+successfully executed. Then it goes to
+the next LM call and of course I can
+keep interrupting by the way. I can I
+can crash it again.
+The ID is still here. I can refresh
+here. Now one tool call was successful,
+another tool call was successful. The
+third one is now pending. We're waiting
+for it. Nothing's happening. I can go
+back and say UV run main.py reattach and
+it's going to continue with this
+workflow. It's not starting a new one.
+If we go to the
+uh agent executions, there's no new
+um execution here. We're continuing this
+one.
+I can reload again and you can see
+there is a final output and I get it
+here in the command line. So, I didn't
+have to rerun any tool calls. We just
+continued where we left off by
+reattaching to the execution. All right.
+So, this was one use case crash and
+resume. Let's move on to the second one
+which is human in the loop but delayed.
+So, maybe a human in the loop is
+required. We need to have some human
+approval but it takes some time for the
+human to respond. Maybe 3 days, maybe 5
+days, maybe a month, whatever. It needs
+to be stored somewhere and the human has
+to at some point say go and everything
+that happened up until this point needs
+to still be there. Needs to still be
+saved somewhere and the state needs to
+be kept so we can continue where we left
+off. We don't have to start again. Uh
+especially if the process before the
+human approval is quite intense and
+maybe it takes a lot of time and
+resources. It doesn't make sense to
+repeat it only when the human is there
+again to approve the process. So, what
+we're going to do is we're going to go
+back into main.py. We're going to change
+this example a little bit. I'm going to
+get rid of these two tools because we're
+going to have different ones now and to
+keep it simple, I'm going to just copy
+paste the new tools. It's nothing new
+here so you're not going to be confused.
+It's basically just a couple of tools.
+The only thing that's new and I'm going
+to talk about this here uh is the
+approval required here. So, these are
+three tools. Simple as before, we have
+get order. All it happens all it happens
+here is you get some string. That's the
+order ID. Returns a dictionary. Look up
+an order ID. And then just a basic
+random number times 100 which is going
+to be the amount. Uh so that that's
+going to be a number between
+um
+0 and 100 basically and uh it gives us
+the order ID status delivered. Get
+customer gives us just a customer ID.
+Always Mike and email mike@mail.com. And
+then there is a function called process
+refund and a tool call a call process
+refund. The idea is I can specify an
+order ID and an amount which is a float
+and we need a space here and it's going
+to issue a refund. In this case, of
+course, that just means returning a
+dictionary that says that the refund was
+actually um processed but in reality,
+this would be a refund process, the
+actual refund process.
+And this one we add here the parameter
+approval required. So, basically, this
+means that this is not going to run
+without a human saying yes or no. Also,
+the agent here is going to be the refund
+agent and it has different instructions
+and it has these three tools. Everything
+else is the same. Nothing new here. We
+just have a bunch of tools and an agent.
+So, the instructions here are you handle
+refund requests, look up the order, look
+up the customer, call process refund. It
+will pause for human approval
+automatically. That is what the agent
+does. This is the job of the agent. And
+now we need to see or now we're going to
+see how to use agent span to delay this
+human approval without causing any
+issues. So, we can basically keep the
+code that we had before. Uh I'm just
+going to rename this because I want it
+to be now current execution ID because
+it doesn't have to be interrupted
+necessarily. The prompt is also going to
+be a different one. Refund or let's say
+issue
+a refund for order O underscore 123 of
+customer
+uh let's say C underscore 951.
+Then I'm going to get the status. The
+status we don't need to print it
+necessarily. It will give me an
+execution ID and I can write this to the
+file called
+current execution ID. So, just like
+this. Same as before. That is the
+mechanism that allows us to store the ID
+and to then continue where we left off.
+And now we're going to use this current
+execution ID to continue. Now we're
+going to also do down here in the
+runtime the same thing that we did
+before. We're going to load this ID, the
+current execution ID. We're going to
+serve. We're going to have the handle.
+But this time now the status is going to
+be in a loop. So, what we want to do is
+we want to do a polling mechanism. So,
+I'm going to say basically keep going
+every X seconds ask uh for the current
+status and if the status is waiting, ask
+for human approval. And maybe we also
+want to have a certain number of time
+maximum to try this. So, four uh
+placeholder in range 60.
+Let's say 60 times. We want to do
+time.sleep two so we have some time in
+between and we want to get the current
+status of this execution of this handle.
+And I can say then print status.status.
+And we basically now have two scenarios.
+Let's get rid of all this. The two
+scenarios are the status is waiting or
+the status is complete. So, I'm going to
+say if status.is_waiting,
+then we need human approval. So, I'm
+going to do pass and down here I'm going
+to say if status.is_complete,
+then we need to do something else. So,
+if the status is waiting, in this case
+now my human approval mechanism will not
+be a fancy admin dashboard. It will not
+be some webhook or something. It will
+just be a simple user input. Do you want
+to approve this? Yes or no in the
+command line. Of course, uh you have to
+adapt this to your use case. So, if
+you're using this in a web application,
+there might be uh some webhook that you
+want to implement here um or some
+webhook handler or you want to have some
+admin dashboard button or something. But
+in this case, I'm just going to say
+choice is equal to input do you want to
+approve? And then we can use actually an
+F string here.
+The following is going to be
+status.pending
+There's going to be a tool that's
+pending. It's going to require approval.
+We can give that approval or reject. So,
+I can say if the choice.lower
+is equal to yes.
+So, if I type in yes, we're going to
+approve and we do that by saying
+handle.approve.
+So, that is going to allow the tool to
+actually be executed. Otherwise, we're
+going to reject. So, I'm going to say
+handle.reject
+and I can provide a reason, whatever
+reason. Not going to provide one here in
+this case. Um so, handle.reject whatever
+reason and then we need to remove the
+file. So, remove the
+current execution ID because if you
+reject it, it's over. We don't have to
+do anything.
+Just delete the current execution ID and
+break out of the loop. Now, if we
+approve, we're going to continue and the
+status is going to be complete in the
+next iteration. So, in this case, we're
+going to print completed with a colon
+here and then status.output
+and then result here as the key
+and then the usual thing which is result
+is equal to handle.stream.
+Let's stop stream.
+Get result and then result.print_result
+and then always remove
+and the current execution ID.
+And also break out of the loop. So,
+that's basically it. Now we have this
+human in the loop process. We can take a
+look at this. I can say UV run main.py.
+This runs everything in my dashboard
+here. I should be seeing that there's a
+refund agent. What did it do? It ran the
+LM inference. It got the tool call get
+customer, get order. It got everything
+it needed and now it will try probably
+here to run the tool call that requires
+human intervention. So, I should already
+see it here in the command line. Do you
+want to approve? And then I just have
+this
+uh dictionary here so we don't have
+proper formatting. You're also not
+seeing everything because my camera is
+blocking it. It's not that important but
+you can see here that there's a tool
+call and that um it requires human
+approval. So, I can type yes or I can
+type no. Maybe let me just briefly move
+my camera here so you can see that. This
+is what it looks like. And now I can
+type yes. In this case, it's going to
+approve it. If I type no, it's going to
+be rejected. So, yes in this case,
+responded to execution running. The next
+thing is completed.
+And then you can see the refund has been
+successfully processed.
+Now, what I can do as well is I can just
+crash the process. So, there will be
+some human approval at some point. We're
+going to wait for it to happen. So, it's
+going to do what it does. Then it wants
+my approval. I can just control C
+break out of the process. So, this is
+going to be new execution now.
+And we can see that human approval is
+required here. So, it still needs to
+happen. We do have a current execution
+ID here and if I now run the main.py
+file again, we're going to see that it's
+going to reattach to the approval. There
+you go. I can still approve or not. I
+can go with yes again
+and this is going to then finish this
+execution.
+And I get the answer. All right. So,
+this is all nice but let's say I don't
+actually want to use agent span as my
+agentic framework. I want to use
+LangGraph. I don't want to rewrite
+everything. I don't want to learn a new
+framework. I don't want to rewrite my
+entire code base. I just want to use
+what I already have. For example, I
+could have this LangGraph example here
+which is basically again analyze chunk
+and aggregate results. It works
+perfectly fine. I don't need to do
+anything. This is my setup. I would like
+to benefit from agent span but I don't
+want to rewrite anything. This is also
+possible, so what we can do here is
+first of all, let me install LangGraph
+and also LangChain
+with OpenAI. And then what I also have
+here is dot env file. This dot env file
+basically just contains OpenAI API key
+um is equal to the OpenAI API key and I
+also loaded in the example here using
+load dot env. So we just have the OpenAI
+API key here and if I run this, if I run
+the LG example, this is going to be a
+basic LangGraph example. It will run on
+its own. We're not going to go into
+specifics of LangGraph here today, but
+that's going to have the same effect.
+It's just going to run, but of course it
+doesn't have the durability. It doesn't
+have this crash resistance. It will not
+be able to keep the state if I interrupt
+it. It will always start a new
+execution. Now the cool thing is I can
+easily attach this to agent span by just
+wrapping the runtime around it. Now this
+is not going to make it durable, but we
+can at least see what's happening in
+agent span and then we don't need too
+many more steps to make this durable. So
+all we have to do here is we need to say
+from agent span
+dot agents import agent runtime.
+This one here and then we can just say
+with agent runtime as runtime. And then
+we need to just slightly change the way
+this is written. We don't say app
+invoke, we say actually runtime dot run.
+We pass only the app, not the invoke and
+we use a comma here, but the rest stays
+the same. So we still pass the same
+dictionary here with messages and the
+human message in here and that is going
+to be the result. So runtime run app,
+then the same messages before and we
+also need to access the result in a
+different way. We can basically say
+print result dot output and then result.
+So this is enough to wrap this to wrap
+agent span around it. So I can say run
+LG example
+and it's going to use agent span to do
+that. So I can take a look at it. You
+can see this is running here. You can
+also see that this is in LangGraph, so
+this is not um our own custom agent
+here. This is our LangGraph workflow,
+but of course it doesn't give us
+durability. We don't have a resume
+mechanism here yet. We just see what's
+happening. We can we can analyze the
+workflow here. We can also crash it, but
+it's not going to continue. It's not
+going to allow us to just um restart
+this and it's going to work. So we need
+to do some extra work here. And the cool
+thing is we don't have to touch anything
+here about the LangGraph code. We can
+keep the state graph. We can keep all
+the classes, states. We can keep the
+functions, the nodes, the tools,
+everything can stay as it is. We just
+have to alter this part. We have to
+extend it a little bit and everything
+else can stay the same. So what I'm
+going to do first is I'm going to say
+runtime deploy and the app here as a
+parameter. Then I'm going to say runtime
+dot serve
+the app and I'm going to say again
+blocking equals false. And then we're
+going to do our check whether a file
+exists or not. So if OS dot path dot
+Actually I don't have US imported, so OS
+imported, so we need to say import OS.
+If OS path exists,
+let's call this one interrupted
+execution
+ID underscore LG for LangGraph.
+And of course we want to negate this. If
+this does not exist, then we're going to
+say handle is equal to runtime dot
+start. And we're going to start the app
+with the prompt that we have down below.
+So actually we're going to get rid of
+all this here
+and we're going to pass
+this dictionary. So a dictionary with
+messages with a list of messages and
+then we need to close this dictionary
+again and also close
+the function call. So I think that
+should be fine with the parentheses.
+There you go. And after this, this is
+going to now start the inference
+basically. After this what we want to do
+is we want to get again the ID, the
+execution ID and we want to write it
+into this interrupted execution ID file.
+So I'm going to say with open
+and then interrupted execution ID LG and
+writing mode
+as f and we can also access it directly
+here from the handle, so I can say
+f dot write. We're going to write handle
+dot execution ID. So we don't actually
+need to go to the status for this. We
+can just say handle execution ID, write
+it into this file, persist it so to say
+and maybe we want to also print a
+message started and the handle execution
+ID just so we can track what's happening
+here in this LangGraph graph. But the
+interesting part happens in the else
+branch because here we don't we do
+actually have this file, so I'm going to
+say with open
+this file again, so interrupted
+execution ID ID LG
+uh in reading mode as f the execution ID
+and I need colon here. Uh the execution
+ID is going to be equal to f dot read
+and then I'm going to say handle is
+equal to agent
+handle and we pass again the execution
+ID and the runtime.
+And we can also have a status message
+here, which is going to be resumed. Now
+then we can say result is equal to and
+another way to wait for the result is to
+use the join function, so we don't have
+to necessarily say stream and get
+result. We can also say join, just a
+different way to do this.
+And then the result is the same though.
+We can say result dot
+print result and very important OS
+remove our interrupted
+execution ID
+LG.
+We don't need that and we can also print
+completed
+one more time.
+So you can see the logic is basically
+the same. I used some different
+functions here, join to show you that
+this also works. Also execution ID
+directly from the handle, but
+essentially it's the same idea. So we
+just have this workflow here. Everything
+here is the same as in as it was before,
+just a LangGraph workflow and we just
+wrap this in a runtime and we just have
+this logic here of crash and resume same
+way that it that we had it before. So I
+can write this UV run LG example.
+Let's just wait without interrupting
+first. This starts a new graph here.
+When we refresh, we can see that this
+actually splits into three parallel tool
+calls. We can just wait for this to
+happen. We don't have to do anything.
+I'm just going to let it play out and
+then we're going to interrupt it and see
+how we can proceed. There you go. So
+this worked without interruption as it
+worked before. Then let's go to the
+agent. Let's
+rerun this. This should now spawn a new
+execution and once it gets to the tool
+call, I'm just going to crash it here,
+keyboard interrupt. So now it's stuck
+right here uh with these tool calls. So
+we can see it's loading. It's not going
+to do anything. It's not going to
+continue working because our worker is
+actually dead. So it doesn't do
+anything.
+Uh but I can now go and continue.
+Uh of course it doesn't work because I
+need to
+to import the agent handle as well. So
+import the agent handle, but since it
+was exported correctly, this should now
+work anyways.
+So this uh now reconnects to this
+Hopefully. Yeah, there you go. No new
+execution happened, so this is
+reconnecting to this one. Tool calls are
+happening. We just have to wait and at
+some point we're going to get the final
+result here without having to rerun
+everything from the beginning.
+There you go. So as you can see, it's
+super easy to build durable AI agents
+using agent span directly. So either
+using it as an agentic framework or also
+you can take an existing LangGraph
+workflow for example and wrap agent span
+around it and then you have the same
+possibilities of doing these crash
+resume or human in the loop uh workflows
+and mechanisms. So make sure to check
+them out. As I said, they're open
+source. You will find a link to them in
+the description down below. So that's it
+for this video today. I hope you enjoyed
+it and hope you learned something. If
+so, let me know by hitting a like button
+and leaving a comment in the comment
+section down below. Also of course,
+don't forget to check out agent span,
+the sponsor of this video. You're always
+helping out the channel if you interact
+with the sponsors. As I said, they're
+open source. They allow you to build
+durable AI agents. You will find a link
+to them in the description down below.
+Besides that, don't forget to subscribe
+to this channel and hit the notification
+bell to not miss any more future video
+for free. Other than that, thank you
+very much for watching. See you in the
+next video and bye.

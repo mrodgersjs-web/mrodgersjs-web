@@ -1,0 +1,226 @@
+foreign
+[Music]
+in this video we will look at high
+availability for tolerance and see how
+critical systems are able to achieve
+Fine Lines or in other words systems are
+able to remain up
+99.99 percent of the time
+we will also look at how systems upgrade
+or downgrade this software while still
+remaining up and running
+this video is divided into three
+sections the first part talks about
+fundamentals of redundancy and high
+availability and its architecture
+the second part talks about how software
+upgrades and downgrades can be done
+without any downtime
+and the third section talks about
+some of the ways in which high
+availability typically can be
+implemented
+so let's get started
+a typical client server architecture
+contains a server with an interface
+visible to an external World which is
+then connected to many clients or
+external interfaces
+the server provides services which are
+consumed by the clients and the server
+is expected to be up 99.99 of the time
+to achieve this High availability the
+server system contains an active server
+and a standby server
+the IP server does all the server
+functionality and processing while the
+standby server or the standby system
+does some backup activities
+now what are those backup activities the
+standby system does
+it does two primary activities
+the first thing it does is take regular
+sync from active system
+this sink is a sink of the state of what
+the active is doing
+so if the active process is doing
+certain functionality it also informs
+the standby system that I am doing so
+and so task and this is what I have done
+and this is what is pending
+for example if there are let's say 10
+clients connected to the server and
+let's say the server has processed
+certain percentage of tasks for all the
+10 clients
+all these details of the 10 clients will
+be synced from the active to standby and
+the standby will know all details of the
+clients and how much work has been
+completed for all those clients
+typically the standby system will know
+the complete details of what the active
+system has been doing till now
+apart from this the standby system is
+keep sending regular heartbeat pulses to
+active to which the active system will
+need to reply
+this heartbeat is necessary to make sure
+that the standby knows that the active
+is up and running and functioning as
+expected
+heartbeat pulses are exchanged every few
+milliseconds so that if active goes down
+the failure is detected as soon as
+possible
+now all the client services are
+processed by the active system
+no matter how good a software or
+Hardware is one cannot rule out bugs
+errors and unexpected circumstances
+so one cannot rule out a failure
+if the active system fails for whatever
+reason there could be a software bug or
+process crash a hardware failure a power
+failure
+or whatever could be a reason
+the heartbeat failure from the active is
+detected by the standby system
+once a heartbeat failure is detected by
+standby it immediately triggers a
+switchover to become active
+the standby system already knows
+what the now different active system was
+doing at that time
+and takes over all the tasks
+whatever connections with which were
+established with the previous active are
+now continued with the new active
+note that all this happens in a few
+milliseconds
+so the clients don't even realize that
+when there was a failure on the other
+side
+the old active which had crashed now
+reboots and comes up as a new standby
+it then starts receiving sync
+information from the new active as well
+as starts exchanging heartbeats from the
+new active
+this is how high availability is
+achieved
+in many of the solutions
+which are present in today's world
+from the external World point of view
+the server system still appears up while
+internally
+on the server side there was a crash or
+a reboot and systems might have
+restarted
+similar setup is also used for software
+upgrades and downgrades
+now let us see how a high HS setup is
+used for achieving a software upgrade
+or downgrade
+okay
+note that this kind of approach is
+typically used in many of the systems to
+upgrade the software with minimal
+downtime
+in an in-service software upgrade the
+primary requirement is to have the
+system available for clients throughout
+the software upgrade process with no
+downtime from clients perspective or
+client's point of view
+before software upgrade started both the
+active system and the standby system are
+running the old version of software
+as a first step the standby node is
+loaded with a new version of software
+once the standby is up with new version
+of software and it has established
+heartbeat
+with active and received all the state
+information from active
+a switch over is triggered in step 2.
+in Step 2 the new version of software
+becomes active while still retaining all
+the existing client sessions
+there is no impact to any of the clients
+at this point of time the old version of
+software could still be running on the
+standby
+in step 3 the old standby is rebooted
+and it comes up with new version of
+software
+and then it establishes it it
+establishes heartbeat and syncing
+mechanism with a new active
+so with this we successfully
+transitioned from an old version of
+software to new version of software
+without having any downtime from the
+client's perspective
+now let's see some Physics some typical
+redundancy implementations in systems
+the simplest form of redundancy
+implementation is having an active
+process and a standby process running in
+the same system
+both these processes will be running in
+the same operating system and while the
+active process will do all the tasks the
+standby process will just keep
+maintaining the state of the active
+process and be ready to take over
+effective process crashes
+the advantage here is there is no
+redundant Hardware
+or rather one does not have to invest on
+additional Hardware
+but the disadvantage is if there is any
+hardware failure the whole system goes
+down
+so one can protect the system from
+software failures but one cannot protect
+the system from Hardware failures in
+this case
+a similar approach is done in the
+virtual machines domain
+the only difference here is instead of
+spawning a processes you spawn virtual
+machines
+we have our active virtual machine and a
+standby virtual machine
+again this provides software redundancy
+but if there are Hardware failures then
+those are not protected
+to protect from hardware and software
+failures as well one needs to have a
+redundant hardware and return software
+Hardware redundancy typically has two
+identical devices one of them running as
+active device and another running as a
+standby device
+one can have returned and power supplies
+or return and databases or return in
+routers Etc
+another form of redundancy is to handle
+natural or man-made calamities like
+storms earthquakes War cyber attacks Etc
+one can have an active data center in
+one geography and the standby data
+center in another geography
+this is called Geo redundancy
+typically here returning devices are
+separated across geographies so that at
+least one of those devices is available
+at any given point of time
+even in case of natural or man-made
+calamities or disasters
+so that gives a brief on redundancy
+architecture how it is achieved and what
+are the typical ways in which it is
+I hope you find this video useful
+so until next time see you goodbye

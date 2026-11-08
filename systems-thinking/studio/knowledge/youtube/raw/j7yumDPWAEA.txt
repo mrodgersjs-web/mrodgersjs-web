@@ -1,0 +1,386 @@
+By far the most common question I get on
+any of my videos that have to do with
+Home Assistant Voice or LLMs is, am I
+running the LLM locally? And if so, how
+am I doing it? Well, I can finally say
+yes to that question, and I'm excited to
+share how it all works. In this video,
+I'm going to walk you through my whole
+LLM setup that I've got running on a Mac
+Mini M4 running Lama and how I've got it
+integrated with Home Assistant and even
+a fun WLED animation that visualizes how
+hard the LLM is working at any given
+moment. And definitely stick around to
+the end. I give a sneak peek on how I'm
+running my own chat GPT like server
+locally called Open Web UI.
+[Music]
+All right, so let's quickly go over
+everything I've got running here,
+including all the components in case you
+want to try something like this
+yourself. For hardware, as I said, I've
+chosen a Mac Mini M4 Pro. One of the
+reasons why Apple Silicon works so well
+for local LLMs is because of its unified
+memory architecture. Large language
+models run best on GPUs, and on Windows
+machines with Nvidia cards, you're
+limited by your GPU's VRAM. With Apple's
+unified memory, the GPU and CPU share a
+common memory pool, giving the models
+much more headroom and flexibility. It's
+actually a pretty compelling setup
+dollar for dollar when you compare it to
+other compact devices in the same
+performance class. For the software
+side, I'm running a Lama to handle all
+of the models, Home Assistant for the
+smart home side of things, and Open Web
+UI for a local chat GBT style interface
+for everything outside of Home
+Assistant. for the specific models I'm
+running. For now, I'll just say that
+there have been two that have been
+standouts for me in Home Assistant, but
+more on models in a little bit. All
+right, so let's take a look at how this
+works in real time. Here's Home
+Assistant voice running on a PE. No
+cloud, no third party processing, just a
+fast local response. I'm not going to
+speed this up up at all. It's going to
+be real time.
+This battery pack is dead.
+All right, let's try this again.
+Lauraai, what's the weather like?
+&gt;&gt; The weather today is cloudy with a
+temperature of 80° F and 69% humidity.
+&gt;&gt; This will be even snappier once realtime
+LLM sentence streaming comes to a lama
+in Home Assistant. What makes my local
+LLM setup both fast and reliable despite
+running on relatively modest hardware is
+a strategy I call cached responses.
+Instead of exposing a huge amount of
+entities and asking the LM to reason
+through them in real time, I've started
+leaning on home assistant scripts and
+predefined pathways to simplify its job.
+This lets me delegate heavier, more
+complex processing to slower but smarter
+models running in the background, while
+a lightweight model handles real-time
+voice interactions and simply pulls the
+pre-ompiled answers or at least can grab
+those pre-ompiled answers and create the
+response that it needs from that small
+piece of data rather than again trying
+to reason through potentially hundreds
+of exposed entities. A good example is
+weather. One of the most common things
+we ask around the house is, "What's the
+weather like tomorrow?" or "What's the
+humidity outside?" There's really no
+need to reprocess all of that
+information every time. So, I have a
+larger model generate a clean spoken
+weather summary every hour. That result
+gets cached and is instantly available
+to any smaller model to serve up. It's a
+similar idea to what we're seeing across
+the LLM landscape. multiple agents or
+models, each with their own strengths,
+collaborating to deliver fast, useful
+results. And of course, I needed to
+involve a WLED in some way. I found this
+incredibly beautiful pre-built animation
+in WLED called SOAP. And I've got the
+speed of that animation automated to
+parallel the current power draw of the
+Mac Mini. And one of the nice things
+about the animation is that it's got
+easing built into it. So, as the LLM
+ramps up, the wattage increases and the
+animation smoothly speeds up and calms
+back down when the LLM is idling. This
+Mac Mini is dedicated for LLM use. So,
+the visuals pretty spot-on as it's
+processing different tasks, and this M4
+Mac Mini is incredibly efficient. When
+it's not processing anything, it idles
+at less than 5 watts, and even under
+full load, it only hits about 65 watts.
+But that gives me a nice range to
+display the animation speeds. Uh, I
+still can't believe that it only uses 65
+watts even under full load. And that
+would really help keep electricity costs
+down when hosting your own LLM,
+especially since it idles at basically
+no power usage.
+So, if you're ready to try something
+like this yourself, here's a quick
+walkthrough. Setting up a Lama on a Mac
+is actually pretty simple. The first
+thing I recommend doing is setting your
+IP address on your Mac to a static IP
+address. That'll make sure that your IP
+address remains static so that Home
+Assistant and other devices can always
+reach it.
+Then you want to head over to Lama.com
+and go ahead and click that download
+button. And then once you've downloaded
+it, go ahead and
+drag O Lama to the applications
+and go ahead and run it. Once you have O
+Lama running, you should see a little
+Llama icon up in the top taskbar area.
+When you run this for the first time,
+make sure to go to settings and make
+sure to expose O Lama to the network.
+This is critical so that Home Assistant
+and other devices can use Olama.
+Once you have a llama running and
+exposed to your network, make sure that
+other devices on your network can reach
+it. So go to a different computer that
+is not running a llama that is connected
+to the same network and go to the
+devices IP address. In this case, my Mac
+Mini's IP address is 139. And then you
+want to go to port
+1434.
+And this is the response you should see
+if Lama is indeed running, Olama is
+running. Now to test that everything is
+truly working well and LLMs can actually
+run, go to the device running
+and open terminal. Once terminal is
+open, you can run a simple command like
+Olama run quen 3 billion verbose. Now
+what this is going to do is it's going
+to download the Quen 3 model the 3
+billion parameter and by putting the
+verbose flag at the end it will actually
+give you a readout on how many tokens
+per second you used and some other
+statistics which can help determine how
+performant the model is.
+Now it's telling me that this doesn't
+exist. Uh, so this is a good moment to
+demonstrate
+how you can use.com
+to find models. So head over to
+alama.com, go to models,
+and jump over to Quen 3. And the reason
+why Quen 33 3 billion didn't work is
+because it doesn't exist.
+So, let's try something that actually
+does exist, like the Quen 4B, which I
+actually already have installed. So, it
+won't actually install it for me right
+now. But you can see that this model is
+2.6 GB in size. So, it'll download that
+entire 2.6 GB model the first time you
+run it. So, go ahead and click on the
+model that you want to install and run.
+And then this is your command right
+here.
+Paste that into terminal. I'm going to
+add the verbose tag or flag I should
+say.
+And now you can start talking to the LLM
+right within the terminal window.
+So now this is a model that actually
+thinks before it spits back the final
+response.
+And this what is E is a prompt that I
+just use to test models. It's pretty
+broad and challenges the model to reason
+through the question.
+And this is moving pretty quickly.
+Now we can see that the evaluation rate,
+which is pretty much the one that I used
+more than anything else, uh was about 50
+tokens per second, which in my opinion
+would be usable within Home Assistant. I
+think anything above 10 tokens per
+second is technically fast enough to be
+usable, but for home assistant voice, I
+think 50 tokens per second is the
+absolute minimum. Preferably, it should
+be more than that. Now, let's look at a
+model that's much larger
+like
+deepseek
+32 billion parameters. This is a pretty
+large model and also very capable.
+I already have it installed,
+so we can jump right into testing. And
+you'll see it's quite a bit slower than
+the other models. Even loading this into
+the memory takes a bit of time. So,
+we're going to try that same prompt.
+See what we get.
+It's outputting basically as fast as I
+can read, which in my opinion is still
+usable for certain tasks that you need
+that horsepower. I found that 32 billion
+parameter models seem to be the
+threshold for this Mac Mini M4
+with it being usable speed. And there we
+go. We have about 10 tokens per second,
+a little bit under that, which again I
+think is usable as a traditional LLM,
+but not so much in Home Assistant.
+little bit too slow. One of the most
+important things to keep in mind when
+looking for models for Home Assistant is
+that they need to be able to use tools.
+Fortunately, Olama includes a filter,
+which allows us to just see the models
+that have tool capabilities. At the time
+of recording this, my favorite model for
+Home Assistant is Quen 3. And depending
+upon what hardware you're running,
+either their 4 billion or 8 billion
+parameter model works okay. Obviously,
+the 8 billion parameter model is smarter
+than the 4 billion parameter model, but
+you have to try to strike that balance
+between speed and performance or
+accuracy. I've also seen others on
+Reddit saying that they've had success
+with the Llama models in this version of
+Home Assistant, which is currently
+2025.7.2.
+I get errors when I use these models,
+but Quen and Mistrol have been pretty
+great so far. So to get moving, I
+recommend installing a Quen model. Try
+that first with Home Assistant. And now
+let's move over to Home Assistant. I
+already have Olama installed, but it's
+simple as going to add integration,
+typing in a Lama, and then simply
+putting in the IP address of the device
+that's hosting a Lama and your LLM. In
+this case, I put in this IP address,
+which is the IP address of my Mac Mini,
+plus the port at the end. Don't forget
+that. And then once you have this
+running, you can add as many
+conversation agents as you'd like using
+any of the models you have installed.
+For instance, I have all these different
+ones installed that I've been
+experimenting with, and I've landed on
+Mistral 3.224B in 22 24b for my heavier
+duty tasks that I don't need as timely
+of a response on and for realtime
+conversations I've gone with Gwen 3 and
+I'd love to use the 8 billion parameter
+model but for now the 4 billion is
+faster so I'm leaning on that although
+once in a while it does hallucinate a
+little bit and then once you have these
+installed you can invoke them anytime
+you want anywhere you want so you can
+create specific scripts and automations
+which tap into specific models. Again, I
+think I'm moving more toward an
+agentcentric ecosystem where there's
+multiple LLMs working together rather
+than one really massive super powerful
+LLM. Now that I'm fully invested in
+running my own local LLMs, I'm more
+curious than ever to find out how they
+work and how they function under the
+hood. That's where Brilliant comes in.
+Brilliant is an interactive learning
+platform that helps you build real
+understanding through problem solving.
+One course I really like breaks down the
+architecture behind LLMs, how neural
+networks function, how transformers
+process information, and why these
+models are capable of the things that
+they do. What sets Brilliant apart is
+that you're actively engaging with the
+material. Solving puzzles, working
+through logic, and building intuition as
+you go. It's a great way to sharpen your
+thinking and go deeper on topics like
+AI, programming, and data science. Head
+to brilliant.org/strottlebuilds
+or scan the QR code on the screen to try
+Brilliant for free. And if you sign up
+using my code, you'll get 20% off an
+annual premium subscription. Big thanks
+to Brilliant for supporting this
+channel. Before we wrap up this video, I
+want to quickly show you Open Web UI.
+This is a local chat GPT style interface
+that lets you interact with O Lama
+models in a more traditional chatbased
+format. So here is my instance of open
+web UI and you can easily switch between
+installed models, run queries across
+different model types and test how each
+one performs side by side. So as we
+mentioned earlier, you can see the
+different size models we have here.
+everything from
+larger Deepseek models, Deepseek 32
+billion, down to some smaller models
+like Llama 3.2, which is only a 3
+billion parameter model. So, we click
+into that and run a query,
+you can see how fast it is, and it's
+generally not bad. Llama is a pretty
+well-rounded model for its size. But now
+if I switch over to a larger model like
+let's say DeepSseek 32 billion run the
+same query. Now I can compare these side
+by side and decide which one's better
+for the task. Now DeepSseek is a
+thinking model. So it will do some
+interpretation, some thinking on its own
+before it decides on a final answer.
+It's kind of fun to see how it processes
+and thinks along the way.
+So as you can see this is very similar
+to Jad GPT. It can search the web, it
+can interpret images and this is a
+platform that is continuing to evolve.
+So more on this in future videos, but I
+think this is really the next step. If
+you've already got Alama installed, give
+Open Web UI a try. If you're familiar
+with GitHub and following some
+instructions, you should be able to get
+it off the ground.
+So, that's going to wrap up this video.
+If you want to dig deeper and try some
+of these things yourself, I highly
+recommend checking out the description
+below. I've got a full write up on
+straddields.com, which includes links,
+examples, my running list of tested
+models with home assistant support. So,
+it should be a pretty good resource to
+help you get started. Huge thanks to
+Brilliant for sponsoring this video. And
+if you enjoyed this video, if you felt
+like it helped in any way, please
+consider giving it a like. It really
+helps me out. And if you're into this
+kind of stuff, local LLMs, home
+assistant, home automation, building,
+you know, privacy focused systems,
+definitely get subscribed. I've got a
+ton of videos in the works. Thanks so
+much. I will see you in the next one.

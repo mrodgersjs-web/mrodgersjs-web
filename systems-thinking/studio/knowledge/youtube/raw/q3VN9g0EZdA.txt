@@ -1,0 +1,265 @@
+In January of 2019, the island nation of
+Tonga found itself almost entirely
+without internet access. According to
+reports, the ultimate cause of the
+blackout was that the fiber optic cable
+that connects Tonga to the rest of the
+world's internet was somehow severed.
+This caused all kinds of problems for
+the citizens of Tonga well beyond just
+not being able to check social media.
+Merchants lost the ability to take
+credit card payments. People stopped
+being able to even make international
+calls to their friends and family
+outside the country.
+And unfortunately, because of the
+location and the difficulty in working
+with these underwater cables, it took
+almost 2 weeks to fully restore service
+to the country. Now, how did this happen
+and how can we prevent it from happening
+again?
+Today, friends, we're talking about
+fault resistance and redundancy.
+Welcome to AP Computer Science
+Principles. I'm Professor Cunningham. As
+usual, we're going to start out with a
+couple of definitions starting with
+redundancy. Now, in ordinary English,
+redundant usually means something that's
+not very useful, especially if there's
+too much of it. I know in British
+English, there was a definition that
+specifically referred to factory workers
+who couldn't find jobs because the
+factories already had plenty of
+employees, so hiring more would be a
+redundancy.
+In that particular context, it seems
+like a fairly negative word, but that is
+not the definition we're going to be
+using today. In engineering and computer
+science, redundancy means the inclusion
+of extra components or in our case,
+extra network connections that aren't
+strictly necessary for the functioning
+of, in this case, the network, but helps
+improve reliability. The reason that
+Tonga lost all of its internet because
+one single cable got cut is because that
+particular country did not have a lot of
+redundancy in their networking. The vast
+vast majority of their internet
+connection came through that one cable,
+so when that one cable got destroyed, it
+shut everybody down. Now, that doesn't
+mean there was no redundancy. I do know
+that Starlink and other satellite
+internet companies did a lot of good in
+helping get at least the most vital
+components of the Tongan infrastructure
+back online, but you can see how it
+would have been helpful if there were
+two or three or even more cables going
+through, so that if one of them got cut,
+others could take up the slack. Now,
+that's not always realistic. Underwater
+cables are very expensive, so there
+always has to be a balance between
+reliability and cost.
+Another phrase that we're going to use a
+lot for the rest of this video is fault
+tolerance.
+In computer science, a fault is really
+anything that stops a system from
+working the way it's supposed to,
+whether it's a cut wire or a circuit
+that's shorted out or just water getting
+into a circuit breaker or something like
+that. I had a friend back when I worked
+for Sonic that told me that he went out
+to a house that was complaining of very
+very slow internet service, and when he
+went to check the box where all of the
+connections come in, it turned out that
+the box had been taken over by a hive of
+bees. So, a fault can be anything from
+physical damage to malfunctioning
+hardware to software that isn't doing
+what it's supposed to do
+up to and including a hive of bees
+taking over your internet connection.
+Fault tolerance is how well your system
+can manage a number of faults,
+preferably without any degradation,
+without any downtime, and honestly,
+ideally, without the end user ever even
+being aware that there was a problem.
+If, for example, Tonga did have three or
+four separate internet connections that
+all went to different places, and one of
+them got severed, well, perhaps all of
+that traffic could have been rerouted
+through another direction. Folks might
+have noticed that the internet was a
+little bit slow that day, but it would
+not have led to a countrywide internet
+blackout the way it did in 2019.
+Here we have a map of a very, very early
+precursor to the internet called
+ARPANET, and this is what ARPANET looked
+like back in 1969.
+As you can see, it is made up of four
+universities that are all connected to
+each other, again, using a very, very
+early form of what would later become
+the internet. Now, take a look at these
+connections and tell me which of these
+areas is the least fault resistant?
+Well, if the connection between the
+University of California, LA and the UC
+Santa Barbara was somehow disconnected,
+though they wouldn't be able to
+communicate directly with each other,
+they would still be able to go through
+Stanford and connect to one another.
+Same goes between Stanford and Santa
+Barbara. Same goes between Stanford and
+UCLA. If any one of those three
+connections in that triangle are severed
+somehow,
+all of the universities are still going
+to be able to communicate with each
+other. In fact, if somehow the entirety
+of UCLA were to suddenly stop being able
+to connect at all, well, the remaining
+three universities would still have no
+problem getting in touch with each other
+using this map of of connections.
+However, University of Utah is in a bit
+of a rough spot. If that connection
+between Utah and Stanford were to be
+severed, then Utah, like Tonga, would be
+completely cut off with no backup
+pathways to get from point A to point B.
+In fact, you'll notice that if Stanford
+were to suffer a total power loss and be
+unable to receive or send messages at
+all, the universities in California
+would still be able to communicate with
+each other, but Utah would once again be
+out of luck because their connection is
+much less fault tolerant. Now, you might
+be thinking, "Oh, right. Of course. All
+they have to do is run another line from
+the University of Utah down to UCLA.
+That'll connect a second triangle and
+now if any one connection goes down, all
+of the universities will still be able
+to communicate." And while yes, they did
+eventually do something similar to that,
+the fact of the matter is laying out a
+brand new communication infrastructure
+is very, very expensive. So, there's
+always this push and pull between cost
+and reliability. And we're going to talk
+a lot more about that in a future video
+on the digital divide. Here's what
+ARPANET looked like only 11 years later
+in October of 1980. As you can see, not
+only are there a whole lot more nodes,
+but you can also see that there are
+many, many more connections between
+existing nodes, increasing redundancy
+and thus increasing fault tolerance.
+However, there are still lots of
+potential points of failure. Look
+specifically at Hawaii over on the left
+and London right here next to me. Not
+only do those only have one single line,
+but if you look at the legend down
+there, it's not even a line, it's a
+satellite path. And of course, back in
+1980, satellites were still not
+really the technology they are today. It
+would be very easy for one of them to
+malfunction and cut off that connection.
+And of course, to this day, satellites
+are still a very important part of
+redundancy. If a physical cable is cut
+like it was in Tonga, satellites can be
+repositioned to at least provide some
+basic amount of connectivity, which is
+so important in the year 2026 when
+basically everything we do is dependent
+upon the internet. To get an idea of why
+the connection to Tonga was so much more
+fragile than, for example, the
+connection between the East Coast of the
+United States and the West Coast of
+Europe, well, just look at this
+admittedly simplified map from 2020 with
+all of the different cables going back
+and forth between the United States and
+Europe. Half of those could end up being
+completely destroyed, and chances are
+good we'd still be able to get a pretty
+solid connection between the two
+continents. So, why is it that we get
+all of these connections between the two
+continents, but Tonga only got one?
+Well,
+that's part of what we call the digital
+divide, and it has to do with how many
+people and levels of wealth and all
+sorts of complicated political and
+physical realities. But, we're going to
+set that topic aside for now, and we're
+going to cover it in a future video. For
+now, let's do some quick recap.
+Redundancy in computer networking is the
+ability to have many different paths
+from point A to point B, so that if
+something happens to one of the nodes
+along the path or one of the connections
+along the path, a packet can easily be
+rerouted. Kind of like how most of us
+living in the United States have some
+sort of commute from home to work,
+especially those of us who live in
+medium to large-size cities, like I do.
+If one of the streets along my commute
+suddenly gets shut down for whatever
+reason, I can usually use Google Maps or
+my own knowledge to route myself around
+the difficulty, and it might take a
+little bit longer, but I will still be
+able to get from home to work.
+If on the other hand I worked, let's
+say, up high on a tall mountain, and
+there was only one road that went from
+sort of the main highway up to that up
+to that area, and that road got wiped
+out by a landslide or for some other
+reason, well, now I'm kind of stuck
+unless I have access to something like a
+helicopter, or I'm just not going to
+work that day.
+So, with more redundancy comes more
+stability in connection, but of course,
+it also takes more infrastructure, which
+means higher costs. Fault tolerance is
+related to redundancy in that it
+measures how much of a system can shut
+down, how many faults, how many problems
+there can be before it actually affects
+service. The more fault tolerance a
+network has, the more things have to go
+wrong in order for the whole system to
+collapse. Hopefully, all of that makes
+sense and as usual, if you have any
+questions, please put them in the
+comments. Friends, thank you very much
+for watching. I'll see you in the next
+one.

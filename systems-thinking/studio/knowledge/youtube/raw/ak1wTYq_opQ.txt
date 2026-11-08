@@ -1,0 +1,283 @@
+so in this video we're going to be
+talking about how to design a logging
+system so what we mean by a log system
+is anything that can take in
+unstructured log data from a number of
+services that we have configured and can
+store that large quantity of data in
+such a way that a person can easily
+query that data and get access to
+historical insights this is pretty
+common in a lot of large scale systems
+where we have multiple services that are
+all producing logs and we need Subway to
+store that massive quantity of log data
+in real time so let's think about some
+requirements that we would have for a
+system like this the first functional
+requirement that we have is we want to
+be able to have realtime log ingestion
+from our producers of logs so our
+producers are those services that are
+producing those logs that we want to
+store in our system we also want to make
+sure that we can query those logs
+efficiently if we want to do some
+analysis these are going to be time
+series logs so our query patterns are
+often going to be restricted to a
+specific time range we also want to make
+sure that we have lots of storage
+available for our historical log data in
+terms of non-functional requirements we
+really want to make sure that we have
+low cost for infrequently accessed data
+so this means that data that's really
+really old and isn't being up upd dated
+or read very frequently shouldn't be
+stored on High Cost Storage we also want
+to make sure that on the other hand we
+have high throughput for log ingestion
+meaning that we should be able to ingest
+extremely large quantities of logs from
+our various systems without slowing
+those systems down and finally we want
+to make sure that we have fast query
+speed for when we need to actually
+access those logs all right so let's
+take a look at how we'd actually go
+about building this system we're going
+to keep it fairly high level for this
+video and we're going to cover a lot of
+topics that you may or may not have seen
+and if you want to learn about those
+Topics in more deta detail check out
+interview pen.com for our full course on
+system design so to start off let's take
+a look at a naive solution where we only
+have a single server that's responsible
+for ingesting these logs so in this
+example right we have one node that's
+storing all of our logs and is handling
+all of the input from all of our various
+Services we also have our person that
+might want to query those logs and they
+can send those queries directly to that
+one node this works perfectly fine for
+most small scale logging systems and
+it's really important to note that if we
+don't have a very large quantity of logs
+that we're ingesting this is perfectly
+fine however if we have a lot of load
+coming from our producing services this
+could be too much load for this one node
+to handle and this would bog down this
+server as well as potentially our
+services themselves so in order to come
+up with a solution that will scale to
+this extreme quantity of log ingestion
+we need to come up with a way to
+distribute our logs onto multiple
+machines an intuitive approach to this
+would be sharding so let's say our log
+system is going to consist of three
+machines we'd use some sort of hashing
+algorithm to determine which of those
+three nodes our data would be stored on
+every time we make a request this means
+that our right are distributed across
+these three nodes so each machine is
+only handling a third of the right
+through put of our entire system and it
+also means that a random third of the
+entire data set would be stored on each
+one of these nodes so this works great
+from our write perspective however from
+our read perspective we have a problem
+because our users that are querying this
+data now have to look at every single
+node to get all the data that they're
+looking for because we haven't come up
+with a way yet to efficiently organize
+this data the segment of data that we'll
+probably be looking for when we query
+this data is likely to be scattered AC
+across all three of these nodes this
+means that while our right performance
+is good here our read performance when
+we're querying this data is very very
+bad so instead of sharding our data
+using a hashing algorithm a better
+solution might be to use bucketing which
+means that each one of our nodes will be
+responsible for a certain time range so
+for example our first node might be
+responsible for the years 2022 to now
+where the second node might be
+responsible for 2020 to and 2021 and our
+third node might be responsible for 2018
+and 2019 of course as we add more times
+these nodes might be responsible for
+multip time ranges that are not
+contiguous and we can use a hashing
+algorithm similar to one we'd find for a
+sharded database to determine which time
+ranges are assigned to which nodes so
+this solves our query problem pretty
+nicely if we're looking for a certain
+time period which we often are for log
+data the person querying the data can
+find that entire time span on a single
+node for most ranges of data however we
+now run into the problem that we had
+before with writing here as now all of
+our logs are being sent to the very
+first node which is responsible for that
+present time data so while we're
+Distributing our read requests and we're
+Distributing our storage of the logs
+we're running into the exact same
+problem that we had with our single node
+naive solution with our rights all being
+sent to a single node so as we'll often
+see in systems like this the best
+solution is a combination of the
+previous two approaches we'll still want
+to bucket our data in some way however
+within each bucket we can have multiple
+nodes that are assigned to that time
+range so that we can efficiently
+distribute our rights across those nodes
+so in this example we now have nine
+nodes in our cluster our rights are
+being distributed across the first three
+and the other six are used for storing
+historical data and that's where our
+queries would be going if we're querying
+historical data so if we're taking a
+look at a specific point in time we can
+see that this system works great however
+we still have to think about how we can
+move the data across these nodes
+otherwise this segment of three nodes
+that's responsible for the present time
+data would continue growing in size
+forever and our other six nodes would
+always stay the same we want to make
+sure that we can have high throughput on
+our hot nodes that are responsible for
+current data while we have cheaper Cold
+Storage that's responsible for this
+older data now we simply need some way
+that we can migrate the data from our
+high-speed storage to our Cold Storage
+so let's take a look at a way to do that
+so the first thing that's really
+important to keep in mind when we're
+thinking about how to design this is
+that our Cold Storage is going to be
+slower than our hot storage so for the
+sake of example let's say that our Cold
+Storage is two times slower which means
+that if we're capable of ingesting a
+certain amount of data within a time
+period it'll take twice that time period
+to transfer that data to Cold Storage in
+order to make sure that we're dealing
+with this situation we're going to want
+to make sure that we have extra nodes
+that we can cycle through while we're
+moving data to Cold Storage so let's
+take a look at an example of how this
+would actually work so we'll start off
+in the time period from 2018 to 2019 and
+during this time period let's say that
+we ingest 2 pedabytes of data all this
+data will be sent to these three nodes
+here so we can see that after this time
+period we have these three nodes storing
+2 pedabytes of data and responsible for
+data from 2018 to 2019 now let's move on
+to 2020 to 2021 and we can see that our
+producers are sending their data to this
+next set of nodes here so we now have
+two pyes of data stored here this set of
+nodes is respons responsible for data
+from 2020 to 2021 but while this was all
+happening we were also able to move some
+of our data from 2018 into Cold Storage
+remember that this takes twice as long
+as ingesting the data so during this
+period of 2 years we were able to move
+one pyte of data into Cold Storage so we
+now have 2019s data still in this hot
+storage and 2018s data is now stored in
+Cold Storage so finally let's move on to
+the time period from 2022 to 2023 we're
+ingesting another 2 pedabytes of data
+into this last set of nodes and we've
+now finished finished moving all of the
+data out of our 2018 2019 nodes into
+cold storage now for the future we can
+see that we have another set of nodes
+that we can now use to ingest this new
+data and now we can start moving this
+next set of nodes into Cold Storage we'd
+of course need more nodes for Cold
+Storage since we're moving multiple data
+sets simultaneously but we can see that
+as long as we have these three sets of
+nodes to cycle through we're able to
+handle the throughput of ingesting new
+data while migrating old data to slower
+Cold Storage so now that we've seen a
+basic overview of how these logging
+systems work let's take a look at some
+next steps one really important thing to
+look into if you want to learn more
+about these systems would be sharding
+and how it's implemented in databases
+sharding was critical to the solution
+that we came up with here and there's a
+lot of details that can go into it and
+it's really important to learn about how
+these systems actually work if you want
+to fully understand the solution in a
+real world system we'd also want to make
+sure that we're doing the math to see
+how many nodes we really need this would
+involve taking a look at how much
+storage space we need how many rights
+we're doing how frequent those rights
+are and how frequently we're reading old
+data to come up with the hardware and
+the number of nodes that we' need both
+for our hot and our Cold Storage there's
+also a lot of problems involving
+optimizing Network traffic with these
+systems since we're moving such large
+quantities of data within our cluster
+it's also really important to consider
+data replication and fault tolerance in
+systems like this since we want to make
+sure that we don't lose our historical
+log data if a node fails and finally
+it's good to look into existing
+Solutions such as elastic search that
+have already solved all of these
+problems and it's good to take a look at
+how these systems work and learn about
+the trade-offs that they made when
+designing it if you enjoyed this video
+you can find more content like this on
+interview pen.com we have tons of more
+in-depth system design and data
+structures and algorithms content for
+any skill level along with a full coding
+environment and an AI teaching assistant
+you can also join our Discord where
+we're always available to answer any
+questions you might have if you are a
+friend wants to master the fundamentals
+of software engineering check us out at
+interview pen.com

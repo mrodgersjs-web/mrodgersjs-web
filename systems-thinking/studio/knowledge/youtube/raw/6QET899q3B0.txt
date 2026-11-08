@@ -1,0 +1,1815 @@
+[Music]
+okay uh we're going to talk about Asian
+based modeling for a while uh I am not
+going to monitor the chat during the
+first time the first period if people
+who are watch anly have a comment um and
+it's it's pressing just unmute yourself
+and go hey Paul and I will stop and
+answer anything um I will also um stop
+for a break halfway through each session
+uh the morning session and the afternoon
+session or the session one and session
+two whatever of each day um so that
+people can take care of business and I
+can address any questions that come up
+in the chat there either
+okay um like Steve said uh this
+is sort of a discipline free thing um or
+I'm I'm very interdisiplinary I like to
+give a little bio of who I am just to
+help people understand where I'm coming
+from and the perspectives that I bring
+here and you're going to bring your own
+perspectives and different expectations
+um and hopefully those can align as best
+as possible um so this is what I call a
+brief visual scho CV I did an undergrad
+degree in physics I did graduate degrees
+in
+Psychology um Cog neuro and also uh
+psychobiology which featured a lot of
+animal behavior um I did a lot of
+Shenanigans in between undergrad and
+grad school I had a lot of jobs worked
+as an Immunology lab tech worked in a
+recording studio worked in film worked
+as a copy editor worked as a psychiatric
+nurses
+aid and I went back to school I did my
+degree I did several post one in a
+school of
+medicine uh one in a department of
+anthropology and one that was
+cross-listed uh between political
+science and computer
+science uh then I managed to uh land a
+faculty job at UC Merced uh in the
+department of cognitive and information
+Sciences I'm also a member of the
+quantitative and systems biology grad
+group I'm a member of the center for
+analytic political engagement and
+interdisciplinary Neuroscience those are
+two centers uh at UCM and I'm also
+external faculty at the Santa Fe
+Institute which is kind of a
+interdisciplinary Center for complex
+systems research um and like Steve said
+I wrote a book um this was just
+published in
+October this course is going to be a
+very sort of um highlights tour not
+highlights tour uh a sampling of some of
+the things that are covered in much more
+depth in this book I teach a 15we course
+at UC Merc said on based modeling or
+modeling more General and uh this is
+going to be highly concentrated what we
+do
+um
+okay I like to start things off with a a
+quote as so many people do um this is
+from yakob Von ukul who was a sort of
+naturalist and an early scientist in uh
+in Germany in the first half of the 20th
+century
+a lot of work in what became
+ethology and uh this was
+uh from his uh book I am not going to
+I'm going to mangle the German umelt and
+inelt
+d uh the truth lies directly before us
+in the reality surrounding us however we
+cannot use it as it is an unbroken
+description of reality would be
+simultaneously the truest and most
+useless thing in the world and it would
+certainly not be science if we want to
+make reality and therefore truth useful
+to science we must do violence to
+reality we must introduce the
+distinction which does not exist in
+nature between essential and inessential
+in nature everything is equally
+Essential by seeking out the
+relationships that seem essential to us
+we order the material in a surveyable
+way at the same time then we're doing
+science I love this quote I to me it's
+like very uh fundamental to the way I
+see what the the task of science is
+which is to to Break um the world into
+recognizable and
+delineable parts and
+express things about properties of the
+relationships between those parts so
+uh I'm going to get a little sort of
+introductory right now
+um and talk a bit about the philosophy
+of the course before we get into the
+mechanical details of agent based
+modeling uh it's going to get a little
+philosophical for a little bit but rest
+assured it will be very technical soon
+after and for the rest of the course um
+but I think a background is in order so
+uh this is a a murmuration of
+Starlings um all those little tiny black
+dots are starlings which are small birds
+and they get together in these groups uh
+of often tens of thousands even
+occasionally hundreds of
+thousands and the thing moves as a
+coherent unit this is something many of
+you may have seen either with starlings
+or something
+else
+um this is a a video of the murmurations
+happening and you can see uh they move
+in this kind of incredibly coherent way
+this is often uh used as a almost an
+archetypal example of emergent phenomena
+right emergent being there's a level at
+which we can express a thing that
+doesn't require us to talk about its
+component parts we can talk about the
+flock or the herd whatever without
+necessarily knowing and understanding
+what the individual parts are are doing
+but it's a real question what these
+individual parts are doing how do these
+birds do this coherently and if you look
+at the history of thinking about things
+like flocking and swarming and
+schooling you see a lot of interesting
+explanations there were there were
+people proposing as as late as the 1960s
+and Beyond um that birds had psychic
+powers or telepathy that there was maybe
+a leader bird that could communicate to
+all the birds and tell them what to do
+um but it doesn't seem to be that way um
+and one of the earliest sort of
+scientific coherent explanations came
+actually not from trained in biology but
+from someone trained in computer science
+so in 1987 Craig Reynolds who was a
+computer scientist working at Sony in
+the um computer Graphics division um
+Reynolds worked on on the original Tron
+if that resonates with anyone uh was
+trying to come up with a way to
+basically
+program a computational model that would
+capture things that looked like birds
+flocking fish schooling Etc um and so he
+wanted to see like what would it take
+for an individual bird or an individual
+anything to create if everybody if every
+individual had some puristic or some set
+of principles that guided their behavior
+and each responded locally could we get
+something that looked like the flocking
+that we
+see and so he called this model boids
+which is sort of a a joke on the way
+people from Philadelphia pronounce the
+word
+birds
+and
+uh created a scenario in which agents
+embedded in a 2d or a 3D
+space could respond locally to their
+local environment moved generally
+forward had a direction and and a and
+propelled themselves
+forward um but used these rules to
+decide where to turn and how to
+turn and just three rules one is
+separation so he said all right well
+birds don't crash into each other so
+they can see each other and they want to
+avoid crashing so let's assume that
+there is a separation principle where if
+you're going to crash you turn away so
+you don't
+crash okay once you have avoided
+crashing and you're not worried about
+that the next rule takes takes hold
+alignment um birds are social they
+generally have shared goals if they're
+all part of a flock at least in terms of
+things like Predator avoidance and often
+in terms of food Scavenging although
+there's there's some uh conflicts of
+interest there too um and so the second
+rule is look around you see where
+everyone else is going and turn
+generally toward the average alignment
+the average direction of every other
+bird all right that's going to get them
+all locally moving in the same direction
+but remember it's not the whole flock
+that sees everyone else each bird is
+only seeing the birds that are
+immediately around it or even
+immediately within its eyesight just the
+ones that are close to it and you can
+have a really big flock where Birds on
+one part don't see the other and the
+last is cohesion which is that if you
+get too far away from any other birds
+you just kind of move in the direction
+where the most birds
+are and when you see these three
+they can do kind of amazing things I
+don't show a I'm not going to do a lot
+of uh prepared videos in this but I I
+really like this
+demonstration so the first rule here is
+a alignment and um you know I'll just
+put a bunch of guys out here for
+fun so what each boy does is it looks to
+its neighbors its friends in kind of a
+small radius um maybe about two or three
+body lengths as long as they are now and
+it averages the position of all of its
+friends headings right the direction
+that they're facing and it moves a
+little bit towards that direction so if
+all of its friends are looking to the
+left it turns a little bit towards the
+left um and every boid does that for
+every other boid that's in that little
+radius of its its friends group um so if
+I turn that off you'll see they just
+kind of go everywhere they don't really
+have a reason to go in any One Direction
+or another now there's some other rules
+obviously you can see they like to be
+near each other and um that's the second
+rule there's a cohesion rule they take
+that
+same um grouping that same uh radius
+around themselves of friends and average
+their positions they say okay for all
+the the boids around me roughly where's
+the center of all of them and they seek
+towards that a little bit so there's
+also a balancing Force against that if
+they get too close to all the other
+boids that are near them they they back
+away they avoid crowding so you can see
+these look pretty realistic to maybe
+little fish swim around they like to be
+near each other but not so near but
+because they don't care about what
+direction they're facing right now since
+I've turned off alignment they just kind
+of flit around and as soon as I turn
+that back
+on suddenly it looks like they have a
+purpose they're swimming fast you know
+we need to see that group just reformed
+with another group so those are the
+three rules and um I can turn these
+these things off at will here if we uh
+turn off crowding rule they'll get
+really really close together they want
+to be near each other and they want to
+cop each other's head heading so they
+formed into just a line they turn that
+back on they they'll puff back out um
+and there's some other stuff going on
+here they have um you know they have
+some noise if I turn off the noise
+they're pretty smooth and if I turn it
+back on you can see them kind of jiggle
+um so if I turn off all of the rules
+here now they're fully random and they
+don't care about each other at all if I
+turn off the noise they just kind of
+drift now they still care about getting
+away from the the barriers here on the
+edge and in fact I can comeing here and
+turn these rules back
+on and lay down a bunch
+of
+um barriers for them to avoid and lay
+down a bunch more voids and you'll see
+lots of interesting stuff happen they
+avoid areas stick back
+together all sorts of
+stuff okay
+um so this is an agent based model that
+that one is done in a language called
+processing which is based in JavaScript
+it's also free that's not what we're
+going to use in the course but it is a
+cool language to play around with if
+especially if you're interested in doing
+any kind of web embeddings or you know
+very visual stuff it's really feed in
+toward very cool visualizations um so
+I'll talk more about what agent based
+modeling is and the different kinds of
+uses for it but that's a sort of early
+example voids is actually
+um extremely influential as an algorithm
+um turns out that movies and video games
+and TV have benefited immensely from
+boids basically anytime if you're
+watching a cartoon or something with
+CGI and you see some sort of her or
+Stampede or swarm or school of fish it
+they're the movement of those creatures
+is done using something some VAR on
+boids this is actually uh a brief clip
+from the very first use of the boids
+algorithm in a major motion picture I'm
+sorry if this ret traumatizes anyone
+from their childhood if anyone uh was a
+Disney
+kid but you can see in the long shots
+all these Wilder
+beasts the movement of them is pro his
+his his voids and then they have the the
+world of beasts drawn over them
+all right yeah I mean so this is used
+all the time like if you watch a a big
+movie like The Lord of the Rings or
+anything with these giant battle scenes
+or huge swarms those aren't 10,000
+extras that they got in costume and
+reenacted a giant battle scene usually
+you know they are for the close-ups so
+that the the more detailed shots um
+they're computer creatures and the
+programmers didn't program every single
+individual to do a very specific
+choreographed set of movements that
+would
+be it would take forever you couldn't do
+it instead what you do is come up with a
+set of rules for individual behaviors
+and put individuals in a in in a
+simulated environment where they can
+respond to each
+other and you look at the things that
+come up now I talked about this use in
+industry
+but things like boids have been
+extremely useful for people actually
+trying to understand crowd Behavior
+swarm Behavior both in animal behavior
+fish bird
+Etc and also human crowds uh traffic Etc
+these kinds of principles of collective
+Behavior have been really inspired and
+make great application of these kinds of
+spatial agent-based
+modeling and these kinds of simulations
+are used throughout the science uh at
+various levels of description of fine
+grain detail uh of abstraction the space
+of possib abilities for creating
+agent-based models is just extremely
+extremely vast and we're going to cover
+a very small amount of that but I'm I I
+really want to make sure that we also
+have time once we go through this to uh
+talk about any concerns from people's
+from any of the the people watching this
+course of your specific fields and the
+kinds of questions you're hoping to
+bring uh to agent-based modeling so
+I to briefly lay out sort of the goals
+of the course there the main one is just
+developing technical skills and learning
+how to think like a modeler to sort of
+understand how models work how they can
+be
+used what models done by other people
+can help tell us and how to use models
+in our own research uh to further the
+kinds of questions uh and thinking that
+we uh want to do uh want to think about
+um and there's a lot of Core Concepts in
+the science of sometimes called complex
+systems or complexity science that come
+to bear on this and I'll be talking
+about that um the space of possible
+models is like I said just too vast I
+can't really it would be a diservice to
+do a survey of all of them so I've had
+to pick a small family of models and
+I've used contagion models um both
+because they have they're very
+straightforward there's a lot of of
+research on them they're they're fun
+they're topical they are used not only
+in biological sciences like
+epidemiology um but also in the social
+sciences for things like the diffusion
+of innovation and the diffusion of
+products and ideas Etc um so we'll use
+these we'll talk about you know
+different ways to model agent
+interactions we'll talk about both
+spatial structured spatially structured
+models Network structured models uh and
+a lot of the lessons will extend to many
+other systems and at the end I'll
+conclude with um a discussion of how to
+build models of any
+system so hopefully that all makes sense
+so the outline Works roughly like this
+so today uh in the the course is divided
+into three units
+um that's this unit we're in unit one
+right I'll start out just talking about
+models agent based and otherwise once I
+get through this introduction uh we'll
+talk about net logo net logo is the
+software programming language that we're
+going to use for the course it's
+probably the most widely used uh
+platform for doing agent-based
+modeling um we're going to mess around
+with some spatial models with mobile
+agents get agents to you know creating
+agents in a three uh sorry two
+dimensional space and having move around
+and interact and we'll talk about how to
+analyze outcomes with those models uh in
+unit two we'll get more detail we'll
+talk about cellular automa models uh
+really introduce contagion models think
+about how to model interventions once we
+have a contagion model there and get
+into more detail on how to analyze agent
+based models finally in unit three we'll
+go into Network models there's lots of
+different kinds of structures you can
+have for a population networks I think
+are one of the uh many strengths of
+agent based modeling we model both
+simple and complex contagion models on
+networks and then we'll talk about how
+to um integrate these kinds of models
+and other models with uh Empirical
+research programs talking about the
+relationship between these theoretical
+models and data and then building your
+own models um for those watching
+synchronously this is roughly one unit
+per day but the mapping isn't always one
+to one I might finish a unit early and
+start the next one or I might take a
+little longer on a unit and then started
+the next
+day um this is a technical class right
+uh agent based modeling it does involve
+programming you can get very fancy um
+all the math that I'm going to use is
+very straight forward high school math
+algebra functions basic probability um
+anyone working in any kind kind of
+research uh should have no problem with
+any of that um so if you can parse a an
+equation like this where this is a
+recursion where the value of I at time t
++ 1 is equal to a function of the value
+of I at time T
+um you should have no problem if that is
+confusing to you then don't worry we'll
+we'll go slow and there's not that much
+math here you can do a lot more math
+with modeling but uh I've kept this uh
+fairly straightforward um mostly to
+focus on the agent based component we're
+going to do programming um a lot of the
+students will have a lot of programming
+experience some people will have less
+programming experience that's okay
+um we're going to use net logo it is I'd
+say one of the most learnable languages
+uh in part because its syntax is
+designed to look as much like natural
+language as possible um and we'll go
+through it a bit uh it is helpful to
+know some of these things but I will go
+sort of very briefly review them today
+um so things like variables conditionals
+Loops Concepts like objectoriented
+programming um and any data
+visualization skills you might have so
+net logo code often looks like this very
+sort of
+familiar almost looks like pseudo code
+uh setting up a function if then
+statements
+Etc okay practical matters uh the
+lectures will be recorded obviously uh
+the second session of each unit um are
+going to focus a bit more on working
+through some of the homework problems
+I've uploaded to the Google Drive which
+you all have access to um all the code
+used in the class is up there and you
+can grab it um so I would say maybe
+during the first break if you haven't
+already it might be easy to just just
+download all that code and just grab it
+so that you have it at the ready um also
+uh I've just created some homework
+problems these are just
+exercises um to help us sort of get a
+little bit deeper and I'll I'll I'll
+help go through some of those uh with
+some of the extra time in the afternoon
+session so I'll focus more on lecturing
+during the first half
+um I've put up some readings the
+readings are all optional they're just
+supplemental um but if you're interested
+in this kind of thing some of them are
+things written by me some of them things
+written by others um using net logo you
+benefit a lot from looking at the users
+manual and especially the tutorials I've
+encouraged people to work through the
+tutorials in advance but if you haven't
+that's okay but I do recommend doing
+them um all the slides are provided in
+that those folders as well so um you
+don't have to do any screen captures you
+can just grab all these slides es um and
+the homework is important whether you do
+the exact assignments that I've made or
+other things I mean like any technical
+skill right the way to get better is
+practice and trying to do things that
+are different than the things you've
+been taught or that are you know sort of
+extending or variations on the things
+that you've been taught um and I'll
+we'll work through some of those
+together
+okay so
+we're going to talk about a lot about
+models uh when I talk about models I
+mean something pretty specific um
+obviously not fashion models or anything
+and also um something a little bit
+different than the statistical models
+that people are are used to thinking
+about although there's there is a um a
+connection with those um models are any
+structures which can be abstract or
+physical that potentially represent a
+real world phenomena so they can be
+physical models and they can be animal
+models they can be experimental models
+as well as formal models mathematical or
+computational
+models um so you know Engineers might
+use physical models this is a a picture
+of the San Francisco Bay model this is
+in Salo California a couple hours from
+where I am right now uh this
+is about 3 acres or about
+um uh .01 square
+kilometers and it is uh to roughly to
+scale the actual space is about 1,200
+square square kilometers it represents
+it's a physical model of the entire San
+Francisco Bay and this was built in the
+1950s and 60s by the US Army Corps of
+Engineers basically to assess
+repercussions of damning projects
+whether or not to Dam parts of the bay
+or any of the inlets um the whole thing
+is very comp Lex and just by surveying
+the land it wasn't clear to the
+engineers what the consequences of
+building certain dams were so they built
+this model to see what would happen um
+to things like water levels and uh they
+ended up deciding that it would be a bad
+idea and they didn't build any dams but
+this thing is still available it's still
+existing and available open to the
+public um obviously engineers build
+Scale Models physical models all the
+time right uh brid
+machines prototypes uh that are versions
+simplified versions of the real thing to
+look at some of the principles um but
+models can be a little bit more squishy
+uh both figuratively and literally right
+um biomedical researchers behavioral
+researchers neuroscientists use animal
+models all the time to make you know
+most researchers who study things like
+Norway rats and fruit flies are not
+interested say in the physiology or
+behavior of Norway rats or fruit flies
+some of them are but most of them aren't
+right instead they're interested in
+general principles often about
+humans about
+physiology hormones Neuroscience
+behavior of these organisms genetics and
+they use the inferences drawn from what
+they learn about these animals to make
+analogies about the real system about
+the systems of the larger class of
+systems um and this is I think
+fundamental about models like a model
+is this is a an idea I kind of took from
+the philosopher Michael
+Weissberg but uh you know the difference
+between a modeler and a non-model is
+really just whether or not you're
+studying the thing that you're
+ultimately interested in or you're
+studying something
+else because it's difficult to study the
+real thing you study something else
+that's similar enough that then you can
+draw inferences back to the thing you're
+interested
+in and so animal models are like this
+and experiments are models so this is a
+sort of a famous experimental Paradigm
+from psychology this is the marshmallow
+test many people have heard about this
+interpretations exactly of this of what
+this tests are contentious these days in
+Psychology but basically what it is if
+you don't know it is you bring a child
+into a room and you put a marshmallow in
+front of them and then you
+say I'm gonna leave the room for a while
+and if that marshmallow is still there
+when I come back I'll give you a second
+marshmallow and you can have two
+marshmallows but if it's eaten then you
+don't get a second
+marshmallow
+and uh this used to be thought to to
+measure something like you know
+willpower or fortitude or grit and and
+now it's it's thought that it it more
+likely measures things like trust and
+authority and feelings of safety uh
+which co-vary a lot with social and
+economic status uh but regardless right
+nobody pretty much nobody who's doing
+this study is interested in how long it
+takes a
+child how long a child can wait for
+Marshal that's that would be crazy if
+you're like I'm really my thesis is on
+how long kids can wait to eat
+marshmallows because that's my what I
+really want to know about maybe somebody
+does um but really they're interested in
+a much larger class of behaviors
+so the experiment is a model for the
+kinds of phenomena that those
+researchers are interested in now formal
+models are like this too formal models
+are user defined sets of specifications
+of parts and relationships between parts
+that that represent some system and I
+think of them as really continuous with
+these other kinds of things whereas an
+engineer can build a physical model or
+other kinds of scientists find or
+construct ways aspects of the natural
+world to better represent or more
+clearly represent the kinds of systems
+or phenomena they're interested in
+modelers can also saywell I'm just going
+to construct a purely hypothetical
+scenario
+and say these are the parts and these
+are their properties and these are their
+rules for change and I think that this
+scenario represents something in the
+world we set out a set of assumptions
+that we think are correct or accurate or
+we have good reason to think so or we
+are
+testing and then we see what the logical
+conclusions the mathematically necessary
+conclusions of those assumptions are and
+that's what formal modeling is an agent
+based modeling is a kind of formal
+modeling um these models are are
+basically a logical engine for turning
+assumptions into
+conclusions and we we need these engines
+because our minds are
+limited it's really hard for us to Think
+Through the consequences of hundreds or
+thousands of moving Parts all
+interacting with each other over a long
+time if we could do that we wouldn't
+need to make simulation models we could
+just simulate it in our brains but we
+usually can't although as you do this
+you do get better at drawing inferences
+or or or getting intuitions for the way
+these kinds of systems tend to
+work but by building the agent-based
+models
+explicitly uh we create what muray
+Gelman uh has called a prosthesis for
+the
+imagination we can get a lot out of this
+right um if you ask most people why you
+should model most people will say
+prediction
+prediction seems to be the gold standard
+of of a good successful science right we
+want to be able to predict things
+prediction is great uh but models don't
+always need to predict you can get other
+things from models that are really
+useful without doing any prediction uh
+one is precision just knowing exactly
+what we're talking about especially when
+dealing with complex systems especially
+social or Behavioral Systems where
+uh we primarily use language to describe
+what's going on right language is
+inherently vague and
+ambiguous two three people can use the
+same words about things and when you
+actually press them for what they mean
+turns out they we're thinking of
+something very different uh by
+formalizing hypotheses and theories you
+can everyone can know exactly what
+everyone else is talking about we can
+all know that we're thinking about the
+same system and we can all agree on what
+its strengths and weaknesses
+are and I think this really helps out
+with the accumulation of theoretical
+results
+um relatedly right models provide
+tractability the real system the real
+world is hard right we can't always do
+the kinds of experiments we want there
+are limitations of time and space and
+resources and ethics that we you know we
+can't like infect everyone in a
+population and see what happens right we
+can't uh put an apex predator into a
+population and just see what happens uh
+but we could build a a model of What
+kinds of things we might expect if such
+a thing a scenario was to arise and we
+can create a tractable analyzable system
+uh that would be very difficult to study
+in the real world and I think that
+just generally there's a lot of insight
+you can get from doing these kinds of
+models uh not just from any specific
+model but over time when you build
+models and you analyze them over and
+over again you get an intuition for the
+kinds of Dynamics and the kinds of
+relationships that occur over and over
+again uh across systems this is actually
+I think one of the the basic Gambit of
+what's now called complex systems or
+complexity science which is
+the idea that across levels of
+organization and different kinds of
+systems from galaxies to neurons to
+ecosystems to social systems there are
+principles about the way about the kinds
+of Dynamics and relationships that occur
+when certain relationships exist and
+those relationships exist often in some
+form across many
+systems and building models
+there's I mean so much Insight in
+science has basically come stemmed from
+somebody in one field familiar with the
+models of their field entering a new
+field and saying hey this thing in this
+field is like this other thing in my
+other field and I can build I can bring
+either bring wholesale or adapt a
+model um for I mean contagion models
+which we'll cover are are a great
+example right first developed in epidem
+ology later used to describe uh product
+adoption and the diffusion of
+Innovations then even later uh used to
+study things like the spread of ideas
+behaviors okay
+um I like to uh to give a parable uh
+this is I call this the parable of the
+cubis chicken
+um we'll get to the the nitt gritty
+details very soon but I I I want to
+really drive this point home right this
+is something that that happened to me uh
+years and years ago when I was in
+college so was over two decades
+ago but I was an undergraduate and I was
+with a friend and we went to see uh we
+went to basically get a a third friend
+of ours to go out and have fun at night
+and this third friend of ours was in a
+play he was an actor in a play and we
+had seen the play the night before so we
+went to just collect him after the play
+but we got there a little early so we
+went into the basement of the theater at
+the University and there was a bunch of
+stuff if you've ever been in a
+university theater there's just a bunch
+of random knickknacks and there was a
+bucket of Legos and we started just
+putting random Legos
+together uh while we were
+talking and one of us said I don't even
+know who said Hey look it's like a cubis
+chicken and I promise you we were not
+sober but we one of us said uh it's like
+a cubis chicken and immediately the
+other one of us was like yeah it's a
+cubis chicken and we were just like
+unreasonably proud of ourselves being
+for agreeing that this was a cubis
+chicken we talked about the cubis
+chicken for several minutes then we put
+it down few minutes later our friend
+comes down from his play and we hold it
+up to him and say hey look a cubis
+chicken and this is not exactly this
+image is not exactly what it looked like
+this is like an artist reconstruction
+but I don't know it was something like
+this some just like mashing together of
+white and black and yellow and red Legos
+and if you kind of squinted it kind of
+looked vaguely like a
+chicken and he said how is that a cubis
+chicken and I was like well okay here's
+the head and here's the the neck and
+this is the body and these are the
+feet and my friend who again for 10
+minutes had been totally agreeing with
+me that it was a cubis chicken got very
+upset and was like
+no the whole thing is just ahead and
+this is the crest and this is the beak
+and these are the
+eyes and we realized that we had been
+using the same term to talk about the
+same thing and agreeing that we agreed
+for 10 minutes and it was only when we
+had to really be specific about what we
+meant that we realized we had a
+completely different interpretation of
+what those words meant and we were
+envisioning the system completely
+differently and I think this kind of
+thing I it really stuck with me because
+I think in language and in life this
+kind of thing happens all the time that
+actually this is an Adaptive feature of
+language the ambiguity allows us to
+imagine that we agree often more than we
+really do and this is it's probably a
+useful thing for a lot of Coalition
+building and and cooperation um but it's
+not great when we're trying to do
+science and trying to be really precise
+and say exactly what we mean right so
+formalism helps us avoid this issue by
+allowing us to unambiguously say exactly
+what we're talking about when we talk
+about our ideas for some
+system okay how do we build a system how
+do a model system right we have to break
+it down into parts right so if we want
+to understand the behavior of some
+system we have to articulate that system
+we have to decomp compos
+it and say okay what are the parts what
+are their properties what are the
+relationships between the parts and how
+do those parts uh properties and
+relationships change now this gets back
+exactly to that quote by Von oops I
+talked about at the beginning
+right any system you're interested
+in can be described in many different
+ways it is what it is it is has all the
+features of
+itself and you can't take away any of
+them and leave the whole system intact
+really but that's not actually what
+we're doing when we're doing science we
+don't care about the nature usually we
+don't care about the full nature of a
+system we care about understanding some
+aspect of the system because we're
+interested in certain kinds of
+outcomes and so what we need to do when
+we build up Theory
+and hypotheses about those systems and
+the outcomes we're interested in is
+delineate what are the aspects what are
+the parts of the system that are
+essential to our theory for that outcome
+for that behavior for that phenomena
+what are the parts that are essential
+that we require in our Theory to
+understand what's happening and one of
+the parts that are less important
+and of those parts what properties are
+important and what parts can we ignore
+what relationships are important and
+what relationships do we ignore and how
+do these properties and relationships
+change over time and what's really
+frustrating is that the
+decomposition that's useful to you is
+going to depend on the questions you're
+trying to answer there is no one right
+way to decompose a system because the
+system is the system and any
+decomposition is an abstraction and a
+ultimately a debasement of that system
+but it's what it's the decomposition
+that you is useful to
+you to answer your question I actually
+think this is like my pet philosophy
+Theory here um you don't have to take
+this very seriously but like Thomas
+in the structure of scientific
+revolutions talks a lot about paradigms
+and Paradigm shifts and how scientists
+work under paradigms which are basically
+sets of assumptions about a system and
+those assumptions I think this is really
+related to this where certain paradigms
+facilitate or afford certain kinds of
+decompositions which facilitate allow us
+to ask certain kinds of questions
+usefully and not others and a paradigm
+shift happens often when a new
+decomposition is introduced that allows
+us to ask new or better questions or get
+better answers to the questions that we
+want to
+know
+um some knowing some common
+decompositions uh is useful it helps
+Drive Theory forward as we build on each
+other's decomposition if we say this is
+a common decomposition for understanding
+contagion or cooperation or segregation
+or any other kinds of phenomena we can
+say well okay
+first of all we have a lingua Franco
+where we can all talk about the same
+thing and also it allows us
+to uh build on it and extend it
+forward so that's the Gambit I'm going
+to take which is to say I think there
+are certain decompositions that have
+proven themselves
+useful they're always wrong at some
+level but they capture I think some
+aspect of systems that I think are
+important and valuable toward moving
+forward and I I do think though I want
+to before I move on right you know the
+question really does determine the
+relevant parts of the system and and it
+works the other way too right how we
+Model A system determines the questions
+that we can ask about
+it and so when we it's it's useful not
+to get too comfortable with any
+particular model or at least to to
+constantly or you know at least
+periodically ask ourselves what are the
+kinds of questions that this model
+doesn't allow us to
+ask um this is economists sometimes the
+the behavioral economists uh have
+sometimes called this model-based
+blindness when people are sort of so
+focused on the models that they're using
+that they they stop relating it back to
+the aspects of reality that don't fit
+the model that is a problem um we can
+talk more about that toward the end
+let's going to take a a go forward but I
+want to highlight one example here so
+this is this is a real example this is
+from when um I got this when uh I was at
+a Santa Fe Institute workshop on
+computational modeling
+about 15 or 16 years ago uh that John
+Miller and Scott page ran and they
+started the workshop with this prompt
+they said people enter and leave an
+elevator as it travels up and down model
+using whatever techniques you wish the
+above scenario an explicit Ely State
+your model and key
+assumptions uh now as a naive grad
+student I thought well okay great uh we
+were in groups we started talking about
+the scenario people entering and leaving
+elevator and my group said okay well
+let's do something like um make it a
+decision-making uh problem so
+individuals get to the elevator they can
+either they need to they're on some
+floor they need to get to a different
+floor they have the choice between
+taking the elevator or walking down the
+up and down the stairs and so this has
+to do with sort of how many stairs how
+many flights of stairs they need to
+Traverse and what time of day it is so
+how crowded the elevator is likely to be
+and how long it's likely to take and so
+we kind of created terms for all these
+things and and looked at how it might
+vary depending on different other
+features uh like time of day or flight
+uh a floor or you know sort of maybe
+individual traits like
+shyness um and then we presented this to
+the group and then another group gave
+their presentation and their
+presentation was totally different their
+presentation was imagine people in an
+elevator you're in an elevator and what
+you want to do it's also a
+decision-making task but an individual
+you what you you want is to be as close
+to the door as
+possible when it's time to leave the
+elevator but also you don't want to be
+you want to be as far from other people
+strangers in the elevator as possible
+and you want to avoid people having to
+move past you or you having to move past
+others so it was a spatial optimization
+problem based on those constraints now
+what's interesting here is that these
+models have nothing to do with each
+other except that they both ostensibly
+involve elevators but they're basically
+completely different
+models you could take the model from one
+thing and the first model and apply it
+to other scenarios and you could take
+the second model and apply to other
+scenarios but they look completely
+different the reason is right that there
+are no questions in this prompt there
+are no questions at all about what
+problems are to be solved there is just
+a
+system and I think this and I've talked
+with John Miller and he was like yeah we
+were really explicit about this like we
+did this very intentionally when I when
+I asked him about it um that the
+question itself the questions you're
+trying to ask about a system are going
+to determine not just how you analyze a
+model but also how you construct the
+model what are the features of the
+system that are included or excluded in
+model and so being really careful about
+this is important um and it can also
+sort of highlight limitations uh to your
+verbal Theory
+because you need to know what kinds of
+outcomes uh would be useful to sort
+of validate or invalidate or confirm or
+disconfirm uh the theories you have or
+the questions you're trying to
+answer so I do think you know models are
+ultimately really useful I'm going to
+talk about a couple of get into some
+some specific examples and then we'll
+get to
+coding so
+this is basically one of the first
+successful scientific models is Newton's
+model of gravity right in the early 17th
+century Johannes Kepler used Tao br's
+data the best uh available astronomic
+data to show not only do the planets
+orbit the Sun and not uh not the Earth
+but also that their orbits were
+elliptical and not circular so this was
+a big deal the question is why so that's
+the question right we have planet in a
+sun and they're
+orbiting and they're not perfect circles
+they're ellipses why are they ellipses
+no one knew right and so in these early
+days of Western science several
+explanations were proposed um but it was
+Isaac Newton whose explanation persisted
+and this is largely in part because he
+developed it using a formal model so
+um the assumptions of the model are
+really simple you can imagine just every
+object has a mass and a
+velocity and
+then the force that changes that
+velocity is Newton's second law of
+motion Force equals masstimes
+acceleration and okay so what is the
+force that changes the acceleration
+based on the mass well it has to do with
+how strong a force gravity exerts on
+things so Newton deres this universal
+law of gravitation based on this idea
+that heavier things would be more have
+more gravity than lighter things and
+that the force of gravity would diminish
+with distance and the square of distance
+between the objects now it turns out
+James glake has a great biography of
+Newton um this is where I learned this
+uh it turns out that Newton wasn't the
+only person or even the first person to
+propose an a square law of gravitational
+attraction so Robert Hook Christopher
+Ren and Edmund Hy had also
+all uh hypothesized that something like
+an inverse Square law could
+explain the movement of objects um but
+Newton is the first to test the
+consequences of this Rule and he can do
+this because he also invents you know
+calculus which allows him to do this
+easily but he models this and he shows
+that the orbit of a particle acted upon
+by a force of a much larger object uh
+would be elliptical technically he
+showed that any of the conic sections
+are possible but that with um that the
+most likely scenario here was an
+ellipse what's neat is that this model
+is really simple right Newton didn't
+model all the planets and the moons they
+didn't know about all the planets or the
+moons right they didn't know about the
+asteroid belt they didn't know about any
+of the planets Beyond Jupiter
+he just modeled one sun and one planet
+and he didn't even model a sun and a
+planet he just modeled two point objects
+one that was very heavy and one that was
+way less
+heavy but this model shows that when
+that happens when you have a heavy
+object and a light object you get an the
+light object orbiting the heavy object
+in an
+ellipse and this has been extremely
+successful right newtonium even though
+uh in terms of an explanation of gravity
+uh Newtonian mechanics have been largely
+replaced uh by Einstein in general
+relativity in terms of how people think
+gravity really happens although I think
+there's some debate among the physicists
+now um as to the nature of the fabric of
+the universe but I'm I'm not I don't
+care
+um but the model is very successful
+right this is like the moon landing in
+the 1960s was done not using general
+relativity but using Newtonian
+mechanics um but here's here's another
+example right here's a pattern in
+nature uh this is data from the Hudson
+Bay Company which is the oldest company
+Canada uh established
+1670 and this you know they were fur
+Trappers initially this company actually
+still exists they don't do quite as much
+fur trapping but the they were fur
+Trappers they were trading in fur and
+two of the most lucrative furs that they
+were trading were from the Snowshoe hair
+and the Canada
+links and they kept very meticulous
+records over how many pelts they were
+collecting every year and it looked like
+there was some Cycles where there would
+be boom boom years and drop years some
+years lots of pelts some years not so
+many of both species and that these um
+these Cycles tended to be they weren't
+random they were going up trending up
+and then trending down trending up and
+trending down and they were phase locked
+they were correlated why right um
+unexplained by external factors like
+climate so what's going on well uh the
+most coherent explanation was proposed
+by uh Two Italians working independently
+in the 1920s laa and
+voltera uh and they um model this using
+very simply actually uh using techniques
+borrowed from um models of uh
+autocatalytic reactions in chemistry but
+here's the idea right uh just a few key
+assumptions hairs reproduce in the
+absence of predators so when there are
+no Predators or few Predators hairs will
+increase in number because their food is
+abundant you just eat grass and
+shrubs
+links die or migrate which in in the
+context of you know a location is is
+effectively the same in the absence of
+prey so when they have lots to eat they
+grow in number and if they don't have a
+lot of prey they decrease in
+number now lyns eat
+hairs and so more links means fewer
+hairs but of course when there are fewer
+hairs then there are fewer there's less
+prey for the links to eat so their
+population goes down when the links
+population go down there are fewer
+predators and the hair population
+recovers when there are more hairs the
+links population can increase etc etc
+lock little you can model this this is
+the simplest possible basically simplest
+way to model this this is a just a
+series of two coupled differential
+equations or the terms on the left
+indicate the rate of change of either
+hairs or links over time and the first
+equation says that hairs and ABC and D
+are just um constants so uh just rates
+but the the population of hairs will
+increase with how many hairs there are
+but they will decrease with the rate of
+interaction between hairs and links the
+population of links will increase with
+the rate of interaction and decrease
+just as a natural death rate how more
+links there are the more likely they are
+to die not have enough food and if you
+plot these out you
+get nicely coupled
+iCal uh population curves right now this
+model is again very simple it ignores a
+lot of details um but it it captures
+something something essential about
+population Dynamics if you really want
+to do
+prediction about specific populations
+you're going to need to include more
+details you're going to need to include
+things like other predators in prey
+you're going to need to include things
+like seasonality and
+climate um but as a start as a baseline
+for capturing this kind of phenomenon
+this simple model does a pretty good job
+okay one more
+example um and this is related because
+we're going to we're going to do models
+like this um this is the keric
+mckendrick model of contagion this is
+created by kerac and mckendrick who were
+working together in the 1920s um to
+model the the spread of uh a contagion a
+contagious disease through a population
+so the Baseline model here is called the
+sir model SI and R are just states that
+individuals in the population can take
+they're either s susceptible I infected
+or R removed or
+recovered and the idea is that either
+they're removed meaning they've they've
+died or gone away or they recovered and
+in the Baseline model we can assume full
+immunity once you've recovered um all
+these assumptions can be relaxed
+so here's the basic the basis of the
+model when susceptible individuals
+become infected individuals they become
+infected sorry contact infected
+individuals they become infected with
+probability
+tap and then when infected individuals
+are infected they recover with some
+baseline rate uh
+gamma and you can set this up as a
+series of three differential equations
+couple differential equations and here's
+just a typical kind of plot for s i and
+r over time if you start out with
+everybody but one person in a population
+susceptible and it's a well-mixed
+population and everyone's interacting at
+random then
+eventually you get this slow increase in
+infections and then it will it will
+increase over time as more people become
+infected they can affect more people
+then it slows down as more people become
+infected and then the infected
+individuals start recovering and
+eventually the epidemic is over you get
+this class CL sir response curve now
+again this makes a bunch of
+assumptions that don't always hold in
+the real world for example it assumes
+that the population is well mixed so
+everyone is contacting everyone it
+assumes in this version that no new
+people are entering the population and
+no one is leaving the
+population um it assumes that the
+disease works like in this way where as
+soon as you are infected you are
+contagious and that recovery is just a
+constant probability so these are all
+assumptions that don't always hold and
+can be relaxed in extensions of this
+model um but it turns out there was a
+scenario in the
+1970s where these assumptions did hold
+pretty well which was an all boys
+boarding school in the UK there was an
+outbreak of influenza and they
+quarantined the whole school so no one
+was allowed in and out and they kept
+really good records of every boy who
+symptoms and then got better and how how
+long they were sick for
+and the black dots here are the real
+data and the red was a sort of very
+quick and dirty model fit uh to those
+data that I did using an sir model um
+you can probably get a slightly closer
+fit but I I just did it quick and
+dirty but you can see that when the
+conditions the assumptions of the model
+are met uh the model does a pretty good
+job of of showing you what
+kinds of Dynamics are going to
+ensue now all these are purely
+mathematical models right the the
+Newton's model of
+gravity lack ofala model of predators
+and prey kmic mandric model of contagion
+I've talked about these are differential
+equations Newton's has one differential
+equation lock of voltera has two
+differential equations kic mckendrick
+has three differential equations but
+they're differential equations they're
+where every term in the model is
+basically a variable that is the state
+of some sort of system or population of
+individuals so we have one term for all
+the Predators for how many predators
+there are or one term for how many
+infected individuals there are and this
+is very it's nice it's elegant it gets
+us a lot but it also has some
+disadvantage or at least
+limitations uh one is and I think the
+biggest one is limited realism right
+math models like these usually assume a
+lot of homogeneity that basically
+everyone in a certain category is the
+same um that every member of some
+species or everyone who's infected or
+whatever are identical it often assumes
+that interactions occur purely at random
+that the probability of of encountering
+any kind of individual is exactly equal
+to the number of that kind of individual
+in the population or the frequency of
+them that interaction rates are the same
+for
+everyone almost as if populations were
+just swirling in a Giant gas cloud right
+in reality especially if you're
+interested in social behavior most
+populations have important sources of
+heterogeneity right people differ in all
+kinds of ways both in terms of their
+inherent traits like personality age
+gender abilities proclivities
+and also social and environmental
+affordances where they are in a social
+network where they are in the
+environment uh who they're connected to
+right um all these non-random structures
+are important for certain kinds of
+Dynamics um pragmatically there's often
+a limited intuition there is a smaller
+number of individuals who have deep
+mathematical training and for people who
+have very there are many people who have
+like really deep knowledge of a system
+but don't have the kind of mathematical
+training that allows them to
+meaningfully engage with some of these
+these models especially the ones that
+involve sort of advanced math and and
+that is too bad and sometimes you know
+it's like well we shrug our shoulders
+and say well it's too bad but it's still
+valuable to do the modeling and it is
+but also uh it's it's unfortunate
+because often the insights from the
+models would be of use well two things
+right one the insights from the model
+can be of use to the people who are you
+know boots on the ground in the system
+and have the detailed knowledge and also
+having those people interact more with
+the modelers can help us build better
+models um and finally there's kind of a
+relatedly right there's a higher bar to
+entry right it's
+it's if you don't know the math then
+it's hard to access these
+and most of these can be overcome at
+least partially through agent-based
+modeling right for whatever reason
+um agent-based models sort of computer
+programming seems to be easier for a lot
+of people than
+math um I don't know why but it it
+definitely seems to be the case so
+agent-based models are uh it's a class
+of formal models in which individuals
+agents are simulated as explicit
+computational entities so these are just
+some little videos of agent based models
+these these are all models I personally
+have worked on and published um just for
+fun and in this case right each
+individual is expressed explicitly so
+they can have as much heterogeneity as
+you like they can have a location in
+space they can have properties like age
+or resources they can be situated on a
+social
+network
+and they can have different rules or
+strategies for Behavior they can have
+different knowledge
+and we can get a lot of things now it
+doesn't come for free right there's a
+cost which is analytical tractability if
+we have an
+equation and it's you know closed we we
+have the equation we said you know X is
+a function of Y then if we know the
+value of y we can immediately just plug
+that into the equation and get
+X whereas with simulation models you
+typically have to actually run the
+simulations for each case um
+and you know some people think oh well
+math models are you know just there's a
+certain kind of Elegance that gets lost
+I'm I'm somewhat sympathetic to that but
+there are a lot of benefits to agent
+based modeling and I think those really
+for a lot of cases outweigh the cost so
+you can account for a greater complexity
+in your system heterogeneity both of
+individuals and structure you can have
+structures like Network structures or
+spatial structures environmental
+structures um and you can can help us
+understand emergent phenomena it would
+be really hard to understand something
+like flocking birds or schooling fish
+with a purely mathematical model it's
+it's the fact that we have
+simulated them as explicit agents that
+gives us
+uh the power to understand them and to
+to generate those those phenomena and I
+think for a lot of people this is also
+just technically a lower B and treat so
+the trade-off between these cost and
+benefits are going to relate to the
+research questions being asked there are
+cases in which it's
+just easier to do a math model or
+cleaner to do a math model or more
+General to do a math model and then
+there are cases where it's not the case
+I also think right I want to I want to
+make another point about this right
+so people talk about math models or
+equation-based models in these terms so
+these are you
+know just like the the the previous
+models we talked about Newton lockable
+Tera kic mckendrick equations specify
+relationships between variables they
+dictate the Dynamics they can sometimes
+be solved precisely agent based models
+where we have the agents simulated as
+explicit computational entities allowing
+for greater heterogeneity and
+structure I think it's it's a mistake to
+think of these things as competing
+approaches that you have to choose
+aside uh I I have seen these kinds of
+discussions often in published papers
+like this is why Agent based modeling is
+better than equation based modeling or
+this is why Agent based modeling is
+stupid and we have to do only equation
+based modeling and to me I think those
+arguments are are misguided right I
+think these are complimentary and not
+competing
+approaches so I going to show you an
+example uh of
+which in which they are I think
+complimentary
+so this is the keric mckendrick SI model
+as expressed in differential
+equations we have S R this is the the
+populations of susceptible infected and
+recovered individuals and these are
+equations expressed the rates of change
+of those things right so Su susceptibles
+just decrease with the rate at which
+susceptibles encounter infected
+individuals all those become infected so
+that's the same as the first term in the
+infected equation is the same thing but
+positive but then infected individuals
+also recover at rate gamma and they
+become recovered and we can plot out
+this is just looking at the population
+of infected individuals this is um
+looking at two infection curves for two
+values of um toao the transmissibility
+TR to is sometimes called G beta if
+you're an
+epidemiologist um there's a I have
+reasons for calling it to just because
+too stands for Trans transmissibility
+and also beta often implicitly assumes
+also a contact rate and I I'm going to
+get to that
+um but here's the this is if you take
+these equations and you arbitrary I've
+just made some arbitrary values for for
+gamma and to and I've plotted the
+proportion of the population that are
+infected and what happens well both
+times right it goes up lots of
+infections and then goes down as those
+who are infected recover
+um but when the transmissibility tow is
+high and here it's it's three just
+arbitrarily right very transmissible
+very contagious disease the infection
+spreads very quickly lots and lots of
+people get infected and then it crashes
+and they recover what happens when it's
+less contagious or less transmissible
+well it spreads more slowly right and It
+Go takes longer to reach the peak and
+the peak is much smaller right instead
+of 45% of the population being infected
+all at once we have only about 20% of
+the population all one so right when
+everyone at the start of the covid
+pandemic and everyone was talking about
+flattening the curve right this is what
+they meant this is what epidemiologists
+mean by flattening the curve doing
+something to decrease the
+transmissibility or
+otherwise
+decrease the rate at which the disease
+spreads through the population so that
+the infection curve seems kind of
+squashed right and this does two things
+right one it
+gives uh official or public health
+people longer it takes longer uh for the
+infection to spread so they have more
+time to come up with in uh interventions
+and and solutions and also it means that
+at any given time there are not as many
+people all sick at once so we don't
+overload
+resources so this is from the equation
+based
+modeling and we have this this is
+varying this parameter to um which is
+decreasing the transmissibility so you
+can use this to say well look if we can
+decrease the
+transmissibility of the contagion then
+we'll flatten the curve won't that be
+great um I found in talking to people
+that people not trained in epidemiology
+or modeling often had a little bit of
+trouble understanding how this related
+to what any of them was were doing right
+How would how can I decrease the
+transmissibility at the population level
+right this seems to be almost an
+intrinsic property of the
+disease and that has to do with the way
+these equations are written but let's
+let's put this in an agent based model
+so this is something I I did this um
+this is just a a population where agents
+their little people here they're moving
+around in a two-dimensional space doing
+using a random walk they're just moving
+at random and contagion here is based on
+spatial proximity so that if if you're
+susceptible and you
+encounter uh to in order to get infected
+you have to be close in space to an
+infected individual so in this model the
+the white agents are susceptible the red
+agents are uh infected and the gray
+agents are
+recovered and then what I did was a
+bunch of simulations where I didn't vary
+the transmissibility of the disease at
+all I kept it the
+same but when what I did vary was how
+agents move through
+space so in one simulation I said well
+agents can move fast through space and
+that's just their step size every time
+they move they they take a big step so
+basically the population moves quickly
+and individuals interact with many
+individuals per unit time many different
+individuals per unit time the green
+agents here they move slowly their step
+size is smaller so even though they're
+all moving and they're interacting the
+population density hav't changed they
+basically stay pretty close to where
+they started H for much longer and so
+they're interacting with the same people
+over and over again and not different
+people well this is basically a very
+simple abstract model of social
+distancing or physical
+distancing so we can simulate this here
+got little
+animations and in this case right you
+what happens here
+is very similar to what happened when we
+vary the transmissibility in the math
+model right the fast moving in the fast
+moving population you have lots of new
+contexts so there's always another
+susceptible individual that eventually
+will get hit by the the the infected
+individuals are moving quickly through
+the population basically infecting
+everyone all the time that's what
+happens when we have a big well- mixed
+population
+in the slow-moving population we
+have agents not doing that right they're
+basically staying close and they are
+moving a little bit and so the infection
+is spreading the contagion is spreading
+but it's spreading much more slowly
+through the population because the
+amount of the number of new people being
+contacted at any time has
+decreased it also is the only you the
+slow in the slow condition there are
+some individuals who never get infected
+where that never happens in the fast mov
+and so this kind of thing uh I find is
+is is really helpful for building
+intuition about the kinds of dynamics
+that occur in these systems I don't
+think of the equation-based model as
+better or worse and I don't think of the
+agent based model as better or worse but
+they're complimentary you can get
+insights from both and and the insights
+from both complement each
+other
+okay so um
+in terms of realism
+right there are lots of ways to break
+down reality and um there is a a kind of
+qualitative difference
+between or is it's more continuous but
+there's a difference right between on on
+the one end of the scale very fine grain
+models where we are
+modeling lots and lots of details about
+the world right there this is these are
+useful when there is data in the world
+that can be precisely parameterized in
+the model so if we are building
+especially when we have a model of a
+specific time or place or scenario
+people are often very interested in
+these very fine grain models where the
+representation is very clearly related
+to the real system this is like the San
+Francisco Bay model it's a very fine
+grin
+model and in terms of agent-based models
+people use these often when we know a
+lot of the things about the way the
+system is organized so like traffic
+models and normodynamic models are often
+very fine grain some epidemiological
+like if you know exactly the
+geographical layout of a place and you
+know exactly where everyone lives and
+what the probabilities of interactions
+between different people or communities
+tend to be and you know a lot about the
+time course of the spread of a
+particular disease like you know how
+contagion it is you know how long it is
+between when you get infected and when
+you become contagious you know how long
+it takes people to
+recover in scenarios like that people
+can and do build extremely precise fine
+creen
+often we're interested in broader more
+qualitative patterns more abstract
+patterns es and and even when we
+ultimately want to do A fine grain model
+at the beginning we're often using more
+course grain models to build up
+intuitions and
+baselines
+so even if eventually we're going to
+build something very precise we still
+want to start with an abstract sort of
+coar grain sir model to build up
+intuitions for the kinds of things that
+tend to happen these things tend to be
+much more generalizable but rare rarely
+produce exact measurements and so
+there's this relationship between these
+two the models we're going to deal with
+in this course are going to be more Co
+green and then you can work to refine
+them to make them more fine grain to fit
+any your specific system and I'll talk
+about how to do that in a
+bit so I'll end this section right with
+a this is a quote from pet mream uh the
+expressionist painter
+um the one thing can be known only
+through another all wisdom is taught I I
+think that I think this is right um I
+think that models help us by studying
+models which are usually almost never
+the thing that we're actually interested
+in but by studying models we we can
+learn a lot about other things about the
+things we're interested in

@@ -1,0 +1,1386 @@
+hello everyone and welcome to another
+video today I'd like to talk about full
+state feedback we're gonna see that full
+state feedback is an incredibly powerful
+yet ridiculously simple control system
+and I know that sounds a little bit like
+an oxymoron right you usually have
+simple or powerful not both at the same
+time it almost seems like a paradox like
+if Cinderella's slipper fits so
+perfectly how did it fall off in the
+first place
+well in this case if this controller is
+so simple how is it able to be so
+powerful well that's exactly what I'd
+like to investigate today so if all this
+sounds like more fun than a box full of
+GI Joes and I guarantee you will
+actually play with a bunch of GI Joes
+before the video is over now let's jump
+over to the whiteboard and get started
+alright so let's start with our good old
+friend the linear state space
+representation of the system okay so if
+you remember that's just saying that
+we've got our model of the system as X
+dot is equal to ax plus bu and in this
+case Y is equal to CX plus D you okay
+all right so graphically again if we
+want to look at this as a block diagram
+you've got your system here so this is
+your plant so it's got our state space
+representation here of X dot is equal to
+ax plus bu and now let's deal actually
+with this output here so what I would
+like to consider now is uh what it would
+happen if C was the identity matrix and
+D was 0 so if C was the identity matrix
+and D is a big fat 0 matrix what we're
+basically saying here is that the output
+of the system is the entire state of the
+system right so that's one of the
+assumptions we're gonna have to make for
+this full state feedback discussion here
+we're gonna see later on that that might
+come back too I don't want to say to
+come back to buy this here but it is a
+bit of a restriction but for now let's
+make this assumption here so in this
+case we have y is equal to X right so
+coming in to the system is obviously you
+but coming out
+is the entire state vector okay so if we
+have this system the control law that we
+would like to consider is very simple
+for a full state feedback so let's
+consider a control law that is very very
+simple and this is where the simplicity
+comes in so we're gonna say that the
+control law here is that the input of
+the system is just the state vector but
+it is gonna be scaled by some matrix K
+and typically by convention we're also
+going to put a minus sign in front of it
+the minus sign it could be consumed into
+the K sometimes depending on who you're
+talking to but most places will see this
+as a controller U is equal to minus KX
+okay so let's box this up because this
+is actually the control law for full
+state feedback and I don't have to keep
+writing a full state feedback so let's
+call this FS FB okay so full state
+feedback is basically saying the control
+it's just the state's scaled by a matrix
+here so if I wanted to draw this up in
+my block diagram we got to see that the
+only thing you have to do is make u
+equal to the state vector and I just
+need it to come back through and I'm
+gonna put a little block here just for
+fun and you'll see why in just a second
+this goes through a matrix K okay and
+then to pick up the negative sign here
+maybe I'll just draw it like such okay
+so you can see clearly that in this
+diagram U is equal to negative K X all
+right so this K here and it can be
+thought of as your full state feedback
+and I don't want to call it a controller
+really because if you look at this
+picture here maybe a better name for
+this would be regulator because what
+this thing does is that it's going to
+try to regulate the states to zero
+there's no input signal there's no
+reference signal there's no R of T
+coming in anywhere in this picture right
+later on down the road maybe we'll
+incorporate that but for now let's keep
+it simple and say that this is the
+overall system so this is a again let's
+just write this down that this might be
+considered a regulator because what it
+tries to do here
+is regulate nonzero initial conditions
+back to the origin again so this is the
+concept of there's no reference signal
+for it to track all it does is if that
+the system starts at some nonzero
+initial conditions this control law here
+or this full state feedback controller
+or regulator will try to regulate the
+states back to zero so just a little
+side note that I think we I wanted to
+point out okay so um why don't we take
+another step with this in mind we can
+almost ask now how does this overall
+system behave so maybe I will maybe I'll
+draw a little dashed box around this
+thing in green all right so this green
+you could kind of think of it as the
+closed loop system right so actually
+what's interesting about this is that
+I'm just gonna extend this arrow out a
+little bit right there again we see that
+there's no inputs to the green box
+alright there's no reference signal
+there's no disturbance torques there's
+no nothing like that the only thing that
+comes out of this is X so it's almost
+like it's an autonomous system by itself
+right it just responds to initial
+conditions and it spits out what the
+state vector does under this control us
+so why don't we try to write down what
+are the closed loop dynamics of how does
+this green box how does the overall
+system the plant that is being
+controlled by this full state feedback
+control law how does that evolve so it's
+actually pretty simple so let's go ahead
+and write down the dynamics so we know
+the dynamics of the plant here right our
+X dot is equal to ax plus bu right okay
+now we're gonna make a note that well
+what is U well that our control law said
+you was minus KX right so just
+substitute that in for u so we get a X
+plus B negative K X right
+okay so let's distribute this B through
+so we like what a X minus B
+okay and again make sure you're not
+flip-flopping these are all matrices
+right these are matrix multiplication so
+you can't just flip-flop the order where
+are we oh here we go
+oh yeah sorry my minus BK x right so
+let's pull X out on the other side so
+you have a minus B K X right and now if
+you look at this you have X dot is equal
+to some matrix X why don't we call this
+a closed loop or ACL okay so the overall
+dynamics of the green block are
+basically X dot is equal to a closed
+loop times X and again this back and I
+maybe we shouldn't we should make a very
+explicit note here so a closed loop is a
+minus BK right so again this backs up
+our discussion here of the green box
+there there are no inputs to the system
+right it's just an autonomous system or
+you can think of it from from a
+differential equation perspective it's a
+homogeneous system here right there are
+no external inputs of the system and you
+see the only way that you get stay
+trajectories are in response to a
+nonzero initial condition in your state
+vector right okay so this is beautiful
+and basically the next thing that we
+should ask now and we see from this disk
+from this this formulation here is that
+we know that the way that this thing is
+going to evolve is basically determined
+by this ACL matrix right so we should
+say here that the behavior of the closed
+loop system is governed by ACL right and
+more specifically the thing that we're
+usually caring about here is the
+eigenvalues right so more specifically
+by the eigenvalues of a Co
+right that's what we care about and let
+me erase this because it's gotta getting
+in our way or a discussion okay so your
+job as a control engineer might be to
+ask you should probably be thinking ken
+is there some knob or can I change the
+eigenvalues of a closed loop right so
+your job or your goal here is can we
+move again values of a closed loop right
+well why didn't here do you get to play
+with right do you get to play with a no
+typically that's part of the plant right
+this is like the the dynamics your
+aircraft has already been built so you
+don't get to change the a matrix
+similarly B the B matrix was the beat
+was the control matrix or the control
+input matrix of your original open loop
+plant so again that has something to do
+with like how many engines are on the
+aircraft where are they mounted what
+kind of control surfaces do you have all
+that kind of stuff
+again you usually don't get to mess with
+B right however K right the K from your
+control law that you do get to mess
+around with
+so the question maybe instead of saying
+goal we we should have sittin pose this
+as a question here of can we move the
+eigenvalues of a CL well if you look at
+this the way you can do this is by
+changing the K matrix you can hopefully
+change the closed-loop a matrix and now
+hopefully you should be able to change
+the eigenvalues of that that closed-loop
+a matrix okay
+so yeah maybe this again that and the
+goal is the wrong one let's put this as
+a question right so the question is can
+we move I can values of a CL and the
+answer is yes I can values of a CL can
+be placed anywhere if a and B are
+controllable okay so let's let's let's
+box this up because this is is is huge
+and there
+very interesting although we might need
+to take us take a step back here okay so
+first off this concept of controllable
+here make sure that you've watched our
+other video right this one over here
+that talks about controllability right
+because that talked about how to test of
+a system was controllable and you can
+get to that video again there's a link
+to the URL in the description of this
+video or click on the card right up here
+okay so if your system is controllable
+let's get back to maybe the
+ramifications and the discussion of this
+right if you're consistent is
+controllable what this claims here is
+that yes you're able to manipulate the
+eigenvalues of the closed-loop system to
+anywhere right okay that is incredibly
+powerful right you're basically saying
+that I can make this system here respond
+or behave any way I want I can put it's
+an eigen values anywhere okay and
+furthermore let's look at the control
+law alright how did we do that how are
+you gonna do this you're gonna do this
+with this ridiculously simple control
+alright I don't see any integrals
+derivatives zeroes polls any complicated
+behavior here there's nothing this is
+almost like if you think about this this
+is almost like a stupid proportional
+controller right because the control law
+right here that you can shoot computing
+at the current time T is just dependent
+on the current state right now and all
+you're doing is you're you're you're
+multiplying n right this is just a big
+fat matrix multiplied so the control is
+just directly proportional to the
+current state so this is what we were
+talking about that you get you get the
+best of both worlds you get power you
+get incredible power to move the poles
+anywhere but it's ridiculously simple
+here right there's there's got to be
+some saying here that goes along with
+you know ultimate power and all that
+kind of stuff but this is this is this
+is the gist of it right so here's the
+the large-scale picture of you get
+incredible amount of power with a very
+simple controller okay so tell you what
+let's talk about now the next thing is
+now that we've got all this power we got
+to we see that the way you get that
+power is by intelligently choosing this
+major
+k-o-k so that's the whole game with full
+state feedback is how do we pick this
+matrix K to get us the eigenvalue
+locations that we want so give me a
+second I'll pause the video erase the
+board and let's jump into an example of
+how we're going to design this K alright
+so I've erased the board and I've moved
+the critical information up to the upper
+left side of the board write the control
+law again was really really simple and
+building the architecture to implement
+that control law was just as simple okay
+so the first example I want to look at
+is a controllable system okay so the
+idea like we said earlier is I need to
+be able to pick this matrix K here and I
+want to pick that K such that I put the
+eigenvalues or the poles of this closed
+loop system at desired locations this is
+what's sometimes referred to as pole
+placement and we're going to see that
+there are various tools and methods that
+allow us to perform this pole placement
+operation okay
+so let's go ahead and start with an
+example system so the example system I
+like to look at is let's go ahead and
+use our good old friend again our linear
+system X dot is equal to a which is just
+a 2 by 2 that looks something like this
+plus B which looks something like how
+about minus 2 1 you okay so here's your
+system okay so here's your a matrix
+here's your B matrix now you remember we
+said that okay if this pair a B is
+controllable the world is our oyster we
+can move these item days of the
+closed-loop system to anywhere we want
+so let's go ahead and first check
+controllability okay so check
+controllability so you could go ahead
+and test but bility all right you can go
+ahead and use the controllability matrix
+or the pbh test
+I think the controllability matrix is
+probably easier so let's go and do that
+so PC in this case is going to be B and
+then a B so I think if you plug all that
+in I think the B matrix obviously is
+pretty easy to one if you do the matrix
+multiplication of a times
+be I think you're gonna end up with
+three zero okay so here's your
+controllability matrix and if you went
+and check the rank why I guess you don't
+even need to check the rank you can
+easily see that this first column is
+linearly independent of the second
+column here at they point in two
+separate directions so we see that the
+rank of PC is equal to two which is the
+number of states so yeh system is
+controllable we should be good to go
+okay so now what we need to do here is
+we need to go ahead and try to solve for
+K okay well we need some way to pick K
+the first thing we should probably do is
+what is the dimension of K what does K
+look like No maybe we should have talked
+about this a little bit earlier so we
+said that maybe maybe we should've did
+let's let's do it over here I get sorry
+I we probably should have talked about
+this a little bit earlier but just
+looking at the control all right U is
+equal to minus KX okay so if you look at
+this X that is your number of states
+this is an N by 1 right so X here is an
+N by 1 vector u what is U U is the
+number of control inputs that you have
+in your system right so U is going to be
+an M by 1 vector here so again just to
+make sure n is number of states right
+and M is number of controls right so
+just for to make this happen you can
+easily see that K is actually it's
+actually got to be a matrix of size what
+M by n right that's what K has to be in
+order for the dimensions to work out
+right so we see K is going to be a
+matrix it's going to have as many rows
+as you have control inputs and it's
+going to have as many columns as you
+have States ok so perfect so in this
+case we see that K is actually gonna be
+okay how many controls you have there's
+only one control so it's only gonna be
+one row how many states do you have
+there's two states so it's going to be a
+one by two matrix so there's gonna be
+like a k1 here and a k2 okay so K again
+keeping the back your head K is a matrix
+game right okay so let's keep going
+alright now we know that this is what
+our K matrix is gonna look like
+we also know from our previous
+discussion that we know that the closed
+loop system of this right it's closed
+over a matrix is gonna look like maybe
+we should write this down so we know
+closed loop a matrix is we called it ACL
+I think earlier right and that was gonna
+be a minus B times K all right okay so
+your a matrix is pretty simple it is a
+going to be a zero 3 - 4 - what's your B
+matrix so it's a minus 2 1 and now we
+know our K matrix here is a 1 by 2 it's
+k1 k2 so again we see the we see the
+dimensions work out so this is boring
+algebra let me skip it you can go order
+mathematic and do this or heck do it by
+hand it's it's pretty easy to do this
+matrix multiplication and then the
+subtraction but you would basically get
+that at the end of the day your ACL this
+is gonna look like again it's a 2 by 2
+all right so it's gonna look like 2 K 1
+3 plus 2 K - 2 minus K 1 and then great
+so you see that the case weasel their
+way into the a matrix right so again you
+should start thinking that oh wow you
+can easily see that if I start screwing
+around with K 1 and K 2 I change the a
+matrix therefore I hopefully change the
+eigen values so we want to directly
+change the eigen values then right so
+what we should maybe do next is we know
+that the eigen values come from solving
+basically the the characteristic
+equation of s Si minus a alright so why
+don't we write this down here that the
+closed loop I ghen values right if you
+want to find the eigen values of any
+matrix right you're basically solving
+lambda I minus the matrix right and you
+want to solve this thing or you actually
+you want you want this to be to be
+singular right so the eigen values are
+the values that make the ACL singular so
+in other words
+I want the determinant of this thing to
+be equal to zero all right so the
+determinant of this thing should equal
+zero right so those will give me all the
+eigenvalues of the ACL matrix right okay
+so this is pretty simple so again let's
+go ahead and just do this so lambda I so
+this this looks like really simple it's
+a lambda 0 0 lambda minus ACL which is
+this thing up here right 2k 1 3 plus 2 K
+2 2 minus K 1 and then 4 minus K 2 right
+and I still got to take the determinant
+of this whole thing and set that equal
+to 0 so again you can see that it's not
+complicated it's just algebra at this
+point right subtract these two take the
+determinant right do the do the
+diagonals and you'll basically end up
+with and again I'll skip this the the
+nitty-gritty is here in my notes but I
+think you can see that it's very simple
+matrix operations at this point you
+could get this thing to look like you'll
+basically see you'll get a second-order
+polynomial in lambda right so what I'm
+gonna do is I'm going to write this in
+the form of what do we end up here we
+end up with lambda squared plus negative
+4 minus 2 k1 plus k2 times lambda plus
+11 k1 minus 6 minus 4 K 2 ok there we go
+okay why don't we call this this is like
+your characteristic equation right
+because this is what I need this to be
+equal to 0 all right you solve for the
+lambda values that gives you the
+eigenvalues of the closed-loop system
+okay so let's call this how about P of
+lambda all right so let's box this up
+okay and maybe we'll make a note here
+that this is the characteristic equation
+of the closed-loop system using full
+state feedback of k1 k2 right so this is
+the characteristic equation of
+closed-loop system under full state
+feedback right
+okay and actually you know what let's
+let's erase some of this because I want
+to isolate this thing by itself because
+it's this is the important bit okay okay
+so all right we've got ourselves the
+characteristic equation of the
+closed-loop system then we use full
+state feedback is going to look like
+that so again you see that basically by
+manipulating K 1 and K 2 you can change
+the characteristic equation therefore
+you can change the eigenvalues of the
+system okay so now the question is where
+do we want those eigenvalues to go okay
+this is where full state feedback is so
+powerful we can now choose where do we
+want the poles to go so for example
+let's say our suppose that you want
+closed-loop eigenvalues at a specific
+location let's make something up how
+much I really would like the closed-loop
+eigenvalue the first one to be here at
+I'll make something up how about -5 plus
+2i and then I would really like the
+second closed-loop eigenvalue to be a
+minus 5 minus 2i right that's where I
+want these this system to have I gain
+values I want this overall system here
+by the time I close the loop and do
+everything I want it to behave like it's
+got pole or eigen values at these
+locations right well okay if you are
+gonna be this location what is the
+characteristic equation that is going to
+yield these locking values right so the
+other way to think about that is if you
+want these eigen value locations you
+better make sure that the characteristic
+equation looks like this right so you
+better make sure the characteristic
+equation is well it better be lambda
+what plus 5 minus 2i right and then
+lambda plus 5 plus 2i right is equal to
+0 right this better be the
+characteristic equation right let's call
+this thing maybe P desired of Lee right
+you
+really want the characteristic equation
+to look like this because if you do if
+you go if you get a characteristic
+equation to look like this
+I can tell you right now yeah the roots
+of this characteristic equation are
+exactly where you want it to be right
+okay so tell you what expand this thing
+out so you could also write this thing
+to look like it would be lambda squared
+plus 10 lambda plus 29 by the time you
+just foil this thing out right you do
+the expansion and I think that's what
+you would end up with okay so tell you
+it again let's erase the junk that we
+don't care about any longer
+okay so here's P desired of lambda right
+and let's box this up all right and
+again let's make a note here that this
+is the desired characteristic equation
+in order to place poles / eigenvalues
+right at desired locations right okay so
+here's the characteristic equation that
+we want here's the characteristic
+equation you get under full state
+feedback control so I just need to make
+these two equal to each other
+right so in other words all I need to do
+is you know what compare the coefficient
+of lambda here to the coefficient of
+lambda over here those two better match
+right so we get one equation here so if
+I compare the coefficient of lambda
+maybe I'll just write it like this
+right we basically get an expression
+here that alright you get minus 4 minus
+2 k1 plus k2 had better equal the
+coefficient of lambda over here had
+better equal 10 right okay and then
+their second equation here is the
+constant right let's do it in another
+color the constant of what I want had
+better equal the constant of what I've
+got right so if I look at the constant
+term right again we end up with what do
+we end
+it's 11 k1 minus 6 minus 4 k2 had better
+equal the constant here of 29 right
+great so if you look at this all this
+thing is it's two equations two unknowns
+right and in fact this is even easier
+they're two linear equations and since
+the system was controllable you can
+pretty much guarantee that this is going
+to be solvable right and if furthermore
+there will be in this case there gonna
+is gonna be a unique solution here so
+run to your favorite package rate go
+ahead and write this in matrix form and
+row reduced do whatever you want to do
+to solve two equations for two unknowns
+and you'll end up with what do we end up
+with here so I think you'll end up with
+k1 has got to be equal to 91 thirds
+about 30 0.33 and k2 has got to equal
+224 over three which is again this is
+approximately seventy four point six
+seven okay so here we go this went ahead
+we solved now for the the K matrix that
+will get us the eigen values to be
+placed in exactly these locations right
+and you saw that it's actually not that
+bad a procedure at least in this case
+all right all it's doing here all you
+need to do is look at what is the
+characteristic equation you get under
+full state feedback control compare it
+to the characteristic equation that you
+want alright and just make the two of
+them equal to each other okay now to
+support this workflow again you talked
+about this whole workflow is referred to
+as pole placement right because that's
+exactly what we're doing we're placing
+the poles of this closed-loop I get of
+the closed-loop system to wherever we
+want it to be matlab's got a nice
+routine that will allow us to do this
+called place okay so tell you what let's
+run over to MATLAB and do this exact
+example and see if we can just use the
+place command to to automate this
+process for us all right so this is
+actually really really simple in MATLAB
+so let's go ahead and first define our a
+matrix so I think this is what we ended
+up using and also let's define our B
+matrix and now what we should
+probably do here is check
+controllability right we talked about
+how that is a critical component so
+let's check the rank of the
+controllability matrix and again if you
+would like refresher on rank or CTR B
+please go ahead and check out our
+controllability lecture so let's go and
+run this and we see yep full rank so
+this system should be controllable so
+what I can do now is I would like to
+perform pole placement okay so to do
+that like we said MATLAB has this nice
+command called place and place will as
+it says compute the feedback matrix K to
+put the eigenvalues of the closed-loop
+system where we want so what I need to
+do here is make a let's call P desired
+right this is the location of where I
+want to put the poles and I think we
+said it was -5 plus 2i and -5 minus 2i
+right that's the locations where I want
+to put the poles so now it's really
+really simple I go ahead and say place a
+whoops a B and then P desired right and
+what this will return for me is the
+matrix K that should place the poles at
+that location so if I run this here we
+go these are the gains that we computed
+on the board and maybe what we should
+just do one last double-check before we
+leave MATLAB is check that the
+closed-loop I ghen values are in the
+desired location all right so to do that
+all we need to do is first let's make a
+closed loop right I think we said that
+was a minus B times K right and then
+let's just look at the eigenvalues of
+the closed-loop system so if I run this
+yay look at that that is exactly where
+we want it to go okay before we leave
+this maybe what I will mention is
+there's actually another command you
+could also use in MATLAB besides the the
+place command and that is a cur a cker
+so this is using Ackerman's formula to
+do a similar operation so for example we
+could come up here and instead of
+calling place let's go ahead and I will
+copy this and let's paste it below you
+could also call a cur which should
+hopefully
+you similar results okay so if we run
+this again yet we get the exact same
+results just a quick note here I think
+if you read the help on Acker it's says
+that it's not reliable for larger order
+systems so place might be a better way
+to go but again I just wanted to point
+out that there's more than one way to
+ride this donkey you can either use
+place or you could use Acker okay so
+this worked quite well for a
+controllable system let's jump back to
+the white board and look at a system
+that maybe is uncontrollable all right
+so let's look at another example because
+I bet you're just dying to know does
+this what happens if you have a system
+that's uncontrollable does it still work
+and the the the answer is actually no
+but let's go ahead and walk through this
+just to show where this breaks down so
+let's consider the area similar system
+right we'll keep the exact same a matrix
+we had earlier but now what I'm gonna do
+is let's choose a B matrix that is
+uncontrollable here so this uh B matrix
+is going to be oh gosh I need a little
+bit more room actually because it's
+actually a little bit involved here it's
+still a two by one here but this is now
+1/2 times negative 2 plus square root 10
+and then one you okay and this I think
+if you wanted to write it out
+numerically I think this comes out to
+about zero point five eight one one and
+then a one okay
+interestingly for I guess there's a
+little side note for those of you who
+have watched the controllability lecture
+this is actually an eigen vector right
+corresponding to one of the eigen values
+and I think we showed last time that
+that if you have a basic your B matrix
+that's exactly an eigen vector right you
+end up with like an uncontrollable
+system so this system we claim is
+uncontrollable we'll check the
+controllability in a second well
+actually you know what maybe we should
+do this right now so again let's check
+controllability PC here you do the exact
+same thing be a B right and what you end
+up with error is you end up with ok the
+B matrix again is pretty simple it's one
+negative two plus root ten and then one
+and then a times B when you do that
+multiplication I think you get three and
+then 2 plus root ten okay and you check
+the rank of this thing and it's only one
+right so it's ranked efficient so the
+system uncontrollable okay so you could
+do the exact same operations we did
+earlier and let's see where this is
+going to be great a breakdown so you
+perform the same pole placement so if
+you remember all we did last time was we
+computed a CL right as being a minus BK
+right and we know here that K is again a
+k1 and a k2 right it's just a one by two
+matrix so you do that math alright and
+let me see is it ugly or not I have it
+here in the notes I guess it's not
+horribly ugly tell you what let's all
+just write it down for completeness just
+so everyone can follow along here so a
+closed loop what you would end up with
+still a two by two here so this is going
+to be minus one half times negative two
+plus root ten times k1 and then you'd
+end up with 2 minus k1 and then in this
+entry up here you get 3 minus 1/2 times
+negative 2 plus root 10 times k2 and
+then you'd end up with 4 minus k2 okay
+so that's close a loop now what we would
+do is we would compute the
+characteristic equation for this system
+here right I'd go ahead and do
+determinant of lambda I minus a closed
+loop is equal to zero okay so again that
+is something ugly but basically what you
+can do is after a bunch of algebraic
+manipulation you can get this thing to
+look like lambda squared plus this
+quantity here so it's minus 4 plus UPS
+that's a minus minus k1 plus root 5 over
+2 K 1 plus K 2 this is times lambda plus
+gotcha constant I ran out of room so the
+constant so it's a second-order
+polynomial so the constant here or the
+zeroth order
+this is what - 6 + 7 K 1 minus 2 root 10
+K 1 minus 2 K 2 plus root 10 K 2 again
+something right this year is P of lambda
+here right so again this is the closed
+loop characteristic equation under full
+state feedback right and now we need to
+just compare with this with what we want
+so let's use the exact same poles that
+we wanted to earlier that we considered
+earlier so let's just gonna say I want
+to place this system at P desired of
+lambda at lambda minus 5 minus 2i lambda
+minus 5 plus 2i right so I have poles at
+it's wait a second what did it do hole
+is that a plus I think it's a plus
+didn't we want the poles at positive I
+have to make sure did I mess this up in
+the last one we wanted the poles at s
+and lambda is equal to minus 5 plus or
+minus 2i so it's got to look like this
+so I'll have to double check the video
+to see did I did I drop this plus sign
+in the earlier one if I did on all I'll
+correct it okay anyway again this is the
+exact same characteristic equation we
+were we were considering earlier right
+so that is if you expand it out it's
+lambda squared come on where do I put
+this thing here oh yeah plus ten lambda
+plus 29 right so again you do the exact
+same thing you compare the coefficient
+of S or the coefficient of lambda with
+the coefficient of lambda here right
+okay so what we would end up with is do
+to do to do so that's two equations and
+two unknowns so we end up with minus
+four minus K 1 plus square root of 5
+over 2 K 1 plus K 2 has got to equal 10
+all right and then we're going to
+compare the constant here or the 0th
+term with this term right so then we end
+up with minus 6 plus 7 K
+- to root 10 K 1 minus 2 K 2 + root 10 K
+2 is gotta equal to 29 right okay so now
+we just need to solve these two
+equations for these two unknowns K 1 and
+K 2 and it might be easier if we write
+this in matrix form alright so I think
+if you want to write this in matrix form
+you could write and I let's pull this
+out so you got this okay K 1 K 2 and
+actually you can see there's actually
+this constant over here there's a
+there's a minus 4 and then a minus 6
+here right has got to equal 10 and 29
+right and then this entry right over
+here I think if you had gone ahead and
+done this you would end up with root 5
+over 2 minus 1 1 7 minus 2 root n root
+10 minus 2 right okay so let's move this
+to the other side so we can get this to
+look like an ax is equal to B so what
+you would end up with then is you'd end
+up with a matrix expression that looks
+something like okay that that whoops
+that's probably a little bit big we
+don't need it that big okay so this this
+so this is the same thing root 5 over 2
+minus 1 1 7 minus 2 root 10 root 10
+minus 2 times k1 k2 it's equal to once
+at 14 and then 35 right okay so now this
+looks like a big ax is equal to B
+problem right so here's your your a
+here's your X in here B right this looks
+like ax is equal to B but if you solve
+for or if you try to compute the rank of
+a you find that it's only rank 1 here so
+you see that rank of a is equal to 1 so
+the inverse doesn't exist so now we're
+into one of two situations there's
+either infinite solutions or there's no
+solutions so the way we can figure that
+out here is let's create our augmented
+matrix by putting the B matrix
+over here so I'm going to consider our
+augmented matrix a tilde to be a B right
+and then I'm going to row reduce that
+thing so again all that that entails is
+maybe let's just do one more step to
+make sure we're all on the same page all
+right so I'm just gonna augment this
+thing wrote 5 over 2 minus 1 1 7 minus 2
+root 10 and then root 10 minus 2 so
+here's the a and then I'm gonna miss
+with the B matricide okay so here's my a
+till this is the Augmented matrix and
+what I can now do is run over to any
+mathematical package or if you want to
+do the elementary row operations
+yourself and row reduce this thing
+you're free to but you know I did this
+in Mathematica and what I ended up with
+was this came out looking like 1 2 over
+negative 2 plus root 10 0 and then 0 0 1
+right so clearly this is inconsistent
+right because if you look at this bottom
+line this bottom line basically reads K
+1 or basically it reads 0 is equal to 1
+right it's 0 times K 1 plus 0 times K 2
+is equal to 1 so this is clearly
+inconsistent right so there's no
+solutions so in this case the system was
+uncontrollable so I can't find a K
+matrix that is going to move the
+eigenvalues to the locations that I
+desire and if you try this in MATLAB
+it's also gonna choke em just gonna yell
+at you and say hey systems
+uncontrollable you know and if you don't
+believe me here tell you what let's run
+over there those do it real quick
+alright so let's go ahead and start
+example 2 which was an uncontrollable
+system ok so we said the only difference
+here was the B matrix so the B matrix
+now is this weird 0.5 times negative 2
+plus square root of 10 and then a 1
+right that was our B matrix so now let's
+again check controllability right so I'm
+gonna look at rank CTR B of a B and this
+should be deficient and indeed it is
+ranked efficient so now if we go ahead
+and try to perform pole placement
+basically this command up here let's
+just go ahead and copy that exact
+command because that's all I'm trying to
+do is the exact same thing again
+is gonna not like this and you see error
+right it couldn't place these because
+it's uncontrollable okay so let's look
+at one more example so example 3 so this
+one is going to be again let's revisit
+our controllable system but now let's
+use multiple controls okay and see what
+happens so let's go and revisit the
+system we had in example 1 right so I
+think the example 1 we said was
+something like this is 0 3 2 4 X plus
+negative 2 1 you okay but now what I
+want to do here is instead of just
+having one input let's add another
+column to this B matrix and do something
+like this right so now in this case you
+see we've got two control inputs okay so
+in this case now where I have two
+control inputs again we could check
+controllability and and you know what
+table let's save until we get over to
+MATLAB because Mallove's a lot quicker
+than me just waiting out the
+controllability matrix and check hey
+Frank
+take my word that it is controllable
+well actually you know what you should
+know for a fact that it is controlled
+because this is the B matrix we checked
+already like this first column back in
+example one that was controllable it's
+adding more this is obviously it's not
+then make it little if anything it's get
+more controllable so this is still
+controllable so what we can now do here
+is let's go ahead and compute K so again
+make a note here that K in this case
+remember we said K was a matrix with as
+many rows as there are controls so now
+this thing has got two rows and now it's
+actually got two columns as well so this
+thing is actually a two by two so now
+I've got a k1 one ak-12 a k2 one and a
+k2 two right okay so we do the exact
+same thing we did before so let's go
+ahead and get a closed loop right a
+closed loop for the overall system it's
+still a minus BK so go ahead and do that
+matrix math here take here's your a
+here's your B here's your K go ahead and
+do that you're gonna get something let
+me see it's not it's not ugly so tell
+you what I will go ahead and write it
+out just for completeness
+it's not it's not ridiculous you still
+get a 2x2 its
+2k maybe I need a little more room hold
+on makes a little bit bigger ok so it's
+2 K 1 1 minus K 2 1 and then it's 3 plus
+2 K 1 2 minus K 2 2 and then you get a 2
+minus K 1 1 minus K 2 1 and then 4 minus
+K 1 2 minus K 2 2 ok there we go so now
+let's go ahead and get the
+characteristic equation of this
+closed-loop system by basically doing
+our good old friend determinant of
+lambda I minus a closed-loop is equal to
+0 right so this is a little bit more
+complicated but still not horribly ugly
+I'll write it out for just completeness
+so we get lambda squared plus minus 4
+minus 2 K 1 1 plus K 1 2 plus K 2 1 plus
+K 2 2 times lambda plus the constant
+term here is minus 6 plus 11 K 1 1 minus
+4 K 1 2 plus 3 K 1 2 times K 2 1 plus 2
+K 2 2 minus 3 K 1 1 K 2 2 yuck a little
+bit uglier okay so again box this sucker
+up here's your characteristic equation
+under full state feedback right and then
+let's go ahead and compare this with
+what we want let's again use the exact
+same desired characteristic equation as
+before so this was this guy which put
+our poles at plus from minus 5 plus or
+minus 2i so here we go so here's the
+characteristic equation we want so it's
+the exact same game right compare the
+coefficient of lambda with the
+coefficient lambda compare the constant
+with the constant but now we see we get
+a little bit more freedom because we've
+got now two equations and four unknowns
+right so there's an additional degree of
+freedom here so for example what we
+could do is we could solve what did I do
+in my example let's solve k2 1 &amp; 2 2
+let's solve let's solve the bottom row
+of this K matrix with respect to the top
+row so if you do that let me go ahead
+and find someplace to erase all right
+it's just algebra at this point so what
+we can say is again you got 4 would
+start two equations right two equations
+four unknowns so there's infinite
+solutions in this case so what you could
+do is you could get basically K - 1 is
+gonna equal something ugly I don't know
+if I really want to write this all up
+okay tell you what I will write this up
+once for completeness okay
+so you get minus 4 minus 2
+we're sorry whoops no I'm looking at the
+wrong line sorry K - 1 is it's a
+negative in front of this whole thing
+and then you get negative 7 minus 27 K 1
+1 minus 6 K 1 1 squared minus 6 K 1 2
+plus 3 K 1 1 K 1 2 ok all over 3 times
+negative 1 plus K 1 1 plus K 1 2 ok so
+that's K 2 1 and then K 2 2 is going to
+be something also kind of ugly you get a
+negative and then the fraction looks
+like 49 minus 9 K 1 1 minus 39 K 1 2
+minus 6 K 1 1 K 1 2 plus 3 K 1 2 squared
+all of this thing over 3 times the
+quantity negative 1 plus K 1 1 plus K 1
+2 yuck
+ok so a couple of degrees of freedom
+we're now free to choose K 1 1 and K 1 2
+to be pretty much anything we want and
+then that will dictate what K 2 1 and K
+2 2 have to be in order to get the eigen
+values where we want but this additional
+degree of freedom is actually nice
+because it allows us to do other or try
+to meet other requirements or optimize
+the system in other fashions so for
+example
+you know one thing you could do is what
+if we wanted the first control to not be
+used as much as the second control if
+you remember this system here be now
+there are two inputs there's a u one and
+a u - right and we said that the control
+law is U is equal to minus K X all right
+so again if you write this thing out
+this is a u1 a u2 is equal to K 1 1 K 1
+2 K 2 1 K 2 2 times X 1 X 2 right
+so the first control you can see that if
+we if I make K 1 1 and K 1 2 small
+relative to these two it would mean that
+the magnitude of U 1 is less than the
+magnitude of U 1 relatively speaking
+here right so in this case example what
+if you one was expensive like you one
+was the was was was thrust from your
+satellite or something like that it was
+something you know super expensive it's
+like jet fuel or something like that
+or I guess jet fuel is not really that
+expensive but you get though you get
+what I'm trying to say all right you won
+1 how about you 1 1 is is you're
+shooting babies out the back of your
+rocket that's how you're gonna generate
+thrust right and that's much worse than
+u 2 u 2 is like just using you know
+traditional hydrazine or something like
+that as a propellant here so if I don't
+if I want to save the babies right if I
+don't want you want to be large what I
+would then want to do is make sure that
+K 1 1 and K 1 2 are small so for example
+you know now what we could say is let's
+go ahead and choose you since we're free
+to choose I could say how about K 1 1 is
+like 1/10 and a cave sorry 1 1 and K 1 2
+is also 1/10 something small okay so now
+what I would do then is plug these
+numbers back into these expressions to
+get what is K 2 1 and K 2 2 have to be
+so if you do that you would end up with
+K 2 1 is being what was this something
+like minus 10 33 over 240 which is about
+negative 4
+three and then k 2 2 would be 4 4 1 7
+over 240 which is about eighteen point
+four more four oh right okay great
+so this K matrix now so now we see that
+the control law right so u 1 and u 2
+it's going to be 0.1 0.1 and then
+negative four point three and then
+eighteen point four times x1 x2 right so
+we can see that for a given X right if
+x1 and x2 are let's just say both of the
+both of these are 1 right so this
+vectors on what is ones right so out
+here what what you one would would
+evaluate to is just one point two right
+so you only shoot point two babies out
+the back of your rocket that's less
+that's like what a fifth of a baby I
+guess that's okay I guess I can live
+with that right but down here how much
+hydrogen are you burning it's actually
+what four point three minus eight so
+it's like 14 units of hydrogen so you
+can see in this case that u1 is small
+relative to you two right so this is
+nice so the pole placement technique and
+and what's great about this is this K
+matrix still will put the eigen values
+of the system the closed-loop system you
+know this whole thing it will still put
+it at the desired locations of minus 5
+plus or minus 2i right so this is this
+is great it shows us there's a there's a
+little bit of wiggle room here so and
+the pole placement technique is still
+great well I don't I don't know if I
+want to say gracefully but you can still
+take it into account if you manually do
+this this sort of sets the stage for our
+discussion later on when we're gonna
+start talking about linear quadratic
+regulator zor-el QR and this is another
+way that you can use to tune which one
+of these controls do you care about more
+and use pole placement a full state
+feedback in this entire framework but I
+think I'm getting a little bit ahead of
+myself maybe what we should do though is
+let's run over to my lab and see that
+how is MATLAB gonna handle this
+situation where we have more than one
+control input and we're trying to design
+a K matrix for this system so again keep
+this in mind that this is the case
+matrix we designed ourselves manually
+because we wanted to tune how many
+babies are we shooting out of the back
+of this rocket and let's go see what
+does MATLAB do automatically alright so
+let's go ahead and start example three
+this was our controllable system with
+multiple inputs okay
+so actually before we get started let's
+comment out line 34 because we saw that
+this is going to choke right line 34 was
+where we had you're trying to place an
+uncontrollable system so this is not
+going to help us so let's comment that
+out okay so now what we said is all
+we're going to do is augment the B
+matrix so I think our new B matrix looks
+like this right this is the B matrix
+with two controls so again let's go
+ahead and rank check this thing of the
+controllability matrix to make sure we
+are fully controllable and y8 here we go
+so now I can well you know what it's
+actually just this command alright it's
+our place command so again let's copy
+this paste it down here and we should be
+good to go and here here you go
+so interestingly look at this since
+place doesn't have any knowledge of how
+much do we want to penalize one control
+versus the other or any of these other
+ways to narrow down the degrees of
+freedom rank we said there's infinite
+solutions so here's one that MATLAB
+chooses for us right it decides that
+here here's a game that should work
+let's just verify that maybe so let's
+come back over here and let's store this
+to a variable K and just go ahead and
+check that matlab's computed K yields
+acceptable or desired eigen values
+alright so I want to look at AG of a
+minus B times K all right so run this
+sucker and yay it totally works right to
+put it where we want it to be um however
+let's go and check that our whiteboard
+designed K's yields desired eigen values
+right so K let's call it K how about
+white board right this is what
+did up on the whiteboard what did we say
+this was this was 1/10 1/10 and then I
+think it was negative 10 30 3 over 2 40
+and 44 17 over 2 40 right so now let's
+go ahead and check that the eigenvalues
+of a minus K whiteboard get us where we
+want as well and there you go look at
+this it also works so again there's
+multiple ways to skin this cat in the
+situation where you've got multiple
+inputs because we've got more degrees of
+freedom than we have constraints all
+right so I want to leave with a couple
+of closing thoughts so the first thought
+is if you look at the control law here
+which is equal to minus KX we see that
+full state feedback is approximately
+it's basically proportional control
+right in the sense that to compute the
+control right now all you do is you take
+the current state and you multiply or
+you proportionate it and what that's
+actually not a verb isn't here but
+anyway the control is directly
+proportional to the current state right
+so you don't need anything any
+information about the past
+all right there's like like an
+integrator right you with PID control we
+saw that you needed to add components
+that would have some idea of the past
+and you also had things that needed had
+rough ideas of the future here but you
+don't need any of that stuff here in
+full state feedback control it's really
+simple I can compute the control server
+control input now based on the
+information I know now I don't need
+anything else the other thing to think
+about here is what we're talking about
+maybe comparing it to PID control if you
+remember here there's when we were
+talking about PID control we looked at
+designing them via root locus in fact we
+looked at designing any linear
+controller using the root locus
+technique with full state feedback
+control there there's no concept of root
+locus right so full state feedback you
+know has no root locus in the sense that
+you are no longer constrained to move
+the closed-loop pole along given locus
+lines right so if you plot out
+you know your real imaginary axis and
+let's say your open-loop system had
+pulled Raman blue here right had poles
+here here here you know it had it had
+dynamics that looked like this right and
+with root locus we saw that by adding a
+controller these poles would move in
+specific lines or specific locations and
+and half the half of your time was just
+wrestling with making sure that we
+placed the controller poles and zeros
+and locations that would drag the locus
+lines to where we want and we spent an
+incredible amount of time just fighting
+with the system but with full state
+feedback control there's no idea there's
+no lines here right you can move them
+anywhere you want right so if you don't
+like these locations and you want the
+poles to go somewhere else like you know
+here here and here right you don't have
+to drag them along lines you can
+directly move them a full state feedback
+right full state feedback says well
+we'll move them wha-bam right there okay
+and and if you think about this like
+this has huge ramifications right
+for example consider what if one of
+these blue poles were like your
+open-loop system here so like we said
+this is open-loop system this is your
+natural system right so again I I'm I'm
+an aerospace so I like to think of
+aircraft examples let's say you've got
+this slow Piper Cub right this is a low
+performance aircraft and it it has
+open-loop poles like like this like
+these these blue X's right well if I
+slap a full state feedback controller on
+this I can move it to anywhere like what
+if what you know here let's let's call
+this a Piper Cub right what if these are
+like f-14 dynamics right so I don't want
+this I want it to look more like an f-14
+right so I can get rid of this full
+state feedback can make my Piper Cub
+behave like an f-14 all right so now it
+can fly around it can be doing Mach 1 it
+can be turnin and burnin doing all this
+kind of cool stuff and it doesn't stop
+there right there's nothing to stop it
+let's say let's say you've got other
+aircraft like you you you want this
+thing to behave in
+and yet another fashion maybe you want
+it even faster you want all the poles
+even further to the left right you can
+move it here to here to here right you
+want it to now behave like some
+forward-swept you know other ridiculous
+fighter jets so I can now turn my Piper
+Cobra into my f-14 then I can turn it
+into into something faster or you can
+even there's no limit to this right you
+can keep going you can turn this if you
+don't like this and you want your
+experimental crazy prototype hypersonic
+vehicle that can fly around and and and
+do everything but nothing is stopping
+you with full state feedback control
+right full state feedback control says
+you can go anywhere you want right you
+can be gosh it sounds so uh so this you
+know my daughter's in kindergarten it
+sounds like one of those things they
+tell you in kindergarten right you can
+be anything you want to be right
+that's exactly what full state feedback
+control is telling you it says you can
+be anything you want I can change the
+dynamics of my system I can put the
+eigenvalues anywhere so in summary in
+this short lecture we saw how full state
+feedback was an incredibly simple yet
+incredibly powerful control architecture
+as long as your system is linear and
+controllable full state feedback is
+going to allow you to move the
+closed-loop eigenvalues to your system
+to pretty much anywhere you want so what
+this means is you can make any system
+behave like any other system as long as
+they have the same number of eigenvalues
+so you can literally transform your
+system to be whatever you want so if I
+wanted to act like a human with a dog's
+head on top full state feedback would
+make this possible now obviously this is
+a little ridiculous so you have to ask
+yourself where does full state feedback
+break down I mean if full state feedback
+is so great why doesn't anyone use it
+well I'm glad you asked that question
+because in our very next video we're
+going to take a look at some practical
+implementation issues that you're going
+to encounter with full state feedback so
+with that being said I hope you enjoyed
+the discussion today and if you're
+already a subscriber thanks for sticking
+with it with us if you're new to the
+channel please consider subscribing as
+we'll have lots of other discussions on
+Controls Engineering's in the future and
+I hope you'll join us at a future video
+now I don't know about you but I'm
+pretty hungry after all this talking so
+I'm gonna grab a bite to eat until our
+next time I hope to see you later talk
+to you later
+by

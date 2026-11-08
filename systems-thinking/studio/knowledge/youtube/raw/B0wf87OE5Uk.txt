@@ -1,0 +1,321 @@
+So, every day I send out the maximum
+amount of actions that LinkedIn allows,
+which is about 20 connection requests
+and between 20 and 40 direct messages.
+And I'm not sitting here typing all of
+these message and clicking send on all
+of these connection requests. I actually
+trigger it all using a slash command in
+Claude code. And the beauty of using
+slash commands is that it doesn't feel
+like automated outreach at scale. It
+uses what AI is good at, which is
+templatizing, following instructions,
+following workflows with guardrails, and
+using me for what I'm best at, which is
+auditing its progress, checking to make
+sure messages feel customized, they
+sound human, they've done good research,
+and I'm able to do all of this in about
+10 minutes of work every day. So, in
+this video, I'm going to show you the
+anatomy of how this thing works inside
+and out. I'm going to walk you through
+step-by-step how to build something like
+this yourself, and I'm going to share a
+full blueprint that you can use as a
+starting point in the description below.
+So, let's get into it. So, this entire
+system runs on two distinct workflows.
+So, the first one runs completely
+autonomously while I sleep. My computer
+doesn't even need to be on. It uses the
+Sales Navigator API to find new leads
+that match my ICP. It segments them, it
+adds them to my database, and then it
+sends them a connection request after
+liking one of their posts. That one
+doesn't really need my oversight. It's
+not generating any messaging. So, I just
+have that one run before I'm even at my
+desk every morning. The second one runs
+manually by me typing {slash} outreach.
+And then it follows a workflow that
+pulls any leads that have accepted my
+connections, anyone from my existing
+network that I have not reached out to
+in a while that matches my ICP. It pulls
+all those folks together, it drafts a
+customized message to each of them, and
+then it surfaces the messages for my
+review, and then I send in bulk. And I
+have Claude actually send them at a
+human-like frequency. So, every 30
+seconds, give or take a few seconds, at
+random intervals, it will send a new
+message, and that helps us to avoid the
+LinkedIn bot detection, which is robust.
+And the magic of this system is how it's
+organized. So, tracking and outreach can
+be a real nightmare. It's hard to
+remember who you've touched in the past,
+who's accepted your connection requests,
+who's due for a follow-up, who's due for
+a nudge. All of that's just tracked in
+the system. And the way that Claude does
+that is but by dividing my leads into
+three pools. Pool A is newly accepted
+connections, pool B are existing network
+connections who I have not reached out
+to in a while, who match my ICP, and
+then pool three are is anybody who I
+have reached out to, but it's been a few
+days. So, they're due for a follow-up.
+And it segments them even further by
+dividing them into subcategories. So, I
+mostly focus on institutional investors.
+That's a wide category that encapsulates
+independent sponsors, brokers, private
+equity folks, institutional investors,
+real estate investors, and I want to
+make sure I focus a little bit
+differently. I reframe my offer a little
+bit for each of those. So, I have
+templates associated with each one, and
+because Claude has been diligent in
+segmenting each one, it knows which
+template to use for each lead, how to
+frame my offer slightly differently for
+each segment of lead. And all of this is
+just tracked with the magic of
+Superbase. Superbase plus Claude just
+equals magic, because now Claude has the
+ability to
+keep track of what it's doing, to
+reference past actions. Claude has much
+more autonomy when you add Superbase
+into the mix. The second part of this
+whole system is research. So, we're
+using a series of web scraping actions
+to pull up robust information on each of
+these leads before crafting our message.
+So, first line is customized hook, the
+rest of the message is template, and
+that allows us to really create
+guardrails around agents so they're not
+trying to write messages from scratch,
+yet also have each message feel targeted
+and customized and respectful to the
+specific person that we're reaching out
+to. And the third magical component of
+this system that allows it to not feel
+like spam, but to feel more human and
+customized, yet scalable, is the
+human-in-the-loop approval. So, whenever
+I run this action, Claude knows to do
+all of this research, to pull all the
+leads who are due for a message, to do
+all of that work autonomously, but then
+before sending anything, it surfaces all
+the messages for my approval. And what
+that allows me to do is really
+fact-check AI if it's referencing
+things, if it's doing research on posts
+or whatever, make sure it's talking
+about real things, make sure it's
+reaching out to the right thing, it's
+not messing up my template, it's not
+getting the person's industry wrong,
+whatever it is, that human-in-the-loop
+approval is critical. But what that
+allows me to do is, again, spend about
+10 minutes doing this versus 2 hours,
+which is what it might take to actually
+reach out to 20 people on LinkedIn with
+a targeted and customized message. So,
+I'm really just using it as a lever. I'm
+not sacrificing my unique human
+intelligence to AI because I truly don't
+trust it to just write messages on its
+own. And then what gets written to
+Supabase? That is the critical part.
+That's the part that kind of took the
+most time in configuring this because
+tracking your outreach can be a bit of a
+nightmare. So, having a Supabase schema
+that's set up for Claude to track each
+action that it's doing,
+what templates it used, how it reached
+out to this person, what was the
+timestamp, and then tracking who needs a
+follow-up action, who responded
+negatively and should be put on our DNC
+list, all of that would not be able to
+happen with typical Claude or typical
+Claude chat because all of those
+messages are ephemeral, they disappear
+immediately. Whereas Superbase makes
+them persistent and easy to access by
+Claude. So, how do you actually set this
+thing up? Well, I'm going to provide
+templates below that make it super easy,
+but just to give you the high-level
+overview, it's very simple. Three
+different files, markdown files, which
+are how we encapsulate Claude skills,
+encapsulate slash commands, all of that
+are just just information for Claude.
+The rest is on our connector layer. So,
+it runs on two different connectors, and
+I'll show you how to set up each of
+them. So, on the skill side, the
+prospect skill is that one that I told
+you runs autonomously every morning, and
+that one is um basically just a
+workflow. So, prerequisites, read these
+files first, um call the AI West Unipile
+get profiles, and essentially um qualify
+the lead. And basically before um it has
+a bunch of safety guardrails attached,
+so um pull all of my first-degree
+connections, for every row where
+connection status is pending,
+um
+and basically just giving it robust
+information as to how to prospect. And
+um once they are qualified, it is giving
+Claude instructions on how to use the
+proper Unipile endpoint to send a
+connection request and to like a post,
+making them more likely to accept my
+connection request.
+Um so, basically that's that workflow in
+detail.
+Um the context layer um is my the static
+information about my business. So, um
+who we target, what my offer is,
+um what some of my templates are, um
+sequence timing, all the things that are
+not going to change from lead to lead.
+It's just the context layer, and giving
+Claude a context layer is magic for not
+having to redo work over and over again
+and reprompt over and over again things
+that never change.
+And then finally the skill file, which
+is how Claude um actually executes the
+workflow. So, what the slash command is
+referencing is a skill called outreach.
+And basically um this is
+uh the skill format that is typical.
+It's telling Claude, here are the tools
+that you have access to that are
+available. Here is how to use those
+tools, and then here is the step-by-step
+action workflow that you'll follow every
+I invoke this slash command. And all of
+these files live in a little folder that
+was created by Claude, that Claude knows
+where it is, knows how to access it, and
+knows how to use it. And so, you can see
+the different MDs. It knows when to use
+these different markdown files, and then
+it has all of my templates um by
+demographic already mapped out, and it
+knows um by reading the markdown files
+when to use each template. So, those are
+the files associated with this slash
+command. If we're thinking about the
+actual connectors we're using, Supabase
+is the most important one as I
+mentioned, and this is an entire schema
+of information that Claude has
+configured for me in Supabase using the
+Supabase MCP that I use to track every
+aspect of my business. So, I don't just
+track outreach in here, I track my
+content calendar, my existing clients,
+basically everything. But, I also use it
+for this outreach slash command, and you
+can see it's just built uh a robust
+data set of tables that are all
+connected together. And if we actually
+go into one of these tables,
+you can see this is my outreach lead
+tracker, and it's just a it's just a
+spreadsheet, it's a table with a bunch
+of columns, each of which have an ID, a
+LinkedIn URL, and this is what the
+prospector is building us. So, every day
+it's grabbing 20 new leads, sending them
+a connection request, putting them in
+this database, and making sure to
+segment them. So, PE firm, not a fit,
+not a fit, other investor. All of the
+results of that prospector agent are
+here in this database, so that my
+outreach {slash} command can use it at
+any time. And setting up the uh
+Superbase MCP is quite simple. You just
+go to your Claude chat window, you click
+connectors, you click add connector, and
+then you just type Superbase.
+And once you click on that, it's going
+to prompt you to off into your Superbase
+account, and you'll have Superbase
+connected to Claude forever, and you can
+build databases to your heart's content.
+The other we're using here is Unipile,
+which is our intermediary to get access
+to the LinkedIn API, that one's a little
+more of a complex setup, but nothing
+crazy. Basically, you're going to set up
+a Unipile account, you're going to grab
+your API key, and then you're going to
+paste this JSON blob into your
+desktop config for Claude. And you can
+even have Claude do this for you. It can
+edit full files on your computer, and
+set up MCP files for you. And an MCP
+file is just one of these JSON blobs.
+And these are This is the very typical
+format, and you'll paste your Unipile
+API key right here in where it says your
+token here. That's literally it. After
+that, you restart Claude desktop, and
+you're connected to Unipile, and you can
+perform any Unipile action, which is
+basically any action that can be
+performed on LinkedIn. And that's
+basically the whole system. So, to
+summarize, we talked about how our
+entire LinkedIn strategy can be
+encapsulated in two {slash} commands.
+One to send out connection requests and
+qualify new leads. The other to actually
+research and create direct messages that
+gets surfaced for your approval. I
+showed you how to build out the files
+that drive this workflow, as well as set
+up the connectors that it needs to run.
+And we talked about the magic of
+connecting Superbase to Claude to get
+that persistent layer of record so that
+you know every action that's being
+performed by your agents and when. So,
+if you're interested in building
+something like this for yourself, go
+ahead and grab my three-pool blueprint
+that I'm sharing below, which will guide
+you through the entire process that we
+discussed today. If you're interested in
+having somebody come in and actually
+help you build this, that is of course
+what I do for a living, so you're
+welcome to schedule a free strategy
+session using the link below. But until
+then, I really appreciate you taking the
+time to watch this video. Please
+subscribe if you're interested in
+getting more free content like this, and
+I will see you in the next video.

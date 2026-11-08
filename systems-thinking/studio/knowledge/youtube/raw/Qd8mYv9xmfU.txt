@@ -1,0 +1,1611 @@
+Feedback control.
+It's the unsung hero of all modern
+technology.
+Imagine a world with no commercial
+aviation because even though modern
+airplanes are incredible feats of
+engineering, there aren't any control
+systems to drive the behavior of the
+control surfaces.
+Imagine a world with no modern computers
+because there isn't a control system to
+do precision positioning of the hard
+drive read head.
+Imagine a world with no turn-by-turn
+directions because GPS navigation can't
+exist without feedback control.
+Imagine a world with no Amazon Prime
+because there isn't a control system
+capable of managing the thousands of
+robots in each football field size
+fulfillment center around the country.
+This is a world without feedback
+control.
+And while I might be overstating things
+slightly,
+the fact of the matter is that feedback
+control systems are an essential part of
+all, and I mean all, modern technology.
+In this class, we're going to learn the
+fundamentals of feedback control
+systems, and we're going to learn how to
+do analysis and design of some essential
+control algorithms and see their
+application to real-life systems.
+So, without further ado, let's get into
+it.
+It all pretty much starts here with the
+unity feedback control system. This is a
+block diagram that governs most of
+modern control systems and is a good
+place for us to start.
+If we take a lap around this feedback
+control system, we can try to identify
+all of the major components.
+The block with a P inside of it, this
+represents the plant.
+This is essentially the dynamic system
+that your feedback system is going to
+try to control. So, this could represent
+a vehicle, it could represent a robot,
+it could represent
+a temperature control system.
+Really, it could be anything with
+dynamic behavior that we can use
+feedback control systems to control.
+Y, this is the the measured output.
+This is the actual variable that you're
+trying to control. And the way that our
+computer systems are going to measure
+that output is through some type of
+sensor.
+We'll go into some examples once we get
+through this general outline, but all
+systems need some type of sensor to
+measure their
+their surrounding
+parameters.
+Continuing on, the R signal, this is
+called the reference.
+This is basically the signal that we
+want.
+So, if you imagine,
+and we're going to come back to this
+example quite often, if you imagine a
+cruise control system where you're
+cruising down the highway, you're
+getting a little bit tired, so you hit
+cruise control so that the vehicle will
+maintain the the speed for you,
+the reference here is the speed that you
+want the vehicle to go. Okay, so if
+you're cruising at 65 mph, as soon as
+you hit on for the feedback
+sorry, for the cruise control system,
+you have specified the reference. And
+now it's the cruise control system
+control job to
+maintain the measured output at that
+desired reference. Okay? Which brings us
+to the next signal.
+Looking at this block diagram, you can
+probably figure out that E
+is the difference between R and Y. So, E
+itself is called the error signal.
+And it's actually just the difference
+between R and Y.
+Now, this is a really important signal
+because the error itself
+is kind of the key to the whole feedback
+control structure working.
+The reason is is the error contains
+information about both what you want and
+what you currently have in real life.
+So, embedded within the error signal is
+all of the information that the control
+system needs in order to
+generate the proper actuation. Okay?
+Notice now that the error signal becomes
+the input to this C block.
+The C block is called the controller.
+And this is what we're going to spend
+most of this class learning how to
+design is what goes into
+this block here. Okay, so the controller
+is actually not a physical device. It's
+actually just an algorithm. It's a
+transfer function.
+It's basically itself a dynamic system
+which you design to process the error
+signal.
+And the output of the controller is
+going to be U, which is the control
+command.
+The control command is the output of the
+controller, but if you look on the block
+diagram, it becomes the input to the
+plant itself via some actuator.
+Actuators can take many forms. Some
+common actuators in robotics are DC
+motors
+or linear actuators or engines or any
+other type of
+mechanism that can translate
+the control command U into actual
+physical forces.
+And with that, we sort of end up back at
+the starting point of this loop, which
+is the input to the plant itself. Okay?
+So, this is the most general outline for
+how this feedback control system works,
+and we're going to leave it in this
+really general format because
+this particular unity feedback control
+structure is so versatile, it actually
+applies to
+thousands and thousands of different
+types of control systems. Okay, so we
+kind of have to leave it in this general
+form so that as we apply it to
+individual
+systems,
+you can see how each component is going
+to correspond to that particular system.
+Okay?
+The
+the idea here
+The main idea here is that that same
+feedback control system can apply to
+many, many different types of systems.
+Okay, so I'll just sketch out a few here
+to give you a sense for how versatile
+that block diagram actually is.
+Okay, so let's start with one of the
+first examples that I uh
+that I mentioned earlier.
+Hmm.
+Wonder what this is.
+Okay, so I'm testing my artistic
+abilities here. This is a hard disk
+drive out of a
+modern modern computer system. If you
+have solid state, you know, great for
+you, but there's are a lot of computers
+that still benefit from the
+and it's strange to say the
+old-fashioned hard disk drive where
+there's an actual disk with information
+on it that's spinning really fast. Okay,
+in order to do anything on a computer
+with this type of hard drive, whether
+it's to retrieve a picture or open some
+type of document, you actually have to
+position that read head very precisely.
+Okay, and the only way to do that is
+through feedback control. Okay, so so
+one way to sort of very simply outline
+this type of system is to define the
+the measured output, which again is that
+Y signal. This is basically the actual
+and we can just say, and we're really
+simplifying this here, we can say it's
+the angular position of that
+spinning hard hard disk drive. Okay? But
+let's suppose you want to open a
+particular document, what that means is
+you're really saying, well, I need to go
+to a very specific location on that
+disk, which means I'm going to set some
+desired position as my reference. Okay,
+so then from there, it's the basically
+the
+control system's job to position that
+disk to a very specific location. Okay?
+Okay, so so the
+control effort required in this system
+comes from the motor torque.
+Which is supplied inside of the hard
+hard disk drive itself. Okay, so there's
+some motor torque that's being applied
+to position that disk to a very specific
+location.
+Now, I understand this is a very
+simplified view disk drive.
+More likely, it's the angle of or it's a
+position of the read and write head that
+you're actually controlling, but the
+same concept applies here. Okay?
+Let's look at another example.
+So, this right here
+Well, didn't draw that very well.
+This right here is your your Segway
+scooter. Okay, the two-wheeled balancing
+scooter that's sort of like an inverted
+pendulum, which fundamentally is all a
+Segway scooter is. It's an inverted
+pendulum with a control system that
+allows you to take advantage of the
+unstable dynamics to drive yourself
+around. Okay? For the Segway scooter,
+the parameters are largely the same as
+the hard disk drive example that we just
+looked at. Okay? For the Segway scooter,
+what you want is basically
+Um what you want is to to remain
+balanced, right? You want to not fall
+down even though you're only supported
+from two wheels at the bottom. Okay, so
+for just the balancing portion of the
+Segway scooter,
+um what you have is basically as your
+measurement, it's the angle from the
+vertical, right?
+Right? The The angle measured from the
+vertical, if you were to sort of draw a
+line straight up through the Segway,
+the angle measured from the vertical is
+your actual measurement for this control
+system.
+The desired position,
+if you want to be a self-balancing
+um Segway, is basically 0°, right? You
+want to be 0° from the vertical, and
+that constitutes um that the system is
+self-balancing. So, your reference is
+actually 0°, and through the feedback
+loop, it's uh
+going to constantly be monitoring the
+current uh angle from the vertical and
+comparing it to that reference. And
+based on whatever the error is, the
+controller block itself will send out um
+a control command, which is again just
+going to be a motor torque to the the
+the wheels at the bottom, right? So, if
+you start leaning forward,
+the control system's going to say, "Oh,
+we're leaning forward. You better drive
+those wheels forward to counter-balance
+that uh error signal." Okay? Try to
+bring that error back down to zero.
+Here's another one.
+Okay, this is a um well,
+this is an HVAC system. Stands for
+heating, ventilation, and air
+conditioning.
+All modern buildings,
+whether it's a you know, office building
+or hospital or grocery store
+or a university, they have uh
+control systems built in to maintain the
+temperature of the room in the space.
+Okay? Uh it
+it basically it will it will continually
+monitor
+the temperature.
+Right? If you notice on the wall of most
+buildings, if you walk in, you can
+always find it somewhere. There's like a
+little box on the wall, um and that's
+thermostat. So, I'm I'm sure you're all
+familiar with the thermostat. Um the
+thermostat serves a couple of purposes.
+There's a sensor in the thermostat
+that's constantly measuring the current
+temperature in the space. So, that's
+where we're going to get our
+measurement. But, there's also a couple
+of buttons usually on the thermostat
+where you can go and set the desired
+temperature. Okay? So, if it's a summer
+day, and hey, it's pretty hot outside,
+it's getting warm inside, too. We better
+set the air conditioning to 70
+4, 75, depending on your preference.
+Okay? So, the reference That's your
+desired temperature.
+And then again, the system is going to
+constantly monitor the measured
+temperature versus the desired
+temperature. And if the difference
+between the two, in other words, if the
+error gets too large, the controller
+will do something about it. And in the
+case of an HVAC system, the actuator is
+generally a fan that blows There's
+There's generally two ways that a HVAC
+system works, all right? So, if it's
+If you If it's warm and you want to cool
+the space down, you're either going to
+blow a larger volume of air into the
+space of cooler air into the space, or
+you're going to maintain the volume flow
+rate of air in, but you're going to cool
+it down using some type of cooling coil.
+So, there's a couple of different ways
+to do that. Ultimately,
+you know,
+through a damper or some, you know, a
+VAV or some type of variable frequency
+drive, you can control the the speed of
+the fan.
+Um or you can do
+some type of cooling va- uh cooling coil
+valve, right? So, those are your
+actuation options for an HVAC system.
+Uh the point here is that again, this is
+This all falls under that same unity
+feedback control structure. So, any one
+of these three systems can be controlled
+by unity feedback. Okay? Let's just look
+at one more because this is an example
+that we're going to use quite often.
+Just put it here so that it's all in one
+place.
+Okay, so you have basically a vehicle.
+You have vehicle dynamics. That's That's
+your plant, right? That's the dynamic
+system that we're trying to control.
+Now, for cruise control,
+oops. For cruise control,
+we are basically just implementing a
+unity feedback control system to do the
+velocity component of the driving for
+us. Okay? You still have to steer in
+most vehicles unless you've got a
+self-driving car.
+Um
+But, most of us don't at this point.
+But, most cars do have a cruise control
+feature where you can let the control
+system drive the velocity for you. Okay?
+So, in the cruise control example, the
+measured output, it's not an angle It's
+not an angular measurement. It's not a
+temperature measurement. It's actually a
+speed measurement. So, it's basically
+theta dot, right? It's Another way to
+look at it is that it's the angular
+velocity, right? So, really what's
+happening is the vehicle is measuring
+basically how fast the tires are
+rotating, and from that, it's computing
+the vehicle speed.
+So, this is your actual speed.
+And we'll just call that V.
+Which is the ve- the vehicle's velocity
+uh the vehicle's velocity at that point.
+And then when you set the cruise control
+system to go, what you're basically
+doing is setting the desired speed.
+Right? So, you're setting the reference
+signal when you push the cruise control
+on button. And then you can let your
+foot off the gas, and you notice that
+the car will
+depending on the outside conditions, it
+will sometimes go a little bit faster or
+a little bit slower, but it'll always
+try and maintain that desired set point
+speed that you had specified. And the
+way that it does it is through the uh
+the control command sent to the
+actuator, which is in this case the
+engine.
+Right? So, it basically throttles the
+engine automatically so that you
+maintain the desired uh speed. Okay?
+So, I mean, I could go on all day with
+with these types of examples, but the
+but the whole point again is that
+this unity feedback block diagram, this
+structure is so versatile that it makes
+sense to study this particular control
+system because it applies to so many
+different types of control systems, as
+we've seen here.
+Okay. So, I'm going to just going to do
+one more example, and you might feel
+that it's overkill at this point. If
+you're starting to understand the
+concept of the feedback control loop,
+that's great. But, I'm just want to
+throw out one more example, um in part
+because it's fun for me to do, but also
+because it it sort of is a nice segue
+into the next point that I want to make.
+Okay? So, for this example, what I'm
+doing is basically
+Let's see.
+See if I can draw this here.
+I am
+supporting a stick,
+some type of long cylinder,
+you know, rod. In this case, I'm just
+using a wooden dowel. And what I'm
+trying to do is balance that. Right?
+So, this is for all intents and
+purposes, this is basically the same
+dynamical system as a Segway scooter.
+It's an inverted pendulum,
+uh which means that it's
+a vertically supported structure
+supported from the bottom in a
+gravitational field trying to pull it
+down. Right? So, all that put together
+makes this an unstable system.
+And what I want to do with you guys,
+well, can't do this really live, but
+what I want to do now is try to identify
+all of the the same uh components in the
+feedback structure, right? To really
+emphasize that the same feedback
+structure can be applied even into this
+what I'm going to call biomechanical
+example. Bio being sort of the the part
+the human component, and the mechanical
+being the sort of inverted pendulum
+dynamics.
+Okay, so as we
+as we go through, we'll we'll we'll try
+and sort of identify all of these uh
+parameters in the traditional unity
+feedback control structure. So, So, here
+Here it is again just for your
+reference.
+There's your actuator.
+Plant.
+Sensor.
+And then back to feedback.
+Okay, so notice the first thing is we
+can we can
+well, the output diverges, right? The
+angle
+from the vertical, in this case, the
+output of this system is the angle
+measured from the vertical. Notice that
+if I do nothing,
+the stick just falls down. In other
+words, theta diverges. It doesn't go to
+zero. It actually approaches infinity.
+And it won't actually approach infinity.
+All that happens is that it it falls
+down, right? So, the stick falls down.
+This is an unstable plant, but the plant
+itself in this system is the the stick,
+right? But it's also the configuration
+that it's in.
+The fact that it's supported from the
+base in a gravitational field trying to
+pull it down.
+Uh and that's that's basically it. It's
+the stick
+the inverted pendulum dynamics. That is
+the plant, right? That's the system that
+we're trying to control here.
+measured output, that's the actual angle
+from the vertical.
+Right? That's the angle measured from
+the vertical.
+And we'll call that theta, right? That's
+the actual deviation from the balanced
+point. Okay? Now, if I am trying to
+close the loop on this unstable system
+and stabilize it, what I'm trying to do
+is set a reference angle
+of 0°. In other words, I want to balance
+it,
+but what that means mathematically is I
+always want theta to equal zero or as
+close to zero as possible. Okay?
+The sensor in this system, well, the
+sensor is the visual feedback that I'm
+getting by looking at the stick. Okay?
+So, that's this sort of the bio
+the bio part, the biological part.
+Right? So, the sensor
+is the visual feedback from
+from the eyes, right?
+Right? So, I'm looking at the stick as
+it's balancing and I'm saying, "Uh-oh,
+it appears to be off." Right? But the
+sensor itself can't do anything to
+correct that that imbalance, right? The
+sensor is just giving information to the
+controller.
+And in this case, the controller is
+actually the brain.
+Right? So, the the controller is
+basically
+accepting the error signal, right? So,
+the error signal is the input to the
+And the error signal again, remember, is
+the difference between R and Y, right?
+So, it's R minus Y. I know that R is 0°.
+I want this thing to be balanced.
+And I only get the Y measurement through
+the sensor. Right? So, so that visual
+feedback is what allows
+the error signal to be constructed.
+The error signal is then processed by
+the controller, which in this case is
+the brain. And the brain will then send
+control command to the actuator.
+The actuator in this case is
+is the arm,
+right? Or or the hand.
+Or or or basically, it's it's all of
+it's all of this stuff that allows me to
+manipulate the position of the base of
+that stick so that I can counteract any
+imbalances.
+Okay? So, the actuator {slash} control
+command, the control command is
+the movement of the arm and and the hand
+so that I can try to maintain the
+balanced state. Okay? And when then when
+we put it all together,
+if the control
+is good, right? If the controller knows
+what to do with the information that
+it's being processed, and if the
+actuator is fast enough and precise
+enough,
+then we can produce a
+uh a balanced state.
+Okay.
+So, this is the last example that I'll
+do for this lecture. Um
+again, remember the whole idea here is
+that this
+unit the single unity feedback control
+structure is very versatile and it
+applies to so many different scenarios
+that it's
+kind of the starting point for our
+discussion of feedback control.
+The thing that I want to highlight about
+this example is, well, what happens now?
+What happens if um
+well, actually, let me let me do this.
+Let me pose the question of why use
+feedback control at all? What is the
+point of
+of using feedback control?
+Uh one of the primary uses of feedback
+control
+is that it can stabilize unstable
+systems. That's actually that's
+something that only feedback control
+systems are capable capable of doing is
+to stabilize an unstable system. So,
+what we have here
+is a plant, right? A dynamic system that
+is inherently unstable. Right? The
+inverted pendulum system is an unstable
+system. And yet, we are able to
+demonstrate that through feedback
+control, we can stabilize it. Right? So,
+this is kind of a silly example of
+balancing a stick, but it applies like
+the same concept applies to many of the
+unstable systems that exist in in in
+everyday life. Okay? So, the question
+that I really want to pose to you is,
+well, what happens if we don't use
+feedback? Is there any way to maintain
+that balanced state of the unstable
+system without feedback?
+And the way to check,
+well, is to eliminate uh the feedback
+path, right? So, if if there is no
+feedback path,
+then what happens? And the way I can
+eliminate the feedback path here is to
+basically cut the sensor.
+Right? If I eliminate the sensor,
+then everything downstream of this input
+will also be eliminated and therefore, I
+will have no feedback path anymore.
+The way that I can eliminate the sensor
+in this example, well, all I have to do
+is to close my eyes. Right? So, once I
+close my eyes, I've basically eliminated
+the feedback path and I'm running what's
+called open loop as opposed to closed
+loop. Now, see what happens if I try to
+balance this stick in an open loop
+configuration,
+it's simply impossible. It can't be
+done.
+Okay? So, so all of this is essentially
+to illustrate the idea of two classes of
+control systems.
+Okay? So, there are
+there are a class of systems that use
+open loop control.
+And open loop control basically looks
+like this. You've got a control system
+and you've got the plant and it just
+goes straight through.
+There's no error signal. There's no
+monitoring of the current state of the
+system. It's just, "Here's what I want.
+I I really hope I get what I want."
+That's what a open loop control system
+is is doing. Now, there are situations
+where open loop control
+works and it's it's actually a great
+scenario because it's very simple to use
+Okay? The only things The There are a
+couple of caveats here. Open loop
+control,
+uh it simply can't stabilize unstable
+systems.
+It's impossible for a for an open loop
+control system to reliably stabilize an
+unstable plant.
+For that reason, because there's no
+feedback coming coming back to um the
+controller,
+fundamentally,
+uh guessing is the only option.
+Now, I'm not saying that in any type of
+negative tone. Like guessing is the only
+way that you, you know, uh successfully
+implement open loop control. There are
+some scenarios where if you know enough
+about the system,
+then open loop control is fine because
+because if you know enough about the the
+dynamics of the plant and you know
+enough about how the control system is
+going to influence the plant, then
+everything uh will be fine. For example,
+let's look at this Let's look at this
+common household appliance.
+This
+This is a toaster.
+Yeah.
+I can't smell toast. This is a toaster.
+It's uh it's a device
+that turns bread
+into crispy toast. Okay? So, so
+basically, what you have is
+you got a piece of bread
+that you put into the toaster and you
+turn the dial to apply some heat
+and what you get is nice crispy toast.
+Right?
+Now, how is this an example of an open
+loop control system? Well, the plant has
+some dynamics, right? It applies heat at
+a certain rate and that heat will
+interact with the bread and sort of
+toast it. Uh
+uh if you if you apply too much heat, it
+gets burnt. If you apply not enough
+heat, it never becomes toast. It just
+stays bread, right? So, the controller
+here is how much heat you're applying
+and the plant itself is the uh
+the properties of that particular piece
+of bread. Okay? So, I happen to know
+that for the brand of bread that I buy
+and for my particular toaster, if I turn
+the knob approximately pi over four,
+no, sorry. Pi over two, about 90°,
+I can basically get perfect toast every
+time. Right? There's no feedback
+involved to con- uh continuously monitor
+the state of that toast. It just I know
+what I want. I want my reference is nice
+crispy toast. I know that if I apply a
+certain
+certain input, right? Turning the knob
+to a certain point every time, I know
+that I will get the desired level of
+toast.
+Can't believe I'm going to publish this
+lecture to the world and we're talking
+about toast in a senior level control
+class.
+That's okay. That's whatever. That's
+what I do in real life, so I'm going to
+do it here on the recording as well.
+Sorry.
+Okay, here's the thing though.
+The reason this is a good example is
+because open loop control, like I said,
+is only good if you know pretty much
+everything about that particular system.
+In other words, well, what if I were to
+buy a different brand of bread?
+Now everything's different. The toasting
+properties of that particular brand may
+be different. The dynamic behavior might
+change. Or what if I decide that, "Hey,
+this bread is going to start to go bad
+pretty soon. Let me throw it in the
+freezer."
+If I throw a frozen piece of bread into
+the same same toaster and turn the knob
+to the same input,
+I there's no way that I would expect to
+have the same level of toast in the
+output. Okay, so as silly as this
+example is, I believe it illustrates the
+limitations
+uh of open loop control. Okay? So,
+there's your open loop control, and I'm
+only bringing this up
+basically to say that we're not going to
+study open loop control in this class. I
+just want you to know that there are
+these two classifications of control
+Well, we're going to spend all of our
+time uh analyzing in this class
+is closed loop control systems.
+Now this is basically what we've already
+been discussing. For closed loop
+you've got your controller and your
+plant, but you also have a feedback
+path. And that feedback path is key
+because
+it's the one ingredient that is allowing
+the error signal to
+like I said before, contain information
+both about what we want,
+which is R,
+and what we actually have in real life,
+which is Y.
+Right? So, that that one little
+difference there is is what makes all
+the difference in in the control loop
+control I'm sorry, the closed loop
+control diagram. Okay?
+Um what we've already learned is that
+closed loop control can stabilize
+unstable plants.
+And that's that's pretty huge. There are
+a lot of unstable systems um
+that require closed loop feedback in
+order to stabilize. Okay? Uh but more
+than just stabilizing unstable plants,
+it can actually improve the performance
+of already stable systems.
+Right? You can get more precise control.
+You can get better um You you you can
+actually shape the output how
+essentially however you'd like of a a a
+system that's already unstable by using
+um
+a feedback control. Uh performance,
+that's kind of one of those hand wavy,
+you know, I haven't defined what
+performance means, and we're going to
+we're going to get into that throughout
+the the course of this um series, but
+performance can be
+you know, it it can have to do with
+stability.
+Right? Is the system stable or not?
+And I'm talking about the closed loop
+I'm talking about the closed loop
+Uh we can talk about robustness
+as a performance metric.
+We can also talk about uh speed of of
+response, too.
+Right? So, all of these are are sort of
+general performance metrics that we can
+basically fine tune the controller
+to sort of uh focus on any one or or
+more of those performance metrics. Okay?
+So, this is your sort of discussion of
+open loop versus closed loop control.
+This is where we're going to be spending
+all of our time, but you you need to be
+aware that there is such thing um as
+open loop control. Um and you also need
+to be aware of when it's appropriate and
+when it's not.
+Okay, so what we have to do, okay? I
+know I I've set up a lot of the sort of
+foundation for this class. I I've tried
+to give you a road map of of what
+feedback control is used for, first of
+all, um
+and sort of the benefits of using
+feedback control to control dynamic
+systems. Uh unfortunately, we can't just
+jump straight into the control design
+strategies just yet. Um I need to be
+absolutely certain that we know
+we understand what the dynamic behavior
+of a of a system means before we can
+actually close the loop around it. Um
+so, what I'm basically asking is, do we
+understand enough about the actual plant
+that we're trying to control? Because if
+we don't,
+it's a little bit jumping ahead to try
+and do feedback control if we don't
+exactly understand the dynamics of the
+open loop plant by itself.
+Okay, so many of you most of you should
+have taken some type of dynamic systems
+course already as a prerequisite to this
+course.
+Um and in that class you should have
+learned about um
+dynamic systems. You should have learned
+about uh dynamical behavior
+of of of particular dynamic systems. And
+what that means is
+first of all, do you understand the
+difference between a static system
+versus a dynamic system? Because
+a static system really has no need for
+feedback control. It's the dynamic
+system
+behavior that can be interesting enough
+to warrant using control.
+Okay, so we really need to understand
+uh what is the plant all about? Right?
+So, this is going to we're we're
+stepping back a little bit here. We're
+we're pumping the brakes a little bit.
+We're not going to jump right into
+control design strategies yet. Um
+because we need to make sure that we
+understand exactly what's going on with
+this plant before we try and wrap a
+feedback loop around it. Okay? So, the
+plant itself
+represents some type of dynamic system.
+Right? So, so I basically introduced a
+new term here that I need to define. Uh
+the plant is a dynamic system. Now I
+know you took a course on dynamic
+systems, but it may be the case that the
+emphasis of that course
+was different and maybe not uh alluding
+to the subsequent feedback control
+system course that you were going to
+take. So,
+I'm going to do a little bit of a review
+here on what a dynamic system is,
+but as I do this, I'm definitely going
+to be tailoring this review towards the
+eventual use of feedback control. Okay?
+At its heart, a dynamic system is the
+following.
+Okay? So, it's this is your fundamental
+definition of a dynamic system. And I
+understand that it's vague and sort of
+wordy, but it it really has to be this
+way because dynamic systems come in all
+different flavors, mechanical,
+electrical, biological,
+economical, geographical, any type of
+dynamic system you can think of
+fundamentally
+uh falls under this definition. And it's
+that it's basically just an input-output
+relationship.
+But it's specific in that the present
+output at time T
+is dependent on the present input and
+past inputs. That's that's the key
+um difference between dynamic systems
+and static systems, okay? Uh in other
+words,
+dynamic systems have somewhat of a a
+memory associated with it, right? The
+current output
+at time T
+is dependent on a whole bunch of past
+inputs. Right? That's what I mean by
+memory. Right? Um
+let's take this example as sort of a
+hopefully relatable example. Uh the
+bicycle.
+Okay, so this should be a very familiar,
+hopefully relatable example of riding a
+bicycle. Okay, so in a bicycle,
+you turn the cranks, which is your
+input.
+Right? So, you turn the cranks. Uh the
+cranks
+spin the chain. Uh the the cranks are
+basically a pulley attached to a cog on
+the back, which is attached to the
+wheel, which spins and and gives you
+forward motion.
+Right? So, the output
+of the bicycle system
+is the forward velocity that you get by
+turning the cranks, and the input
+is your
+your torque applied to the cranks. Okay?
+The bike system has some mass associated
+with it. It's in our Earth's atmosphere,
+so there's some aerodynamic drag
+associated with it. All of that factors
+into the dynamic behavior of this
+system. However, what we're trying to do
+is define why is this a dynamic system?
+How does the
+how does this definition fit in with the
+bicycle system? Well,
+let's think about the current output.
+Right? The current output is the
+velocity at time T. Right? This is the
+current output here.
+Current output.
+Uh this is equal to well, it's
+definitely a function of the current
+Right? Are you pedaling at this very
+instant in time? If you are, of course,
+that's going to factor into your current
+velocity.
+Uh but you can also imagine a scenario
+where you're coasting on your bicycle as
+a result of pedaling some time ago.
+Right? So, you don't even have to be
+pedaling at the current time for you to
+have some nonzero velocity. In other
+words, the current output is dependent
+on the current input, but also
+maybe
+some some past input.
+Like U of T minus 1.
+Or U of t minus two or basically any
+input all the way back to the start of
+time for this particular uh experiment.
+Okay? So, all of this stuff, these are
+past inputs.
+And we know for certain that your
+current velocity on a bicycle is
+dependent on all inputs, current or
+past. And that's what makes this
+particular system a dynamic system.
+This same concept can be applied to any
+system as sort of a test to see if it's
+a dynamic system or not. Okay?
+If we were to If we were to do the
+following, let's take this example now.
+And ultimately, this is very similar to
+the bicycle example, but
+it's more relatable in a car, I think.
+Okay, so in a In a car, what you have is
+basically your throttle.
+Right? So, you've got the gas pedal
+here. And here's your foot.
+Foot. And your foot can push down on the
+gas pedal
+some amount, right? So, some theta. This
+is your throttle. This is your input.
+This is controlling the the throttle to
+the engine.
+So, this is the input to the vehicle
+system. And the output, of course, is
+the velocity of the vehicle. Okay? So,
+so you you depress the gas pedal in a
+vehicle, engine starts turning, all that
+torque goes to the drive train through
+the axles to the wheels, your car goes
+forward. Uh but let me ask you this
+question.
+If you are uh
+late for something,
+and we'll call this U of t
+as the input.
+If you are late for something, and you
+get into the car and you floor it,
+but you you basically just apply maximum
+input,
+and this is your your input. You
+basically just say, "Oh, full gas."
+What does the output look like? The
+output, remember, is vehicle's velocity.
+Right? So, the question here is what
+does the output look like?
+The question that I'm asking is, well,
+does the output follow the input? Right?
+Does the output
+do the same thing as the input?
+Right? Is that what happens? You you
+floor the gas pedal and instantaneously
+you're at top speed?
+No, of course. We know that's not the
+case. Uh what happens instead is, well,
+you accelerate. Uh assuming you start at
+rest, if you floor the gas pedal, you
+don't instantly go to your top speed.
+You start accelerating.
+Right? You start You you
+if your car is powerful, you accelerate
+very quickly. Um and you keep going
+faster and faster until at some point,
+assuming you have unlimited road with no
+stoplights or traffic,
+eventually something happens. Uh and
+that something is the amount of
+aerodynamic drag pushing back on your
+car is so large that it's
+equal to the amount of forward thrust
+provided by your engine. And so, you
+have a net force of zero. So, you are no
+longer accelerating and you reach
+terminal velocity. Right? So, this is
+basically the fastest that your car can
+go, and you will remain at that top
+speed until you release um
+the gas pedal. Right? We know for a fact
+that this is actually what happens,
+right? This is really what happens um if
+you were to get into a car and do that.
+Now, whether or not you've actually done
+this test on an unlimited open stretch
+of road, uh
+you probably you have not, but you could
+probably deduce that this is what would
+happen
+just based on your past experience of
+being in a vehicle. Okay?
+The point I'm trying to make here is
+that, well, we already know that this is
+a dynamic system, right? Because current
+in uh current outputs depend on current
+and past inputs. The key here is, well,
+I'm trying to define
+what it means to say system dynamics.
+Right? So, so
+if you work in this field of dynamic
+systems and controls and robotics and
+mechatronics,
+you often have to do some initial
+analysis on the particular system you're
+going to be designing or controlling.
+And so, you're going to get asked
+questions of, well, what are the system
+dynamics, you know, how does the system
+behave? Is it first order, second order,
+and so forth? The system dynamics
+fundamentally pertain to
+how does the input translate to the
+output? Right? How does all this input
+force
+eventually become this output? All of
+that stuff is housed inside of the
+system dynamics. Okay? And here's the
+thing.
+Your intuition tells you that if you get
+into a car and you floor it like this,
+and you just apply full gas,
+intuitively, you kind of know that this
+is the output that you're going to
+experience, right?
+Unfortunately, is
+is just not good enough. Your intuition
+is not going to suffice when it comes to
+doing precision control design. In other
+words, we need a way to go beyond our
+intuition and actually capture those
+system dynamics mathematically. Right?
+We need a way to understand this this
+input-output relationship that is the
+dynamic system. Okay? So, the question
+is, can we actually capture those system
+dynamics mathematically? And um of
+course, the answer is yes, right? If we
+If we couldn't do that mathematically,
+there would be no point to taking this
+course, right? Um yes, the answer is we
+can capture the dynamics of a system
+mathematically, and that process is
+called modeling.
+Okay, so the modeling process.
+The modeling process is what allows us
+to mathematically capture
+the input-output
+dynamic relationship. That's what the
+process of modeling does. And generally,
+the process of model uh modeling will
+produce a system of equations um that
+govern the behavior of of that
+particular dynamic system. Okay?
+So, before we jump in, like I said,
+before we start doing any type of
+control system design, we need to
+understand
+what a dynamic system is. So, I've given
+you a definition now of what is actually
+a dynamic system, but we also need to be
+very precise about the system dynamics.
+So, we don't we don't want to just be at
+the point where we can say, "Oh, if I
+get into a car and I floor it, my output
+is kind of going to go like this."
+Right? That's not good enough.
+We need a mathematical means to capture
+those dynamics before we can move
+forward. Okay? So, so one way of doing
+that is through the process of modeling.
+most of the examples we're going to
+treat in this class are mechanical.
+They're mechanical systems in nature
+because this is a mechanical engineering
+course. However,
+you should be aware that most
+engineering disciplines, electrical
+engineering, uh computer science,
+mechanical, mechatronics engineering,
+they all have a control systems course
+similar to this. Only their systems,
+their plants, are different. Right? So,
+we're going to be using mostly
+mechanical systems, whereas a control
+course you take in an electrical
+engineering uh
+college might be focused more on
+electrical dynamic systems. Right? So,
+there's dynamic systems of all different
+types. We're going to be focusing mostly
+on mechanical systems.
+And in order to model mechanical
+one way to generate a model for
+mechanical systems is to use things like
+Newton's law.
+Newton's law We're going to use Newton's
+second law exclusively.
+Uh we're going to use um force analysis.
+So, we're going to do a lot of free body
+diagrams.
+These are the tools that you're going to
+use to model mechanical systems. You
+should just be aware that
+all of the concepts that were outlining
+in this course can be applied to
+electrical engineering uh
+systems as well. It's just that the
+tools that you're going to use to model
+electrical systems are different. Right?
+There There aren't any
+Newtonian forces in in electrical
+systems, so to speak. So, for electrical
+systems, you'll you'll use things like
+circuit analysis and Kirchhoff's current
+and voltage laws to generate those
+differential equations. Okay? So, just
+trying to give you some perspective.
+What we're doing in this class is
+primarily mechanical systems, but same
+concepts apply outside of this uh
+discipline as well.
+Let's look at an example. Okay? So,
+let's go back. Let's go back to
+the same system that we we actually just
+um sketched out above. And that's the
+example of the vehicle.
+Right? So, in the vehicle system, the
+output is the velocity.
+The input is basically a forward thrust
+provided by the engine.
+Um and in this case,
+um we're going to consider drag.
+Aerodynamic drag is non-negligible,
+right? The only time you can neglect
+aerodynamic drag is if you're in a
+vacuum, which is
+a bit too idealized for our our
+purposes, right? We have to consider
+aerodynamic drag because it's a real uh
+force that we encounter in everyday
+life.
+Okay, so we want to model this system,
+which means we want an equation or a set
+of equations that describe this system
+fully so that we do not have to rely on
+our intuition. Well, it's a mechanical
+system, so the first thing we want to do
+is to try and analyze all of the forces
+in this system. We only care about
+horizontal forces because we're talking
+about the horizontal velocity here. So,
+that makes things a little bit easier.
+There's only one mass involved, and
+that's the mass of everything that has
+to do with the vehicle we can lump into
+that mass.
+Okay, there's a force
+due to the engine. That's our input
+force U.
+Um and there's also
+there's also
+another force.
+It's the force of aerodynamic drag
+trying to resist that forward motion,
+right? Those are the two forces that are
+sort of fighting each other in this
+vehicle system. Okay, the output itself
+is a velocity
+which is um
+it's not a force. It's the output
+measure It's the output variable that
+we're trying to measure. Okay, so the
+only forces involved are actually the
+input thrust and the aerodynamic drag.
+And the aerodynamic drag we're going to
+model and we're going to approximate as
+a linear
+which is not totally accurate, but it's
+a good first pass. Okay, so basically
+it's some aerodynamic drag constant
+times the actual velocity of the
+vehicle. So, you can see that the faster
+the car is going
+the harder the air is going to push back
+on the vehicle, right? So, this is not a
+static force. It actually changes
+as a function of the velocity.
+But once we've sort of analyzed our
+forces
+then we're going to use Newton's second
+law, which is basically
+um you'll remember this from physics
+it's F equals MA. Right? It's the sum of
+all the forces in one direction is equal
+to the mass times the acceleration in
+that direction. Okay, so if we set a
+direction for positive here
+uh we'll just do positive to the right,
+then we can add up our forces. We have U
+in the positive direction minus
+FD, the drag force in the uh negative
+direction is equal to the mass times the
+acceleration.
+Seems very simple and it is really for
+for for this simple system the modeling
+process is actually quite
+straightforward.
+What we have to do though is we do have
+to get away from that sort of high
+school physics mentality and we have to
+jump into a mode of thinking of
+um well, how does this pertain to the
+dynamical system behavior? Remember a
+dynamic system is an input-output
+relationship. And so, we need to have
+those inputs and outputs appear
+in our equations for it to be of any use
+to us. What I mean by that is while this
+equation is technically correct, it
+doesn't do us a whole lot of good
+because we've got FD floating around, we
+have acceleration floating around.
+Remember the input to this system is the
+forward thrust U and the output is the
+velocity. So, we want our equation to
+contain those input-output variables
+only with maybe some constants floating
+around.
+In other words, what we want to do is
+replace our drag force with
+something relating to the velocity.
+Okay, then we're going to set that equal
+to the mass and yes, it's true that it's
+equal to the acceleration, but again, we
+want to put things in terms of our
+inputs and outputs. So, the acceleration
+can also be expressed as a time
+derivative of the output velocity. Okay,
+now if we do it this way
+if we do it this way, what we've
+basically produced is uh an ordinary
+differential equation that only contains
+the input-output variables and and maybe
+their derivatives along with some scalar
+constants. Uh this differential equation
+is what we want. Okay, and then actually
+what we could do is even to write this
+in standard form
+which is
+which which looks a little bit
+different, but it's more useful in some
+respects.
+Okay, so all I've done here is just sort
+of solved everything for V dot which is
+acceleration of the vehicle.
+Uh but what you have here is basically
+the the dynamic system
+behavior all bundled up into one nice
+closed-form
+differential equation.
+Okay, and this is what I mean by
+this is what I mean by capturing the
+dynamics of the system mathematically.
+This equation
+does the same thing as
+our intuition up here, which is to
+transform this input to this output, but
+it does it much more precisely and it
+does it in a way that preserves that
+preserves the the general nature of that
+equation. In other words, this equation
+is not specific to any one type of
+input, right? So, with this equation we
+can actually see what the
+velocity will look like not just for a
+constant input, but for any input,
+right? We can look at sort of an impulse
+input or like a ramp input or we can
+even see what the velocity looks like if
+we get into a car and apply it like a
+sinusoidal
+motion to the gas pedal. I don't know
+why you would ever do that. You know
+you're just going to make your passenger
+sick. But
+the point I'm trying to make here is
+that this equation can handle all those
+types of inputs because it's not
+particular to anyone.
+Okay? So, just to kind of bring this
+thing full circle, we're now claiming
+that this differential equation captures
+all of those vehicle velocity dynamics.
+Well, let's just test that. Let's just
+test it for one particular input.
+For U of T is equal to one, which is
+essentially what we drew up there,
+right? That's just the constant input,
+right? This represents a constant valued
+input. What does the output look like?
+Well, we happen to know that we can
+solve this differential equation
+um for this nature of an input and the
+general solution looks like the
+Right, the general solution looks like V
+of T is equal to
+minus uh sorry, 1 over B minus 1 over B
+E to the
+minus B over M T, right? This is the
+actual solution of this differential
+equation under the influence of this
+particular input.
+Uh I kind of just jumped to that answer,
+but this is I'm just drawing from your
+differential equations course. So, you
+already in theory know how to solve that
+differential equation. I'm just showing
+you what it looks like here in
+particular to illustrate what this looks
+like, right? What does this plot
+actually look like? Well
+when T is equal to zero
+right? For when T is equal to zero, you
+have E to the zero, which is one. So,
+you basically just have 1 over B minus 1
+over B, which is zero. So, at T is equal
+to zero, we have a velocity of zero.
+As T approaches infinity, so E to the
+minus infinity, that just decays to
+zero. So, this whole exponential decays
+to zero and we're just left with a
+constant 1 over B.
+So, way out at T is equal to infinity,
+we have a constant value of 1 over B.
+And in the middle, we basically have a
+constant value and from it we're
+subtracting this decaying exponential.
+So, what does that look like? Well, it
+looks like
+it looks like this.
+Right? This is exactly
+what our intu
+our intuition said would happen if we
+got into the car and we floored the gas
+pedal.
+Only
+we in this case
+uh in this case an alien that visited
+our planet who has no intuition for the
+dynamical behavior of an automobile
+would still be able to understand that
+this is the output because we didn't do
+it based on intuition. We did it all
+mathematically here. Okay? So, this is
+the power of having a mathematical model
+for a dynamic system is that you can
+essentially
+essentially you can predict the output
+based on any known input for that system
+if you characterize that system
+accurately. Like if this differential
+equation
+is an accurate representation of those
+system dynamics
+well, now you're into basically the idea
+of simulation where you can test a bunch
+of inputs to see what would happen
+without actually having to go and and
+apply that input to that particular
+system, right?
+This is the concept of modeling.
+In the lecture notes, which will be
+posted, there'll be a link to the
+lecture notes,
+there are several more examples of
+basically exactly what we just did. We
+look at
+We look at one electrical system just
+for contrast. We also look at a couple
+more mechanical systems like the
+pendulum
+uh with and without drag and we also
+look at an inverted pendulum to see that
+it's got some unstable behavior.
+And I encourage you to look at those
+examples on your own time, but
+fundamentally they're exactly the same
+as the example that we just did. They
+just get incrementally more
+complex, you know, you got a drag force
+here, you have some additional forces
+here and there.
+Uh
+the concept is identical for those
+examples. Okay, so I'll leave you to
+look at those examples on your own.
+Uh what I want to get to before I end
+this lecture is well, where are we going
+next? Okay, so basically
+um the idea is that well, okay, having a
+mathematical model for a dynamic system
+is great, right? That basically means we
+can characterize that system and once we
+can characterize a system's behavior
+mathematically, then we can sort of
+close the loop and do some interesting
+control design.
+Only thing is that differential
+equations exist in the time domain.
+And differential equations, as you may
+have experienced, can be a bit tedious
+to work with. Okay? So,
+in control theory and in in many types
+of these sort of dynamic system analysis
+courses,
+uh we actually opt for a different
+version of the same mathematical
+description.
+Um and it's called the transfer
+function.
+What you should know about the transfer
+function is that it contains the same
+information
+as the differential equation, only it
+does so in a different domain. It does
+it in the S domain. Okay? The the the
+Laplace domain. Um and so, we're not
+going to get into this yet. This is a
+topic of our next lecture, but I do want
+to leave you with this um sort of this
+visual. Okay?
+So, you've got over here on the left
+side.
+You have the real-life system dynamics.
+Okay. So, this is
+this is real life.
+Over here. And we'll put this in a box
+that is basically over the container for
+that real-life system. This is the
+actual I don't know, robotic arm sitting
+in your lab, or this is your actual
+vehicle sitting in your driveway. Or
+this is the actual mechatronic system
+that's going to do some some tasks. I
+don't know. This is your whatever this
+is the real-life dynamic system that you
+have.
+What we just did is we said, "Okay.
+Well, through the process of modeling
+through the process of modeling, I can
+generate a mathematical model for those
+dynamics." And generally,
+what we get is a differential equation
+or set of ODEs that describes that that
+particular system. Okay? Um this
+version
+exists in the time domain. But, the
+point that I'm trying to draw here is
+that these two boxes contain the same
+information. Okay? One is just a
+mathematical version of the real-life
+To add to this, I'm going to add one
+more box.
+And over here
+is the so-called transfer function.
+Okay? The the transfer function does not
+exist in the time domain. It actually
+exists in the Laplace domain or the S
+domain, which is a totally different
+domain,
+which makes it a little bit less
+intuitive, but the point I'm trying to
+make here again is that now all three of
+these blocks or all three of these boxes
+contain
+the same information, right? The
+transfer function is just a different
+way to represent the ODE, which is just
+a mathematical way of expressing the
+real-life dynamic systems. Okay? Now,
+obviously, what I'm getting at here is,
+well, we need to be versed in all three
+of these different um
+uh
+uh basically, all all three of these
+different versions of the same dynamic
+And so, to get from the real system to
+the math model, we use this process of
+modeling.
+To get from the mathematical model in
+the time domain to the transfer function
+in the S domain, we have to rely on our
+old buddy, the Laplace transform. Okay?
+So, to get from the time domain to the S
+domain, you apply the Laplace transform.
+You can also start from the S domain and
+jump back into the time domain by using
+the inverse Laplace transform.
+Okay? So, your very first assignment
+Actually, your your very first
+assignment is going to be
+can you can you go back and forth
+between all three of these different um
+uh versions of the same dynamical
+system. So, can you model a a dynamic
+system to get an ODE?
+And then, can you generate a transfer
+function using the Laplace transform?
+This is all going to boil down
+um uh this is all going to be tested in
+your first assignment, but the idea here
+is that
+Of course, the idea here is that all
+three of these blocks or sort of
+containers,
+they represent the same dynamical
+system. They represent the exact same
+input-output relationships, right? Uh
+which is again what a dynamic system is.
+Okay? So,
+we'll we'll sort of we'll we'll stop it
+here. Uh the next lecture is going to be
+well, how do we jump back and forth
+between the time and the S domain?
+Admittedly, this next lecture is going
+to be relatively dry. Um it's basically
+just mechanically, mathematically, how
+do we jump between those two domains?
+And I'll give you a bunch of examples on
+how to do that. Um
+but because I realize that those are
+kind of dry topics, I want you to always
+keep this
+uh big picture in mind, right?
+Ultimately, the tools that you develop
+and the skills that you you you develop
+in in being able to go back and forth
+between all these three different um
+uh versions is going to ultimately help
+us to do that um really cool control
+design that we talked about in the in
+the first part of this lecture. Okay?
+So, we're going to pick up with
+basically review of Laplace transform in
+the next lecture. Um and I'll I'll see
+you there.

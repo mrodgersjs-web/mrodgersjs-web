@@ -1,0 +1,724 @@
+There's a version of AI productivity
+that sounds great on paper. You open a
+terminal, type a prompt, and a single AI
+handles everything. The research, the
+report, the slide deck, the images, the
+video. One model, one session, done. The
+problem is that version does not
+actually exist. What exists instead is a
+generalist AI that tries to do all of
+those things at once and produces
+mediocre results across every single one
+of them. Hallucinated citations in the
+research, slide content that reads like
+a first draft, images that technically
+match the brief but feel completely off.
+The output is there, but none of it is
+good enough to actually use. Claude Code
+changed the conversation around what AI
+can do inside a terminal. Is genuinely
+excellent at what it does. But what it
+does is code. It writes, debugs,
+refactors, and ships. The moment you ask
+it for a competitive analysis document
+or an investor pitch deck or a product
+launch video, you have stepped outside
+of what it was built for. That is not a
+criticism. That is just the boundary of
+a specialized tool. The gap is real and
+it is significant because the work that
+surrounds code, the research, the
+documentation, the presentations, the
+media, that work does not disappear just
+because your coding agent is running.
+The solution that most people land on is
+to just throw everything at one general
+purpose AI and accept whatever comes
+back. That approach scales poorly. The
+bigger the task, the more an agent loses
+coherence across it. Context gets thin,
+quality drops, and you end up doing more
+manual cleanup than you saved. What
+actually works is the same thing that
+works in any professional setting. You
+stop asking one person to do everything.
+You build a team. That is exactly what
+Open Swarm is. A fully open-source,
+terminal-based multi-agent system where
+eight specialized AI agents work
+together, each handling the part of the
+workflow they were built for. All
+coordinated by a single orchestration
+layer. One prompt goes in, a complete,
+polished deliverable comes out. And in
+this video, that is exactly what we're
+going to break down. If what you're
+seeing here is useful, take a second and
+hit the like button. It genuinely helps
+this content reach more people who are
+building in this space. Subscribe if you
+want to stay ahead of what is actually
+happening in open source AI agents
+because this ecosystem is moving fast
+and there's a lot more coming. And if
+you have questions or want to share what
+you are building with tools like this,
+drop it in the comments. Now, let's get
+into it. Arseny Shatkin, who goes by
+VRSCN online, is not a new name in the
+AI agent space. He is the person behind
+Agency Swarm, one of the most widely
+adopted open source multi-agent
+frameworks available right now. Agency
+Swarm has been a foundation that real AI
+automation businesses have been building
+on for a while. Not hobby projects, but
+actual client-facing systems doing
+production work. So, when VRSCN ships
+something new, it is worth paying
+attention to because the thinking behind
+it comes from someone who has spent
+years watching where multi-agent systems
+break down and where they hold up. Open
+Swarm is his answer to a specific gap he
+clearly identified. Most people who want
+to use AI agents seriously do not want
+to build a framework from scratch. They
+want something that works immediately,
+runs in their terminal, and is
+extensible enough to customize when they
+need to go deeper. Open Swarm is that
+thing. It's a fully open source turnkey
+AI team that you can have running in
+under 60 seconds. No platform
+subscription, no web UI to navigate, no
+onboarding flow, just a terminal, a
+prompt, and a system of eight
+specialized agents that coordinate
+automatically. It is built on top of
+Agency Swarm, which itself is now an
+extension of the OpenAI Agents SDK. That
+lineage matters because it means the
+architecture underneath Open Swarm is
+not experimental. It is a
+production-tested orchestration pattern
+that has been refined through real-world
+usage, now packaged into something
+anyone with a terminal and an API key
+can deploy immediately. The project
+landed on GitHub on April 22nd, 2026.
+Inside 2 weeks, it crossed 1.3 thousand
+stars. That kind of early traction does
+not come from marketing. It comes from
+developers recognizing a genuine need
+being met in a way that actually makes
+sense. The MIT license means there are
+no restrictions on how you use it,
+modify it, or build on top of it. The
+code base is 88% Python with a small
+JavaScript layer handling the install
+tooling. It is a developer-first project
+in every sense of that phrase. The
+positioning the team shows is deliberate
+and worth sitting with for a moment.
+They describe it as Claude code for
+everything except coding. That framing
+is not a shot at Claude code. It's a
+clear statement of scope. Claude code
+owns the coding workflow. OpenSwarm owns
+everything around it. The research, the
+documents, the presentations, the data
+analysis, the images, the video. These
+two tools are not competing for the same
+job. They're designed to run alongside
+each other. Each handling the half of
+the work the other was not built for.
+The single most important design
+decision in OpenSwarm is not what any
+individual agent can do. It is the
+decision to use multiple specialized
+agents in the first place. That choice
+sounds obvious once you hear it, but
+runs directly against how most people
+currently use AI. The default behavior
+is to open one chat window or one
+terminal session and ask a single model
+to handle everything sequentially. Write
+the research, then write the report,
+then design the slides, then generate
+the images. One model, one context, one
+very long session that gradually loses
+coherence the further it runs. The
+problem with that approach is not the
+model. The problem is that you're asking
+one system to hold expertise in every
+domain simultaneously while managing an
+increasingly bloated context window.
+Research thinking and slide design
+thinking are different. Statistical
+analysis and video generation are
+different. The more you pile into a
+single agent, the more it starts
+averaging across all of those domains
+instead of excelling in any of them. The
+output becomes competent, but never
+impressive. OpenSwarm solves this by
+doing what any well-run organization
+does. It separates responsibilities.
+Each agent in the system has a focused
+set of instructions, a specific set of
+tools, and a narrow enough scope that it
+can actually be good at its job rather
+than adequate at everything. And then it
+places a coordination layer on top that
+decides for any given request which
+specialist gets the work. That
+coordination layer is the orchestrator,
+and it is worth understanding how
+deliberately it was designed. The
+orchestrator does not answer user
+requests directly. It never generates
+content, never runs analysis, never
+produces a document. Its only function
+is routing. When a prompt comes in, the
+orchestrator reads it, determines which
+agent or combination of agents is the
+right fit, and delegates accordingly.
+This keeps the decision-making clean and
+ensures that every task lands with the
+agent that was actually built to handle
+it. The virtual assistant is the
+integration layer of the system. On its
+own it handles everyday tasks, writing,
+scheduling, communications, file
+management. But its real power comes
+from its connection to Composeio, which
+unlocks over 10,000 external service
+integrations. Gmail, Slack, GitHub,
+HubSpot, and thousands of others become
+available through a single agent. This
+is not a feature list item. This is an
+entire automation service that most
+standalone AI tools charge platform fees
+to access. The deep research agent is
+not a search wrapper. It is closer to a
+junior analyst. It conducts
+comprehensive web research, synthesizes
+information from multiple sources,
+maintains citations, and produces
+structured output that is actually
+usable downstream. The difference
+between a search result and a research
+synthesis is the difference between raw
+ingredients and a prepared meal. This
+agent handles that conversion. The data
+analyst runs inside an isolated IPython
+kernel, which is a detail that matters
+more than it sounds. Isolation means the
+agent can execute real Python code, run
+statistical models, and produce charts
+without any risk of that computation
+bleeding into the state of other agents.
+It is a contained environment for real
+analytical work, not a simulation of
+one. The slides agent generates complete
+slide decks natively in HTML before
+exporting them to PowerPoint format.
+Building in HTML first is a smart
+architectural choice because it keeps
+the styling flexible and the content
+editable right up until the moment you
+need a file. The export to PPTX happens
+at the end, not at the start. The Docs
+agent handles Word documents and PDFs.
+It can work from a rough outline, from
+raw content, or from the output of
+another agent. Its job is to take
+whatever material exists and produce a
+formatted, professional document from
+it. The image generation agent connects
+to multiple model providers
+simultaneously: Gemini 2.5 Flash Image,
+Gemini 3 Pro, and File.ai. Having
+multiple providers available means the
+agent can route image requests based on
+what the task actually requires, rather
+than being locked into one model's
+aesthetic or capability ceiling. The
+video generation agent ties into three
+separate video providers: Sora from
+OpenAI for high-quality generation, Veo
+from Google, and Cidence by File.ai for
+editing and effects work. The agent can
+produce new video from a prompt or edit
+and combine existing clips, giving it a
+range that goes well beyond what any
+single video tool typically offers. What
+makes this architecture genuinely
+powerful is not just that agents
+specialize. It is that they can
+communicate with each other directly.
+The system is not a linear pipeline
+where output from one agent gets handed
+to the next in a fixed sequence. It is a
+network where agents can hand off to
+each other, pull from each other's
+output, and collaborate in combinations
+that match what the task actually
+requires. The orchestrator starts the
+routing, but the agents themselves can
+continue coordinating from there. The
+installation story for Open Swarm is one
+of the more refreshing things about it
+in a space where setup complexity is
+usually the first barrier that filters
+out non-experts. There is no environment
+configuration to wrestle with before you
+get started. There is no virtual
+environment to create, no dependency
+list to manually resolve, no platform
+account to set up. The entire install
+happens through a single npm command.
+You run npm install with a global flag
+pointing at the Versa Open Swarm
+package, then you run Open Swarm. That
+is the complete installation process.
+Node.js 20 or higher is the only
+prerequisite you need to have in place
+beforehand. Python 3.10
+and everything else the system needs
+installs automatically on first run. The
+team's claim of being up and running in
+60 seconds is not marketing language. It
+is accurate. When you launch it for the
+first time, a setup wizard walks you
+through authentication. You need at
+least one API key to get the system
+working. Either an OpenAI key for GPT
+models and Sora or an Anthropic key for
+Claude models. From that single
+requirement, every agent in the system
+becomes functional. The optional keys,
+Google for Gemini image generation and
+VEO video, Falco AI for advanced video
+effects, Composio for external service
+integrations, a search API key for the
+research agent, each unlock additional
+capability without being blockers. If a
+key is missing, the relevant tool
+degrades gracefully and tells you
+exactly what you need to add to restore
+it. Nothing breaks silently. The default
+experience is a terminal UI that drops
+you straight into a session with a full
+agent network available. Every file the
+agents produce lands in a local mount
+folder, which means your outputs are
+real files on your machine the moment
+they're generated. Slide decks,
+documents, images, videos, research
+reports, all of it writes directly to
+disk and is immediately usable. For
+teams or developers who want to go
+beyond the terminal UI, there are two
+additional deployment modes. The Docker
+path gives you a containerized version
+of the full system with a fast API back
+end running on localhost port 8080,
+which means you can expose Open Swarm as
+an API endpoint and integrate into a
+broader workflow. The standalone server
+mode achieves the same result without
+Docker for situations where
+containerization is unnecessary
+overhead. All three modes, terminal,
+Docker, and API server, run the same
+agent network underneath. The The
+changes, the system does not. The most
+useful way to understand what OpenSwarm
+actually does is not to look at its
+agents individually. It is to watch what
+happens when multiple agents work
+together on a single goal. Each of the
+following scenarios involves a real
+compound workflow. The kind of the
+output you get at the end could not have
+come from any one agent working alone.
+That coordination is where the value
+actually lives. The first scenario is
+building a complete investor pitch
+package from scratch. You type one
+prompt asking for a full investor pitch
+for a specific business in a specific
+market. The deep research agent goes to
+work first pulling current market sizing
+data, competitor landscape, recent
+funding activity in the space, and any
+relevant industry trends. That research
+does not just get summarized. It gets
+passed to the data analyst which
+structures it into financial
+projections, addressable market charts,
+and a competitive positioning matrix.
+The slides agent takes that structured
+data and assembles a full deck with
+visuals, proper flow, and a narrative
+arc. At the same time, the docs agent
+produces a standalone executive summary
+in Word format that can travel
+separately from the deck. What you end
+up with is not a slide deck or a
+document. It is a pitch-ready package,
+research, charts, deck, and executive
+summary generated from a single prompt
+with each piece produced by the agent
+that was actually built for it. The
+second scenario is competitive
+intelligence on demand. Imagine you're
+preparing to launch a product and you
+need a clear picture of where your top
+competitors are vulnerable. Their
+pricing gaps, their feature weaknesses,
+what customers are actually complaining
+about publicly. You prompt OpenSwarm to
+research your five main competitors
+across those dimensions. The deep
+research agent gathers the data pulling
+from public sources, review platforms,
+and product documentation. The data
+analyst builds a structured comparison,
+identifies the gaps, and produces a
+positioning matrix that shows exactly
+where your product has room to
+differentiate. The docs agent formats
+the entire output into a clean
+intelligence report. Then the virtual
+assistant emails the report directly to
+your team via Gmail. The full cycle from
+initial prompt to formatted report in
+your team's inboxes, happens without you
+touching a single tool manually. The
+third scenario is a content marketing
+pipeline built around a product feature.
+You have something new to announce, and
+you need three SEO-optimized blog posts
+covering different angles of it, custom
+images for each post, and a keyword
+research brief that tells you what terms
+those posts should be targeting. The
+deep research agent handles the keyword
+and topic research, identifying what the
+audience is actually searching for and
+what the competitive content landscape
+looks like. The Docs agent writes three
+complete publisher-ready posts based on
+that research. The image generation
+agent produces custom visuals for each
+one, drawing from Gemini or Fowl.ai,
+depending on the visual style required.
+Everything lands in your output folder
+formatted and ready. The kind of work
+that typically takes a content team
+several days to coordinate and produce
+gets compressed into a single
+coordinated session. The fourth scenario
+is turning raw data into a complete
+story across multiple formats
+simultaneously. You drop a CSV of
+quarterly business data into the system
+and ask for full performance report. The
+data analyst processes the raw numbers,
+runs statistical analysis, identifies
+trends and anomalies, and produces
+charts and visualizations that make the
+patterns visible. The Docs agent takes
+that analytical output and builds an
+executive-ready report around it, with
+an introduction, a finding section, and
+a conclusion that frames the numbers in
+plain language. At the same time, the
+Slides agent converts the same material
+into a board presentation, formatted for
+a room rather than a page. You end up
+with three different formats of the same
+story: the analytical output, the
+written report, and the presentation
+deck, all generated from one data set in
+one session without manually
+reformatting anything between them. The
+fifth scenario is assembling a complete
+product launch kit in the days before
+release. You need a market positioning
+document that grounds your messaging, a
+launch deck for internal alignment, a
+hero image for the landing page, and a
+short explainer video for social. Each
+of those deliverables requires a
+different kind of production. The docs
+agent builds the positioning document
+grounded in research that deep research
+agent provides. The slides agent
+produces the internal alignment deck.
+The image generation agent creates the
+hero visual using Gemini or GPT image
+depending on the aesthetic you're going
+for. The video generation agent produces
+the explainer clip through Sora or
+Seedance. All four agents run on the
+same overarching brief coordinated by
+the orchestrator producing in parallel
+rather than sequentially. This is the
+scenario where OpenSwarm's multimodal
+architecture becomes its clearest
+advantage. Different media types calling
+on different model providers all inside
+one system all from one prompt. Most AI
+tools are products. You use them the way
+the company built them within the
+boundaries they set on their
+infrastructure under the pricing model.
+OpenSwarm is something different. It's a
+starting point. The entire project is
+architecturally designed to be taken
+apart, reshaped, and rebuilt into
+something entirely specific to what you
+need. That is not a secondary feature.
+It is one of the core reasons the
+project exists. The structure of the
+repository makes this intent explicit.
+Every agent lives in its own folder with
+its own instructions file and its own
+tools directory. The single file that
+wires everything together is called
+swarm.py and is the only file you need
+to touch when you want to add, remove,
+or rewire agents. The instructions file
+inside each agent folder is that agent's
+system prompt. Changing the agent's
+behavior is as simple as editing a
+markdown file. There is no compiled
+logic to reverse engineer, no opaque
+configuration layer to navigate. The
+system is readable and it is readable on
+purpose. The agents.md file in the root
+of the repository takes this further. It
+is written specifically for coding
+agents, Claude Code, Cursor, Codex,
+giving them a complete map of how the
+system is structured and how to modify
+it correctly. Which means the workflow
+for building a custom swarm is genuinely
+as simple as cloning the repository and
+telling your coding agent what you want
+it to become. You write something like,
+"Turn this into an SEO optimization
+swarm. Make the research agent a keyword
+planner. Make the docs agent a blog post
+writer, and keep the orchestrator as
+is." The coding agent reads agents.md,
+understands the structure, and makes the
+right changes automatically. You do not
+need to manually trace dependencies or
+figure out how agents connect. The
+architecture is self-documenting for the
+tools that will modify it. The team has
+already outlined the most common four
+patterns based on what they expect
+people to build. An SEO swarm built
+around keyword research, competitor
+analysis, and content production. A
+sales swarm handling lead research,
+outreach drafting, and proposal
+generation. A marketing swarm covering
+campaign planning, creative asset
+production, and performance analysis. A
+product swarm running market research,
+feature specifications, and launch
+material generation. Each of these is a
+different set of agent instructions and
+tools sitting on top of the same
+orchestration architecture. The
+framework does not change. The
+specialization does. This fork-first
+philosophy also changes the relationship
+between the user and the tool over time.
+You're not dependent on VRSCN shipping a
+feature you need. You're not waiting on
+a product roadmap. You clone the
+repository, you describe what you want
+to coding agent, and the system reshapes
+itself. That kind of extensibility is
+what separates genuinely open-source
+infrastructure from tools that happen to
+have a public repository. Open Swarm is
+built to be owned by whoever forks it,
+not just used by them. Two features on
+the Open Swarm roadmap are worth paying
+close attention to. Not because roadmap
+items always ship on time, but because
+of what they signal about where the
+project is headed and how seriously the
+team is thinking about the next layer of
+the problem. The first is the agent
+builder agent. The idea is a meta agent,
+an agent whose job is to create other
+agents. You describe the kind of swarm
+you want to build, and the system
+generates it for you. Custom agent
+instructions, tool configurations,
+orchestration wiring, all produced from
+a single prompt rather than a manual
+fork and edit session. Right now, the
+forking workflow requires a coding agent
+and some familiarity with how the
+repository is structured. The agent
+builder agent removes that requirement
+entirely. It makes custom swarm creation
+accessible to people who are not
+developers, which is a significant
+expansion of who can actually use this
+system in a meaningful way. When that
+ships, the ceiling on what non-technical
+users can do with open swarm changes
+considerably. The second item is the
+open claw and clawed code integration.
+And this one is particularly interesting
+for anyone already working inside the
+open source AI agent ecosystem. The
+stated goal is to bring all agents into
+one place. Open swarm's production and
+research capabilities sitting alongside
+open claw and clawed code in a unified
+environment. If that integration lands
+the way it is described, it starts to
+look less like a collection of separate
+tools and more like a cohesive open
+source AI workspace. Coding, content
+production, research, media generation,
+and external integrations all available
+from single coordinated system. That is
+a meaningfully different category of
+tool than anything currently available
+in open source. It is also worth being
+honest about where open swarm sits right
+now. The NPM version is 0.1.2.
+The initial GitHub release dropped in
+late April 2026. This is a very early
+project from a team with a strong track
+record, but it is still early. At
+1.3,000 stars in under 2 weeks, the
+community signal is clear. People see
+something worth watching here, but
+watching it closely is different from
+betting a production workflow on it
+today. The architecture is sound, the
+vision is well defined, and the
+foundation in agency swarm gives it more
+stability than a typical week two open
+source project. The trajectory is
+strong. The maturity is still catching
+up. The GitHub issues tab and the fork
+activity over the coming months will
+tell you more about where this project
+actually goes than any roadmap item
+will. Open source projects at this stage
+get shaped as much by the community
+pulling on them as by the team pushing
+them forward. Given the quality of the
+initial release and the speed of
+adoption, there is good reason to expect
+that pull to be substantial. The
+conversation around AI tools has been
+dominated for the past 2 years by a
+single question. Which model is the most
+capable? Bigger benchmarks, longer
+context windows, faster inference. Every
+major release gets measured against the
+last one on the same axis. And that
+framing made sense when the primary
+interface with a chat window and the
+primary use case was a single turn
+question. But that era is already
+ending. What is replacing it is a
+fundamentally different question. Not
+which AI is the smartest, but which
+system delegates the best. The
+intelligence of the underlying model
+still matters, but it is increasingly
+becoming a commodity. What separates
+useful AI infrastructure from impressive
+AI demos is coordination. The ability to
+take a complex, multi-domain goal and
+route it to the right capabilities in
+the right sequence without the user
+having to manage that routing manually.
+Open Swarm is an early but concrete
+example of what that looks like when it
+is done well. The specialist plus
+orchestrator pattern that Open Swarm is
+built on is not going to be unique to
+this project for long. More systems are
+going to adopt it because the results
+justify the complexity. Eight focused
+agents producing expert-level output in
+parallel is not a marginal improvement
+over one general agent doing everything
+sequentially. It's a different category
+of result. And the fact that this is now
+available as an open-source,
+terminal-native, 60-second install
+changes who has access to that
+capability. It is no longer something
+you build from scratch over weeks or pay
+a platform subscription to access. It is
+a repository you fork this afternoon.
+Claude code handles the code. Open Swarm
+handles everything else. That division
+of labor is clean. It is honest about
+what each tool was built for, and it
+reflects how serious AI workflows are
+actually going to be structured going
+forward. Not one tool doing everything,
+but a network of specialized systems
+working in coordination. Each excellent
+at its job, none pretending to be
+excellent at every job. If you're
+running any kind of AI-powered workflow
+that involves more than just code,
+research, documents, presentations, data
+analysis, media generation, Open Swarm
+is worth deploying and watching closely.
+The GitHub repository is linked in the
+description. Fork it, run it, and if you
+find yourself wanting a custom version
+built around your specific workflow, the
+architecture is already set up to make
+that straightforward. One thing worth
+mentioning before you go, if you're
+planning to run Open Swarm or any
+serious AI agent infrastructure, you're
+going to need a reliable place to host
+it. Hosting a VPS gives you the kind of
+environment these systems actually need,
+dedicated resources, full root access,
+and the flexibility to run Docker
+deployments or API servers without
+hitting the walls you run into on shared
+hosting. The plans are priced in a way
+that makes sense for developers, and the
+link in the description gets you the
+best available rate. It is what this
+channel recommends and what holds up in
+practice for this kind of workload. That
+is everything for this video. If it
+helped you understand what Open Swarm is
+and where it fits, the like button makes
+a real difference for reach. Subscribe
+to stay with this channel as the open
+source agent ecosystem keeps moving,
+because the pace right now is not
+slowing down. Drop a comment if you're
+already building something with
+multi-agent systems. The best
+conversations on this channel happen
+down there.

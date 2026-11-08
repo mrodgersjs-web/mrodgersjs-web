@@ -1,0 +1,202 @@
+Good morning folks. We've heard all
+sorts of things over the last day and a
+half, two days about engineering and
+engineering best practices, but I want
+to go ahead and say don't forget
+Conway's law.
+So, how many of you actually have heard
+of Conway's law?
+Decent number of hands. Good. Well,
+let's review.
+So Conway's law actually says that no
+matter what your organization or the
+product you're trying to build, they
+will reflect one another functionally.
+So we have a very big question. If we
+want to make changes to the product
+we're building, we've been talking a lot
+about microservices. I hear rumors that
+someone over there has talked about
+that. Yeah. Okay. So if we want to talk
+about microservices, if we want to talk
+about changing binary objects from being
+monolithic structures or even
+infrastructures from being monolithic
+and vendor dependent, then we need to
+talk about the systems and the people
+around it. Turns out very few
+technological problems turn out to be
+the technology anymore. A lot of them
+turn out to be the people and the
+systems in our organizations.
+So I guess the first question to answer
+here is if we want to change it, what do
+we change first?
+Anyone have any suggestions? Do we
+change the people? Do we change the
+chicken? Do we change the egg?
+Okay, so I'm going to actually suggest
+that we need a chicken omelette.
+I worked a long time ago. This is a
+keynote, so there's a requisite
+anecdote. Um, I worked a long time ago
+for a bookstore based in Seattle. You
+may have used it. They ship all the
+things now. Um, this was back when
+Webscale didn't have a name. And we were
+spending all our time trying to figure
+out how to give our customers what they
+needed as fast as they possibly could.
+And what was built looked a lot like
+this.
+There was a point in time where
+the binary that built the Amazon front
+page was between 300 and 500 megs. The
+binary and it took between 8 and 12
+hours to compile sometimes and then oops
+it failed.
+So that is not what we would call an
+iterating process.
+And as we were trying to webcale and
+control failures and risk and all of
+this, we put in lots and lots of rules,
+lots and lots of change management, lots
+and lots of care. And I remember one
+particular day when I needed to reboot a
+development server, but we weren't
+really quite sure of all the
+dependencies for it. So I had to go to a
+change management meeting. Okay, this
+makes sense for some value of sense. And
+I it ended up requiring VP level
+approval in order to reboot a
+development server. As you can imagine,
+this is not again going to be the
+fastest way to iterate and make changes
+uh to your code, deliver good service to
+your customers, etc.
+So, at some point, shortly after I left,
+at some point after I left, Jeff came
+down and said, "We need to fix this.
+This is taking too long. we're not
+actually mitigating risk. It's too
+difficult to move. We're not making
+enough changes. And so he issued what
+has become known as the two pizza team
+edict.
+So well, there's great debate about how
+many people two pizzas feeds pizzas feed
+and how hungry the engineer has to be.
+And you know, there can be a whole great
+big long set of jokes on that. Um
+although that's true, we don't know how
+big a two pizza team really is. The idea
+was to have small and agile teams and
+that's fantastic and those small and
+agile teams then start working with each
+other through strong agreements and
+those strong agreements look like
+software interfaces in a lot of cases
+look like requirements documents look
+like APIs
+and at this point you have small teams
+being able to make changes to their
+pieces of code as long as they don't
+violate these contracts.
+that are the strong boundaries between
+the different elements. So the
+monolithic codebase that once served
+Amazon.com
+several hundred megabytes now looks more
+like a few hundred micros microservices
+to render the front page. And if one of
+those micros microservices fails and
+fails to meet that SLA you as the end
+user might not even know because it just
+won't render that little square. And so
+this makes a better customer experience,
+makes a better developer experience,
+makes the teams able to move more
+rapidly.
+So there's a great paper on a rant
+really on the web by Steve Yagi uh
+called the platform rant about Amazon
+and Google and it talks about this
+change more in depth. And certainly
+executive sponsorship helps in all of
+this, but it's not the only way to do
+this. And not everyone has the luxury of
+being able to address the entire
+monolith in the next 18 months or 6
+months or however long. So functionally
+you out there who are saying how can I
+move from where I am to where I want to
+be, how are we going to refactor this
+elephant? There are a couple of
+strategies and a couple of possibilities
+that seem to happen over and over. And
+one of those is to build out a little
+tiger team and start moving a single
+piece, a single service out of the
+monolith. And this causes some cultural
+challenges.
+They it can give you a sense of halves
+and have nots in an organization. And
+you end up with people thinking that
+they weren't chosen because they weren't
+part of this or or because they weren't
+uh the best coders or because they
+weren't the best communicators. Uh in
+this case, I would say being a better
+communicator is often an important part
+of this. But these small teams can be
+considered divisive, can be considered
+isolating if you don't spend a whole lot
+of time focusing on the fact this is not
+a promotion. This is not necessarily
+important. This is more about
+pioneering. Going out and making changes
+to the way your organization builds,
+conceives of, and delivers software is
+all about pioneering. It's still
+chopping wood. It's still carrying
+water. It's not all glamour.
+That said, another important component
+of this team that breaks out to try to
+bring this change is in fact making sure
+you have a culture of sharing, a culture
+of learning, failing publicly and then
+being able to take that information,
+take those learning experiences back to
+the rest of the team and allow them to
+learn from you and your experiences.
+Again, pioneering,
+not necessarily that the new team is
+better, not necessarily that the old
+team is worse, but that there is a sense
+of shared journey and a sense of growth
+for the entire organization.
+This growth continues on to actually
+allow your organization to move to
+whatever sort of architecture you think
+is the right one for your for your
+company. Doesn't have to be
+microservices. It might be some
+combinations of microservices and
+monoliths. But we do definitely see the
+future as being all sorts of full of
+HTTP
+APIs,
+websites, web services, API gateways,
+all sorts of fun ahead and making sure
+that you understand HTTP as a protocol
+is and learning as I said from the
+successes and failures of those teams
+going out to break out these little
+services is incredibly important. and I
+get to say thank you all for being here.
+Please stop by the EngineX booth because
+we think HTTP is really cool and we can
+help.
+Have a great afternoon and enjoy the
+rest of your sessions.

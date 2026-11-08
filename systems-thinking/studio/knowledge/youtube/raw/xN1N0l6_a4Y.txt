@@ -1,0 +1,606 @@
+Claude Code just killed video editors.
+You've probably been hearing this on
+TikTok or Instagram or wherever. And so,
+today in this video, we're going to be
+using Claude Code to take a raw video
+file that we have recorded and edit it
+completely down into a ready-to-post
+clip for Instagram Reels, YouTube
+Shorts, or TikTok videos. The reason
+this matters is because if you're
+spending 15 to 20 hours a week editing
+your videos, that's 15 to 20 hours that
+you're not spending making new content.
+And the more content you make, the
+greater reach get and the faster you
+will grow. And the idea behind the
+system is we're just going to have a
+folder where you can dump all of your
+raw video files in. Every single
+morning, we'll just have a routine that
+runs. It'll look through that folder for
+any new additions. It's going to edit
+all of the videos in there and then just
+save them to a new output folder. And if
+we haven't met yet, my name is Duncan
+Rogoff. I'm a former art director for
+brands like Apple, PlayStation, and
+Nissan. And I now run a six-figure AI
+agency. In under 12 months, I've grown a
+following of over 110,000 people and I
+lead a community called the Builder
+where more than 2,000 are already using
+AI to grow their audience and generate
+leads for their business in under 3
+hours per week. The way that the system
+is going to work, we're going to be
+using a free service called Whisper to
+transcribe the videos. It's going to
+remove any of the bad takes or mess-ups
+or whatever. It's going to trim out all
+of the silences, so it's super super
+tight, which is of course what works
+well on Instagram or any short-form
+platform. We're going to add a text hook
+up top, which is basically supports the
+verbal hook, which we know works really
+really well. And then, we're going to
+burn in our captions so that we don't
+ever need to actually generate native
+captions in the platform, which is going
+to save us so much time. If you want to
+get access to anything that we build
+today, already done for you, I'll leave
+a link in the description. So, today I'm
+going to be building everything inside
+of the terminal because I found it to be
+easier and faster than using the desktop
+app. At the end, we will switch over to
+the desktop app to schedule our routine
+so that we can just run this every
+single day. So, the first thing that
+you're going to do if you've never used
+Claude in the terminal before is you
+just need to come over here, go into
+your spotlight, type in terminal, and
+you can open this up, and you're all
+good to go. If you've never installed
+Claude Code before, here's a quick start
+guide from Claude itself. What do we all
+you need to do is copy and paste this
+into your terminal. It's going to ask
+you a few setup questions, and you
+should be good to go. So, I'm just going
+to type in Claude to get started. Now,
+what I have done is I just have this
+folder on my desktop. It's the Claude
+Code video editor folder, and I'm just
+going to drag this in here so Claude
+Code knows like where we want to build
+everything. Inside of this folder, I
+just created two subfolders. One is raw
+for all my raw video files, and two is
+the outputs folder for any of the final
+outputs.
+Then, inside of Claude, I can just hit
+shift and tab on the keyboard, and you
+can see here we've now switched to
+planning mode. This means that Claude is
+actually going to create a game plan for
+us to review as a human before it
+actually builds anything. So, now we can
+do is we can just talk to the system to
+tell it exactly what we want to build.
+I need you to create a video editing
+pipeline. I'm going to drop a raw
+unedited video file into the raw folder.
+You need to use Whisper to transcribe
+that. I need you to look for any
+repetition, bloopers, or errors. I need
+you to use FFmpeg to cut out any of the
+mistakes. I also need you to use it to
+trim any gaps or silences. Later on,
+we're going to add a text overlay for
+like a hook, and then we're going to
+caption the video file, which I will
+give you more instructions on later on.
+Once everything has been edited, I need
+you to drop the final edited video into
+the outputs folder with a proper name
+and date. So, now I'm just going to send
+this off to Claude Code, and it's going
+to create an entire game plan for me.
+Cool. So, the system basically just came
+back, and it asked me one question about
+what I meant by Whisper, the app that
+I'm using to talk into the system right
+now. It's currently called WhisperFlow.
+People ask me about this all the time.
+That's not what I want to use. I want to
+use this faster Whisper thing, already
+installed. It's totally free. You don't
+need any like API keys or anything like
+that. So, just tell it to use the free
+version of Whisper, and I'm just going
+to hit okay, and now it should go ahead
+and create the rest of the plan. So,
+this took a couple minutes, and it came
+back with an entire game plan for us.
+So, I'm going to drop a raw video file
+into the raw folder. The pipeline
+automatically transcribes, analyzes for
+mistakes, cuts bad segments, trim
+silences, adds a hook overlay, and
+exports a clean video to outputs. It's a
+fully local pipeline using faster
+Whisper, FFmpeg, and the Claude API.
+It's going to create all of the steps of
+the pipeline, any of the configuration
+details, and anything else it needs to
+actually build this for us. So, I'm just
+going to go ahead and click yes, auto
+accept edits, and then we're just going
+to go ahead and start to build out this
+pipeline. Now, while we're doing this,
+there are two other pieces of this
+pipeline that I mentioned. One is the
+hook overlay, the text in the beginning,
+which is going to get people's
+attention. And two are the captions. So,
+what I'm going to do is I'm going to
+show you some of the principles and
+psychology behind creating these text
+overlays that I've already established
+that we're going to bring into this
+system. Why Claude Code becomes so
+powerful is over time you start to have
+all of these little pieces that you
+build up that you can start integrating
+together in new ways. So, I'm just going
+to open up a new Claude window over
+here. And I know that I have this
+ideation skill to help me create new
+ideas for new video content. Inside of
+the skill, I have a lot of information
+on creating effective intro hooks,
+especially when it comes to the text
+overlays in the beginning. Can you just
+describe basically what makes an
+effective text overlay? So, check this
+out. Here's what makes an effective text
+overlay. If you're just creating videos
+manually, you can use this stuff, too.
+So, the core rule is say something
+different. The text overlay, which
+appears on screen, and the spoken hook,
+which is what I am saying, they run
+simultaneously, but they shouldn't be
+the same thing. They must each stand
+alone and say something different. The
+goal is intrigue, not description. The
+best overlays make the viewer ask a
+question. They don't answer one. So,
+here are three patterns that work. The
+paradox pattern, something that sounds
+wrong or contradictory. She was right,
+or I fired all three, or it cost me
+everything. The social proof gap, this
+implies others knew something before you
+did. 78,000 people knew this before me.
+Or the confession, which admits
+something that creates tension. I almost
+didn't post this. And so, now that we
+understand this, we can just go ahead
+and start to bake this into our existing
+pipeline. And I'm just going to go ahead
+and come back in here. It's probably
+behind my head, so let me just scoot
+this up and scoot this over a little
+bit. So, I'm just going to do the same
+thing and type in ideation, and I'm just
+going to say, "Inside of this skill, I
+have some descriptions about what makes
+an effective text overlay for the intro
+hook. So, I want you to bake this into
+our system. So, we should basically be
+creating text overlays once we have
+edited the video that they will appear
+in the first 6 seconds or so. They
+should be kind of like a big bold font
+that occupies like the top third of the
+frame." And it is asking me for my
+Anthropic API key or my Claude API key.
+I know my system already has access to
+it, so I'm just going to say, "You know
+you already have access to my Anthropic
+API key, so just make sure you use
+that." If you've never gotten your
+Anthropic API before, just come over to
+platform.claude.com.
+You can come down here into this little
+manage section, go into API keys, click
+create new API key, name this whatever
+you want, and then click add, and a new
+API key will pop up for you. So,
+remember how I said everything is about
+pulling all of the pieces of the puzzle
+together. The next thing we need to do
+is captions. Let me talk to you about
+captions. There's this creator that I
+love on Instagram, Mino Wee. He's got
+530,000
+followers, so you know he's doing
+something right. And he just released
+this video the other day. This one
+editing hack got me 1.8 million
+followers. Also, notice the text hook on
+screen. So, I'm just going to play this
+video for you so you can learn about
+this editing hack when it comes to
+captioning your videos, and then we're
+going to apply this thinking to our own
+captions. Pro editing tip inside [music]
+TikTok. You're going to press these four
+buttons, and it's going to instantly 2x
+your views. I promise you, okay? I've
+grown all these accounts because of
+this. [music] This one specific topic.
+Okay, first up, we're going to do auto
+captions. At Step two, we're going to
+hit style, custom. Step three, make it
+smaller. It's going to feel a little bit
+more nonchalant and authentic. People
+love the authentic style editing. Next,
+we hit this button with the A, go to
+basic. I like this one because it feels
+more nonchalant, but it still has that
+tiny like the black shadow around it, so
+it's a little bit more contrast from the
+background. It feels legible. Text makes
+it easier for your viewer to watch,
+higher retention, okay? And then, we're
+just going to cut it, especially in the
+first 10 seconds, because we want things
+to move fast in the first 10 seconds.
+[music] Here is my complete guide to
+getting your first 10,000 followers on
+your personal brand on TikTok, two words
+at a time. Things move fast. There's not
+a lot of clutter on the screen, because
+if there's too much clutter on the
+screen, people are not going to watch
+it. And last step, we're just going to
+make this a little bigger. And here we
+go. This is the finished product.
+&gt;&gt; my complete guide to getting your first
+10,000 followers on your personal brand
+on TikTok or Instagram.
+Isn't that clean? That's clean right
+there. People probably think, "Oh, he's
+a little nonchalant creator." In
+reality, I AB tested the
+out of this. Like for more.
+Okay, anyway, I think that tip is
+freaking awesome, and it's really
+interesting, and I want to try it out.
+The other thing that I just want to note
+is that piece that he says at the end
+where he's like, "You think I'm this
+nonchalant creator, but I AB tested it."
+So, the people who are growing the
+biggest channels and are doing the best
+work are the ones who are AB testing.
+They're the ones who are doing their
+research. They're the ones who are
+studying other creators and what's
+working. So, that research step that
+comes in the beginning before everything
+else is the biggest piece that I think a
+lot of people skip, and then they wonder
+why their content isn't working. So,
+what I'm going to do is I'm just going
+to go ahead and copy this URL. I'm going
+to come over here to just like this free
+website for getting an Instagram
+transcript. I'm just going to download
+the Instagram transcript, and I'm going
+to give it to Claude and say, "Hey, I'm
+trying to recreate this." So, I just
+copied this transcript over here, and we
+can just come back into our terminal to
+see where we're at. It basically said
+that the hook overlay is all good to go,
+and our API key is now loaded from our
+internal local files. The last piece of
+this is the captioning. And I just got
+this video transcript from another
+creator who talks about like a really
+nonchalant style of captioning with
+small text on screen, like breaking up
+the first sentence into two words at a
+time, like white text, probably using a
+font like enter with like a little bit
+of a drop shadow. Here's the full
+transcript from his video, so you can
+kind of understand what I'm saying. And
+then, I can just paste in the transcript
+from Mino, and it's going to read
+through this to try to get an
+understanding of the types of captions
+that I want to make. So, this is the
+video that I want to run this on today.
+This is going to be like an Instagram
+reel or something. It's basically me
+just talking about Claude design and
+kind of this new ultimate Claude design
+setup guide that I created for people
+and some of the key things that you
+should give it if you want to get
+high-quality design files. But, I have a
+couple of takes, a couple of mess-ups,
+definitely some gaps in my speech and
+things like that. And so, I want to put
+this to the test to basically see if the
+system works. So, all I need to do is
+I'm just going to drag this from my
+downloads folder. And if I come back
+into terminal here,
+can we just run the full pipeline with
+the video that I just dropped into the
+raw folder? There really is no right or
+wrong way to build a system like this.
+Some people like to build and test in
+smaller stages, which maybe makes sense.
+I kind of like to try to get a full
+end-to-end picture completed before I go
+back and refine. So, basically we have
+all of the things we need. We have
+transcription with Whisper, we have
+editing with FFmpeg, and we have all of
+the captioning and text overlays done.
+So, now I just want to see if the system
+works, and then we can go back and
+refine from there. So, I guess while
+this is happening, one other thing I
+want to go through, you can see all this
+red, and these are errors. And basically
+what happens is Claude's going to go
+through the pipeline, it's going to
+identify where there are any issues,
+like in this case down here, it created
+a text hook that says, "Everyone's
+output the same." But, this little
+apostrophe was messing up the system.
+And so, Claude basically understands
+this, and it knows how to fix it. If
+you're not a developer, you're not
+technical, you don't know how to code,
+like something as simple as that
+apostrophe may trip you up for hours.
+The main point that I want to make about
+this is that I think people are
+overwhelmed or have a hard time learning
+Claude code is because they don't want
+to take the time to read. And I know
+that sounds crazy, and it's like when I
+say read, I'm not going through and
+literally reading like this word for
+word, right? I'm kind of just reading
+like the responses from Claude just to
+understand like how the system thinks
+and where it's looking for errors and
+what's working and what's not working.
+So, that the next time I go to create a
+project, I have an understanding of how
+to better prompt it or how to work with
+Claude or be a good partner. Because
+next time we may encounter something
+similar, and it may take Claude a little
+while, but if I'm able to say, "Hey,
+like look out for this before you start
+building," then I can actually cut out a
+lot of development time and a lot of
+troubleshooting because I've already
+experienced something before. So, I
+highly recommend if you're trying to
+learn Claude code, that of course like
+all of this code looks totally
+overwhelming, and you don't need to know
+how to code, but definitely make sure
+you are reading the responses from
+Claude so you can understand how it
+thinks. So, this says this is done, the
+full pipeline ran clean, it transcribed
+all these words, it made cuts for four
+different repetitions, it created this
+hook overlay, it re-transcribed on the
+edit for accurate caption timing, it
+burned in the captions, then it created
+an output file with the same name as the
+raw file. Basically, the only thing I
+would change here, just for me cuz I'm
+weird like this, I would just say like
+for all of our output files, we should
+just create like a better, more relevant
+name for the video. Just going to say
+that because I want that. But, if we
+come in here, we now have a new output
+video all ready to go. So, let's go
+ahead and watch it and see how it does.
+Most people just open Claude design, but
+never set it up properly. That's why
+everyone's output looks the same. Here
+are four things you can upload to make
+your outputs not look like AI slop.
+Plus, of course, if you don't feel like
+you have any of this.
+The most impactful thing you can upload
+is screenshots of a finished landing
+page, your website, a polished deck,
+something you feel really, really good
+about. Okay, great. So, this is a pretty
+good start. There's definitely some
+issues here in general, like our
+captions aren't perfect, like I don't
+necessarily like love the look of this,
+but in essence like we have the bones
+here and the structure right. A couple
+of things that I've noticed that the
+text overlay hook in the beginning gets
+cut and cropped, and I'm not sure why.
+We should just have plain white text on
+a solid black background, no opacity on
+the background or anything like that. I
+also noticed the captions are jumping
+around a lot. They're kind of like
+moving from their vertical position, and
+I'm not sure why. I also want Claude to
+feel free to like make any spelling or
+grammatical corrections. Like we know we
+say Claude code, but the caption reads c
+l a w, not c l a u d e. So, just go
+ahead and like feel free to make any
+edits to the captions based off of what
+you know. The captions are also a little
+bit small, and I want to make sure that
+we center align them and also have like
+line breaks every four to five words.
+And so, maybe we can actually extend
+that to maybe like 20 words or 15 to 20
+words, uh you know, for the second half
+of the video. Also, our video looks
+heavily compressed, and I want to make
+sure that we maintain the quality. Okay,
+so this just finished. Let's check out
+what we got. Most people just open
+Claude design, but never set it up
+properly. That's why everyone's output
+looks the same. Here are four things you
+can upload in order of impact to make
+your outputs not look like AI slop like
+everyone else. So, this is looking
+really good. I'm generally really happy
+with this. If you're having any issues,
+just like have a back and forth with
+Claude about what's working, what's not
+working, and it should go ahead and fix
+everything for you. The last thing that
+we have to do is basically just set this
+up to run on a schedule, so that
+basically every single morning the
+system will check for any new raw
+videos. It'll go through this entire
+process, it'll edit everything for you,
+and just save it all in the outputs
+folder ready for you to publish. If you
+wanted to take this one step further,
+you could use a third-party service like
+Blowtato to automatically publish your
+content on every single social media
+platform for you like instantly. So,
+what we will do is we will just open the
+Claude desktop app. This should be
+familiar with you if you've been using
+chat or if you've been using co-work.
+You can also use Claude code straight
+from the desktop. What's really cool
+about this is you can really easily
+schedule something called routines,
+which are really just tasks that you set
+to run on any type of schedule. The
+trade-off here with using routines is
+they run locally on your computer, which
+means that your computer actually needs
+to be on and like not asleep for the
+routine to actually run. So, I'm going
+to come in here into a new session, and
+all you have to do is come down here and
+open up the folder that you want to work
+in. So, if we just go to the desktop, I
+can go to the Claude code video editor
+folder, and now we are inside of this.
+And Claude code is smart, so I don't
+have to actually manually build the
+routine myself. I can just tell Claude
+code what I want it to do. Inside the
+folder is a system for editing videos.
+What I want to do is set up a routine to
+run every single morning at 9:00 a.m.
+It's going to check the raw folder for
+any new videos that have been uploaded
+there. It's then going to run the entire
+process, ideally in parallel, for every
+single one of the raw videos to edit the
+files according to the scripts available
+in the folder. Once it's done, it'll
+save the final output into the outputs
+folder, and then it should move the raw
+video file into a new folder called
+processed. Down here you can see I have
+this set to plan mode again, just so we
+can make sure that it's planning out
+everything correctly before it builds
+the routine for us. So, I'm going to
+click enter, send this off, and Claude's
+going to start thinking about how to
+build the routine. So, this is great.
+One thing I love about Claude code is it
+just flags things for you. So, this says
+for parallel processing, basically the
+idea that all of the raw videos are
+going to process at the same time. This
+is CPU heavy, meaning it's going to use
+all of your computer's resources, so it
+may slow down your computer. So, this is
+okay if we want to like run this
+overnight, and we just want to run
+everything at once. Or we can do this
+sequentially, which means it's just
+going to process one video at a time.
+So, it kind of depends on how you want
+to do it. I really think if you're
+planning on being at your computer while
+this is running, probably doing this
+sequentially makes sense. If you're
+doing it like kind of when you're away
+from your desk, really either of these
+are fine and probably doesn't really
+matter cuz either parallel is going to
+slow down your system or sequentially,
+which will take longer, but you're not
+going to be there, so it's really your
+choice. For now, I'm just going to go
+ahead and select parallel because it
+said it's recommended. So, you can see
+in this right panel over here, it's just
+proposing a plan for us. So, up here is
+basically just telling me that it
+understands the system. This is the full
+implementation plan. The biggest
+difference here is that it's just going
+to create this batch structure to run
+everything in parallel. And those really
+seem to be like the most important
+things to know. So, I'm just going to go
+ahead and say accept and allow edits to
+let Claude code do its thing. Okay,
+great. So, this finished. If we come
+over into the routines tab over here,
+you can see we now have this video
+editor daily that's going to run every
+single day. It's going to run the video
+editing batch processor for the project
+in the local folder. And if it succeeds,
+it's going to report how many videos
+were processed and where the outputs
+were saved. And if it fails, it's also
+going to tell me about that, too. I'm
+going to package this entire video
+editing system into a skill for you. I'm
+going to leave it inside the community
+at the link in the description, along
+with the exact system that I used to
+grow over 150,000 followers and close
+multi-billion dollar clients from
+organic traffic alone. I'll see you over
+there.

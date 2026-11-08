@@ -1,0 +1,681 @@
+[Music]
+thank you so much for having me I will
+talk about resilience engineering today
+well before we start let me tell you a
+little bit about myself first my name is
+Pete Honduran I am Dutch I live near the
+German border with my fantastic two
+daughters and my wife
+during the day I am a cloud
+transformation consultant which means
+that I spend most of my time helping
+organizations Drive Innovation using
+Cloud technology I do this either by
+advising them implementing stuff or a
+combination of both I work at luminous
+in the Netherlands which I love luminous
+develops and implements cloud-based and
+data-driven solutions we aim for the
+shortest time to Value while improving
+customers resilience hence the title of
+this talk
+I am also an AWS Community Builder and
+one of the leads of the Dutch AWS User
+Group
+okay that's enough about me
+now there's a link between the
+interesting times we are living in and
+the theme of this talk you see
+resilience or anti-frigidity as it's
+also called is all about dealing with
+unexpected fundamental surprises it's
+about dealing with sudden disaster about
+absorbing damage and about recovering
+from it or preferably coming out
+stronger at the event than you were when
+you came in so what will you learn in
+the next 20 minutes
+this is a talk about resilience
+engineering so we'll start off with
+resilience
+what does the resilience part in
+resilience engineering mean exactly
+I have just given you some hints but
+there is more to it
+I will start there
+then when we all have a common
+understanding of the term resilience I
+want to talk about resilience
+engineering engineering resilience after
+all this is a technical conference and
+most of us care about creating something
+and evolving it to cope with our
+increasingly complex digital and
+physical world
+I'll talk about Safety Science systems
+thinking and the socio-technical system
+in other words The Cutting Edge of
+technology and its developers operators
+and the pendants us the humans
+and finally I'll give you some pointers
+so you can do a resilient engineering
+Deep dive yourself
+now what is resilience
+to understand resilience you need to
+think about robustness first
+we you know software people are really
+good at building robust systems systems
+that are highly available that can
+handle a little Peak load a little
+stress
+like this nice dike over here which is
+not only a very nice place to do your
+evening walks or deep thinking while
+staring at the sea it's also preventing
+55 of my country from drowning in
+seawater
+and therefore it has to withstand
+enormous pressure
+and to build these robust systems we use
+several techniques
+the first Technique we use is redundancy
+for example connecting a data center to
+another one using a primary and a backup
+line a redundant line
+we use copies of systems as fallbacks so
+we can keep serving customers if parts
+of the system suddenly stop responding
+for example when there's a rush of
+traffic coming in
+foreign we do this by using fill over
+mechanisms by for example re-routing
+traffic from Bad systems that are
+currently not responding to healthy
+systems or subsystems for example
+and lastly we Implement retry mechanisms
+to cope with those temporarily failing
+actions
+or Services sound familiar
+we do this because we tend to think
+about what might go wrong you know
+sheriffs might feel Services may become
+unavailable networks might become
+unreliable
+Services may go down and that's what we
+tend to focus on
+that's what's on top of our minds when
+we Design Systems and that sounds wise
+but this is actually doing ourselves and
+our users a disservice
+let me explain why
+so robustness is all about designing
+around the things we know can go wrong
+or might go wrong
+resilience engineering sometimes called
+these things that can go wrong the known
+unknowns or classical risks
+if you want to defend yourselves against
+these risks you end up with a very
+robust system with the properties you
+just saw
+and robustness is nice
+but it's not a very effective way to
+protect us from risk
+it doesn't protect us against
+fundamental surprises
+when the Retro and tabulate this
+hydrocoptic marsal veins go from
+horizontal to Vertical fumbling will
+fillovers retries and fill backs fix it
+I don't think so it won't when things go
+south in the most unexpected ways
+robustness is useless and sometimes it
+makes matters worse
+sometimes all of a sudden stuff breaks
+and it takes us completely by surprise
+we call these surprises the unknown
+unknowns the stuff we don't know we
+don't know to quote former U.S Secretary
+of Defense Ronald romselt that's the
+stuff resilient systems can handle and
+robust systems cannot
+let's have a closer look at these
+unknown unknowns by classifying them
+on the y-axis we plot awareness going
+from the bottom low awareness to the top
+high awareness
+and on the x-axis we have knowledge
+going from little knowledge to the right
+great knowledge
+foreign
+this way we can Define four quadrants in
+the top right we have the easy stuff the
+things we are both aware of and we have
+a lot of knowledge about
+we know what we are what they are and we
+know exactly what we need to do
+if they occur in terms of risk
+below that
+little awareness a lot of knowledge
+the unknown notes or secrets we know
+they are out there but we are not aware
+of the details we can find out by asking
+around or investigating because others
+have dealt with these threats already
+the last still relatively easy category
+is that of them known unknowns
+little knowledge a lot of awareness the
+classical risks
+we are generally aware that something
+can happen but we don't know the details
+or mitigations yet
+we can still prepare for them though now
+the last category is the stuff that this
+talk is all about the unknown unknowns
+the stuff no one is aware of and if they
+occur we don't understand them
+immediately
+a blind spot a Black Swan you cannot
+prepare for what you don't know you
+don't know but the good news is you can
+learn how to deal with it of course if
+it occurs that sounds a bit magical but
+resilient engineering is all about
+dealing with these unknown unknowns
+let's take a look at another example of
+a robust system and then an example of a
+resilient one
+the robust system is the one you see
+here a castle
+it's really hard to get into a castle
+without an appointment especially if you
+are considered enemy
+it's got a mode surrounding it with
+water in it thick and high walls
+very small windows and during wartime
+it's lined with defense mechanisms like
+boiling oil arrow shooting Knights
+cannons it's robust
+it's not very resilient
+if you break down a part of these walls
+and you bridge the moat the castle is
+left defenseless you can just walk right
+in if you manage to dodge the arrows and
+the uh the knights
+even then it's still something you more
+or less expect to happen when you design
+a castle
+an army trying to attack the castle with
+arrows slingshots and letters is not an
+example of an unknown unknown
+because that's exactly what a castle is
+designed to withstand it's a no no
+maybe the Army had a secret weapon
+you can still defend for that since it's
+probably quite similar to what you
+already know about
+so Castle Engineers or whatever they
+were called back then they designed for
+this stuff they made sure the chance of
+penetration under attack was very small
+let's have another closer look at the
+staff Castle designs we're dealing with
+using the quadrants we saw before
+so the risk for castles come from
+traditional weapons
+maybe secret weapons they are unknown
+but probably a bit more advanced than
+traditional weapons still not a real
+threat
+more modern weapons were not present in
+evil medieval times but a castle is
+still surprisingly good at deterring
+these weapons since they have similar
+properties
+they break stuff maybe in a more
+effective way but it's very similar to
+what the castle is designed to avoid
+but what about something completely
+unimaginable to Castle designers
+Nanobots dropping viruses from drones
+their thick walls moats hot oil and
+nights are useless
+and this is the area where robustness
+breaks down and resilience shines
+there you use resilient engineering yeah
+let's take a look at resilience at a
+resilient system now something we all
+have our body
+the human body or anybody for that
+matter is an excellent example of a
+resilient system
+you are wired to prevent accidents from
+happening because your nervous system is
+faster than your conscience
+every time you do something your body is
+learning especially when you almost get
+into an accident like a near-miss with
+another bicyclist you subconsciously get
+better at preventing accidents by
+practicing
+and if an accident does happen like
+falling from your bicycle and breaking
+your arm while you were trying to get to
+your pregnant wife in the hospital
+which I did a few years ago
+your body still works
+more or less not completely and it hurts
+but your body still functions
+and even better in a few weeks any
+broken bones or bruises you may have
+suffered repaired themselves
+s are good archetypes of resilience
+therefore you see because bones are not
+made once and Lasting a lifetime they
+actually get replaced every 10 years or
+so not at once but they get continually
+destroyed and rebuilt in such subtle
+ways that we don't notice it happening
+and our bones do this because we put
+stress on them
+and if we put stress on them they
+strengthen themselves along these strain
+lines
+every time you shock your system it gets
+stronger
+until it is highly optimized around your
+lifestyle which is what makes your bones
+unique to you
+now your bones are not intelligent they
+don't know what you will do to them over
+time
+they're also not centrally controlled
+and there is no Grand Design or a manual
+that your body follows the strength of
+your bones is not defined in your DNA
+running walking playing rugby missing
+the last step of a staircase and falling
+these are all unknown unknowns to your
+bones themselves
+yet they don't break most of the time on
+the contrary they get stronger with
+every blow with every exercise and
+incident
+they suffer true
+and that's exactly what resilience
+engineering is all about
+accepting constant pressure in
+surprising forms on the system as a
+given and using that to learn how to get
+better over time
+foreign now that I've explained the
+difference between robust and resilient
+systems
+let's dive into the engineering part of
+Brazilians engineering
+let's go back to my example about
+robustness
+like I said robustness is about dealing
+with risk
+if you think about things that can go
+wrong a lot like we said before you tend
+to focus on preventing error
+and how do we do that in engineering
+by minimizing variance for example by
+not allowing input outside of a
+predetermined range
+we write lots of documentation
+at least we are supposed to a Boeing 747
+flight crew operating manual for example
+is 3 000 pages long
+we also try to enforce things like
+making it impossible to shift to reverse
+while driving in your car
+and that's all fine and dandy but like I
+said this helps us manage risk it still
+doesn't help us defend against the
+unknown unknowns
+maybe you've seen the HBO series
+Chernobyl off or heard of the accident
+I'm an 80s kid so I definitely have
+the power plant has unfortunately been
+in the news a few weeks ago because
+there's a war going on that's in that
+area but I'm talking about something
+that happened almost 40 years ago
+in 1986 I was three years old and
+previous then part of the Soviet Union
+now in the Ukraine one of the reactor
+cores of the Chernobyl nuclear power
+plant ended entered a runaway nuclear
+reaction which led to explosion and a
+meltdown of the core
+and that's quite awful and shocking
+but the accident is a great framework
+for Learning and for explaining
+resilience engineering because it is a
+great example of disaster caused by
+the reactors control uh rods they
+reactor cross control rods have graphite
+tips which set off a chain of reactions
+that cause the explosion of the reactor
+people were not aware of this during
+that time
+bad management and top down pressure
+caused people to take decisions that
+were not foreseen in any scenario or
+described in manuals
+critical information was covered up by
+people in powerful positions making the
+aftermath and the leader to the disaster
+worse just to name a few so how do you
+deal with that and that's what the field
+of Safety Science is all about the
+birthplace of resilience engineering
+in trying to create a safer World safety
+scientists are trying to shift the focus
+from avoiding the things that can go
+wrong sometimes to making sure things go
+right most of the time
+and they do this by focusing not only on
+technology which we tend to do but they
+focus on humans as well foreign
+resilience engineering Advocates talk
+about systems they don't mean components
+or computers or Networks
+they're talking about the so-called
+social technical system
+social as in the people that interact
+with the technology like this man on
+this photo
+and Technical as in the technology we or
+he is interacting with
+this perspective this way of thinking
+about dozens or hundreds or thousands of
+parts that interact as feedbacks
+feedback loops stocks input output is
+known as systems thinking
+you see whether you like it or not
+humans are always part of the systems we
+create
+take Chernobyl for example again what
+was this system in Chernobyl was it just
+a nuclear power plant the control room
+the reactor the steam turbines the fuel
+or the people as well the operators the
+managers the government the engineers
+or was it both
+when thinking in socio-technical systems
+the humans are just as important as the
+machines
+so so what you might think now how does
+this prevent error what's the difference
+how do you engineer resilience then
+surely you can only create systems but
+not the humans as well
+this is finally where the engineering
+part of resilience engineering comes
+into play
+because when things go wrong they don't
+go wrong suddenly and all at once
+example again synovial the explosion of
+the Reactor Core was the climax for sure
+but what caused it what led up to this
+climax
+the operators in the control room
+pushing a shutdown button Maybe
+but they did and could not anticipate
+this outcome they didn't even completely
+understand what was happening at the
+time even though they were surrounded by
+tons of data in the control room and
+also they were under pressure from their
+supervisors
+they were under pressure as well
+and nobody imagined that a shutdown
+would cause an explosion what happened
+in reality was radically different from
+what people imagined would happen the
+state of the reactor at the time was
+different from what people thought it
+was
+take this Sim this simple system for
+example it has two buttons A and B
+we cannot see what's inside it's a
+proverbial black box so if we want to
+learn how the system works we can do
+several things one read the manual but
+who reads manuals right I don't know if
+you do I rarely do and at not for such a
+simple system anyway
+we could open the box
+but that takes time it's cumbersome and
+we have to put it back together again so
+a good way to get to know the system is
+just by fiddling around and pressing the
+a button
+aha so if I press the A Button the light
+above a goes on switch is on which means
+that pressing button a causes the light
+to switch on simple I now imagine that
+there is a direct connection between
+button a and the light above it and I
+think if I press button a again it will
+shut down the light
+indeed nice so my mental image the
+system as imagined still corresponds to
+what happens in real life the actual
+system let me show you what I think now
+if I press button a the light goes on so
+I think there's a direct connection
+between a and the light
+since button B looks very familiar very
+similar almost identical to button a and
+it has a similar light just above it it
+must be similar in design so I imagine
+it has the same technical
+characteristics but it is now in the off
+position let's see if I press it if I'm
+right
+okay indeed I am nice so my mental model
+is still correct
+I am now going to press button a again
+and I will expect that the left light
+will go out
+that's weird
+both Lights Went Out
+that must mean that my mental model was
+not correct something different must be
+going on under the hood
+luckily I consider myself to be smart
+enough to figure this out
+yeah
+that was fast and it's a good mental
+model I was missing a power source in my
+previous mental model of course so I've
+added it I think that button a switches
+off power to both lights that's new and
+button B only switches the right light
+so this is a better model it's fitting
+the reality IFC now I want to see if my
+model is correct so I think if I will
+press button B again I expected nothing
+will happen with the lights they will
+remain off
+what
+what how how this cannot be right so
+this state is exactly the same as the
+initial State A and B are not pressed
+and the light should be off according to
+my mental model but they aren't what's
+going on there must be some kind of rule
+engine or computer playing tricks on me
+I am not sure what's going on so I'm
+going to open the box and see if that's
+the case
+ah that explains it a worm was crawling
+around in a box and it short circuited
+the light and the battery bypassing the
+a button so I was almost correct
+and this example shows you that the
+system as imagined in my head is just a
+model it's a very simple system in this
+case and still my model could be
+incorrect
+and the stuff we make every day is much
+more complex than this so you can
+imagine
+the failure of a simple model in reality
+in practice
+event-driven and microservices
+architectures are so complex that no one
+is able to fit the truth inside their
+head entirely
+take these models for Amazon Netflix and
+JPMorgan Stanley for example
+models are not enough to fully capture
+reality and no one can model a complex
+system completely it's impossible we
+need something better to control this
+organism like technology
+first we need to learn how the system
+works by creating the right inputs and
+the right outputs we need to make sure
+the inner workings of the system are
+transparent to us so we can create a
+fitting mental model easily
+then we need to continually experiment
+with the system by provoking it and
+seeing what happens
+and that is one of the reasons that a
+field like chaos engineering exists it
+Embraces the fact that we cannot
+possibly create complete and 100
+predictable models of systems especially
+not over time so we need to learn its
+limits by messing around with it using
+chaos monkeys doing fire drills pulling
+network cables switching off complete
+parts of the system and causing General
+but content Mayhem
+is what Brazilian engineering Embraces
+the constant interaction of humans and
+machines the human provokes the system
+sees how it reacts and then the human
+gets a little better at controlling the
+system if something breaks they can fix
+it or make sure that's even better that
+it won't even happen again in the say
+exact same way by creating better
+controls or better outputs or both
+so resilience engineering is about much
+more than just cool technology
+it's about the interplay of human social
+factors and Technical factors
+social technical that's the central
+theme of resilient engineering to make
+sure things go right most of the time
+using the engineering and human skills
+we have
+and lastly when things go wrong and they
+will go wrong that's a given keep an
+open mind don't focus on finding a
+single root cause because a single root
+cause does not exist remember a system
+is always some way running towards error
+it only limits your chances of success
+if you're thinking about root causes and
+finding faults
+don't start to blame each other but
+realize that accidents are a gift they
+show you where your models and
+assumptions were Incorrect and where the
+fault lines are
+the accident is the best opportunity to
+learn how to improve the system A system
+that increases the chances of success
+over time
+that's what resilience engineering is
+all about
+so in conclusion
+resilience is not robustness
+resilience engineering is about creating
+success not about eliminating error
+and resilience engineering is about
+humans as much as it is about technology
+it's about successfully controlling the
+complex system that they form together
+now I hope that I've taught you a little
+something today
+and this talk only scratches the surface
+of course and the same goes for me the
+more I learn about resilience
+engineering the more I realize there's
+much more to learn and the same goes for
+the field of course
+that's why my colleagues and I have
+created several blog posts that will
+help you dive a little deeper
+you can find it at the URL here
+tinyurl.com luminous Dash resilience
+thank you so much for listening to me
+I want to thank the organization for
+creating this opportunity to learn from
+each other
+I hope you have a great day and if
+there's any questions I can answer them
+now
+thank you so much Pete for your talk I
+don't know where to look where where
+should I be looking where is Pete is he
+over there somewhere
+um yeah I'll just look at you there
+that's fine
+um thank you so much Pete that was
+really a great introduction to
+resilience engineering
+um I don't think we have any questions
+in the app yet if you do have questions
+remember to put it under stage P1 but I
+guess I had a quick question which was
+in regards to the practical application
+of this so when we're saying okay we're
+going to not try to build for errors we
+already know about does that just mean
+embracing minimum viable product a bit
+more and kind of just going for the bare
+minimum and just waiting with some good
+logging attached or like what what's the
+Practical implication of that mentality
+shift
+yeah so that's a good question so uh
+just um doing a Bare Bones MVP I'm
+waiting for the first uh error to occur
+that's a quick way to run into accidents
+um but that means that your system is
+unavailable uh for a lot of the Early
+times that you build it for so I think
+that resilience and robustness are
+complementary to each other so you need
+to still create very robust systems but
+you need to realize that you can never
+make sure that your system will be able
+to handle everything that that the
+future will throw at you so I think
+resilience is an addition to a robust
+system and resilience thinking so the
+the culture of doing a resilience
+engineering is important to cultivate
+Nat yeah so logging monitoring that kind
+of stuff is very important and doing
+um analysis of errors or accidents is
+really important yeah
+okay thank you um I don't think there
+are any more questions actually so uh
+thank you so much for your presentation
+I guess do you know what I think it is I
+think everyone's just Keen for lunch so
+I think that's what I'm gonna go let
+them do so thank you so much can we get
+a big round of applause for Pete thank
+you so much Pete

@@ -1,0 +1,552 @@
+the AI landscape is constantly changing
+and it's really hard to keep up so in
+this video I want to cover 17 essential
+python libraries that in my opinion
+every AI engineer should know these are
+the exact libraries that we use to build
+all of our client projects at dat
+alumina right now and if you understand
+most of these libraries you'll set
+yourself up for a really great career as
+an AI engineer something a lot of
+companies are hiring for right now so
+let's dive in and then real quick just
+so we're all on the same page about what
+an AI engineer really is in my opinion
+because this role has really shifted
+over the past two years in terms of what
+the responsibilities are and with AI
+engineering I mean Engineers focusing on
+integrating pre-trained models into
+applications or products rather than
+training a model from scratch something
+that a machine learning engineer or a
+data scientist would focus on all right
+and the first library on the list is
+penic now penic is the most widely used
+data validation library for python it's
+much more powerful than Python's
+standard data CL classes and why it
+works so well for AI projects is that
+the data that is flowing through our
+systems is often very messy and
+unreliable and penic really enables you
+as an AI engineer to actually build AI
+systems rather than just simple wrappers
+around these apis because by structuring
+and validating your data within your
+application you can then use it to pass
+it down to other functions or next steps
+and control the flow of your application
+all right and then the second Library
+following up on that is ptic settings so
+this is part of the penic ecosystem but
+it's actually a separate library that
+you can pip install now with penic
+settings instead of using the base model
+that you use with regular penic models
+you can use the base settings model to
+specify and structure your settings now
+I like to create separate files within
+my project so for example here you can
+see an example of an llm config where I
+provide everything that I need in order
+to uh instruct my llm so I can make sure
+that I have the API key in here which I
+will load and then up on run time if the
+API key is not available it will throw
+an error because of the validation
+mechanisms that are implemented Within
+These base settings so overall btic
+settings really help me to one structure
+all of my settings in a central place
+and two also validate all of the
+important information that my
+application needs all right and then the
+third Library within the setup part is
+the python. n Library so this is going
+to ensure that you keep sensitive
+information like API keys or Secrets out
+of your furniture control and keep them
+safe within your EnV files and like I've
+said I really like to use this in
+combination with the penic settings to
+load the environment variables and also
+validate them at the same time all right
+and then with the project setup out of
+the way let's dive into some backend
+components starting with the API this is
+really going to act as the middle layer
+for your application typically
+connecting the front end or user input
+with your backend logic and we like to
+use fast API for this now flask is
+another very popular python library to
+build apis but we prefer fast API
+because it's really straightforward easy
+to learn it just works it's fast and it
+integrates with penic and since penic
+plays such a big role in our development
+workflow it makes sense to use fast API
+as well so with fast API we can Define
+endpoints which we can then send data to
+and that data that is coming in can be
+specified using like I've said ptic
+models so we make sure that the data
+that is flowing into our AI system is
+first validated by identic so we know
+exactly what we're dealing with so again
+data validation reliability it plays a
+really big role within our design
+choices because AI applications and llms
+are very messy and chaotic and we want
+to try our best to minimize that chaos
+or control that chaos as much as
+possible all right and then next up we
+have salary which is a python library
+that you can use to build task cues
+which you can use to distribute work
+across multiple threats or machines now
+this is useful when you're scaling up
+your application for example multiple
+users and you want to make sure that
+your endpoint remains available and
+active without for example tasks or
+processes taking a very long time to
+complete which can sometimes be the case
+when you chain together multiple llm
+calls sometimes these tasks these
+processes take multiple seconds
+sometimes even minutes depending on how
+big your system is and with salary we
+can ensure that our endpoint remains
+available by taking all of the incoming
+requests and putting them off to the
+task que where they can work on a
+separate machine or threat allowing our
+application to scale and be reliable so
+typically what we do within our fast API
+endpoints is we just store the data in a
+database and then send it off to celer
+and put it in a task you this ensures
+that the operation here at the endpoint
+level is very quick very short so it's
+non-blocking and then we have separate
+Logic for essentially picking up that
+task and then how to process it further
+in our application hey and since there's
+so much demand for AI Solutions right
+now a lot of developers want to take on
+site projects next to their full-time
+job or even transition entirely to an
+independent career as a freelancer or
+agency owner if that sounds like you but
+you struggle to take the leap or
+struggle to land that first or that
+second client you might want to check
+out the first link in the description
+it's a video of me going over how my
+company can help you with this in the
+video you'll learn more about our
+program and also how to see if you
+qualify so if that sounds like you make
+sure to check that out all right then
+next let's talk about data management
+and let's focus on databases first
+because your application needs to store
+data now while there are plenty of
+databases available two common options
+that you can look into is either post
+SQL for a SQL approach or mongodb for a
+nosql approach we actually like to use
+post SQL for all our database needs and
+the two python libraries that uh can
+really help with that is on the one hand
+pyop G if you use postgress and on the
+other hand Pongo if you want to look
+into mongod DB both options that I
+believe you should be familiar with and
+now of course your database regardless
+of which one you use is going to play a
+key role in storing all of the key data
+that your application relies on so this
+could be the raw data in the form of
+events that are coming in for example to
+your endpoint then of course you have
+all the processing maybe some
+intermediate steps and the final output
+that you send back to the user or your
+application you probably want to store
+all of that in a database all right and
+then next up we have SQL Alchemy and
+this is really going to simplify all of
+the operations around working with your
+SQL database so for for example in our
+case this would be postr SQL and SQL
+Alchemy just allows us to specify in
+pure python all of the common operations
+that we would need when working with our
+database so storing the data retrieving
+the data specifying our models and SQL
+Alchemy is our python library of choice
+for that all right and then following up
+on that we have a Lambic which works
+together with SQL Alchemy to manage your
+database migration so this is a
+lightweight tool that you can use to
+define your database migrations in pure
+python straight from your code base so
+whenever for example you want to change
+the structure of your your tables add a
+column remove a column you can specify
+this from your code base and a Lambic is
+going to help you perform that migration
+in the database itself without having to
+come up with complex SQL commands or
+opening your database at all to manage
+all of that and this again just helps us
+to manage our entire project basically
+from within our python code base which
+is really convenient all right and then
+the last one in data management is the
+pandas Library so this is essentially
+your Excel tool but then within pure
+Python and me coming from a data science
+background this is probably my most used
+library and I really like it to uh
+structure data in a more human readable
+way so while this is more of a kind of
+like data science Library when you're
+building your for example your
+evaluation data sets or you're
+extracting information from unstructured
+data and you want to structure that
+pandas is a really powerful library that
+you can use to essentially ructure it in
+rows and columns and perform these
+operations uh on your data to manipulate
+that and then also view it again in a
+very human readable way so also another
+library that I would recommend for you
+to dive into all right and then up next
+let's talk about AI integration and then
+of course first of all we have all the
+llm model providers right probably an
+open door but for the sake of clarity
+and completeness make sure you
+understand the open AI API entr Tropics
+API look into Google's API and finally I
+can Al recommend you to look into AMA
+which is a a unified interface that you
+can use to run and experiment with open-
+Source models and now the fact that
+you're here watching these videos you're
+probably already familiar with these of
+course but also make sure that you go
+beyond the simple quick starts right so
+really read through the API
+documentation and for example for open
+AI look into function calling structured
+output look into the vision models image
+generation there is really a lot behind
+these apis that you're probably not
+familiar with yet and now because of
+these these apis from these model
+providers are really going to be at the
+core of your application you really want
+to make sure that you fully understand
+all the ins and outs and the
+capabilities of that particular API all
+right and then following up on these
+model providers we have the instructor
+Library which is currently my favorite
+way to work with these models and get
+structured output to build more reliable
+AI applications and now while some of
+these model providers like open AI are
+also integrating their own ways to get
+structured output from the API
+instructor still has some upsides for
+example you have more complex data
+validation mechanisms and I also like
+that it's model agnostic which means
+that you can easily swap out different
+models so penic Builds on top of the pen
+Library which by now you know I'm a big
+fan of and what you can do is you can
+specify penic models using the base
+model and here for example you can
+specify a name and an age and we want to
+say the name should be a string an age
+should be an integer and we can then
+create a chat completion in this case
+using open Ai and the response model uh
+we can plug that in there and
+essentially we'll ask the llm model to
+give us data back in a specific format
+and if it doesn't fit within that
+identic model penic will throw an error
+and we can perform a retry and now this
+really increases the reliability of your
+application by basically being 100%
+confident that the data really that you
+get from those llms are exactly as how
+you specified them within your response
+models so again reliability validation
+Core Concepts and as an AI engineer I
+would recommend to always use structured
+output in your application to me there's
+just no reason to not use structured
+output up next we have all of the
+Frameworks out there that you can use to
+build applications with large language
+models the most popular one being Lang
+chain probably followed by llama index
+and now these are a bit of a
+controversial ones because you really
+have people that that love them and and
+people that that like that don't really
+like them and why I put them on the list
+is that as an AI engineer regardless of
+whether you like them you should be
+familiar with them and at least have
+tried them because they cover a lot of
+the Core Concepts that you as an AI
+engineer should be familiar with
+combining different large language
+models uh working with embeddings and
+Factor databases building rack
+applications managing prompts all of
+those Core Concepts are integrated into
+these Frameworks for you to then use in
+a few lines of code and essentially what
+these Frameworks do is they abstract
+away all of the core components that you
+need to build your application which
+then for you as a developer make it very
+easy to get up and running in a few
+lines of code but of course there's also
+going to be a trade-off with that right
+because you're going to be building upon
+abstractions that other developers made
+and designed based on their application
+and how they see it and now this can
+introduce some problems where first of
+all you might not fully understand
+what's going on behind the scenes and
+second of all there might be some things
+that are not implemented within the
+framework and with that it can get
+really messy in the past I've run into
+issues when using Lang chain where I had
+to dig five layers deep into some
+classes to figure out why I couldn't
+Implement something and this got messy
+real quickly so for us right now we
+don't use any of these Frameworks and
+build everything from scratch depending
+on the project that we're working on so
+we fully understand our complete project
+but again I put these Frameworks in here
+because as an AI engineer you should be
+familiar with them because maybe some
+clients or teams that you're working
+with do use these tools and you can get
+a lot of great inspiration from that
+maybe even build entire applications but
+just out of all of the companies and
+clients we've talked to No One is using
+these Frameworks in production systems
+so just so you know that that's just my
+observation all right and then next
+let's talk about Factor database which
+play a key role in most AI applications
+to store and retrieve the right context
+at the right time through a process
+which is called retrieval augmented
+generation now while you can do more
+with Factor databases this is probably
+right now the most common use case and
+why you want to use Vector databases
+there are a handful of options out there
+so again I'm going to provide you with
+some options but you should at least be
+familiar with most of these understand
+the pros and cons and then dive into the
+one that makes the most sense for you
+your use case so first off we have pine
+cone which is a really popular one then
+we have weate quadrant is another one
+and also the one that we actually like
+to use is PG Vector scale which is
+actually an extension for uh postgress
+that you can use to uh store vector
+embeddings and perform similarity search
+straight into postgress I did an entire
+video series on this uh we like to use
+this because it simplifies our workflow
+because we just can use one database and
+otherwise for example if you use one of
+these other options you probably also
+need another database to store your
+regular application data all of these
+databases Vector databases uh have
+similar somewhat similar functionalities
+and python sdks that you can work with
+so make sure to familiarize yourself
+with all of these Vector databases and
+pick the one that best Suites your
+project all right and then up next let's
+talk about observability and monitoring
+again another category where there are
+multiple options that you can pick from
+but you should at least be familiar with
+one of them and these are going to play
+a crucial role in maintaining and
+debugging your application so
+essentially what these platforms do
+which are all available also through
+python libraries is for example here
+with Lang fuse you can really track all
+of your llm calls and keep track of key
+metadata so what was the prompt what was
+the data what was the output what was
+the latency what was the cost everything
+that you want to know about your
+interactions with these large language
+models can be traced in these platforms
+now they all work pretty similar there
+are of course pros and cons uh we like
+to use Lang views so it's an open-
+Source platform and by the way you can
+also self host all of these but another
+common one is Langs Smith so multiple
+options but really crucial to at least
+have one of them integrated with your
+llm application to track everything all
+right so by now we already covered a
+really complete stack to build event
+driven AI applications and also make
+sure that they are reliable and robust
+now let's get into the final three
+libraries that I want to cover that can
+help you with some more specialized
+tasks within your AI systems and the
+first one is dspi now this is definitely
+a library that I want to do more with so
+the whole Paradigm that they're
+introducing here is programming not
+prompting so dspi is a library that
+allows you to iterate fast on building
+modular AI systems by optimizing promps
+and weights so instead of you as the AI
+engineer as the proter coming up with
+everything dpy offers you Frameworks to
+essentially start with basic prompts and
+then let the AI over time figure out
+what the best prompt is for the problem
+that you're trying to solve and I think
+this is a paradigm that heading into the
+future heading into this more AI
+integrated uh future that we're going
+towards this is going to be a core part
+because prompting right now to me still
+feels pretty random because there are so
+many ways to tackle a problem and is
+this the right approach can it be better
+can I do it with fewer tokens all of
+these questions are taking up so much
+time when you're trying to do this
+manually and if there is a good
+framework and setup that you can do to
+iterate over this and essentially let AI
+figure out the best prompt then that is
+going to be really helpful and dspi is I
+believe the first one of its kind to do
+something like that so definitely one
+that you can look into it's definitely
+more of an advaned library that can work
+really well when you're already a little
+bit deeper into a project for example
+and you want to increase the performance
+tweak the performance by optimizing your
+prompts all right and then the second
+category in these final tools are ways
+to extract information from documents or
+PDFs and there are a couple of options
+here and this typically requires some
+experimentation based on the type of
+data that you're working with but one
+popular library for this is pi muw PDF
+which allows you to extract information
+from PDFs you can also try pi2 PDF so
+these will have different results again
+depending on the data that you're using
+we've also found that for some use cases
+it works better to actually use a
+surface from Amazon like Amazon textract
+or Azure uh document intelligence for
+example where you need a little bit more
+power now these are open source and you
+can integrate them direct directly into
+your uh project in pure python these are
+services that you uh essentially use
+through an API and there's also a cost
+associated with that and there are so
+many great use cases out there right now
+for companies where they're sitting on
+lots of unstructured data in the form of
+Word Documents and PDFs and these tools
+are really going to help you extract all
+of that information and then feed it to
+your AI system all right and the final
+one on the list is ginger so Ginga is a
+templating engine for python that you
+can use to programmatically fill in
+templates with data and Ginga is really
+cool for building Dynamic prompts and
+this is I think something you'll see
+more AI Engineers using in the future so
+here's an article from Jason Leu
+creating of the instructor Library also
+explaining why he things using Ginger uh
+within the instructor library is the
+right choice and it mainly has to do
+with Ginger's formatting capabilities
+validation versioning and and logging
+and more specifically also like I said
+creating Dynamic prompts So within our
+projects we actually like to store our
+prompts using Ginger templates where we
+can introduce some of the logic that we
+just covered and we then have a simple
+promp manager Clause to manage all of
+this and load it into our application
+all right and those are all of the p
+libraries that in my opinion every AI
+engineer should know right now now
+throughout this video you saw me walking
+through examples from this project which
+is our generative AI Launchpad so we
+made that entire project available as a
+repository plus a course that's going to
+help AI Engineers to build and deploy
+generative AI applications faster so it
+has everything you need from all of the
+infrastructure the components all the
+way with the instructions to then deploy
+this on a server so if you're interested
+in this make sure to check out the link
+in the description you'll get the entire
+project that you see over here plus a
+course on how to get started and start
+building your own applications all right
+and then that's it for this video now if
+you found it helpful please leave a like
+and also consider subscribing if you
+want to learn more about AI engineering
+and then make sure to check out this
+video next it's a video of me going over
+the entire process that we use inside
+the Lumina my company to find build and
+deliver generative AI projects

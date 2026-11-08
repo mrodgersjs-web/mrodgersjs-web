@@ -1,0 +1,114 @@
+so we have modeled this plant uh many
+different ways we've talked all about
+modeling and today we're going to talk
+about just the basics of control once
+you have a system and you actually want
+to control it in some way so we've
+looked at this system a lot
+and we usually have some sort of input
+going into our system and I'm going to
+specify this one usually we're looking
+at linear systems so there's one input
+and one output um we're mostly be
+working with that when you do feedback
+control that's usually the case in if
+you do a state based control you can
+have multiple outputs and things like
+that for now we're going to be dealing
+with single input and single output
+systems okay so you have an output here
+uh I'm going to just arbitarily call it
+y we've been using that quite a bit so
+you have a system you have you can input
+something into it to make it change so
+and that affects the input affects the
+output but what we really want to do in
+control is control this output to
+something we want to make it for example
+if we have a dcdc converter a power
+converter we want the output to be maybe
+5 volts they were trying to make a USB
+application we need it to be 5 volts
+because that's a
+standard um if you're flying an airplane
+you want to go to a certain altitude you
+have a set point of a certain altitude
+so you have a what we call usually a
+reference or a set point and that's
+usually where we want our output to go
+to so we're actually going to write it
+over here
+um we're just going to call it
+reference if it's a voltage or current
+you usually put like IR ref or VRE here
+for now we'll just call it the reference
+there's a reference value and generally
+we'll assume that it's a constant but
+this constant can also change depending
+on you know you're changing your system
+you want to fly to a higher altitude you
+can change this reference but what we
+really want is to make sure that Y is
+equal to that reference
+so what we want to do is look at our our
+output and
+actually compare it to that reference
+right so if it's at the reference
+already so usually you do plus the
+reference and minus this value so if
+they're exactly at the same
+point uh this is a summing
+block um so we take the reference it we
+subtract the output if they're exactly
+the same zero and our our system is
+already set we're good if it is too low
+this number this value coming out here
+will be positive right so then that will
+feed back into our system here I haven't
+connected finished it yet um but I just
+wanted to explain the reference
+difference if our V out is too
+high then we'll have a negative value
+coming out of here right because the
+reference minus the larger value will be
+negative so what we do is we take that
+that difference and we call this the
+error
+and this is our just subtraction so
+we're the error of the output relative
+to the reference wherever we want it to
+go and we put that error
+into I didn't leave much space for
+myself here but into our
+controller okay so this is a part that
+we will be working on next is the actual
+controller for the system and people
+call that various different things I'm
+just going to call it GC of s it doesn't
+really matter what's in here but it
+would also be most of the ones we're
+going to work with are going to be some
+sort of transfer function so there's
+some transfer function for the
+controller and there's some transfer
+function for the plant and this is our
+basic feedback control so our error we
+see our generate some output We compare
+it to our reference we see the error we
+put that error into the controller and
+the controller will change the input of
+the plant based on if it's above or
+below the reference point so this is our
+basic
+setup and we're going to be talking
+about controllers first we're going to
+try to introduce the proportional
+proportional integral and proportional
+derivative also known as P pi and P
+control and that would be give us a
+specific transfer function that goes
+inside of this so just wanted to explain
+the basics of it and then we'll go on to
+actually looking at how to we design
+these
+controllers

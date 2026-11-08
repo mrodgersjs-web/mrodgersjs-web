@@ -1,0 +1,1555 @@
+In this video, I'm going to pull back
+the curtain on our entire AI development
+company strategy all the way from
+building to deploying custom AI
+solutions. I'm going to take you through
+our entire process all the way from our
+discovery to bringing the actual
+applications into production. So, this
+is for you if you are an aspiring
+freelancer, any developer, you want to
+build custom solutions, and you either
+want to take something that you are
+working on right now and put it into
+production or potentially also sell that
+as a solution. Now, of course, all of
+this also applies when you are working
+in a 9-to-5 and you want to do this
+within your company, but usually that
+means the tasks that I will be going
+through the process is split out over
+multiple people and usually also
+different teams. So, with that context
+out of the way, let's dive in. So, for
+those of you that don't know me, my name
+is Dave Ablar. I've over 10 years of
+experience in AI. We did over 50 custom
+B2B AI solutions. So, I started my
+career more working as a data scientist,
+and it started just me being a
+freelancer, and then that kind of like
+grew into me taking on more projects,
+more work. I started to work together
+with people I took on co-founders, and
+that's how it slowly kind of like
+evolved from me being a solo freelance
+data scientist to now running an AI
+development company under the name Data
+Lumina. So, what are we going to cover?
+We are going to cover how we built
+custom AI solutions for our companies.
+So, our stack, I think this is
+important, we always build with Python
+as our programming language. That's
+always our back-end language. I'll get
+more into kind of like the other tools
+and technologies that we pair with that,
+but we're Python engineers. That's our
+That's our playing field. That's where
+we always start with. So, this is going
+to be the full process from discovery to
+production.
+And most GenAI pilots, most tools and
+projects that people kind of like set up
+with LLMs still fail. They still fail to
+achieve measurable impact because it's
+still hard. The models are getting more
+capable. I've I've been repeating this
+on this channel for the past 3 years
+already, so at this point I sound like a
+broken record, but it's still freaking
+hard to do it right at scale. So,
+that's also what the main focus of this
+presentation is going to be on. How do
+you actually create something that
+actually passes the test that you can
+actually put into production somewhere.
+And it's good to know that it's almost
+never the model, but always rather the
+kind of like the execution or where kind
+of like the starting point where you're
+coming from. Now, that has to do with
+the scope, the type of projects that you
+that you select.
+So, let's continue and we're going to
+start with discovery and use case
+selection. So, this is
+the starting point where do you either
+like win or lose a project. So,
+I'm going to start really from the point
+where you kind of like a lead shows
+interest in working with you or if
+you're in a company, this could be
+literally some manager that is asking
+for a typical typical request. I'm not
+going to cover lead generation and all
+of that in this video. If you're
+interested in that, let me know I could
+cover that separately, but we're going
+to start with discovery call.
+This is always our starting point where
+pretty much what we how the process
+works is I post a lot of content online
+on YouTube, on LinkedIn. And over the
+years I've grown my personal brand, so
+now we have a lot of inbound requests.
+So, most of the clients that we work
+with is either our existing clients
+where we continue to work with or
+inbound clients that literally reach out
+to us and say like, "Hey Dave, I watched
+some of your videos.
+We have a project that I think you could
+help us with. Let me know if you can
+work together." So, that's then the
+starting point. And we start on that
+discovery call.
+So, the goal there is to uncover really
+what the actual problem is and not
+really what they think they need. So,
+this can often be tricky in the
+beginning. We especially noticed that
+like when LLMs just came out, we had so
+many clients that came to us with a
+specific request like, "Hey, we
+we think we see that AI can do this
+right now. Can you help us implement
+this?" And then you kind of like start
+from this biased starting point where
+you don't do the full due diligence due
+diligence to actually figure out, "Okay,
+is this actually the right case to focus
+on?" And often those cases that clients
+themselves presented forward were either
+like too complex, too big of scope, or
+the or the ROI wasn't clear. So, this is
+really where you need to spend some time
+and especially talk about the ROI
+question. Because building custom
+software, even though we can greatly
+increase the speed at which we can
+deliver right now, it's still cost a lot
+of money. So, you really want to make
+sure, "Look, is is there an actual ROI
+behind this solution that we're going to
+build?" So, that's where you want to
+start. You want to be brutally honest.
+So, then of course the simple stuff, the
+obvious stuff, right? Start with the
+simplest high impact use cases. Easier
+said than done. There is so many
+low-hanging fruit in most organizations
+and they they are completely unaware of
+this. So, example of this, usually they
+come to us with kind of like the big
+pressing problems. So, right now for
+example,
+we are working on a document processing
+pipeline. This is indeed a big pressing
+problem because almost all of the
+employees that work in the company have
+to kind of like process those documents
+and they they need to adhere to a
+certain set of standards. Now,
+this is a great use case, but you can
+also realize that the amount of
+employees, the amount of documents, the
+different types of documents can
+introduce so many edge cases and errors
+potentially in a production application
+where if you really like zoom in, for
+example, into a particular employee and
+kind of like shadow them for an
+afternoon to figure out, "Okay, what are
+you actually doing?" you'll find often
+the hidden processes that can be
+automated with simple automation, simple
+integrations, often not even really
+needing AI on top of it. So, I'm I'm
+painting the picture here kind of like
+the two ends of the spectrum where you
+can use simple kind of like N8N or
+Zapier-like connections between the two
+where you move data around with a little
+bit of automation and and kind of like
+LLM-based solution that processes an
+entire kind of kind of like
+organization's documents. So, you could
+think like there is, of course, a lot in
+between there, but this is really
+important to start opening the
+conversation around.
+To really figure out, look, beyond kind
+of like the big chunks that we might
+want to focus on, what are the simple
+solutions that can also have a really
+high impact? So, always pick the quick
+wins over the moonshots. So, this is
+something you talk about during the
+discovery call. You go deeper. Now, some
+red flags to watch out for during the
+discovery process because you don't want
+to work with all clients, really. So,
+just being motivated by we want AI
+because everyone's doing it
+can be a great kind of like starting
+point to open the conversation, but
+again, really come back to what is the
+ROI question over here? What are we
+automating?
+You also want to make sure that there
+are clear success criteria. So, some
+projects, even though on paper they seem
+great,
+if there is no real way to kind of like
+track the impact or to kind of like tell
+like what's good, what's not good, and
+how to course correct over time,
+building custom AI solutions with that
+is very tricky. Also, some clients
+expect magic from day one, especially if
+you get into the more complex solutions
+and and builds. When you put LLMs into
+that mix,
+you'll you're not going to hit a 100%
+success rate from day one. And sometimes
+the 80% build that you deliver on kind
+of like the first few iterations is not
+in not good enough to already put that
+into production because for some tasks
+80% just doesn't cut it. So, you need to
+be very aware about
+how to go about this. We'll cover more
+of that later in this presentation.
+But educating the client on that is
+super critical. Again, this depends on
+the use case. For some it's proven, it's
+a lot more obvious, but for some you
+need to make sure look, we're going to
+do this, but just make sure this is the
+starting point and from there we need to
+we need to iterate. And also of course
+data, right? So, having the right
+access, checking with security that you
+know you can actually build and deploy
+the stuff that that's required all of
+the permissions. So, that's what's
+covered on the discovery call.
+And then typical projects that we take
+on. So, we do a lot document processing,
+content generation, customer support,
+internal knowledge assistance, and data
+extractions. So, these are all projects
+that we've worked on over the past 2
+years that keep kind of like coming
+back. We can generally always put the
+the project we work work on into
+into one of these categories really. So,
+then as we go through that process,
+right? So, the discovery call, it
+usually starts with a 45-minute call. We
+dive into look, what's the problem? What
+can we help you with? We dive deeper and
+then we take them pretty much through
+the use case evaluation. So, before we
+kind of like say, look, hey, this is
+something we want to dive deeper in.
+We really want to check you look, is
+this simple and repeatable? So, is it
+actually can we actually automate it or
+we do we need to scope it out? Does it
+have clear success failure rules that we
+can that we can check? Can the errors be
+escalated to a human? So, this can also
+be important relates back to the the 80%
+like kind of like starting point, right?
+So, we do this a lot in customer care.
+We identify the 80% of the tickets that
+we can handle and we escalate 20% of the
+tickets that we cannot do but we which
+we can classify, we escalate that to
+humans. So, this is a great example of
+how you can build something in like
+that. Whenever that's possible, that's
+that's a good thing. But, you should
+This depends on the the type of system
+that you're you're automating.
+Now, also human in the loop. So, this is
+somewhat different to human escalation,
+but human in the loop is more something
+where you could have literally a an
+always a required human in a loop step
+where someone needs to review or approve
+the process. Where this is pretty much
+an escalation. Where kind of like the
+automation stops.
+This can also be helpful to go live
+quicker when you have that extra control
+in there. And then, big one, error
+impact. So, what happens if the AI gets
+it wrong? This is also really important
+because for some use cases, the answer
+pretty much it's not too bad. Like, if
+if the AI makes an error in this case,
+no worries because, for example, someone
+later down in the process will catch it.
+But, if it's directly customer-facing,
+highly critical processes, this, of
+course, becomes more important. All
+right. So, then, let's dive uh dig a
+little bit into the accuracy
+conversation. This is really one of the
+trickiest parts about client education.
+We already talked about it, but I want
+to stress it one more time. Your first
+build typically gets to 70 or 80%
+accuracy. After iteration, you can
+usually get to 90%, and most some
+clients, not all, but some clients
+expect that you can hit this 99% kind of
+like from from day one in the first
+iteration because they are used to
+building deterministic software, working
+with traditional software development
+companies. Some companies have have been
+doing this for for decades already.
+We've been building software for
+decades, but this
+building with LLMs requires a whole
+different paradigm, really. So, this is
+super critical to do. And we made a lot
+of mistakes in the beginning where we
+were not clear enough about this in the
+beginning. We were also like overly
+excited about the technology and this
+always kind of like it is always comes
+comes back to you. And still, even
+though for some projects this is
+sometimes still hard where you have
+these discussions where you're you've
+actually built something really cool
+already which is in this this ballpark,
+but for the client it's just like it
+doesn't just feel there yet. So, the
+last part is also disproportionately
+hard.
+And that's why most projects fail.
+So, you should really frame it as
+iterative development, not one-shot
+perfection. So, be clear about that.
+Deliver quickly, explain that it's that
+it's it's it's not going to be there
+yet, and see how you can create feedback
+loops where it's easy for the customer
+to kind of like give the feedback back
+to you, and then you feed it back into
+the development process as well. And AI
+is super is is amazing for this at
+processing like just large amount of
+feedback and then creating that or
+pulling that back into the code base and
+creating PR's for that that then you can
+test. So,
+be honest. Here's what feel feel one
+looks like and here's our plan plan to
+improve it. Now, also one thing to keep
+in mind here is it's going to require
+involvement from from the client. So, in
+most cases the the client and someone
+with the domain knowledge can kind of
+like assess what good looks like. It's
+not always the case. Sometimes the the
+development team can also do it, but if
+there's domain knowledge that is
+required, you want to make sure that you
+explain from the beginning that there's
+going to be involvement in form of time
+and resources that's going to be
+required because otherwise you may end
+up having the conversation where hey,
+we're outsourcing to an agency because
+we don't have the capabilities
+internally, right? But now we still have
+to be hands-on in the project. So,
+again, this is all just setting clear
+expectations from the beginning.
+Okay, then let's go into scoping and
+prioritization.
+This is one of the most tricky things in
+the tech industry in general, and it
+gets harder when you put AI into the
+mix.
+So, this is really where you kind of
+like you're going to create the
+proposal.
+So, after the discovery call, sometimes
+another call, we'll typically create a
+proposal, which is just a document
+outlining pretty much everything that we
+are going to do. And the first and most
+critical thing is deciding what will it
+do and what will it not do. So, the
+common issues that you can run into here
+is that you build something and the
+client will pretty much say, "Hey, can
+it also do X?"
+Can you add that to it early on in the
+process? Then another thing is
+underestimating the unpredictability.
+So, starting from somewhere and again,
+this still often comes back to us where
+we kind of like were a little bit too
+confident in what an LLM could do and
+then figuring out that at scale is like
+it it breaks down. Of course, we
+always have the edge cases, which can be
+tricky, and overbuilding on the first
+version can also be tricky because
+usually for most solutions, you have
+kind of like this one metric that you
+need to hit, and if you don't hit that,
+the
+pretty much the whole solution doesn't
+work. And sometimes what you'll find is
+that you can kind of like over-engineer,
+of course, parts of the application
+already, for example, on the front end,
+on the integration, on all of that,
+while the core metrics are not in place
+yet. So, make sure you critically scope
+that in the beginning so you know
+you know kind of like, okay, what is our
+KPI? What is our target that we are
+optimizing for? So, what we usually like
+to start with is we usually like to
+start with a kind of like a single core
+workflow.
+What are we going to automate? What does
+the input look like? What does the
+output needs to look like?
+And then we can list must must-haves and
+nice to nice to haves, and we identify
+the technical risk early, and we set
+clear acceptance criteria. Now,
+generally our first types of projects
+fall into two categories. So, we either
+frame it as a proof of concept or as an
+MVP. And the difference between that is
+a little bit subtle. Proof of concept
+pretty much means like, "Hey, look, this
+is an exciting project. We're
+confident that we can get We're like
+we're sure that we can build something
+for you, but we are not 100% confident
+yet
+whether the current state of AI and how
+we build things will hit the KPIs and
+the metrics that you want. So, we're
+going to prove that.
+That's why we call it a proof of
+concept. We need proof something works
+first.
+If we already know that something is
+going to work because either we've
+already built something in the past or
+it's a simpler solution, we'll scope the
+first iteration as a minimum viable
+product. Now, one of the most important
+distinctions to make here, also in your
+communication, a proof of concept is
+usually not something that adds value.
+It's usually
+a local demo, a local script, a
+demonstration of, "Look, if we take this
+input data, we put it through a system,
+this is the output."
+And then both you and the client agree
+to that where they say, "That's That's
+good. That's where it needs to be." And
+if it's not where it needs to be, we
+perform a gap analysis, see, "Look, how
+can we How can we get it there?"
+But, this is usually where
+the client sends kind of like the first
+or pays the first kind of like cash or
+invoice.
+And the output is generally kind of like
+a demo and a report. So, be up front
+about this because sometimes the client
+expects that this is already a working
+solution.
+But, it's not the case. With the MVP,
+it's different. The MVP, our goal is
+always to build something real and
+tangible that actually adds value.
+What's the most minimum viable product
+that we can deliver, deploy, hand over,
+put somewhere where it can actually
+produce that value?
+So, that's very important in the scoping
+and prioritization and how we approach
+that.
+Okay, now let's talk about the proposal.
+What do we put in there? So, what what
+goes into our proposals? So, we have a
+rough kind of like standard to document
+that we always use. So, we start with
+the prob- the problem statement. So,
+frame it in the client's words. So, this
+is we we learned this during the
+discovery calls, right? So,
+rephrase it one more time. What's the
+problem that we're solving?
+Then we go into the proposed solution
+with scope boundaries. So, we can say
+like, "You are experiencing X Y Z.
+Here's what we're going to do in order
+to solve that." And then you could you
+go more granular into the technical
+approach. So, you can do potentially
+architecture diagrams. You could go into
+features and functions. Depends on the
+complexity of the project, like how deep
+we'll go here.
+And then what's included and what's not,
+success criteria and the measurement.
+And then of course, you kind of like end
+up wrap up with with the timelines and
+the pricing. Now, how we currently like
+to structure our sprints is in the
+following way. So, we always like to
+start with two-week sprints. So,
+the tech industry is very complex.
+You could take projects on where you
+say, "Hey, we're going to build that the
+whole thing." And you'll scope it for, I
+don't know, 10 weeks and you start
+building it. That's one approach. We
+often find it like it works better for
+our approach where we just start with a
+two-week sprint. We're like, "Okay,
+look, what can we do in a two-week
+sprint?" Either like from an MVP
+perspective of or what do we need to
+prove?
+And then we will price that between 10K
+to 20K in euros per sprint. That's how
+we set it up. This also allows us to do
+and to plan our sprints accordingly. Uh
+we can do multiple sprints at the same
+time with depending on the capacity that
+we run with. Currently, by the way, I
+haven't like mentioned that, but we're
+running a small team right now. I'm
+running the Luminous Solutions the
+agency with one other co-founder. And
+then it's just about it's just
+subcontractors depending on the
+contracts that we work on. Sometimes
+it's either just me and my co-founder,
+and we do this very deliberately right
+now because we don't want to scale with
+head count. We tried that last year.
+It's one way to do it, but we don't
+really That's not really the type of
+businesses that I want to build. We're
+now scaling through AI because that's
+just crazy. In a bit, I'll I'll cover
+more about our particular process when
+it comes to working with cloud code and
+how we do that. But, that gives you kind
+of like an a starting point to see,
+"Look, we can do these 10 to 12 week
+sprints depending on the size and the
+complexity. With a small team, we can
+run multiple sprints back-to-back." So,
+it's a great business model.
+And yeah, what we what we'll price or
+what we'll mention in the pricing is
+also the ongoing cost. So, this is
+something beginners often forget where
+they say like, "Hey, I am going to build
+this chatbot for you. 5K." Okay, sure,
+but what happens afterwards? So, are you
+going to deploy it in your own
+environment? Are you going to deploy it
+in the client's environment? What are
+the infra costs associated with it? Do
+you use LLMs? What what is the API cost?
+What does that look like?
+Give kind of like a a rough estimation
+because it's very hard to predict it up
+front completely, but give a rough
+estimation of say like, "Hey, beyond
+these kind of like upfront costs, here
+are the ongoing costs for this solution
+as well." And then like I've said, we
+always frame it first in MVP or a proof
+of concept. So, then we have that
+document, the proposal. We send it over
+to the client, and we typically plan
+another proposal meeting where we go
+over the proposal together to figure out
+if we need to make some changes, if
+we're all on the same page, etc. Cool.
+Now, then how we structure our sprints.
+So, 2 weeks.
+We always kind of like follow this
+process. So, 2 weeks.
+Day one week two, day two set up an
+architecture. So, this is really the
+scaffolding, right? Creating the
+project, setting everything up. Then,
+day three to eight is pretty much core
+development. So, building the workflow,
+integrating the LLMs, iterate on
+quality, and then final days we test,
+polish, and we demo. So, sometimes we
+already ship something to the client.
+That is generally what a 2-week sprint
+will look like. And then at the
+beginning for new clients, we will
+always do a kickoff. So, usually like we
+always start with new sprints on Monday.
+So, ideally then kind of like Monday
+afternoon, something like that, we'll
+have a kickoff call with the client.
+Pretty much just to get on the same
+page, discuss like, "Hey, how are we
+going to communicate?" Set the
+expectations right.
+Super important. And then we always push
+for async updates. We don't want to do
+stand-ups. Like I I don't I want to I I
+optimize my whole business for as little
+as uh meetings as possible. So,
+sometimes clients are like, "Hey, yeah,
+should should we do stand-ups?" Like,
+"No, no, no."
+So, sometimes you have to push back a
+little bit. We want to do async updates
+as much as possible.
+And then, of course, at the end we'll do
+another demo, and this is where we get
+on a call again.
+And we check, "Okay, how are things
+working?" And we plan kind of like what
+things look like for the next sprint.
+Now, generally what you'll find, so this
+is these are kind of like some of the
+insights that you have when you run a
+development company, right? Cuz in an
+ideal world, you would kind of like
+start with a with a new project, and
+let's see, you would start, so you would
+have your first sprint here. So, this is
+kind of like let's call this sprint
+number one. Do you see this? Yes. And
+then kind of like you jump to the next
+one, and then this would be sprint
+number two, right? So, in an ideal
+world, this is what it would look like.
+But often, almost always, what you'll
+find in the real world
+is that what happens is after you
+deliver the kind of like sprint one, so
+you do delivery to the client, the
+client now kind of like internally kind
+of like disappears
+where they say, "Yeah, we're checking
+things and testing things internally."
+And
+the fact of the matter is
+people and companies they're always
+busy. So, the work that you do even
+though it's like it's priority, it's
+like proven that it will deliver ROI, as
+soon as you've kind of like jump off the
+call with them, they are back to regular
+business. And companies, especially like
+when they grow bigger, they just like
+move slow and they are not used to kind
+of like the way at which we can work,
+especially now with AI. We can ship
+really fast. And then they just need to
+test. And they need to internally assess
+like, "Okay, what what do we have right
+now?" And usually what then happens is
+it will take some time before you can
+actually plan another sprint, let's say
+sprint two. And this can take anywhere
+from two, sometimes, oh, sorry,
+sometimes even like up to eight weeks
+where people just like disappear and all
+this. And someone is on holiday. And
+this is really tricky for
+your cash flow as a development company
+or if you're doing this all by yourself,
+which is how I started as a freelancer.
+Because
+when you're at the kind of like the
+starting point over here, all clients
+are very excited and they're like, "Hey,
+yeah, we're going to build this amazing
+thing." And this is going to work. It
+will turn into there's more project. And
+that's how all projects start. But then
+they kind of like get hit with the
+reality. Usually this comes out as, "Oh,
+look now we're at 80% right now. Okay,
+this is working." And you ask them to to
+gather it gather feedback and this is
+taking more time than they expect. And
+now this can get a little bit tricky.
+Now, like I said, this is not always the
+case, but especially if you work with
+smaller medium-sized companies
+where the kind of like either like
+directly the founders are more hands-on
+involved, like they get busy and they
+need to like reassess and they need to
+reprioritize. And this can be, like I've
+said, a really tricky thing. So, how we
+kind of like mitigate that is usually we
+kind of like overplan a little bit where
+even though a a customer said like,
+"Hey, yeah, we we will continue
+back-to-back with another sprint. We'll
+kind of like have another like customer
+or a new project already in the
+pipeline." And if like they, for
+whatever reason, happen at the same,
+that would sometimes happens, it like
+gets really busy. But nowadays with
+Cloud Code and bringing on another
+subcontractor, for example, on a
+project, it's still manageable, it's
+still doable. But otherwise, you just
+have these big gaps.
+So, that's just something to keep in
+mind when you're working with the
+sprint-based model. It's like
+repeatable, it works, but like these
+gaps are just are just the challenge
+that you need to work with.
+Okay. All right, then let's cover our
+tech stack. So, how do we build things?
+So,
+I'll go over this quickly because it's a
+quite straightforward stack. So, our
+back end is always Python-based. So, we
+built this all on the GNA I Launchpad
+architecture, which I
+have indicated over here. This is a It's
+more than a framework, really. It's a
+whole infrastructure and framework
+combined that we built at Data Lumina.
+It's available, you can check it out if
+you want. It's launchpad.datalumina.com.
+This we offer this as a paid product,
+but this is the pretty much the whole
+like the back end system that we use for
+all of our client projects. So, it comes
+wired up with FastAPI, Celery,
+PostgreSQL databases. We usually use
+self-host Supabase for this. And then
+kind of like Redis and Celery work
+together because we use Redis as the
+kind of like interim storage where we
+schedule our tasks. And that's how we
+build our back ends.
+Again, we use our GNA I Launchpad for
+that. And that's one of the key things
+to understand.
+There's nothing really special about
+what we do other than that everything is
+standardized. Like, that's really our
+secret to being able to do have this
+kind of like fast turnover, to leverage
+AI heavily, and to have a consistent
+type of quality. So, for every new
+client project, it's simply fork this
+repo. And that's where we start from.
+So, already I know like the the whole
+Docker configuration is set up, so I
+know I can run a simple few bash scripts
+that we have.
+It will run up the local development
+environment, so the Docker will start
+up. There's a database in there,
+authentication is set up. If we want to
+if we need some type of factor search
+capabilities, it's in there. We have a
+whole Python module really to build
+DAG-based workflows. It comes hooked up
+with Pydantic AI.
+And most importantly really, the file
+structure, so kind of like how the
+project is set up,
+is also standardized in this because we
+use it it's it's a whole repository. So,
+for every project that I kind of like
+jump on, I can immediately see I know
+exactly where things are at because all
+the folders and even to the files,
+everything is the same. So, this is
+pretty much the only way that you can
+work on multiple projects at the same
+time because otherwise it just gets way
+too messy.
+Now, we we do a lot of back-end stuff,
+but whenever we need a front-end, this
+is our preferred stack, Next.js with
+Shadcn. Integrates really well when we
+work with Supabase for authentication.
+That's how we set that up. That's mostly
+my co-founder, Yuris. I am really only
+kind of like a back-end engineer. I like
+I vibe code with this nowadays, and it
+goes really well, but most of the stuff
+Yuris uh sets up.
+And then usually almost always for LLM
+providers, we use Azure Open AI. Not the
+happiest with it. It's kind of like
+annoying. They change their interface
+almost every month, and the quota is
+kind of like hard to deal with, but for
+most of our clients, this is kind of
+like the only way we can do or like
+adhere to the data compliance and
+security. So, we use Azure Open AI to
+get the LLM API endpoints. So, big
+takeaway, same stack, same patterns,
+same deployment process every single
+project. That's what we do. Okay,
+testing and evaluation, one of the most
+critical things, right? So, I First of
+all, I have an entire YouTube video, a
+full course on this, how to
+systematically set up LLM Evals. So,
+I'll cover it here quickly, but for
+every project we make sure we set up the
+unit tests right, we do the integration
+tests, and then also very important, we
+do the LLM Evals, which we generally
+also set up in the beginning just by
+doing unit tests. How does it work?
+Well, when we use our launch pad, pretty
+much every output of a processing step
+is a Pydantic model with structured
+output, and then what we can do around
+our LLM Evals, we know the data that's
+coming in, we know at particular steps
+what kind of like output we we expect.
+So, then in the beginning we set this up
+using AI usually, so we mock some dummy
+data, but then later we constantly pull
+raw records from the database. So, what
+was the payload coming in? We put that
+locally into the project, and then we
+build an LLM evaluation around it where
+we say, "Hey, if you take this JSON
+event, raw JSON, you take it through our
+workflow, then we know that at step five
+the output should be this, and for
+example, if there is an escalation, or
+the escalation for example should be
+true for this particular event." And
+then that's how you can set those up.
+Lately, what we've also been doing, it's
+really cool, we've been creating actual
+skills, so skills.md
+with
+Claude code to build this. So, whenever
+a client pretty much says like, "Hey,
+here's an issue," we have a script that
+can pull that particular ticket or
+whatever the ID is from the database,
+puts it locally into the project, and
+then kind of like does an assessment of,
+"Okay, what's going wrong?"
+But, this is super critical. Again, if
+you want to know more, check out the
+other YouTube video that I have on that.
+All right, then let's talk development
+workflow. How do we go about this? So,
+like I said, we use Claude code heavily.
+Last year we wanted to scale up with
+more developers, more and more people,
+but like it's not needed anymore right
+now, really. And for the size that we're
+running this this this company at, which
+is currently like the the multi the
+multi six figures that we're running
+this development company at, we don't
+really like want to or have to scale up
+with more people. You can, but there's
+going to be this kind of like gap where
+this let's say this is where we are now,
+and if you kind of like want to be here
+where I don't know, you're maybe kind of
+like with let's say 12 or whatever, 12
+to 20 kind of like devs, cuz you would
+be a reasonably sized kind of like
+agency or boutique firm. So, let's say
+currently we're over here, and here
+you're kind of like doing just shy,
+let's say, of 1 million, let's say USD.
+And here you want to you want to say you
+want to let's get to 10 million or
+something like that
+with your company. Like in all you can
+get there, and it's possible, but the
+kind of like beginning over here is
+going to be really messy because when
+you go from kind of like like a very
+small company, like being hands-on
+involved, and kind of kind of like just
+working as glorified freelancers,
+the the the jump to being a full
+development company is very different.
+Your roles and responsibilities are
+going to look very different. So, first
+you kind of like have to go through the
+mud here, where you need to find and
+recruit people, you need to train them,
+you need to retain them. And this is
+where it gets super stressful. So,
+stress will go up because you are still
+responsible for all of the projects, you
+now also have to oversee all of the
+people, they are not good enough and not
+trained enough to follow all of your
+standards, but you do have to pay them a
+salary. So, first what you'll find is
+profits will really dip while stress
+levels will go up. So, this is profits,
+this is stress. So,
+you can see this is a kind of like
+tricky situation where you have to go
+through. Now, you can definitely get to
+the other end, but that's not what we
+want to do. So, let's see if I
+We are totally fine with running this
+development company at the current scale
+and size that we do and instead we want
+to focus on
+software.
+So, we feel right now there's still kind
+of like a two two year window where you
+can actually still make a profit with
+software and beyond that I don't know
+what it's going to look like with AI,
+but things will be different. But we
+rather want to build a product which
+we're already working on right now. So,
+rather than scaling the agency and
+taking on more client work, we want to
+build our own internal tools. Now, of
+course I also have the whole education
+side of Data Lumina, YouTube, the
+courses and all of that. So, we got a
+lot of stuff going on. But that's how we
+prioritize it. So, that was a little
+side step to kind of like understand,
+okay, how do we structure our teams?
+Very few people
+we heavily use Claude Code and it's our
+primary development tool across all
+projects and we can literally five to 10
+x create more output than almost three
+than three years ago. I can confidently
+say that. And generally right now we
+pretty much take this the proposals and
+and that is usually already enough to
+take that, put it into markdown and then
+with our GenAI Launchpad framework we
+can already kind of like get a rough
+setup of what the project looks like.
+But it works best with standardized code
+bases. That's why I keep stressing we
+always start from where are we this
+framework. So, everything looks the
+same. Okay.
+So, that's the it was also here on the
+slide, the Launchpad. That's that's what
+we that's what we do. So, literally if
+you look at this, what used to take us
+two months, we can now ship it in two
+weeks. That's also why we can
+create those or do those two week
+sprints. All right, now let's talk about
+our Claude Code setup. Now, there are
+there's actually not a whole lot of
+secret sauce that I can share here
+because similar to Boris, one of the the
+members from Entropic who created
+Entropic who also said like, I just use
+it. It works very good out of the box.
+Like that's also my kind of like feeling
+towards it. I know you have people who
+go crazy on like work trees and skills
+and sub agents and like these crazy
+systems. I just use Claude code. Here's
+pretty much the only things that I I do.
+It's a pretty vanilla setup. Opus 4.6
+right now at the day of this recording.
+In the future could be different.
+That is the model right now and I
+literally feel the harness around it is
+it's improving weekly. And Anthropic is
+also not staying still sitting still.
+And I usually like to work with one or
+three sessions at the time. So I want to
+stay in control. I don't do kind of like
+the 10 agents and the work trees and all
+of that.
+Usually just one or two. Sometimes up to
+three
+sessions at a time. If if I cannot do it
+on the same branch, right? Where you
+like need the work trees then it's too
+much for me because I can't kind of like
+oversee what it's doing. So I always use
+plan mode first and execute. You just
+always need to be mindful of the context
+window. Every session starts fresh. So
+make sure you structure your
+documentation around that. That is the
+most important thing to keep in mind
+when you're working with these tools. So
+make sure you keep your Claude and MD
+files up to date. This is all like very
+standard stuff, right? You can use
+Claude and MD files also in sub folders.
+That's important. Let AI create docs as
+well. So we always have a docs folder
+that we reference and remember when
+because every session starts fresh, you
+create a new tab, right? It it knows
+nothing.
+It knows nothing about your code base.
+So whenever I start fresh, I kind of
+like okay, we're going to do a new task.
+I usually kind of like prime it a little
+bit. So like, "Hey, here's what we're
+going to work on. First read these two
+documents and then look at these two
+files." So I already hinted where it
+needs to go because if you just ask it,
+"Hey, build this on a new session." it's
+going to re-index your code base and it
+is for itself going to think and try to
+search for everything. So then when it
+has enough context, you may already be
+at 50%.
+And then you start working on it and you
+quite quickly hit the context window
+again and the problem starts over again.
+be specific about saying where it should
+look. Now, then two things I'm
+experimenting more and more or yeah,
+like kind of like with right now. One is
+superpowers. This is a skill. You can
+look it up if you do cloud code
+superpowers. This is a set of skills
+which is good for really big kind of
+like long running tasks. There is a
+planning agent and execution agent and a
+sub agent development workflow in there.
+There's more into that, but this is kind
+of like the the loop that I use. So, I
+highly recommend to to like
+give that a try. I've been liking it so
+far.
+And what's also cool, Anthropic also has
+an official skill creator skills tool,
+which is very meta, I know, but you it's
+a skill to create skills. So, you can
+literally say like, "Hey, this is
+something I want to do." And if I ever
+find myself doing things in a project
+more than two or three times, I now
+trying to kind of like one to create a
+skill around that. This is super
+powerful stuff. Okay, now let's get into
+deployment and infrastructure. How do we
+take everything that we've built and
+then how do we deploy it? Where do we
+put it? What's the stack?
+Okay, so this is our process. So, we
+work locally. We push everything to
+GitHub. Then through a CI/CD pipeline,
+we put everything on a Hetzner VM. So,
+Hetzner is a cloud provider. We just get
+a bare metal VM, no managed service
+services. We simply kind of like clone
+the repository on there and we run the
+Docker startup commands. That's how we
+That's how we deploy. So, this is
+usually how it starts and then if we
+want to do CI/CD, we we set up a
+pull-based CI/CD pipeline where a GitHub
+action triggers a deployment and then we
+have a script running on the Hetzner VM
+that kind of like pulls the data in
+there instead of pushing it towards it.
+And then we make sure that we set up all
+of our URLs all the all of our
+deployments through Caddy with the
+reverse proxy. So, by default, if you
+deploy on a bare metal VM, it will will
+be deployed under the IP address of that
+of that VM. And of course, you want to
+have a nice URL, right? So, that's where
+we use Caddy for. And then your app
+pretty much is live and servable with
+automatic HTTPS added to it because
+Caddy fixes that. So, this is this is
+kind of like our stack.
+Hetzner for everything. They're very
+cheap. They're reliable. We've been
+using this for years already. First, we
+used Microsoft Azure AWS.
+We can't be bothered with that anymore.
+This is literally 10 times cheaper.
+Docker Compose, so containerized from
+day one. This already is from the setup,
+so the starting point project that we
+use with the launchpad. That's why we
+can easily set this up. This I already
+covered. So, that's how we deploy our
+solutions if we can decide how to deploy
+it if we deploy it in our environment.
+Sometimes, the client is like, "Hey, you
+can build it and deploy it in our
+environment." And that's where sometimes
+we need to get it Usually here in the
+Netherlands, they use like Azure or AWS.
+The big ones, right? AWS or GCP.
+It all pretty much works the the same
+way. If you know how to deploy on a bare
+metal VM on Hetzner, you also can figure
+out how to do that.
+Cool. Then, let's talk about security.
+Very important. So, for all our
+deployments, we want to block all IPs by
+default. So, this is something
+especially for people newer to like
+deployments, CSD, software engineering
+in general. If you have no idea what
+you're doing here, like the default is
+always pretty much like you're exposed
+and pretty much everyone can try and and
+attack you. So, you really want to take
+extra measures to put it in into place.
+So, how we set that up, we always
+protect our deployments by IP blocks.
+And then we use a tool NordLayer where
+me and the team, we have a dedicated IP.
+So, it's a it's a VPN pretty much where
+if I set that on, I will get a dedicated
+IP. This is fixed, this is static, so we
+can whitelist that into our for example
+in our database. So, if I want to work
+locally and I want to connect with our
+production database, it can only do that
+through that VPN. We only kind of like
+allow it the database to interact with
+the server. If it's not on the server,
+some usually it's in the same
+deployment, but only internally or if we
+then do local development through our
+own static IP. So, you want to like
+block everything by default and then
+whitelist services like front ends or
+integrations that need access. Then, you
+want to put a firewall on your Yeah,
+firewall on your deployment as well on
+your server and only pretty much have
+the port 80 443 open for network
+traffic. Everything else stays behind
+the firewall.
+And use private networks internally when
+possible in your deployment. So, this is
+kind of like like it scratches the
+surface here and again Yurasis are
+security expert. He always covers all of
+these, but these this is really kind of
+like the bare minimum that you need to
+check whenever you are deploying client
+solutions. Okay, then let's talk about
+monitoring and observability. Also one
+of those things super critical. Know
+what your AI is doing in production. So,
+we have two secret weapons for this. So,
+the first one is LangFuse for all our
+LLM traces. We also have our Launchpad
+like fully hooked up to LangFuse so that
+whenever we build a workflow,
+automatically it tracks everything in
+LangFuse as well. So, that is super
+useful. And then we use Sentry for error
+tracking. So, this is this moni-
+monitors our application. So, this is
+generally then around our fast API
+endpoint. So, whenever data is from
+flowing through the system and you have
+some type of error,
+it will show up. We have that hooked up
+to a Slack channel. So, whenever
+something is off, we will get a ping in
+Slack so we can course correct. LangFuse
+is just all about the the LLM outputs,
+making sure everything works, optimizing
+the prompts. And then here's what that
+looks like in LangFuse, for example. So,
+here's an actual screenshot from one of
+our clients. This is one of the most
+sophisticated projects that we that
+we've been optimizing for over 1 and 1/2
+years already. It's a customer support
+pipeline. And here you can kind of like
+see all of the traces come in. So, this
+is literally from today. I took a
+screenshot. So, you can pretty much see
+like every like 20 or 15 minutes or so,
+a request comes in and is processed.
+And then we have this whole pipeline
+over here that kind of like starts with
+a series of checks. This is that is all
+very deterministic, but it's all locked.
+So, we uh so, we can see what's going
+on. And then here you can see we're
+hitting it with an agent node, so
+ChatGPT 2.5 chat in this case to perform
+some analysis. And then we kind of like
+decide where do we where does it need to
+flow in the in the DAG? And then we have
+multiple LLM calls. And you can see this
+will continue here to the bottom as
+well. So, that's how we can with very
+granular precision, whenever a client
+says, "Hey, this is off." We can
+literally drill down to the step where
+we have all of the context and the
+prompt and what happened behind the
+scenes. This is a must for all projects.
+Otherwise, you're literally flying
+blind. And then here's an example of
+Sentry. This is also a screenshot I took
+this morning where this is just error
+handling. So, when you are working
+locally and you get an error in your
+terminal, you can immediately spot it,
+right? When you put it on a server and
+you're working with with async events,
+like your server will not crash. Like it
+if it hits something like this, your
+your API endpoint will still remain
+available. It will just not have
+processed that particular event. So, if
+you don't set set up any logging, you
+have no idea what's happening behind the
+scenes. That's where Sentry can come in.
+So, here you can see the typical type of
+thing you like we had a type error or
+so. Uh I was importing some testimonials
+with a webhook. So, send your webhook
+data object is not subscriptable. So,
+you can literally see sentry kind of
+like flags in this particular workflow.
+So, the upsert testimonial node.py line
+66 here on this, you can see it says
+it's not subscriptable. So, it tried to
+take event.data.new
+and this probably was already instead of
+it being a dictionary, it was probably
+already a Pydantic model or something
+like that.
+And then the cool thing is you can
+literally take this whole like you can
+copy this as a markdown. So, you look
+you can see this over here. Copy as and
+you can copy it as a markdown and guess
+what you can do with that. You chuck it
+into Claude code and it
+fixes it as fixes it on the spot. So,
+this is also super helpful for error
+handling. Okay, let's talk about the
+changing and economics of AI assisted
+development. So, what does it mean in
+2026 to work as a freelance developer or
+to run an AI development company?
+So, this is currently kind of like our
+setup, right? So, we do 10 to 20k per
+two-week sprint, but we can literally
+like 5 to 10x our output compared to
+three years.
+So, the unit economics are changing. So,
+for the past
+decades really, the tech industry used
+to primarily run on time-based pricing.
+Hourly rates, day rates.
+Here's what you what you kind of like
+get, but this is starting to get a
+little bit tricky here because you can
+just do so much more. You can use AI
+agents that are running in the
+background. You could literally like
+spin up 10 agents, like go out go go to
+the gym, you could go back and they
+pretty much did like a week's worth of
+work. So, how do you go about that? So,
+we're we're in a gap right now. Still
+now for most companies, they are still
+they still understand what the price of
+software is and what things are cost.
+So, I feel like right now we're kind of
+like in a sweet spot because now you can
+still kind of like
+charge these prices
+and companies are still totally okay
+with that. You can just do them way
+faster and therefore deliver more value.
+So, how we go about that is
+instead of kind of like
+being it doing a race to the bottom and
+say like hey, we can build this whole
+system for you for like 3K. We pretty
+much keep the pricing the same. We know
+that we can deliver way faster. You
+never really know like how long it's
+going to take you because that's also
+weird with the agents, right? Like
+sometimes they just like rip at it and
+like you like a day's worth of work can
+be done in one prompt. So, it's also we
+still have to figure that out. And so,
+how we pretty much do this is we use the
+speed to work on more projects, not
+undercharge, and also just deliver more
+value because that's ultimately what we
+can do. We can now deliver in 2 weeks
+way more than we used to be able to do.
+And request like hey, can it also do X
+or can it also do that? Are now so much
+easier to implement. So, we just
+overdeliver in that sense. But,
+competitors and kind of like the market
+is it it is going to adjust like for
+sure. Like I said, that's why I feel
+like we're currently in a golden era
+because the tools are so good, but the
+market hasn't caught up yet. So, that's
+why it's very lucrative right now to be
+in the in the developer to be a
+freelancer or to run your AI development
+company because you can just even do
+this like next to your job for example
+in the weekends or the evenings because
+maybe like throughout your day job you
+could just like spin off a few agents
+that like kind of like work on your
+client projects, right? So, yeah, that's
+the current current situation. And let's
+talk a little bit about the long game
+because right now we talked about mostly
+about the first starting point with with
+clients, right? The first kind of like
+two two week sprint and then continuing
+from them. But, what you want to do and
+this is where you make the real money in
+software is you want to become kind of
+like their software partner or even AI
+development partner. Because the
+beginning is always the hardest, really.
+You have scoping issues, expectation
+settings, going from zero to one is
+harder than going from like one to hey,
+can you add like a couple new features?
+So, that is really what you want to
+focus on.
+So, once the trust is built, new
+projects come naturally. We have clients
+we've been working with that for
+five years already. And it just keeps on
+coming. Like tech projects, software is
+never done. There's maintenance, there's
+new features, there's updates. So, you
+want to kind of have these like
+recurring sprints, which are also
+predictable revenue. And
+this is really one of the most important
+things. So, also for example, if you're
+starting if you're thinking about
+starting for example, you don't need a
+lot of clients. That's also what I teach
+freelancers in my program.
+If if you're a developer of any kind and
+or data professional, look it can it can
+all be in the realm of analytics, data
+scientist, machine learning engineer,
+software developer, AI engineer, data
+engineer, all falls kind of like into
+the same
+bucket when it comes to like how you
+work and what type of projects you can
+take on.
+If you can find one big client that you
+can work with, that could like that
+could put you at a six-figure mark. We
+often see that a lot or we see that
+happening in our community. Like I said,
+if people are fully available and they
+said, "Hey, I want to go with you kind
+of like one big contract working with a
+client." That could immediately put them
+at the six-figure mark as a freelancer.
+This is the long-term game that you want
+to play. In tech, you don't want to jump
+from project to project to project and
+focus on and and maintain all of these
+clients like you do for example with a
+law firm or a design agency. You all
+have all of these small requests here
+and there.
+In tech, it's very different. And over
+the long time, you can also charge
+maintenance fee maintenance fees and
+bill for ongoing costs infra and APIs.
+This is where you can add some
+additional kind of like recurring
+revenue on top of the work that you do.
+So, this is the long-term game that you
+want to play. Cool. All right. I skip
+this one. Let's go to the full
+architecture overview. So, here is one
+more kind of like overview that brings
+all of this together because this is how
+the title of this presentation was how
+we build and deploy custom AI solutions,
+right? This is it. I took you through
+the entire process
+and here is that visualized once more in
+a diagram. And this architecture right
+here, you can pretty much automate
+anything that you can think of using
+this stack.
+We have never in kind of like the years
+that we've been working with this,
+that's why we optimized this for this.
+We've never hit the limit of where where
+this kind of like breaks. Now, sometimes
+you get question like what about
+Kubernetes? Is Python like scalable? We
+don't work with with projects at that
+size. So, for us it's never been needed.
+This setup, especially with like Celery
+in between,
+most people underestimate how like how
+far you can actually scale a system like
+this on a single VM that you can also
+increase in size before you need to kind
+of like bother with anything Kubernetes
+related.
+So, that's the full architecture.
+Now, what you should keep in mind if you
+are for example considering starting as
+a freelancer, any developer, you want to
+build your own thing, AI is going to
+change every month, but your process
+shouldn't. And the core technology stack
+that you're using and the patterns that
+you use within that stack also
+shouldn't. We have been using this same
+stack for literally 2 years.
+Like LLMs change, but the projects that
+are running in production right now for
+our clients, they still work. We just
+swap out the model. So, build the system
+once and make sure that they can adapt
+to the new models and the technologies,
+but everything around that, for example,
+your Fast API back end, Redis, Celery,
+Postgres, your front-end. That's all
+stuff that has been stable for decades.
+That just works. So, don't try and
+reinvent the wheel because if you don't
+get clear on what this looks like for
+your application, if you are going to
+vibe code your application and you're
+going to ask like, "Hey, can you build
+me this feature?" It might kind of like
+go off and start to build its own entire
+thing for you.
+Which you don't want. By giving this as
+the scope, by giving this the
+foundation, we know that our coding
+agent also don't really go
+off rails. And because we've been
+working with this stack for multiple
+years already, we can also instantly
+spot when something is off. We can
+review PRs, we can check things and go,
+"No, no, no, no, that's not where it
+goes. That needs to go in that folder
+with that naming convention."
+That's really our secret sauce to how we
+are able to do what we are currently
+doing with Data Lumina Solutions. So,
+keep that in mind. So, with that we have
+come to the end of the presentation.
+This was kind of like the full behind
+the curtains
+view that I wanted to give you. Now, if
+you've been following along and you want
+to learn how to do this yourself, I have
+two options for you. So, first of all,
+as you know, I give almost everything
+away for free on this YouTube channel,
+but I have two paid programs. So, this
+is a shameless self-promotion over here,
+but if you want to work together with me
+and my team, you actually want to learn
+like not just what we covered here, but
+A to Z, like the full process with the
+templates, with the repositories, and
+all of that, we first of all have the
+GenAI Accelerator, which is our
+technical program. So, this is this will
+literally literally teach you how to
+become an AI engineer and everything
+that I pretty much shared within this
+video. And we have another program that
+which is called Data Freelancer. This
+will teach you how to get started as a
+freelancer. You need a technical
+background. Let me be clear, you need
+skills. You need to be either like a
+data professional with a data background
+or software developer,
+anything in between. And if you want to
+find your first project,
+your first client, but you don't really
+know where to start, you can check out
+Data Freelancer. Both of the links to
+these programs will be in the
+description. Like I said, you can find
+almost everything for free on my
+YouTube, but if you want the shortcut
+and if you want to work with my team,
+you can check these out. And with that,
+we have come towards the end of this
+video. I hope that you found it
+valuable, a little bit of a behind the
+scenes look. I found this one really fun
+to make as well. I make a lot of coding
+tutorials as well, but I want to share a
+little bit more of what we do behind the
+scenes. So, if you found it helpful,
+please leave a like and also of course
+consider subscribing. And then what I
+will do next is I will show two videos
+here on the screen, which I think you
+will like.

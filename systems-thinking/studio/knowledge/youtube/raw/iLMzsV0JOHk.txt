@@ -1,0 +1,3235 @@
+All right.
+Good morning, everyone.
+The lecture today is going
+to focus on online planning
+and policy search.
+And we're going to start
+off talking about some
+of the differences in offline
+versus online planning
+and then move into the actual
+online planning algorithms
+themselves and discuss
+some of the strengths
+and weaknesses of each one.
+And we'll also briefly look at
+some examples of hybrid planning
+approaches that have seen
+some large success recently,
+like AlphaZero style
+approaches, and how
+some of these hybrid
+planning methods
+can be extended to language
+model applications as well.
+And then we'll wrap it up at
+the end with policy search.
+And so the goal throughout
+all of this like
+always is to have
+this connection
+back to the bigger picture.
+So if you ever feel like
+you're losing that connection
+throughout any of this, just
+feel free, pop your hand up
+and ask a question.
+So starting off with offline
+versus online planning methods.
+So offline policies
+typically are
+pre-computed before
+any actions are
+taken in the actual
+real-world problem.
+And often these offline
+policies are solving
+over the entire state space.
+OK, so they're trying
+to prescribe an action
+to take from any
+state that we're in.
+Online policies,
+on the other hand,
+are finding actions
+based on reasoning
+about the reachable state space.
+So they're planning forward
+from the initial state
+and looking at all of the
+different possible transitions
+that could occur from this
+initial planning state.
+And typically, these
+online planning methods
+are using this receding
+horizon planning scheme
+to plan over that
+reachable state space.
+And so this idea of the
+reachable state space
+and receding horizon
+planning are the foundation
+here of all of the
+that we're going to
+be talking about.
+So we're going to dive into
+both of these concepts,
+lay the foundation
+for online planning,
+and then go into the
+algorithms themselves.
+So looking at the idea here
+of the reachable state space
+planning, starting
+with the reachable
+state space, I
+think this is a great graphic
+to get the intuition here
+for what we're talking about and
+connecting it back to your life.
+So your reachable
+state space today
+is all of these states that
+lie in the future for you.
+So all of the different
+actions that you could take,
+whether you accept
+a certain job offer
+or move to a
+different city, those
+are all different
+actions that will
+affect the future
+trajectory of your life.
+So that's what's reachable
+from your current state today.
+What's no longer
+reachable to you
+is the actions that you took
+when you were 12 years old.
+So whatever you did when
+you were 12 no longer
+reachable from
+your current state.
+And I do-- I recognize
+we're at Stanford.
+A lot of you are extreme
+high overachievers.
+So if you are 12 years old
+and you're taking this class,
+then that is still in your
+And I will correct that for you.
+But I think for most of us,
+it's no longer reachable.
+So connecting this same
+idea here to a game setup
+and using chess as this example,
+the reachable state space
+here would be looking at
+planning from this current board
+state of the chess
+board that we show there
+and looking at all of
+the different actions
+that we could take
+from that initial state
+and how they would
+transition us.
+So this would be
+looking at maybe I'm
+going to move my pawn to d5
+from that initial board state.
+What state would that
+transition me into?
+And then what are the other
+states that I should move to
+from there?
+So offline policies,
+they're going to be
+looking at planning
+from every possible state.
+They want to prescribe an
+action to take from any state
+that you could be in.
+So the offline
+policies are going
+to be concerned with the
+beginning game strategy.
+So the opening
+moves-- they're going
+to be concerned with mid game
+and end game all sort of in one,
+whereas the online
+policies are only
+going to be focused on planning
+from that current board state.
+So that's highlighting the
+difference here between the two.
+And this is directly
+connected to this idea
+of receding horizon planning.
+Because in receding
+horizon planning,
+we are essentially just planning
+over that reachable state space.
+So the way that
+this works is we're
+going to plan from
+the current state
+up to some depth or horizon D.
+We're going to take an
+action, and then we're
+going to just transition to
+that new state and replan.
+So this is very similar to
+what we've already seen.
+And so in this
+chess example, we've
+already shown the planning
+here up to depth or horizon D.
+We're then going to take one
+of those initial actions.
+So let's say this is like
+moving our pawn to d5.
+We take that action and then we
+transition into that new state.
+And then all that's
+going to happen
+is we just replan
+from that new state
+and we repeat this process.
+And so that's where
+this receding horizon
+aspect is coming in, is that we
+are planning to that horizon.
+We then take an action and we
+just shift that horizon over.
+So you're never actually
+reaching that horizon
+that you're planning to.
+You're just
+continuously shifting it
+as you take those actions and
+transition into the new states.
+And so a great
+real-world example
+of this receding
+horizon planning
+is in autonomous driving.
+And this is an example
+from Waymo here.
+And what you're seeing
+is the car's current plan
+is shown in green there.
+And so as more information
+becomes available to the car,
+it's going to update its
+plan as it sees that car
+veer into the intersection.
+So it's modifying
+the plan, replanning,
+executing that new updated
+plan and continuing on.
+So this is a great
+example of how
+you're planning up
+to some horizon,
+you're taking in
+that new information,
+and then you're replanning as
+new information comes online.
+Yes.
+Between offline
+and online methods,
+is there one that's better
+at taking into account all
+the future rewards versus--
+Yeah, so the question was
+between offline and online
+planning, is there
+one that's better
+in taking into account
+the future rewards
+or future information
+that you receive?
+I'd say no, not necessarily.
+It would depend on, one,
+the problem that you're
+working with, the size of the
+state space and action spaces
+that you're dealing with.
+And later, we'll talk about the
+hybrid planning methods, which
+are really seeking to
+combine the strengths
+and weaknesses of online
+and offline planning
+into one approach there.
+But yeah, that's
+a great question.
+So connecting this
+receding horizon planning
+back to what we've seen in this
+agent acting in the environment,
+taking an action,
+receiving some observation,
+and then replanning from there.
+That's exactly what receding
+horizon planning is doing.
+And it's just relating that to
+this idea of the reachable state
+space and planning
+purely over what's
+that current state.
+That's the big idea
+here with the foundation
+and receding horizon planning.
+And so we're going to be
+building on this foundation
+as we go throughout
+the lecture today.
+And so now kind of zooming
+out here to the big picture.
+A common theme that
+we're going to see
+with these online
+is that typically
+the more time we
+spend searching or
+planning forward
+over different possible futures,
+the better our resulting policy
+is going to perform.
+And a way to get
+some intuition here
+is if you're familiar
+with this idea of system 1
+and system 2 level thinking,
+where system 1 thinking is
+this fast intuitive quick
+reaction style thinking,
+and system 2 is more of this
+slow, deliberative thought
+process where you're thinking
+over possible actions.
+You're spending more time
+thinking before acting.
+And so we're going to
+see this trade-off here
+between the system
+1 and system 2
+styles of thinking
+in online planning.
+And so a great example
+here connecting this back
+to our chess example
+is bullet chess.
+And so bullet chess would be
+this analogy to the system 1
+type of thinking here where
+in this bullet chess scenario,
+it's a version of chess
+where each player has
+1 minute on the clock to
+use for the entire game.
+So this requires the
+players to think and move
+pretty quickly where
+they would have
+to rely on this intuition and
+pre-memorized board patterns
+as they move pieces
+around quickly.
+And so that would
+be this example
+of system 1 style of thinking
+applied to chess, where you're
+just quickly moving from
+board state to board state
+without spending too much
+time thinking about what
+is my opponent going to
+do in response to this.
+The other side of this
+is system 2 thinking,
+where you would now be
+spending more time evaluating
+many different possible
+futures that could occur.
+So this would be, for example,
+you're thinking about, OK,
+if I move my pawn to d5,
+what is my opponent going
+to play in response to that?
+And then how am I going to play
+in response to their response?
+And then how are they going to
+play in response to my response?
+And so rolling this out
+several steps into the future
+and then going back to
+the start and saying,
+now what if instead of moving
+my pawn first, I move my Bishop?
+And how will that
+change their response?
+So you're doing many possible
+different evaluations
+here of this strategy
+into the future
+instead of just doing
+these quick reactive moves.
+So that's this difference
+here between the system 1
+and system 2 style of thinking.
+And so this is directly
+related to what
+we're going to be talking
+about now, which is
+this idea of policy rollouts.
+And so we're going to use
+this idea of policy rollouts
+here to be able to estimate
+the utility of a policy.
+That's where we're
+going in this direction.
+But first, just what is
+a policy rollout here?
+So in order to perform a policy
+rollout, we need two things.
+The first thing that
+we need is a policy.
+So recall that we have
+this policy pi of s.
+And this is prescribing
+an action for us
+to take in some state s.
+And so for our rollout policies,
+typically our rollout policies
+are going to be
+stochastic, meaning
+that this is a distribution.
+So given some state, we have
+a distribution over actions
+that we will take.
+So we can sample an action from
+this stochastic rollout policy.
+So that's the first thing that
+we need to perform a rollout.
+The second is a model.
+So we need a model
+of our transitions
+and a model of our rewards.
+So we're going to have some
+transition function here
+that tells us, given an action
+in a specific state, what
+states am I likely to
+transition to next.
+So this allows us to sample
+these successor state
+transitions from this
+transition model.
+And then we also have
+our reward model.
+So we have this R s,a that gives
+us a reward for taking action
+a in state s.
+So this is what we need here to
+perform these policy rollouts.
+Once we have these, we can
+go through our policy rollout
+example.
+So looking at this
+board state that we're
+going to be starting from, we're
+going to use our rollout policy.
+And so our rollout policy here
+could just be a random action.
+So it could be just moving
+pieces around randomly or maybe
+we have some of
+offline learn policy
+specifically tailored to chess
+that we're going to use to play.
+Regardless of what our
+rollout policy looks like,
+we're going to walk
+through this example.
+OK, so we have our initial
+starting board state.
+We're then going to sample an
+action from our rollout policy.
+So our stochastic
+rollout policy is
+going to be this
+distribution over actions,
+and we're just sampling
+an action to take.
+Let's say that the action
+we get is move Knight to e4.
+So we're going to
+move our Knight to E4,
+and then we're going to sample
+a transition from our transition
+model.
+And so what we're doing here,
+just to simplify things a bit
+because we do have an opponent
+that we're playing against.
+So we're baking their
+opponent strategy
+into the transition model.
+So our opponent, for example,
+could be playing randomly,
+and we're modeling them
+as just a random agent.
+Or we could, again,
+have some other policy
+that we've modeled
+for our opponent.
+And that's baked into
+the transition model.
+So when we sample a state
+from the transition model,
+we're assuming that's
+included the opponents play
+inside of that, just to keep
+things simple in this example.
+OK, so we sample a state
+transition from that--
+from our transition model.
+We receive a reward, and then
+we transition to that new state.
+So here, in response to
+us playing Knight to e4,
+our opponent move
+their pawn to d5.
+And now we're just going to
+repeat this from this new state.
+So we're just going to sample an
+Now that action is Bishop to d5.
+So we move our Bishop to
+d5, and we sample an action
+from our transition model,
+and we receive a reward.
+So then we're going to
+transition to that new state.
+Now it looks like our
+opponent played Queen to d3
+and took our Bishop.
+So we're probably
+going to receive
+a negative reward for that--
+Queen to d5, sorry.
+But yeah, we're still going to
+receive a negative reward there.
+And then this is just
+going to continue.
+So we're just going to sample a
+new action from this new state
+and continue on rolling this
+policy out into the future.
+And so this is going to continue
+until we reach some depth
+or horizon here, d.
+And that's going to be the
+extent of our policy rollout.
+And so the result of this
+policy rollout is a trajectory.
+We've received this
+trajectory represented
+by tau here of
+states and actions
+that we took along
+this policy rollout.
+And we also got
+rewards as we went.
+So we can keep track of
+the discounted-- the sum
+of discounted rewards
+here that we received
+along that rollout trajectory.
+And so this gives us
+an estimate of how
+did our policy do along
+this specific rollout.
+And we can repeat this now,
+not just over one single policy
+rollout, but we can do this
+over multiple different policy
+rollouts.
+And this is the exact same
+idea that we looked at before
+of seeing evaluating multiple
+different possible futures using
+And so, for each one
+of these rollouts,
+we're going to get
+a reward for each
+of those rollout trajectories.
+And that's going to
+allow us now to estimate
+the utility of following
+this particular policy.
+So all we did was we just
+started from this initial state.
+We followed our
+rollout policy by just
+sampling actions and states
+We got rewards for doing that.
+And now we're going to use those
+rewards to estimate the utility
+of this particular policy.
+And that's going to bring us
+to our first online planning
+algorithm that we're
+going to talk about.
+But first, how can we
+actually do this estimation?
+So we saw that
+the reward that we
+got along a specific
+trajectory tau
+is just the sum from t equals
+1 up to that rollout depth d.
+And then it's just
+the discounted reward.
+So we have some discount factor
+and the reward that we received.
+So now we want to
+be able to estimate
+the utility of our rollout
+policy that we're using.
+So the utility of
+the rollout policy,
+we're going to
+write as U pi of r.
+And this r here
+is just to denote
+that this is following
+our rollout policy
+because there's going to be a
+distinction here in a second.
+So that r is just saying
+this is our rollout policy
+that we're using.
+So the utility, when
+following our rollout policy
+from a specific
+state, we're just
+going to approximate this as
+the average of the rewards
+that we received.
+So if we performed
+m policy rollouts,
+then we're just going to average
+up those rewards that we got
+along the m policy rollouts.
+So this is just
+going to be 1 over m.
+And then just all we're doing
+is taking the average here
+So we just performed
+m policy rollouts.
+We got m trajectories
+corresponding to that.
+And then we're just averaging
+those rewards there.
+And so we're just simply
+approximating the utility
+from this state following
+our particular rollout policy
+using those m policy rollouts.
+And so this is going
+to bring us now
+to the first online planning
+going to be looking at.
+And that is look
+ahead with rollouts.
+So the way the look ahead
+with rollouts algorithm works
+is kind of just in the name.
+We've seen the look ahead
+equation before, which
+is given by the following.
+So we're going to have the
+immediate reward that we receive
+plus the discount
+factor times the sum
+over all of the possible states
+that we could transition to,
+the probability that we're
+transitioning into those states,
+given that we took
+action a in state s,
+and then the utility of
+being in that new state.
+So this is just the
+look ahead equation
+that we've seen previously.
+And we saw that we
+could extract a policy
+from this look ahead
+equation simply
+by taking the
+argmax over actions.
+So that's how we can
+extract the policy
+from this lookahead equation.
+So if we just now take the
+argmax here over actions,
+that's going to give us this
+policy that we can extract.
+So now notice the
+difference here.
+This is the online
+planning algorithm policy,
+the look ahead with rollouts
+It's different from
+the rollout policy.
+And so what we're
+using this here for--
+so look ahead with
+rollouts, we're
+simply going to be
+estimating this utility.
+So instead of exactly
+computing this utility,
+we're now just going to
+estimate this utility from state
+s prime using m policy rollouts.
+So that's all we're doing.
+We're just saying
+that this is going
+to be replaced by using this
+rollout policy to estimate
+this utility from state s.
+So all lookahead with
+rollouts is doing
+is taking that
+lookahead equation.
+And we're just simply
+replacing this utility here
+and estimating it with
+m policy rollouts using
+some rollout policy.
+So that's all that's going on
+in lookahead with rollouts.
+Question?
+The original lookahead
+equations was--
+that was like [INAUDIBLE].
+It was like trying to see
+that, really [INAUDIBLE].
+Yeah, so the
+question was, what's
+the main difference
+between this lookahead
+with rollouts and the
+original lookahead equation?
+So the original
+lookahead equation--
+we would be going over all-- so
+all actions, all possible states
+we could transition to, and then
+evaluating this U of s prime.
+So we have this
+recursive step of then
+we would have to look
+at the utility of being
+in state s prime, which
+would then evaluate
+to the immediate reward.
+And so you'd be going
+on into the future
+until you reach some base case
+depth that you're searching to.
+So that's one of the
+differences, which is now
+just being wrapped into
+this policy rollout
+where the depth that we're
+going to in the rollout--
+remember, so we have
+this rollout depth here.
+So if we're going
+to a depth of 10,
+that's going to be maybe
+a worse approximation
+than if we were going to a
+depth of 100 in our rollouts.
+How can we substitute in the
+utility of the rollout pi
+when we may not go to
+all the possible states
+that it actually
+does transition to?
+Yeah, that's a great question.
+So the question was, how can
+we use this substitution here
+when our rollouts might not go
+to all of the possible states
+that you could transition to?
+That's a great
+question and that's
+one of the limitations of using
+policy rollouts to estimate
+the utility.
+Is that you might
+not necessarily
+visit all of the possible
+state transitions.
+So if you're only using a
+limited number of rollouts,
+then your variance estimate of
+the rewards that you receive
+are going to be high.
+So the variance will
+decrease with the number
+of rollout policies
+that you're performing.
+So that's sort of--
+the trade off is that--
+one of the limitations
+here is that you
+have to do this
+over all actions,
+all next state transitions
+that you could go to and then
+perform m policy rollouts
+in each of those.
+So if you have a large state
+and large action space,
+this is going to get a little
+computationally intensive there.
+And then the other
+limitation here
+is that it also requires
+having that roll out policy
+to begin with.
+So if your roll out
+policy to start with
+is a random roll out
+policy, then you're
+likely going to improve
+upon that random roll
+out policy because you're
+acting greedily with respect
+to that roll out policy.
+But just improving over
+a random roll out policy
+might not be that good in the
+grand scheme of things applying
+that to your actual problem.
+Because if you're just
+doing better than random,
+sure, you're improving,
+but you might not
+be performing that well
+in the actual problem.
+So those are some
+of the drawbacks
+here of the lookahead
+with roll outs method.
+So that's going to bring us
+to our next online planning
+algorithm, which
+is forward search.
+And so forward
+search is focused--
+instead of just
+by using a few roll outs
+from a roll out policy,
+forward search is looking at
+building the entire search
+tree of all states and action
+transitions up to some depth.
+And so that's the way that
+we're able to determine now
+the best action to take
+from an initial state
+by looking at all possible
+transitions that could occur.
+And so this visualization
+here that we're showing
+is for three states and two
+actions up to a depth of 2.
+And so when we talk
+about depth here
+in these tree search
+based methods,
+what the depth means
+is we're starting
+at some initial
+state shown by s.
+And then going to a depth of 1
+would be this first branching
+on the states.
+So that's depth 1--
+and then depth two
+would be at the
+bottom here doing
+that next level of branching.
+And so we're going
+to be talking about
+the computational complexity
+here of these algorithms.
+And for forward
+search, we're going
+to be looking at first
+the branching factor.
+And so the branching
+factor for forward search
+is going to be the size of
+the state space times the size
+of the action space.
+And so what this branching
+factor here is telling us
+is how quickly is
+this tree going
+to grow as we go down in depth.
+So every time we add on
+another depth to this tree,
+we're going to grow
+that by a factor
+of the size of the state's space
+times the size of the action
+space.
+The reason for
+that is because you
+can see in this
+visualization that we
+are branching on all of the
+states and all of the actions.
+So that's the factor by which
+this tree is going to grow.
+So that's this idea
+of branching factor.
+And the computational complexity
+of the forward search algorithm
+is directly related to this
+idea of branching factor.
+So the computational
+complexity here,
+using this big O
+notation is just
+the size of the state space, the
+size of the action space up to--
+raised to the power of d so
+the depth of the search tree
+that we're going to.
+And if you haven't seen
+this big O notation
+here before for
+computational complexity,
+you can think about it.
+This is just a way that we
+can compare algorithms and get
+a sense of how much
+work do we expect
+to have to do when we're
+performing this specific search
+algorithm.
+So a good way to look at
+this is in our example.
+We have three
+states, two actions.
+So 3 times 2 to a
+depth of 1 is 6.
+And you can see at
+that first step,
+we have six nodes in that
+layer of the search week.
+Going to a depth of 2,
+we would have 3 times 2--
+6 raised to the power
+of 2, which would be 36.
+And there are 36 states
+that we've now branched on
+in that second depth.
+And so this would continue.
+And you can see that this even
+with only three states and two
+actions, this is going
+to blow up quite quickly,
+going to a depth of 10 or so.
+And so that is--
+here of forward search
+is that while it's nice
+to be able to construct
+the entire search tree and get
+this perfect solution to it,
+we're limited here by
+s times a is not great,
+especially when we're
+working with real-world problems
+that have extremely large state
+spaces and action spaces.
+And then you're raising that
+to the power of the depth
+that you're going to.
+So it's just-- it becomes
+not super practical
+in some large
+real-world problems.
+And so that's where the branch
+and bound algorithm comes in
+is it's attempting to reduce
+this exponential complexity
+in forward search by reasoning
+about bounds on the value
+function.
+And so branch and
+bound requires knowing
+a lower bound on the value
+function and an upper bound
+on the action value function.
+And so with these bounds
+on the-- with the upper
+and lower bounds here
+what this allows us to do
+is it allows us to prune
+parts of the search tree.
+And so pruning is
+going to occur when
+the upper bound of
+an action at a state
+is lower than the lower bound
+of a previously explored action
+from that state.
+I think when you see
+it written like this,
+you're like, I have no
+idea what that is saying
+or why that would be the case.
+So I think it's helpful
+to see an example
+and then come back
+to that statement
+and it will make a
+little bit more sense.
+But essentially what this
+is saying-- so first,
+just looking at this,
+we have this upper bound
+So this is saying this is the
+best possible that we could ever
+hope to achieve by taking
+action a in state s.
+So we could never do any
+better than this upper bound
+estimate here.
+saying here is maybe
+we've explored a different
+part of the search tree already
+and we've gotten some
+utility estimate that we're
+going to call U best here.
+And so we used our
+lower bound estimate
+to come up with
+this best utility
+estimate on some side
+of the search tree
+that we've already explored.
+Now, what we're
+saying is we're coming
+to some new part of the search
+tree we haven't yet seen.
+And we're looking at an action
+from that particular state.
+If this upper bound here,
+meaning the best possible
+I could ever hope
+to achieve by taking
+this action in this state, is
+less than that best utility
+that I've already seen so far
+on some other side of the search
+tree, then it makes no sense to
+take this action from that state
+because we know for
+certain we could never--
+we could never do
+any better than what
+we've already seen over there.
+So if our upper bound
+estimate is less than the best
+that we've already seen,
+don't waste our time
+exploring that part
+because we know we're not
+going to do any better.
+That's the whole intuition
+here in branch and bound.
+And so how this works, just
+with this visual example here--
+this is that same
+search tree that we
+looked at for forward search.
+So let's say that
+we've already explored
+this left side of
+the search tree
+and we haven't done any
+pruning in this case.
+So we've explored
+that whole left side,
+and we get some best utility
+estimate using our lower bound
+on the value function.
+So we get our best
+utility estimate
+from that left side
+of the search tree.
+And now, we're going to look
+at the right side of the search
+tree.
+So we're looking at
+this initial action
+to take from that initial state.
+And we're going to ask, is the
+upper bound estimate here--
+so the upper bound on
+our Q value function,
+meaning the best
+possible we could ever
+hope to achieve on this
+right side of the search tree
+is that less than the best
+utility I saw on the left side?
+And if it is, then
+we're just going
+to prune off the rest
+of that search tree
+and not bother wasting our
+time exploring anything
+that lies on that left side.
+When you calculate,
+U best versus
+the Q value of
+this [? product, ?]
+how far down are you
+going in [INAUDIBLE]?
+Yeah, great question.
+So the question was,
+when you're calculating
+U best utility estimate versus
+the upper bound on the action
+value function, how far down in
+the search tree are you going?
+And so to get U best,
+we are going all the way
+down to the depth
+the very base level.
+And once you get here,
+you have some-- that's
+where the lower bound comes in.
+So this is where you would
+say, OK, beyond this,
+I'm going to estimate the
+utility at this state using
+that lower bound estimate.
+And then that gets
+sent back up the tree.
+And that's why you end up with
+U best being a lower bound
+is because you use this lower
+bound estimate at the bottom
+The upper bound estimate,
+though, on the Q function
+is only looking at
+that state action pair.
+So that's where
+this would require
+you to have some of offline
+priori knowledge of what
+that upper bound is going to be.
+Does that make sense?
+Was there another question?
+No.
+OK.
+So right.
+One of the drawbacks
+here of branch and bound
+is that it requires knowing
+these upper and lower bounds.
+And where do you get these?
+Well, you have to come
+up with them yourself.
+And so in some game
+type environments,
+you probably have a reasonable
+estimate of an upper
+and lower bound on
+the value function.
+But in some real world
+problems where you're actually
+having to go and learn
+your reward function
+itself from data,
+you might not really
+have a good
+understanding of what
+are the bounds on this actual
+function that I'm working with.
+So that's one of
+the drawbacks here,
+is that if you don't
+have good bounds,
+the worst case computational
+complexity of branch and bound
+is going to be the exact
+same as forward search.
+The reason for that is
+because if your bounds aren't
+that tight, meaning
+you have loose bounds
+and they're really
+conservative estimates,
+you're not going to do any
+pruning of the search tree.
+And so if you don't do any
+pruning of the search tree,
+you just end up with
+back into forward search.
+And so if you're interested in
+seeing of worked out example
+on a dice rolling game
+here, we posted that online
+that you can look at.
+And it also walks through
+the code that's in the book
+and relates those two to the
+example, if you want to do that.
+And if you're watching online
+later that will be up for you
+as well.
+So that brings us now
+to our next algorithm,
+which is sparse sampling.
+And so sparse sampling
+is trying to get
+around this
+computational complexity
+that we have right now
+of S times A to the D.
+So that's really the goal
+here of sparse sampling,
+is reducing this branching
+factor of forward search
+and branch and bound.
+And the way that it does
+this is instead of branching
+on all of the
+possible next states,
+it's only going to consider
+a limited number of samples
+of that state transition.
+And so when we're
+doing this, we're
+now just taking samples
+So we're not branching
+on all possible states.
+And as a result, we now
+have this approximation
+that's introduced.
+So sparse sampling
+is introducing
+this approximate sampling
+based method into the search.
+And so what this looks
+like visually here is this
+is our original search
+tree from forward search.
+And what sparse
+sampling is going to do
+is that instead of branching
+on all of the states,
+it's just going to look
+at samples of that state
+transition.
+So we're still branching
+on all of the actions,
+but now we're only
+taking in this example
+two samples of the
+state transition,
+and those are shown in
+those dotted lines there.
+So we're sampling
+two state transitions
+instead of branching on all
+of the state transitions that
+could occur.
+And so as a result
+of this, we end up
+with a computational complexity
+here of this would be--
+is everyone able
+to see this board?
+Yeah.
+OK, cool.
+So we end up with this
+computational complexity now.
+Instead of the size
+of the state space,
+we're only taking m samples
+here of the state transition.
+So now we have a
+factor of m times A
+to the d, where
+presumably m is smaller
+than A otherwise
+we wouldn't really
+be using sparse sampling here.
+OK, so we've reduced our
+computational complexity now
+from this S times A to the
+d to m times A to the d,
+using this sampling
+based approach.
+The drawback here
+of this algorithm
+is that you now rely
+on, well, how many
+samples are you going to take.
+If your state space
+is 10 to the minus 20
+and you're only taking
+five samples of that state
+transition, you're not going to
+get a very good understanding
+of how your transitioning
+based on the actions
+that you're taking.
+So now you have this trade off
+do I take too many samples,
+do I not take enough samples,
+how do I balance that trade off.
+And so just summarizing
+the algorithms
+that we've seen so far we've
+seen forward search, branch
+and bound, and sparse sampling.
+Forward search and
+branch and bound
+have a computational complexity
+of S times A to the d.
+And I think a good
+way to remember
+this is that S times
+A to the d spells sad.
+And that is a sad branching
+factor that you have
+because it's just
+going to blow up
+as you go further down
+in the search tree.
+Sparse sampling then simplifies
+this right to m times
+A to the d.
+But now you're a
+little mad that you've
+had to use the sampling
+based techniques to get
+this approximation there.
+So I think that's a good way to
+remember the differences here
+in the algorithms is that
+forward search, branch
+and bound make you sad.
+Sparse sampling makes you mad.
+And now to just gauge
+our understanding here.
+If we use sparse
+sampling with m--
+so the number of samples here
+equal to the size of the state
+space, is that equivalent
+to forward search?
+Any ideas?
+No, because you could just
+be sampling the same action
+over again.
+That's exactly right.
+So looking at this, the answer
+is no, they're not equivalent.
+And you might be
+tempted to say, well,
+if we're taking m here equal
+to the size of the state space,
+well, they have the same
+so they must be the same, right.
+But that's not the case
+because what could happen
+is that in our
+branching that occurs.
+We have this onto
+the action and then
+we're sampling these
+possible state transitions.
+You could end up
+sampling the same state
+from that particular
+action multiple times.
+It's not necessarily
+the case that you're
+going to get a unique state
+transition sample every time.
+In fact, if you have a
+really large state space,
+it's very unlikely
+that you're going
+to build up, almost
+impossible that you're
+going to build up the search
+tree, exactly uniquely
+with all of those state
+samples that you're taking.
+So it's possible that you could
+get super lucky and you sample
+a unique state transition
+every single time,
+but that's very unlikely
+in a large state space.
+So that brings us now to
+Monte Carlo Tree Search.
+And Monte Carlo Tree
+Search, I would say,
+is a pretty popular
+online planning algorithm
+for a few different reasons.
+One of the main ones being that
+it's practical and somewhat
+scalable to larger problems.
+So the way that Monte
+Carlo Tree Search works
+is by running
+these m simulations
+from the current state.
+So that's how it's
+attempting to avoid
+is by running m simulations,
+sort of like these rollouts.
+But we'll talk about
+how they're different.
+And so just like in
+our policy rollouts,
+we require this model of
+the transition function
+and the reward function
+during the tree search.
+So we have to have this
+model in order to run MCTS.
+And during the
+simulations, we're
+going to be keeping
+track of two things here.
+So the first one that we're
+going to be keeping track of
+is the Q function.
+And so we're just going to as
+we build up this search tree,
+we're just going to have this
+estimate of the Q function here.
+And then the other thing
+we're going to be tracking
+is just the counts.
+So this function
+here, Nsa, is just
+counting the number of times
+we're taking action in state s.
+So if we take
+we're just going to
+increment this count by 1.
+So we're purely just counting
+every time we take this action.
+And we can
+equivalently also keep
+track of the number
+of times we visited
+a state by just marginalizing
+out over the actions here.
+So if we just take the sum
+over the actions of Nsa,
+we're just tracking
+now the number
+of times we've been in a state.
+So that's all we're tracking
+here in MCTS as we build up
+the tree is this estimate
+of the Q function
+and the number of
+times we've taken
+an action in a particular state.
+And then at the end, after we've
+built up the search tree here,
+one method that we
+can use is let's
+just choose the action that
+maximizes the Q function.
+There's other
+versions that you can
+use could choose one that
+maximizes the action that you
+saw the most number of times.
+So whatever maximize
+the counts, you
+can do a combination of
+a weighting between the Q
+function and the counts.
+There's different combinations.
+To keep it simple
+here, let's just
+say that we're going to do
+the max for the Q function.
+OK, so how MCTS works
+at the high level
+here before diving
+into an example is
+we have these four
+different steps.
+So the first step is selection.
+We have to select an action
+that we want to expand further.
+So this is saying,
+which action do
+we think is promising
+to look at more
+and build up the search
+tree in that direction more?
+So we'll talk about how we
+actually choose actions here
+in a second, what we're actually
+using to select these actions.
+But for now, let's say that
+we selected this action
+in the tree.
+The next step
+involves expansion.
+So expansion is purely just
+sampling that state transition
+after taking that action.
+So we just select the
+action and then we
+sample a state transition, and
+that is the expansion step.
+The next step is
+the simulation step.
+So this could involve
+using a rollout policy.
+So if we used a
+random rollout policy,
+this would involve just
+performing 10 random actions
+into the future and estimating
+the utility at that state there.
+You don't have to use a
+rollout policy, though.
+There's other methods
+that you can use.
+For example, you
+could use an offline
+learn neural network that
+estimates the utility of being
+in a particular state.
+And then in this
+simulation step,
+you're just querying that
+neural network of saying, hey,
+what's the utility
+estimate in that state?
+And using that instead
+of the rollout policy.
+So I bring that up
+because we're going
+to talk about hybrid
+planning methods later.
+And I just want you
+to have that sense of,
+where does that fit
+in to this MCTS setup?
+So you don't necessarily have
+to use a rollout policy here.
+For the example that we're
+going to be looking at, we will.
+And then after the
+you're just taking
+that utility estimate
+and you're updating
+it back up the tree.
+And so then you're just
+repeating this process
+over and over of selection,
+expansion, simulation,
+and update.
+And that is MCTS
+at the high level.
+So there's a few
+things that we need
+to talk about here
+in a bit more detail.
+First is, how are we actually
+doing this action selection?
+So there's different exploration
+strategies that we can use.
+A pretty popular one
+and commonly used
+is the upper confidence bound.
+So the upper
+confidence bound metric
+is just the action value
+function plus this constant C.
+So this is a hyperparameter
+here, the exploration constant.
+And then it's times this
+log of the number of times
+we've been in a particular
+state over the number of times--
+just the counts here that
+we took action a in state s.
+So what is this telling us?
+Well, it's sort
+of incentivizing--
+this right term is
+incentivizing us to take actions
+that we haven't yet seen.
+How is it doing that?
+Well, notice if the
+count function here is--
+so if we've never taken an
+action in a particular state,
+this is going to be 0.
+So this right side term
+is going to be infinity.
+And so this is going to
+force us to choose actions
+that we haven't tried yet.
+So this is like the
+exploration term.
+We're being incentivized
+to try actions
+This term here is more
+of the exploitation term.
+So this is telling
+us to take actions
+that we've seen from
+particular states that
+have showed us to perform well.
+So if we've seen it in
+the past to perform well,
+this is giving us that
+incentive to try it again.
+And so that's how the
+upper confidence bound
+is balancing this exploration
+with the exploitation term.
+And it's doing that
+through this constant C.
+So that's weighting
+how much we're
+valuing the exploration
+bonus versus how much we're
+valuing the exploitation term.
+So that's the strategy here.
+So to clarify, we start off
+with an action value function.
+And then we just keep
+updating that as we go?
+Because our end goal here is to
+get a fully updated action value
+function so we know
+what policy to perform?
+What was the last
+part of the question?
+Is the end goal to get
+an updated action value
+function so we know what
+policy we should [INAUDIBLE]?
+I see.
+So the question
+was, is the end goal
+of doing all this to get an
+updated estimate of the action
+value function so that we
+know which policy to use?
+And yes, that is the ultimate
+goal is that at the end,
+after building up
+this search tree,
+we want to take the action.
+In this case, we're using one
+that's greedy with respect
+to the action value function.
+But like we mentioned,
+you don't necessarily
+have to do that version of it.
+But yeah, the goal here is to
+build up this Q estimate here
+to get it as good as possible to
+the actual real-world problem.
+So that's the selection step.
+We're using this weighting
+between the exploration
+term and the exploitation term.
+And so this is a common
+trade-off that we have of,
+should we try out actions
+that we haven't seen yet?
+Or should we go with what we've
+already seen to be promising?
+And so how MCTS
+is balancing this,
+if you're using the
+is through this term here
+between that exploitation
+term and the exploration term.
+So I think it helps to
+see an actual example here
+to get a sense of
+how MCTS works.
+So we're going to be looking at
+2048 to build up this example.
+And if you haven't played 2048,
+it's a pretty simple game.
+So we'll walk through it here.
+Initially, you're playing
+on this 4 by 4 board.
+And the game starts
+off with a 2 or a 4
+randomly appearing
+somewhere on the board.
+And you then have four
+actions that you can take.
+So you can move left,
+right, up, or down.
+And if you played
+it on the phone,
+you're literally just
+swiping left, up, down.
+So if you move to the left here,
+what happens is all of the tiles
+are going to slide to the
+left and then a new 2 or 4
+is going to appear
+somewhere else on the board.
+So if you move left again,
+the tiles will slide left
+and then a 2 or a 4 again is
+randomly generated somewhere
+on the board.
+And so the goal of
+the game here is
+to get the tiles
+to add up to 2048.
+And so the way that
+you add tiles up
+is just by combining like tiles.
+So if you slide down
+now, the 2 and the 2
+are going to combine
+and add up to four.
+And so that's how you
+get the tiles to add up.
+Now if we were to swipe left
+again, we would get the 4
+and the 4 combine to make 8.
+And you just keep doing this
+until you add up to 2048.
+And so the general
+strategy here is
+that you want to
+keep your high value
+tiles in one of the corners.
+It doesn't matter which corner
+you're keeping those high value
+tiles in because you
+have a symmetric board,
+but that's roughly
+the general strategy.
+So looking at how MCTS
+would build this up
+starting from that
+initial board state.
+So we open up the game.
+This is the first board
+state that we see, a 2 or a 4
+is randomly generated
+on that board.
+In the first step here of MCTS,
+we're in this selection step,
+but we haven't seen
+any actions, right?
+So we're just going to
+initialize everything to 0.
+So all of the four
+actions available to us,
+we're just initializing
+those to 0.
+And that ends the first step.
+It was just purely
+initialization here.
+We can't really do
+anything after that.
+So now in the second
+step, we're going
+to come back to these actions
+that we've initialized
+and we're going to look at our
+upper confidence bound metric.
+And we're going to
+say, OK, we want
+to select the one with the
+highest upper confidence bound.
+But in this case, they all
+have the same number of counts,
+they all have the
+same Q estimate,
+so we're just going
+to arbitrarily select
+the left action because it's
+the first one in our ordering,
+because all of
+these, they would all
+have an exploration
+bonus here of infinity.
+So we're just arbitrarily going
+to choose left in this example.
+So we've done our
+selection step.
+Now we are going to go
+to the expansion step.
+And remember, the
+expansion step is just
+sampling a state transition
+from our transition function.
+So you notice we slid
+the tiles to the left
+and then a new 2 or 4 was
+So that's our sample of
+the state transition.
+And then we've initialized all
+of the counts and Q estimates
+from that new
+successor state to 0.
+So now we go into the simulation
+step, and in this example,
+we're going to use a
+random rollout policy here.
+say for this example,
+we're taking 10 random
+actions into the future.
+So this is literally just
+going to be randomly swiping
+left, right, up, down down
+for 10 actions into the future
+and that will bring us
+to a new board state.
+So we've kept track
+of the rewards
+that we received along
+this random rollout.
+And so from that, we get
+this utility estimate of 72
+from this simulation step.
+And we're now going to
+update that back up the tree.
+So we're going to update our
+visitation counts now to one.
+And then our Q estimate
+just becomes 72
+since this is the only
+utility estimate we've
+seen from that state so far.
+And that would conclude
+this first expansion
+of this left action.
+So now we're going to go back.
+We finished these four steps.
+We're going to go back up to
+the top of the search tree,
+and now we're back in
+the selection step.
+So in the second
+selection, which action
+should I select now?
+Well, now we actually have a
+value for the upper confidence
+bound here for the left action.
+And we're using exploration
+constant there of 100.
+So this would evaluate to 72.
+But notice for the down,
+right, and up actions, those
+are all going to, again, be
+just infinite exploration bonus.
+And so, again, we're
+just arbitrarily going
+to select the down action there
+since we haven't seen it yet
+and they all have that same
+infinite exploration bonus.
+So we select down.
+We're now going to expand
+on the down action.
+And so we sample a
+state transition.
+You can see we slid
+the tiles down,
+new 2 or 4 appeared
+And so that concludes
+our expansion step.
+And now we just
+forward-simulate,
+so we take 10 random actions
+from this new successor state.
+That brings us to
+this new board state.
+And we kept track of
+the rewards that we
+received along this rollout.
+And so that gives us
+this utility estimate
+of 44, which we're then going
+to update back up the tree.
+And so we update
+our visitation count
+by 1 and our estimate of 44.
+And now this would just repeat.
+We've done this
+for left and down.
+You can see that right and
+up are both going down,
+that have that infinite
+exploration bonus still.
+So in the next two
+steps, we're just
+first going to choose
+the right action,
+do the exact same thing we
+just did, and then we're
+going to choose the
+up action after that
+and do the exact same thing.
+So after doing right and up
+following that same procedure,
+we're going to end up with the
+search tree looking something
+like this.
+And now it gets
+interesting again,
+because now, which action
+are we going to choose?
+Any thoughts?
+Up.
+Up?
+Yeah, that is correct.
+We're going to
+choose the up action.
+Why are we choosing
+the up action?
+Well, remember that we have the
+upper confidence bound here,
+and all of the counts for
+the specific actions are one.
+They all have the same
+counts, so they all
+have the same exploration bonus.
+So we're not concerned with
+exploration in this case.
+It's purely looking at an
+exploitative step of which one
+has the highest Q estimate.
+So now we're saying, I
+want to continue exploring,
+continue pulling the action
+that has the highest Q estimate
+because that's what I saw
+to be best in the past.
+So we're going to choose
+the up action now.
+And we're going to now perform
+expansion on this up action.
+But in this case, when
+we sample a new state,
+it's very unlikely that we
+would see the exact same state
+that we already saw
+because that 2 or a 4
+is randomly being generated.
+So it's not likely
+that we're going
+to see that same exact state
+and we end up with a new state
+transition here.
+So we're now going to
+perform that simulation
+step from this new
+state that we've seen.
+That's going to bring
+us to this board state
+and we get this particular
+utility estimate of 44
+that we're then going to
+update back up the tree.
+And so now we're just taking an
+average of the utility estimates
+that we've seen by
+taking this up action.
+So the first time we got 88,
+the second time we got 44,
+the average of those two is 66.
+And then we've also updated
+the visitation counts
+by 1, which gets us to 2.
+Question.
+Can you just say again
+what conceptually Q is.
+So the question is, what is Q?
+Q is the action
+value function, which
+tells us the utility of taking
+So the Q function that we've
+seen, if we write it out
+explicitly, it's just
+the immediate reward
+that we get plus the
+discount factor times the sum
+over all states that
+we could transition to,
+the transition
+probability, and then
+the utility of being
+in that next state.
+So we are passing in
+the action to take here.
+And so that's
+forcing that forward
+with that particular action.
+Any other questions?
+In the context of this
+game, 2048, how exactly
+is reward formulated based
+on the board configuration?
+was, for 2048, how
+is the reward being formulated
+here based on the board state?
+So there's a couple
+examples in the book showing
+different weighting functions
+that you can do on the tiles.
+So one example is that you
+can have higher weights
+in the corners to
+incentivize your agent
+to put all of the high value
+tiles in those corners.
+You can do an even weighting.
+So this example is just
+using an even weighting
+and just summing up
+the tiles on the board.
+But yeah, there's different
+heuristics that you can use,
+or you can use just an end
+state of the game of 1 or 0,
+did you win?
+That's a little bit more
+challenging because then you
+have to search for a
+really long depth horizon
+to get any signal there.
+But yeah, there's
+different utility functions
+you can use there.
+OK, great.
+So after doing
+this update, we're
+left with this search tree.
+And this process would just
+literally repeat over and over
+until you've either run out
+of number of simulations
+to perform.
+So in MCTS, you set the
+number of simulations
+You can also specify
+a time limit.
+So if you only want the
+algorithm to run for one minute,
+you can do that.
+And whatever the Q estimates
+are after that one minute
+are returned and then you can
+make your action based on that.
+So it's an any time
+algorithm, meaning
+you can stop it whenever, and
+the estimates that are returned
+are what you end up with.
+So I guess for the
+up action, the reason
+why we have 2 is because we just
+randomly generate another one.
+Is that right?
+So the question is for the up
+action, why are the counts two?
+[INAUDIBLE]
+So why do we have two
+boards for this [INAUDIBLE]?
+So the question is, why do
+we have two new board States.
+And that was because we selected
+the up action to expand on.
+And in that expansion, we
+sample a new state transition.
+And so in 2048,
+that we would end up
+with the exact same state
+that we saw the first
+time because every time we
+do that state sample, a 2
+or a 4 can randomly appear
+in any of those open squares.
+So it's very unlikely that
+we would get a 2 showing up
+in that exact bottom left square
+that we saw the first time.
+So that's why we end up
+with this new state that's
+different from the
+first one that we saw.
+And also, I guess with Monte
+Carlo Tree Search, is it usual--
+or would you always
+expect to have
+gone through every single
+action at least once just
+because of the upper
+bound or the [INAUDIBLE].
+So the question was
+with MCTS, would you
+expect to always go through
+every single action at least
+once?
+And if you are using the
+upper confidence bound,
+then the answer is
+yes with a caveat
+because if you don't
+have-- like say you
+have a really large
+action space and you only
+have a limited
+number of iterations,
+you might not be
+able to branch on all
+of those actions
+in those iterations
+But if you have
+enough iterations
+and you're using upper
+confidence bound,
+then the answer would
+be yes because you'll
+have this infinite
+exploration bonus.
+And so you're always going
+to choose an action that you
+haven't yet seen relative to--
+I mean, unless you have
+an infinite Q value maybe.
+But then it's like, well,
+what's your Q value?
+Which isn't really reasonable.
+So yes, with a star.
+Can you explain how the name
+upper confidence bound actually
+relates to the expression
+that you showed us.
+So the question is, where does
+the name upper confidence bound
+come from?
+And you'll see that.
+I think it's in
+chapter 15 when we
+talk about multiarmed
+banded problems.
+And so upper confidence bound
+is an exploration strategy
+that was originally developed
+for those multiarmed banded.
+So how are you choosing
+which lever of the multiarmed
+banded to pull.
+And I don't want to get too
+ahead of ourselves skipping
+to that chapter, but
+essentially, it's
+coming from that
+multi-armed banded problem.
+Is one of the
+drawbacks that we have
+to keep track of
+each possible state,
+and as you continue to go deeper
+into your number of steps,
+that takes up a huge
+amount of memory?
+is one of the drawbacks
+that you have to keep
+track of each possible state
+And I would say
+that is a drawback
+relative to the other algorithms
+that we've seen though,
+like forward search branch and
+bound where you're doing that,
+branching on all of
+the state transitions,
+this remedies that and you
+only have to store those state
+transitions once you see them.
+So you're not storing
+every possible state
+that you could transition to.
+You're just keeping
+track of it as you go.
+But what we'll see next--
+let me just show you
+this really quick.
+So if you ran this MCTS
+algorithm here on 2048
+for 100 simulations, this
+is the resulting search tree
+that you would end up with.
+And here, the blue is
+showing higher Q values.
+Red is showing lower Q values.
+And you can see that
+after 100 simulations,
+we have a pretty
+shallow search tree.
+And this goes back to your
+question of the reason
+that that's occurring
+is because we
+have all of these
+successor states
+that we could transition to.
+In 2048, it's very unlikely that
+we would see that same successor
+state again.
+So we have this branching
+that's occurring on the actions,
+and we're ending
+up with the tree
+growing wider before
+it gets any deeper.
+And so that's one of
+the limitations when
+you have this large
+branching factor still,
+your tree, even after
+taking all of these samples,
+like the furthest we've gotten
+here is just a depth of 3.
+Sorry.
+[INAUDIBLE] to overcome that
+it would grow more deeper than
+[INAUDIBLE].
+Yeah, that's a great point.
+So the point was that you
+could change the value of C
+here to overcome this
+shallowness in the search.
+And that's exactly right.
+So if you want to value
+the exploration terms less,
+then you could do that.
+You're still going to
+have the infinite count
+issue on that first step.
+But there's ways
+around that as well
+if you want to enforce
+going deeper in the tree.
+And then just really quickly
+wrapping up this example,
+if we were to continue
+on-- we're not.
+I think we get the
+idea here of MCTS.
+But if we were going to
+continue now, which action would
+we select after this?
+Left?
+Yes, that is correct.
+We would select left.
+The reason for that
+is because if we
+look at left, down,
+and right, they all
+have the same exploration
+bonus because they
+have the same number of counts.
+And so we're looking at
+that pure exploitation,
+so we'd select 72.
+But now looking
+at left versus up,
+we would see that left
+has the higher exploration
+bonus because it's
+been visited less,
+and then it also has
+the higher Q estimate.
+So it's winning out on both of
+those, and we'd go with left.
+So now just to make sure
+we're all on the same page
+here, how this would work if
+we're playing with an autonomous
+agent using this MCTS
+approach in 2048,
+the real board state that
+would be in the real world
+is shown on the right.
+And the agent sees
+this board state,
+and it then goes and
+does all of this--
+not offline
+computation, but it's
+doing the computation in its
+head of building up this search
+And so all of these
+forward simulation
+and rollouts that
+are occurring are not
+happening in the actual game.
+It's based on the agent's
+model of the game.
+And so the whole search tree is
+generated inside of the agent
+internally.
+And then at the end, the agent
+is going to say, OK, take
+the left action.
+We take the left
+action, and that's
+what changes the actual
+real-world board state.
+And then the process
+repeats again after that.
+So just clarifying
+the difference there
+between where the state
+transitions and everything is
+occurring is all being
+simulated by the agent
+and then it's acting in
+that real-world environment
+after that.
+And so-- yes.
+You said the process
+repeats after that.
+You still maintain
+the same tree,
+but you continue from the
+actual state you're in.
+So the question was, when the
+process repeats after that,
+so when you transition
+to a new state,
+do you keep the
+same search tree?
+And the answer
+is, if you're just
+doing vanilla-based
+implementation of MCTS,
+you might not necessarily
+have that caching occurring
+of the counts and
+the Q estimates.
+But if you're doing a
+efficient implementation,
+you should be storing
+that as you continue on.
+So there's a few different
+variants here to mention.
+Just the tree search depth
+and the rollout depth,
+those are two different things.
+So in the rollout
+depth in that example,
+we were doing a
+rollout depth of 10,
+just taking 10 random actions.
+You could also
+instead do rollouts
+until you reach
+an end game state,
+so until there's an outcome of
+a winner or a loser in the game.
+So that's one
+variant of the tree
+search versus rollout depth.
+There's also that
+value function estimate
+that I mentioned earlier.
+You don't necessarily have
+to use the rollouts again.
+You can use that offline
+learned estimate.
+And that would be this
+hybrid planning style
+be talking about next.
+The exploration strategy
+that you're using,
+you don't have to use
+upper confidence bound.
+And the source of the
+model here is a big one.
+MCTS really only
+makes sense when
+you have a good understanding of
+the transition and reward model.
+Because if you don't have a good
+understanding of those models,
+then you're going to be wasting
+all of this time building up
+this search tree with all of
+these state transitions that
+aren't actually
+realistic for the problem
+that you're interested.
+So when you're evaluating,
+should I use MCTS or not,
+it comes back to, well, do
+I have a good understanding
+of that transition reward model?
+If the answer is no,
+then you probably
+shouldn't be using this
+model-based tree search here.
+So that's a big problem when
+you're looking at applying this
+to real-world problems.
+On that topic, with
+that transition model,
+like when we're in the
+simulation step of the 2048
+game, it sounded like we
+were doing like a depth--
+yeah, a depth [? where ?]
+we're simulating
+10 steps in the future with
+totally stochastic actions
+like after we've chosen
+the initial action.
+So is that in our
+transition model
+then just like 0.25,
+0.25, 0.25, 0.25 like up,
+down, left, right after
+we've chosen that action?
+So the question was about
+the transition model
+we were using in the rollouts.
+In the rollouts, I guess
+we have a difference
+between the rollout policy,
+which that would be 0.25, 0.25,
+0.25 probability for each
+action that you could take.
+But then the state
+transitions that occur
+as a result of those random
+rollouts random action selection
+is going to be based
+on our game simulator
+that we have internally to us.
+So how we sample
+that state transition
+is going to be based on that.
+Where are the random 2
+or 4 pops up on the board
+would be T, and then which
+direction that we go in would be
+Exactly.
+Yep.
+So just to clarify, if
+you couldn't hear that,
+it was where you're going
+is or where the 2 or the 4
+is being generated, that's
+your transition model.
+And then the action
+that you're selecting
+is your rollout policy.
+So we're not running this
+exploration/exploitation step
+on the future rollout steps.
+That's correct.
+You're not using
+the upper confidence
+bound in the rollouts.
+And then [INAUDIBLE] gap that we
+saw in the example, [INAUDIBLE]
+that we reached.
+And then the rollout depth
+would be that 10 that we made.
+So the question was about the
+tree search depth and rollout
+depth.
+So in the example, it
+was rollout depth of 10.
+And then the tree
+search depth that we
+showed after running
+100 simulations was--
+that we got to was
+three at that point.
+And then one just to
+mention at the bottom there
+is progressive widening.
+So we saw that issue with the
+shallow search tree occurring.
+So one method was to reduce
+the exploration constant.
+Another way is that you can use
+this progressive widening, which
+is limiting the number
+of branches that
+can occur on your
+states or your actions
+so that you artificially force
+the tree to go deeper before it
+gets any wider.
+So that's another method
+that you can use there.
+So this is just to
+show you that there's
+quite a few different
+variations that you
+can implement with MCTS.
+And that's another reason that
+it's a versatile algorithm
+to use.
+And so now connecting this to
+some of the hybrid planning
+methods, I think most of you
+have probably at least heard
+of AlphaGo from DeepMind.
+And there's several
+different versions of AlphaGo
+that have been released.
+There was the original
+and then AlphaGo Zero,
+which is what we're going
+to briefly talk about today.
+And then AlphaZero
+came later, which
+was a generalization of the
+algorithm to other games
+And so AlphaGo Zero achieved
+superhuman performance
+in the game of Go.
+And the way that it did this
+was through this hybrid planning
+approach of an offline
+learn neural network
+in combination with
+MCTS and self-play.
+So the way the
+self-play step worked
+was essentially having the
+agent play against itself.
+So starting with this initial
+board state shown by S 1,
+the agent performs
+Monte Carlo Tree
+Search using the offline learn
+neural network in the tree
+search.
+It produces this policy
+from the tree search
+and then samples an action to
+play based on that tree search
+that it performed.
+In the next state now,
+it's the opponent's turn.
+And the opponent is going
+to play the exact same way
+that the first agent did.
+So using the same offline learn
+neural network, same MCTS setup,
+it builds up the search tree
+and then plays an action
+sampled from that policy.
+And this process
+of the self-play
+just continues until
+the end game is reached.
+And at that point, we have this
+indication of who won the game.
+So that Z variable is telling
+us which of the agents won.
+So now we have this
+self play demonstration.
+And we can use this then
+to update the offline learn
+neural network.
+So how that network
+set up was basically
+it takes as input the raw
+board state, so that S1,
+and then it outputs two things.
+So the first output is this
+vector of action probabilities,
+so that's the P1.
+And that's telling
+you the probability
+of selecting each action.
+And then the second output
+is the value estimate.
+And the value estimate there is
+just mapping to the probability
+that the current agent
+ends up winning the game.
+of what is, the value
+of being in a particular
+state in this case?
+And so you can now do
+this right for each state
+that you saw during the
+self-play iterations
+and update the
+network parameters
+based on those examples that you
+saw during the self-play step.
+And so the outcome there,
+Z, of who won the game
+is then passed back through to
+all of these different training
+examples.
+And you're trying to match
+the action probabilities
+to what was produced by
+the tree search setup.
+And so you just
+repeat this process
+of self-play and then
+network parameter updates.
+And just by doing that
+repetitive fashion
+of this self-play
+and network update,
+AlphaGo Zero was able to
+achieve superhuman performance.
+So just looking at some
+of the results here,
+you can see relative to
+previous versions of AlphaGo
+and then AlphaGo Zero.
+And here the y-axis is
+showing the Elo rating,
+which is a way of
+measuring human performance
+in these games.
+And the cool thing
+here is that if you
+look at just the raw network,
+so just the raw offline learn
+neural network shown
+on the far left,
+and if you play just with
+respect to that network, so just
+the action probabilities that
+were output and the value
+estimates and playing
+with respect to those,
+you're actually doing
+quite a bit worse
+than the AlphaGo Zero algorithm.
+And so mapping this back to what
+we talked about at the start
+with that system 1,
+system 2 level analogy
+and extending this analogy,
+that's kind of a system 1 style
+approach where
+you're just quickly,
+greedily taking this intuitive
+board state into account
+and then playing with
+respect to that intuition.
+Whereas when you add
+on this system 2 level
+style of thinking, of looking
+at multiple possible different
+actions, using this
+intuition to guide you,
+you're able to get quite a
+bit of performance boost.
+And so still
+currently, no one yet
+has trained a raw neural network
+that is superhuman in Go.
+And it's definitely possible
+that this happens soon.
+But as of right now,
+no one has done it yet.
+DeepMind released a
+paper earlier this year
+that achieved grandmaster
+performance in chess
+without using search, but
+hasn't been done yet for Go.
+Certainly not saying
+it's not possible.
+It probably will be done
+eventually, but just not yet.
+So the plane by itself
+isn't just making samples.
+It's like [INAUDIBLE]
+when you're actually
+playing the game, [INAUDIBLE]
+are you using search
+or are you playing specific
+actions to the search, which
+is like [INAUDIBLE]
+or is it other way?
+Good question.
+in the self-play step,
+how is the search coming into
+to the algorithm basically.
+And so in the
+self-play step here--
+let me go back--
+right here.
+So yeah, essentially for
+each of those board states,
+the current agent
+playing is building up
+that MCTS search tree using the
+network estimates as it goes.
+And then it's sampling an
+action from that policy
+that's built up as a
+result of this search tree.
+And then it goes to
+the next agent to play.
+So when they do
+self-play, do both players
+share the same MCTS tree or do
+they have two separate trees?
+I believe they both have
+different search trees,
+so I don't think that the
+search trees are being shared.
+But I would need to
+double check on that.
+So I think a really
+interesting area
+is extending these hybrid
+planning approaches
+to language model applications.
+And the same idea here of system
+1 and system 2 kind of applies.
+And we're just going to
+briefly touch on this.
+This would be like a whole other
+lecture or class in itself,
+but I think it's
+cool to relate it
+to what we're seeing here with
+the online planning algorithms
+and how it's connecting to
+some of the current research.
+And when I say that--
+this is a field that's
+advancing very rapidly--
+I think that's a
+huge understatement
+because there are so many people
+working on this right now.
+But just briefly,
+looking at this,
+if the current
+language model set up
+with these autoregressive
+next token prediction
+is basically looking at, OK, I
+chunk up the input into tokens,
+and then I'm purely trying to
+predict just the next token
+based on that sequence
+that I've seen.
+And so as a result of this,
+this is like that system 1 level
+approach where we're
+just connecting it
+to the AlphaZero style example.
+It's kind of playing
+with the raw network.
+You're just taking the
+next action with respect
+to that raw network.
+In this case, the raw network
+being the language model itself.
+And you're kind of playing
+greedily with respect to that.
+So the system 2
+level thinking here
+and what people are
+pretty excited about
+is, what if you now take this
+hybrid planning approach instead
+of just that purely
+next token prediction,
+you're searching over this
+future sequences of tokens
+that could occur here.
+And as a result, you can build
+up this better strategy using
+the hybrid planning approach.
+So I think that's a pretty
+interesting area, certainly not
+the only area to make
+improvements here.
+But it's a direct
+connection to what
+we were just looking at here in
+the hybrid planning approaches.
+And then the last thing
+just to touch on here
+in these hybrid
+planning methods,
+this is a paper
+from Andy Jones that
+was looking at using an Alpha
+Zero style approach on a board
+game called hex.
+And so the main takeaway
+have the train time compute
+on the x-axis, test time
+compute on the y-axis.
+And the lines here are
+showing the minimum train test
+time compute required
+to achieve a certain Elo
+rating in the game.
+And so this is showing we can
+think about this in our setup
+that we're looking at.
+It's kind of offline on the
+x-axis, online on the y-axis,
+and how are you spending your
+compute between those two?
+So what this is telling you
+is that there's roughly a 10x,
+so if you reduce your
+train time compute by 10x,
+you would need to increase your
+test time or online compute
+by 15.
+So there's that 10
+to 15 trade off here.
+But what that's saying
+is that if you're
+investing a lot of money in your
+offline learned neural network,
+you could save that
+money and instead
+invest it in some online compute
+and achieve the same performance
+scaling down by a
+factor of 10 and scaling
+up by a factor of 15.
+So that's just one thing to note
+is that in these hybrid planning
+methods, you have this
+trade-off of where
+are you devoting your compute.
+And oftentimes, you can gain
+some performance or cost savings
+based on how you're
+allocating it there.
+So I think that's just an
+interesting example, again,
+relating to what we
+were looking at here.
+So that brings us
+now to policy search.
+And policy search is
+now focused on searching
+the space of policies without
+directly computing a value
+And so the reason for this
+is that the policy space,
+typically, depending on how
+we've parameterized our policy,
+is going to be lower
+dimensional and can
+be searched more efficiently
+than searching over
+purely the state space.
+And so how this is
+going to work is
+that we are going to introduce
+our parameterized policy.
+And so we're going to have
+this vector of parameters here,
+theta.
+have theta 1 to theta n.
+So we have n parameters here.
+These could be the weights and
+biases of a neural network.
+They could just be the
+parameters of a linear function
+or any type of function.
+So we just have these
+parameters here.
+And now we're representing
+our policy, pi.
+write it as pi theta
+just to denote that
+it's parameterized
+by this vector of parameters.
+So we're still taking in
+a state and we're still
+outputting an action to take
+It's just now we're representing
+this policy function
+or distribution by
+these parameters, theta.
+So what's going to happen now
+is that we want to basically
+figure out how should we update
+these parameters in such a way
+that we improve our policy.
+going with this.
+And just like what
+we saw before was
+that we could use these
+rollouts to estimate the utility
+of a particular policy.
+So now when we talk about
+the utility of our policy,
+we're going to say the utility
+here of following policy pi
+And we can equivalently write
+this as just u of theta.
+And you'll often see it just
+dropped like that because,
+really, what you're
+talking about is
+the utility of the
+parameters of that policy.
+So we're concerned about
+improving those parameters.
+And we can equivalently
+do the same idea here
+of the policy rollouts and
+approximate this utility
+just using m policy
+rollouts and getting
+those rollout trajectories here.
+So with a current
+policy parameterization,
+so we have some current
+policy parameter vector here,
+we're then going to perform
+that policy and then
+get this estimate
+of the utility of those
+specific policy parameters.
+So same idea, just now using a
+different policy set up here.
+So the first method
+here for policy search
+that we're going to be
+talking about is local search.
+And the way that local
+search works is we start--
+in this example.
+We have a policy with two
+parameters, theta 1 and theta 2.
+And the current
+policy parameters
+are shown in the center there,
+so that center white dot.
+The background is showing
+the true utility function.
+So we don't actually know this.
+This is unknown to us.
+But it's shown in the
+background for reference.
+And so local search works by
+taking a plus and minus step
+in each parameter direction.
+So for theta 1,
+we're going to take
+a plus alpha step is
+the step size here
+and a minus alpha step.
+For theta 2, we take a plus
+alpha step, a minus alpha step.
+And then for each one of
+those candidate points,
+so we have n parameters here--
+so we're evaluating 2 times n
+candidate points--
+for each of those
+candidate points,
+we're going to perform m policy
+rollouts to get a utility
+estimate at that point.
+So in this case, we see, from
+doing those policy rollouts,
+that the best performing
+point is on the left
+because the blue is higher
+utility in this example.
+So we are going to step now to
+that left best performing point
+and then just
+repeat the process.
+So evaluate each of
+these candidate points
+using m policy
+rollouts and then step
+to the best performing one,
+which is at the bottom.
+So we're going to step
+to that bottom point
+and then just, again,
+So here, again, the
+best performing point
+is at the bottom.
+So we step down there.
+And then that will
+repeat one more time.
+And now what
+happens in this case
+is that we evaluate
+the candidate points,
+but none of them are any
+better than our current policy.
+So what do we do in this case?
+Well, we're just going to
+shrink that alpha factor now.
+So we just shrink down,
+and in the next iteration,
+we've just stepped
+a little bit less.
+And we check to see if
+any of those outperform.
+None of them do.
+So we just shrink alpha again.
+And we'll just keep
+shrinking alpha
+until we reach some
+convergence criteria.
+And that will be the termination
+of the local search algorithm.
+So we're just purely
+making these plus and minus
+local changes to
+the current policy
+and seeing how that results in
+changes to the policy vector.
+And so some of
+the drawbacks here
+is that we have to use
+m rollouts for each
+of these candidate points.
+So we have to n candidate
+points and performing m rollouts
+for each one of those.
+So if you have a really
+large parameterization,
+you have a billion
+parameters in your policy,
+then that's going to be
+quite intensive to do.
+And it also requires setting
+that initial alpha step
+size that you're using.
+So that now becomes your
+parameter to play with.
+And so that's what brings us
+to the cross entropy method.
+And the cross
+entropy method seeks
+to improve on the
+weaknesses of local search
+by using a search distribution
+that we are representing
+by this p theta of psi here.
+And so, again,
+this is still just
+our policy vector of parameters.
+But now we have this other
+set of parameters here
+which parameterize our
+search distribution.
+So if we're using a
+Gaussian distribution,
+this is just the
+mean and covariance
+of the Gaussian distribution.
+And what we're saying then
+is that our policy parameters
+are distributed according to
+this Gaussian distribution.
+You can use other
+distributions in here as well.
+In this example,
+we're going to be
+using a Gaussian distribution.
+So how this is going
+to work is we're
+showing now the same
+theta 1, theta 2 setup.
+And the contours of the Gaussian
+are shown in white there.
+So we're just using a
+Gaussian distribution.
+And then we're going to
+take k samples of theta
+from this search distribution.
+And those white
+points that you see.
+So we've sampled k points
+And then we're going to evaluate
+each one of those samples.
+We could use policy rollouts.
+Again, you don't have
+to use policy rollouts
+to get this utility estimate.
+There's other ways
+that you could do it.
+In this example, we're
+using policy rollouts.
+So we evaluate each one of
+those using policy rollouts.
+refit the search distribution
+to the ones that are
+performing the best.
+And then we just repeat this.
+So in this case, the
+best performing samples
+are shown in red here.
+So those are the ones
+that perform the best.
+And we're then just going to
+to those best
+performing samples.
+So we refit.
+This is what the new search
+distribution looks like.
+And then we're going
+to repeat the process.
+So now we're going to, again,
+take k samples from that search
+distribution.
+We're going to evaluate them all
+and then refit the distribution.
+Now you can see the new best
+performing are shown in red.
+So we refit and then
+And we just keep doing this
+until some convergence criteria
+is met again.
+And so you notice here, we
+find a different local optima,
+so we converge to a
+different local optima.
+But also what's the point
+of doing this, right?
+How is this different
+from local search.
+Well, remember, in local search,
+we're evaluating 2n of these
+candidate points.
+And each candidate point is only
+changing one of the n parameters
+at a time.
+So the cross entropy method is a
+little bit more efficient in how
+it's distributing these out.
+And we also have control
+over the number of samples
+that we're taking.
+So we are setting
+the k factor here.
+The drawback, though,
+is that we now
+have to choose this number
+of best performing samples.
+So how many samples
+do we keep around
+now becomes the trade-off.
+Because on one side
+of the spectrum,
+if you choose to keep around too
+many best performing samples,
+your search distribution is not
+going to change much iteration
+to iteration.
+But if you take too few samples
+to keep around and refit to,
+then you're going to collapse
+that search distribution
+very quickly.
+So you have this trade-off
+of keeping around too many
+and not keeping
+around enough samples,
+and that now becomes your
+tuning parameter here.
+So just wrapping up what
+we've seen with policy search,
+we saw that we could still use
+the same idea of policy rollouts
+to get an estimate of how our
+parameterized policy is doing.
+And then we also saw
+that local search is just
+focus on these local
+changes to the policy.
+And then the cross
+entropy method
+introduces this
+search distribution
+to improve upon that.
+And so wrapping up now with
+online planning and policy
+search, we focus today
+right on methods for online
+planning that we're reasoning
+about states reachable
+from the current
+state that we're in
+and using this receding
+horizon planning scheme.
+And there was a variety of
+different approaches looking
+at pruning the state space,
+sampling state transitions,
+or replanning along
+trajectories that we've
+seen to be more promising.
+And then we wrapped up
+there with policy search.
+So I hope you found that
+interesting and helpful.
+And I'm happy to take any
+questions offline now.
+So thank you.

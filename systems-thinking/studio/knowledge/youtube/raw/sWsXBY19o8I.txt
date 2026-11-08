@@ -1,0 +1,1539 @@
+so before we go any further let's talk
+about some of the vocabulary involved
+with graph theory so first off a vertex
+so a vertex is each of these things it
+is the dots the vert they the locations
+where the edges meet so this might be
+where two streets meet like an
+intersection it might be like in our
+bridges example it might be representing
+a city or a location and the and then
+these edges those are the lines
+connecting the the vertices those are my
+edges those can represent some kind of
+connection so there might be a physical
+connection like this or you could have
+like two cities like you know Seattle
+and Seattle and LA and an edge
+connecting them could represent
+something like a flight path so an edge
+is simply representing that there is a
+connection between those two locations
+or those two vertices in some way so
+degree of a vertex talks about how many
+edges meet at a meet at the vertex so if
+I have a vertex all by itself this would
+be degree zero if I have one edge coming
+out of that vertex then it would be
+degree one if I have two edges coming
+out its degree two if I have three edges
+meeting at a vertex its degree three so
+degrees tells us how many edges meet at
+a vertex so what's the degree of this
+vertex there are one two three edges
+meeting at that vertex so it's degree
+three how about this one there are one
+two three four edges meeting at that
+vertex so it's degree four this one is
+degree two so now path so on a graph we
+can talk about routes from one location
+to another so a path is a route along
+the path along our graph that starts and
+ends at different
+locations so for example if I start here
+and walk this way this way this way this
+way this way that way that way this is a
+path I paths on the graph a circuit on
+the other hand is a path that returns
+returns to the starting point so the
+circuit has to be looped around so if I
+start here this would be a circuit
+likewise we could start here and go here
+here here here here here here here here
+here oh never mind on that one
+here and we've got ourselves another
+circuit so it's possible to have
+multiple circuits on a graph though
+later we'll talk about the idea of
+covering all the edges with a circuit
+but that's a different problem so we're
+not quite there yet so next idea is an
+idea called connected in this case this
+graph is connected is connected the
+reason is because if I pick any two
+vertices there is a path that will get
+me from here to here I can simply follow
+this path there in contrast consider a
+graph like this all right where we have
+three vertices over here and four
+vertices over here and if I were to pick
+this vertex and this vertex there is no
+way to get between those two vertices
+and so this is not connected and in most
+of what we're going to be doing in this
+class we'll be looking at connected
+graphs but certainly we need to consider
+not connected graphs so lastly is the
+idea of weights now sometimes all we
+care about is the fact that there is a
+connection between two locations like
+with our bridges but in a case like
+walking these paths we might be
+interested in the length of these paths
+in which case we might say that this is
+a hundred feet and this is 200 feet and
+those would be weights or a length or a
+cost associated with the edge in case of
+our flight path here there might be a
+flight cost that would be associated
+with that path and that would be the
+weight on that edge
+so here's a portion of a housing
+development development from Missoula
+Montana and as a part of her job the
+developments lie inspector has to walk
+down every street in the development
+making sure that homeowners lawns
+conforms to the community
+recommendations now you can sort of
+understand though she has to do all this
+walking she's gonna want to figure out
+how to walk as little as possible
+ideally being able to walk the entire
+you know development without happening
+to backtrack along any streets so if
+we're gonna analyze this and start
+looking at it mathematically looking at
+this big huge picture here is pretty
+complicated and so we might try sort of
+simplifying things and one way to do
+that is to say let's identify sort of
+Junction points so let's identify places
+where streets meet or you know sort of
+where there's a corner and so we can
+define all these points where it looks
+like streets meet and we're going to
+call those points and vertices of the of
+what's gonna be called a graph
+now this is not graphs like you know
+your y equals x squared graphs from
+algebra
+this is graphs as in a graphical
+representation of the situation so we
+introduced these vertices to represent
+the intersections and then we're going
+to add the some edges now to represent
+the streets themselves so along each of
+these streets we're going to draw an
+edge and when we put this all together
+we get a graph this graph represents the
+the city sort of taking away the back
+picture now we would get something that
+looks like this and here is a set of
+vertices connected by edges and this
+defines a graph the idea here is that
+we're simplifying the problem down from
+this sort of complicated picture to just
+the important things the junction points
+and the edges themselves and it's
+interesting note that the specific
+layout here is not highly important
+really it's just the connection and the
+length of those edges that matters
+so for another example of sort of how
+graphs come in two things to consider
+this back in the 18th century there's a
+prussian city called Conan's burg where
+a river you can see here ran through the
+city at the River forks and and there
+were seven bridges that connected the
+cross the visit various Forks of the
+river and as a weekend amusement people
+would see if they could find a route
+that would take them across every bridge
+once and then return them to where they
+started and Leonardo ler was sort of the
+father of this branch of mathematics
+called graph theory and he analyzed this
+problem and kind of like we're doing
+introduced a graph into this situation
+so let's see if we can do that here so
+really what's important what we really
+care about is the bridges you know if I
+start here and Boop's yeah I start here
+and walk across this bridge and then I'm
+gonna walk across this bridge I don't
+really care how far I have to walk here
+that's not relevant to this question
+right all that matters is that I went
+from this island to this side and then
+maybe walked back across this bridge -
+really we walked back to this side of
+the of go back to the island and then if
+I walk across this bridge and then walk
+back across to the island I'm really
+treating all of this island as one
+location so really we have sort of the
+the whole the whole north bank area up
+here we have our our island here and we
+have our whole South Bank here and and
+our whole sort of east bank over here
+and we have two bridges connecting the
+north bank to the island two bridges
+connecting the South Bank to the island
+one bridge connecting the island to the
+east bank one bridge collecting that
+connecting the north bank to the east
+bank and one bridge connecting the east
+bank to the south bank and this picture
+starts getting at sort of
+core notion but again it doesn't really
+matter where in the north bank we are so
+what we could do is shrink this entire
+north bank down to a single vertex and
+the island could be represented by a
+single vertex and the south bank can be
+represented by a single vertex in the
+east bank can be represented by a single
+vertex and there are two routes to get
+from north bank to the island two routes
+to get from the south bank to the island
+one route here one route here in one
+route here and so here is a simplified
+graph that represents this scenario and
+by looking at this graph it makes a
+little easier to look at the question of
+you know is it possible to walk over
+every Bridge in this case that would
+mean crossing over every edge once and
+return to your starting location in
+other words return to your starting
+vertex
+so suppose we want to travel from Tacoma
+over here to Yakima
+over here and there's a few routes we
+can take either down through Eatonville
+and packwood or through Auburn and North
+Bend or through Auburn and Mount Rainier
+and it's not quite clear which route is
+fastest and so we're going to use
+something called Dijkstra's algorithm
+which solves this what's called the
+shortest path problem so we're going to
+start by saying we're gonna start and
+start by looking at our ending vertex
+and saying I know that this vertex is
+zero miles from the end why because it
+is the end and so next we're gonna look
+at the all the vertices that lead to
+Yakima
+so for each of these we're going to
+figure out how far it is from the end so
+this one is 104 miles from the end this
+one is 96 miles from the end this one is
+76 miles from the end and now that's
+sort of our first step so next thing
+we're going to do is we're going to
+identify our next current vertex so we
+go to the vertex that is the closest to
+the end so we're gonna identify the the
+vertex as a smallest distance that's
+this one we're gonna identify it as
+current and so now from that vertex
+we're gonna work backwards and say what
+vertices lead to this one so going this
+way we say 76 plus 96 is 172 and then we
+say 76 plus 27 that's here 76 plus 27 is
+a hundred and three
+but 103 is longer than 96 and so we're
+not going to record that one because
+that one doesn't help us any remember
+we're trying to get shortest distances
+and so it's shorter to go directly from
+Mount Ranier to Yakima than to go from
+Mount Rainier to packwood to Yakima
+right that was what that 103 told us is
+that the combined length here is 103 and
+that's longer so we don't want it okay
+so now that we've done with that vertex
+we mark our next
+Tech's are next shortest vertex as
+current and we work backwards from there
+so we say the only leading thing leading
+to there is is this edge here so we work
+backwards 96 here plus another 79 here
+gives me a time of let's see are a
+hundred and seventy-five four for that
+one okay and that was the only edge
+leading in so now we're done with that
+one and we'll move on to our next
+shortest edge here and work backwards so
+notice now that working backwards from
+here this distance is 104 this time I
+guess these are times anyway
+the this time is is 36 and 36 plus 104
+right 104 minutes here 36 minutes there
+is a total of 140 and 140 is shorter
+than 175 so we're going to replace that
+175 with a hundred and 40 because that
+was a shorter that was a shorter path
+and we weren't looking for the shortest
+path here so now all three of these
+vertices we've already looked at so now
+we move to the next vertex that is
+shortest and that is this one from here
+again we work backwards so 140 plus 20
+is a hundred and 60 and now we're done
+with that vertex we come down here 172
+plus 57 is I don't know what it is but
+it's certainly bigger than 160 and so we
+don't care and so we have found our
+shortest path our shortest path has a
+total travel time of 160 and it looks
+like it routes through auburn through
+north bend down to Yakima and so that is
+the shortest path found through
+Dijkstra's algorithm
+so a shipping company needs to route a
+package from Washington DC to San Diego
+to minimize cost the package will be
+first sent to their processing center in
+Baltimore Maryland then send as part of
+mass shipments between their various
+processing centers ending up in their
+processing center in Bakersfield
+California and there it'll be put on a
+small truck out to San Diego so we're
+mainly routing here between these
+processing centers and so the we
+calculate the travel time we add a few
+hours for processing and we end up with
+a table of values that looks like this
+and so this is the city at each point
+here like this is the time from
+Baltimore to Chicago would be 15 hours
+the time from Baltimore to Atlanta is 14
+if there's no value there that means
+there's no connection between those
+between those cities so one option here
+would be to draw a graph so we could
+actually dry out Bakersfield Atlanta
+Chicago and draw the connections and
+work off of it that way
+but let's see if we can work directly
+off the table so we're gonna start in
+Bakersfield because it's our our end
+position remember we're going from
+Baltimore to Bakersfield and so we mark
+it as having a distance of zero from the
+end so it's our current vertex so we're
+gonna go backwards from there and say
+from there bake Denver is 19 minutes
+away
+sorry hours away and Dallas is 25 hours
+away okay so now we're done with
+Bakersfield and we move on to the next
+closest city which is which is Denver so
+from Denver we work backwards again so
+from Denver we could go let's see we
+could go 18 minutes additional to
+Chicago and so 19 hours 3 hours 19 hours
+plus another 18 hours would be 37 hours
+to Chicago or from Denver we could go
+through Atlanta and 19 plus 24 hours
+would be 43 hours
+Atlanta or we could go back to
+Bakersfield but why would we go back to
+Bakersfield so we're not going to do
+that so at this point we're done with
+Denver and we move on to the next
+shortest city next closest city so that
+would be Dallas so we'll move on to
+Dallas and from Dallas we can figure out
+what's going on
+so from Dallas 25 plus 18 here 25 plus
+18 would be 43 to Chicago but 43 is
+longer than our current path we could
+also say 25 from Dallas we could go to
+Atlanta and Dallas to Atlanta would be
+25 plus 15 is 40 and 40 is better than
+43 so we're gonna replace that 43 with a
+time of 40 because we have a more
+efficient route now okay and of course
+we don't want to go back to Bakersfield
+because that's where we're you know
+that's sort of where we're working back
+from and so we're now done with Dallas
+so our next shortest is Chicago and so
+marking Chicago as current we say let's
+hear I could go to Baltimore so 37 here
+plus let's hear 37 here plus 15 there
+would give me a time of 52 to Baltimore
+routing through Chicago we could also
+say 37 plus 18 but 37 plus 18 is gonna
+be much bigger than 19 so we don't want
+that 37 plus 18 to get to Dallas is
+definitely going to be bigger than 25 so
+we don't want that 137 plus 14 is gonna
+be bigger than 40 so we don't want that
+one and so we're completely done
+updating for Chicago now and we move on
+to the next closest City here so from
+Atlanta we could go to Baltimore which
+should be 40 plus 14 and but 40 plus 14
+is 54 which is longer than that route
+and so we definitely do not want to do
+that we also don't want to go back to
+Denver Dallas or Chicago and so we are
+now
+with that and so now we know the
+shortest route from Bakersfield sorry
+from Baltimore to Bakersfield here is
+going to have a total time of 52 hours
+so we want to find an Euler path on this
+graph now an Euler path is a path and
+remember a path means that it goes from
+one point to another
+not necessarily returning to the same
+point so it's a path that uses uses
+every edge once and only once
+so no repeats now we're allowed to visit
+the same vertex multiple times with
+Euler paths but not the same edge so for
+example if I started here I could visit
+go this way and we'll say let's say
+that's step one and then I could go here
+that's two and I could go here and
+that's three and I could go here and
+that's four but now I'm stuck because I
+can't go anywhere and I haven't visited
+every every edge yet and so this was not
+a particularly good this was not a
+particularly good attempt at finding an
+Euler path this is not an Euler path so
+let's try again
+maybe I will start instead over here and
+then I could go one two three four five
+and notice now I have covered every
+single edge of the graph without
+repeating any of them notice though I
+started here and I ended over here so I
+have not returned to my starting point
+this would be an Euler path
+so now we want to find an Euler circuit
+on the graph before so an Euler circuit
+is very similar to an Euler path except
+that we must return to the same vertex
+because it is a circuit so the again the
+idea is we're gonna visit every edge
+once with no repeats and this time
+because it's a circuit we need to return
+to the starting starting point ok so
+let's say we start I don't know how
+about here
+and so let's do one maybe two three four
+remember it's okay to visit the same
+vertex with an Euler circuit just not
+the same edge five six seven eight and
+nine and look we did it so we have
+visited every edge exactly once and
+returned to our starting point
+now interestingly this type of drawing
+is also sometimes called a universal
+drawing because you can draw the entire
+thing without lifting your pen right if
+I had started over here I could draw
+this entire circuit without lifting my
+pen once and that's one of the features
+of an Euler circuit
+so suppose we got a graph here and we're
+wondering does this graph have an Euler
+path how about no a circuit well it
+turns out that there's a really easy way
+to tell and it comes down to the degree
+of the vertices and so it turns out that
+in order to have an Euler circuit all
+vertices all our vertices must have must
+have even degree even being like 2 4 6 8
+right
+even-numbered degrees and the idea is
+really simple that the idea is we need
+to make it so that every time we come
+into a vertex we have a way out so if I
+have another way in I need another way
+out and so we need even degrees on all
+of our vertices for an Euler path it's
+similar except we can have up to we can
+have either 0 or 2 odd degree vertices
+otherwise all the rest must be even
+degree for the same reason now the
+reason it's ok to have two odd degree
+vertices is because with an Euler path
+we don't have to get back to our
+starting point so here notice that this
+vertex has degree 2 this vertex has
+degree 3
+this one has degree 1 2 3 4 this one has
+degree 1 and this one has degree 4 and
+so we have one pair of vertices so two
+vertices with odd degree and that'll be
+ok
+what it means is that our Euler path is
+going to have to start and end at those
+vertices so let's see if we can come up
+with an Euler path here so I could come
+down here I could come up here over here
+up here down here back up here and down
+there and there we go there's my Euler
+path starting here and ending
+at that vertex right notice there would
+be no way to do an Euler circuit here so
+let's take a look at another one does
+this graph have an Euler path
+how about Knoller circuit well let's see
+how many odd degree vertices are there
+one two three one two three one two
+three one two - uh-oh so in this graph
+we have a ton of vertices with odd
+degree and so there is not going to be
+possible to come up with a Oyler path or
+an Euler circuit on this graph as drawn
+now that's for this particular problem
+which was you know for our lawn
+inspector who was walking along these
+paths now if on the other hand let's say
+it's snowing and we got a snow plow that
+has to go down every Street but the
+street is wide enough that it has to
+drive down twice then our graph would
+look more like this where each edge is
+going to be driven over twice now if we
+look at this graph you can see that
+every vertex is even degree and so this
+graph will indeed have an Euler circuit
+because every vertex has even degree so
+the snowplow would have a route that
+where it could drive over every street
+twice right once in one direction once
+in the other direction it could drive
+over every street twice and get back to
+the starting point
+so now that we've talked about oiler
+circuits let's return back to this
+bridges problem because if you'll notice
+the idea was the the town spokes would
+see if they could define a route that
+would take him across every bridge once
+and return them to where they started
+and if you remember we represented this
+as a graph by introducing a vertex for
+each of the landmasses and then an edge
+for each of the bridges that could be
+taken to walk from one land area to
+another and so our graph ends up looking
+like you can really see it over there
+but in case if you're having trouble
+looks like this and so the question we
+could ask is is it possible to find a
+route that wouldn't take him across
+every bridge once and return them to
+where they started and you'll notice
+that if we look at the degree of these
+vertices we have degree 1 2 3 degree 1 2
+3 4 5 degree 1 2 3 and degree 1 2 3 so
+it turns out that no there is not an
+Euler circuit for this bridges scenario
+for the bridges of königsberg and and in
+fact there's not even an Euler path
+right because we have to all of our
+vertices here have odd degree it's more
+than just a pair and so there's no way
+to even start in one location cross
+every bridge once and end up in a
+different place there's no way to cross
+every bridge once without visiting
+without having to cross a bridge twice
+so let's find an Euler circuit on this
+graph we can tell from all the even
+degrees that it's gonna have an Euler
+circuit now most of the time it's going
+to be easiest to just guess and check at
+a at an Euler circuit but if we want a
+more sort of formulaic approach here we
+use something called flurries algorithm
+the way it works is we pick sort of a
+starting point so we just pick it any
+bold vertex that we want to start at and
+and and we choose one of the edges that
+is that is leaving our our current
+vertex and we can pick any edge we want
+as long as it doesn't separate or
+disconnect the graph so let's say we
+pick a as our starting point here and
+the edge that we choose is a 2d so a 2d
+is not going to disconnect the graph so
+we'll go ahead and add that in as our
+first step now over here in sort of our
+duplicate copy here we're going to
+delete that edge so we're going to
+delete that edge because we feel like it
+so then from D we're gonna look in these
+two edges and say you know which one do
+I want to go to next now we'd want to be
+careful here we would not want to remove
+or choose edge D to C because notice
+what we choose D to see it's gonna
+disconnect the graph a and C will no
+longer be connected to the rest of the
+graph so instead maybe let's choose D to
+e I'll choose that as our second edge
+and we'll delete that so now we're here
+at E and we choose an edge that we want
+to follow in this case when it because
+we've deleted these edges that's
+preventing backtracking there's only one
+route we can take now and that is to B
+and then from B there's only one route
+we can follow and that's to D and then
+from D there's only one route we can
+follow to see and from C there's only
+one route we can follow back to a and
+there is our Euler circuit now depending
+upon how we had made our original
+choices at the beginning we may have
+ended up with different Euler circuit
+for most graphs there is not just one
+oiler circuit if there is an Euler
+circuit there's usually not just one but
+multiple Euler circuits depending upon
+sort of the choice of what direction you
+go first
+so for the graph here let's find an
+euler ization so the idea behind the
+euler ization is that right now this
+graph does not have an Euler circuit why
+it doesn't have an Euler circuit because
+there are 1 2 3 4 5 6 different vertices
+all that have odd degree and so there's
+no way that we can do an Euler circuit
+on this graph right there's no way we
+can walk this graph without backtracking
+and so to address that because you know
+if let's say we were actually planning a
+route on this graph we'd have to
+backtrack now we know we want to sort of
+figure out how to do that in the best
+way possible and so what we're gonna do
+is boil ur eyes the graph that means
+we're going to duplicate edges
+intelligent Ella will have an Euler
+circuit on it now we're gonna duplicate
+edges like this to indicate that I'm
+gonna walk this edge twice I'm gonna
+walk it once this way and then probably
+once the other way we don't want to
+create new edges so we don't want to do
+stuff like this think about what this
+would mean in terms of like city streets
+this would mean creating a new street
+between these two these two
+intersections and that doesn't really
+make any sense it makes sense though to
+walk an edge twice right to walk along
+the street twice and so in order to for
+this to become authorized in order for
+it to have an Euler circuit each vertice
+is gonna have to have even degree right
+now this vertex has degree 3 which is
+odd but if I were to add a duplicated
+edge here now it has degree 4 right 1 2
+3 4 and likewise this one now has degree
+4 this one has to be 4 this one has
+degree 4 now I just need these two to
+both have degree 4 and there's no direct
+way to connect them so our only option
+is to make hops like that
+so notice now this Edge has degree 1 2 3
+4 this vertex which previously had
+degree 4 now has degree 1 2 3 4 5 6 it's
+still even so that's ok right and this
+vertex has degree 6 this one has degree
+now this this graph is oiler eyes now we
+can find an Euler circuit on this graph
+with the added or duplicated edges now
+it's important to notice here that this
+is not the only Euler ization that we
+could have done we also could have
+duplicated say this edge and this edge
+and this edge and this edge and these to
+that edge and this would have also
+created an euler ization this one turns
+out to be is the same number of
+duplications as our previous one but if
+we had instead done something like this
+this is more duplicated edges in general
+we want to do we want to minimize the
+number of duplications we have in our
+graph because each of those duplications
+means that we're walking along an edge
+twice and generally that's not a good
+thing so let's look at another graph all
+the odd degree vertices are highlighted
+here let's see if we can find an Euler
+ization of this graph so you may have
+noticed that the pattern is that we're
+gonna connect vertices with odd degree
+and so this vertex here I can either
+duplicate here and here or duplicate
+here and here and I don't think it
+really matters so I'll duplicate here
+and here this both of these vertices now
+have even degree so now this one's odd
+and this one's odd so if i duplicate
+there both of those now have even degree
+if i duplicate here and here
+both of these now have even degree and
+duplicating here and here both of those
+now have even degree and so we find that
+for our lot inspector if you remember
+this graph that in order to walk this
+entire neighborhood she would have to
+backtrack one two three four five times
+in order to cover the entire area and
+get back to her starting point now it's
+not clear whether this is the most
+efficient Euler zation but it's
+certainly an euler ization that pretty
+good
+so here we want to find a Hamiltonian
+circuit for this graph now a Hamiltonian
+circuit is first and foremost a circuit
+right which remember means that it's a
+path that returns to the starting point
+returns to the starting point now you
+might remember an Euler circuit was one
+that covered every edge exactly once and
+we didn't care about the vertices
+Hamiltonian circuit is different in this
+case we want to visit we want to visit
+every vertex want to visit every vertex
+once with no repeats now because all we
+care about is the vertices it doesn't
+matter what whether we visit all the
+edges so if I start here I could draw a
+draw my path this way and then maybe
+this way and this way and this way here
+here here here now notice I would not
+want to go back up because I've already
+visited this vertex and I don't need to
+visit it again so I'll just continue on
+and there we go there is a Hamiltonian
+circuit on this graph it visits every
+vertex exactly once with no repeats and
+again it doesn't matter that we haven't
+visited all the edges all we care about
+is the vertices let's look at another
+one so it does a Hamiltonian path or
+circuit exists on the graph below so in
+this case there is no way to find a
+Hamiltonian circuit and that's pretty
+clear because if I start at vertex E
+here and come down to you know let me
+draw that little better and we come down
+to see then there's no way for me to get
+back to my starting point without
+visiting vertex E again so if I come out
+here and I go here and I go here and now
+I want to get back to e the only way to
+get there is to go back to C and that's
+bad so there's no Hamiltonian circuit
+now Hamiltonian paths visits every
+vertex exactly once but doesn't have to
+return to the same starting point and
+yes we do have
+Hamiltonian path here we could go this
+way this way this way this way and now I
+have visited every vertex exactly once
+and so this is a Hamiltonian path now
+most of the time we're going to be
+interested in Hamiltonian circuits not
+the Hamiltonian paths but this has one
+nonetheless
+so when we have a graph with weights on
+the edges so here we have weights so to
+travel from A to D has a cost of one
+this might be one dollar it might be one
+mile somehow this is representing the
+cost or expense of traveling from vertex
+a to vertex D so in this case there are
+a lot of different Hamiltonian circuits
+on this graph we're interested in the
+minimum cost minimum cost Hamiltonian
+circuit and sometimes this is called the
+Traveling Salesman problem and the
+reason is you can imagine that you have
+a salesman who needs to visit these four
+different cities and wants you know they
+have to visit every single one of them
+but they don't want to have to backtrack
+so they want to visit each city and then
+return home at the end of the day okay
+so we're gonna apply approach called the
+brute-force method which does exactly
+what it sounds like we're just gonna try
+every single possibility so let's try a
+few possibilities here so one
+possibility would be to go from A to B
+to C to D to a so that was a b c d a
+right a b c d a so that this lists the
+order in which we're visiting the the
+the vertices and the total cost here
+would be 4 + 13 + 8 + 1 alright we add
+up the cost of each of those legs of our
+path and we add those up and we get a
+total weight of our total cost of 26 now
+notice that this is exactly identical to
+the circuit a d c b a in terms of cost
+right a d c b a it's just a reverse
+order and so we're not going to look at
+both of these because we know that
+they're gonna have the same cost so we
+don't consider these to be unique
+circuits and so we're just gonna ignore
+that one and now let's look at another
+possibility so another possibility would
+be to go from A to B to D and from D
+down to see back up to a so that was a B
+D C a and that would be 4 + 9 + 8 + 2
+and that has a cost of 23 now I'm gonna
+get those out of the way because that's
+starting to be a little messy here and
+let's look at one more there's one more
+unique circuit here and that's a C B D a
+right this is different than our first
+one the first one we went A to B so this
+was in a C B D a so that's 2 + 13 + 9 +
+1 has a cost of 25 and so of these three
+unique circuits and it turns out these
+are all the unique circuits the one that
+is minimum cost is this one right here
+so this is our minimum cost Hamiltonian
+circuit for this particular graph and
+here was what we called the brute force
+method right we looked at every single
+possibility and while this will always
+give us the ideal the optimal answer so
+this is called an efficient algorithm
+I'm sorry an optimal algorithm it is not
+it is not an efficient algorithm so this
+is this is optimal because it will
+always give us the right answer the best
+answer but it is not efficient and we'll
+see why in just a second
+so to see why brute force is not an
+efficient method consider the question
+of how many circuits would a complete
+graph with eight vertices have so now a
+complete graph means that every vertex
+is connected to every other so there's 1
+2 3 4 5 6 7 8 vertices and so a complete
+graph means each vertex is connected to
+every other vertex and I'm gonna get
+tired of drawing this pretty quickly so
+you can just imagine the rest of it so
+let's think about how many circuits
+there would be so let's say I'm sitting
+here at my starting point how many
+different direction how many different
+places can I go to from here so from
+here I can go to any of seven different
+locations so I have seven choices for my
+very first visit right so from my
+starting point I can go any of 1 2 3 4 5
+6 7 different directions
+right now from each of those so let's
+say I decide to go here from there how
+many choices do I have well this vertex
+is connected to every other because it's
+a complete graph I've already visited
+this city so I don't want to go there so
+I have not seven choices but six choices
+for my next one and I'm gonna multiply
+those and let me show you why so let's
+say I went fault went here from here I
+have 1 2 3 4 5 6 different choices if
+instead I had gone here I would have had
+1 2 3 4 5 6 different choices if I went
+here I would have had 1 2 3 4 5 6
+different choices so notice for each of
+those 7 original branches I'm gonna have
+six new possibilities and so that's 7
+times 6 right 6 for each of those 7
+would be 7 times 6 now let's say I pick
+one of those and now how many choices do
+I have my next route for my next path
+I've got five for the next one 4 for the
+next one through II for the next one 2
+and for the last choice there's only one
+right once I visited every other city
+there's only one
+choice to get back to the starting point
+now it turns out that this is going to
+be twice as many as there actually are
+of unique circuits the reason is because
+the circuit that I end up with here is
+identical to the circuit in reverse
+order and so I'm actually gonna have to
+divide this by two in order to get the
+true number of unique circuits and this
+number ends up coming out to be five
+thousand and forty unique circuits now
+that is a lot of circuits and I
+certainly don't want to have to list all
+five thousand of them and calculate the
+weight of each of them that is pretty
+darn tedious by the way there is a handy
+notation for this called a factorial
+this would be n minus one over two sorry
+n minus one factorial over 2 where n is
+the number of number of vertices if
+you've never seen this before the idea
+of a factorial is that for example let's
+see
+so like three factorial means 3 times 2
+times 1 5 factorial means 5 times 4
+times 3 times 2 times 1 so in this case
+this would be 8 minus 1 factorial over 2
+which means that's 7 right 7 factorial
+which means 7 times 6 times 5 times 4
+times 3 times 2 times 1 all ups all over
+2 which you'll recognize is exactly what
+we had there an tree calculator happens
+to have that factorial button it can
+come in handy so there we go it turns
+out that we have all these crazy number
+of of circuits possible and and while
+five thousand would be ridiculous to do
+by hand a computer could do that pretty
+easily but if we go and start adding
+more cities to our visit you can see
+that very quickly like 20 here with only
+20 cities were already up to this
+ridiculously huge number of cities I
+mean this would take a computer doing a
+billion circuits a second you know over
+two years about two years
+to look at all of these so it turns out
+that using brute force is not going to
+be a reasonable method for graphs with
+more than maybe three or four vertices
+so instead we're going to look at some
+alternate methods called Hoyer istic
+methods
+so to approach our our traveling
+salesman problem we're going to use
+what's called a holistic algorithm now
+this is one that is not optimal so this
+is not optimal which means sometimes it
+doesn't give us the best answer but
+hopefully it gives us a better answer
+than just randomly guessing so so we're
+going to go ahead and give this a try
+here so the way the nearest neighbor
+algorithm works and this is our first
+higher istic is we pick a starting point
+so let's go ahead and use a as our
+starting point at every point along the
+way we move to the nearest or a short
+cheapest next visit unvisited vertex so
+we're going to look and say what are my
+choices I can either go to B to D or to
+see this path has a cost of four this
+path has a cost of one this path has a
+cost of two i like cheap and so i'm
+gonna go this way down to D so I'm
+taking the cheapest route now notice
+this is what's called a greedy algorithm
+we're always taking the cheapest route
+that we can find so now from D I look at
+my options either 9 or 8 I don't want to
+go backwards right so we're gonna ignore
+the already visited vertices and here
+does 8 is my cheapest path so now my
+options are either well I really only
+have one option because I don't want to
+go back to the beginning yet because I
+need to visit every vertex so my only
+option now is to go over here and then
+to get back to the start my only option
+is to go that way and we ended up with
+the circuit ADC be a ADC be a right and
+the total cost there is what 1 plus 8
+plus 13 plus 4 is 26 wow that was like
+the worst circuit in the graph so it
+turns out that like I mentioned nearest
+neighbor algorithm is not always an
+optimal and here's a case where it
+certainly gave us a non optimal result
+so suppose that we have a sales person
+who needs to travel to Seattle la
+Chicago Atlanta and Dallas on business
+and figures still just you know go to
+each of the cities and return home and
+wants to minimize the you know the
+travel cost and so with that we looked
+up some Travel flight costs here some
+flight costs and let's see if we can
+find the a pretty good at least circuit
+using the nearest neighbor algorithm so
+starting here in Seattle we say what is
+my cheapest option so we got 70 145 140
+120 so it looks like 70s our best option
+so we got Seattle so so far we got
+Seattle to LA and then from LA we've got
+oh looks like the cheapest option 100
+170 150 is 100 so to Chicago got some
+good travel deals here and then from
+Chicago we can go 140 fell we know we
+don't want to go back home yet right we
+still need to get visit Dallas and
+Atlanta so we only really look at the
+the next the unvisited cities so of
+those two it looks like Atlanta is the
+cheapest so we'll go to Atlanta next
+Atlanta and then we really only have one
+option at this point and that's to go to
+Dallas because it's our only unvisited
+city and that we turn us home to from
+there we'll return home to Seattle and
+that completes that completes our
+circuit so now we visited every city
+total cost here if we add these up I
+think is four hundred and fifty dollars
+which is insanely cheap and there is our
+circuit generated using the nearest
+neighbor algorithm
+so here we have a big old table of
+travel distances between some cities in
+in Oregon and so for example here
+Ashland to Astoria is 374 miles and we
+also see that here Ashland to Astoria so
+everything is mirrored shows up in the
+table twice and so let's see if we can
+find an efficient circuit between these
+cities using the nearest neighbor
+algorithm and we're gonna start in
+Portland so I'm gonna jump as we go
+between this graph of those cities and
+and and our table here you don't really
+need to create a graph necessarily but
+it can be helpful to sort of visualize
+what's going on so let's start in in
+Portland so starting in Portland we look
+and say what is our cheapest destination
+the quickest place we can go to because
+remember nearest neighbor we always go
+to the nearest location and so that is
+47 going from Portland to Salem so we're
+gonna go from Portland to Salem which
+takes 47 which is 47 miles so now we are
+in Salem so from Salem where should we
+go
+so my nearest neighbor to Salem is
+Corvallis which is 40 miles away so from
+Salem we're gonna go to Corvallis which
+is 40 notice that my graph here has
+absolutely no relation to their physical
+locations of these cities I just listed
+them all in a big circle so that I could
+easily draw a mind graph here so now
+we're in Corvallis and from Corvallis
+I'm gonna say where do I want to go next
+I'd really love to go to sate what we
+just came from Salem never mind I'd
+really love to go to Eugene because
+Eugene is next closest so from Corvallis
+we're going to go to Eugene which had a
+distance of Oh Garf Alice Eugene 47 yes
+47 47 okay so now we are in Eugene
+so from Eugene I'd really love to go to
+Salem went oh wait we've already been to
+Salem so no Salem I'd really love to go
+to Newport great Newport is our next
+cheapest so from Eugene we're gonna go
+to Newport which was 91 miles away okay
+so from Newport now we're going to go to
+let's see from Newport we've already
+been to Corvallis we've already been to
+Eugene we've already been to Portland
+we've already been to Salem you know
+just for simplicity here let's do let's
+do a better job of keeping track of this
+we've already been to Corvallis we've
+already been to Eugene we've already
+been to Newport we've already been to
+Portland we've already been to Salem
+great now I know I'm not gonna visit any
+of those again so right now I'm in
+Newport right so I'm in Newport and of
+my remaining choices the cheapest is
+seaside 117 okay so seaside 117 Shh
+excellent seaside 117 so now seaside is
+visited I'm in seaside so from seaside
+ooh there I'm going to a store yeah
+Astoria is closed so I'm going to go to
+Astoria which is only 17 miles away so
+now I have visited Astoria and from
+Astoria I'm going to go to apparently
+I'm going a long ways I'm going to Bend
+Oregon so from a story I'm gonna go to
+Bend which was a whopping 255 miles away
+okay
+now I'm in Bend so from Bend my next
+choice is Ashland which is 200 miles
+so from Bend I'm gonna go to Ashland
+which was 200 miles away and then from
+Ashland I'm going to go - I don't have a
+lot of choices here Crater Lake so from
+Ashland I'm going to go to Crater Lake
+there's crater like crater lake which
+was how far away Ashland to crater lake
+is 100
+eight miles away and then of course I
+need to return back to Portland so from
+Ashland I'm going to go back to Portland
+which was 285 and I could add those all
+up and there is my circuit generated by
+the nearest neighbor algorithm
+so the nearest neighbor algorithm turns
+out to be so cheap and easy that a quick
+improvement to it is called the repeated
+nearest neighbor algorithm and the idea
+here is that we repeat the nearest
+neighbor algorithm starting at each of
+the vertices so let's start at vertex a
+so starting at vertex a we would go
+cheap cheap only choice only choice and
+our total cost for the circuit ad OOP
+that's not D for ad C ba our total cost
+there is is 26 that's the one we had
+found earlier and that's not a
+particularly great circuit okay so let's
+try again
+so this time let's start at vertex B and
+from vertex B our cheapest option is up
+to a and from a down to D and then my
+only option is this way and then this
+way so we got be a D C B and let's see
+da sorry be ad C B that's what for 4
+plus 1 plus 8 plus 13 that's that's also
+26 now well actually that's exactly the
+same circuit we just had here notice
+that if we sort of started at B this
+would be B a d CB this is actually the
+the the same circuit ok well that didn't
+help much that's try another one so
+let's try starting at C this time so if
+we start at C we're gonna go let's see 2
+8 13 cheap cheap only choice only choice
+so we go d sorry c a d b c and it looks
+like the cost of that one is what 2 plus
+1 plus 9 plus 13 is 25 and notice that
+we've made an improvement now we found a
+a slightly better circuit than we had
+before so this is an improvement and so
+we got one more to try here so let's go
+ahead and try
+starting at vertex D here we go let's
+see 198 so cheap for or too cheap only
+choice only choice and this looks like
+it's exactly the same circuit we just
+had here right see ad BC yep so this is
+the same circuit I mean we certainly
+could write it as d a CB D but it's the
+same circuit that we had there so it's
+going to have the same cost so this is
+our so of the circuits that we found
+using the nearest neighbor algorithm
+starting at each of the individual
+vertices 25 is the cheapest cost and so
+this is our winning circuit now
+oftentimes we'll go ahead and rewrite
+our circuit starting at the vertex a so
+we can do that here by saying if I were
+to start at a from a I would go to D to
+be from sorry from a to D to B to C from
+C back to a and so this circuit is
+equivalent equivalent to this one it's
+just written with a different starting
+point and so there is our answer for the
+circuit generated by the nearest
+neighbor algorithm which if you remember
+back is still not the optimal circuit
+but it's certainly better than the plain
+- then the just doing the neighbor
+nearest neighbor algorithm once gave us
+so the problem with the nearest neighbor
+algorithm is that it's greedy it doesn't
+look ahead and so this time we're going
+to use a different method called sorted
+edges or the cheapest link algorithm and
+the idea here is we're going to start
+out by listing all of the edges in the
+graph from cheapest to most expensive so
+here a to D is the cheapest with a cost
+of 1 a to C is the next cheapest with a
+cost of 2 a to b the cost of 4 let's see
+C to D with a cost of 8 B to D is a cost
+of 9 and B to C has a cost of 13 and so
+now we're not going to worry about our
+starting location we're not going to
+worry about connecting things we're just
+going to go down the list here and we're
+gonna add these edges to our graph or to
+our circuit and unless if so we're gonna
+add from cheap up if so we're gonna add
+from the cheapest up unless unless if
+one of two things happen so either it
+would create what I'm gonna call a mini
+circuit and a mini circuit would be
+something like this where it is a
+circuit that does not include all the
+vertices so we don't want that and we
+don't want any vertices would give a
+vertex degree three so the reason we
+don't want that is because if we're
+never gonna return to a a city after we
+visited it there's no reason to have a
+degree three right every city we're
+gonna have one in one out and then we're
+not coming back so we don't want degree
+three ever so let's go ahead and give
+this a try
+so my first edge is a 2 D so we'll go
+ahead and we'll add that into our graph
+either using a highlighter or a
+different color here is really helpful
+so now we're done with that
+so next we'll go to AC and we'll go
+ahead and add that one into our into our
+graph next up on our list is A to B what
+would happen if I add a B notice now we
+have a degree three vertex and that is
+bad so we're not going to add that this
+one we're not going to because it
+violates our our our rules here so let's
+go on to the next one C to D cost of
+eight we'd love to add that one what
+happens if I add that one notice now we
+have that mini circuit we have a circuit
+that it does not include vertex B and so
+that is bad I should not be adding that
+edge okay so moving on to this one B to
+D cost a 9 no issues there so we can go
+ahead and add that one and then my only
+other choice is this one the the B to C
+there for a cost of 13 so the circuit we
+end up with is a d b c a notice i just
+picked a starting point in a direction
+so I said ad BC a it would have been
+totally correct here also to say a c b
+da that is equivalent if I didn't care
+what vertex I started at I could also
+start it at B but usually we list our
+answers starting at a and there is our
+circuit and that circuit ends up having
+a total cost of 25 now that's not the
+optimal circuit but it's certainly not
+the worst one in the graph either so
+this is also a heuristic algorithm it is
+not optimal sometimes you get the best
+circuit sometimes you like in this case
+you do not but as you can see like
+nearest neighbor it is a fairly
+efficient algorithm it takes a little
+more work than nearest neighbor but it's
+still fairly quick
+okay so now let's try applying the
+sorted edges algorithm to our travel
+cost graph here so let's go ahead and
+start by listing all of the edges from
+cheapest to most expensive so the
+cheapest one we have is Seattle to LA
+with a cost of 70 we've got next
+cheapest Chicago to Atlanta with a cost
+of 75 Atlanta to Dallas with the cost of
+85 LA to Chicago with a cost of a
+hundred
+we've got Dallas to Seattle with a cost
+of 120 Seattle to Atlanta with a cost of
+140 Seattle to Chicago with a cost of
+145 LA to Dallas with a cost of 150
+Chicago to Dallas with the cost of 165
+and LA to Atlanta with a cost of 170
+hopefully that's all of them and really
+just you know I mean you don't really
+have to list these all out if you're
+good at searching but sometimes it's
+helpful to list them all out in advance
+okay so let's go ahead and give us a try
+Seattle to LA is our first edge let's
+see what was that that was shook Chicago
+to Atlanta right Chicago to Atlanta 475
+notice that these do not have to be
+connected yet everything I'll connect
+out just fine in the end so next we've
+got Atlanta - Dallas that's our next
+cheapest LA to Chicago Dallas to Seattle
+and okay we got really lucky we're done
+at this point and we have our circuit
+Seattle la Chicago Atlanta Dallas and
+back home to Seattle is what we get from
+the sorted edges algorithm here and this
+one does turn out to be the optimal
+circuit we also happen to find this
+using nearest neighbor
+so we're going to try to find the
+efficient circuit here between these
+cities in Oregon using the sorted edges
+algorithm now the sorted edges algorithm
+says that we should list all these edges
+in order from cheapest to most expensive
+and I've already done that on my paper
+and so I'm gonna just call them out here
+as we go through them notice that this
+is symmetric so I'm only going to be
+looking on the up side of this triangle
+here because everything down here is a
+mirror of that so I start with my
+cheapest edge which is Seaside to
+Astoria and so we'll go ahead and
+connect Seaside to Astoria and then
+we'll come back and say my next cheapest
+is Salem to Corvallis and my next
+cheapest are Portland to Salem and
+Corvallis to Eugene so we'll go ahead
+and add Portland to Salem and Corvallis
+to Eugene both of which were okay to
+okay to add here now notice something
+that Salem and Corvallis both have
+degree to at this point
+and so we're not going to want to visit
+them again we're not going to want to
+want to add any other edges that connect
+to Salem or Corvallis so we can pretty
+much at this point
+ignore any thing that links to Salem or
+that links to that links to Corvallis
+because we've already connected to those
+so we're going to ignore Corvallis and
+we're going to ignore Salem okay
+so moving along our next sort of
+cheapest option here is here 78 Portland
+- Seaside so we'll go Portland to
+Seaside and then let's see next is let's
+see how about Eugene Danu port so we got
+Eugene to Newport here and
+let's see next one is Portland to
+Astoria here 95 so Portland - a story
+loops and we do not want to connect that
+because that's going to create both the
+mini circuit and we're gonna have three
+edges sorry we would have degree 3 here
+so we're going to skip over that one
+so no Portland to Astoria how about
+Ashland to Ashland to crater lake for
+108 so Ashland to crater lake we can add
+that one just just fine so now we can
+eliminate again considering Portland and
+seaside and Eugene from our list because
+they already have degree 2 and we don't
+want degree 3 so I went ahead and cross
+them off our list here and so now we
+look for the next cheapest circuit in
+our list here and the next cheapest is I
+think Newport to Astoria here so Newport
+to store we you know this one's kind of
+tricky right notice why we would not
+want to add this it's kind of hard to
+see but it would create a mini circuit
+here that does not include all these
+edges so we're not going to include
+Newport to Astoria here how about let's
+see next biggest Newport to bend so
+Newport to Bend that's certainly going
+to be fine so a Newport to bend next on
+our list is looks like Bend to Ashland
+which is 200 so Bend to Ashland that's
+okay because we end at Crater Lake and
+that should be fine now notice this
+point we're pretty much done because
+everything has degree - except crater
+lake in Astoria so there's only one real
+option left and that's to connect
+Astoria and Kreator Lake and that
+finishes our circuit which has a total
+length of twelve hundred and forty-one
+miles if you're curious
+interestingly that this was from sorted
+edges our nearest neighbor algorithm
+gave us a circuit with a total length
+of 1266 miles and so this sorted edges
+algorithm gave us a slightly better
+circuit
+so sometimes we don't care about a
+circuit or even a path on a graph
+sometimes what we're interested in is
+something called a tree or more
+specifically a spanning tree the idea
+behind a spanning tree is that if you
+have a set of vertices you want them to
+all somehow be connected to every other
+vertex and so something like this would
+work just fine this way any vertex can
+be can is connected to every other
+vertex and this is an example of a
+spanning tree when we have costs
+attached to our or weights attached to
+our edges like we have down here we
+might be interested in the minimum cost
+spanning tree minimum cost spanning tree
+and that's what we're gonna try to find
+now and we're going to use a algorithm
+called kruskal's algorithm and criticals
+algorithm is very similar to sorted
+edges except we're not trying to create
+a circuit and so we are going to add ad
+from cheapest up so again we're gonna
+create a sorted list of edges from the
+most cheapest to the most expensive and
+we're going to add from the cheapest up
+unless unless it creates a circuit now
+notice when we have no degree three
+restrictions here because trees don't
+care about degree 3 degree 3 is just
+fine for a spanning tree the only thing
+we don't want is circuits because they
+are extra connections that we don't
+actually need so we'll go ahead and
+we'll start here and we'll say the very
+cheapest edge is this one here so we'll
+go ahead and add that one next cheapest
+is here the next cheapest is here but
+notice that that would be bad because
+now we've got ourselves a circuit so
+we're not going to add that one so next
+is down here cost of seven doesn't
+matter that we're not connected yet and
+then finally number this this edge here
+we
+cost 8 now notice at this point were
+done because every single vertex is
+included and every single vertex is
+connected to every other one before we
+added this edge every vertex was
+included but these vertices were
+separated from these vertex as it was
+not connected so we need to include that
+and the red graph there is the spanning
+tree the minimum cost spanning tree now
+this algorithm interestingly is not only
+efficient as you can tell is quite quick
+it is also optimal which is quite
+remarkable so this is both an optimal
+and efficient algorithm it will always
+give us the minimum cost spanning tree
+so suppose a power company needs to lay
+updated lines connecting these these
+cities to the power grid and so they
+want to minimize the amount of new line
+delay and so they don't need a circuit
+or a path or even a they don't need
+every city to be connected to every
+other they just need a spanning tree a
+way that power can get from any city to
+every any other city so the tree is
+enough to do that so to start out we're
+going to list every connection between
+cities from cheapest to most expensive
+and start adding them to the graph
+following crew skills algorithm so I'm
+going to go ahead and just for
+simplicity I went ahead and created a
+little ring graph of the cities this is
+in no way representative of their actual
+locations but it'll help me draw a graph
+and so I'm gonna start here with my
+cheapest edge Seaside to Astoria Seaside
+to Astoria here has a cost of 17 and I I
+have the list of costs written down here
+so I'm not going to jump back and forth
+here the next cheapest was Corvallis to
+Salem so we'll go ahead and we'll add
+that the next was Portland to Salem so
+we'll add that the next one was
+Corvallis to Eugene so we'll add that
+the next one was Corvallis to Newport
+now notice before with sorted edges we
+would not have added this but it's just
+fine to add it here because it's no
+problem to have degree three when we're
+talking about a spanning tree the next
+cheapest edge is Salem to Eugene but
+we're not gonna add this edge because if
+we were to add this edge we would get a
+circuit between these three cities and
+so we are not going to add that edge and
+instead move on to the next cheapest
+which was let's see Portland to Seaside
+so we'll connect Portland to Seaside
+it's continuing on the next cheapest is
+Newport to Salem but that would create a
+circuit so we're not going to do it next
+cheapest is Corvallis to Portland but
+that would also create a circuit
+how about Eugene to Newport nope that
+would create a circuit
+how about Portland to Astoria nope that
+how about Ashland to crater lake oh
+that's fine Ashland to crater lake is
+fine
+how about Eugene to Portland
+Eugene where's Eugene Eugene to Portland
+nope that creates a circuit
+how about Newport to Portland note that
+creates a circuit
+how about Newport to seaside Newport to
+seaside oh that one's kind of tricky but
+that is also creating a circuit so we're
+not going to do that one how about Bend
+to Eugene
+bend to Eugene that's fine that's no
+problem there
+how about Bend to Salem no that would
+end up creating a circuit so no Bend to
+Salem
+how about Astoria to Newport Astoria to
+Newport kinda hard to see there but it
+would create a circuit so no no I
+skipped that one
+how about Salem to a story uh no that
+one would create a circuit how about
+Corvallis to Seaside Corvallis to
+Seaside nope that would create a circuit
+how about Portland Ben Portland - Bend
+would also create a circuit
+how about Astoria to Corvallis storia to
+Corvallis Astoria to Corvallis would
+also create a circuit how about Eugene
+to Ashland Eugene to Ashland oh I don't
+think see any issue here Eugene to
+Ashland is fine and now we're finally
+done notice that before we added that
+edge this Ashland to crater lake
+connection was not connected into the
+rest of the graph but by adding Eugene
+to Ashland
+we now have a connected graph and that
+is our minimum cost spanning tree with a
+total length of 695 miles

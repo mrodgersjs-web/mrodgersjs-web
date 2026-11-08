@@ -1,0 +1,552 @@
+I had so many issues trying to get local
+LLM's working with Claude code, with
+Kilo code, with Open Claw. I kept
+getting this pesky client timeout error
+in LM Studio and Ollama would just wipe
+over my Open Claw setting. But I wanted
+to get to the bottom of what how I can
+get the purest setup running local
+models on my computer and I found the
+answer in Llama.cpp. So today we're
+going to get that set up and how you can
+run it and follow it carefully I can
+guarantee you'll have zero issues. Now
+what a lot of people don't realize is
+that LM Studio and Ollama are actually
+just wrappers of Llama.cpp. They just
+provide a new nicely user interface and
+we'll get into this but Ollama just
+added this but LM Studio have had it for
+quite a while is the option to run MLX
+models. Ollama only have it for one
+model whereas you get all of the models
+you can find on Hugging Face
+downloadable through LM Studio. And with
+this method we're going to leverage what
+they call Turbo Quant. Turbo Quant was
+something Google announced this year
+which inevitably is a new way to quantal
+quantisize quantisize quantisization of
+is that a
+a real word? It's an efficient way to
+extreme compression. Again, I'm not an
+expert in all this but it's an
+interesting way to optimize key value or
+KV cache and whilst it hasn't been
+incorporated into Llama.cpp yet Tom here
+has gone ahead and created a branch that
+enables this. Eventually in time I've no
+doubt that we'll get it in Llama.cpp
+now Tom is the one who's done this so
+give him a give him a thanks up give his
+give his repo a star there. So whilst
+we've got the base model and
+quantization happens
+on the model itself we can't really do
+anything about that we just choose the
+model we want to use is that KV storage
+that we want to optimize and that's
+exactly what Turbo Quant does. Now the
+first thing you're going to want to do
+is head on over to the Tom and Turbo
+Quant plus. I'll leave everything linked
+below and there's a lot to take in here
+and I'm not going to claim to know all
+of this stuff but we'll go through it
+step by step and I'll try and point out
+the things you should really care about.
+This is the section you're going to want
+to really care about and the first thing
+you want to do is actually clone the Git
+repo. And this won't be a lesson on the
+terminal but I'll do my best to explain
+it here. Do yourself a favor and
+download Warp links are down below in
+the description. This will make it
+things go wrong a hell of a lot easier
+because it's an AI powered terminal and
+it will just help you figure it out. It
+did so on one of my old machines which
+obviously had some sort of conflicts or
+something like that. So, within terminal
+you want to CD which is change direction
+to the direct the directory that you
+want to store this app in. Now it's not
+going to be a traditional app which you
+double click and then it opens up. It
+you're literally going to be downloading
+the raw files that build this
+application. So what I'd suggest is CD
+and if you know the location of the
+directory just type it in here. I know
+mine is in sites as an example that's
+where I want to download mine or if
+you're brand new to this open up your
+finder literally just drag the folder in
+there and click enter and it will change
+that directory. Press enter I've already
+got it so it's probably going to fail
+there but it will
+it will download that code. Next we're
+going to CD into that folder but Warp's
+probably going to help us out when this
+is done.
+And sure enough it does.
+And then you check out the branch
+because this is all stored on GitHub
+where as I say all the code lives this
+is a special feature that they've made
+off of the main branch that makes sense.
+Basically you're going to want to check
+out that branch here which again I
+already have so just copy that line of
+code there paste it in and it should
+just check that out. I'm not going to do
+that.
+And obviously we're Apple silicon here
+but if you're Nvidia or AMD you're going
+to want to follow the relevant
+instructions but as I say a metal and
+this is where on my other machine Warp
+came in clutch cuz it couldn't find
+something or there was a conflict
+elsewhere doing this command and I was
+able to step through that using Warp as
+a as as a helpful tool. And then you're
+going to want to actually run the build
+script which again I already have but
+just copy that back into that and this
+might take a little bit of time and then
+what you'll be left with this is the
+folder that got checked out here
+and in build bin this is basically what
+you just created all of these different
+little applications. We're not
+interested in most of these we're only
+interested in Llama.cpp
+and we're we're interested in Llama
+server here. It's worth saying here this
+will only need to be done once and then
+you navigate to this folder with CD to
+do everything from this point onwards so
+you only do that build step once. So now
+with all that done we're going to
+actually want to choose a model that we
+want to use. So for this we're going to
+go to Hugging Face which is basically
+where everyone uploads all of their
+models and you've got some of the raw
+models
+such as Qwen 3.6 which is what we're
+going to deal with today. This is the
+raw files. We go in here and there's a
+bunch of just all of these safe tensor
+files and stuff like that. We're not
+going to be touching all that today cuz
+what people have kindly done and if we
+search Qwen 3.6 the thing that we're
+going to want to make sure we include is
+you'll want to download
+one of these here. Now a popular one a
+trusted one is Unsloth they're another
+AI app and they have
+built the model as GGUF
+which is basically a a model just
+condensed down to a single file that we
+can then use. And just to break down the
+actual naming here the the model is
+obviously Qwen 3.6 it's a 35 billion
+parameter model and because it's a
+mixture of expert model it has 3 billion
+active parameters. We don't have any
+other model of Qwen 3.6 but if we look
+at Qwen 3.5 we've got 27 billion model
+here we've got a 9 billion parameter
+model here we've got a 27 billion
+parameter model here. That's kind of how
+to read these model names. And with that
+you want to take a look at this section
+here. Now this will be entirely
+dependent on how much VRAM that you
+have. If you've got bucket loads
+hundreds of gigs of VRAM then you're
+really looking at the 16-bit which is
+the unquantized version there's been no
+sort of compression added to the model
+it's a full fat version you're probably
+want to be
+you're going to be safe to download this
+one. I have 64 gigabytes of RAM so I'll
+start to look into all of these versions
+of the model. These are quantization
+levels how much they've been compressed
+in order to an attempt to maintain
+quality but reduce the size but
+realistically the more quantized you get
+the more sacrifice the more detriment to
+the model is going to take place. So the
+higher up you can get the better which
+is why we talk about the more VRAM the
+better. However, there's another layer
+that we need to think of which is again
+that KV storage which is why Turbo Quant
+comes into so much handy is because it
+compresses that and reduces that in
+order to squeeze more out of a model.
+Whereas traditionally you might look to
+reserve another 15 gig on top of the
+actual model size that you need in your
+VRAM to support it we can now think of
+about adding about 10 gig more. So as an
+example my 64 gig can can't even run
+this model however the 8-bit version
+the 38 gig model plus 10 gig between 48
+and 50 gig let's say this will fit on my
+machine with the full context is that
+context amount that we're dealing with.
+However, again depending how much VRAM
+you do you might have to go lower and
+lower and lower which starts to become
+arguable when you're quantizing it at
+3-bit 2-bit and 1-bit. So
+this will be dependent on you however
+much RAM you've got will determine what
+quantization level you can go to. Now
+the excel so we've got quantized eight
+and K is the way that they've quantized
+it. You've got some other ones here IQ
+you've got MXFP4
+you've got all of these different types
+of quantization. Honestly I always just
+look to the K ones. This is the more
+modern way to quantize a model. And then
+within that you've got another sort of
+extra large or medium or small again
+sort of micro adjustments made to the
+type of quantization that further brings
+down the
+the amount of space it takes up. Long
+story short you're going to want to go
+as high bit rate as you possibly can as
+larger sort of size as you possibly can
+and basically just looking at the number
+of gigabytes in relation to your RAM is
+the thing that you're going to want to
+care about. So you simply click the
+version you've you want to download I've
+already again I've already done that
+it'll take some time. I've just
+downloaded 30 gig worth 38 gigs worth of
+model and it should just download as a
+single file into your downloads folder.
+Now coming back into our app folder here
+if we navigate backwards and there
+should be a little models folder. This
+model can be stored anywhere but I just
+find it's a lot easier and a lot simpler
+just to store it in this area here. I'm
+going to download my GGUF model Qwen 3.6
+into that folder there. You can see it's
+38.45 gig and this is just a nice place
+for us to work. This is where the fun
+begins.
+So if we come to this build script here
+which is
+let's just run the CLI first this is
+nice and easy. Now I'm going to go
+through all of these parameters here
+with you. If you paste that in this is
+this is what it takes to run it. Now we
+are not going to be passing in a query
+so we can already delete that. We don't
+need ginger and we don't need N100 being
+on a Mac. This is how much G G how many
+GPU cores you're going to designate to
+the model. We don't really worry about
+that because we're on a Mac.
+&gt;&gt; [snorts]
+&gt;&gt; Now, the this is the KV storage that we
+talk about. Now, Tom has done the
+research here. I'm not going to claim to
+be Jesus. Tom should be Jesus, but he's
+done a lot of testing here into
+different ways to quantize the model.
+And long story short, the result of that
+is asymmetric quantization gets the
+uncompromised
+performance out of the model whilst
+leveraging Turbo Quant. Symmetrical
+Turbo Quant, you would sacrifice the the
+model performance, which is interesting.
+So, coming [snorts] back into here, the
+V storage he recommends leaving it as
+Turbo 3, but the K storage actually
+quantizing it asymmetrically. So,
+quantizing it at 8-bit here or and Turbo
+3 or Turbo 4 with the V storage. Now,
+this is the default. So, long we can
+just delete that there and we can be
+quite happy with that. Now,
+this allows us to break onto a new line,
+so don't worry about that. We want FA on
+and we are going to want to actually
+delete this one here and we're left with
+basically that. Now, C is going to be
+very important. This is the amount of
+context you're allowing the model to
+have. Now, if you're running into
+issues, you might need to reduce the
+context. So, you might be able to Again,
+fit the model on your on your hard
+drive, but can you fit the full context
+amount? You might be able to squeeze a
+little bit more juice by Let's say, for
+example, you've got 40 gig of RAM here.
+Um you might be able to download this
+level, but reduce the context so much
+that only takes a couple of gig of
+space. So, you're you're managing your
+context like that. I'm fortunate enough
+to have 64 GB of RAM on this M1 Max. So,
+what I recommend doing, if we go to
+Quen 3.6 here, is finding out the
+context size of the window of the of the
+model. So, if I just search context
+here,
+the context length here is 262,144.
+Can extend up to a million tokens. We're
+not going to push that. I'm going to
+copy that number there and actually give
+myself the maximum number of context
+size. And honestly,
+having done this quite a few times now,
+it's always a balancing act depending on
+what you're doing, how much context you
+want to give it. Obviously, simple chat
+applications don't need a lot of
+context. However, if you're doing code,
+if you're doing like multi-step
+like file reading and things like that,
+the more context you can get, the
+better.
+Now, finally, we're just going to pass
+in the actual model. Now, we're already
+navigating to the models folder, which
+we moved our model file in. So, if I go
+here, I literally just copy the name of
+the file, paste that in instead of that,
+and it's going to turn blue there. Now,
+hit enter. This is going to actually
+enable us to run this model. Maybe I can
+bring in my GPU history here
+and even my activity monitor.
+You can already see that our RAM has
+just been filled up totally with our
+model.
+Uh
+All right.
+And now I'm using Quen 3.6 35 billion
+parameters model.
+It's not the fastest and this is what we
+need to come to expect of local models,
+but at a modest 53 tokens per second,
+it's not so bad.
+And if you're happy using llama.cpp in
+this way and using the model in this
+way, more power to you, you're done. But
+if you want to use another application,
+you want to bring it into another app,
+you want to build your own app or
+something like that, what we really want
+to do, if we cancel that and press up,
+which will go to the previous
+command that we ran, if we change CLI to
+server, which if you remember correctly
+inside of
+build bin, I said we'd be interested in
+the llama server or llama CLI, wherever
+it is.
+We're actually going to use the server
+application, let's call it. So, if we
+hit that there, it's going to do
+everything it needs to do to enable us
+to serve this model across our local
+machine or across the network, if we
+choose to. So, we're waiting for this.
+Main server is listening on
+127.0.0.1:8080.
+If I click that, open it up in my
+browser, and we have a simple user
+interface running the Quen 3.6 model
+here.
+And you can chat with it and do all the
+rest of it, but we're really not that
+interested in using a UI for our use
+case. What I'm going to do now is
+actually bring it into VS Code to enable
+us to run this on across codebases and
+actually code with it.
+So, if you download VS Code, it's
+completely free, and what I recommend is
+downloading the Kilo Code extension,
+which again is completely free. They are
+a silver sponsor of the channel, but
+they are not sponsoring this episode
+whatsoever.
+Um we If you go into your settings here
+and providers,
+this is what the different providers
+that provide AI. And we're going to want
+to add our own custom provider. Now, we
+can put llama.cpp,
+really anything you want, and then a
+human-readable
+version of that is in the display name.
+If we paste in our URL here, which is
+127.0.0.1:8080,
+the thing that you saw in the terminal
+/v1,
+this is automatically going to pick up
+the fact that we're running llama.cpp
+and it's found the model that we've
+already got loaded. So, we're going to
+add that there
+and submit that. And now, when we click
+on the model selector down here, you've
+got all the models under llama.cpp, we
+have Quen 3.6 35 billion. And I'm just
+going to say, "What does this codebase
+do?"
+If we flip back into the terminal here,
+you'll see this progress build up. Now,
+this is the prefill. This is it loading
+up and getting ready to answer our
+question. Now, I have an old machine.
+This is an M1 Max. This is where the
+actual performance of your chip comes
+into play over the actual VRAM size.
+This is an old chip. It's going to take
+a long time to do this. We're already at
+0.27
+and this might seem fast in the
+beginning, but we'll start to see the
+GPU start ramping up. We'll start to see
+the RAM just the memory pressure and the
+memory use ramp up a little bit there.
+And this will go round and round and
+round and eventually, we will get a
+response inside of Kilo Code. You with a
+newer machine, a newer chip, this will
+be a lot faster for you, but for me,
+this takes a while. So, we're not going
+to sit around and do it here, but you
+can pat yourself on the back and know
+that you've got a local LLM running
+inside of Kilo Code ready to start
+coding completely free and completely
+privately. You will see I've done videos
+on the M5 MacBook Pro and the MacBook
+Air, so go check those out as well and
+you'll start to see the performance on
+some of the newer chips, but honestly, I
+showed you on here just cuz it's a bit
+easier to set up. Now, here in Open
+Claw, it's a similar deal. Now, I
+wouldn't go and run any auto
+configurators or anything like that. I
+would literally just go into config and
+open the raw config. And [snorts]
+looking here,
+you're concerned with models, providers,
+and you can see I've got LM Studio here.
+I've got Ollama, I've got MiniMax
+Portal, and I've also got llama.cpp
+added. This can be anything you want.
+It's just a human It's just a readable
+name just to name the set of
+configurations here.
+And just copy these. So, you've got the
+base URL is the exactly the same one as
+we put into Kilo Code with the the V1
+there. API key can be anything that you
+want. It doesn't actually need to be
+there. API needs to be OpenAI responses
+because that's the the format that
+llama.cpp expects. And then you're going
+to want to add the these model format.
+Now, if you copy and paste this,
+couple of things you want to
+uh know is the ID. And the way we get an
+ID is if I just curl request HTTP colon
+um 127.0.0.1:8080,
+we can actually just hit
+models. And this will be the models that
+we have. It's a little bit hard to see,
+but if you look carefully, there's an ID
+here. You can have multiple
+here depending on if you just want to
+save that information. Uh so, you want
+to put the ID in here and then name it a
+human-readable name. And then the next
+bit will be unique to the model itself.
+And you'll remember the context size cuz
+we actually passed it in here. So, if
+you just select that and copy it in. And
+those are the only values you're going
+to want to touch. And with that, you can
+save
+that file,
+go into Open Claw and literally just
+refresh.
+And when you go into your chat, you
+should see down the bottom of this list
+your model. On top of that, if we scroll
+down here,
+if we go to agents default model
+primary, this is where you're going to
+want to set up the whether you want it
+to be your primary model or you want it
+to be a fallback. And you basically just
+copy the provider name, which which we
+named C llama.cpp, and then you're going
+to want to copy the ID
+and put that in after a slash.
+Now, this means every time you start up
+a new chat, start to feel the machine
+get chuggy.
+19%
+29%. Now, generally, you're going to
+want not a lot of stuff running on your
+laptop during this time cuz everything
+you use will take up VRAM, will take up
+because it's unified, it's going to take
+up the RAM as well. So, I tend to think
+that
+having a separate computer, whether it's
+a Mac mini, for Open Claw, we start to
+get a little bit more justifiable to get
+a separate Mac mini. So, I just have it
+running on a separate computer just in
+the back there. And for coding, I really
+want to set up a remote a local server
+so that I can do I can
+um
+that I can connect to and actually code
+on my main machine, but the processing
+is happening on a different computer.
+Let us know if you want that video, but
+in the meantime, this is how to get it
+all set up on your main machine.
+And there we go. There is uh
+I just came online. I'm your AI
+assistant. We're good to go with Open
+Claw. So, there you go. I hope you
+enjoyed that getting local AI set up on
+your machine. I've had zero problems
+with Open Claw. I've had zero problems
+with Kobold Claw running local models
+using this method. And on top of that,
+using some cutting-edge technology like
+Turbo Quant. Let me know what you're
+using your local LLMs for, and I'll see
+you in the next one.

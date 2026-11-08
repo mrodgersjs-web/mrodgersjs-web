@@ -1,0 +1,886 @@
+So the director of Google Cloud recently
+released his production grade agent
+skills library that are based on best
+practices of how they actually do
+software development at Google. And
+today we are going to give it a test
+drive. So like I'll be honest, a lot of
+the tools out there for like helping you
+orchestrate your like vibe coding or AI
+coding workflows, they seem to be
+getting like a lot more complicated and
+that complication doesn't always come
+with doing things better. And so that's
+why this library to me looks really
+awesome because it's really just a
+series of skills that we can give the
+coding agents that allow you flexibility
+in between the different phases of these
+processes. So on a high level it's just
+seven slash commands that run this
+entire thing and within that there are
+19 different skills that make up these
+seven areas. So if you're tired of
+spinning your wheels always looking for
+the next best thing, this may just be
+the thing that you are looking for. So
+we're going to look at all of these
+commands and how they work, the
+different skills that are working within
+each of those stages and we're going to
+build out some new features inside of
+this app that I have been working on
+with it. So the way that this is
+actually structured, it really reminds
+me of GitHub's spec kit which I still
+use to this day when I want to do
+something really bulletproof and make
+sure the implementation isn't missing
+really important stuff. So the way that
+this works is that first we refine or
+define the idea, like what what it is
+that we're trying to do and the output
+of these skills is a PRD. Once we have
+that PRD, we can move through and we can
+actually build out a plan. And so the
+planning stage is going to move through
+and it is going to turn everything in
+this spec into a series of phased tasks.
+So they're going to be small scoped
+tasks that are broken up into different
+phases. Now once we have those phases
+and the different tasks inside of them,
+we can move on and do this incremental
+build. And what the incremental build is
+is it's doing vertical slices. So if
+you're new to this stuff, there's a
+difference between slicing your build
+horizontally and slicing it vertically.
+So the best way to think about like well
+what makes it vertical? Say I wanted to
+build like the entire onboarding process
+for my app. If I was going to slice that
+horizontally, I would go and build all
+of the different front end components.
+So like the sign up components, the
+login components, maybe the different
+like guided onboarding front end
+components. I would go and build all of
+that stuff and then I would go build for
+example all of those things for the back
+end like the actual sign up flow, the
+actual onboarding flow like in the back
+end logic with the APIs, the database
+schema, all of that stuff. Whereas
+vertically slicing would say hey, I'm
+going to just build the entire slice of
+authentication. So I'm going to build
+the front end, I'm going to build the
+back end, I'm going to build all of that
+stuff at the exact same time. So we move
+through and we start implementing all of
+those tasks with vertical slices. Once
+we've gone through and actually built
+those things, it runs through a
+verification phase. So it's going to
+actually test everything and potentially
+debug issues that it finds. And then we
+have some additional functionality for
+like reviewing. So doing a proper QA
+review, refining the code, making it
+simpler and then we can ship. So this
+would be like actually pushing it to
+GitHub for example, managing different
+like production and staging branches and
+all of that stuff. So this is all really
+cool on a high level but doesn't really
+mean anything unless we know what the
+skills are that go inside it and that's
+what we're going to look at next. So
+like I said, there's 19 of these things.
+I'm not going to cover all of them. I'm
+going to cover the ones that I think are
+really valuable. So the first one is the
+idea refinement. So if you're not
+starting from a place where you have
+like a really concrete idea and you kind
+of know what you want to do but it's a
+little bit vague, the idea refinement is
+going to basically help you turn that
+kind of vague thing into a very concrete
+concept of what you are going to go and
+build. Now once you have that, you can
+invoke this spec driven development
+skill. And what this thing does is it's
+going to go through and it's going to
+basically write your PRD. And it has its
+own kind of version of that that's maybe
+a little bit different from what you've
+seen in other tools or even other
+workflows that I've done on the channel
+before. So it creates this PRD for you
+and you can use this whether you're
+doing a new project, a new feature in an
+existing project which is what we're
+going to look at in a little bit or if
+you're just making a large change to
+something that's already there, already
+in place. So once we have that spec
+which is really the main output of this
+define stage, we move in and we actually
+plan it. And so this skill is going to
+take that spec and it's going to break
+it down into small tasks that can be
+verified and have clear acceptance
+criteria. So the end result of this is
+that we should be able to go out,
+execute that task and verify that it was
+actually done properly. So if this was
+just a project setup for example, it
+could be making sure all of your linting
+is passing, the app actually builds for
+the first time, things like that. Maybe
+if we were building API endpoints as
+part of the task, it could be making
+sure that when we send a certain payload
+that we get the type of response we
+receive, that the server's working
+properly, that type of stuff. So then we
+get into the building set of skills
+which there's a lot that goes into this
+but there are two primary skills that
+get used when you use those commands
+that we looked at earlier for building.
+The first one is the incremental
+implementation and so this is the skill
+that basically goes through and executes
+on those vertical slices. So it's going
+to implement the thing, it's going to
+test it, it's going to verify what it
+did and then it's going to commit the
+changes. Now it does this in the context
+of a test driven development cycle. So
+it follows a red, green, refactor cycle.
+If you don't know what that is, it means
+you're going to write the failing test
+first. You're going to write the most
+minimal logic that actually makes the
+thing function and makes the test pass
+and then you're going to refactor. Now
+there are other skills that you can
+invoke or it will invoke depending on
+what's being done. Some of those things
+include context engineering so like
+pulling out rules and things like that
+as it needs it, front [snorts] end UI
+engineering. So anytime you're working
+on like your components, the design
+systems, how you're going to manage
+state on the front end, making sure it's
+responsive, all of that stuff. Basically
+anytime you're building out like a user
+facing interface, it will call this. And
+then similarly for the back end, anytime
+we're working with APIs, the different
+like boundaries between the things we're
+building on the back end, it's going to
+call this API and interface design
+skill. So then when it comes to like
+verifying and reviewing everything, a
+bunch of other skills that help us do
+pieces of that process. So browser
+testing using Chrome's MCP, debugging
+workflows that help us really narrow in
+on what is like the root cause of the
+actual problem we're dealing with, code
+quality reviews, simplification,
+security and hardening, performance
+optimization. It's really got a bunch of
+really awesome stuff that helps us take
+what we got out of this initial build
+phase and make sure it's like actually
+good and it's actually going to work the
+way we want it to. So all that being
+said, let's actually go into our project
+now and try out these skills from the
+top starting with the spec stage. And so
+before we hop in and look at the first
+skill, I'm just going to show you the
+app that we're working with so you have
+context. So what this is is it helps us
+dial in and create recipes. So there's
+some different prompt engineering that
+goes on under the hood to make sure that
+the recipe that we're going to want to
+cook is actually good. So for example,
+if I said make me a French onion soup
+using bourbon, it's going to go through.
+It should start streaming responses from
+uh Claude in this case and then it has
+this little generative UI that's going
+to go through and once it has the full
+stream of the response, it's going to
+generate a recipe card that has the
+ingredients and the steps and the flavor
+profile and a few other things. And now
+that this thing is done, we can see it
+generates this card for us. Uh so
+bourbon, French onion, whatever. It's
+got the ingredients, has the different
+steps and then down at the bottom we
+have this option to save recipe. And so
+this is what's going to be the focus of
+what we're doing here because one thing
+that I want to have in here is I want to
+be able to do iterations of recipes,
+right? So maybe I try this but I tweak
+it or I want to tweak it in the future
+but I want to have like a trail of that
+thing. Now my thought on how I would do
+this if I was building it only for me
+would be make it like a git style
+interface but for a user, I think that
+would probably be kind of And so
+we need to think through how we are
+going to do this. And so we're going to
+pop down in here, okay? I'm going to
+clear out everything we have and then
+we're going to use that first skill
+which was for the ideas. And so this
+thing was called idea refine and I'm
+going to tell it exactly what I just
+told you guys. I want to have a forking
+style option where users can create
+variants of a recipe and it saves
+knowing what the root recipe it was
+derived
+from was. It shows all variants of a
+recipe on the original. And so what I
+mean by that is like if I'm on this
+recipe card and I'm I'm not sure exactly
+where it's going to go in the UI but it
+should show me like here's, you know,
+five variants that you've cooked in the
+past basically is what I'm thinking of
+with that. So this thing kicks off and
+now it's going to go through and it has
+like specific ways that it thinks
+through this and so it frames everything
+through this idea of how might we and
+then it's going to say okay, how might
+we let users, you know, do this thing
+that I basically just described? It's
+going to explore the code base and then
+it's going to offer a few different
+options typically to us. So, three to
+five options that are different like
+design like system design kind of
+directions that we could take this
+thing. And so, here we go. We have the
+questions coming through and we can move
+through and answer these. So, the first
+is like what triggers this thing to
+happen? So, is this happening via a
+chat? Is it happening on the actual
+recipe page? Like where are we
+triggering this fork in the first place?
+So, just thinking through like MVP, I
+don't want to over-engineer this with
+tools and routing the intent of the user
+and all this crazy stuff. So, I'm just
+going to say they go and they click fork
+on a recipe and then it loads it into a
+chat with the context of that recipe and
+then says like, hey, what do you want to
+actually do here? So, I like that. Um
+how should the variants display on the
+original recipe page? Uh so, again, I
+think I'm just going to go for the
+simplest option here, which is the
+simple list. Can users fork other
+people's recipes or only their own?
+Um
+theoretically, if we have social
+features, they should be able to fork
+other people's
+um recipes, but we're going to need to
+think about like how do we handle like
+the row level security inside of our
+database for that? So, there'll probably
+be a like a little bit more going on.
+For right now, though, I'm going to say
+let's like allow it for the future, but
+right now it's going to be me using this
+thing and so I don't want to go
+over-engineer stuff I don't need right
+now. Should forks be allowed to fork?
+So, can you create variants of variants?
+I would say yeah. Like I I don't see a
+reason why not to do that. So, we can
+say unlimited depth, okay? So, let's
+submit all of those answers through.
+It's going to think about that and then
+it's going to come back and it's going
+to give us what our kind of design
+directions are for this thing, which is
+what we see coming out now. And this
+entire flow that we see it moving
+through, so it went through and said,
+okay, here are seven different
+directions and then let's like evaluate
+them and converge on like a final
+direction that we're going to take this
+thing. All of this is built into the
+skill, which is why it's it's moving
+through these specific phases, which is
+nice cuz you can be sure that it's going
+to run this way for you guys when you go
+to run it. So, let's look at the
+directions and pick one. So, basically,
+the way that this is is going is it took
+in all of those questions that we
+answered and now it's saying, well,
+these are the different directions you
+could take it in. Like these are kind of
+like UX or like the the design of the
+system. Like these are the ways you
+could take this thing. So, the simplest
+would be this like remix like basic
+remix capability where you click fork
+and it goes and does exactly what we
+described. The AI asks what you want to
+change. It has a reference to what the
+parent recipe was and then that original
+recipe page shows a variant section with
+cards like very simple and then we can
+get other like get a little bit more
+spicy. Haha, pun intended. We can get
+spicier with how we want to do it,
+right? So, we could show a a diff, but I
+would not want it to be too like kind of
+techy seeming, so it would have to be
+like human readable. Like here's what
+you changed. Um
+So, I mean, that's an option. Flavor
+divergence, like highlight what you
+changed in the flavor profile. I mean,
+that seems a little gimmicky for me. I
+don't really care about that right now.
+Lineage explorer, so there's like a
+bunch of other ideas that I think are a
+little bit crazy. I I want something
+basic for this. I really do. And so, I
+think direction A is what I would prefer
+here. I don't care about the flavor
+aware fork.
+Um so, we're just going to say clean
+fork. We're going to move forward. And
+again, we're in the idea stage. So, this
+is what I mean when I say we can go from
+vague idea down to something that's like
+very specific and something you can
+actually take action on. So, really nice
+that it helps us think through that type
+of thing, whereas a lot of libraries
+like don't really do that. You just say
+what you want and then the LLM just
+makes assumptions and it goes out and
+does the thing. I really like libraries
+that have this kind of quizzing
+adversarial kind of approach to things.
+So, the next thing that we're going to
+do because we have this like idea that's
+been hashed out. Um they store this, by
+the way, in your project. So, we're in
+docs, ideas, recipe forking. Now, I'm
+going to run their specter of in
+development skill. And so, this is going
+to allow us to actually detail like,
+well, what does this mean realistically?
+Like what are the things a user needs to
+be able to do?
+What are the acceptance criteria? How
+will we verify it? All of that type of
+stuff is what it's going to go through
+now and hash out. So, it's going to
+explore the code base, look at what we
+have in place, what's our schema, what
+are the files we have, how's everything
+structured, and then it will go and
+build a spec or a PRD for us. So, what
+we get out the other side of this is,
+like I said, a PRD. So, what's the
+objective of what we're about to try to
+build? What does success look like? What
+are the primary acceptance criteria?
+What type of tech is going to be
+involved? What are like the code style
+parameters or conventions that we have
+inside of the project? What are the
+boundaries of this thing? So, like what
+does it always need to do? What does it
+need to ask us before it does? What
+should it never do? Like bypassing row
+security policies. So, we're getting
+like this detailed version of what needs
+to be done, but this isn't enough to
+build from. Like you wouldn't want to
+take this and say, and now go build the
+thing, right? Because we want to create
+again vertical slices that we can
+implement where we have very like
+verifiable testable stuff. And if we
+were to just send this off, like we're
+not necessarily going to get that. And
+so, the next step of this process then
+is that we need to first clear out our
+context. And now what we're going to do
+is we're going to do the planning stage.
+And so, what we're going to do is we're
+going to call the next skill, which is
+the planning and task breakdown, and
+we're just going to pass in the context
+of the specific plan that we're working
+on, which is this forking thing. And now
+if we were to pop back over into this
+GitHub repo, we can see exactly what it
+is going to do and the exact process
+that it's going to move through. So,
+it's going to use planning mode. It's
+going to identify the dependency graph.
+So, like of all the things that we're
+going to build, like what depends on
+what and how is that going to influence
+how we sequence building things out.
+It's going to slice it vertically and
+kind of gives examples of what is a
+bad example like what's a horizontal
+slicing, which we talked about earlier
+where we would build all the database
+stuff, all the API endpoints, all the UI
+components, then connect it all together
+as opposed to, hey, a user can create an
+account. Cool. We need the schema, we
+need the API for it, and we need the UI
+for it. So, that's the difference
+between horizontal and vertical. It's
+then going to write all of the tasks in
+this specific format and then once we
+have that, we can move through and
+actually start building. Okay, so now
+that that's through, we have this plan
+for our build written into our project
+documentation. And so, if we were to
+look through this, we have an outline of
+like what are the important architecture
+decisions that were made, but then what
+are the different phases of the build?
+And so, these things are now organized
+based on the like dependency of what
+needs to be done. So, our first phase is
+going to be about the foundation, making
+sure our database and our types are set
+up. Phase two will be the core back end
+build. Phase three is going to be the
+actual chat UI and it just it continues
+and continues and continues. So, what
+we're going to do from here is we're
+going to go back down into our console.
+I'm going to clear this out. And now we
+are going to use the actual build
+command. So, all I'm going to do is pass
+in the agent skills build {slash}
+command and then we're going to point it
+to the repo that we are working at and
+we're going to say build phase one. Now,
+I really do recommend that you
+specifically tell it phases to work on
+because I found with this library, if
+you don't, it will try to move through
+and build the entire plan at once and
+that's obviously really bad on your
+context. And everyone and their mother
+is complaining about how Claude burns
+through their context windows these
+days. So, make sure we don't do that.
+So, that first phase was complete pretty
+quickly, cleared the context window, and
+now we're running that exact same
+command, but I'm saying phase two. And
+the one other thing that I'm adding in
+is making sure that it actually uses the
+skill for this API and interface design
+wherever it's relevant because I found
+that sometimes it's better if you know
+you want the skill to be used to just
+tell it to do it and don't rely on
+whether or not it's going to choose to
+use that skill when you when you really
+need it to. Just tell it to use it. And
+now the thing that's cool about this
+that we can see it as it's going, it is
+using this test driven development
+approach as it's going. So, when it went
+to kick off task six in this phase,
+which is forking the context or the fork
+context in the system prompt and in the
+chat APIs, first it's going to write the
+failing tests, right? And then it's
+going to move through and make sure it
+fails and then it's going to implement
+the, you know, logic that would make
+that test actually pass. So, now that
+that's done, we are going to move on
+phase three, which is more of the front
+end piece of this build. And I'm doing
+the same exact thing. I'm saying, hey,
+phase three now, but make sure you're
+using the front end UI engineering
+skill. So, if we were to go actually
+look at that skill, the reason that I I
+really love this type of library is it
+it's flexible, but it's also placing
+like just like good ways of doing things
+on the system. So, documenting, for
+example, like what the front end
+component patterns should actually look
+like in order to be done well. Making
+sure that we're separating our data
+fetching from the actual like
+presentation of the thing. Making sure
+that when we go to work on this the
+state management, which in this case
+could be all the things happening with
+the forking, that we're using an
+approach that actually makes sense based
+on the context of the app. Making sure
+that the error screens or the error
+handling that it builds, you know,
+actually makes sense and doesn't just
+error out and show us a blank screen.
+So, all this stuff is super important
+and it is baked in to the skill that is
+now being used. So, we can see the skill
+got called and now it's moving through
+and it's just building everything based
+on those parameters. So, now that that's
+done, it's moving on to phase four. All
+right, guys, so moment of truth, we can
+now go check this out. So, we have this
+recipe here. We can see we have this
+fork recipe button. If we click on it,
+it should create a new chat. It's
+supposed to have this fork thing in the
+URL, which it does.
+Doesn't look like it's doing anything
+yet, but I'm going to give it a second
+and see if maybe there's just a little
+bit of lag and if it starts sending a
+message through. Yep, we can see it
+right there. So, obviously, that timing
+needs to be updated. So, it's asking us
+like what what do we want to do and it's
+giving us some options on how we could
+modify this. So, I could say something
+like
+make it a heartier recipe, more like a
+stew than a soup. Use
+Oh, we'll go with this beef. Use beef as
+the meat, okay? And now, hopefully this
+goes through and creates us a new
+recipe. Let's see. So, it's asking us
+more information, which is nice.
+You pick. I don't really care. I just
+want to test the logic of all of this.
+Okay, so generating a new recipe card,
+which is good. Hopefully this goes
+through and works and boom. So, we can
+see now we can save the recipe. Okay,
+recipe got saved. Bourbon French onion
+beef stew.
+So, we can look at this. It's not
+referencing what a parent recipe was,
+but maybe if we go back to recipes this
+is very slow by the way to render
+everything. So, obviously there's some
+things I need to optimize, which we will
+look at in a second what we can do for
+that. If we go into the original recipe,
+okay, so it's not rendering the UI for
+these. So, right, it should be showing
+us the fourth recipe, but now we can go
+back in and actually use that debugging
+skill. So, I'm going to basically just
+tell it exactly what's happening. I'm
+not going to go crazy there. It's
+supposed to be showing the list of
+recipes that were forked off of a
+parent. Pretty sure we had that in the
+plans and it's not there, right? Like I
+should see that somewhere here in the UI
+as like a a scrolling grid. And so, it's
+now going to go through and it's going
+to try to understand like what is the
+actual root cause of the problem. So, as
+this thing is moving through,
+like it seems to have built most of the
+stuff for it, but it's not rendering.
+So,
+it's it's there in the APIs. It should
+trigger when variants.length is greater
+than one, but it's not doing it. And so,
+it seems to say that the endpoint that
+we have doesn't match what it was
+looking for. And so, it's narrowed in on
+the problem and it is moving through and
+trying to fix it.
+what are they trying to tell me here?
+But it So, it looks like the issue is
+that a root recipe. So, like if we're
+looking at that beef or that original
+recipe, this one that it was quote
+unquote forked from.
+Since it's the original, it has a null
+field in the root recipe ID. And so,
+when it calls this, it's returning zero
+and not working properly is what it
+seems to indicate. So,
+um it claims that it found the root
+cause and it is going to try to fix it.
+And so, we will look at that after this
+is done. Okay, so it looks like that
+fixed it. So, that's a really nice skill
+that we have to like really find the
+root cause and just fix the thing and
+not have to dick around with 50 million
+different things. So, we have two
+different variations of it. We have this
+summer herb one that I did off screen
+and then we have the French onion beef
+stew. We can click on it and go in and
+look at it and it shows us what it was
+forked from. So, we can maybe look some
+make some of this look like nicer, you
+know, but as far as the core logic of
+it, it is all working. So, now that we
+have that, let's go look at what some of
+these other skills are that we can use
+as a little bit of icing on the cake.
+So, I already verified all this
+manually, so I'm not going to walk
+through that one. We have two other sets
+of skills. We have like review oriented
+skills where we can look at the quality
+of what we have written and I know there
+are probably some issues with what we
+have. We haven't really touched on
+creating like indexes for the database
+in case this gets bigger and we need to
+be able to like operate inside of the
+database efficiently. And then they also
+have skills for like shipping this
+thing. So, if I wanted to push this up
+to Vercel right now, but make sure all
+of the tests run before they get
+deployed, like how can I actually do
+that? So, let's go in and look at the
+review skills first and then we'll look
+at that final shipping skill. And so, we
+can come down now and we can just run
+this agent skills review. And so, while
+that is running, we can come look at
+like well, what is it actually reviewing
+specifically? So, it runs this thing
+called the five axis review. And so,
+it's going to look at everything we have
+in our code base across these
+dimensions. Number one, it's
+correctness. Does it do what it is
+claiming to do? Number two, is it
+readable and is it simple? Like if
+someone else was to actually go look at
+this thing right now, like would it make
+sense? And there are a lot of
+conventions that would explain how it
+defines it being readable and simple.
+And number three, do any of the changes
+that we've made, because this should be
+running on a branch, do any of these
+changes that we've made like not fit
+with the overall design of the system?
+Is it conforming to our existing
+patterns? Is it maintaining like the
+boundaries between different modules and
+what they're meant to handle? Did we
+introduce any security vulnerabilities?
+And then it has a skill that can help
+like look for that and and fix that type
+of stuff. And then detailed performance
+optimization through this performance
+optimization skill. And so, again, it's
+going to look at like a bunch of
+different pieces of stuff. And then
+depending on the size of the change, I
+think in this case we're looking at
+probably a thousand lines that we've
+changed throughout this kind of branch
+that we've been working on.
+It has different mechanisms for going
+through and actually reviewing things
+effectively. So, this is what it is
+doing as it's moving through and
+reviewing things. So, it has the process
+it works through and then this is like
+the overarching review process that it
+is going to utilize. And so, this is
+really important to run because we've
+obviously had some things pop out the
+other side that we really need to
+address. So, for example, we're not
+using an ORM with Supabase. That would,
+you know, help us avoid things like
+being vulnerable to an SQL injection.
+And so, as smart as we think tools like
+Claude Code and and things like that
+are, they are going to make mistakes
+like this. And so, it's critical that we
+run this type of process and see exactly
+what those things are and build an
+actual plan to address all of these
+things. And so, again, it's looking at
+each of those parameters. So,
+correctness, does it do what it's
+supposed to do? Is it readable and
+simple? Does it work within the
+architecture that we actually have in
+place already? And then again, security
+things that need to be addressed. So,
+these are all issues that before we go
+and actually push this thing, we need to
+make sure all of these things are fixed.
+And so, in using this library, something
+that we could come through and do is we
+could use the agent skill plan and say
+build me a comprehensive plan to address
+all of the critical issues. Right now,
+it's going to move through, use that
+same process we went through earlier,
+but from the lens of fixing these
+potential security issues. Now, since
+I've been developing this locally, I
+don't have a like deployment pipeline
+that's hooked into GitHub or anything
+like that. So, while this is going
+through and doing that, we can go look
+at that last skill, which is for setting
+up a continuous integration and
+deployment pipeline. And so, what we're
+going to do is we're going to hop in and
+we are going to create a new GitHub
+repo. So, I have an empty repository
+here. I called it forkcast V2. And so,
+we're going to come through and we're
+just going to run these commands. We'll
+pop back down into our terminal. I'll
+pop open a new window. We're going to
+add in the origin, create our master
+branch. Okay, so this thing is over here
+now implementing those changes. And so,
+what we're going to do is we're going to
+just pop into this, create a new Claude
+Code instance in the same directory.
+We're going to tell it to use the skill
+to build our CI/CD pipeline using GitHub
+actions. Make sure we have a proper
+branching strategy for managing tests
+before merging into main. So, we're
+going to basically use this skill to do
+the heavy lifting of actually like
+building out the infrastructure that we
+need. So, mostly what I want it for is
+the like building out the GitHub actions
+so that when we push this thing to
+GitHub, it's going to automatically like
+run all the all of our tests and do all
+of that stuff before we actually merge
+this into like our main production
+branch that we use. So, depending on
+like the complexity of like the app you
+have and all of that type of stuff,
+there's different structures that this
+could be using. In our case, we don't
+have end-to-end testing set up. This is
+just like a personal project for me and
+whatever. I don't have it set up. And
+so, we're not going to have like some
+super super robust multi-stage like
+testing thing that's that's going on.
+And so, this knows that, right? So, it's
+making certain assumptions based on what
+it's read inside of our project and it's
+recommending that we build features on
+feature branches. Those get merged into
+a development branch, which is where all
+like the testing and all of that type of
+stuff takes place. And then once it's
+good, we merge it into our our master
+branch. And so, it's just moving through
+now and it is building all of this stuff
+out. And so, if we were to go look
+inside of our project now, we have this
+GitHub directory, which has these
+configurations for how we're going to
+actually like push things into our
+GitHub repo and make sure we're running
+all of the tests and things like that
+properly. And again, all this was
+configured for us using
+using this skill, which is pretty
+awesome. And a second as soon as we're
+done with these fixes, we're going to
+actually push everything that we have
+and run the test and look at the
+outputs. So, now once we are inside of
+our project and we push changes, say, up
+to our code base and we want to merge
+onto main from our development branch,
+we have all of these different tests
+that need to pass before that can
+actually happen. So, we can't have this
+situation where we're just pushing stuff
+into our like production code base that
+just straight up doesn't work. And so,
+all of that was done by that skill that
+allowed us to create these GitHub
+actions, these like CI continuous in
+integration and deployment actions that
+will run anytime we try to make a push.
+So, we can go in and actually look at it
+and see, okay, all of the linting
+passed, all of the type checks passed,
+all of the testing passed, and now it's
+trying to actually run a uh build to
+make sure that the final build passes.
+And so, there's stuff that we can do to
+come in here and lock down further
+branches to make sure, for example, that
+you aren't even allowed to push to main
+directly so that you never make the
+mistake, but that is a video for a
+different day. So, I'll have a link to
+this uh repo in the description below.
+Make sure to subscribe if you like
+longer videos like this where we go
+through and actually break down
+something in like a real-world context
+because if there's one thing that I
+hate, it is a to-do list-oriented
+video that's not practical in any way
+and that skips over all the actual
+important stuff. So, if you like that
+type of stuff, make sure to subscribe,
+and somewhere around my head, YouTube
+will be recommending a video you might
+like. So, make sure to check that one
+out, too. But, that's it for this video.
+I'll see you in the next one.

@@ -1,0 +1,1283 @@
+today we're gonna go over chapter seven
+chapter seven in your book is all about
+the data link layer
+uh remember way back when we were doing
+the osi model and it seemed like
+everything was going along progressively
+we'd go from layer seven
+down to five sorry six five
+four three and then we get to three we
+just spent a whole
+chunk of time talking about ip addresses
+subnetting classful addresses and
+whatever the case was
+we will continue chapter 6 throughout
+lab
+but mostly through elections we're going
+to be going from chapter 7 and like i
+said i'll be jumping to the ios
+chapter after this chapter okay then
+we'll come back finish up the physical
+chapter
+there is a chapter chapter 9 called the
+ethernet chapter
+that i always make an extra credit
+chapter i think it's
+well beyond most students
+purpose for this course it gets into
+some slot times back off timers and it's
+very very technical
+stuff that i wouldn't ask any network
+administrator to know
+i would ask a network engineer to know
+and none of us fit that category
+including myself
+if you are going to become a networking
+student here at corning
+you'll be a network administrator and
+most of your jobs can be basically
+troubleshooting and documenting
+rarely ever will you have the
+opportunity of developing interface
+cards
+and have to deal with back off timers or
+slot timers
+okay so it's very technical i usually
+skip chapter nine
+i will sign chapter nine over your
+thanksgiving break
+and the chapter nine assessment is an
+extra
+let's not call it extra credit it is a
+substitution
+assessment so if i drop three of your
+lowest
+uh uh assessments which i'm not sure
+it's either two or three of your lotus
+lowest assessments from cisco i will
+then take chapter nine
+and replace it so for instance say if
+you got four zeros
+this is all hypothetical i have to look
+at your syllabus you get four zeros i
+dropped three of those zeros
+and then you decide to do chapter nine
+you should get at least a 25
+chance because it's always usually four
+multiple choice questions right
+well then i'll replace that zero with 25
+points
+so substitution makes sense chapter nine
+that'll be done
+over thanksgiving so we're getting close
+to thanksgiving holiday
+i'm gonna be looking at chapter seven i
+believe it's chapter 11 for the ios
+and then we're gonna go back to chapter
+eight then you guys can hit chapter nine
+on your own
+and then we'll finish up a chapter ten
+planning the network
+okay we are getting close to the end of
+the semester there's only five weeks
+left and out of those five
+only have four to cover question um
+we don't care just make sure you guys go
+out and buy a generator your grades are
+more important than anything else
+you know we're changing the guards so
+the rules are changing all the time we
+have a new president we have a new dean
+and i'd be honest with you i can't
+answer that question
+i'm hoping the power is now that long i
+know last year we had those flooding
+circumstances and they sent an email to
+us as instructors
+and said the understanding of your
+students
+uh consideration the nice thing about
+what i'm doing this year
+uh with the video is that if that should
+happen to you guys and you're in one of
+those areas that they list in the
+newspapers
+then i'll make considerations and i'll
+work with you okay so
+remember look after your own well-being
+your education can come later
+what good is it if you're dead right so
+i'll work with you guys
+just don't try to abuse it and take
+advantage of it and say you know
+i was in sunny florida and the weather
+is bad you know
+so we'll go from there uh like i said
+we've been going down through the apple
+sorry the osi model and just as a little
+review that's been such a long time
+since we've actually seen this
+the very top layer layer seven is what
+and what's the layer underneath that
+and the interest is saving time i'm just
+going to abbreviate these and what's the
+layer underneath that
+i'm getting ready for your final i know
+it's five weeks from now
+um as i'm looking through the finals
+like
+i would say 70 of the questions on the
+final is all about this
+if you guys know the order and which
+purpose each layer has to fulfill
+you're going to get 70 of the material i
+mean it's just amazing that
+network fundamentals is all about this
+model here and you want to think of it
+as a roadmap
+you're sort of like gauging it along
+through the course and you're
+understanding each topic
+and other courses like cisco 2 you'll
+just be focusing on
+just this layer right here which is what
+layer 3 stuff that we've been spending a
+lot of time on
+the network layer now i usually write
+these out because
+truthfully the transport layer the
+network layer and maybe part of layer 2
+is all the roles of a network
+administrator these layers up here are
+probably comp
+programmers software developers and then
+layers down below are probably more like
+engineer layers so it's layer two
+data link
+and the last layer
+out of all the layers the the physical
+layer is definitely engineering
+okay the nice thing about the osi model
+is that we could be making changes up
+here
+and it's not going to affect those
+layers down there why is that
+like for instance we're going to be
+moving from ipv4
+to ipv6 is that going to affect
+something down here why not
+what we segmented the responsibilities
+and we said as long as
+the connection between layer 3 and layer
+2 is
+observed so whatever changes they make
+they still make it compliant with the
+data link layer
+then whatever happens from there down
+isn't going to be affected so when you
+guys switch over to ipv4
+are you going to have to buy a new
+network interface card absolutely not
+will you have to do a software update
+most likely it's already done for you
+windows 7 windows vista i think part of
+windows xp now handles
+ipv6 you had to install the protocol
+uh yeah certain companies like comcast
+and i think time warner are now issuing
+ipv6 addresses to
+uh their clientele and it's just sort of
+like we'll do it a selected market see
+how well it works
+no thank you for that because remember
+it's 128 bits and there's no way in hell
+in fact
+when we start looking at that we
+determine subnets i don't think we're
+going to really need to worry about
+subnets but just in case we do
+subnetting
+we'll look at it in a hexadecimal format
+so you might say subnet a
+b or a1 b1 which is going to be a lot
+user friendly than it is in binary i
+mean after all we look at the binary
+only two choices
+correct so you need more bits so it
+should be easier for us to actually
+decipher if you will so what's going on
+a data link layer
+the data link layer is comprised of two
+sub layers
+the actual logical link control
+llc and the media
+access control mac now before i get into
+the nitty gritty theory
+of uh the data link layer layer two
+i wanna actually break it down into
+analogy um
+let's just sort of hard to put this in
+words it's better to see it in drawings
+but
+let me just map out what i'm going to do
+by saying it first
+i want to get away from just that theory
+and networking stuff because to be
+honest with you your networking
+experience is probably very
+low uh you're not out there building uh
+elaborate interconnected networks yet
+most of you
+just have home network experience you go
+out and buy ethernet equipment
+just because it says ethernet you're
+good because now you can go around
+buy anything that's ethernet and plug it
+together and expect it to work
+you don't configure ip addresses because
+one of the devices that you bought
+probably hands out ip addresses
+automatically
+occasionally the numbers are wrong and
+you might have to call tech support
+and you have to fine tune it that's
+probably about the extent
+of your network abilities very suddenly
+do you guys go out there go to your
+neighbor's house
+and establish a network between you and
+your neighbor
+which we call a wide area network
+correct we join multiple networks
+together
+and so what i'm about to show you guys
+is going to be something
+away from networks but to give you a
+better understanding of this analogy
+that we're all familiar with and that is
+our own
+infrastructure our highways and i'm a
+firm believer that our internet
+connection
+should be a public utility in fact we
+should have like a pbs
+of internet service that every home in
+america has
+like five megabits per second that's
+paid through by taxes
+and if you want something better you pay
+more for it
+just like our highways those are public
+utilities and who maintains our highways
+department of transportation correct and
+if you guys want faster connections and
+more lanes
+you choose to take toll booth toll roads
+we good about that
+so let's look at this infrastructure
+that we've been using
+for the last oh maybe 100 years or so
+and i know this is a shoddy drawing of
+my house
+and i live out in the country and my
+driveway is pretty long
+and my driveway is about the width of
+one car
+now i make this point because this
+driveway is shared
+it's shared with everybody else who
+lives in my house correct
+there's about seven people live in our
+house and we all have our own vehicles
+now if this car if this driveway is
+about the width
+of a car and it's nice and long
+what do you think will happen when i go
+to leave my house and somebody else is
+coming home
+yeah we don't drive very fast on that
+driveway
+one person has to back up now in
+computer technology
+terminology networking terminology we
+call this a half duplex
+that means traffic can only go in one
+direction
+at any given time so if i'm leaving my
+house
+and i'm taking up the road and i'm
+beyond halfway if you will
+then it's going that direction if
+somebody's coming in at the same time
+that i'm leaving
+there's going to be what a collision and
+that's the terminology that we use when
+it comes to networking
+that when a signal is traveling down a
+medium
+a pathway and another signal is
+traveling down that same pathway
+they're going to collide
+it doesn't work out for both parties the
+sender or the receiver
+now my driveway obviously is connected
+to another road
+like i said i live out in the country
+the road that we're connected to is a
+dirt road and itself
+is also very small
+it's about a width of one and a half
+vehicles
+but in any case you can't get two
+vehicles going in opposite directions to
+travel
+at the same time one just pulls off they
+get around each other
+it's a pace you pay to have your own
+privacy
+and all my neighbors granted
+miles away that they are use this same
+road
+and they too have
+driveways and most of the driveways are
+of a vehicle eventually
+this dirt road connects to
+a wider highway
+this is called a logical topology
+i want to talk about the behavior in
+which data
+is transmitted across this network
+just like the behavior of how
+we drive our vehicles there are rules
+that we follow
+you show to us that you understand these
+rules by taking a driver's test
+to reward you with what a license
+correct yeah
+let's let's talk about just this segment
+between my house and the dirt road do
+you think i have a stop sign or a
+traffic light
+why not why wouldn't i have some form of
+controlling
+this problematic situation there's seven
+of us
+let's imagine if there's a hundred of us
+living in the house and we all had a
+hundred vehicles
+what would happen to the probability of
+us
+having a collision
+it goes up so the more users
+that are using a shared medium the
+greater the chance of collisions
+what does collisions translate to when
+it comes to performance when we're
+dealing with networks
+yeah you're going to get lost packets so
+the performance is going to go down
+because you have to re-transmit correct
+and that becomes exponential because the
+more you re-transmit
+the greater chances you're going to have
+to have collisions so hopefully by the
+end of class today i'm going to tell you
+about
+a technology called csma cd
+but to this point i have no
+controlling mechanisms
+i say you can come and go as you please
+there isn't a traffic light there is no
+indication that when the person comes up
+the road
+that they can see that somebody else is
+on this driveway to wait
+until that person flees the only thing
+we do is we take our time
+all right what about here
+do you think there's this traffic light
+along
+each of these intersections i mean is it
+safe to call them intersections
+and what is an intersection
+once you pass intersect okay
+so i have a connection for this main
+to my driveway and i also have another
+one here and another one there
+an intersection basically is a point
+where two opposing sides are going to
+meet
+correct there's no way around it you're
+coming down the highway sorry down
+spencer hill
+and you guys are going to get to
+dennison highway you cannot cross
+denison highway
+without running into somebody correct
+so what did they implement as a
+controlling mechanism down at that
+intersection
+a traffic light why would they do that
+because two cars cannot occupy the same
+space at the same time it's a mean for
+sharing
+we are sharing that particular point
+we are sharing that pathway that medium
+and when it comes to sharing
+you have two ways of dealing with it
+one's called deterministic
+now for the longest time this term was
+always baffling me what do i mean by
+deterministic
+well think about the word what's the
+first five letters in deterministic
+determine you can literally determine
+where somebody's going to be
+which direction they're going to go and
+a terministic
+network and deterministic control
+translation
+if there's an intersection down in
+denison highway no different there's an
+intersection here
+i know that somebody's going to be going
+either left or right
+correct and if i put a one way
+sign now with a hundred percent
+confidence i can say that anybody that
+leaves this road and comes onto this
+road is going to go which direction
+they're going to go that way correct
+that's deterministic
+we have control and if we have control
+we have predictability
+and if we have predictability what can
+we do
+we can avoid collisions
+why do we want to avoid collisions
+what's the problem with deterministic
+control
+what is the problem about having a
+one-way
+yeah you know i live between mansfield
+and elmira
+and if i want to go to mansfield i have
+to make a
+right at the end of my drive at the end
+of the dirt road can i do that in this
+case
+so i have to make a left and that means
+i gotta travel
+10 miles up the road because that's the
+next intersection
+to make another left back travel
+yeah so now we've got to trade off
+distance right
+because the more distance i have what's
+going to happen to the performance
+the longer it's going to take me to get
+there so performance comes down
+to what collisions
+so when would i implement something like
+this when you typically see one-way
+roads
+and they drive me nuts when i'm not
+familiar to a town or a city
+in big cities right
+you want to make a right you see do not
+enter one way
+do they do that why do they do that in
+big cities why do they have certain
+allocated for one ways
+going in one direction if you go a
+couple blocks down it's going the
+opposite direction
+because it doesn't save on distance
+but it will save on time why is that
+explain to me why did they do that why
+they put
+one-way signs on back
+streets in big cities
+because if you're going down an alley
+and someone else also decides
+if it's narrow yeah but what if it's a
+width of two cars
+you could double the bandwidth correct
+because now traffic is flowing in the
+same direction but we have separate
+lanes
+making sense so
+in this particular case if i live out in
+the country there's not very many
+homes on there do i want a deterministic
+approach
+do i want to control that did i put a
+stop sign at the end of my driveway
+are there traffic lights down through
+this road
+no why not
+the population is pretty low
+what are the chances of actually having
+collisions
+very low so i'm saying why go through
+all that
+cost of putting in traffic lights
+because nothing irritates me more often
+than i'm going through and i have a
+green light then all of a sudden
+somebody
+trips the you know signal and then my
+light goes to red
+their light goes the green just let one
+car buy
+i mean you know how much energy is
+wasting how much gas is wasted for me to
+slow down
+come to a stop to start back up again
+we don't bother doing that in the
+country we don't need to because
+there's not a lot of us
+what do you think is going to happen
+down here though
+you think there's going to be a stop
+sign at least
+why
+yeah this is 549 and it's one of the
+major routes that connect us to the
+bigger cities if you will quote-unquote
+bigger towns in our area
+so there's a lot of traffic on that and
+the speed limit is posted at 55 but very
+seldom does anybody do 55
+right uh would it make sense to put a
+traffic light there though
+now let's start off would it make sense
+to put a yield sign because stop signs
+are pretty good right
+stop count four seconds and go
+regardless anybody's coming
+yeah good morning i know it's monday all
+right
+why did we not put a yield sign in there
+because uh you know when i come to the
+state line i go past it
+and it's like 328 i'm making a left on
+the sagetown road
+this is if you guys know the areas right
+before pine city
+there's a yield sign right there it's a
+t intersection no different than this
+and there's a yield sign right there but
+i have a stop sign right here
+you don't have to stop for a yield
+unless there's what
+oncoming exactly but a stop sign you
+have to stop regardless even it's three
+o'clock in the morning you have to stop
+yeah now remember stop signs with white
+borders around the edge are optional at
+night time
+no please don't take that i'm gonna get
+a lawsuit
+my instructor said they're optional at
+night nine years in a ten thousand
+dollar card plus
+health insurance now
+yield size doesn't work out yeah i know
+edit that one
+cut so here we are we have a stop sign
+do you think people on 549 would be very
+appreciative if we change this to a
+i know a lot of people live on my road
+would love a traffic light there
+because it's sort of on the knoll and
+it's hard to see oncoming traffic
+but a lot of people on 549 are pissed
+off for that
+so we have to settle for a stop sign
+because we're concerned about
+collisions and networking we're
+concerned about collisions
+in fact all this has been logical for
+you guys to be able to relate to see
+behavior
+to see why we do some things that are
+very abstract when it comes to
+networking
+to relate to what's going on here in
+real world we can see things visually
+and they make sense
+but in networking we really can't see
+the signals that are flying through our
+wires or through the air
+to be able to understand why they're
+doing what they're doing in the data
+link it's all about
+controlling the medium in fact we call
+that
+mac media access control
+and so this particular as i re
+develop these homes and call them nodes
+and get used to this a node is a device
+that's connected to a network
+you will have one of the most classic
+topologies
+so this is a logical topology remember
+when it comes to logical topologies
+we're learning about
+behavior how the signals are traveled
+how they're controlled this is called
+bus
+and a logical topology so in
+the bus topology we have collisions
+we have no way of controlling
+who's sending what in fact we don't know
+who's going to send it
+i don't know what my neighbor's
+schedules are
+when they're going to be leaving their
+house and when they're going to come
+home i have no clue
+we call this non-deterministic
+it's unpredictable of the traffic that
+comes down this main line
+since they're all connected and we're
+for using electrical signals that carry
+data
+what happens when you take a copper wire
+and touch it to another copper wire
+you're gonna get electricity correct
+both
+pathways are gonna have electricity when
+is the current applied when it comes to
+when do we put electricity on the wire
+when we're sending data that's what we
+call the carrier
+in fact we call it the carrier signal
+the carrier is the physical attribute or
+identity
+that's used to send data
+what do you think it is when we want to
+transmit something across the airwaves
+what would the carrier be
+over sending things over the airwaves
+over using air
+it's a frequency it's radio frequencies
+right and all radio frequency is just
+electrons flying at high rates
+okay what do you think the carrier is
+going to be if we're sending it using
+fiber optics
+lights all that's covered in the
+physical layer in fact when we get back
+to that chapter you guys will learn
+these
+attributes in themselves the moral of
+the story though is
+if i had this main backbone made up of
+coax
+which is what we used to do back in the
+day we used to call these thick nuts
+and then i had little uh connectors
+t connectors that would tap into these
+and that's what we call them taps
+they're basically all one copper wire
+and the way we would draw that is simply
+like that
+and this became your main line the bus
+and at the end of this bus
+were terminals because the signal would
+propagate
+but it had to end it just couldn't keep
+on going on and on
+so the terminators would stop the
+propagation
+what's the problem with this though
+when one device is transmitting what
+must the other devices do
+they must stop and listen and if i want
+to talk to this node right here
+does this node also get the message
+why would it get the message
+they're tapped to the same wire right
+and when you send electricity through
+that same
+coax the same copper wire what's going
+to happen
+all the devices on that network is going
+to get the signal
+so my question to you guys is what does
+this device
+use to choose not to listen
+it's addressed to you it's me saying to
+hey brian
+what do you think the answer is now
+do you notice there's a common medium
+that connects us all
+what is that medium that connects us all
+the air that we breathe
+right without it i can move my lips
+but nothing's going to come out of it
+right because i suck in this air
+i vibrate it using my vocal cords and
+that vibration produces a frequency
+that frequency vibrates the particles
+that are in this room for lack of a
+better word we're going to call that
+air these
+air particles are going to jam up
+against your drum and your ear
+and it's going to be that ear drum
+converts that signal back
+into a language into sound
+we clear about that your mouth
+and your ears act as an interface card
+your mind has to take that high level
+because we're not born with language you
+guys are taught a language
+this is what we call high level that's
+this level up here
+you guys are programmed when you're born
+every time somebody speaks to you to
+record that
+and try to make sense out of it you're
+being taught
+then it's got to travel through some
+parts of the mind to
+translate it and that's what's happening
+right here
+is that the only form of communications
+that we have
+take a look at my whiteboard if i were
+to turn off the lights
+would you guys be able to see the
+message if we assumed it's all black in
+no so you guys see things through light
+waves correct
+but even if you were to see this and if
+i were to write it in like what's
+squalhili would you be able to
+understand it
+you can translate the white ways
+into symbols but the symbols have no
+meaning to you
+so that's where the physical layer and
+the data link layer come together
+the logical link control is the bridge
+to connect this high level stuff
+to the physical world and the mac
+the media access control will give us
+some kind of
+addressing scheme earlier i addressed
+brian the reason why i addressed brian
+so everybody heard his name is i wanted
+to isolate him out of this shared space
+i said brian what do you think this
+node's going to use
+to determine whether or not that message
+was sent to them
+what did you guys use to determine
+whether or not you're in the clear
+thank god that message had nothing to do
+with me because brian's carrying the
+burden
+what was it yeah his name
+what if i had said hey student or
+what do you guys think
+you would have say i should have picked
+on you first
+surprise surprise
+if this was ethernet if we decide to use
+the ethernet standard
+for this network ethernet uses something
+called a mac
+address it's 48 bits it's typically
+written in hexadecimal format
+okay when the data link layer gets the
+data the logical stuff
+mapped out and gets ready to get it
+framed out
+that's the pdu called for the data link
+layer
+you frame out the packets
+the very f couple of bits or bytes i'm
+sorry
+of that frame is going to consist of
+a machine address a media access
+control address a mac address and each
+of these
+interface cards there's going to be a
+number
+burned into the interface card that you
+cannot change
+and that number now i say that in
+quotations
+and that number will always stay the
+same
+no matter where you take that device to
+let's say if it's your laptop
+and it's mobile you bring it here to
+school you hook it up to the network
+you unplug it you take it home you hook
+it up to your network
+that physical address will never change
+what address will change however
+your logical address do you see where
+the logical's now coming in now folks
+why is that mac address important
+it's for local delivery it allows me to
+send a frame out on this wire
+and for devices that aren't supposed to
+get it to ignore it
+and the device that's supposed to get it
+to accept it
+this is problematic
+it's no different than me telling you
+guys my password to log into the website
+and all i want is marcus to have this
+password
+but i shout it out loud and i say hey
+marcus my password is dog
+you guys choose to ignore it but did you
+have to
+so if you weren't following the rules
+breaking the code violating the trust
+the agreement right because what is the
+network two or more devices connected
+governed by the same set of rules
+if you decide to configure this device
+to listen
+and accept all frames
+then you're violating my trust
+this is one form of topology why do we
+do this
+why do we string devices along together
+go back to the 80s what do you think
+would have been the reason for that
+what's that i'm sorry you guys say
+louder
+okay it's cheaper to establish the
+communication because do you see any
+central devices
+any extra hardware it was all
+inspired by electricity consider these
+outlets
+when you guys plug in your devices into
+an outlet
+doesn't matter which outlet in the house
+you guys plug into
+they're usually strung up like this in
+series correct
+and we call that a circuit
+seemed to make sense this is logical
+however
+we moved on to it and we created a
+physical topology
+that looks more like this
+this physical topology
+is a whole lot different than these
+logical topologies that i drew over here
+what goes in that circle that connects
+those three devices together
+out of all the oh i knew you guys are
+going to say that
+just slow down out of all the devices
+that we've talked about
+this semester which was the only
+intermediary device
+that when they received a frame
+it would pass it to everybody else
+connected to it
+hub so a
+physical
+do you go home and watch these videos
+just to pat yourself on the back
+that's my hair
+all right so a physical topology is
+actually going to tell you
+how to configure them together it's
+going to give you the actual arrangement
+of the devices now i took a shortcut i
+drew it out
+using a sort of a hybrid approach
+because i didn't tell you
+where this hub was going to be located
+naturally you might say put it in the
+wire rack
+in c002 and then some drawings
+will have the wires actually being ran
+the more of the story though is i'm
+actually telling you
+the list of devices that are used to
+connect them together
+i will specify what type of cable should
+be used i might
+say cat5 you guys will learn that in the
+next
+physical chapter i will tell you to use
+a hub
+now some people want to say this is a
+star
+i i'm not a big fan of calling this a
+star topology
+i understand why they want to say that
+because when you look at a star topology
+what does all the nodes have in common
+the center and i can go for that
+right i mean it definitely changes this
+bust apology into that
+so i can believe that this is a star by
+the way
+cisco just says for both of them
+and i like this and it took me a lot of
+years to actually accept this
+terminology
+because when i taught computer
+essentials i was all about the star
+topology
+it's the way to go especially when you
+throw a switch in there but cisco calls
+it a multi-axis topology
+why would cisco group both the star and
+the bus
+into what they call a multi-access
+what do you mean by multi-access
+essentially right because it's like they
+have access to the same
+same information let's not same
+information because we can add security
+to it
+what do they have access to that's the
+and all these topologies that you guys
+see
+the medium that's why we need to add
+that's why we need to control it
+or create some kind of structure some
+kind of rule that'll help give us some
+kind of control
+to the communication process what's the
+multi part then
+what do you guys see more of
+the notes and all these topologies
+i have multiple nodes accessing the same
+medium and because they're accessing the
+same medium
+i have to some create some kind of neck
+sorry some kind of control or some kind
+of mechanism
+to ensure that a collisions won't occur
+that's deterministic or if they do
+occur some mechanism to cope with
+okay no different than on my dirt road
+that when we see each other somebody
+pulls off
+to avoid collisions and if we do
+bump each other we understand that
+happens especially on winter days
+that's why we try to drive slow
+okay that's
+one logical topology
+this typical topology we're going to
+visit again
+and we're going to talk about how we
+improve on it
+using csma cd but another logical
+topology i want to get into is called a
+ring
+more importantly a token ring
+if you were to draw this logical apology
+out what shape would you use
+so here's my logical topology remember
+logical is all about the behavior
+if you guys were to draw this out what
+shape would you use
+circle there we go
+derek could you entertain him we need
+some more attention
+all right here we go we're going to drop
+off a node
+now i visit my brother over in europe um
+they're all about this in fact what do
+they call that
+when you have in fact we have one right
+here in corning i forgot all about that
+see i always come up the back way so i
+don't get the chance to drive around
+this nice little circle that we have
+but there's that big welcoming sound and
+you notice that
+all the access points i mean that's what
+we're getting into
+access right we're accessing the common
+have what type of traffic control
+mechanism
+yields and we call these roundabouts
+europe they love these things in fact
+they love them so much they make
+multiple lane roundabouts
+and it makes you wonder how in the world
+those people actually function
+and what you keep on going around and
+around and around
+and now it's very commonplace for these
+uh roundabouts for people to run into
+each other
+and they think nothing of it i mean they
+drive their cars like you guys do in
+bumper cars
+bump each other throughout there i mean
+when i was over there we took a tour bus
+and our bus ran into another bus they
+just waved each other on like hey how's
+it going
+bump each other all over the place to
+get out because we were in that inner
+lane
+and we need to get over and so five
+o'clock
+it was rome and a bunch of people drive
+these little cars
+and this bus is like screw you i'm gonna
+work my way through and all these cars
+were stopping bumping
+into each other letting this bus go
+through because it's like
+it's fair game well
+rings are like that the important thing
+though and if you want to be a real
+you would go against the grain right
+but the traffic flows in
+one direction correct
+now when we're driving with our cars
+we don't have the concept of token in
+mind
+but we have a rule of a token and that
+is we call it the right-of-way correct
+if you have a yield sign the only time
+you're allowed to go
+is when nobody else
+is on the shared pathway correct
+when you can do it without getting in an
+accident the right away we clear about
+so these devices are allowed to talk to
+only when they have a token
+it's like a microphone if you have the
+microphone you're allowed to talk
+if you don't you have to listen
+what's intriguing about it is and it's
+all based off the implementation
+if this node wants to talk to this node
+can it go this direction
+now it's got to go this direction if
+it's sending a message
+can this node now talk
+when the token comes over here because
+the token will stop here
+why will the token stop here when it's
+leaving here
+to get to this device
+well it can only go that way but why
+would it stop
+to see if that token is the one that's
+supposed to get them sorry see if this
+node is the one that's supposed to get
+the message correct
+because visually you guys are saying
+well it's right here skip this one skip
+that one and go right here
+but electricity doesn't do that if this
+is all the same copper wire
+what's going to happen it's going to get
+the signal
+and what is it going to do with the
+signal
+it's going to read the message and it's
+going to look for a mac address correct
+depending on what standard we're using
+if we're using ethernet it's going to
+look for a 48-bit destination mac
+address
+and say is that me if not pass it on
+all right it decides to see that the
+token has a message the message doesn't
+belong to it
+it passes it on to the next node what is
+that node going to do
+same thing says it's not me i'm going to
+pass it on this node
+sees it it says yes that is me grabs the
+message
+what's going to happen to the token now
+remember the communication process send
+a receiver
+we have the sender making requests what
+do you think that node's going to do and
+it all depends on implementation it has
+the token right there
+it's like watching a news interview the
+microphone's here
+to the anchor person they're asking the
+question the reporter
+so what do you think of the storm that's
+going to happen tomorrow
+then they do what they pass the
+microphone to the other person and they
+talk correct
+this end device receives the message and
+will respond
+and put it back onto this node question
+if that's what happens could it be that
+the only two devices are allowed to talk
+to each other the ones that monopolize
+those
+connection back and forth between you
+and me
+well they're allowed one message
+per so many turns next time it comes
+around says look i've already picked up
+your mail
+now i got to go back to the next person
+this is all limb implementation
+could we improve the efficiency
+what do we know is true about this
+network how many devices are allowed to
+transmit at the same time
+one device right are there going to be
+any collisions then
+so what's the size of our data
+it could be massive correct
+because i don't have to worry about
+collisions what about the addressing or
+the collision mechanisms to detect and
+to recuperate
+very minimal gives me more
+data room better bandwidth better
+performance are you clear about that
+could i string the messages along could
+i keep on adding to the message
+just keep on reading through each frame
+when you find your name in the list
+grab that message away
+it's like a choo choo train it just
+keeps on going around and around
+stopping off the way stations
+and then we add or take cars off
+makes sense and we keep on doing this
+and the data keeps on going around and
+physically do you think we lay out our
+computers in two circles
+would you want to do this in a local
+area network
+why not why
+we do use them and they're very helpful
+and you guys should be very appreciative
+of having this
+too much data
+the more devices you have what do you
+think is going to happen to the latency
+the time it takes to deliver it's going
+to increase right because you have to
+keep on waiting
+it's like going to a town hall versus
+going to an amphitheater
+and having a whole q a session correct
+where does this work how about we
+connect
+cities together let's say this is elmira
+this is coining this is bath and this is
+podunk i don't care but the fact is is
+the data that's transmitted locally
+there's going to be a lot of it
+and if we can contain it in a
+geographical area which we call local
+area network right
+it's not going to bother internet
+traffic and maybe the device
+you're trying to communicate with is
+down the road from you
+and that's fine because once again
+that's part of the metropolitan area
+network
+you see this escalation the base is
+really wide and you work your way up to
+a pyramid
+correct at the point you might want to
+connect to other devices
+other connections there's going to be a
+lot of data there
+but few people using or having access to
+that correct
+so how does this look physically
+this is one
+doesn't way like that all right use your
+imagination
+what makes this network a little bit
+different than a bust apology
+do you see how the n connects back to
+the beginning
+hence a circle yes
+these are great for large geographical
+distances more likely or not we'll
+probably be using fiber
+fiber can only transmit in one direction
+you have a very tiny shroud of glass
+that's just the size of a laser
+the red laser beam if you will and
+because of that
+you will have a light source on one end
+of it
+and a diode on the other and that's
+going to be flickering on and off
+what's nice about fiber and using the
+laser to transmit data
+transmits it faster and for larger
+distances
+what's the burden about it
+it's only one way oh it's extremely fast
+but it's only one way
+but isn't that what we want here we go
+from here to there
+even if we're trying to transmit to
+another city like from new york city to
+los angeles
+others go from city to city to city
+dropping off whatever load i need
+correct think about a train versus a car
+our car gives us our freedom to travel
+when we want to
+non-deterministic where we want to
+when and where a bus
+or a train has schedules
+and they don't have very much stops it's
+like a
+train will take you from new york city
+to like albany
+and it won't stop along the way if you
+need to get somewhere in halfway in
+between
+you're going to stop at albany and take
+a bus to that point or a taxi
+just like subways you guys are getting
+the idea but what's the difference
+a train can handle a lot of people
+with zero collisions because that train
+that's running on that track
+better not have another train going in
+the opposite direction correct
+it's all about control ring topologies
+are deterministic
+they use a token to avoid collisions
+because it's a lot of bandwidth
+larger distances but not very flexible
+like when it comes to point to point
+sorry cereals
+sorry i meant stars or bust apologies
+okay folks
+so tomorrow if you guys come to lab
+weather permitting and all
+we'll be going over vlsms uh wednesday
+i'll be going back
+over some topologies and we'll look more
+into csma
+cd and csma ca read
+chapter 7.

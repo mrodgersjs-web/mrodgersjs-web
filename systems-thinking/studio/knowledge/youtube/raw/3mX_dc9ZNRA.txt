@@ -1,0 +1,247 @@
+A year ago, holding 1 million tokens of
+context for one user took almost 4
+terabytes of memory. Today, it fits in a
+phone photo.
+Two things shipped inside a month of
+each other. One from Google, one from
+[music] DeepSeek.
+Nobody called them a duo.
+They kind of are.
+Google put out a KV cache compressor
+called Turbo Quant.
+&gt;&gt; [music]
+&gt;&gt; DeepSeek dropped V4 with a brand new
+attention stack. And the thing nobody's
+saying out loud, these two are
+multiplicative.
+The long context moat the closed labs
+have been sitting on. That's the story.
+It's not context got cheaper. The moat
+is gone. [music]
+Let me walk through why.
+People have been chipping at this
+forever. MLA cut the cache by
+compressing keys and values into
+latents. QV quantized the cache to two
+bits. KV Quant pushed it to three.
+Sparse attention skipped irrelevant
+tokens. [music] Every year a little
+more.
+And meanwhile, the closed labs, OpenAI
+and Anthropic, even Google, kind of let
+everyone assume that running huge
+context windows [music]
+was just expensive by nature of the
+universe.
+Yeah, Google. Google's the same company
+that just cracked this open with Turbo
+Quant. Left hand, right hand, I don't
+know. You paid the Gemini premium
+because the infra was hard, which, you
+know, was convenient if you were the one
+charging the premium. Then April
+happened.
+V4 is two models. Flash is 284 billion
+total parameters, 13 billion active. Pro
+is 1.6 trillion total, 49 billion
+active. MIT licensed weights up day one.
+Both do a million tokens of context
+natively. [music]
+But the thing to look at isn't the
+parameter count. It's the attention.
+V4 has a hybrid stack. 30-ish layers of
+something called CSA, compressed sparse
+attention. 30-ish layers of HCA, heavily
+compressed attention. They do different
+jobs.
+CSA compresses the sequence 4x, then
+does sparse attention on the compressed
+version, and keeps a little 128 token
+window of full detail around wherever
+you are.
+It's basically, you know what a person
+does when they're reading a long
+document. They skim most of it, pay
+attention around where their finger is.
+That, but mechanized.
+HCA just nukes the sequence 128x and
+runs full dense attention over
+whatever's left. Cheap global reach.
+Don't need nuance, need coverage.
+[music]
+Put it together, and the KV cache at a
+million tokens is about 10% of what V3.2
+needed.
+&gt;&gt; Compute per token is 27%. This is
+measured. vLLM put out numbers, not a
+paper claim.
+Okay, that's one shoe.
+Google Research put out a paper called
+Turbo Quant about a month before V4
+landed. Different team, different
+problem. They weren't trying to build a
+new attention mechanism. They just
+wanted to compress the KV cache that
+already exist after the fact with no
+retraining, no calibration data, no per
+model fiddling.
+The paper has two stages. First, they
+rotate the data with a Walsh-Hadamard
+transform, which, [music] without
+getting into the weeds, basically lines
+everything up so you can quantize it
+without throwing out the shape. Then
+they glue on a one-bit correction term
+that fixes the math so the inner
+products your attention is about to
+compute come out unbiased. That second
+part is the real contribution.
+&gt;&gt; Everybody before them had a bias they
+couldn't get rid of.
+&gt;&gt; The headline result is 4 to 5x
+compression on top of FP16 without
+touching the weights, without a
+calibration set, without changing the
+model. Other methods have hit similar
+ratios, but needed hand-holding. This
+one, you just turn on.
+&gt;&gt; Here's the part I find kind of funny.
+Google didn't release any code. They put
+up a blog post and a paper and called it
+a day. Within two weeks, the community
+had llama.cpp support, vLLM forks, an
+MLX port, and a pip installable [music]
+package. Somebody on GitHub even shipped
+an MLA-compatible fork so it would stack
+with DeepSeek's attention. The research
+was from Google, the implementation was
+not.
+Okay, confession. A few weeks ago, I put
+out a whole video about Turbo Quant, and
+I said pretty confidently that we'd hit
+the theoretical compression limit and
+nobody was going to squeeze context
+[music] down any further. I was wrong.
+Or, you know, half wrong, which might be
+worse.
+Here's where I got it wrong. Turbo Quant
+actually is near the information
+theoretic optimum. The paper proves it.
+&gt;&gt; On its axis, you genuinely can't do much
+better. What I didn't see is that
+quantization isn't the only axis.
+&gt;&gt; You can change the number of bits per
+value, sure, but you can also change
+what values are in the cache in the
+first place.
+V4 does the second thing, completely
+different layer of the problem.
+So, yeah, lesson learned. When somebody
+says we hit the limit, always ask the
+limit of what, exactly?
+&gt;&gt; Anyway, the V4 compression and the Turbo
+Quant compression are not competing with
+each other. They work on totally
+different things.
+V4 compresses the geometry. It turns
+many big vectors into few [music] small
+latents.
+Then, whatever comes out of that still
+lands in the KV cache as numbers.
+Turbo Quant shows up after and says,
+"Cool. Now, let me store those numbers
+in 3.5 bits instead of 16." It doesn't
+care what produced them.
+So, the math actually runs like this.
+Two years ago, a million tokens of KV in
+plain old multi-head attention at BF16
+was almost 4 terabytes.
+MLA and FP8 got that to 35 gigabytes. V4
+Flash's hybrid attention takes it to
+around two and a half.
+Turn on Turbo Quant on top of that,
+about 500 megabytes. A million tokens,
+half a gig.
+That's the size of a couple of photos
+off your phone. To hold a million tokens
+of attention context for one user.
+None of that took a new chip. It's all
+software. Existing GPUs, existing Macs,
+existing everything.
+&gt;&gt; Here is what I actually think is going
+on, and this is the part I'd be loudest
+about if I was sitting down with you.
+The long context pricing tier the big
+labs ran for the last two years. [music]
+That wasn't rooted in physics. It was
+rooted in nobody else has cracked this
+yet. Now, somebody has. Two somebodies,
+actually, working on different layers of
+the same problem. Open sourcing the
+result.
+And the pricing premium doesn't have
+anywhere to hide.
+&gt;&gt; V4 Pro hosted API runs $1.74 in, 348 out
+per million tokens.
+Claude Sonnet is 3 and 15.
+&gt;&gt; Gemini Pro is 2 and 12. And V4 is MIT
+licensed, so, you know, if you have the
+hardware, you don't even pay that.
+&gt;&gt; I don't think anybody walks this pricing
+back up. That's the part. Now, the
+caveat. V4 is not beating the absolute
+frontier [music] at everything. On
+coding benchmarks, it's roughly tied
+with Claude Opus 4.6 and ahead of Gemini
+3.1 on a couple. On reasoning, it trails
+Gemini by a few points.
+DeepSeek said it themselves. They're
+still 3 to 6 months behind the absolute
+best. That's their own words. So, this
+isn't a V4 is the best model take. It's
+[music] not.
+But 3 to 6 months behind with a tenth of
+the KV cache and MIT weights is a
+fundamentally different conversation
+than where we were a year ago.
+&gt;&gt; That gap used to be years, and it used
+to be a secret. Now, it's a quarter or
+two, and it's on GitHub.
+&gt;&gt; One more thing quick, and then I'll
+stop. The hardware side is also moving.
+Apple shipped RDMA over
+&gt;&gt; There are people running trillion
+parameter mixture models in their living
+room right now on hardware that costs
+less than a used car.
+None of that is the point of this video,
+but it's the direction. Software got 8x
+more efficient last month. Hardware is
+catching up a lap behind. And the thing
+that closed labs used to sell, which was
+really, "We have the GPUs and the
+tricks, and you don't," is getting less
+true every [music] quarter.
+Which, if you're into running your own
+stuff, is kind of the whole reason you'd
+run your own stuff.
+So, yeah, I don't know where this lands
+in 6 months. Maybe the closed labs pull
+another rabbit out and the moat comes
+back. Maybe the open side keeps climbing
+and the API tier we've been paying for
+just kind of becomes a fallback you use
+when you're on a laptop. I don't know.
+I'm not here to predict it.
+I just know the moat I thought was real
+this time last year isn't really there
+anymore. Half a gig of KV for a million
+tokens on a model I can download. That's
+not That's not what a moat looks like.
+Paper links and the research doc are in
+the description if you want to poke at
+the numbers yourself. I'll probably end
+up running V4 Pro on a pair of Mac
+Studios in a future video if people want
+that. Let me [music] know. Anyway,
+that's the thing.

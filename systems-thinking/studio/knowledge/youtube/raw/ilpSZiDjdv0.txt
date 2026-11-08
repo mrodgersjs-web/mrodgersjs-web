@@ -1,0 +1,668 @@
+foreign
+welcome back hope you enjoyed your break
+our first speaker for this session will
+be
+David rollinson
+he will be talking he will be giving an
+introduction to causal inference with
+python I'd like to welcome you on stage
+[Applause]
+okay
+hopefully that's going to pop up
+all right thanks um yeah great to be
+here and um I'm really excited to be
+talking to you today about causal
+inference with python it's a topic that
+I've been increasingly passionate about
+over the last few years because I've
+seen sort of how much it can really
+impact the way that we do data science
+and machine learning in Industry then
+this Talk's going to kind of have two
+parts the first part I'm going to try
+and convince you that you also should be
+interested and passionate about cause of
+inference and more broadly causality and
+then in the second part we're going to
+work through a simple example with a
+python Library called do wise which
+enables you to calculate you know cause
+and effect
+um in Python
+so as soon as you start sort of looking
+into
+causal inference you'll encounter this
+term causality and at first it seems
+like it's a bit of a sort of nebulous
+concept and really it it kind of doesn't
+have a very specific definition it sort
+of encompasses a range of topics around
+the science of cause and effect and this
+is a topic that actually is everywhere
+there are many questions that you'll
+encounter in you know a data science
+role which are inherently causal and you
+know if you look out for the the words
+in red here like what would happen if or
+why did this happen like I call these
+questions inherently causal because to
+answer them properly you really need an
+understanding of causation not just
+Association or correlation
+what's interesting is that most of the
+machine learning models that you'll
+encounter are not explicitly causal even
+when they're trying to address these
+causal questions
+and one of the things I often encounter
+talking to sort of particularly machine
+learning and AI people is well can't you
+do predictions with an associative model
+and it's true you can I mean that that's
+one of their sort of core capabilities
+but what's different is with a causal
+model you're more likely to get accurate
+answers when you are asking questions in
+a changed context so the statistics of
+the data that you're going to use the
+model in are going to be different for
+some reason and that difference can
+disrupt an associative model but
+hopefully a causal model will be able to
+handle those disruptions because of the
+causal modeling so for example if you're
+going to make an intervention which is
+like a change to the system then that's
+going to change the statistics and you
+want the model to be able to deal with
+that then a causal model would be
+preferable and of course it may be not
+an intervention that you're making but
+an intervention that you can't control
+such as climate change you're aware that
+it's coming and you can sort of have a
+bit of an understanding of the effects
+that it might have and you want to model
+that
+in uh in a lot of research that we see
+particularly sort of observational
+studies we often see a statement like
+you know doing X May reduce the risk of
+why and you know this this guy
+um on Twitter or X or whatever it is
+this week
+um he he said you know this is a
+explicitly causal statement but then
+later on in the paper you've got a
+statement like oh well you know this is
+just an associational study so you can't
+actually say anything about cause and
+cause and effect
+um so it's almost like you know
+Schrodinger's cat right where the study
+is in two states at the same time yeah
+you one thing to draw this sort of
+causal conclusion but you know you're
+not allowed to say that so I feel like
+there's a sort of you know internal
+contradiction and you know if people
+were aware that it is actually quite
+easy to embrace and ADD thinking about
+causality into these studies then they
+would do it a lot more often
+and it's not just the researchers maybe
+sort of hedging their bets about whether
+the research is covering causality or
+not
+um there's also been Research into the
+perceptions that people draw from
+associative studies like if they read
+that you know there's an association
+between X and Y people often draw the
+conclusion that X causes y
+which you know may be true but it may
+also not be true and in fact there's a
+huge number of examples showing that you
+know it very easily can be a sort of
+spurious or false correlation in fact
+this this guy Tyler vegan the website at
+the bottom there yeah he's got a whole
+website full of hilarious sort of
+correlations that don't have any real
+causal relation just to show how easy it
+is to discover you know a false
+relationship
+there is one uh experimental design that
+people widely understand do establish a
+causal relationship and that's called
+the randomized control trial and and or
+RCT and an RCT has two key elements that
+enable it to do that the first is
+randomization so whatever the factors
+that you know affect that whole study
+population they're going to be present
+in both groups that you produce because
+you've randomized the assignment of
+people to those two groups whatever
+those confounding factors are they're
+going to be present in both groups and
+then you make some Interventional change
+to just one of those groups and then
+that enables the combination of the
+random assignment and That change to
+just one of the groups allows you to
+make that conclusion that the the
+differences between those groups are due
+to the intervention and they're not due
+to other factors that were sort of
+hidden in the background
+but randomized controlled trials are not
+always Pro possible they're not always
+practical so for example if your
+question is about something that's
+happened in the past and obviously
+unless you can time travel you can't go
+back and change that and see what would
+have happened
+um there are also many situations where
+it's you know unethical or impractical
+to do a randomized control trial so for
+example you can't get you know a group
+of kids and then get half of them to
+smoke 20 cigarettes a day for 20 years
+sort of see what might happen so if you
+can't do a randomized controlled trial
+can you still model causality and the
+answer is yes
+you basically need these two things so
+first you need some data and secondly
+you need a cause and model and there's
+many types of causal model
+but most commonly the way that you
+produce the model is either by drawing
+on the knowledge of experts and that
+process of sort of gathering and sort of
+discussing and teasing out that
+knowledge is called elicitation
+or you can learn the causal model from
+the data and that's called causal
+discovery
+so causal inference is the process of
+you know using the model once you've got
+it Discovery is the process of learning
+a model from data and elicitation is the
+process of learning a model from experts
+and there can be a bit of mixing right
+like you can get some expert domain
+knowledge and use that to restrict the
+range of models for causal discovery
+so in my day job I work for wsp
+um an engineering consulting company and
+what's really sort of drawn me to the
+sort of causality space is just the
+number of opportunities that we
+encounter where we have clients with
+vast quantities of detailed historical
+data and because a lot of these sort of
+infrastructure Engineering Systems they
+also have expert domain knowledge of
+these well-defined well-controlled
+systems and the types of questions that
+they come to us and ask us to solve are
+often causal questions so for example in
+you know managing a lot of the sort of
+critical infrastructure that we have
+around Australia we get questions like
+you know over the last 10 years we've
+invested X millions of dollars in
+applying these policies to renew like
+pipe networks or Road networks you know
+if we had invested a different amount of
+money or if we'd invested in different
+practices or policies or Technologies
+what would have happened like what would
+have been the service level of our
+Railways or our roads under the those
+conditions and so all of these questions
+they generally they cause all questions
+because they involve exploring the
+outcomes that would have happened under
+different conditions that aren't
+represented in the data
+so that was the first part of the talk
+where I tried to sort of convince you
+that you should be interested in in
+causality
+the second part is sort of looking
+specifically at a python Library called
+do Y which I've been working with quite
+a bit and do why is part of a uh a
+package well not a package an ecosystem
+they call it um called Pi Y which
+contains a few major packages do Y which
+is about causal effects it kind of Mel a
+lot of the people working in the causal
+inference space come from econometrics
+and epidemiology
+and so they brought in a lot of their
+methods and causal Learners called
+Discovery algorithms
+and this talk is going to mostly focus
+on the do Y part and do what is well
+documented the user guys it's all on Pi
+Y and actually you know the user guide
+is not just the bare bones of um you
+know this is this is how you install it
+this is how you you how you do one
+simple introduction it's actually pretty
+detailed it covers a lot of sort of
+background Concepts so it's a really
+quite a recommended read
+I'm going to show a few clips of code
+for the rest of the talk and that's
+actually in a public GitHub repo which I
+just made for this talk so if you want
+to go have a look at that afterwards
+then you can you can have a look at your
+what's happened play with the code like
+maybe do some experiments of your own so
+everything there it's very simple
+one of the things I really like about do
+y is that it imposes this sort of
+four-step process on modeling a sort of
+causal inference problem
+and the four steps are firstly model the
+problem and I'll explain what these are
+as we go uh secondly we'll use that
+model to identify an estimate we'll use
+the S demand and your data to estimate
+an effect and then finally the fourth
+step we will try to refute that estimate
+okay so to try and explain what those
+words will mean we'll go through a bit
+of an example
+the example that I picked is called the
+Lalonde data set it's it's really old it
+was you know it's from I think the the
+late 1970s and it's very simple a small
+data set
+um and essentially what had happened is
+they had a training program and they
+wanted to understand if that training
+program had actually produced a benefit
+to the people who participated in it and
+so they looked at the wages of
+participants three years later in 1978
+and then compared to another group of
+people who hadn't participated in that
+program and so the question so the data
+you can see there this this data is in
+the in the repo uh essentially there's
+two columns that we're really interested
+in you know whether they undertook the
+training and then their wage three years
+later which was 1978 I told you it was a
+very old example
+um and there's a few other columns which
+are sort of variables that they thought
+may have also affected the answer
+so remember I said that to do causality
+without randomized control trials you
+need two things so firstly you need some
+data and we just looked at that CSV file
+and then secondly you need a causal
+model and so the next thing we need to
+look at is how you can describe a causal
+model in do y the python Library
+so do I want you to provide your domain
+knowledge about the system in question
+as a directed a cyclic graph directed
+meaning that there are arrows
+essentially between the variables and
+variables are just like the columns in
+your data file effectively right so
+and acyclic means that there are no
+Loops right so those are those are the
+only sort of constraints that we have we
+need that graph to include at least the
+treatment which is the the cause that we
+want to vary and the outcome that we
+want to understand the effect on the
+outcome right
+there is this aim that you want to
+include in that graph all of the
+relevant direct causal relationships so
+you don't want to include just a you
+know a correlation you only want to
+include a relationship where it's a
+causal one we there's a bit of sort of
+judgment and sort of expediency
+practicality to sort of deciding which
+variables and which interactions to
+include
+that is a whole sort of Topic in itself
+but um you know one tip I can give is
+like you can always create multiple
+models and compare the results with
+different models one of the great things
+about creating this graph is that it
+becomes a specific precise documented
+description of your assumptions and
+beliefs that you're bringing to this
+study so whereas if you'd just done one
+of those Schrodinger's
+studies before like essentially all of
+this would have not been stated right
+whatever assumptions you make about
+confounding variables is just kind of
+left for the reader to sort of interpret
+whereas if you Embrace causality and you
+sort of draw a causal diagram a dag like
+this and you're making those assumptions
+explicit
+so even if they're wrong at least people
+can see what they are
+now do I want you to provide the causal
+model as a string which you know is
+visible on the left there and looks a
+bit complicated so I'll just sort of
+break it down so we can understand how
+it works
+the first part is essentially we're
+declaring the variables and if you
+remember I said that the variables are
+essentially just the relevant you know
+you don't have to use all of them the
+relevant columns in your data file so
+you can see the variables are
+essentially The Columns there
+and it's in this in this string we
+essentially just to declare them all by
+listing them by name
+and once we've declared the variables
+the next step is to create the edges in
+our graph and um yeah it's a good
+starting point is basically to say well
+in this case there is an edge there is a
+causal effect between the whether the
+participant
+received the training course and their
+wage now in this case that's a direct
+effect it doesn't have to be it might be
+that you know doing training affects
+some other variable and that other
+variable affects wages but in this case
+it's direct and to explain to do why
+that you've got this direct effect you
+just use this Arrow operator you can see
+it in the red box on the left
+the so having having sort of created
+that first Edge we can just sort of keep
+populating the graph with all the other
+edges just by sort of adding them to
+that string so in the next one we sort
+of consider well what's the impact of
+you know the number of years education
+that person has had and you sort of
+consult with your experts and they say
+oh yeah well that would affect you know
+wages as well and actually in this study
+it affected whether people were eligible
+for the training program as well so we
+sort of represent that by adding those
+two edges there
+and then the rest of the string is
+essentially just repeating that and
+adding all of the other edges and I
+don't claim this is like a correct
+causal diagram this is you know just an
+example but um you know essentially it's
+a representation of the string on the
+left there
+so that was the first step and that was
+like really like the the bulk of the
+work that you have to do as a user of
+the do y Library
+once you've you've created that that
+graph as a string and you've got your
+data as a pandas data frame you
+essentially pass them both into an
+object that do y equals a causal model
+and you say the treatment here is the
+training variable and the outcome is is
+these the wages in 1978 and you pass in
+the data in your graph that's it for the
+first step
+the second step is then we do a thing
+called identify effect all of the
+remaining steps are literally just one
+function calling it's like it's actually
+very easy
+um as I mentioned earlier like using
+identify effect will produce a thing
+called an S demand which you may not
+have heard of before essentially an
+estimate is a way to estimate the
+desired quantity so it's it's a sort of
+it's a strategy or like a procedure that
+will enable you to calculate the the the
+quantity that you're interested in and
+it's worth noting that it's not always
+possible so you can create a graph where
+there is no valid estimate it's also
+possible to create a graph where there
+are multiple estimands in which case it
+will return them all and you can choose
+between them
+so in this case we've gotten a backdoor
+s demand
+and the other thing that's happening
+under the hood when do y is doing this
+identification step is it's analyzing
+the graph that domain knowledge you've
+provided and it's working out the roles
+of all the variables in this problem and
+and this is a really key step right
+because it's understanding which
+variables you should be controlling or
+conditioning for
+and also which variables you should not
+be conditioning for and that's really
+interesting because some people sort of
+kind of think well I should just control
+for as many variables as possible but
+that's actually harmful in in some in
+some situations and can actually sort of
+eliminate or bias incorrectly the effect
+that you're looking for so that that
+sort of analysis of the graph is really
+important
+and to sort of illustrate you know the
+the effect that that can have there's
+this this phenomenon known as Simpson's
+Paradox and uh in Simpsons Paradox what
+happens is you've got this this whole
+study population where you know the
+relationship between some property X and
+some property y has a certain you know
+Direction so you can see this strong
+magenta line there basically saying like
+an increase in X decreases the value of
+y and that is true over the whole
+population but if you bring in this
+additional variable which actually
+divides the population into these four
+color groups then within each of those
+groups the relationship between X and Y
+is completely opposite
+so if you hadn't brought in and control
+for that variable appropriately then
+your conclusion would have been the
+opposite of what it should be now
+hopefully that sort of intuitively makes
+sense in this example you can kind of
+see how that works but without the
+coloring it's actually really hard to
+grasp out two totally different
+contradictory outcomes can be possible
+in in one set of data
+the next of our third of our sort of
+four steps is estimating the effect yeah
+again it's just a single function call
+it's very easy to do you can select from
+a range of models that are built in and
+supported by do y and you can also
+access models from the econ ml package
+as well and so having done this in our
+data set we get this result that the
+cause of estimate is 1629 and in this
+case it's 16 29 dollars more and because
+we've got a causal model we can actually
+make a causal interpretation which we
+can say you know as a given as a prior
+sort of assumption that graph that that
+domain knowledge that we provided if you
+accept that as being correct then on
+average completing this training course
+causes participants to earn one thousand
+six hundred and twenty nine dollars more
+than not completing the training right
+so you see by bringing the sort of
+causal analysis and the causal model
+into the study we're able to go from a
+sort of a statement about you know one
+variable being associated with another
+to actually have sort of causal
+interpretation
+the the next and sort of final step in
+the in the do y Paradigm sort of how to
+handle causal inference is refutation
+and basically that means sort of stress
+testing your uh your model to sort of
+see is this a real effect like you might
+not really be sure from the magnitude of
+the variables whether this is like a you
+know a weak effect but legitimate or
+maybe it's a strong effect but it's sort
+of like biased or confounded in some way
+and so do I provides a number of tools
+to enable you to sort of gain confidence
+and sort of understand your how
+statistically robust that effect is and
+you can access all of them through the
+refute estimate function you basically
+specify the name of the test that you
+want to do so in this case you can see
+what I've done is I've used a placebo
+treatment which essentially means we
+randomize all of the treatments but we
+keep the outcomes and all the other
+variables the same and because we've
+randomized the treatment we would expect
+that effect to disappear and in this
+case fortunately it does effect has gone
+down from 1600 to just two dollars so
+it's pretty much gone
+now there's one extra bit that I wanted
+to sort of add to this talk which is
+about counterfactual outcomes so a
+counter factual outcome is like looking
+back and saying well what would have
+happened if if things were different
+like if we did something differently and
+yeah the great thing about having a
+cause and model is we can actually we
+can actually answer this right so we can
+first look at what actually did happen
+to the participants in this study and so
+the red box at the bottom shows that if
+you look at the average outcome of all
+the participants it's five thousand
+three hundred dollars average wage in
+1978 been a lot of inflation since then
+and um
+if we look at the outcome for just the
+control group who didn't receive the
+training it's the average wage is 4 500
+and the average outcome for the treated
+group who did receive the training is
+six thousand three hundred so yeah at
+surface level it looks like you know
+there was uh an increase in wage for
+that group which matches our sort of
+causal effect that doing the training
+did increase their wage so that's all
+looking good
+so do wife revise this thing called the
+do operator and that is a way to access
+an intervention or to apply a
+counterfactual scenario and so uh to
+illustrate that I've added a couple of
+extra outcomes so firstly the outcome
+over all the participants if if none of
+them received any training the average
+outcome goes down from 5 300 and it goes
+down to four thousand six hundred so you
+can see that if we take away the
+training then all the participants kind
+of become more like the controls
+and we also have accounts factual
+outcome as if we if we did provide
+training to all the participants so that
+increases the average wage to 6200 and
+those numbers kind of make sense right
+because they look it basically makes the
+population look more like the you know
+the the population who did receive
+training or we can make the population
+look more like the ones who didn't
+and that's really the sort of you know
+one of the key powers of this is that it
+it enables you to answer questions like
+well what if we rolled out that program
+more widely like what if we replaced all
+of these old devices with some new
+device you know what would actually
+happen and this allows us to sort of
+answer those questions
+before I wrap up just want to quickly
+mention an app that that I created based
+on based on the Dubai library and um and
+really this app aims to make some of the
+topics we talked about today like
+causality accessible to a wider audience
+and specifically like trying to sort of
+make these techniques available to
+scientists and you know engineers and
+other people who aren't necessarily data
+scientists or python developers so
+they're not able to sort of access you
+know libraries like do wire directly
+and that app includes a causal diagram
+editor that enables you to sort of
+explore you know how different sort of
+models of your system would be
+represented and how you can use them in
+your studies
+so that pretty much wraps things up
+um I hope I've sort of made you at least
+made you intrigued about you know
+causality and causal inference I mean I
+believe that we should be using these
+methods more widely sort of discussing
+them sort of thinking about cause and
+effect and explicitly in a lot of
+especially observational studies there
+is this particular opportunity we're
+seeing where you know there's
+organizations have a huge amount of
+historical data and they've got that
+detailed domain knowledge that makes it
+very sort of accessible there and if
+you're thinking about doing cause of
+inference then I recommend do why it's
+under active development it's easy to
+use
+um and yeah as mentioned the code for
+this talk is available in the link there
+thanks for listening

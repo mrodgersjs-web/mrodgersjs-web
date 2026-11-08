@@ -1,0 +1,1728 @@
+today's session is in the file we're
+going to be learning about the science
+system organization i'm very excited i
+hope you all are as well
+we have the wonderful steve dennis today
+from onsido who is the product design
+lead and he'll be taking us through what
+they do how they structure everything
+and all the glorious things that he's
+been doing behind the scenes uh at on
+vedo there
+there will be a q a session at the end
+where i'll be collecting questions from
+all of you to ask him but please make
+sure you ask questions throughout i will
+be happily interrupting him throughout
+the entire session to make sure we do
+get everything covered and we'll go from
+there
+this is a fake jam file that i'm going
+to be collecting questions in as well
+which i'll paste in the chat shortly and
+it has a little some information here as
+well about how you can start to use big
+jam and just add some stickers in here
+i've already added one a very important
+question in here which i hope you can
+all agree with and i'm looking forward
+to seeing your questions in here as well
+and i'm just going to hand it over to
+steve to get
+going um hey everybody uh hopefully you
+can hear me fine um i guess i'll just
+introduce myself i'm steve dennis i'm a
+product design leader don pedo um if you
+don't know on fido uh on fito helps
+businesses verify their identities uh of
+their users um we use ai to assess
+whether a user's government issued id is
+genuine and they're compared and then
+compare that against their facial
+biometrics so if you've signed up to
+like a challenger bank like revolut or
+monzo or something like that you've
+probably gone through a having to take a
+photo of your face um and there's a good
+chance that's that's us
+um
+yeah
+i've been
+a product designer well i've been in the
+design industry for
+shockingly nearly 20 years and two weeks
+it'll be 20 years um
+started out working at agencies in new
+zealand sort of doing web design and
+that sort of thing
+and then when i moved over to london
+about 11 years ago
+sort of made a shift into product design
+had a little stint doing product
+management
+for a couple of years
+and
+then decided to get into sort of design
+management from there
+and it's only really been i guess over
+the last
+three or four years that i've really
+sort of developed a uh an intense love
+for design systems and and trying to
+build good ones
+all right
+let's do it
+yeah cool so um a couple of years ago um
+pontfeto was very much uh in the sort of
+sketch and abstract ecosystem that was
+that was a design tool of choice and
+we were a design team that was almost
+entirely based in london at that stage
+and we had an engineering office in
+portugal and uh had uh just started
+hiring designers over there
+um and we were finding that the uh the
+kind of day-to-day collaboration uh in
+those tools was not really
+um at the level that we would that we
+would like it to be um the team over
+there was feeling like quite distant
+from from the rest of the team um and we
+were just like looking for a way to to
+kind of solve that
+uh so
+i'd heard about figma it was it was uh
+one of those things that um a few kind
+of big
+companies like um deliveroo i think uh
+and a few others it sort of started
+adopting so i heard about it through the
+community
+um got really interested and just
+decided that we were gonna uh
+try it out and see if it would sort of
+fit our needs which obviously it did
+and i guess the the way that we sort of
+approached it uh
+i imagine most people on the stream have
+probably adopted figaro at this point so
+i probably won't spend too long on this
+but um
+the way that we did it was
+uh
+we basically had a very very small uh
+project and small team um that we sort
+of decided was going to get kind of
+piloted i guess um so we worked uh on a
+sort of single project um for i think
+around three months
+uh just to sort of evaluate it um
+working between portugal and london uh
+seeing if it did sort of solve the needs
+that that we imagined it would
+after that pilot i basically put
+together a uh pitch deck um uh
+explaining
+the uh what i saw as the benefits maybe
+some of the downsides at the time and
+just sort of open up conversation and
+try and uh
+arrive at a decision
+i'll just like click through a couple of
+my stuff
+out of interest on that pilot project
+what was involved sort of the scale how
+many people were there what was the
+problem
+it was a public facing website and it
+was um myself and uh one other designer
+from uh based on portugal
+a few sort of engineers front front and
+back and engineers
+it was
+we had just sort of gone through a like
+big rebrand and uh
+we didn't have a design system in place
+at the time that was like
+what i would now quote-unquote consider
+a design system was essentially a sketch
+ui kit
+item that the designers are using
+um but it didn't have to fronting
+components and things like that
+so
+it was like it was sort of a brand new
+design and we couldn't start relatively
+fresh
+there wasn't on it
+a lot of like existing screens and stuff
+that we needed to support over it was a
+nice sort of easy self-contained project
+this was this was sort of like my
+attempt to visualize how we were kind of
+working in abstract and sketch
+beforehand um
+it's sort of like the nice um before and
+after
+the
+we were using branches really
+extensively but with the way that
+branches and abstract and sketch were
+working it was really really tough for
+other people to be able to kind of jump
+in and uh comment on on things and um
+and sort of like collaboratively work on
+something there's lots of merging
+and stuff to deal with
+so yeah obviously this uh does not look
+very good there's a lot of tools
+involved lots of um different tools for
+for hand-off and prototyping with uh
+marvel and zeppelin
+and yeah this just made a lot more sense
+to us at the time obviously the the
+actual process is not quite this simple
+but um we can go into that a little bit
+smoother um
+yep
+uh and then
+we had um
+some people obviously like a little bit
+of hesitance and stuff so um we made
+sure to uh that the pitch deck wasn't
+just like a this is amazing you should
+use this it was like like this is a big
+decision for the company and there's
+going to be one that's like going to be
+difficult to reverse and stuff like that
+so we want to make sure that everybody
+was on board to the journey
+um so we did yeah take things seriously
+like um offline support being uh not as
+good as uh schedules at the time
+um there was a lot of discussion around
+multiplayer versus branching and how we
+would sort of deal with that uh in a
+world where branching didn't exist
+something we had seen with uh
+other products um is that when uh a
+product sort of tries to do everything
+sometimes they don't do certain parts of
+that as well
+um and going all in on a tool that was
+trying to do um everything uh we just
+needed to make sure it had sort of
+interoperability with with other uh
+other apps if they did sort of a
+particular vertical better
+[Music]
+and then i guess just like a mind
+mindset change around
+sharing and collaboration
+and having people very very used to the
+way of working of like working in their
+own sort of little private silo and then
+sharing when something's quote unquote
+ready um
+and that was just a barrier that we
+needed to kind of knock down and try and
+make everything as open and transparent
+as possible
+yeah they're generally a good practice
+really to be to be open and yeah
+available available for feedback whether
+it's from a designer product manager
+engineer
+ceo if they're like
+it's really good to try and
+encourage people that that's actually a
+good thing and it's comfortable
+i think i think one of the things as
+well is that uh i think people
+i think people overestimate how much
+time people have to kind of jump into
+figma files and see their work in
+progress like everybody is so so busy
+that realistically like nobody's going
+to look at your figure file unless you
+ask them a lot of the time so
+so the other thing we did once we sort
+of made the decision to switch over one
+of the big areas
+was
+what we were going to do with our
+existing kind of ui kit design system
+quote unquote um from sketch
+to figma and
+and then i guess how we were going to
+port across like all of it all of our
+screens and working files and stuff like
+that
+um so we had a
+hack day or a couple of days hack week
+um land in the middle of this project so
+as part of that project i basically
+decided that i was going to take a
+couple of designers and try and
+basically recreate the
+entire sort of ui kit that we had in
+just a couple of days
+and ended up presenting it back
+basically as this
+had an app that was taking a screenshot
+every 30 seconds uh and just had the
+entire sort of four days of us building
+out this um this design kit that uh that
+ended up being presented in about a
+minute and a half or something
+wow along with a uh a nice sort of
+um demonstration i guess of it being
+used um at the end and kind of how easy
+that was to use um so we managed to get
+that bulk of it at the time done and i
+couldn't be something that was something
+you actually advise people to do is to
+take a look at whether they need or want
+to just rebuild it it sounds like it was
+pretty quick for you
+whenever people ask me kind of like how
+to import files from sketch into figma
+my advice is always to uh to
+use the import and then treat it
+essentially as a screenshot and then
+rebuild uh all the components and and
+screens and everything uh essentially
+from scratch um
+it's a bit better than a screenshot so
+you can copy and paste text and that
+sort of stuff becomes easier but um i
+think the the differences in how sigma
+deals with um libraries and components
+uh is is very very different and i don't
+think you'll get nearly as many benefits
+if you just try and import things and
+have them work exactly the way they did
+in sketch yeah i think mainly because
+you want to make use of our extra
+features like auto layout variants that
+sort of stuff yeah exactly
+the layer on top um so i think that my
+advice usually is
+yeah you can import it you can get going
+you can start using things but you can
+in order to make the most out of your
+figure experience
+take a little bit more time to tweak
+those little little things and connect
+other libraries out split your libraries
+up probably as well
+because it's a great opportunity to take
+analysis of where you are where you want
+to go as a design systems operation
+let's take a look at the structure side
+as well then let's take a look at the
+next next bit
+uh yeah um
+so should we talk about uh should we
+talk about sort of how the
+our sort of process is structured in
+terms of in terms of working with sort
+of working files and stuff yeah i'd love
+to see it
+yeah okay
+we uh i'm just trying
+um so when we switch over to figma
+obviously the the lack of branches at
+the time uh was was a thing we sort of
+needed to work around and we ended up
+kind of coming up with sort of like a
+manual branching system i guess
+where we have um what we call a source
+file which is uh
+basically the
+closest thing to sort of the live
+screens um that we sort of have it
+doesn't obviously stay exactly up to
+date with what is live because the code
+is sort of the source of truth but um we
+try and keep it as up to date as we can
+that file basically acts as like the
+easy starting point for a new project if
+um if you're going to be adding or
+modifying screens um you basically just
+copy and paste those screens to a sort
+of work in progress um templated file uh
+which i'll show you the structure for in
+a second
+um do the work in that work in progress
+file
+and then once you get to the stage of
+having sort of final signed off screens
+and flows um
+adding those screens back manually to
+that source file and then archiving that
+work in progress file
+we find that the
+having all of that sort of
+working progress and thinking and sort
+of annotation and comments and stuff
+preserved in that archive file can be
+really helpful for people if they're
+trying to figure out you know why a
+particular decision was made or like
+what other avenues were explored and
+things
+um which is uh
+something that we haven't really been
+able to recreate with the current figma
+branching system so we're sort of trying
+to figure out still where that fits into
+this workflow at the moment yeah it's
+just sort of uh
+probably
+as a way to like feed back into the
+source file we might make a branch
+put all the screens in and immersion
+back in
+on the source file is that just
+designers looking at that one
+we
+we try and keep things in a state where
+uh if somebody needs a screenshot of
+something for like a piece of marketing
+or something that is a relatively safe
+place that they can go and explore those
+if they need to
+um realistically i don't think that
+happens all that often at the moment um
+but uh we have a team of sort of brand
+designers who were able to jump in and
+get those and then sort of clean them up
+for whatever marketing they need
+would you typically advise to just use
+the live product as the marketing
+material
+ideally if you can like if your live
+product is uh as polished as you would
+like it to be um then uh then definitely
+um the the thing that uh we run into
+issues there of course is that our
+products are just completely full of
+personal identifiable information so we
+have to have all that stuff scrubbed out
+really it's uh it's a lot easier to just
+sort of scrub that stuff out and work in
+progress fast
+sure all right let's uh let's move on to
+next bit then
+yeah i was gonna i was gonna just uh
+sort of show you through this actual
+like project template file that we have
+so we have uh
+this is actually a little bit out of
+date there's some cover sheet with uh
+jira ticket numbers um project name
+which is then recreated in the in the
+title as well to just make either ticket
+numbers or um or project names really
+easily searchable by people if somebody
+doesn't quite know what something is
+called they can just type in a ticket
+number and find it
+um we'll have like the primary design
+contact um sort of select from our from
+our variants here
+uh and then just have a basic sort of
+page structure um which has
+expiration which is like your permission
+to be absolutely as messy and all over
+the place as you want to in this um and
+then
+add pages basically for
+each stage of review or sign off or
+whatever just so you can take your
+complete mess
+figure out like which of those screens
+you want feedback on and then um and
+have some sort of structured feedback
+and commenting around that
+um we did have uh a more kind of
+structured um like three or four pages
+uh that went through like different
+stages where you should probably get um
+feedback
+um and as part of our sort of ongoing uh
+improvement of the stuff um people were
+like i'm not really using these pages or
+i'm needing different pages um than the
+ones provided so we just uh we just
+generalized it to
+add pages as needed
+um and then uh uh hand-off page so that
+developers always know that
+this page is the one that they use sort
+of canonically for for when they're um
+when they're implementing things
+yeah but on the file name
+when when is uh
+when is it named project when is it
+named ticket
+that is sort of a little bit up to the
+person uh designing it we don't have a
+part and fast rule around that
+the ticket number and jira like could be
+a specific piece of work or it could be
+like an epic or something um
+uh it's just whatever the person thinks
+make makes the most sense of that stated
+okay cool and i noticed that you've got
+a really nice naming structure in your
+projects as well could you have a text
+through that one
+um yes
+so uh this is specifically for the uh
+design system that we use this sort of
+very very structured numbering thing um
+you can see here for one of our products
+customer platform which is what i work
+on
+um we have our kind of uh source files
+here and then um our sort of work in
+progress um directory uh which is sort
+of separated out um then we have our
+archive down here which we can just sort
+of easily drag us off to us as it's done
+but yeah i mean i feel like people are
+probably most interested in the design
+system aspect of this so maybe i can
+dive into that a little bit
+decided to um basically adopt this like
+double digit
+uh in front of all of our naming things
+for
+virtually every part of the design
+system
+so when we uh let's say the components
+file all the components are kind of
+numbered and stuff as well
+um this was mostly just to uh
+give us
+better control over over ordering of
+things and making sure that um things
+were in a uh
+expected place when when people wanted
+to find something
+um the way that uh figma sometimes
+handles um
+where like special characters or
+something maybe at the start of a file
+name whether it'll be at the start or
+the end it can be a little bit uh fuzzy
+sometimes so um this was the uh the most
+consistent um naming mechanism that we
+can find at that stage
+yeah so we have uh
+we have our design system sort of split
+out into a couple of different areas we
+have our core which is our um mostly our
+colors and our typography
+we have assets which is our um icons
+logos and illustrations for marketing
+um and then our components which is sort
+of the
+standard design system components
+um patterns uh is still like very much a
+work in progress um the design system
+that we're working on is i think
+relatively small in terms of in terms of
+design systems um and still quite quite
+early on in its cycle i would say um but
+uh yeah patterns is where we wanna
+eventually get um
+uh sort of best practices for forms and
+particular types of uh
+information and so would that be
+organism level components
+okay and that's the most of them
+yeah um at this stage just because of uh
+the way that sort of figma deals with
+components most of these things won't be
+kind of self-contained components that
+you can sort of drop in and configure
+there'll be more just a place that you
+can copy and paste a known path and and
+sort of use that from there
+okay cool and i've noticed that the
+projects are a few of them just have one
+file in there is that are they
+structured into projects just for a more
+easily discoverability perspective
+sorry excuse me
+that's all right
+yeah someone else is asking about that
+as well
+yeah uh
+particularly it was it was around
+when we uh
+i'll look into the themes and stuff a
+bit later but when we um decided to do
+the uh colors and themes the way that we
+the way we were
+that necessitated us having to split
+those things out into um into different
+files
+um and we found that it just sort of got
+like a little bit a little bit noisy
+with um a lot of those a lot of those
+files in there uh
+yeah also when we were when we were
+designing it we weren't 100 sure
+whether we were going to have all of our
+components in one file or have like a
+separate file for each component
+um and that was a decision that we kind
+of pivoted on like relatively early on
+uh ended up just a single one but it
+does mean that we have the uh the
+flexibility to um to
+you know change that in the future um
+just for some advice for anybody who is
+thinking about that exact question of do
+we have one file or multiple files it
+kind of depends on the scale of your
+system who's in there how many people
+are managing it is it international do
+you have different teams that are all
+contributing those kind of questions are
+ultimately going to help you make that
+decision if you're a localized team
+where you know everybody by name you
+know where they're working what hours
+they're working etc one file could
+probably be enough if you're getting to
+the point where you've got a team in
+london a team in rio a team in barcelona
+managing a design system you may want to
+split those files up and whether you do
+that on an atomic molecule organism
+level as well it's another decision that
+needs to be made so just have those
+conversations internally work out where
+people are and then that should help you
+make that call
+longer term as well if you're getting
+down to the route where you want to have
+all your documentation baked into your
+figma files it may make more sense to
+split them up as well so just a little
+bit of help if you're getting that
+hitting that wall at the moment
+yeah totally agree um the uh
+the big thing for us because we've seen
+our previous figma in the file i think
+from another
+another design system who had split
+everything up by component and
+ability to kind of
+have
+all of the kind of thinking and
+documentation and everything for each
+component was like a really compelling
+thing that we that we wanted to try and
+get in some form
+but the
+feedback around just sort of management
+and having to turn on and off libraries
+like per component that you wanted to
+use um was was a bit overkill for some
+of the team at that stage
+um so we decided not to go with it but
+we really did end up because of the way
+that our work in progress stuff works um
+a lot of that sort of thinking and stuff
+is kind of captured in archived um
+anyway it's just a slightly different
+place
+i've noticed as well in your your sort
+of foundations that you're splitting
+colors and type into different files can
+you explain the rationale behind that as
+well
+um yes so it's uh it's mainly down to
+how we use fema to um to
+handle our
+different themes
+so let me just
+components
+so for those of those those who are not
+familiar with fema uh can you explain
+what it is as well
+yeah so themer um is an app uh developed
+by tom who works at figma
+and it is a way to easily
+define themes and then be able to kind
+of swap uh live um
+based on sort of like a selection of a
+frame or even a component uh
+so for example i'm gonna hope this works
+let me just
+not do it on the actual
+actual component so it doesn't trigger
+an update um so
+we just basically select my theme and
+search the slide theme and this
+component is now totally usable as a my
+thing component
+um and you can do this on whole whole
+uis and everything as long as everything
+that you are
+trying to do it on is built in a
+specific way with certain theme colors
+one of the problems that we were trying
+to solve with uh the design system when
+we decided to kind of um do a big sort
+of version 2.0 of it which is which is
+what this is
+not having to maintain as many uh
+variants of of things like um
+web ios android
+um so we split our type into different
+ones so that you can basically just
+apply like an android typeface and it's
+a very subtle change but um all of our
+components can can be sort of changed to
+um to os native fonts
+right so that's the way split stuff like
+okay
+there are ways
+there are ways of managing uh managing
+themes within a single file using fema
+um but it requires using a nesting
+structure within
+the files and we wanted to basically use
+that nesting structure
+in a different way
+okay great someone somebody's asked if
+we could you could uh jump a look into
+your library structure how you're
+organizing page gears frames component
+naming all that sort of stuff as well
+get into the nitty-gritty
+yeah absolutely
+cool yeah so our uh
+a components file is is probably the
+best one in that regard um
+we've
+tried to kind of
+group similar components i guess um into
+their own pages uh so we'll have things
+like button which is just obviously a
+single single component at the moment
+but then things like uh inputs text
+areas and searches
+might be all sort of
+broken into into this one group this is
+basically just to make um
+when people are
+trying to select a component trying to
+keep
+things as visible as possible in the ui
+where they're selecting component and
+not having uh everyone have to
+scroll down a massive list um right this
+may be something that you know once the
+system reaches a certain scale this will
+no longer work because we'll just have
+too many components um
+but for now for the scale to wrap um is
+working fine
+if i jump into so checkbox and radio are
+definitely our most complex components
+at the moment um
+we're using uh base components to to do
+uh basic things that are reused and all
+these components and then and then sort
+of uh layout stuff i guess
+um a lot of the stuff we will do using
+quite generic colors and then have the
+colors kind of set as overrides on each
+of uh on each of the variants that we
+use
+so um this checkbox for example just
+sort of jump in here um you can see sort
+of a bunch of different variants that we
+have over here
+um we have our sort of standard like
+checked and
+unchecked states we've got
+uh different sort of hover and focus
+states um our focus states actually are
+something that we spent uh quite a lot
+of time on and i might dig into that a
+little bit in a second
+we have helper text we have boarded
+variants which um
+which
+uh we had a few use cases where where
+this kind of style was needed
+um and then disabled styles and
+some valid styles and things like that
+well i've got a lot of questions about
+this um so let's uh let's maybe jump in
+first one um probably rolling back to a
+different page actually could you
+explain
+your uses of base components
+why you decided to go down that route
+and whether it's a requirement
+it's uh it's definitely not a
+requirement um there are things that we
+don't use based components for
+simple things like field labels
+validation we we decided not to use base
+components for but um anything basically
+where you get to uh a reasonably large
+number of um
+of variants where
+if for some reason you wanted to change
+like the padding between this text and
+this box um
+if it's like a point where you would not
+want to do that individually for all of
+these variants then i'm having that set
+in the base component and being able to
+change that in one place
+uh just makes your life a bit easier
+it's just really a maintenance time
+question
+yeah does that answer your question so
+you say if you anticipate the variant
+getting particularly large
+it's probably a good use a probably good
+idea to use a base component at that
+stage
+yeah i think so um i think
+uh things that are like reasonably
+generic like buttons especially when you
+have um say like icons and buttons and
+things like that um and different sort
+of configurations of those uh that
+becomes a pretty good sort of case for
+for doing it um
+and if you maybe uh
+another potential way that some of the
+stuff can be done is um at least
+pre-variance was a lot of like hidden
+layers and things and having a bunch of
+components basically configurable
+through hidden layers and and we find it
+some it's better to have a
+base component which um
+which only sort of has the uh the parts
+that are needed for for that particular
+variation
+right and then inside the actual inside
+the actual use of that base component
+could you show us the layer structure
+and how that gets bundled together
+sure
+so all of our base stuff we we uh
+name what sort of dots at the start of
+it to kind of hide it from the rest of
+the file and and the stuff the designers
+are using is kind of only what's in this
+in this variant
+um we try and keep uh
+try and keep our naming relatively
+straightforward
+this is an interesting one actually
+so when i talked about the focus states
+before um one of the kind of pet peeves
+that we had with focus states was
+it was quite difficult to um
+to
+build focus states in a way that uh
+didn't do things like when you had two
+elements next to each other you'd have
+like a focus state maybe like clipping
+under an element and having like z index
+issues um
+uh or if something was like maybe up
+against uh the edge of a
+of a
+overflow hidden div or something having
+like the edge of your focus stay cut off
+so we made the decision pretty early on
+to have our focus states um completely
+kind of contained within the bounding
+boxes of the the components themselves
+um and to use this kind of double
+boarded uh
+double-boarded approach to
+really make sure that our
+focus rings were high contrast enough
+with whatever was inside them
+the problem that this gave for us was uh
+that you can't have
+two strokes on an element that have
+different widths so we had to basically
+um double up the layers and have like
+one stroke on on one frame and then
+another sort of nested one inside that
+um but what we found we could do because
+we were using uh base components was
+that we essentially had that additional
+level of nesting anyway because that is
+kind of required when you're using a
+base component as there is to be sort of
+an instance of something within the
+frame that is your variant
+um so we end up having uh one of these
+things basically being named as padding
+and uh having the inner border on it and
+then this one having the uh the outer
+border okay that makes sense
+are your base components hidden in the
+published library
+there is
+cool so to do that and either
+we fix it with a period a full stop or
+an or a slash
+and let's say we're working able to do
+it manually i think if you just yes yeah
+yeah just have to do everything
+yeah um when you're let's go through the
+process we've got uh someone's working
+on a piece of work
+they need some new components what would
+that process look like from getting that
+component from my working file into the
+library and back backing back and forth
+so if people are
+working on a particular project and they
+need a component and one doesn't exist
+in the design system obviously the time
+it takes for uh for a new design a new
+component to be added to the design
+system uh can be quite some time and
+would be blocking for most people so um
+we basically let each product have their
+own
+ui kit which um
+those teams basically own the structure
+and everything of um and kind of do what
+they like with ad components uh as they
+need
+and then as the sort of design system
+squad we can uh kind of look for
+commonalities throughout these files see
+like which types of components through
+the sigma analytics are like being used
+quite a lot and might make sense to to
+fold into the design system in future
+something i may talk about in a bit as
+well is uh
+if people are working in in their
+working files
+basically have sort of a pretty hard
+rule that if you are making
+components which are used across
+multiple screens you put them in the ui
+kit you don't put them in sort of the
+work in progress file that you're
+working on or anything
+okay um and i'll just i'll just talk
+briefly about like why that is
+so um uh very very common thing coming
+from from this sort of sketch world was
+you
+have you know some existing screens you
+maybe want to do a modification or
+something to screen to or use that in a
+different flow somewhere you copy that
+to another file and um this new file is
+just not aware of this main component so
+it either makes a copy of it or it just
+just detaches entirely and you just have
+a non-componentized version of that
+particular
+component
+so in order to solve that basically we
+we have all of the components live in
+this ui kit and then uh you can compose
+screens um from any of the the products
+that we have um into whatever file and
+everything's kind of linked to a source
+truth
+so you you'd recommend
+almost in introducing that friction of
+if the component needs to be used we're
+going to have to put it in this library
+otherwise we're not using this component
+kind of situation
+yeah i think um it's uh
+it's sort of a decision like everybody
+needs to make based on their own sort of
+team size and structure um
+uh and sort of like i guess how often
+you are kind of composing uh across um
+across different products
+but it's definitely something that we've
+found uh helpful i think um even though
+there was a little bit of pushback at
+the start yeah absolutely and on the
+note of
+component library updates is there a
+regular rhythm at which you're doing
+this or is it a random process where
+you're publishing updates to your
+libraries since the
+uh since the feature released to allow
+publishing of like specific components
+and uh people pulling updates being able
+to see um
+update notes
+we've got a lot more frequent i think in
+our updates um
+uh so yeah we will just push updates as
+needed we don't um have a sort of strict
+versioning process or anything when it
+comes to when it comes to figma stuff
+unless it's like a big breaking change
+and how would you communicate that the
+changes to happening or has happened or
+to expect something
+so we have a um
+uh kind of figma uh specific slack
+channel that we um that we use to push
+out sort of any major updates to to
+related stuff um
+we also have a uh
+kind of design team wide
+weekly meeting where uh anything sort of
+major we brought up and discussed there
+but with our team size um
+which i can
+go over a little bit as well um so
+on fido has about 20 designers split
+across product design user research
+design ops and brand design um about 30
+product people and about 200 engineers
+the design system itself um
+only has one full-time resource which is
+an engineering resource
+and then another half engineer
+half of myself and then half of the
+design ops
+person um sort of uh has the kind of
+core squad um and then as we uh
+kind of scale it out over the last six
+months we've started to get like
+contributions for if somebody wants to
+contribute a specific component whether
+that's in engineering or design um we
+sort of have a process to to allow them
+to do that
+i forget what your original question was
+that led me there now
+that's all right we can we can move on
+uh we've had a couple of questions about
+people wanting a bit more clarification
+about how you manage sort of
+template level style components for
+example a modal
+that's going to be something that people
+need custom content depending on what
+they're using how do you currently
+manage something like that
+so modals we don't currently have uh in
+the design system it's a
+we've got a plan basically for the next
+quarter so i don't have a
+sort of good solution of how we handle
+that right now
+i imagine that modals will
+so what we do have is we have a style in
+the in the
+in the themes that is basically like a
+modal background so that that can be
+composed just using a
+rectangle or
+frame whatever really easily and have a
+sort of consistent opacity and stuff
+um and then the modals themselves i
+think will end up as a pattern and her
+patterns
+file which can then be
+copy and pasted to a particular source
+file if needed
+and kind of tangentially related is the
+sort of development side of the design
+there's questions around the frequency
+at which you're updating or moving
+components from the design side to the
+code side who's involved how does that
+happen it sounds like it potentially
+could be quite stressful situations how
+do you get around making sure your
+libraries and your code are almost in
+sync as much as they can be
+yeah so that was definitely um something
+that we uh
+wanted to
+to make like
+explicit from the get-go of this was was
+make sure that everything that was in
+figma had a sort of
+engineered component that was that was
+equivalent so
+we have
+a kind of process
+for creating new components or sort of
+updating components
+where people basically run through this
+template we have a bunch of predefined
+steps of auditing and research
+exploration production handoff um and
+each of these steps has a kind of um
+to-do list sort of checklists to to kind
+of help people know what is required at
+each step um if maybe it's their first
+time contributing to the system
+um there's also a like full kind of wiki
+page guide that delves into each of
+these things with like really specific
+stuff this is just sort of as a reminder
+i guess
+we we generally go through uh the sort
+of like audit and research phase let me
+show you an actual
+actual example
+um so we'll gather kind of examples of
+where a component might be used in the
+product just
+paste in screenshots and and ask
+designers if they have any uh any sort
+of instances that they're aware of or
+needs for a particular component
+yeah sure
+because they're just um
+yeah so for our like radio button and
+checkbox components we sort of had a
+bunch of these things which were like
+very similar in terms of like needs but
+uh we're all just like slightly
+different kind of implementation so
+we're trying to i'm trying to get
+consistent style for those
+um dark and light mode stuff uh
+grabbing things from existing design
+systems just so that we can make sure
+that where we can sort of map things to
+new components um
+we sort of are supporting things that
+the previous design system was
+accessibility naming stuff
+and then external examples from other
+design systems things that we like
+things that we don't like um
+and just sort of have that all in one
+place that engineers can can sort of
+contribute to as well um we'll then have
+an initial kind of kickoff with the
+engineers to to really talk through like
+um what out of the stuff we do want to
+support what will be difficult um things
+like that
+uh then we kind of go into exploration
+where we
+usually like take a bunch of those
+screens try some sort of like visual
+styles of a particular component and
+just kind of see how they look as before
+and afters and a bunch of uh screens
+um so you can see sort of a couple here
+that we've
+redesigned
+again the exploration is just like super
+messy um
+people are sort of free to do whatever
+they want here um and then once uh
+that sort of gets um signed off by the
+design system team
+uh we've gone to production which is
+basically
+you'll create like the actual working
+figma component that will eventually go
+into the the library files um here and
+just make sure that things like variants
+and naming and all of that stuff is kind
+of covered so um
+this is basically exactly what you would
+see in the design system um aside from
+the checklist
+and then we have a specific kind of
+handoff page where we will um
+we will add you know things like red
+lines and and variant details which will
+all be uh
+recreated in storybook which is um the
+primary uh tool that we use for for the
+engineering kind of component
+visualizations and the place that the
+the engineers sort of know where to look
+this is just
+this is separate from the actual
+component file
+and you say red lining split
+between yeah
+okay so the red we we just do on the on
+the handoffs basically there's um
+there's no red lighting on the
+components themselves we we find
+that sort of like handoff step is
+something that really only needs to
+happen once and there's there's no real
+reason that we've found to to keep that
+stuff sort of
+has a sort of updated artifact i guess
+and some really good advice actually
+is to
+look at
+yeah don't reinvent the world every time
+you're using a component if it's built
+it's built and you don't need to tell
+the developer that it's using this font
+this color every single time you're
+using it so really nice advice thank you
+um and we also just find that there is
+like a bunch of stuff like this is a
+really good example of like how
+resizing behavior
+might work where this is not something
+that you would have in that sort of
+production component but it is like an
+important thing to try and convey to
+the engineers
+so yeah we just find that uh
+a lot more flexible i guess and allows
+for context in a way that
+the production page does not
+and yeah and from there uh again there's
+a sort of another handoff meeting that
+we have um which will be
+usually two designers to engineers um
+just sort of shooting back and forth
+ideas trying to figure out what
+what the
+engineers going to build
+once it's built we'll we'll usually have
+a cadence of uh kind of a minor version
+release
+on the engineering side maybe every
+month or two at the moment
+so it's not it's not super frequent uh
+but
+every month or two is like pretty easy
+to kind of roll up a bunch of smaller
+changes into into sort of a larger one
+yeah limit breaking changes as much as
+we can
+right um yeah
+cool so we've got a couple of questions
+coming in about sort of um the
+operational side of design systems how
+do you
+champion for internally how do you get
+people to say yes let's build one you've
+got the budget to do that how did you
+navigate that that space
+definitely one of the trickiest things
+and something that i've uh i've
+asked a lot as well um the thing that
+we've found well
+getting that full-time engineering
+resource that first full-time
+engineering resource is probably our
+biggest challenge that we've had in that
+regard
+i'm trying to remember how we actually
+did that um
+i
+believe it was a case of uh
+of just trying to
+make the case
+the additional
+consistency that it would bring the
+we tried to stay away from things like
+increased productivity because we find
+productivity is a really really
+difficult thing to measure and certainly
+to measure well
+and we
+we sort of
+pivoted a little from
+this should allow people to build things
+faster and it's more
+it should allow people to spend the time
+that they have
+not reinventing the wheel and and
+focusing on
+on problems that were unique to their
+particular product
+so i think that was like mostly just
+a bunch of slide decks and uh trying to
+get the right people in the
+in the room to um to kind of hash it out
+and and make a decision
+but definitely like once we got that uh
+first running engineer on board um it
+didn't really become easier from there
+and it is sort of like a continual push
+sometimes to to make sure that hey you
+keep that resource and that
+people
+maybe like new leaders to the business
+and stuff um
+on board and understand like what the
+value uh stuff is of the system
+um so that's where we decided to in
+those first couple of quarters that we
+were sort of deep in uh in sort of
+building out the um the initial
+components and stuff we decided to
+invest a little bit of time into metrics
+and measurement as well
+so we have um
+metrics is an interesting thing because
+i think depending on the
+maturity and sort of life cycle stage
+that your design system is at you're
+probably going to want to focus on
+different metrics
+so initially it might be about
+adoption
+and then once you get into a stage where
+your adoption is pretty good um then uh
+you might put it to focus on different
+but adoption was sort of like a key one
+for us so we uh we basically built a
+scraper that scrapes our all of our code
+bases across the entire company um
+parses uh
+signals that look for
+where design system tokens from the new
+design system are being used old design
+system tokens from the previous design
+system and then anything which was
+basically like a color or a size that
+was just being defined as like x value
+or rgb value or something like that
+which is sort of what we call orphans
+here
+um and then uh
+got the sort of
+top ones from those
+um as both sort of absolute uh values
+and percentages um and then try and sort
+of like calculate uh which
+which project each of these is a project
+basically um which of these projects uh
+has the most coverage and where we can
+kind of get the biggest uh biggest bang
+for our buck in terms of trying to
+target a particular like product manager
+and say hey we think you've been to
+really benefit you if you could uh adopt
+um the new design system um this is sort
+of what we need
+so this has been yeah it's been a lot of
+fun to to kind of build out and has
+definitely definitely helped in a lot of
+the conversations and
+quarterly okrs and things like that
+um and then from there we've kind of
+gone into component usage as well so we
+can see like how many projects are using
+a particular component um
+obviously when we are building something
+for uh forecaster the design system we
+want to make sure that uh any component
+that we're building is like useful in at
+least two and ideally more products
+otherwise it's not worth making sort of
+a component um
+so we sort of have a visualization of
+that which we're using for our current
+okrs um and then we can see
+sort of for each project
+which uh which components are being used
+by that project which is which is super
+helpful as well
+nice um and then also as part of uh
+helping engineers um kind of really dig
+in and sort of uh
+making that migration um we have a bunch
+of explorers that people can use to
+basically say like this is your project
+this is all of the instances in all of
+the files where you're using just fff
+and you can replace this with like one
+of the design tokens
+and then outside of that i guess on the
+metrics measurement stuff
+we also uh i guess fall back a lot on
+just google forms and surveys within the
+team
+um so we have uh
+a
+quarterly um survey that we send out uh
+just to kind of get a finger on the
+pulse of like how people are finding the
+system generally doesn't mean their
+requirements is it easy to use
+um has it allowed you to focus on more
+impactful problems which is uh
+i think i mentioned before rather than
+sort of productivity
+and then
+where
+particular components maybe get like
+slightly lower scores we try and like
+highlight those things and then dig into
+the reasons why and
+try and fix them
+great i love how you're leading with
+numbers here to i think a lot of people
+are confused about how to sell this as
+an idea and as you start to build this
+little tester you're going to become hit
+these points where you can take this
+data and say look we're actually seeing
+improvements and that ultimately has an
+effect on efficiency productivity and
+getting things shipped faster it's
+really really nice you did mention
+tokens just now and i think that's a hot
+topic as well so it'd be great to learn
+a little bit more about where you see
+that on your landscape and how it's
+currently being managed
+yeah so i mentioned fema a couple of
+times um
+so we have a kind of base palette of
+colors which everybody will probably be
+relatively familiar with um scale from
+sort of 050 to 900
+rather than kind of
+defining like the perfect palette right
+at the start of the project we um we
+basically started with the palette that
+we had uh from the previous version of
+the design system
+and then decided that we didn't really
+want to like
+spend too much time trying to develop
+the perfect palette without the context
+of kind of the things that we're going
+to use that palette eventually
+so we tried to develop something that
+was like relatively flexible and that we
+could just sort of like add colors to as
+they were needed for four different
+things um and have those uh naming and
+color colors kind of make sense and slot
+in
+uh where they could
+um something you'll notice that's like
+probably a bit different to uh to other
+systems is the sort of
+colors that kind of sit above and below
+our primary uh spectrums
+um as we started to dive into uh
+accessibility particularly around
+dark modes things like that uh we found
+that our base pallets were
+were just quite difficult to uh to get
+working um and looking good uh in a lot
+of those contexts um particularly dark
+mode tends to favor like slightly more
+i guess subdued
+saturations and stuff so um we came up
+with this naming scheme of basically
+vivid and muted
+depending on
+on what was needed
+and that has been working reasonably
+well for us so far um we try and add to
+it as infrequently as possible but
+where we need to we sort of have the
+option
+and those are uh yeah these are our base
+colors which are um
+are sort of
+grouped i guess um by general sort of
+palette um nice and easy to select um
+and was kind of what all our designers
+were used to already
+when using the system
+um from there we
+we got into the themes and basically
+developed these uh semantic themes which
+have the same naming regardless of
+whether it's day or night thing
+which is probably the hardest design
+project i have ever done naming is very
+very hard
+we have the colors kind of split out
+into content background and border
+colors you can sort of see them
+visualized in these little thumbnails
+um and we have uh what the name of the
+the sort of token
+is and then which color it's referencing
+in the base palette so all of these are
+just
+renames basically of of things that are
+in that base palette already
+because at the moment figma does not
+have like a concept of sort of tokens
+and aliases a lot of the stuff is kind
+of manually manually sort of managed
+so what we've done is uh for each of
+these um these thumbnails the
+the back style references the base
+palette and the front style references
+um basically a new theme uh token which
+is which is defined in this file and is
+um the color that the designer will
+eventually use in their thing in their
+designs um and we can see basically if
+one of these colors is out of sync with
+its color that it's supposed to be
+referencing um just of visual changes in
+this file
+um so we've had that a little bit
+recently where we've updated uh some of
+these colors for improved accessibility
+and you can just see very very quickly
+like when this color is different to
+this color and adjust it we needed
+um we also have
+uh some things which are like here you
+can see this is um our info 500 color
+but is temps and opacity um and our uh
+our
+tokens are designed to sort of support
+that kind of um adjustment as well
+so yeah in terms of the naming uh
+there are a whole lot of different ways
+that you could potentially name design
+tokens
+and there's definitely no right way it
+is it is totally dependent on your
+particular needs and the size of your
+team and the structure of your team
+um what we were trying to sort of find a
+balance for i guess in
+our approach was
+if i
+show you here
+trying to make these colors kind of
+useful enough
+actually
+um make this color is useful enough so
+that uh if somebody wanted like
+secondary content or main content it was
+very very clear to them like which shade
+of gray
+they they would choose
+what we didn't want was to have
+basically too many duplicates of colors
+um in this color palette um obviously
+there's quite a lot of blue ones we have
+sort of one for actions
+one for links one for info because blue
+is obviously our intercolor as well
+there are some of these colors which
+don't just um
+map cleanly
+in terms of like inverting a color
+palette when you go to night mode there
+are there are certain things where
+you need like quite a different color
+like for example our um our primary
+cause to act call to action buttons are
+blue and day mode but switch to white or
+very close to white in night mode
+so that gave us a bunch of problems
+we didn't necessarily want our like
+links to do that so
+you don't just want your links being
+just like white with uh with an
+underline or whatever it's not what is
+uh doesn't stand out as much
+basically how to take these these case
+by case and uh take sort of our existing
+dark mode designs that we have our
+existing light mode designs and and
+figuring out like
+where those things needed to map cleanly
+um where we sort of did need to
+duplicate things because their uh
+their
+different sort of theme counterparts
+were were quite different depending on
+what the context was um
+and yeah it was just a
+process of of continuously trying to
+balance like is this specific enough
+that people are going to understand like
+what this means um
+and yeah i'm trying to find that balance
+back to it
+we have sort of concepts of having sort
+of your main background and then
+surfaces which sit on top of that
+whether that's cards or bits of
+navigation or whatever
+um we have sort of border separated
+colors for separating those elements um
+a bunch of different things for inputs
+and hovers and active states and stuff
+where needed we've tried to reduce these
+these sort of specific things for hover
+and active states um
+but i think this is probably something
+that i would approach differently now if
+i was architecting this from scratch um
+the engineering side of our tokens uh
+at the time didn't
+nicely support
+adjustments and like hsl balances and
+stuff to be able to just like lighten
+something by 10 or darken it by 10
+and i think that would simplify a lot of
+the stuff if we could do that
+particularly around the um
+the that bass palette and the additional
+colors that we needed to add for it
+and basically all of the all of the
+tokens here map directly to uh the
+engineering
+counterpart as well
+and we try and keep those things in sync
+previously what we've been doing is we
+actually developed a custom plugin which
+allowed designers to um
+to basically push all of the values from
+these files directly to our source
+control
+a little bit uh i'm showing you
+screenshots here because we have just
+very recently changed our token format
+and this no longer works at the moment
+it's a little bit broken but the idea
+was um was yeah you could get uh all of
+the um all the sort of links from one
+color to another color sort of output uh
+directly in this plugin or copy to
+clipboard
+and the way that we're kind of managing
+that is
+these
+uh all of these colors will also have a
+description and in that description we
+sort of have a bit of a description
+about what it is but we also have this
+link emoji with the color value that it
+links to and the plugin basically looks
+for this link emoji and then
+adds that into
+the the highlighted outputs
+um so this is
+very manual very hard to debug um
+currently
+not
+ideal and uh we would like definitely
+some
+some features
+more around that sort of token
+management stuff from from figment we're
+on it
+yeah i know we've uh we've gone over
+time but i do have one last question for
+you and it's back to the component side
+and i'd love to get a bit of context
+about how how far you go and how you
+document components
+for designers for developers how does
+that currently happen
+yes so um the documentation side of
+things is definitely something that
+we're like still actively working on um
+i don't have any screenshots of that at
+the moment because it's a little bit of
+a mess but we are um we we use a
+storybook primarily for for all of the
+uh the engineering side of things um
+that's in a pretty good state
+that actually just um
+yeah so yes we use storybook um and
+we've got all of our kind of uh states
+and variants and stuff um
+mapping directly to our national ones
+here um
+so the the radio was what i showed you
+before so
+so we can do things like turn on the
+borders say whether it's disabled or not
+um invalid states things like that
+um so this is in a pretty good state
+we're pretty pretty happy with this
+storybook is an excellent tool uh we can
+do things like switch to night mode and
+see all those things as well which is
+like a sort of custom custom bit of
+development that we did on top of it
+um and then we're using zero height for
+all of the actual kind of guidelines and
+and that sort of thing um
+and uh yeah finding that like a pretty
+promising tool at the moment but we're
+definitely like definitely have a lot of
+back and forth with them about certain
+features and stuff to try and get it to
+sort of fit our needs um but when it
+comes to documentation i think like the
+most important thing is really the
+content like where it sits and you know
+can can change um and the hard bit is
+really getting that content in a good
+state
+um we have played around in the past
+with
+adding kind of contextual documentation
+and sort of like a usage page here and
+and trying to have it in figure like
+where uh designers actually are
+and we just found that it was
+it would just go out of date really
+quickly and it was kind of difficult to
+manage
+state of that stuff so
+without i think um
+fully dedicated design resource to
+trying to keep that stuff up to date um
+we just decided to put it all into kind
+of one place in zero height
+thank you so much i think that's a
+really nice place for us to wrap up
+thank you steve that was really really
+insightful you taught me a lot of things
+as well and thank you everybody for
+attending
+we'll see you all next time and make
+sure to check out our events page for
+the events coming up soon thanks again
+thanks

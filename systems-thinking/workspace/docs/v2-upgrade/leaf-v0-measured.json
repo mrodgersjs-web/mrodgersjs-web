@@ -1,0 +1,53 @@
+{
+  "measured_at": "2026-08-30T19:30:00Z",
+  "workflow_count": 21,
+  "det_only": 13,
+  "mixed_llm": 8,
+  "workflows": [
+    {"name": "proof_daily", "owner": "otto-operations", "det_ratio": 1.0, "stages": 1},
+    {"name": "daily_briefing", "owner": "prime-jake-pai", "det_ratio": 0.67, "stages": 3},
+    {"name": "recall_distill", "owner": "iris-sr-research", "det_ratio": 0.67, "stages": 3},
+    {"name": "youtube_to_skill", "owner": "steve-content", "det_ratio": 0.67, "stages": 3},
+    {"name": "engagement_draft", "owner": "ralph-linkedin", "det_ratio": 0.67, "stages": 3},
+    {"name": "lead_score_batch", "owner": "darius-gtm", "det_ratio": 0.67, "stages": 3},
+    {"name": "fleet_drift_audit", "owner": "otto-operations", "det_ratio": 1.0, "stages": 1},
+    {"name": "recall_hygiene", "owner": "iris-sr-research", "det_ratio": 1.0, "stages": 1},
+    {"name": "gate_d_sweep", "owner": "otto-operations", "det_ratio": 1.0, "stages": 1},
+    {"name": "rlm_anomalies", "owner": "nadia-data", "det_ratio": 1.0, "stages": 1},
+    {"name": "proof_packet_audit", "owner": "otto-operations", "det_ratio": 1.0, "stages": 1},
+    {"name": "proof_publish_packet", "owner": "otto-operations", "det_ratio": 1.0, "stages": 2},
+    {"name": "agent_workflow_coverage", "owner": "prime-jake-pai", "det_ratio": 1.0, "stages": 1},
+    {"name": "deepagent_compile_check", "owner": "jordan-jr-ai-engineering", "det_ratio": 1.0, "stages": 1},
+    {"name": "path_traversal_check", "owner": "vera-security", "det_ratio": 1.0, "stages": 1},
+    {"name": "invoice_pack", "owner": "darius-sales", "det_ratio": 1.0, "stages": 2},
+    {"name": "social_calendar_pack", "owner": "steve-content", "det_ratio": 0.67, "stages": 3},
+    {"name": "youtube_digest", "owner": "steve-content", "det_ratio": 0.75, "stages": 4},
+    {"name": "lead_lifecycle", "owner": "darius-gtm", "det_ratio": 1.0, "stages": 1},
+    {"name": "corpus_summarize", "owner": "iris-sr-research", "det_ratio": 0.67, "stages": 3},
+    {"name": "seal_proof", "owner": "otto-operations", "det_ratio": 1.0, "stages": 2}
+  ],
+  "agent_spec_count": 24,
+  "mcp_tool_count": 16,
+  "runs_index_lines": 7744,
+  "test_pass_line": "86/87 PASS; TESTS FAIL: seal_proof skeleton status; exit 1 (LeafV0 live .venv/bin/python tests/run_tests.py)",
+  "stale_blueprint": {
+    "file": "/Users/rig128gb/Developer/jake-workflows/docs/JAKE-PAI-V2.md",
+    "claimed_workflows": 6,
+    "live_workflows": 21,
+    "note": "JAKE-PAI-V2.md is prior opinion, already stale vs CLI"
+  },
+  "gaps": [
+    {"name": "durability_crash_resume", "state": "partial", "source": "engine/temporal_runtime.py exists; local harness still writes record post-completion; crash-resume unproven"},
+    {"name": "gate_d_suspend_resume", "state": "partial", "source": "LeafV0: wait_for_signal in docstring, no @workflow.signal handler in temporal_runtime.py"},
+    {"name": "eval_pass_k_end_state", "state": "partial", "source": "repeatability.repeat + planted RED; no pass^8 / trajectory matcher"},
+    {"name": "cost_budgets", "state": "absent", "source": "harness.run has no token/cost fields"},
+    {"name": "otel_genai_trace_fabric", "state": "partial", "source": "engine/observability.py present; export conditional on OTLP"},
+    {"name": "memory_dreaming", "state": "absent", "source": "no per-agent git MemFS"}
+  ],
+  "sources": [
+    "~/Developer/jake-workflows/bin/jake-workflow list",
+    "ls ~/Developer/jake-workflows/agents/specs | wc",
+    "~/Developer/jake-pai-mcp/server.py _t_* handlers",
+    "wc -l ~/.jake/workflows/runs/index.jsonl"
+  ]
+}

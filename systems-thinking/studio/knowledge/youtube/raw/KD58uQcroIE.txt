@@ -1,0 +1,216 @@
+In this screencast we will analyze each of
+the individual blocks that are present in
+a generic feedback-only control loop. In
+order to motivate this what we are going to
+do is we are going to focus on an example
+where we have a heat exchanger presented where
+we are trying to warm a cold process fluid
+by the use of steam. So in this case the controlled
+variable of interest here is the temperature
+of the fluid exiting the heat exchanger, and
+we are trying to control that by manipulating
+the flow rate of steam. So a nice way to start
+the development of this block diagram is to
+actually start at the end, which is the fact
+that the variable that we are interested in
+here is the temperature of the exiting fluid.
+So thats the variable that we are going to
+want out of our feedback control loop because
+that is our controlled variable, but what
+we now want to do is follow the process by
+which the controls work. So if we look at
+our diagram, we start here at the warmer fluid,
+we see the fact that the first thing that
+the temperature will see is the temperature
+sensor. So we will draw the block diagram
+as such, and this is the block for the sensor
+and the transmitter block. I will talk in
+more detail about this in just a minute. So
+what is coming into this block would be, again,  the actual
+fluid temperature, but what the senor/transmitter
+is going to do is its going to do two things.
+The sensor, the first part, is going to sense
+the temperature, so therefore lets assume
+that this fluid was fifty degrees Celsius.
+The sensor is going to say OK this is going
+to do the measurement that says this is fifty
+degrees Celsius. However, we are not done
+yet because the controller does not read in
+temperature units, mainly because controllers
+could be used for flow rates, composition,
+pressures, etc. So it takes in a signal of
+some sort. What type of signal is dependent
+on the type of control scheme you have, so
+for the sake of our discussion here we are
+going to say an electrical signal, which can
+be represented as milliamps. Additionally
+this signal can also be represented as percent
+transmitter output. So a point to note here
+is the fact that in order for a controller
+to operate, a controller takes in not the value
+of the actual temperature, what it is interested
+in is the difference between the actual temperature
+and the desired temperature. By convention,
+the set point, AKA the desired temperature,
+is the positive value, and then you take away
+the value of the actual temperature, the measured
+temperature. But and important point here
+is our subtractor has to be like versus like,
+so therefore it has to come in here is a signal,
+either in milliamps or percent transmitter
+output. However, what comes in here is the
+actual steady state temperature, so therefore
+we need a relationship to relate the actual
+desired sep point temperature, and the appropriate
+signal that goes to the controller. So this is
+abbreviated as KM, I'll explain more about
+the actual blocks again in just a minute or
+two. So what then happens is we go from this
+signal, this is now this difference represents
+in milliamps, or percent transmitter output,
+the error between the set point and the actual
+value. If we follow our diagram here, the
+value of the sensor through this dashed line
+gets sent to our controller, which is represented
+as Gc. So Gc will take in that error in percent
+transmitter output, and will output a signal,
+usually in percent controller output, basically
+saying this is how active the controller should
+be. If we then follow the signal there, the
+controller then sets its signal to the valve,
+which is represented by Gv. What will come
+out of the valve transfer function in this
+case will be the flow rate of steam. But in
+all situation what will typically come out
+of the valve transfer function is the value
+of the manipulated variable, which in almost
+all cases is the flow rate. So therefore,
+this will be in some flow rate unit. So what
+then happens is the last part of this connection
+by changing the flow rate of steam, it is
+going to cause my fluid to warm, so I need
+a relationship between those two. That would
+represent the process, in other words the
+heat exchanger. So this process block here
+would represent the energy balance on the
+heat exchanger, which relates how much a change
+in the steam flow rate will affect the temperature
+of the outlet process fluid, and it will also
+give an idea of not only gain, so for example
+a change in one CCM of steam causes a two
+degree Celsius change in the fluid temperature,
+but also some time dynamics, understanding
+of how we get there, will it happen instantaneously
+or will it happen over some set period of
+time. So thats the information we can get
+from the process transfer function. A note
+here about why this is a generic feedback
+only control loop is the fact that in this
+analysis we are assuming that there is just
+one transfer function that relates the two
+variables. In some cases this may not be the
+case, so the process block area may be a bit
+more convoluted. Additionally this block diagram
+does not take into account the potential of
+disturbances, which we'll deal with in other
+screencasts. So now that we have discussed
+this what we are now going to do is discuss
+each of the blocks present in our block diagram
+analysis. So we'll start by looking at Gm.
+So Gm represents the transfer function for
+the sensor transmitter. Because the fact that
+sensors generally act very quickly, this is often
+times is a zeroth order transfer function.
+In other words, it is just a gain represented
+here as KM. Occasionally the sensor will have
+first order time dynamics which would be of
+the form KM over tau(m) s plus one. So you
+may be looking at this came KM and saying,
+well we've already defined the variable KM
+in our block diagram, so we have the KM here,
+and the KM present in this block diagram here.
+This is not an accident.These KMs will always
+be the same. To figure out why lets think
+about a hypothetical here where the outlet
+fluid temperature is the set point. So therefore, in a
+case where the outlet fluid temperature is
+equal to the set point, that would mean that
+our error would be zero. In order for error
+to be zero, that would have to mean that the
+two milliamp signals coming in would have to be identical.
+So if I am starting with the same value coming
+into that block, in order to get the same
+value coming out of those respective blocks,
+the KM block and the GM block, it would have
+to mean the fact that the gains of the two
+would have to be identical. So therefore the
+gain for the sensor/transmitter transfer function
+must be exactly equivalent to the one that
+is handling the set point temperature. And
+again, this doesn't matter what type of variable
+it is. The next transfer function here that
+we see is Gc, that is the controller transfer
+function, and its transfer function is dependent
+on what type of controller you have, whether
+it be PPI, PID, PD, etc. Virtually all controllers
+must have a gain. An additional note here is
+the fact that Kc being greater zero, or Kc
+being less than zero does have some significance.
+So when Kc is greater than zero it is known
+as a reverse acting controller. When Kc is
+less than zero that is known as a direct acting
+controller. You can get some more information
+about reverse versus direct acting controllers
+using other screencasts. Moving along to the next
+block, which is Gv, that is the valve transfer
+function. Valve transfer functions are typically
+similar to sensors, zeroth of first order
+transfer functions. So here we would have
+either Kv or Kv over tau(v) s plus one, and
+again the determination about whether or not
+it would be necessary to include theses time
+constants from both the sensor, the valve,
+and the process which I will describe later,
+is how quickly it takes for changes to be made.
+In most situations the sensor/transmitter
+dynamics can be neglected because they are
+much faster than the valve and or the process.
+In some cases the valve can be ignored, usually
+in cases where the dynamics are much faster
+than the process transfer function. The gains
+of the valve transfer function are explicitly
+based on the fail-safe status of the valve.
+So here, when Kv is greater than zero, this
+will be a whats known as a fail-closed valve.
+In other words when the power goes out the
+valve will be fully closed as a safety criteria,
+and Kv is less than zero will represent the
+opposite, a fail-open valve. Finally Gp, the
+last transfer function block represents the
+process. For an example as simple as the one
+we have here where there is only one process transfer
+block. This will represent usually one material
+or energy balance. However, more complicated
+systems may have more material and or energy
+balances. And the transfer function here will
+be dictated by the balances. So depending
+on if there are things in series or what not,
+for the majority of the time these transfer
+functions, particularly for a generic system,
+will be either first order or a first order
+plus dead time, but this is dictated by the
+balances. Process gain Kp is dictated by the
+specific process. So in some cases the gain
+will be positive, so an increase in the manipulated
+variable will cause an increase in the controlled
+variable, very similar to the example we have
+here where if I increase the steam flow rate
+I am going to increase the temperature of
+the process fluid. However if this were cooling
+water instead of steam, an increase in cooling
+water would cause a decrease in the temperature of
+the other process steam, which would cause
+a negative gain. So in this screencast we
+went through the generic block diagram for
+a feedback control loop, and went into some
+detail regarding what these blocks contain.

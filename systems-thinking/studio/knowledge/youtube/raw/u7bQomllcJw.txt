@@ -1,0 +1,485 @@
+Hi everyone!
+Today's video is about "ant colony optimization
+algorithm".
+The idea of ​​the algorithm is inspired
+by the behavior of an ant colony finding a
+path to food that is close to optimal.
+Let's also go through the famous "Traveling
+salesman problem".
+The researchers have long been interested
+in how ants, with their tiny brain, manage
+to build good routes.
+And the essence of the algorithm is very simple.
+Ants begin to move along all the routes, delivering
+food to the anthill.
+Along the way, they leave an odorous trail
+of pheromones.
+On a shorter path, ants will go back and forth
+more times over the same period, and as a
+result, they will leave more pheromones on
+every centimeter of the path.
+This path will smell stronger and attract
+ants.
+Over time, all the ants will switch to a stronger
+smelling shortcut,
+and the long path will be abandoned, as pheromones
+evaporate.
+The first version of the algorithm was suggested
+by Marco Dorigo in 1992.
+It was aimed at finding the optimal path in
+the graph.
+Actually, with the help of this algorithm,
+the problems
+represented as a graph aimed at finding the
+optimal path in it are solved.
+It is usually about transport logistics or
+network technologies.
+First, let's analyze the "traveling salesman
+problem".
+There are different task setting approaches.
+We will consider the following option.
+Let's say that there are 5 cities, and we
+are in the city "A".
+We need to find the shortest route by going
+through all the cities once and return to
+the initial city.
+In the beginning, we have a choice of 4 cities.
+We have chosen one of the options, now we
+need to choose from 3 remaining cities.
+We make a choice.
+At the moment, the route options are: 4 times
+3 equals 12.
+Now we need to choose from 2 cities.
+Development options are: 4 times 3 times 2
+equals 24.
+And then, there’s only 1 option.
+The number of options is the factorial of
+the number of cities minus one.
+Here, the small "n" means the number of cities.
+Since our problem is symmetrical and the route
+is closed,
+the result must be divided by 2, since the
+routes are equivalent.
+Here is the final formula for the number of
+options for a symmetrical problem.
+The number of options increases rapidly with
+the increase in the number of cities., and
+for 66 cities and more, the problem, in practice,
+cannot be solved using brute-force search.
+But in many cases, a person can instantly
+solve this problem, and here is an example.
+The algorithm, by the way, tries other options.
+This is the cardinal difference.
+This is how the cities are approximately located
+in one of the articles on Traveling salesman
+problem.
+The example is clearly not the best, since
+it does not show the complexity of the task.
+Things get a little more complicated when
+the points connecting the route are located
+more or less evenly.
+But even in this case, a person, by simply
+following common sense,
+finds a solution within 5%, maximum 10% of
+the best solutions.
+In fact, from a huge number of options, these
+are immediately excluded.
+Let's connect 30 cities by ourselves.
+Firstly, you shouldn’t arrange everything
+so that you will then have to make a long
+jump to the starting city.
+The route should be like this.
+We are trying to move to the nearest cities.
+If we go here, we will have to take a long
+jump to return to these cities, so we add
+them at once.
+Also, don’t forget to include these cities.
+Next, you can go either this way or this way.
+Let's go with the option 2.
+My path turned out to be 6842 pixels.
+And now let's see the results of the ant algorithm.
+The green substance represents pheromone paths,
+I poured lots of it here.
+At iteration 16, the algorithm outperformed
+me.
+At 283 iterations, it found an even shorter
+path, and one more improvement for 372 iterations.
+Our path turned out to be longer by a little
+more than 3%.
+Not a bad result, given that I only had one
+iteration.
+However, a person needs to visually see the
+cost of moving from one node to another.
+And the roads may not be straight and of different
+quality,
+the workaround may be shorter than the direct
+way.
+Roads can have different costs in different
+directions, meaning that the problem becomes
+asymmetric.
+And the person here is taken down.
+But the algorithm doesn’t pay attention
+to this, since it works with a table instead
+of a picture.
+And we begin to crack the classic ant colony
+optimization algorithm.
+The first formula is the probability of an
+ant moving from one city to another.
+These formulas are taken from different sources,
+yet they describe the same thing.
+Let's pick this one.
+This ant number can be removed to avoid distraction.
+Let's change the scale of the elements a little.
+The formula determines the probability that
+the ant will move from i-vertice to j-vertice.
+This fragment of the formula describes the
+desire of the ant to move from i-vertice to
+j-vertice.
+"Alpha" and "Beta" are constants selected
+empirically.
+Later I will show in more detail what they
+are needed for.
+Let's say they are equal to one and, accordingly,
+they disappear.
+The first symbol is the amount of pheromones
+between i-city and j-city.
+The second symbol is the reciprocal of the
+distance between i-city and j-city.
+We just divide some constant by the distance
+between the cities.
+You can call it proximity.
+That is, the probability of choosing a city
+is proportional to the proximity of this city
+and the amount of pheromones on the way to
+it.
+So.
+The probability of going from i-vertice to
+j-vertice equals the desire to go there,
+divided by the sum of desires of an ant to
+move from i-vertice to all vertices available.
+Meaning all the cities that have not yet been
+visited.
+Let's have a look at an example.
+The ant is at vertice 0.
+It can go to vertice 1, the desire to go there
+equals "a".
+It can also go to vertice 2, the desire to
+do so equals "b".
+And for vertice 3, the desire equals "c".
+To calculate the probability of going to vertice
+1,
+We take the desire to go there and divide
+it by the sum of all desires.
+And once again, for those who haven’t understood.
+This is the probability that the ant will
+move from vertice 0 to vertice 1.
+And this probability is:
+the desire to go there divided by the sum
+of all desires to go to all available vertices.
+In exactly the same way, we calculate the
+probability of moving to vertice 2 and vertice
+3.
+If we add up all these probabilities, we end
+up with one.
+Actually, this formula serves to ensure that
+the sum of all probabilities is equal to one.
+Let’s assume that we have calculated all
+the probabilities, and we lay them out on
+a number line.
+We launch a random number generator, which
+generates a real number from zero to one for
+us.
+The result will show which city we will move
+to.
+Let's say, we have generated 0.47, so we will
+go to the city 2.
+Now let's analyze the second formula.
+It describes the distribution of pheromones
+across the paths.
+I would like to note that pheromones are distributed
+post factum, when all the ants have made their
+route.
+These are formulas from different sources.
+Let's check out this one.
+The symbol "k" is the index of an ant.
+In many examples, it is written as if it were
+to be raised to a power.
+This was done on purpose, so that only strong-willed
+people could touch this secret knowledge.
+The symbol "t" is the iteration number.
+Here, it looks like multiplication.
+I'll scale it so it doesn't distract us.
+The pheromone addition that the ant "k" makes
+on the route between i-city and j-city at
+iteration "t" is equal to some constant "Q"
+divided by the length of the route traveled
+by the ant "k", provided that this path between
+i-city and j-city is in line with the route
+of the ant.
+If it’s not, there’s no addition.
+The amount of pheromones on the route between
+i-city and j-city in the new iteration is
+equal to the amount of pheromones in the previous
+iteration, multiplied by the evaporation coefficient,
+(pheromones are constantly evaporating), and
+to the result obtained, we need to add the
+sum of all new portions of the pheromones
+that all the ants have left in this area.
+We could include the amount of pheromones
+remaining after evaporation in the constant,
+and multiply it by the amount of pheromones,
+which is done by one out of four authors.
+The rest of them have done it in a strange
+way, keeping the amount of the evaporated
+pheromones in the constant.
+That’s the reason why they have to do unnecessary
+actions in the formula, subtracting a constant
+from 1.
+I will explain all this without formulas.
+We have four cities, the distance between
+them is 10, except for city 0 and city 2.
+In there, the distance is 17.
+The first ant has traveled this route.
+Let's write it down.
+The route length is 47.
+Here comes the second ant, and the length
+of the route is also 47.
+And here is the route of the last ant, with
+the length equal to 40.
+Let’s suppose that there were 0.5 pheromones
+on each path, and after evaporation, 64% of
+pheromones remain.
+We have to multiply the pheromone on all the
+path by 0.64.
+And now we have 0.32 pheromones per path.
+I have made the constant "Q" from the formula
+equal to 4.
+The length of the first route is 47, so we
+divide 4 by 47 and get 0.085.
+This is the number of pheromones left on each
+path along the route.
+The second route has the same length, and
+0.085 pheromones will be left on each path.
+The third route has a length of 40.
+4 divided by 40 is 0.1
+Since this route is shorter, more pheromones
+will be left on each of its paths.
+Here is an updated map of the pheromone.
+From city 1 to all other cities, the distance
+equals 10, but two pathes smell better,
+so, the ants will walk on them more often,
+thereby further increasing the difference
+in the amount of pheromones.
+And now we will analyze all this by using
+a practical example.
+"Alpha" and "Beta" are still equal to 1.
+This is a table of proximity between the cities
+and the amount of pheromones on the paths.
+Since our task is symmetrical, I display only
+half of the table.
+Initially, I left 0.2 pheromones on each path,
+as marked in green in the table.
+Now I will arrange the cities, and the table
+will be filled.
+The distance from city 0 to city 1 is 327
+pixels, and from city 0 to city 2 – 664
+pixels.
+To determine the proximity, I use the constant
+"200" so that the numbers are not too small.
+I’m recording the results obtained in the
+table.
+City 1 is about twice as close to the initial
+one as city 2.
+We have arranged 10 cities, and the whole
+table is filled in.
+The green lines between the cities are pheromones.
+Now the current city is city 0, where the
+ant is located.
+In the table you can see the amount of pheromones
+and the proximity from city 0 to all the other
+cities.
+Let’s calculate the desire to move from
+city 0 to each of the other available cities
+by multiplying the amount of pheromones in
+Alpha power by the proximity to the given
+city in Beta power.
+Now, to find out the probability of moving
+from city 0 to city 1,
+we divide the desire to go to city 1 by the
+sum of all desires.
+It turns out 0.156, and we write it down here,
+above the city.
+The desire to move to city 2 is divided by
+the sum of all desires.
+We write down the result over city 2 and we
+do the same for all other cities.
+Below the city, the amount of pheromones between
+this city and the current one, is indicated.
+And on top you can find the probability of
+the ant moving to this city from the current
+one.
+The sum of all probabilities equals 1.
+Also, the probability is depicted on the numerical
+scale used to select the next city.
+In the meantime, I will show how altering
+"Alpha" and "Beta" constants affects the probability
+of choice.
+We will do this using "Beta" constant as an
+example.
+This is the power to which proximity between
+the cities is raised.
+"Beta" constant is now equal to 1.
+We will start decreasing it to 0.
+Watch how the proportions on the numerical
+scale are changing.
+When we got to 0, the ants generally paying
+any attention to the distance between the
+cities, guided only by pheromones.
+And at the moment, we have the same amount
+of pheromones everywhere, so the probability
+of choice is the same for all cities.
+Let’s increase "Beta" to 4 and watch the
+numerical scale.
+City 1 is twice as close to city 0 as city
+2, but since we end up raising the proximity
+to the fourth power, the probability of going
+to city 1 becomes 16 times higher than to
+city 2.
+That is, "Beta" constant determines how strongly,
+when choosing the next city, the ant is guided
+by its proximity.
+With Beta equal to 0, the ant does not pay
+attention to proximity.
+As Beta increases, the proximity value has
+a stronger effect on the choice of the next
+city.
+The same is true for "Alpha" constant, which
+controls how much the amount of pheromones
+on the paths influences the ant's choice.
+Let's generate a random number.
+We got 0.783.
+The number points to city 3, so there we go.
+Now the city 3 is the current one, this is
+where the ant is located, so we recalculate
+all the probabilities related to city 3.
+With a probability of 2/3, we move to city
+7.
+We generate a random number, and we move on
+to city 7.
+The number of allowed cities is getting smaller,
+since you can’t return to the city where
+you have already been.
+We also see a decrease in the number of sectors
+on the numerical scale.
+There is only one city left.
+The probability of moving there is equal to
+We generate a random number, and that’s
+the city we get.
+We are done with the first ant.
+It traveled a closed route that you can see
+here.
+Its length is 2901 pixels.
+The next ant will go from another city, and
+now I will try to explain why.
+There are several cities.
+Let's say we always start from the city "a".
+The city "b" is in distance.
+Due to its remote location, when building
+new routes,
+the city ​​"b" is more likely to be selected
+last.
+In case of most routes, the following sequence
+will appear: the city ​​"b", the city
+"a".
+That’s not good.
+In our task, the route is closed, you can
+start from any city, and starting from different
+cities, we will avoid this obsessive sequence:
+the city ​​"b", the city "a".
+We continue to launch ants, each time from
+a new city.
+How many ants are there in total?
+This is a parameter that you need to choose
+yourself.
+It is generally recommended that the number
+of ants be equal to the number of cities.
+Of course, there are no ants here.
+We execute the same algorithm many times.
+And the number of ants means after how many
+passes we will need to update the pheromone.
+So, we have 10 ants, each of them has created
+its own route, we came to the final point.
+At the next step, the iteration will end.
+The pheromone value on the paths has been
+updated, and a new iteration begins.
+Now the choice of an ant is influenced not
+only by the proximity of the city, but also
+by the experience of previous iterations,
+preserved as the amount of pheromones on the
+paths.
+Evaporation of pheromone and constant "Q",
+regulating the amount of deposited pheromones,
+requires selection by experience, tailored
+to a specific task.
+Four iterations have passed, and looking at
+the pheromone paths, it is already clear where
+the search is taking place.
+Ants will now do iteration after iteration.
+They won't all follow the same route due to
+probabilistic choice,
+but their new routes will be based on the
+shortest ones they will find,
+and we'll track the shortest route they have
+found.
+Actually, that’s it!
+I have described the basic algorithm, but
+over time, many modifications have appeared,
+greatly improving it.
+I will describe only a few of them.
+Elitist ant system.
+Elite ants are added to regular ones.
+They only follow the best route found since
+the beginning of the algorithm.
+Simply put, the best route gets a little extra
+pheromone every time.
+Max-min ant system.
+Limits are added to the maximum and minimum
+amount of pheromones on the path.
+This expands the search field.
+Pheromones are left only on the best routes.
+Rank-based ant system.
+The shorter the route found by an ant during
+the iteration, the higher the rank is assigned
+to it.
+The amount of pheromones is multiplied by
+the rank of the ant, so even if the routes
+are almost the same, the shorter one will
+receive noticeably more pheromones.
+Ants with a low rank do not leave pheromones.
+Well, now this is what I’ve got.
+We will solve a task with 66 cities, which
+cannot be solved by enumeration using all
+computers in billions of years.
+My idea was to explain the algorithm, so I
+haven’t been playing with the parameters
+for a long time and, most likely, these parameters
+are not the most ideal.
+On this map, you can see that the shortest
+route I have found is 7372.
+Now the algorithm has reached it in 588 iterations.
+Perhaps this is the shortest route on this
+map, or maybe not.
+Let's run it once again.
+The algorithm does not always arrive at this
+solution in the given time.
+But the routes found differ by only a few
+The algorithm is simple, but its application
+requires understanding its operation and adjusting
+multiple parameters.
+I’ve tried to make the best visual description
+of the algorithm.
+I hope I have succeeded.
+Thanks to everyone who supports us on patreon.
+More support, more opportunities for new projects.
+Well, that's all.
+Bye everyone!

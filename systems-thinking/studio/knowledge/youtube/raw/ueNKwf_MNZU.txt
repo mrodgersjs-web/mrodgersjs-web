@@ -1,0 +1,380 @@
+Hi everyone. My name is Joshua Kim and
+welcome to this talk.
+Today, I want to share a real-world data
+mart modeling project, specifically how
+I design and build a fact table to
+support new user activation funnel
+analysis.
+This was originally presented at uh Data
+Yanolja, one of the Korea's largest data
+conferences, and I'm excited to share it
+with a broader international audience.
+Whether you're a data analyst looking to
+get more out of your data marts or an
+analytics engineer who has built a data
+warehouse but is struggling with how to
+design effective data marts on top of
+it,
+I think you'll find this talk valuable.
+Let's dive in.
+A little bit about me. Uh I like to
+describe myself as a T-shaped
+professional. My academic background is
+actually a combination of philosophy,
+finance, and AI and big data.
+Philosophy uh
+gave me strong skills in logical
+reasoning and writing. Finance gave me
+quantitative thinking and the AI program
+gave me the technical foundation.
+My career has evolved from data analyst
+to analytics engineer and now I'm moving
+into data engineering.
+What bridges these roles is query
+optimization, going from DA to DAE, and
+pipeline engineering, going from DAE to
+DE.
+Today's talk is a story that sits right
+at the
+intersection of DA and DAE. A data
+modeling project that require both
+analytical thinking and engineering
+discipline.
+Here's the agenda for today. We'll start
+with the core metric that our squad was
+tracking. Then I'll give you a preview
+of the data mart I built, followed by
+concrete query examples
+showing how simple it is to use. After
+that, we'll deep dive into the actual
+DBT modeling code. We'll wrap up with a
+summary and some honest personal
+reflections. Let's get started.
+So, let's start with a core metric. It
+was around the end of 2024 when this
+project kicked off.
+Uh
+our company had adopted a squad model.
+Cross-functional teams organized around
+specific business goals. Previously, the
+organization's efforts were scattered
+across fragmented subgoals. Acquisition
+was doing its own thing. Activation was
+split into multiple streams.
+The squad's mission was to unify all of
+this. We set a one single goal, new user
+activation conversion, right? And
+aligned every effort around keeping
+users engaged with the product.
+Here's what the metric looked like. The
+funnel was
+uh first visit, then key event A within
+1 day, and key event B within 7 days.
+Note that 1 day and 7 days are
+illustrative values. The actual numbers
+are confidential.
+What made this interesting is that we
+weren't just measuring whether users
+converted. We also cared about how
+quickly they moved through each stage.
+The squad leader asked asked me to to
+prepare data and dashboards so the team
+could examine this metric from multiple
+angles. So, my job was clear, build the
+underlying data infrastructure to serve
+this metric flexibly.
+Before jumping into modeling, I spent
+some time thinking carefully about the
+matrix key characteristics.
+First, the convert conversion flow has a
+clear sequential order. First visit,
+then key event A and key event B. They
+can't happen in reverse.
+Second, conversion is time-bounded. A
+user must complete the event within a
+maximum time window from their first
+visit to count as converted. Third, the
+conversion rate is measured at the user
+level, not the session level. Uh each
+user is counted once. And fourth,
+uh and this is crucial for the design,
+uh the metric definition may change. The
+squad might uh
+swap out which events define activation
+or adjust the time windows. So, the data
+mart uh needs to be resilient to those
+changes.
+Based on that analysis, I set three
+design goals for the data mart,
+usability.
+Analysts should be able to write simple,
+concise queries that support slice and
+dice and drill down. No complex complex
+joins or window functions needed.
+Extensibility. Even if the metric
+definition changes, different events,
+different time windows, the table should
+continue working without schema changes
+or pipeline updates.
+And cost efficiency.
+Both the pipeline processing cost and
+the query cost should be minimized. In
+BigQuery, that means being smart about
+incremental processing and partitioning.
+With these goals in mind, let me show
+you what I built.
+All right, let's preview the data mart.
+The table design that serves this
+activation funnel metric.
+Here's the overview. I design a star
+schema with two tables. On the left is
+the new fact table. Fact first
+activation events. It stores only each
+user's first occurrence of each event.
+The key columns beyond date, user ID,
+and event name are the precomputed
+cohort fields. First visit date, first
+visit date time, hours from first visit,
+and days from first visit.
+These are uh what make the table
+powerful.
+On the right is dim users. This is a
+confirmed dimension from our core layer.
+It already existed. It has user user
+attributes like country, device, OS, app
+version, and UTM parameters. Because our
+fact table has a user ID, we can join
+with dim users to slice slice the data
+by any dimension we need.
+Let me highlight three important
+characteristics of this fact table.
+First, it's a transactional fact table.
+It stores temporarily
+um occurring user actions. Each row um
+represents a real event that happened at
+a specific point in time. Second, the
+grain is user ID plus event name. This
+means each user event combination
+appears exactly once. If a user
+triggered add to cart 10 times, on only
+the very first occurrence is stored.
+Third, it contains the pre-calculated
+semi-additive facts.
+Uh hours from first visit and days from
+first visit are embedded in every row.
+This means you can filter by conversion
+time windows directly in the where
+clause without any additional joins or
+window functions.
+Semi-additive here means these values
+can be aggregated along some dimensions
+but not others.
+Now, let me show you how simple the
+queries become uh with this design. I'll
+walk through the uh three examples,
+beginner, intermediate, and advanced, to
+demonstrate both usability and
+extensibility.
+Uh here's the beginner query. Show me
+key event B converted users by first
+visit cohort, regardless of conversion
+time.
+Look at how simple this is. Just select
+first visit date, uh count from the fact
+table where event name equals uh key
+event B, group by one. Uh that's it. No
+joins, no subqueries, no window
+functions.
+Uh the first visit date column is
+already in every row, so you get a
+cohort base breakdown for free.
+The intermediate query adds complexity.
+Uh show me key event B conversion rate
+by cohort within 1 day. Now, we use
+count if,
+one for first visit events as the denom-
+denominator, and one for key event B
+with the additional condition days from
+first visit less than or equal to one.
+The where clause includes both event
+types.
+Still still a um
+uh still a single query against one
+table, no joins needed. The time filter
+is just a simple column comparison.
+And here's the advanced query. Show me
+uh
+US car key event A to key event key
+event B conversion rates within 1 day
+and 7 days.
+This is where the star schema shines. We
+left join
+uh dim users to filter by country equals
+US. We use three count if expressions,
+one for first visit, one for key event A
+within 1 day, and one for key event B
+within 7 days.
+Notice how all three queries build on
+each other incrementally. The table
+design makes progressive complexity uh
+feel natural. That's the power of
+well-designed data mart.
+Now, let's go deeper into how this table
+is actually built.
+This is the modeling deep dive focusing
+on cost efficiency. How we minimize
+processing cost using incremental
+strategies in DBT.
+Here's the overall pipeline. On the
+left, we have two source tables, dim
+users, which we full scan since it's
+relatively small, and fact events, which
+we scan incrementally, only new
+partitions.
+Um the incremental data is compared
+against existing records in fact first
+activation events to keep only truly new
+user event combinations. Then those new
+records are joined with dim users to
+attach the first visit timestamps, and
+finally inserted into the target table.
+Let me walk through each step with
+actual DBT code.
+Step one, um instead of scanning the
+entire fact event
+events table, we use DBT's is
+incremental macro to read only the new
+partitions, data that arrived since the
+last run. We filter for only the events
+we care about, first visit, key event A,
+key event B, and apply minimum on date
+and date time to get the earliest
+occurrence per user per event. The group
+by
+user ID and event name gives us one raw
+per user event combination from the new
+data.
+We compare the newly scanned data
+against what already exists in the
+target table. If a user's first event
+was already captured in a previous run,
+we exclude it.
+I use the left join is null pattern
+here.
+Aliasing the new data as 2B as the and
+the existing data as as is. If the as is
+user ID is null, it means this user
+event combination doesn't exist yet, so
+we keep it. This is more performant than
+not in for large tables in BigQuery.
+Step three, for the remaining new
+records, we left join left join with the
+dim users to bring in each user's first
+visit timestamp.
+Then we compute hours from first visit
+and days from first first visit using
+timestamp diff.
+Notice the plus one at the end. This
+means
+the counting the counting starts from
+one, not zero. If a user's a first event
+happens on the same day as their first
+visit, days from first visit equals one,
+not zero. This is a deliberate business
+logic choice for that makes the time
+window filters more intuitive.
+Yes,
+we have to full scan dim users here,
+but it's a much smaller table than fact
+events. So, this is a cost-effective
+trade-off.
+And here's the DBT model configuration.
+We use materialized incremental with
+insert override strategy, partition by
+date at day day granularity.
+Insert override means that instead of
+merging, we simply override entire date
+partitions. Combined with the
+incremental scanning step one, this
+ensures each pipeline run only processes
+and writes the partitions that have new
+data. In BigQuery, this is most
+cost-efficient approach for a pen heavy
+fact tables.
+Let's bring it all together. What makes
+a good data mart?
+A good data mart is the intersection of
+usability, extensibility, and cost
+efficiency.
+For usability, the fact table enables
+simple queries that support slice and
+dice and drill down. We saw three
+examples: a beginner query for basic
+counts, and an intermediate query for
+conversion rates with time filters, and
+an advanced query with dimensional drill
+down by country.
+All concise, all readable.
+For extensibility, if the activation
+events change, you just modify the event
+name in your where clause. If the time
+window changes from 10 days to 5 hours,
+you just switch from days from first
+visit to hours from first visit. No
+schema changes, no pipeline updates, no
+data reprocessing.
+The table already has everything you
+need.
+And for cost-efficiency,
+on the processing side, we prioritize
+insert over upsert over full table
+rebuild. That hierarchy
+minimizes compute cost. On the query
+side, we use BigQuery partitioning and
+clustering so that analysts only scan
+the data they actually need.
+Before we wrap up, I want to share some
+honest personal reflections about this
+project.
+Um this slide shows my growth journey at
+the company. When I first started, the
+setup was simple. Amplitude and Google
+Analytics feeding into BigQuery with
+Redash and Python for analysis, all ad
+hoc. I was the bottleneck. Every time
+someone needed a number, they came to
+me. Then I built a full data warehouse
+and BI system you see on the right with
+DBT, Airflow, Kafka, multiple databases,
+and multiple serving tools.
+And the impact was real. Executives
+started asking for growth hacking
+studies. Leaders wanted to run AB tests.
+Team members told me the data
+infrastructure was making a real
+difference.
+I was able to grow from a data analyst
+into a analytics engineer, and now into
+a data engineer. All because the company
+gave me the space and trust to build
+these systems. I'm genuinely grateful
+for that.
+Uh to summarize, when designing a data
+mart for activation funnel analysis, I
+focused on three principles: usability,
+extensibility, and cost-efficiency.
+The resulting fact first activation
+events table is flexible enough to
+observe changing business requirements
+while the incremental DBT pipeline keeps
+compute costs low.
+Thank you so much for watching. If you
+found this helpful, please subscribe to
+this channel and leave a comment. I'd
+love to hear about your own data
+modeling experiences. You can find me on
+YouTube at Joshua Data, on my blog at
+joshuadata.github.io,
+and on Medium at Joshua-Data
+.medium.com.
+See you in the next video.

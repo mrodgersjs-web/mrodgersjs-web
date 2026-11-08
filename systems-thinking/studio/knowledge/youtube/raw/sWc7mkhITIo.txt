@@ -1,0 +1,710 @@
+You've heard all the hype around context
+graphs, and you're probably wondering,
+what are they? Well, you're looking at
+one. We built a context graph based on
+data from London area pubs, restaurants,
+event spaces, and here you can see how
+all of those are connected each other
+and interrelated. But, you might be
+thinking, wait a minute. I thought
+context graphs were all about things
+like decision traces and explainability.
+Well, there's that, too. We can also
+show the explainability when we ask a
+simple question. If we look at this data
+set and we ask, where can I drink craft
+beer? What pub can I drink craft beer?
+And now, we can actually see the graph,
+the subgraph, and also the concepts, the
+grounding concepts, which actual
+relationships in the graph are being
+pulled to generate the response and
+being being able to go through this
+sourcing information. So, here we see
+that we've asked a very specific
+question that limited the data to return
+one simple answer. But, you might think,
+well, why didn't why did we get this
+answer? And again, if we look through
+with the explainability, we can go
+through and see the actual source data,
+where this came from. Now, what's really
+interesting is when we can see this
+answer. What if we asked this question
+in a slightly different way? What
+instead Instead, the first time we asked
+specifically, where can I drink craft
+beer in a pub? So, now that we've
+broadened the question, we still get the
+same answer. But, if we look in the
+response, we see that the grounding it
+has actually broadened the concepts that
+were in that were available to us. So,
+that now, even though we've gotten the
+same response, just by asking the
+question in a slightly different
+semantic way, we see
+how many different concepts have been
+engaged. And while that may not
+immediately seem like a big deal, this
+is exactly why we started building Trust
+Graph all these years ago. I seems like
+so many years ago, doesn't it? And here
+I am, I am Daniel. You probably know me
+at this point. I am the co-founder,
+co-creator of Trust Graph. And I'm
+today, I have with you a rare appearance
+by the other co-creator of Trust Graph,
+Mark Adams. And wouldn't you agree,
+Mark? Yeah.
+Wouldn't you agree though that when we
+started this journey, this is exactly
+the sorts of things that we cared about?
+&gt;&gt; Yeah, absolutely. So, this is something
+we've been building up to for quite a
+long period of time as we've put the
+fabric in place, the graph,
+and then the ontology support, and then
+finally the explainability.
+It's great to be able to show this off
+now so now we've got got it working
+end-to-end.
+But, the full trace from, you know, all
+the concepts, how the query is answered,
+all the processing that that made that
+happen, and then the trace back to the
+source documents so you can check for
+yourself, did did does the answer make
+sense?
+Where did the information come from? Is
+it out of date? That's what I'm going to
+demonstrate this to you today. I get a
+lot of questions though about graphs
+themselves. Should we perhaps start
+about start kind of talking about just
+the graph building process?
+The the beginning point of what you
+know, what we're talking about when
+we're talking about graphs and what that
+graph building process looks like? Yeah,
+I think
+should we show people the workbench?
+This is how we we start off by taking a
+bunch of
+plain text documents or PDF documents
+into the system. I can start by
+taking one of these documents here.
+Let's go Let's do the Flatiron Square
+and Borough document. I'm going to
+select to put that through
+a blueprint, and then that goes in for
+processing with Trust Graph. Document
+there starts processing now.
+&gt;&gt; And again, the Trust Graph workbench is
+a tool that is meant to just be able to
+test really the capabilities and be able
+to understand how all the capabilities
+work together. What we're showing you in
+the other tab is more like an actual app
+that you would build on top of Trust
+Graph.
+&gt;&gt; So, if we feed a search term in, the
+first thing that the system does when
+you feed in a document is start to map
+out the concepts inside of that document
+and build a vector store that
+maps those concepts through to a graph.
+So, the first thing we see is when I
+when I do a search for Bermondsey,
+there's various terms that are that are
+close match to that semantically.
+If I click on, say, Bermondsey here, you
+can start to see some of the fabric. We
+can see that three-dimensionally. This
+is some of the the fabric inside of the
+graph. You can see the relationships
+between things. So, we found
+Bermondsey,
+this represents Bermondsey, the tube
+station, the metro station, which is on
+the metro line called the Jubilee line.
+And we can see Let's have a look. We can
+see that the Jubilee line has a type,
+which is transport line. I think we'll
+see that Bermondsey, we can find out
+what type that is. Well, it's already
+got a type. There we go. It's type
+transport stop.
+We can sort of see uh
+What else can we find out in here?
+Let's go and search for some pubs.
+Um
+Crate There we go. So, this is um this
+has got a lot more going on in in this
+section of the section of the graph. We
+can see there's Crate Brewery at the
+center of that.
+Um we can see its price level is budget
+to mid-range. Um actually, since that is
+a node, we can also find out if there
+are any other pubs
+um that are in that range. Let's see.
+We've got mid as a is a level. There we
+go. So, we can start to see You can
+start to see how we've built up this
+graph. This This graph explorer is not
+intended to be um an end-user facility.
+Don't navigating graphs by viewing them
+is probably going to send everybody
+over the edge insane. But, um this gives
+you an idea about how the graph is
+structured. And that's something that
+we've actually seen just recently that
+LLMs like coding agents and coding tools
+have actually gotten very good at
+building graph visualizations. So, you
+know, that's something that as you see
+in the app that the demo app that we
+created, we were able to create a very
+sophisticated graph visualization
+um you know, basically, you know, from
+scratch, which is
+uh as opposed to using kind of a more
+traditional off-the-shelf graph
+visualization tool, which we were doing
+in the workbench. That's right. So,
+Trust Graph is a system that we've built
+for builders to use to build systems.
+So, over time, we're going to be able to
+We offer TypeScript for builders to
+build UX with that
+that's some of the code assistants
+already know how to use, but we'll take
+this further and build more components
+for people to be able to build
+UX like this with. So, is this a This is
+more of a flat graph that you were
+showing us on the other screen, wasn't
+it? Or is this
+Or is this Or is this one built with an
+ontology?
+&gt;&gt; So, this This one is built with an
+ontology, but
+yeah, and I think
+it's interesting to compare with some of
+the earlier work we did. We've explored
+how effective it is to build ontologies
+over time, and I think ontologies have
+turned out to be very effective for AI
+graph
+algorithms. But, we started off building
+without ontologies. So, just just using
+language models to determine just to
+learn the concepts
+free form without having to be locked
+into an ontology. And it's interesting
+to be able to compare. We've got
+multiple techniques that work well for
+different domains. Right. So, again, you
+know, that was actually the initial
+genesis of Trust Graph was using
+semantic similarity search for as a as a
+way to generate subgraphs
+with a very, very flat graph structure.
+Just basically building a graph as a
+just raw triple store so that you just
+have basically just a you know, a list
+of triples, and then those triples have
+connections. They may share nodes in
+common. And using semantic similarity to
+basically find a starting point, and
+then you're able to extract subgraph.
+But, then we found that using ontologies
+actually increased the precision and
+accuracy of being able to retrieve this
+kind of information, you know, from the
+graph. So, I think a lot of people are
+also wondering, what really is an
+ontology? They may have heard about that
+term. They may have seen talks about it.
+But, what is that actually mean? You
+know, what is an ontology when you
+actually see it in front of you? So,
+that's a that's a great question. So, I
+think people might be in, you know,
+familiar with how
+databases might have schemas, or if you
+are
+you know, if you're used to
+code producing code as a programmer,
+you'll be aware that information has
+different types of classes, structures
+around how how that's organized. And
+we use an ontology is
+a mechanism for structuring, I guess,
+concepts within language. It's quite
+similar to database schema. Um but, it's
+very good at capturing the underlying
+meaning of of information as well. So,
+in our ontology for this particular demo
+example, we've got information related
+to venues in a city. So, we've got a a
+class of information, which is the
+atmosphere.
+Um you can see we've got community
+spirit and cozy, creative. You've got
+cities. You've got
+um neighborhoods within a city, events
+that might happen at an event. And so,
+the ontology structures information in
+terms of, you know, these these
+structures, these types, classes, and
+and allows you know, our ontology
+processing allows the language model to
+to take information and determine that
+it that is a match for certain type, a
+class, the structures, the relationships
+between data. And so, it very strongly
+steers the language model towards how
+information is structured. So, the
+knowledge graph, we've taken control of.
+We said, we will only accept certain
+relationships. There will only be
+certain classes of information. It
+creates
+It creates a a knowledge graph with a
+lot of precision compared to the free
+form that the schema free without an
+ontology the language model is having to
+determine relationships and you know
+sometimes there are relationships that
+are the same thing with different names.
+With an ontology we we force it into a
+much more precise structure. Don't we
+have to talk a little bit though about
+when we talk about ontologies we don't
+we have to back up a little bit and talk
+a little bit about graphs themselves and
+property graphs versus
+the semantic web because
+there are some slight differences in how
+you can structure graphs how you query
+graphs and if we think about you know
+mathematically what a graph is or from a
+computer science perspective you know
+that tends to be one way of looking at
+the problem from an information theory
+perspective but when we talk about the
+mechanics of how we actually build these
+systems and work with them most people
+when they think of graphs they're
+familiar with the Neo4j's and those you
+know very much firmly fall into the
+labeled property graph category but when
+we talk about ontologies that kind of
+steers us into some different ecosystems
+of implementations.
+&gt;&gt; Uh yeah that's right. So
+for TrustGraph um we've been very much
+guided by the RDF ecosystem and that
+style of uh representing information. Um
+one thing particularly of of interest
+there I guess that that that was of
+interest to us is how you can represent
+multiple different languages quite
+easily within a graph um but the other
+thing is there's other aspects for
+instance reification of information is
+going to be important. So the ability to
+associate information um between edges
+and other nodes of the graph is going to
+be a very powerful way for reifying
+information or or that is providing
+information about information to say
+you know to describe the temporal nature
+information the accuracy
+um and as if you've seen in this demo
+you can see we've associated information
+with sources and tracing back from edges
+in the graph through to the sources
+where did that information come come
+from and so um
+this is this is very important for us as
+we as we build explainable
+graphs. We are going to be using some of
+these we the infrastructure of the graph
+is particularly important for making
+that that work. Well some people are
+probably thinking though
+why can't you or can you
+use this kind of approach with property
+graphs? People have had battles over
+disagreements between people but you
+know knowledge graphs versus
+uh versus property graphs all we're
+trying to do here is to make something
+that works. I think it's possible to
+probably get both of those types of
+graph to work to to to do the do the
+kind of thing we're we're trying to do
+here.
+&gt;&gt; Again
+mechanically again you know because
+again this is kind of what you know
+people are very familiar with that style
+of graph and you know why would doing it
+this way provide advantages? So the
+reason it's structured the this the way
+it is that we have to think about the
+whole stack. We have to think about how
+to make the information useful we have
+to make sure that it supports the APIs
+that we're building and we have to make
+sure that it works at at large scale so
+um the the fabric of the graphs that
+we've created here has been structured
+to be able to do all of those things um
+in the world of uh language models
+working with AI
+um due to answer questions like this
+there are particular retrieval patterns
+that are commonly used that may not be
+present with other graph systems and
+other graph systems may support
+retrieval patterns that we probably
+don't care about for for um introducing
+AI to knowledge graphs and so we've
+particularly tuned this
+this stack to be able to to to
+explainably answer questions with it in
+the in the realm of AI. I I think that's
+that's an important point is that in a
+lot of ways we're using knowledge graphs
+or context graphs that we're now
+seemingly the term that people want to
+use much more like how semantic networks
+were proposed going all the way back 60
+years ago. If we look at how knowledge
+graphs have been used a lot in the last
+20 years you know some of the most
+common use cases are things like fraud
+detection AML KYC in the financial
+sector that's you know your customer and
+anti-money laundering you know a lot of
+cybersecurity detection where you have a
+lot of events that are that are
+described by some sort of string or
+metadata and you're trying to find you
+know pattern matching in that anomaly
+detection but not so much the actual
+semantics of language and lang in
+relationships in language. So I think
+that's kind of one of the big
+distinctions is that this is a bit of an
+old use case becoming new again with the
+need for being able to ground LLMs in
+more richer semantic structures. That's
+a really great point I think um
+you think about semantic web and how it
+sort of reinforced the need for a lot of
+this graph technology and I think the
+feeling is that
+um it graphs never really achieved the
+success that
+they could potentially have achieved and
+you know the world has been kind of
+ruled by tabular information and
+structured databases
+um and what really the the most complex
+part of this is like building graphs is
+actually quite hard and so
+um it's much easier to to force things
+into a tabular structure but I think you
+know language models have have just
+suddenly caused this technology to be
+just so much more relevant again and
+I think it's it's great to be able to
+combine these technologies and you can
+kind of see hopefully in this demo the
+power of the graph in the world of
+language models explainability AI it's
+it's a very rich technology it's got a
+lot lot of power behind it. And this was
+a lot of what I talked about you know
+with Mickey Frowin in our recent
+discussion about deep learning versus
+neuro-symbolic AI and how this very much
+using graphs and graph structures is
+what was neuro-symbolic or what is the
+neuro-symbolic AI approach and again
+that the deep learning approach was more
+that you throw data at these neural nets
+if you throw enough data and enough
+compute that we would be able to
+what I would say magically be able to
+get to ground truth. You know that was
+kind of the promise and the
+neuro-symbolic AI thinkers were always
+of the mindset that you would need
+richer semantic structures because of
+all the disambiguation
+in language. You know we started out
+this this demo by showing that just even
+though we got the same answer when we
+asked let's see what did we ask we asked
+you know what's a pub where you can get
+craft beer and then we just said where
+can I drink craft beer? Even though we
+got the same answer the process of going
+through that was very very different.
+Yeah let's look at that again. So where
+can I drink craft beer? So look at all
+the concepts that we went through we all
+these all the places where we might
+drink beer you know bars what what bars
+beer cafes
+um events like you could have an event
+you know a craft beer festival a beer
+garden so so many
+so many different um
+so many different concepts that could
+potentially arise from this because okay
+so at this point and we're using Mistral
+Small 4 for this demo so
+um we haven't done a lot of testing with
+Mistral Small 4 so we're kind of we're
+kind of doing some testing in public
+right here
+um to see the capabilities of it. Um so
+what's what's we can see if it did this
+here this is actually more along the
+lines of what people were saying with
+you know decision traces and here we're
+able to see how the information the
+graph actually contributed to the
+response with that source provenance.
+But can we ask I'd love to go back and
+ask the question a different way again
+and see and because again we can really
+see all the different concepts and the
+data in the graph that we went through
+to get to this answer because we asked
+in a very general way. But what happens
+when we ask it more specifically? So I
+think we would ask what did we ask last
+time like what pub I think yeah can you
+recommend a pub which serves craft beer?
+And see we can see how much this has
+actually limited the context that we're
+extracting from the graph because cuz
+we're only looking at pubs and craft
+beer now.
+So just that it seemed like a very very
+similar question but semantically it's
+not. We placed a filter just by adding
+by just adding that simple addition of
+you know what's a pub I can drink craft
+beer. For instance like if I was in
+London with Mark and I said hey where
+can we drink craft beer? To me in my
+mind that's the same thing as asking
+well what's a pub we can drink craft
+beer in because you know I that's kind
+of assumed right we would drink craft
+beer in a pub. But semantically and in
+information theory and in language they
+are not the same and they don't produce
+the same results and here we now finally
+with TrustGraph 2
+we're providing everyone because
+TrustGraph is open source it always will
+be open source the tools to now actually
+see that those two questions are very
+much not the same and lead us down a
+completely different path on how we
+would get a response and not only being
+able to see it but be able to see it
+visually and being able to trace back
+all of the source data. So, this is
+something very new in Trust Graph 2.
+This is really the promise of context
+graph. Not just the graph of initial
+grounding context, but then being able
+to do this traceability, this source
+provenance, this explainability for
+being able to understand how two
+seemingly similar questions in my mind
+they are the same question or not the
+same question. So, that's a lot I know
+to unpack. So, where do we start, Mark?
+By explaining all of the things that we
+are launching with Trust Graph 2 and
+realizing the potential of context
+graphs and where we're going with it.
+&gt;&gt; And really the the headline feature of
+Trust Graph 2 is explainability. So, I'm
+making sure that the the as documents
+are ingested into the system, that the
+full source graph there's a there's a
+graph which tracks all of the source
+components through to the chunks,
+through to the information that was that
+is extracted out of those documents. So,
+source provenance, I think you can call
+it, claims is part of the explainability
+AI solutions taking the So, explaining
+where we got information from, taking it
+all the way back to the documents so you
+can see here on the screen.
+That particular fact there, we know it
+came from that particular chunk and you
+can say well we'll be able to
+using the APIs you could find out where
+did that document come from, when was it
+ingested, do we trust it? What's the
+source? And so, the other part of it is
+the explainability at retrieval time.
+So, here you can see on the right hand
+side we've gone from question through to
+how the question was grounded. These are
+the concepts that you using a light
+using a language model we worked out
+those concepts are relevant in answering
+that question through to the nodes in
+the graph that are related to those
+concepts through to the edges of the
+graph and how those represent facts or
+information that is going to be
+consumed into the final step, the
+synthesis step, where we go ahead and
+answer the question.
+And so, because we've got the full trace
+through the retrieval side, you can you
+can see okay well I I know how I you
+know I've got a very good understanding
+about how the answer was constructed,
+which sources were used. And now what
+we've got here on the screen is a demo.
+Um it is designed to show everybody how
+this this works. I think this this might
+not be sort of necessarily end user
+consumable, so you can produce um
+you know, much more tailored responses
+that show, you know, you could probably
+do a quite a simple approach of saying,
+this is how I answered your question and
+and produce something that that a that a
+human could understand about how the
+question was answered. But this seems to
+be what so many people are looking for
+right now is that we have agents making
+decisions and executing tasks. And it
+let's let's just say that we had an
+agent who is um like a travel a
+like you have like your your friend in
+London that can give you recommendations
+that you've never been to the city and
+like, "Hey, where can I drink craft
+beer?" Well, here's an example of well
+if I asked, "Where can I drink craft
+beer?" and then if I asked, "Well, where
+what's a pub that serves craft beer?"
+And if I get a different answer and I
+don't like that answer, now we have the
+capability to actually go through and
+say, "Why did that seemingly similar
+question give us different responses?"
+And this opens up the door to being able
+to understand
+why
+you get the outcomes that we got. Were
+these the outcomes we got? You know,
+sometimes, I mean we have to be honest
+with ourselves. Uh
+Language is a communication tool for
+humans and now we're communicating with
+a technology. Whereas if I asked Mark
+those two questions, "Where can we drink
+craft beer?" and what and what is there
+a pub that serves craft beer? I suspect
+he would have responded the same way in
+each situation because there's a lot of
+connotation there. There's a lot of
+assumptions because if we were in the
+same place at the same time, there would
+be the connotation of well he's probably
+asking somewhere that's nearby right
+now. So, what's somewhere nearby? Does
+all this is understood
+in the connotation in the context of the
+situation. Well, a language model has
+none of that. It doesn't think that way
+because it's a language model. It's just
+a lot of ones and zeros and other
+numbers. It's just a piece of
+technology. So, it will interpret the
+language based on the cold, hard
+contextual setting that we the human
+give the language model. So, what I'm
+getting at is well, should I say it?
+Should I just be the blunt way of saying
+it? Should I do it? If you ask a stupid
+question, you might get a stupid
+response. There, I said it. I did it. I
+know. Please retreat to a sufficient
+safe spaces if you have one, but it can
+happen. If you don't ask a well-formed
+question or if you ask a question with a
+lot of contextual ambiguity, should we
+be surprised that we don't necessarily
+get the answer that we were thinking?
+For instance, if I was with Mark right
+now and he's in the UK and I somehow go
+over there and I say
+um you know, "Hey, where's a pub that
+serves craft beer?" And you know, he
+answers you know, somewhere down the
+street and I go, "No, I wanted one in
+London." Well, why would he assume that?
+That would be odd for him to assume. So,
+it wouldn't be his fault that he didn't
+answer the question the way I wanted
+because I didn't ask the question with
+the correct amount of context to provide
+the right answer. And that's what we're
+really getting at here. That's the
+promise of this technology and this
+that's the promise of neurosymbolic AI
+is this semantic granularity, this
+accuracy, this precision to being able
+to understand these requests in a new
+way so that now we can potentially we
+can look back at these requests and say,
+"Hey, the user wasn't happy with the
+response of this agent." And we trace
+back and go, "Well, maybe the agent
+didn't do such a bad job because most
+people would have interpreted the
+question the same way." And then you
+start having to understand well, do we
+have to
+guide the user in a different way
+because of this wasn't what they wanted?
+Now we have that explainability, that
+traceability where we can go through
+every step of the process and being able
+to understand all those potential
+decisions, all those potential concepts
+that were related. For instance, you
+know, even I, when we asked the
+question, "Where can I drink craft
+beer?" all the concepts that we found,
+that's way more concepts than I would
+have ever thought of. Like I wouldn't
+have thought like, "Oh,
+yeah, you're right. Should we look for,
+you know, events and festivals and beer
+gardens and that sort of thing?" I
+wouldn't have thought of all those
+myself, but those were all valid
+options.

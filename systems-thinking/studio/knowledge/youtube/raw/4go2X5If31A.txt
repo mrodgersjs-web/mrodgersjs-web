@@ -1,0 +1,207 @@
+My personal assistant has a team of eight agents.
+They all run in the same model, Qwen3.6-27B, on a box in my office.
+Each one has their own identity, memory, and different tools.
+There's also a ninth agent that's isolated from the team.
+Today, I want to talk to you about the supervisor pattern in agents.
+If you're new to the channel, my name is Damian, and I've been a software engineer for about 15 years.
+Lately, I've been spending my time diving into how to use AI in engineering and building applications with them.
+Also, I want to thank Mastra for sponsoring this video.
+Mastra is the modern TypeScript framework for AI-powered applications and agents.
+I've been building with Mastra for about six months now, both in production and on my local agents.
+If you want to learn more, I'll leave a link in the description.
+Now, let's dive into the supervisor pattern.
+So first, what is the supervisor pattern?
+This is a pattern where instead of having one monolithic agent,
+you build out a team of agents with one supervisor at the top who manages them.
+That's how Emma works.
+She acts as a chief of staff who has her own set of tools, but also a team that she can delegate out to.
+So why would you want to do this?
+Well, for me, it started when I built Emma and had one single agent, and I started to add more and more tools to expand her capabilities.
+The problem with this was, as I did that, I really started to feel the problem with tool sprawl.
+Tool sprawl is when you start adding so many tools that the agent starts having difficulty to understand what tools to call.
+Imagine you're filling up their context window with tons of tools with their descriptions and what arguments they take, and that can make it harder and harder for the agent to pick the right tool.
+So in this case, I started thinking about how do I break this out into multiple roles?
+The first thing I needed to do was understand how to actually break this out.
+What was going to delineate which agents I should extract and which tools should move?
+And for me, this is still actually a learning process.
+I'm still evolving this as I go.
+I started off where I extracted probably way too many agents and went a little bit too fine-grained on things.
+But I now try to look at it like the single responsibility pattern in engineering.
+What that means is that you don't want to have one giant class that's responsible for everything.
+You want to break things out into monolithic pieces.
+So for me, a few cases came about.
+One, I have Sage for research.
+So Sage is responsible for any kind of deep research that has to happen.
+Then I have Muse for content creation.
+Muse is responsible for understanding my brand and the types of projects that I'm working on and how to extract content.
+Emma manages the calendar directly.
+At one point, I did have another agent called Tempo.
+This ended up feeling a little bit weird because Emma is supposed to be the chief of staff.
+Why is she delegating out to another person to manage the calendar?
+In real life, you probably wouldn't end up doing that.
+So I also try to model this off of kind of like real world constraints.
+When would I have another human kind of take a job and embody it that way?
+Some other ways to think about it are when would they have their own memory?
+So one of the benefits of separate agents is that each one can have its own memory.
+So if there's a specific topic that I'm covering and their own memory on that system is going to be useful, then I can go that way as well.
+So like I mentioned, Emma has her own stack of tools, but she also has a team of agents to support her.
+We have instructions in her AGENTS.md that acts as a map to understand when she should delegate out to another agent and orchestrate between them.
+This has also been a learning process because there's definitely been times where she's fallen into a trap where she doesn't actually delegate or she delegates when she shouldn't have or to the wrong person.
+There's been a lot of iteration here to understand how to get this to work properly.
+Evals have been super helpful here because you can also use that to test the quality of your agent and understand whether or not the agent is actually delegating what it should be.
+Fixing this sometimes involves adjusting the prompt or understanding and restructuring the tools that are available.
+So in the example I mentioned earlier where she had tempo for calendar management, she also had her own calendar tools.
+And this would also often cause friction when she was actually trying to do scheduling or when she should have delegated to tempo.
+Now, I ended up moving out to not having tempo, but in that scenario, when I first fixed it,
+I actually ended up stripping out all of the calendar tools from her available tools.
+So that way it could also help enforce the delegation.
+So how do I actually end up guiding her to do this?
+Like I mentioned, each agent has its own description.
+Inside of her SOUL.md and her AGENTS.md, there's some guidance on that.
+Let's take a look at what that looks like.
+So what does this look like in practice?
+We can see here that this is where I've defined Emma herself.
+So I instantiate a new memory instance.
+So each of the agents that has memory uses this tool.
+And we have working memory enabled, a specific schema for Emma's specific kind of working memory.
+And we're defining the resource of scope.
+Observational memory is also enabled.
+And she's pulling in the last 10 messages with semantic recalls that's false.
+You'll see here we have on line 100 is where I actually instantiate what Emma does.
+We have the ID, the name, and the description.
+Many of the things that we've seen in some of the other videos, and if you haven't seen that before, I'll leave a link for you to check out building your first Master Agent as your personal assistant.
+We have instructions, and then on line 108, this is where things get interesting for the supervisor.
+So here we're defining the agents that she has available.
+There's Daemon, Forge, Ledger, Muse, Sage, Scout, Sentry, and Signal.
+That makes up her team of the available agents.
+Each one of them has their own prompt, their own description, and their own set of tools.
+And we can see here the list of tools that she has available.
+And as you can imagine, this used to be even bigger when she was a solo agent.
+Now let's go take a look at the AGENTS.md for Emma herself.
+This is my mission control dashboard for Emma.
+Here we can see the actual team, which is made up of a total of 10 agents,
+including Emma and another agent called Envoy, which we'll talk about a little bit later.
+Each one of these has a set of tools and some specific relationships.
+Let's dive into Emma first to see what she looks like.
+Each agent has a SOUL.md, AGENTS.md, and a USER.md, mimicking the pattern from OpenCode.
+If we dive down here into the AGENTS.md, I've specified a routing table for when to potentially delegate out to an agent.
+So this was after going through some evals to understand when Emma was failing to delegate and how to maybe improve that.
+So you can see here we have things like when there's keywords and intent for, say, a tweet or a LinkedIn post that it's supposed to route to the agent muse.
+For things like calendar, scheduling meetings, scheduling events, this is a direct compact calendar tool.
+So you use search capabilities first if unsure.
+So in this case, we also had to include some notes for not a social calendar because that was an interesting problem where agent that I have called Muse and Signal both have calendars of their own, but they're content calendars, not like my personal calendar or calendar to schedule on.
+So we had to start including some instructions on when not to use this agent.
+Again, we have some routing here for email, inbox draft.
+We've mentioned it that she has direct tools, so reminding her about that.
+I have an agent called Scout.
+That agent is responsible for the contact, anything related to the CRM and contacts and things like that.
+Forge is responsible for code, PR review, and anything relating to code and committing content.
+But you can see here, that's my table for when to delegate.
+We also have some information on when for my own tools, for Emma, and things like that.
+Now let's walk through the different agents I have. There's Emma. She's the primary supervisor
+and she's going to handle coordinating the full team of agents for coding, CRM, research, finances,
+brand operations, things like that. She handles task management, reminders, my daily briefing,
+and everything underneath that. Then we have Scout. Scout is my CRM specialist. Scout handles contacts,
+companies, agreements, pipeline tracking, proposals, all things related to client relationships.
+Sage is my research agent.
+She can do things like web search, look up call briefs,
+handles when a cal.com event comes in and processes that
+and does some research for me,
+similar to the other video that I've shown.
+And then there's Ledger for financial operations.
+I mentioned Ledger before in my previous video
+on LLMs and evals.
+So Ledger handles things like managing Stripe,
+invoicing, and things like that.
+Forge is an agent that I have
+for managing coding operations.
+So I have what's called a coding pipeline,
+which I'll dive into in a future video for managing projects on the code side.
+So that's using the Anthropic Agent SDK on top of Mastra.
+Muse, I mentioned before, that's a personal brand agent for my website and my blog,
+as well as my YouTube channel.
+So this is the agent I talk to for all things related to my blog,
+personal website, YouTube, things like that.
+Signal is an agent dedicated to Creator Signal.
+So if you've watched any of my live streams,
+I've been building a SaaS product for AI, which is called Creator Signal.
+And I've been trying to get into doing some content marketing around that.
+And Signal Agent helps me with that.
+Daemon is an engineering manager.
+So it's meant to orchestrate kind of multi-phase projects.
+So whereas Forge handles the kind of details around the individual coding tasks,
+Daemon is meant to kind of orchestrate all of those things.
+And Sentry is pretty lightweight right now.
+It only has one tool that it can call, but I do plan on expanding that.
+And right now that's the tool for restarting the agents.
+So we can see here they have a SOUL.md, like I mentioned, some different domain knowledge on contacts and pipeline stages, everything.
+So we can really refine how each agent behaves within this ecosystem instead of having one giant, say, AGENTS.md file inside of Emma to try to do that.
+So if you're first getting started with using supervisors, there's a couple things you probably want to be careful about.
+The most important is probably over-delegating.
+This is something I ran into early where I, like I said, I created probably 10 or 15 different
+agents that were underneath Emma, and it was hard to understand when she should delegate as well as
+kind of trace through the responsibilities and understand where things were breaking.
+So I would take this probably step by step and go incrementally one agent at a time before kind of
+going too deep into it, which was the mistake I had made. I had mentioned single responsibility
+principle earlier, but you do need to be careful when it comes to that. You're not trying to make
+one agent responsible for, say, one single tool call, like I did with, say, Sentry, in this case,
+the single responsibility is likely something like a domain or area to focus on. So there's a couple
+things to keep in mind when you're debating on when to extract another agent. So a couple of
+rubrics or rules that I like to follow are looking at the domain size. Now, if the domain starts
+getting really large set of tools for something, it might be time to extract. Right here, we're
+looking at Scout, which is the agent managing the CRM. You can see here that Scout has about 36
+tools available to them. If I had not extracted Scout, that would be 36 tools that would have to
+be in Emma's workspace of additional tools. And you already saw how many tools that she has.
+So it came time to extract this agent. The other thing to think about is context and does it matter?
+So would you hire a specific person to do this role? In this case, for something like the CRM,
+you might have someone who manages client relations and all the things related to that,
+including deliverables, project details, and things like that. The other is for context. So
+would a separate memory be useful for this agent? You could, of course, have one giant memory context
+inside of Emma, but as that gets filled with more and more content, you're just going to start seeing
+degradation of does the agent actually use the memory when appropriate. So Scout falls into all
+of those features where Scout has their own set of instructions, their own context, their own memory,
+and a large set of tools that makes sense for Scout to be its own agent. So I mentioned one more
+agent, which is Envoy. Envoy is a dedicated agent for my Practical AI Slack workspace, which if you
+want to learn more about, I'll leave a link in the description below. And they are sandbox. So they
+have no access to things like my CRM, any of my personal data, can't access my vault, things like
+that, but can actually retrieve information about the system that I've set up and delegated so that
+Envoy can share with the community. And so people can interact with Envoy and communicate and ask
+questions about Emma's system, but can't actually get the direct lines of content to say my Obsidian
+Vault or my CRM or anything like that because she's isolated from the rest of the team. So
+that is what this agent is and represents separate from the rest of the team.
+All of this has been built with supervisor agents in Mastra, which I'll leave a link to in the description.
+And it also has its own notes on when to delegate and when you might use this.
+Mastra supports some deep integration with the supervisor pattern, such as delegation hooks for things like on delegation start, on delegation complete.
+They can handle message filtering.
+So by default, every sub-agent is going to receive the full conversation history that you've had with the primary agent.
+That's useful for when you want to have that context distributed for the tasks that get delegated,
+but you may want to have some control over something like that to reduce the context size that's being implemented.
+Subagent result context is another feature of Mastra's supervisor pattern where you can actually control what is returned back.
+By default, the subagent is only going to return the final response, not all of the tool calls and things like that.
+You can configure this inside of your delegation and saying include subagent tool results in model context.
+Iteration monitoring is another feature
+where you can actually control how often
+the iteration loop keeps going,
+whether you need to control and have it stop
+or keep going on its own.
+So that's the supervisor pattern.
+I'll leave a link to all the docs I mentioned
+in the description below.
+And if you follow along with my other videos,
+you might remember that in the Mastra Workspaces video,
+I created a tool that actually called a separate agent
+for handling meeting note synthesis.
+I encourage you to check that out
+and use it as an exercise to move away
+from a separate tool call
+to use the supervisor pattern instead.
+It's a great use case.
+If you found this video useful,
+please give it a like and subscribe.
+I make weekly videos on applied AI
+as well as building with AI using tools like Claude Code.
+If you want more content like this,
+I have a weekly newsletter that I publish
+diving into all of these topics.
+You can sign up in the link in the description below.
+Otherwise, I'll see you in the next one.

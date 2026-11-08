@@ -1,0 +1,66 @@
+{
+  "schema": "rig.jake.systems_thinking_run_proof.v1",
+  "generated_at": "2026-08-29T19:18:00Z",
+  "mission": "Apply verify-and-build discipline to the JARVIS gap report closeout; install Jake systems-thinking loop as durable capability.",
+  "units": [
+    {
+      "id": "U1",
+      "risk": "R1 wildcard bind :3005",
+      "change": "serve() hostname default 127.0.0.1 in platform/openbot/server/src/index.ts; .env PORT=3005 + SERVER_HOST=127.0.0.1; restart via canonical .logs/server-launcher.sh (old omp-spawned pid 57706 killed)",
+      "gate": "lsof -nP -iTCP:3005 -sTCP:LISTEN",
+      "gate_output": "bun 86056 TCP 127.0.0.1:3005 (LISTEN)",
+      "extra_gates": {
+        "api_health": "curl http://127.0.0.1:3005/api/copilotkit/info -> 200",
+        "ui_proxy": "curl http://127.0.0.1:3011/ -> <title>OpenBot</title>",
+        "estate_contract_test": "bun test tests/rig-foundation-estate-truth.test.ts -> 15 pass 0 fail"
+      },
+      "verdict": "PASS"
+    },
+    {
+      "id": "U2",
+      "risk": "R7 dead jarvis plist",
+      "change": "none — already loaded between morning report and run (OBSERVE phase re-grounded)",
+      "gate": "launchctl print gui/501/com.rig.jarvis + curl :8000",
+      "gate_output": "state=running pid=62754 KeepAlive=true RunAtLoad=true; :8000 -> 401 (alive, auth-gated)",
+      "verdict": "RESOLVED-BY-OTHERS, VERIFIED"
+    },
+    {
+      "id": "U3",
+      "risk": "R2 backup never restored",
+      "change": "new canonical script platform/openbot/scripts/rig-pg-restore-drill.sh; exits 0/2/3/4",
+      "gate": "bash rig-pg-restore-drill.sh; echo $?",
+      "gate_output": "exit=0; log PASS line: tables=29 (dump=29) agents=11 users=1, scratch db dropped",
+      "gate_bug_caught_by_running_it": "first run exit=4 — gate counted drizzle.__drizzle_migrations as a public table; fixed to '^CREATE TABLE public\\.'",
+      "verdict": "PASS"
+    },
+    {
+      "id": "U4",
+      "risk": "Jake = task executor, not systems thinker",
+      "change": "new ~/.jake/JAKE_SYSTEMS_THINKING.md (5466 bytes; loop, 7 imported process rules, E/T/C/S/L/V binding, done tests); wired into jake-pai SKILL.md read-first list",
+      "gate": "grep -c JAKE_SYSTEMS_THINKING in 4 skill mirrors + module file size",
+      "gate_output": "1 reference in each of .claude/.codex/.hermes/.agents; 5466 bytes; (a 4x duplicate sed insertion was caught and deduped to exactly 1)",
+      "verdict": "PASS"
+    }
+  ],
+  "live_findings_beyond_the_report": [
+    "R1 real shape: :3005 holder was an omp-session dev server (not launchd); running OpenBot.app depended on it; OPENBOT_TOOL_URL couples agent containers to host.docker.internal:3005 (dormant, containers honest-DOWN)",
+    "Backup silent failure mode 2: missed run during sleep leaves NO log line while launchd last-exit stays 0 (stale). Missed-run != healthy",
+    "QNAP RIGVault oscillation caught mid-mission: 13,496 STALE events (2,212 today); mount watchdog's per-share remount loop is the driver — each remount stales the sibling SMB session; G6 regressed live, manual watchdog run remounted, drill re-PASSed",
+    "Estate contract pinned in tests (host 127.0.0.1) was never enforced against live lsof state — 9.5h of wildcard while the test stayed green",
+    "Verifier discipline: U3's first gate failure was the gate's own bug — run the gate before trusting the gate"
+  ],
+  "sealed_next_queue": [
+    "Q1 backup reliability end-to-end: single-session SMB mount strategy (or target moved to stable share), failure+missed-run alerting, drill wired into restore path",
+    "Q2 estate live-enforcement: watchdog/test compares lsof binds to pinned 127.0.0.1 contract; plant-failure verified red",
+    "Q3 control center (R3): per-agent model assignment, health badges, host metrics — process map first",
+    "Q4 channel->agent routing (R4): Telegram chat to named agent, operable-crew pattern",
+    "Q5 voice wiring (R5)",
+    "Q6 reboot recovery drill: post-boot fleet restoration gate"
+  ],
+  "claims_not_made": [
+    "No live Shopify/live-store anything",
+    "QNAP oscillation ROOT fix not built (queued as Q1) — only remounted and evidenced",
+    "R3/R4 not built — queued with contracts",
+    "Canonical repo changes are on-disk in registered root rig-intelligence; commit left to the repo's own verify+commit flow"
+  ]
+}

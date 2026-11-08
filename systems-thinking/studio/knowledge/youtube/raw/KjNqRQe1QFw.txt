@@ -1,0 +1,218 @@
+hey folks how's everybody doing out
+there this week I want to talk about
+three of the most famous anonomous laws
+in Information Technology eponymous by
+the way that just means it's named after
+a person and there's a thing called
+stigler's law of eponymy which says most
+discoveries aren't actually named after
+the people who discovered them it was
+proposed by Steven Stigler who was a
+professor of Economics at the University
+of Chicago in 1980 but it was actually
+discovered by somebody else a
+sociologist called Robert K meron but uh
+Stigler had to name after himself
+otherwise his law wouldn't work now uh
+theonomous laws that I want to talk
+about here are Mo's law amal's law and
+Conway's law cuz I think those three
+laws considered together lead to a
+really interesting conclusion about the
+way we design and build modern software
+systems let's start with Moore Gordon
+Moore was the co-founder of Intel and
+Fairchild semiconductor and way back in
+1965 Moore wrote a paper predicting that
+the number of components per integrated
+circuit would double every year in 1975
+he revised his forecast to doubling
+every two years and his prediction was
+pretty much spoton nearly 50 years later
+if you plot a logarithmic graph of the
+total transistor count of CPUs against
+the year they were introduced you get
+something approximating a straight line
+now here's the same graph but this is
+the uh average transistors per core you
+see how around 2005 the two series
+suddenly diverge that's cuz in the early
+2000s we began hitting the physical
+limit of how many transistors could be
+integrated into a single CPU around
+about the 4 GHz Mark we kind of hit a
+wall in terms of raw clock speed and so
+the semiconductor industry hit upon the
+bright idea of multicore CPUs basically
+put in more than one CPU into the same
+package now that's had a profound impact
+on the way we create software in the
+days before the web computing power was
+about scaling up you bought a bigger
+Mainframe now it's about scaling out
+spinning up dozens maybe hundreds of
+instances of your backend services so
+your system can handle more
+requests every year there are more
+people online they use more devices and
+more apps to do more things which means
+more data more power more computation
+the only way to keep up is to build
+systems that can scale out to cope with
+that demand code needs to parallelize we
+need to split our systems out into a
+little autonomous units of work that we
+can distribute across as many cores as
+we have available and then combine the
+outputs of all those little operations
+into the result that our users expect
+and that brings us to amal's law Gan
+amdal was the chief architect of the IBM
+system 360 and he first presented his
+aonomus law back in
+1967 amal's law is about the theoretical
+performance improvements we can expect
+by parallelizing some given workload uh
+it's actually this equation here but uh
+I like to think of it in terms of
+Christmas dinner or Thanksgiving dinner
+if that's your thing
+if you have one person with one cooker
+working alone it'll take 20 hours to
+prepare Christmas dinner with all the
+trimmings if you add more people with
+more cookers you can parallelize this
+and so you can get it done faster but if
+you want to eat at three you still have
+to start by 11:00 a.m. because you can't
+roast a turkey in under 4 hours doesn't
+matter how many chefs and ovens you've
+got and if another 20 people
+unexpectedly show up half an hour before
+lunch well now you have a problem so
+instead of turkey let's serve
+traditional Christmas burritos because
+you can parallelize burritos you spin up
+20 more chefs and you can still be ready
+to everyone to eat at 3:00 and that's
+the benefit of hosting in the cloud you
+can spin up more resources really fast
+but the whole point of amal's law is
+that if your workload doesn't break down
+into small tasks that can happen in
+parallel there's a limit to how much you
+can scale if you want to go really fast
+you've got to build systems without any
+turkeys in them and that brings us to
+Conway's law first published in 1964
+Conway's law is the observation that any
+organization that designs a system
+defined broadly will produce a design
+whose structure is a copy of the
+organization's communication structure
+kind of like Moos law it's an
+observation that has proved remarkably
+preent over the last few decades anytime
+you have to deal with your bank and they
+transfer your call to another department
+and you've got to answer all the
+security questions again you've just
+experienced Conway's law you've got two
+departments running two different
+software systems created by two
+different teams who didn't or who
+couldn't talk to each other and so the
+software systems they don't talk to each
+other either so what's the Conway's law
+equivalent of roasting a turkey well
+maybe it's a 4-Hour project update
+meeting where a bunch of people sit
+around and tell each other things they
+could have emailed or written down in a
+ticket or on a Wiki page uh maybe it's
+waiting for someone to reply to your
+email or to return your call Cuz uh
+they've asked you to build a dashboard
+they haven't told you what it needs to
+look like or where you can get the data
+from maybe it's just sitting on a train
+for 2 hours every day cuz the boss has
+decided hey everyone needs to get back
+into the office one of the underlying
+principles of the agile Manifesto is
+that the most efficient and effective
+method of conveying information to and
+within a development team is
+face-to-face conversation I think that's
+correct but I think it might be
+optimizing for the wrong metric
+conversation is high bandwidth High
+interaction discussion medium it's
+brilliant at solving problems and
+terrible at capturing the solution
+nobody outside that conversation knows
+what was said and there's always a risk
+the people you're talking to they nod
+and yeah they tell you they get it when
+actually they haven't understood a
+single word you said really effective
+distributed teams they optimize
+communication for discoverability trade
+off a little temporary velocity for
+longer term
+efficiency think about the kinds of
+patterns that produce resilient
+distributed systems uh autonomous
+microservices command query separation
+if you think about how the components in
+those systems communicate uh they're not
+constantly checking back with
+headquarters they have all the
+information they need and you leave them
+to get on with it or think about
+infrastructure as code you know if
+you're running terraform palumi bicep
+everything that you need to increase
+your system capacity scripted documented
+repeatable can you add more people to a
+team as easily as you can add more VMS
+into a
+cluster Mo's law says capacity doubles
+every 2 years and for the last 20 years
+that's only been true thanks to multiple
+cores and distributed systems amal's law
+says you want to take advantage of
+distributed computing you should
+eliminate non-p parallelizable tasks and
+Conway's law says if you don't want nonp
+parallelizable tasks in your structure
+of your systems you shouldn't have them
+in the structure of your teams or you
+know put it in another way meetings
+don't scale organizations that have a
+lot of meetings will create systems that
+don't scale and if you want to win at
+the internet that means you got to stop
+having me
+things now this is some pretty old
+school thinking Conway's law was 1964
+Moore's law was 1965 amal's law was
+1967 and the tech industry generally
+isn't great at learning from our own
+history we love new shiny things writing
+code is more fun than reading it
+inventing new stuff is more fun than
+studying old stuff but these
+observations they come straight out of
+one of the most audacious decades in
+engineering history you know the 1960s
+gave us the Apollo program Boeing 747
+Concord the Lockheed SR71 we're talking
+about the kind of people that landed
+human beings on the moon using slide
+rules and number two pencils you know
+it's uh it's just possible that they
+were on to something folks I hope you
+found that interesting you'll take it
+easy out there you look after each other
+and uh I'll see you next time

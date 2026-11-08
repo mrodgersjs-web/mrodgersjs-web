@@ -1,0 +1,142 @@
+today's lesson is all about genetic
+algorithms which are a really cool way
+to optimize learning in machine learning
+tasks if you're not quite sure what this
+means
+imagine you have a problem which if you
+just kept some guessing random solutions
+for you would eventually stumble across
+one which works maybe the problem is a
+big maze say you put a computer cat at
+the beginning and you tell it you can
+take up to 100 steps and each step you
+can go in any direction you like find
+the box if the cat gets completely
+random routes for all of eternity or
+maybe just like a few hours it would
+eventually stumble across a correct
+solution which got it from the beginning
+of the maze to the box but this would
+take a whole lot of time what genetic
+algorithms do is use a survival of the
+fittest type algorithm to reach solution
+much faster the steps to creating a
+genetic algorithm include creating an
+initial population defining a fitness
+function selecting the fittest members
+of the population using crossover and
+mutation to create the next generation
+and repeating steps three to four until
+we're able to solve our problem let's
+jump into an example to learn what all
+these steps mean and how to implement
+them this is Jonathan Jonathan can take
+four actions he can go left he can go
+right you can go up and levitates
+yeah Jonathan's pretty rad or you can go
+down let's see how we can string these
+controls together to create something
+called a DNA strand
+we'll give Jonathan a string of 14
+actions to take each one randomly
+selected each action can be called a
+gene and when the genes are combined in
+this way the entire strand is called the
+DNA now let's drop Jonathan in a park
+Jonathan needs to walk through the park
+to get to work but if he slips on a
+banana skin or crashes into a bird he'll
+fall and not be able to carry on let's
+see what our Jonathan does with his
+randomly created DNA not the best now
+you or I could look at this scene I
+manually created Jonathan with a better
+DNA who could easily travel much further
+unscathed
+but what if I can't be bothered to tell
+Jonathan what to do I mean why can't he
+do all the work while I just watch
+Netflix or what if we were faced with a
+course which was much more difficult for
+you or I to manually figure out
+let's devise a genetic algorithm to
+produce the competence Jonathan step 1
+create an initial population let's
+choose a population of size 5 and give
+them each a different DNA created by
+randomly selecting the genes from the 4
+action options
+this is where each of our Jonathan's end
+up step to define a fitness function
+since we want Jonathan to end up exiting
+the park let's say the fitness function
+is calculated by counting the number of
+steps between Jonathan and his initial
+position
+step three select the fittest members of
+the population since our population size
+is very small we'll only take the top to
+Jonathan's but you could choose to
+select more if your population was
+larger step 4 cross over a mutation in
+order to create better future Jonathan's
+we're going to take our fittest members
+and breed them to produce child
+Jonathan's so how do we do that we take
+the DNA strands from the two parent
+Jonathan's we then need to decide how
+we're going to combine them you can do
+this in any manner you can think of as
+long as you're taking information from
+both parents to create a child DNA I'm
+going to choose to split the DNA strands
+into three and then randomly choose
+which Jonathan will pass on their strand
+of genes from each section let's create
+a new generation of five Jonathan's
+[Music]
+great but we're not quite finished with
+the chopped Jonathan's we still need to
+mutate some of their genes
+why because otherwise we can get stuck
+in local minima imagine if by chance our
+initial population of Jonathan's only
+consisted of left writes and down
+actions
+then the best Jonathan could ever do
+would only be to make it to the first
+banana which is only two steps away from
+the starting point Jonathan would never
+make it out of the park because the
+parents didn't have a jumping gene so
+the children would never learn to jump
+that's why we need a mutation so that
+Jonathan can have the opportunity to try
+new things if we make our mutation rate
+too high Jonathan will explore a lot and
+won't listen to his parents much so it
+will take him a long time to be
+competent if we make our mutation rate
+too small
+Jonathan will listen very well to both
+his parents so he'll learn fast but it
+will take him a long time to change his
+ways if he's near the local minima a
+good mutation rate is fairly small for
+this problem let's choose a mutation
+rates of not 0.1 this means every gene
+and the DNA strand has a 10% chance of
+being replaced with a random genes
+let's meet eights all of the child's
+Jonathan genes
+now our first child generation is ready
+for action and we can pop them into the
+park all we need to do now is repeat
+steps three to four until we find a
+Jonathan whose DNA allows them to
+finally exit the park and go to work
+hopefully you've enjoyed this video and
+you now understand how genetic
+algorithms function stick around for the
+next video to learn how to actually
+program genetic algorithms within Python

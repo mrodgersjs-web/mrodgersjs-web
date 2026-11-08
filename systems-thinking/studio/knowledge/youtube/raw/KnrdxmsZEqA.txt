@@ -1,0 +1,335 @@
+[music]
+&gt;&gt; Hi. Welcome to another video.
+So, there is a new open source project
+called Gemma Chat.
+And this one is actually pretty
+interesting because it is basically a
+local vibe coding app for your Mac
+powered by Google's Gemma 4.
+And when I say local, I mean actually
+local. No API keys, no cloud model, no
+monthly subscription. And after the
+initial model download, no internet
+needed either. You can literally be on a
+plane, in a place with no Wi-Fi, or just
+working on private code that you do not
+want to send to some random server.
+And you can still ask it to build stuff
+for you. So, let's get right into it.
+Now, the funny thing here is that this
+project is open source on GitHub under
+Ammar Reshi's account. And Ammar is from
+the Google AI Studio side.
+He leads product design for AI Studio,
+and he has been one of the people
+pushing vibe coding and agentic
+workflows at Google.
+But the even more interesting part is
+that the official Google Gemma account
+is also posting about it, almost like
+this is their own thing. They posted
+something like offline vibe coding with
+Gemma 4, and then described it as an
+open source electron app running
+entirely on your Mac through Apple's MLX
+framework. So, it is not like this is
+some random wrapper that nobody at
+Google noticed.
+It is built around Gemma 4. It comes
+from someone inside the Google AI
+ecosystem.
+And then Google Gemma is basically
+showing it off on socials.
+Which is honestly pretty cool to see.
+Now, just to be clear, Gemma Chat itself
+is not presented as a polished official
+Google desktop product.
+It is an open source proof of concept.
+But it really does feel like Google is
+saying, "Look, this is the kind of thing
+Gemma 4 can do locally." And that is a
+much more exciting pitch than just
+another benchmark chart. So, what is
+Gemma Chat?
+Gemma Chat is an electron app that runs
+Gemma 4 natively on Apple silicon Macs
+using MLX.
+If you have used tools like Bolt, Cloud
+Artifacts, Lovable, AI Studio Build
+Mode, or even Replit style AI builders,
+the idea will feel familiar. You type
+what you want to build, the model writes
+files, and you get a live preview of the
+app on the side.
+The difference is that this one is
+running on your own laptop. You can ask
+it to build a landing page, a small
+game, a Pomodoro timer, a markdown
+previewer, a little dashboard, or a
+basic web app. It can write HTML, CSS,
+JavaScript, and multi-file projects into
+a local workspace. As it writes, the
+preview updates in real time, so you can
+actually watch the project come
+together. That is the main thing that
+makes this feel cool.
+It is not just a chat box where the
+model dumps code and you copy paste it
+into VS Code. It has a build mode, a
+file workspace, a live preview, and an
+agent loop.
+So, the model can create files, edit
+files, read files, run commands, and
+then continue based on the result. And
+because everything is local, your
+prompts, your code, your conversations,
+and your generated files stay on your
+machine.
+For people who care about privacy,
+client work, internal prototypes, or
+just not paying API bills, that is a big
+deal. Now, there are basically two modes
+inside the app. The first one is build
+mode. This is the exciting mode. You ask
+it to build something and Gemma acts
+like a local coding agent. It writes
+files into a sandbox workspace, and the
+right side of the app shows the preview,
+the code, and the file list. So, you can
+go from prompt to actual little working
+app without touching the terminal.
+The second one is chat mode.
+This is more like a regular local AI
+assistant, but it also has tools. It can
+use web search, fetch a URL, do
+calculations, and run bash commands.
+Obviously, web search and URL fetching
+need internet. So, the offline magic
+mostly applies to the model and the
+local coding workflow. But the fact that
+the chat mode also has tools makes it
+more useful when you're online.
+The app also supports model switching.
+You can choose between different Gemma 4
+variants depending on your machine and
+what you're doing. There is the smaller
+E2B model, the recommended E4B model,
+and then bigger options like the MoE
+model and the 31B dense model. The
+smaller models are for speed and lighter
+machines, while the bigger ones are for
+stronger reasoning if your Mac has
+enough memory. According to the repo,
+the E4B model is around 3 GB and is the
+recommended balance of speed and
+capability. The smaller E2B model is
+even lighter. And the bigger models need
+more RAM. So, if you have an 8 GB Mac,
+you probably start with the smaller
+ones. If you have 16 GB or 32 GB of
+unified memory, then you can start
+playing with the heavier options.
+And this is where Gemma 4 itself
+matters. Google DeepMind released Gemma
+4 as their most capable open model
+family so far. So, the model itself is
+coming from the engineers and
+researchers at Google. They are
+positioning it for advanced reasoning,
+agentic workflows, code generation, long
+context, multimodal inputs, and local
+deployment. So,
+instead of Gemma just being another
+small chat model, Google is clearly
+trying to make it useful for real
+developer workflows.
+And Gemma Chat is basically a showcase
+of that.
+It takes the local model, gives it
+tools, gives it a coding workspace,
+gives it a live preview, and turns it
+into a mini offline coding environment.
+So, instead of Google just saying Gemma
+4 can do agents, this project shows one
+version of what that can look like.
+Now, one of the coolest details is how
+the app works under the hood. It uses
+MLX-LM to run the model weights, but
+after that, the model is on your
+machine. The app then starts a local MLX
+server and streams the model output into
+the electron interface. In build mode,
+it uses an XML style tool protocol. So,
+instead of relying on complex function
+calling, the model emits simple tool
+actions like write file, edit file, read
+file, list files, run bash, and open
+preview. That is actually a smart choice
+for smaller local models because simple
+text formats are often more reliable
+than fancy function calling.
+The repo even says that small models
+handle XML more reliably than JSON
+function calling, and honestly, that
+makes sense. Another nice detail is live
+file streaming. As the model generates a
+file, the app can write partial file
+content to disk every few hundred
+milliseconds.
+And the preview reloads while the model
+is still typing. So, visually, it feels
+like the app is being built live in
+front of you.
+This is the kind of thing that makes
+demos look really good. You ask for a
+Chrome Dino style game, or a retro snake
+game, or a landing page, and then you
+watch files appear and the
+preview come alive.
+It is very much the vibe coding
+experience, but with no cloud model
+behind it. There is also voice input,
+which is quite cool. It uses local
+speech-to-text through Whisper running
+in the browser with transformers.js. So,
+you can talk to the app and have it turn
+that into a prompt. Again, that fits the
+whole local first story really well.
+Now, let's talk about how I would demo
+this. First, I would open the app and
+show the model selector. I would
+probably choose Gemma 4 E4B because that
+is the recommended option.
+Then I would go into build mode and ask
+it to create something simple like a
+retro Chrome Dino game in a single page
+with keyboard controls. Then we wait a
+bit. Those are the kinds of things
+smaller local models can actually handle
+pretty well. You are not asking it to
+refactor a giant
+a giant production code base. You are
+asking it to build small web apps,
+prototypes, and demos. And to be honest,
+that is exactly where a tool like this
+makes sense. I do not think this is
+replacing Cursor, Claude Codex, or
+Gemini 3 Pro for serious production
+work. A local 3 GB model is obviously
+not going to be as strong as the best
+cloud models. But for offline
+prototypes, toy apps, quick landing
+pages, demos, private experiments, and
+student projects, this is a really good
+direction. And the cost angle is also
+important. There is no subscription
+here. The app is open source. The code
+is on GitHub. And the model runs
+locally. So, you are paying with your
+hardware instead of your API bill. If
+you already have an Apple silicon Mac,
+that is a very attractive deal. You
+download the model once, and then you
+can keep using it without burning
+credits every time you ask it to change
+a button color. The app itself is under
+the MIT license, and Gemma 4 is released
+by Google under Apache 2.0. So, the
+licensing story is also pretty friendly
+compared to a lot of AI tools. That
+matters because local AI is not just
+about saving money. It is also about
+control, privacy, and being able to
+build without asking a hosted service
+for permission every time. Now, setup is
+also fairly straightforward, at least if
+you're comfortable with developer tools.
+You need macOS on Apple silicon, Python,
+and Node 20 or newer. Then you clone the
+repo, install the dependencies with npm
+install, and run npm run dev. On first
+launch, it handles the MLX
+setup and has a command to build a
+distributable Mac app, so you can
+generate a DMG if you want. That said,
+it is still a developer project. It is
+not a one-click App Store app yet. So,
+if you're a complete beginner, you might
+run into setup issues. But for
+developers, it should be pretty
+manageable. Now, there are some
+limitations. First, this is Mac focused
+because it relies on Apple's MLX
+framework. So, if you're on Windows or
+Linux, this specific experience is not
+really for you right now.
+Second, the first model download needs
+internet. So, the offline part starts
+after setup. That is not a problem, but
+it is worth saying clearly. Third, local
+models are still local models. They can
+be slower. They can make mistakes. And
+the smaller ones are not going to match
+the strongest cloud coding models. So,
+do not expect it to build a full SaaS
+app perfectly in one prompt. Fourth,
+some tools inside chat mode, like web
+search or fetching a URL, obviously need
+internet. So, if you're fully offline,
+you should think of this mostly as a
+local chat and local coding app, not a
+full web connected research assistant.
+But even with those limitations, I
+really like the idea because the big
+promise here is not just another AI
+coding app. The promise is that open
+models are getting good enough that you
+can have a useful coding agent on your
+own laptop. No account, no API key, no
+server. And that is why the Google angle
+is so interesting. First, Google made
+Gemma 4. Then their team member from
+Google AI Studio world open sourced this
+app, and then the Google Gemma account
+is posting it as an example of offline
+vibe coding with Gemma 4. So, it almost
+feels like Google is using a community
+style open source repo to show the
+future of local AI coding. And if that
+is the direction Gemma is going, I am
+all for it because we need more of this.
+We need more local AI tools that are
+actually useful. Not just chat boxes.
+Not just model demos. Real workflows. A
+coding workspace, file writing, live
+preview, model switching, voice input,
+and local privacy. That is the stuff
+that makes open models matter to normal
+developers. Overall, Gemma Chat is not
+perfect, and it is clearly still a proof
+of concept. But as a demo of what Gemma
+4 can do on a Mac, it is pretty awesome.
+It shows that local vibe coding is not
+just a meme. It is slowly becoming a
+real thing. If you have an Apple silicon
+Mac, I think this is absolutely worth
+trying. Start with the smaller Gemma 4
+model, build a few simple apps, test the
+iteration flow, and see how far it gets.
+Even if it is not your main coding
+assistant, it is a really fun look at
+where local coding agents are headed.
+And honestly, the fact that you can
+build a small web app with an open model
+on your laptop without Wi-Fi is just
+wild. Overall, it's pretty cool.
+Anyway, let me know your thoughts in the
+comments.
+&gt;&gt; [music]
+&gt;&gt; If you like this video, consider
+donating through the Super Thanks option
+or becoming a member by clicking the
+join button. Also,
+&gt;&gt; give this video a thumbs up and
+subscribe to my channel. I'll see you in
+the next one. Until then, bye.

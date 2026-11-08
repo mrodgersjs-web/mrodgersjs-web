@@ -1,0 +1,383 @@
+Our collective goal when it comes to AI
+has always been to mimic intelligence.
+And while transformer-based models that
+kicked off around 2017 really dominated,
+we've had other models like world models
+in 2018 and diffusion in 2015 that also
+tried to demonstrate intelligence in
+their own ways. But why is it that
+GPT-based models are still dominant
+today while at the same time touring
+award-winning scientists like Yann LeCun
+considers them an inferior method?
+Today, I'm teaming up with Julia Turk to
+understand diffusion models to try to
+understand its significance. Julia's
+YouTube channel covers diffusion models
+pretty extensively, so please check out
+her channel for more theory behind how
+diffusion models work since this video
+will cover high-level overview. Welcome
+to Kale Bytes Code where every second
+counts. Quick shout-out to Bycloud, more
+on him later. Let's start by talking
+about the interplay between world
+models, diffusion, and auto-regressive
+models. A common misconception might be
+that auto-regressive models like
+transformers aren't alternatives or even
+compete against diffusion and world
+models. But both diffusion and world
+models can actually be implemented with
+transformer architecture, which means
+diffusion is not exactly what we thought
+it was. So, I'm turning to Julia to ask
+her what she thinks about this entire
+ecosystem. I think transformers and
+diffusion are somewhat orthogonal. So,
+transformers are a model architecture.
+They dictate how exactly to connect the
+weights. Whereas diffusion is a
+framework that tells you more about the
+process of training, how to produce
+data, how to train the model, and how to
+run inference. I don't think that
+they're in competition with each other.
+And auto-regressive models predate
+transformers. So, as a paradigm, they've
+been around for a much, much longer. It
+feels, at least on a theoretical level,
+that diffusion is strictly
+a superset of what auto-regressive
+models can do because they can parse
+text in any order, including left to
+right.
+&gt;&gt; Transformers and and GPT-based models
+are really good at generating text in a
+most plausible ways, and we've we see an
+evidence of that with coding agents that
+are doing some crazy things now. We also
+have world models that are completely
+solving different problems.
+&gt;&gt; Now, I'm not sure what this first guy
+was yapping on about, but Julia
+definitely brought up a really good
+point about diffusion being a framework
+on training data. Diffusion-based
+models, as we found, are a lot more
+data-efficient compared to
+autoregressive models. If you look at
+this chart, it shows that while
+diffusion models take a lot longer to
+converge in comparison to autoregressive
+models, what we do see is that
+diffusion-based models have a bigger
+capacity to learn. When we look at the Y
+axis, that shows the loss. Now, one
+clarification to be made here is that
+this kind of advantage, where diffusion
+outperforms autoregressive models, only
+happens in situations where data is
+scarce and compute is abundant. In other
+words, diffusion models can do more with
+less data. So, this kind of advantage
+only exists when the same data is
+repeated during training, and in this
+case, the data was 25 to 100 million
+tokens. But, most LLMs today are trained
+using more than 10 trillion tokens. So,
+in practice, autoregressive models don't
+necessarily have to play in this playing
+field because we not only have abundant
+compute, we also have abundant data.
+But, it does show you how
+diffusion-based models can outperform an
+autoregressive model, as you can see.
+&gt;&gt; Okay, so let's actually settle one thing
+before we go forward, which is
+diffusion. Because knowing how diffusion
+works seems to be pretty critical in
+understanding this entire discussion
+around diffusion model.
+&gt;&gt; What exactly is a diffusion? Because I I
+think hearing about it, I I find that
+it's a lot more intuitive than like a
+transformer, cuz attention is like it's
+not intuitive to me at all, because it's
+like that's not how I think, that's not
+how human beings think. If you can kind
+of break down into what exactly it is.
+&gt;&gt; I would say diffusion is a framework.
+So, it's not a model architecture. It's
+a framework that tells you how to
+produce training data,
+what sort of training objective to use,
+and how to run inference. But, it's not
+prescriptive about the shape of the
+model. That's why you can actually use a
+transformer model as part of the
+diffusion framework. The actual
+inspiration behind diffusion model is
+pretty cool. Similar to how molecules
+start from high concentration and over
+time work its way towards low
+concentration, it is an adaptation of
+this into machine learning where we try
+to take a clean structured data and
+gradually destroy them with small
+amounts of random noise step after step.
+And it's not uncommon to borrow
+scientific phenomena into machine
+learning like this. At the beginning,
+there were two schools of thought when
+it came to diffusion. One of them
+perceived time as discrete. That school
+of thought used Markov chains as the
+underlying mathematical framework. A
+little bit later came a second school of
+thought, particularly from Stanford,
+that viewed time as continuous. Instead
+of Markov chains, they used differential
+equations.
+And the beauty of that formulation is
+that it's a lot easier to map back to
+physical diffusion. A lot of times in
+machine learning, a lot of the new ideas
+just borrow terms from biology or
+neuroscience that are more like
+metaphors, including a neural network.
+Is it really a neural network? Not
+really. Or distillation.
+And I was wondering, is is there more Is
+there a stronger connection between
+physical diffusion and deep learning, or
+is is just a metaphor?
+When I encountered the second school of
+thought, the one that treats time as
+continuous and you can look at the
+equations, it actually really maps a lot
+better to
+what's happening in the real world. And
+you can see why it was a useful to build
+on top of a framework that has been
+developing for centuries because you got
+all of this free math that you can bring
+in into deep learning.
+So,
+that for me was a big unlock because for
+the first time I could feel like
+not only do I
+follow the math in papers, but I can
+actually internalize it.
+&gt;&gt; So, looking at the diffusion process,
+you might think why take perfectly fine
+data and destroy them. It would have
+been much better without destroying them
+in the first place. And that's a fair
+question. But what you might miss here
+is that if we add 1,000 steps where
+gradually an image is decaying slowly,
+what you get is 1,000 different samples
+of the data that we just created out of
+thin air from a single piece of data
+that we started from. So, the model can
+actually now be trained on various steps
+to learn based on the scheduling to
+essentially figure out how much Gaussian
+noise was added at each particular step
+based on the training objective. When
+you are start with the data, you have to
+kind of be creative in the model
+architecture to be able to work with
+what you have. And so, I think seeing it
+from that angle it really puts into
+perspective of why diffusion-based
+models could be better than
+auto-regressive models because sometimes
+there's just not enough data out there
+to be able to train a model. Right. And
+when your training procedure is applying
+noise to a frame to an image, you can
+apply
+10 different levels of of noise and then
+you have 10 different data points from
+which the model learns a slightly
+different points of view. Pretty cool,
+right? So, the question now is this, if
+diffusion models truly are more data
+efficient, then why aren't diffusion
+models being used more often? Shouldn't
+we try to use them more in production?
+But first, here's a quick word from By
+Cloud sponsoring this video. If you want
+to learn more about the theory behind AI
+and AR research, check out By Cloud's
+intuitive AI that is full of learning
+materials. You can start from beginner
+level to understand all the way from how
+tokens work to embeddings, encodings,
+and attention mechanism that power most
+large language models today. He really
+mixes in good illustrations while giving
+an easy-to-read narrative on how the
+technology actually works intuitively.
+You don't need to have a deep math
+background, it'll just read like a novel
+where you can sequentially learn from
+the beginning or just use it as a
+supplemental tool on areas that you're
+curious about. He goes through different
+pre-training and post-training mechanism
+here, as well as more advanced concepts
+like Laura. For you guys, By Cloud has
+given away 40% discount on the yearly
+plan using the coupon code Caleb. Link
+in the description below. When we follow
+the progression of how diffusion models
+evolved, we started in 2015 with a paper
+deep unsupervised learning using
+non-equilibrium thermodynamics, which
+came roughly 2 years after the famous
+attention is all you need paper from
+Google. Now, unlike transformer model
+that focused on sequence-to-sequence
+translation, diffusion started with
+image as the main modality. And it
+wasn't until 2020 when we started to
+optimize the training objective. With
+DDPM in 2020 and better scheduling with
+DDIM, and later stable diffusion and
+flow matching. So, in 2015, it was the
+first time when they borrowed the
+framework of physical diffusion into
+deep learning. This, for context, was
+just a few months after GANs, the
+generative adversarial networks, were
+published. So, you can almost say that
+they started at the same time. But,
+diffusion had a much slower start. Not
+sure why, perhaps because it's very
+math-heavy. So, there's a higher entry
+bar, and even for researchers,
+the bar still applies. So, it was
+probably there were just fewer people
+working on it. Then, in 2020, maybe
+you've heard of DDPM paper, it's a
+seminal paper. That's when things
+started to pick up. They introduced this
+idea of noising and
+redefined the training objective to be
+in terms of removing noise, and that
+just made things a lot simpler. Then, I
+think it was 2022 when stable diffusion
+came out, and for the first time, they
+scaled it they scaled the model to be
+large enough to show promising results.
+We all know that the first stable
+diffusion images were no perfect by any
+means, but they definitely started to
+show promise. And I think from there,
+the rest is history. After 2022, we've
+seen huge progress, multiple labs
+joining in. I would say that another big
+jump in quality happened, or maybe not
+just quality, but speed, um happened
+when people moved through flow matching,
+away from diffusion to flow matching.
+Flow matching allowed much faster
+inference because instead of doing a
+thousand or a few hundred iterations,
+you can now maybe do a couple iterations
+before getting your final image. Now,
+you might have wondered, as we talked
+about the diffusion process so far, why
+don't we just reduce the time step from
+1,000 steps to 10, so we can reduce the
+overhead? Can we just skip all of this?
+During training, you can do that to a
+certain extent, and that's because we
+always have the original image to
+compare against, which means the forward
+pass can be determined since we know the
+scheduling and its hyper parameters, as
+well as the original image. But, during
+inference, we don't exactly have the
+original image to base it off of. And
+what's worse is that in the original
+diffusion model in 2015, the reversal
+process was bound to what's called
+Markov chain, which meant that you
+couldn't just get to the final answer
+unless you solved every step from time
+1,000 back to time zero to get the final
+answer. And this is extremely compute
+inefficient. And it wasn't until 2020 we
+changed this training objective from
+trying to guess the mean and covariance
+to simply guessing the noise instead,
+meaning how much noise was added at each
+step. Now, the theory behind this can
+get quite gnarly since we're dealing
+with the integral between two
+probabilities using KL divergence, and
+personally, that's where I initially got
+tripped up a lot because I kept thinking
+in a deterministic way, but the entire
+thing is based on probability sampling,
+which helped me put the pieces back
+together a lot better. But, if any of
+this is confusing to you, don't worry.
+You're not alone because I both gained
+and lost many brain cells trying to wrap
+my head around this. But, thankfully,
+Julia can explain this a lot better in
+her channel. But, the point remains is
+that the optimization didn't come until
+well into 2020, which by then, we
+already had GPT-3 from OpenAI, and it
+was showing a huge promise. And
+translating an image-based diffusion to
+text modality isn't as simple as it
+seems because text tokens just don't
+work the same way in embedding just like
+pixels do in image and video. A lot of
+the handicap of text diffusion models,
+the reason why Mercury is not as good as
+ChatGPT or Claude today,
+I suspect it has to do with the
+infrastructure and just the time that
+has gone by.
+A lot of the serving infrastructure, you
+know, the serving engines like vLLM and
+SG Lang and so on,
+their kernels are written with auto
+regression in mind. So, in order to
+squeeze the same kind of optimization,
+at least at inference time,
+you would have to rewrite all of those
+kernels.
+Um
+that's just on the inference side, but
+even on the training side, there's just
+been a less time dedicated to
+uh diffusion models compared to
+auto-regressive ones. What's more to add
+here is that diffusion models like
+Mercury have always been interesting
+because of just how fast they produce
+tokens, some going over 1,000 tokens per
+second, which is crazy to think about.
+But, we're seeing this huge push in
+SRAM-based chips like Nvidia's Groq 3
+LPU that makes auto-regressive inference
+competitive to diffusion-based models
+given its extreme high throughput. So,
+as we think about the abundance of data,
+abundance of compute and speed, and the
+growing funding from various sources,
+the real question remains when it comes
+to what really is the differentiator
+when it comes to frontier knowledge in
+AI. Is it speed? Is it depth of
+knowledge? Is it generalization? Is it
+scalability? What do you think?

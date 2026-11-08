@@ -1,0 +1,2370 @@
+Hi everyone, welcome to this tutorial on
+u Asianbased modeling using the Mesa
+library in Python.
+So today we're going to build together a
+minimal Asianbased model using the Mesa
+And this model that we're going to build
+today uses Mesa version 3.0.3.
+However, if you're using if you have a
+newer version of Mesa, at the moment,
+the newest is 3.2.0.
+The mer will still work with that
+version. However, it doesn't really
+utilize all the new features that the
+latest version offer.
+This is the outline of the tutorial of
+today. Learning objective little about
+how to install Mesa. We're going to go
+we're going to make a recap on classes
+and object-oriented programming.
+Uh we will cover all the aspects of an
+agent based model using Mesa setting up
+the model adding agents and the step
+method
+agent adding agent or model behavior. We
+will talk about the mesa spaces. So
+those are the spaces where the agent
+would be located at and and and moving
+also uh around
+moving agents. How agents actually move
+from cell to another cell? How do we
+collect data? How do we visualize data?
+How do how do we use a batch runner
+which allows us to u perform a lot of
+simulation runs very easily instead of
+us creating for loop to do that and a
+little about uh you know accessing data
+with pandas. And finally we're going to
+wrap up this uh tutorial.
+Learning objectives.
+At the end of this of this tutorial, you
+should be able to explain what
+object-oriented programming is. So, you
+should be able to to tell what the
+difference between a class and an
+instance of class. You should know what
+inheritance is. Um, a Mesa relies a lot
+on classes for its implementation. So,
+you should uh understand these concept
+and how to use them. Um at the end of
+this tutorial, you should also be able
+to recall some of the main Python
+command. You should be able and this is
+the most important point. You should be
+able to build a minimal Asian based
+model using the Mesa library while
+having access to online and external
+support. Of course, um you are not
+expected to memorize everything.
+Everything is out there in the Mesa
+documentation. Uh you will be able to uh
+use it and you will have access to it.
+At the end of this lecture, you will not
+be able to create a complex MEA model
+without facing challenges. Even if you
+have access to external online resources
+because at the moment when you start
+implementing some complex ideas into an
+an AI based model then you will face
+some some complexity. But um as you
+practice you should be able to uh you
+know develop the skills that you need to
+create complex u ABMS
+and of course you will not be a you will
+not be able to know all Python commands
+by heart. Nobody does and that's u not
+expected for me.
+Um so in this tutorial we will not cover
+we will not cover all aspect uh of MEA
+and Python. Of course, it's your
+responsibility
+um to acquire additional knowledge that
+you need. So, um bear that in mind
+because we cannot really use all uh you
+know the function and the functionality
+that MEA offer in this tutorial. There
+there are many but we're going to use as
+much uh as possible in this tutorial
+just to get you started and to to have
+the good foundation
+um to carry on on your own.
+Now, Mesa library has a lot of methods
+implemented there just for us to use um
+in in an ABM. So, please consider going
+over the documentation of Mesa and just
+know what exists because if you know
+what exist you will not uh in a lot of
+um you know situation you find yourself
+hard coding everything right but
+sometimes there are some functionality
+that are implemented for us. So if we
+know that these functionalities exist,
+so we we we could use them instead of
+coding them from scratch.
+Installing Mesa
+for students who will be following the
+course, you will not have to install
+MEAs because you will be using um a tool
+called Varium where MESA comes
+pre-installed for you. However, for
+those who would like to run this code on
+their local environment, you have to set
+up the Python environment first. And for
+that, I have I have prepared a guide on
+how to set a local environment on your
+own computer. And I left a link in the
+description below.
+Recap on classes.
+There are two things that you should be
+aware of. The first thing is a class and
+the second thing is instance. And
+usually we say the instance is an
+instance of a class. What does that
+mean? You can think about class as a
+template. And you can think about
+instance as a filled copy of that
+template.
+So this is a template. Template is like
+an unfilled form. So you know what form?
+like a PDF form where you have some
+fields that you need to fill yourself.
+So this you can call class. So the
+unfilled form is a class where you have
+here for example name, age, height and
+nationality but there are no values.
+Okay. And in Python we call this
+attribute of class.
+But because we don't have values we
+still call that class. But now imagine
+that you would like to um you know to
+have a copy of that form that you fill
+yourself with your own data. Then you
+create a copy
+and you fill it with your own data and
+we call that a filled form or we call
+that an instance of the class. So a
+filled form of the unfilled form
+that's coming from the unfilled form
+that's copy from it and an instance of
+the class. This is the first instance
+but we could have we could make other
+copies more copies. We could make
+another copy with different data now
+with different name, different age,
+different height, different nationality
+and that is another instance. It's
+coming from the same place from the
+class the main class but it has some
+differences in values but also other
+differences that we today we're going to
+see and also a third instance with
+different with different information
+with different um values here. So here
+we have three instances of a class. Of
+course we can have a unlimited number of
+instances that are coming from the same
+class.
+Now how Mesa uses classes to build a
+model? In Mesa we have two main classes
+that you need you need to have too many
+classes to build a minimal model. The
+first one is called an agent class and
+second one is called an a model class
+because at the end we want to create a
+model that has agents inside. So these
+are two classes that we uh that we must
+have for any agent-based model to be
+called an Asian-based model in MEA of
+course. So the agent it's the uh model
+class. First let me give you an example.
+Imagine that you want to create um a a
+model that's a country. For that model,
+we create a class first, a template.
+Right? Now, for this example, we create
+a class called country and inside those
+bracket, we we we write model.
+Now this is this this means technically
+means that the class that we're creating
+is going to inherit from the model class
+that's defined inside Mesa. But this
+also in simple terms means the country
+class that we are defining is a model
+class and it's not an Asian class but a
+model class.
+Now for this country we need only one
+attribute
+one variable you can also call it
+attribute or variable which is a country
+name. So if we are to create a country
+from the country class
+then we will need to give it a name. So
+let's create a model of a country that
+doesn't have any agent inside. Let's see
+how it looks like.
+So if we want to build a model out of
+that single class, we are going to call
+country class this one. And we need to
+pass its name. So we're going to give
+give it the name Nethermats. This means
+we will create a country and and uh its
+name is going to be Netherlands. And
+this is how it's going to look like. All
+right. So we have a country wherever
+that shape is. This is just for
+illustration of course. So we haven't
+drawn anything but it's kind of model
+that's empty model that doesn't have any
+agents inside.
+Now we want to have agents inside. To
+have agents inside first thing that we
+can we have to do is to define
+um an agent class.
+This is an agent class class and we call
+it citizen. We want to have citizens in
+a country
+and inside the brackets we write agent
+which means this class that we're
+defining right now is an agent class and
+it's not a model class but an agent
+Now for this citizen class we need two
+different attributes.
+First citizen name and second citizen
+ID. It's up to us to define what
+attributes we want to have for specific
+class. Now we have two classes, the
+country class and the citizen class. But
+as you can see there are two separate
+classes. So how can we um how can we
+make sure that the citizens that we will
+create here are going to be included in
+the country that we will create. So we
+need to connect them somehow.
+Now because we know um that agents will
+that the agents or in this case citizens
+will be um uh located inside the
+country. So we need we need to
+initialize them. So we need to
+initialize the citizens inside the
+country class
+and initialization is technical word of
+creating
+or starting something or creating
+something. This is how we can create the
+citizens. So we want to create we we
+need the country name of course but we
+also want to create
+n citizens
+and for every each time that we want to
+create a citizen out of those ends we
+need to call the class citizen this one.
+So think about it as kind of when you
+arrive to here to this line you are
+going to call this class n times. The
+first time you're going to call it, you
+create one instance of that class and
+you give it a name and ID. You call it
+another time and it's another agent,
+another instance of that class. You give
+it another name and another ID and you
+keep doing this and types.
+Let's see how we can create a model that
+has agents.
+Now,
+now we we we will create we we only call
+the country uh class
+now we need several information to be
+provided. The first one is the country
+name. We provide Netherlands as a
+country name. We want to provide how
+many citizens we want to create inside
+that model n and for that we specify
+five citizens. We only need five
+citizens. But because we are calling the
+class agent, the citizen class here end
+times.
+Each time we need to provide a citizen
+name and citizen ID because those are
+attributes that are needed.
+The actual commands by the way in Python
+will be different. But this is a simple
+way of writing those commands just for
+illustration.
+Now for each agent, we provide a random
+name and a random ID. So we provided all
+the information needed for the country
+class to create a country that has five
+citizens.
+Now we run that line and then this is
+what happens. We create an empty country
+and then every time we iterate over that
+citizen class we create citizen citizen
+one citizen two every one of them has
+name and has an ID citizen three citizen
+four and citizen five. So by just doing
+this we created a model that has five
+citizens that of course are not doing
+anything. They are just static. Now what
+to do with the model? Now we have a
+model
+that has five citizens but those
+citizens are not doing anything. But in
+every Asian-based model there are so
+many interactions that can happen. There
+are so many thing that could actually uh
+be modeled. So let's look at it from the
+perspective of an agent. Every agent has
+two things. It has a state.
+For example, you can think about it as
+um health condition. Sick or healthy.
+That's state. And it has some rules like
+if sick take medicine, right? So it has
+rules that kicks in depending on a state
+for example. So that's one agent
+and that's internal uh you know engine.
+Let's say state rules and they interact
+with one another and the agent can do an
+action on itself. Okay. Any agent has a
+capability of doing action on itself.
+The agents interacting with everything
+that's outside of that agent. There are
+several thing that can happen and agents
+can do actions on the environment.
+And it can also takes uh it can also
+take input from the environment.
+Think about uh the environment as kind
+of the our the actual life. So input
+from the environment could be something
+like um raining or not raining. If it's
+raining then probably the Asian will do
+something. Maybe they'll bring umbrella
+with them. Right? If it it's not raining
+then they will not bring umbrella with
+them. But the agent can do actions on
+the environment. For example, planting a
+tree. If an agent is planting a tree,
+that's action is done on the environment
+because the environment will have one
+more tree that's planted.
+An agent can do actions on other agents
+like exchanging money, right? They can
+for example give them money or or give
+them anything or do anything to them.
+Right? That's something that's an action
+that's done to other agents and agents
+can uh take input from other agents.
+Maybe they can check on uh you know
+their condition and states and change
+their state based on that.
+Right? And and so mainly agents can uh
+interact with itself, can interact with
+the environment and can also interact
+with other agents uh in in in in their
+in their in um outside of their uh you
+know internal state.
+Now let's talk a little bit about the
+concept of inheritance.
+There are two things when you talk about
+inheritance. I mean from the name
+inheritance means taking something from
+um a father right or from someone who
+you can inherit from. Now the concept of
+inheritance in Python there are two
+things the superass and a subclass.
+We have something called subclass and
+this I I have few examples here. So
+first one is vehicle. Vehicle is a
+superass in this case and we have
+subasses.
+The moment that you have subclass of a
+superclass, the superclass becomes a
+superass. But if you don't have
+subasses, then this is not superass.
+And a vehicle can have several
+subclasses in this case. So a vehicle
+can have a car can have can be a car can
+be a motorcycle can be bicycle.
+So all of these three all of these
+subclasses inherited from the vehicle
+some of the common aspects. For example,
+movement, the ability to move is a
+characteristic of the vehicle which is
+inherited to all of them. So it's it's
+smart actually to define a class that's
+called vehicle that has all the common
+things like the movement
+um uh the wheels
+regardless of the number because
+motorcycle has two and car has four but
+but uh having a wheel in the first place
+for example is something that belong to
+a vehicle
+and uh material and other things and
+when we define all those common things
+we can inherit and two subasses. So we
+don't have to define them again for the
+car and motorcycle and a bicycle. So
+this is called superclass and these are
+called called subasses and these
+subasses have some difference have some
+stuff common in common which are
+everything that's in vehicle but they
+are they have some differences. For
+example, a motorcycle has um uh two
+wheels while while a car has four
+wheels. A bicycle has um you know does
+not have an engine
+unless it's an ebike of course but a
+normal one does not have an engine
+motorcycle the motorcycle and the car
+they have an engine. So these are some
+of the differences. Another example is
+this one. So if we have a human, animal
+and zombie and we want to model all of
+them, right? It's smart now to look at
+the common things um uh you know um of
+these three classes and then create
+create a superass that has those common
+things in this case a walker because all
+of these classes are uh well have the
+capability of walking. So it's smart
+actually to define a class that's walker
+that has the walking uh functionality
+that will be inherited to all three
+subasses in this case
+a shape circle triangle and square they
+all shape the all uh shape. So they can
+inherit um they can inherit the uh you
+know characteristics that belong to any
+shape in this case. And also last
+example here we have the bird could be
+chicken, could be eagle, it could be
+penguin but also other um birds as well.
+There are differences between these
+three. Eagle can fly, chin cannot fly
+but all of them are birds. So all of
+them maybe have um you know two legs
+maybe um and and other common things.
+Now that we are done with our recap on
+the classes, let's start uh building our
+first model in Mesa.
+Setting up the model.
+Um so before we start the actual coding,
+I would like to jump till the very end
+and show you what we are going to build
+today.
+So let's go. Let's run everything first
+and let's see the result of this model.
+Now this is the model that we would like
+to build together today. What we have
+here is a grid that's 10 by 10. So 10
+ticks on the x and 10 ticks on the y.
+And on each intersection between the two
+numbers, this is one location.
+And these uh red circles are agents that
+could be red, which means an agent that
+has some wealth, some money,
+and gray. It could be gray. And if one
+of these red uh circles turn into gray,
+then it means an Asian that does not
+have any money that's broke.
+And this is uh the number of step well
+the step that we are at right now. So we
+start from step zero and we're going to
+to to uh reach step 100 and see what
+happens. So the rules are every in each
+step of the model every agent will uh uh
+will go to a different location that's
+close to it to next location could be
+right left top bottom or also the
+diagonal are included
+and when they go to another place so to
+another uh cell or another intersection
+here they're going to search if they
+have any agents around them and If they
+find at least one agent around them,
+they're going to give them one unit of
+wealth. And everybody's going to do
+this. And we're going to see how the
+model is going to change if there are
+agent who will turn into broke before
+because of this behavior. So let's see.
+I'm going to run the model and it's
+going to start from zero to 100 to see.
+I will just slow it down a little bit.
+Next frame.
+Look at this agent number four for
+example. Or look at this agent here.
+Look what happens when I step to the
+right.
+It moved to here but there are no agents
+around. It's not going to give anybody
+wealth. It has wealth but it's not going
+to give anybody else. So next step will
+not be broke.
+Movement. Movement. Movement. movement.
+So now we have four agents who are
+broke, who do not have any wealth, and
+they're hoping that they get wealth from
+other agents who are close by. For
+example, this guy here now
+should get one unit of wealth from this
+guy here. So it's either that this will
+be broke and this will have will have
+one unit of wealth or both of them will
+have wealth depending on how many um how
+much wealth this this uh agent has.
+Now
+obviously so the previous one so this
+guy here moved to this place and this
+guy here moved to this place. This
+became broke and this became worthy.
+As you can see this became wealthy and
+this became broke because they cross
+diagonals here.
+Keep doing this all the way till the end
+and we see after 100 the wealth
+distribution.
+So at the end we have six agents with
+with wealth and we have four agents
+without any. So this is the very simple
+model that we are going to create
+together today step by step introducing
+all the um you know all the function
+that you need to be aware of and all the
+concept and the things that you need to
+keep in mind to be able to uh create
+this model or similar models. Now that
+we have seen the endpoint of the model
+that we're going to build together today
+let's see how we can create our agent
+class. So from that class if we create
+that class agent class we'll be able to
+initialize a lot of instances of agents
+from that class.
+There is some information here that you
+can read of course but I'm going to
+comment on the code that's provided um
+uh to you here.
+Now the first thing that you have to do
+is of course to import the Mesa library.
+So you can use um well wherever inside
+that library of course given that you
+have installed Mesa in the first place
+but that's provided in the guideline um
+that I provided in the uh description
+below.
+You can also you can always check which
+uh Mesa version you're using. In my case
+it's 3.0.3.
+Uh but as I said before um this this uh
+this code will also work. So this motor
+will also work with the newer version of
+Mesa up to at least 3.2 uh however it
+does not use all the capabilities of the
+newer version of Mesa.
+Now to create an agent you need to
+provide
+um few lines. First
+you need to provide a name to your
+agent. In this case, we're going to
+we're going to call it money agent
+because our model is about is about
+agents moving and exchanging money. So,
+it makes sense for us to call it money
+agent.
+And inside the bracket, we have to write
+Mesa.
+Which means the agent class of Mesa. So,
+that's a class that ma that Mesa has
+inside that we are going to inherit
+from.
+Now for those who are not very familiar
+with the concept of inheritance and
+still would like to build an agent based
+model this actually means that our agent
+class the money agent that we are
+creating right now is an agent class
+it's not a model class for example it's
+an agent class
+okay so this is the first step of
+inheriting from the agent but there's
+complimentary step I'm going to talk
+about u uh after after a moment
+Now after you define first the class the
+class name now you have to provide um a
+special method called a uh constructor.
+So the constructor which is really
+something related to Python in general
+is is something that's provided all the
+time whenever you're creating a class.
+So this constructor it checks what is
+underneath it and it will actually run
+it at the same moment when you
+initialize that class. So for example
+later on when we want to create an agent
+instance we are going to call this class
+and everything under this init function
+the constructor will be automatically
+run and and everything that's not under
+this in it will not be automatically run
+unless we call it in this case because
+we want every agent to have wealth.
+We're going to include the wealth under
+the in it. So
+uh so uh so that every agent will have
+uh one unit of us. Now we define in it
+and we provided with few things here.
+The first thing is self
+so that the agent can refer to itself
+and the second thing that we have to
+provide is model. So whatever inside
+those brackets are usually called
+parameters.
+Okay, everything inside those brackets
+um is called uh parameters
+and the model this one is actually
+because we need to provide it to the
+agent so that the agent knows which uh
+model it belongs to. Every agent at the
+moment of creation needs to know the
+model that it will belong to that it
+will be associated to and that's here
+and that's why we need to provide a
+model.
+Now as I said before the inheritance
+will not be completed just by providing
+the name of the class that it's
+inheriting from. We need to provide a
+separate uh line as well which is
+calling the constructor of the parent
+class. So we agreed that this is called
+parent class and this is called
+uh parent or superass of course and this
+is called subclass. Now for the parent
+class we need to initialize um we need
+to uh call its constructor. This is how
+we can refer to the constructor of the
+superass of the father class by writing
+super super dot and then we write the
+same thing as here super dot sorry in it
+and then we also need to pass the model.
+So the model that we pass to uh the
+agent at the moment of creation will be
+passed to the init
+to the constructor of the agent we're
+creating and then will be passed again
+to
+the constructor of the in agent that
+we're going to inherit from. Okay. Now
+if you find this as kind of complicated
+what you need to know is that those two
+lines are always there. So whenever
+you're creating an agent, you need to
+define to provide the constructor of
+that agent and you need also to uh to uh
+to also call the constructor of the uh
+parent agent which is in this case the
+agent class and you need to have the
+model in both of them because um an
+agent need to be associated to a model
+and um the superass needs the model as
+one of the parameters.
+Now when you do that now you can define
+whatever attribute you want to have to
+your agent.
+In this case we want to have only one
+attribute which is a wealth. So we want
+every agent that we're creating to start
+with a wealth that's equal to one.
+That's fixed. And now each agent will
+start with a wealth attribute of one.
+Now if we run this code nothing would
+happen of course because
+it's we we haven't we haven't done uh
+enough actually to to see any kind of
+behavior yet.
+Now that we have seen how we can create
+an agent let's see how we can create a
+So in a very similar way we also have to
+define a new class. In this case, we
+want to call it money model because of
+course it's a model but it's also about
+um you know it's changing money so it
+makes sense to call it money model but
+you can call it whatever you want. Now
+we inherit from a different super class.
+In this case it's model class. That's a
+model class that's defined already
+inside Mesa that we're going to inherit
+from. Or in simple terms the money model
+that we are creating right now is a
+model class and not an Asian class for
+example.
+Now because this is a class we need to
+provide it with a constructor def
+and then it needs to self so that it can
+refer to itself but it also needs
+something else which is a number of
+agents. Uh you will find this in every
+agent based model model. Um every every
+every model needs um you know to know
+how many agent is going to be inside.
+We have the super to uh to call the
+constructor of the father class or
+superass this one. And this is how we do
+it. Super in it. But here unlike the uh
+agent because in the agent we pass the
+We need the model. Do we need to pass
+the model? Here there is nothing to pass
+but we still need to provide this super
+um constructor here anyway to complete
+the inheritance from the model.
+Okay. And one of the attributes that we
+want for our model is a number of
+agents. So we define a variable called
+or attribute called number of agents and
+this is going to be equal to n which is
+this one. Now at the moment uh of
+creating a um an instance of the model
+of the model that we have to also pass
+the n which is a number of agents
+uh that we want to create okay and this
+will be associated with this uh
+attribute. So for that model we will
+have a number of agent that's equal to
+okay so this is uh well this is the only
+attribute that we need uh for our model.
+Now we need to create agents and this is
+how we can create agents. It's still uh
+under the init function under the
+constructor. It means when we create an
+instance of that class later on
+then the agents will be created
+automatically. So we without us having
+to create them again
+cuz as I said before everything that's
+under the constructor will be
+initialized automatically at the moment
+of initializing the um the class that
+we're that we're at.
+Okay. And this is how we can create
+agents.
+So we iterate over all over the number
+of agents. So for i in the range of self
+dot number of agents. So from I to the
+number of agent of that model
+uh so there's like a iteration of n
+times in this case. So every time we
+create an agent this is how we do it.
+You can store it uh in a variable called
+a and it's going to be overwritten every
+time you iterate of course and it will
+be added automatically to the model. So
+a equal the money agent which is the
+name of the agent class
+this one here. So we're calling this and
+by calling this all of that will be
+initialized automatically for every
+agent. So every time we call this we
+will have all these. So we'll have an
+agent that needs a model and that will
+have a wealth equal to one. So we need
+to pass the model and the agent that
+will be created
+will have a wealth of oil.
+Now money agent we need to to pass the
+model here and this is how we do it. We
+just pass the self of that model. So
+this is a self not of the agent but of
+that model. So this one here we pass it.
+So it means the agent that will be
+created it knows which model it's going
+to be associated with which is this one.
+Okay.
+Um and this is how we can create a model
+that has an agent inside that are still
+not doing anything.
+Now that we have created an agent and um
+and a model class, now let's see how we
+can add actions to the agents and how we
+can add step method that deals actually
+with time with the time because we're
+going to create a dynamic model. So
+every step is going to something is
+going to happen. So let's see how we can
+implement these two here.
+So again we're going to build on what we
+had before.
+So we had the money agent and we had the
+init um function here and we had
+supernet and we had the self.
+So that's something we already had. Now
+to allow um agents to uh to make a
+certain uh action we need to add a
+method called step.
+Now it could be called step but it could
+be called something else. So it could be
+called give or take or just do step or
+whatever you want to call it. So this
+step is not fixed. You can just name it
+whatever you want. But later on when you
+call it when you call this step you it
+needs to be the same name as you provide
+here. So this is how we can define it.
+Define the step and then we provide it
+with a self of course and then under
+this step we define the action that you
+want your agent to do. If this function
+is called in this case we want every one
+of our agents to simply print its unique
+ID.
+So every agent when triggered it will
+say hi I am agent and this is how we can
+retrieve the ID of that agent which is
+already tracked by Mesa. So this is not
+something we define but that's something
+we can also get and that's mainly
+because we have inherited from the
+superclass agent. So now the agent knows
+that it has a unique ID and that's it
+got from that uh superass.
+So self dot unique ID turn it into uh
+string and um and printed.
+All right. Now every Asia will do a will
+make an action will do an action when
+it's triggered. Okay. So this is the
+only change that we've done to uh the
+agent. Let's see what kind of changes we
+need to introduce to the models so that
+we can have uh a complete um you know um
+a model that that allows for this kind
+of behavior which is printing name and
+um ID.
+Now this is a model class. We had this
+before and we had this before. We had
+this before and we had this before. We
+could also before create uh you know the
+agents and we have to define a step
+method for the model. This is how we do
+it. Define step and we provide it with a
+self which is a self of this model
+and inside
+this is how we can actually um trigger
+the step method of the agent. This is
+how we do this. So this is a method
+provided by Mesa that allows us to do
+this self. So this model dot agent
+shuffle do agent tot.shuffle shuffle do
+step. So maybe this step is actually
+this one. So if you change the name of
+this step, call it like do then this has
+to be do as well. If you name it as gif,
+this has to be give as well. Okay. And
+agent.shuffle do this what what this uh
+will do is that it will trigger all
+agents in a random order to to take a
+step. Okay. Just by calling this later
+on and we're going to see how we can
+call this how we can step our model
+all agents will be iterated uh over in a
+random order because we have shuffle.
+Sometimes you don't have shuffle. If you
+write just two then they will be
+triggered in the same order they were
+created. But when you have a shuffle do
+this one then the the agents will be
+created um sorry the agents will be
+triggered in random order.
+Okay. And now we're going to see uh how
+how this is done.
+Okay. Now we what we have is
+kind of complete model but it's not
+running yet. How do we run a model? Now
+we have the money agent class and we
+have the money model class. We are
+creating agent inside the model and we
+have the step function. So we have all
+components all ingredient ingredients to
+have a running model. But let's see how
+we can run a model.
+First we need to because these are
+classes and I said before a class is
+uh it's just a template you can you
+cannot use it immediately. What you can
+do is that you can create an instance of
+that class. So here we want to create an
+instance of the the um of the model
+class and that will be called one
+instance of that model class and then
+inside when we create that instance we
+will also be creating a lot of instances
+of them from the agent the classes. So
+we only need to create an instance of
+the model class model class and then the
+instances of the Asian class will be
+created automatically.
+This is how we can create an instance of
+the model. We can call it whatever you
+we want. Let's call it here an empty
+model. It means empty model in the sense
+that well this model is still not really
+doing a lot of stuff. Just saying name.
+So there's not actual behavior
+happening. We call it empty model. You
+can call it whatever you want. This is
+how we can create an instance of the
+model uh class. So we call uh its name
+money model this one.
+And we need to provide it with let's see
+what we need to provide with.
+We need to provide it with with the
+number of agent in this case n which is
+10. So we pass the 10. It will know
+because it's only n that's needed.
+Then we we uh then it will uh actually
+map this number that we provided with
+this uh
+with this uh parameter that's stated.
+Okay, this this line means we are
+creating a model a model instance but
+still we are not running the model. It's
+like we have a model that's not running
+and this is how we can run the model. So
+every time we we we we write empty
+model. So it's exactly this one dot step
+it means we are stepping the model by
+one step.
+Okay. And then we are of course seeing
+the result of the model. So let's see if
+we step the model by one step what
+happens.
+So we are here.
+So we get all agents
+to tell hi I am agent and then their
+unique ID.
+Okay. And as you can see they are
+triggered in a random order and that's
+mainly because we we used shuffle do
+instead of just do.
+And now every time you run it you get
+different result because every time it's
+trigger it's triggered differently the
+order of the agents I mean so every time
+you get different result but that's al
+but that's all one step so one single
+step one time we we call this so we're
+calling this this guy here will trigger
+all the agents
+and we have 10 and that's why we have 10
+lines here but they are triggered in a
+random order.
+Okay,
+run the above code one more time and see
+what happens.
+That's exactly the same code. And this
+is meant just to experiment with
+uh with the randomness here.
+See, we get different result every time.
+Now, let's try to change shuffle do into
+because this is another method that's
+provided by Mesa that allows us to
+trigger the agents in the same order
+they were created. So always agent
+number one will start first and and and
+agent number two will start second.
+Let's run this these classes. Let's
+update them by running them. We update
+them. And now let's create a model and
+run a step. See
+every time agent number one first, agent
+number two second, and engine number 10
+last.
+Let's change this to shuffle do
+and go ahead.
+All right.
+Now, each time, let's read this
+together. So, each time uh you run the
+simulation, the agents are activated
+differently. And this does not really
+help with reproducibility. So, imagine
+that you uh you want to run this code
+tomorrow because you want to show it to
+your supervisor and you want to show
+your supervisor the result that you get
+now and not different results. You
+cannot do with this because it's giving
+you different result each time, right?
+But this is this does not help actually
+with reproducibility. To address this,
+you you we can use something called
+random seed.
+And that's there's a way actually on how
+to define it. And this random seed would
+ensure that the random number generation
+is the same each time you run the
+simulation. So each time you create a
+model and run the simulation you get the
+same result at the same step. So if you
+run if you run a simulation number one
+for example
+at step number one you will get exactly
+the same result of another simulation
+that you run on another day at the same
+step which is step number one. So always
+step number one of any simulation will
+have exactly the same results.
+Similarly, step uh simulation one but
+step number two will have the same
+result as simulation number two and step
+and step number two. So always
+regardless of the number of simulation,
+you always get the same result at the
+same step. Let's experiment a little bit
+with random seed
+uh for reproducibility.
+Now to achieve this behavior of having
+the same result in every step and this
+random seat is not really relevant only
+to me and a based model. It's something
+that's built in Python uh already but
+it's very important to me. So that's why
+I I dedicate here part of part part on
+uh explaining it because there's
+specific way on how you can define the
+seat.
+So let me show you how we can define it.
+So this is the model that we had before.
+We're not going to touch the agent.
+We're only going to change few things in
+the model. So this is the model that we
+had before. The only thing that we're
+going to change here is inside the well
+two things actually we have to change is
+first is inside the uh constructor of
+that model class we're going to add seed
+right and that and then value of the
+seed will be first none it means it has
+a seed but I do not set a value for it
+right now I'm going to set it later on
+at the moment of creating an instance of
+that class of course you and set the
+number of the seat that the number that
+you want. It doesn't matter which number
+you can set as 10 or 100 whatever but
+then it's going to be fixed for all the
+model that you create. So maybe you want
+to postpone this decision to later and
+you set this to none in the beginning.
+So this gives you the ability to define
+a seed later on but it does not specify
+the number right now. It just postpones
+it later. So now we have the capability
+of using a seed and we also need to
+provide it to pro to pass this seed also
+to the super to the superass here and
+this is how we do it. Before we had that
+in it super in it empty but now we have
+seed
+equal seed. So the same seed that's
+provided to this constructor will also
+be provided to the constructor of the
+super class. seed equal none, seed equal
+seed. That's what you have to know. And
+that's it. Now, let's save those changes
+that we introduced by just running this
+cell. So, we're going to have an updated
+money model and the and the Asian uh
+sorry um uh updated um yeah, money model
+class and the Asian class will still be
+the same will be the same as before. So,
+we don't have to write it again here
+because we had it before.
+Now we have updated money model that
+allows for having a seat.
+Now let's create another model. I'm
+going to call it the same empty model.
+And by calling the money model here,
+we need still we still need to provide
+with a number of agents. In this case 10
+agents, but now we need to give it um a
+specific seed, right? We need to pass
+the number of seed that we we want to
+use. In this case, 1 2 3. If you don't
+pass the seed, it's going to take it as
+none as if there is no seed at all. So
+the advice here is that you always have
+seed equal to none and only use it if
+you want to. If you don't want to, you
+can just remove it like that. And then
+it's like there's no seat.
+Now what does this number what this what
+should this number do? Whatever. It can
+be any number. As long as you're
+sticking to that number, everything is
+going to be fine. Could be one, two,
+three, one, two, three, whatever.
+something that any number that you like.
+So we choose here seed for
+reproducibility. Any seed will work but
+you have to stick with it. Okay. We
+create a model and we run a step and
+let's see what happens.
+Now every time we run this cell
+we get the same result. Right? It's
+still random
+but we're getting the same result. This
+is the first step. So this is one
+simulation. What I'm doing here is I'm
+creating a simulation
+and these are the result of the first
+step of the simulation. This is another
+simulation. Now if I run again, so it's
+simulation number two and step number
+one. It means simulation one step one
+equal simulation two step one.
+Notice that we get the same result every
+time we run the model with the same
+seed. So this is the result at the first
+step. try to run another step and see
+that the result changed. Of course,
+simulation one step one equals
+simulation two step two uh step one. But
+if we step the model further, then we
+get different result of course because
+the result will not be the same at each
+step.
+This is another step.
+See the result of the second step
+are different from the result of the
+first step. Although we use seat but if
+we do another model another simulation
+here and we step the model
+one more step then we get the same
+result. Now if you want to step the
+model a third time we get different
+result. So remember 2 96 let's try it
+again here. So new simulation by running
+this.
+So 296 right but we need to step two
+times to get these values
+2 96.
+So by setting a seed we ensure that the
+random processes in the model are
+repeatable. They are still random but
+they are repeatable.
+You always get the same results at the
+same step and that's very important to
+remember.
+Now challenge. Try different ways of
+activating the agents. Change shovel two
+to just do and see the impact. We've
+tried it before because the do will
+actually eliminate the randomness of the
+shuffle. Then the seed will not do
+anything because anyway there is no
+randomness. So there's nothing that the
+seed can do.
+Now we have a complete model but it's
+not doing anything that's interesting.
+Since every agent will only uh is only
+saying is only telling what their unique
+ID is right to make the model a little
+bit more interesting we need to add
+additional behavior uh you know that the
+agent can do at each step. Let's do
+that. Now this is a behavior that we
+want to implement. We want each agent to
+be able to give one well actually to
+give one unit of wealth to a random
+other agent if their wealth is greater
+than zero. So if they have money at all,
+they're going to give they're going to
+give one unit of wealth to to another
+agent. And we want to run the model for
+a few steps to see how the agent
+activation order is shuffled each time,
+right? Or actually to see the results.
+Let's see how we can do this. So this is
+what we already had before the money
+agent class and the init and the self2.
+We also have the step function before
+but the only action that every agent was
+doing is actually to tell what the
+unique ID is. Now we want to change this
+and actually introduce a proper um um
+behavior
+which is this one.
+Now, yeah, they're going to give money
+to other agent to another random agent
+if they have money at all. So, we need
+first to check if they have wealth. So,
+self, which is this agent that we are at
+right now, do wealth. So, the wealth of
+that agent
+if it's equal to zero, then return. It
+means return well of this function.
+Don't do anything in this step. Nothing
+will be done and these three lines will
+not be executed.
+If it's not the case, which means if
+that agent has wealth,
+then um then these lines will be
+executed. First we uh want to define
+another agent. We want to define another
+agent and this is how we can do this. We
+call it something. In this case, we call
+it other agent equal. And this light
+chooses another agent at random.
+So let's see itself.
+choice and this is a method provided by
+Mesa already. So we don't have to
+hardcode it ourself. We just use it
+because we know that exists. It exists.
+Um and inside we have self.model.
+So what this means is that I want to
+have all the agents
+that are in the model that this agent
+that this agent is associated with. So
+all agents of the model that this agent
+is associated with and when you get
+these choose one of them choose one of
+them at random. Always like to read from
+right to left to understand what that
+statement actually what that command
+actually means.
+Okay. Um and and and associated with a
+variable called other agent. All right.
+So now we have another agent that we've
+chosen randomly. Now we need to give
+that agent one unit of wealth because we
+have wealth.
+So we're going to give it one other
+agent wealth increase by one. This means
+increase by
+by one. And then because we've given
+wealth, we need to lose one unit of
+wealth selfwealth. So the wealth of the
+agent of this the agent that we are at
+right now will be reduced by one. Okay.
+And this is the kind of behavior we want
+to implement to the agent.
+Now let's run the model.
+Here's how we can run the model. Now
+we're not going to use seed here. So
+model now we call it model. We used to
+call it empty model but now since we
+have some behavior let's call it
+something else. model equal is an
+instance of the money model class which
+we have which we defined above it's
+still there
+and just to update uh the first to
+update the money uh the agent class we
+have to run it now the previous one is
+overwritten with this one now this is
+the new behavior is now uh there
+okay so to create a model is an instance
+of the money model and we want 10
+agents. All right. Now we want to run
+the model for t 10 steps not only one
+step because here we've run it for one
+step and every time we click we run the
+cell it means we are stepping the model
+but now we want to step uh directly 10
+10 times already and for that we create
+for loop for underscore. Sometimes you
+write for i in the range. But if you're
+not using i, it's better to write
+underscore
+uh for underscore in the range of 10. So
+10 times step the model every time. So
+this means we're stemming the model. We
+run the model for 10 steps. Okay.
+All right. So we run the cell.
+Okay. Now we have a multiple that is at
+step number 10. We do not see any result
+yet because
+um because uh we haven't extracted the
+result and that's what we're going to
+see now. Now because we want to use
+mattplot liib and we want we are using
+jupyter notebook it's important to
+provide this line
+percentage mattplot liib in line for
+jupyter notebook and the following yeah
+of course uh so that we can see result
+of the math plot lip inside jupyter
+notebook. Okay,
+now let's collect the wealth of each
+agent into kind of a list. So now at
+step number 10 of the simulation that we
+run already, we want to have a list that
+includes the wealth of our 10 agents. So
+a list of 10 different numbers of
+wealth. This is how we can do it. We can
+use list comprehension to do that. First
+we define a variable called in this case
+agent wealth and equal that list
+comprehension and this actually means
+again reading from right to left
+I want all the agents of the model
+this model here same name okay all the
+agents of this model
+and then go over each agent of the agent
+so every every um element of the of of
+of this uh collection here. So each
+agent of those agents
+get their wealth and store it in this
+list. Okay? So it's going to iterate
+over all agent and every time it gets
+into an agent, it's going to extract its
+wealth and store it into this list. Very
+neat way of extracting um you know
+number and storing it in a list um in a
+straightforward manner. Again, it's
+called list comprehension.
+Let's let's draw this plot histogram
+agent wells. So we get this line. So if
+we if we run it, we get this.
+Okay. So we have four agents that have
+no wealth at all. We have three agent
+that have one unit of wealth. And we
+have two agent that have two unit of
+wealth. and we have one agent that has
+um um three units of well. So this is
+what we get. But now of course if we run
+this model again here
+we get different results. In this case
+we have six agents who have no wealth.
+Of course all the time we're talking
+about step number 10 right? Because this
+is what we are doing here. And we have
+six agent that have no wealth. three
+have two and um one that have four. And
+now if you do the math then you're going
+to get um
+four + 3 + 3. So the total number of
+wealth is 10 which is expected because
+we started with one wealth east. So
+summation will always be equal to that.
+Okay. Right. But every time that we're
+running this this model we're getting
+different result. of course because
+we're not using seed but we don't want
+to use seed here in this context
+and but we're not able to get like
+specific behavior of the model because
+every time is different. So how can we
+um you know get some useful insight and
+information about how our model behaves
+and this gets me into the model
+behavior.
+So to get a better idea of how model
+behaves, we can create multiple model
+runs and see the distribution that
+emerges from all of them and we can do
+this with a nested uh for loop. This is
+mainly doing a Monte Carlo
+Monte Carlo simulation where we run the
+model multiple times and we sort the
+results all together and see the
+behavior. Let's see how we can do this
+and let's see the benefit that it can
+get us.
+First we want to define a list where
+we're going to store everything that
+we're collecting. Um we are going to
+call it all wealth. So here we
+initialize an empty list to store wealth
+data. This is empty. It's up to us to uh
+define what the name of that is. Then
+we're going to loop over the mo. We're
+going to run the model 100 times.
+Okay. For J
+in the range of 100
+create a model every time. So we're
+creating a 100 model here. model equal
+from the money model we want 10 agents
+every time. Create a new instance of the
+model with 10 agents.
+And now for each of these 100 models,
+step the model 10 times by having this
+for loop for I in the range of 10. Model
+step. Okay. So at the end we will have a
+100 models. Each of these models will be
+stepped 10 times. So we'll be at step
+number 10. uh number nine and number 10
+of each of those models. Now we also
+inside this for loop every time we are
+done with the model we are stepping the
+model for 10 times we're collecting also
+the data
+for agent in model agents
+all wealth which is this guy here
+we're going to append the agentwealth
+okay
+so from all the agents of the model and
+for each agents
+of those agents get their wealth and
+append it to all wealth here. So the
+first time we are stepping we are uh the
+first time we are
+um creating a model. So for the first
+model we will have 10 agents with their
+wealth that we're collecting all their
+wealth. So we're going to have 10
+numbers here and the old wealth and for
+the second model we have new 10 uh
+entries. So all wealth will have 20 and
+the third one will have 30. So the
+number of um wealths that we have here
+in this list at the end when we we we're
+done with all the 100 models will be 100
+* 10 which is a,000 entry.
+And then we're going to plot the result
+again. plot histogram. Now we want to
+plot all wealth and we want the bins
+range. Of course you can look this up
+because it's just a Python thing. Uh
+that defines how you want the bend to be
+and the maximum and everything. And this
+is the result we get. Now this is the
+result that we get. So if we run it, let
+me let me run it because this is old
+one.
+So we get this. Okay, it means more than
+100 or like 150 entries are agents that
+do not have um wealth. 300 do have one
+wealth um kind of 180 that have two
+wealths etc etc. As you can see it's
+kind of starts to show some kind of
+distribution of a lot of agent do not
+have wealth but then the amount of
+wealthy agents decrease with time. Let's
+run this again.
+See do we have the same behavior here?
+It's it's different one but it's same
+behavior. So every time we are running
+this cell
+we're getting the same behavior and
+that's the benefit of running a
+multiolor simulation of running
+many simulations of the same model to
+get some insight about the behavior of
+that model. Let me show you again what
+we had before.
+See, it's very different because it's
+single simulation, right?
+And when we have many all together
+combine them, we get the same behavior,
+which is fascinating actually. So you
+can actually draw conclusion out of
+this. can confidently say
+that well for my model always always at
+step number nine I'm having a lot of a
+lot of broke agents and really few
+wealthy agents but we cannot do that we
+cannot draw this conclusion from that
+so up to this point we had some behavior
+of agents exchanging money, but those
+agents are not really moving on any kind
+of space. They're just finding other
+agents randomly and exchanging money
+with them. Now, what we want to do, we
+want to add little bit more complexity
+to our model. And we want the agents to
+move before actually exchanging any
+money.
+And to be able to move to add this
+spatial dimension we have to use uh mesa
+spaces which is a functionality added by
+a side mea that we can actually use
+immediately and let's see how we can add
+a space
+if I think about like a word how we can
+add a word how we can add like place or
+space or grid whatever you want to call
+it where agents can actually move around
+on now for this version of method that
+we're using in this tutorial. We have
+you have two main types of grids. The
+first one is called single grid and the
+other one called multi- grid. Now single
+grid enforces at most one agent per
+cell. So you cannot have more than one
+agent as specific cell. Okay. And for
+the multi- grid, it allows for multiple
+agents to be on the same cell. But here
+in this model, we want agents to be able
+to share a cell. And that's why we're
+going to use multi- grid. Let's see what
+we have. Um, now we we again start from
+something that we had before. So we had
+the class money model. We had the init,
+we had the super and we had the number
+of agent, but we didn't have grid yet.
+And this how we can define grid self.
+Grid. Okay, you can call this whatever
+you want here because it's grid. We're
+going to call it grid. And we're going
+to use the multigrid of Mesa.
+So this is space module that's inside
+Mesa and this is the multi- grid um you
+know uh object uh that's inside the
+space. And it needs three things. The
+width, the height and the Taurus. And
+Taurus could be true and false. And
+Taurus means uh making the gr grid wraps
+around. So for example, if this is your
+grid,
+if you have agents here and they're
+going to the right, they will appear on
+the other side. So it's like wrapping it
+around so that it's kind of continuous.
+Here we want to wrap it around and so we
+set Taurus to be true. Again, multi
+multigrid allows multiple agents in a
+cell. Taurus true makes the grid wraps
+around. We again create agents after
+yeah we added the grid we create a agent
+as we did before but now because we have
+grid it's not only enough it's not
+enough to um to only create agents and
+add them the model but also we need to
+place them on the grid and this is how
+we can place them on the grid. First we
+need to define a location on the grid.
+So x and y x is self
+random dot random range in the
+parenthesy self.grid.w
+it means
+the width take the width
+of the grid
+of this model
+and pick one um one point of that it's
+discrete. For example, if it's from 1 to
+10, then pick any number, any um natural
+number from 1 to 10 randomly. Okay?
+And assign it to X. And we do the same
+thing with Y. Self.gridheight
+random range random. And we assign it to
+Y. So X and Y would be two numbers from
+zero to the width
+uh or or the height. in there in the
+case of Y.
+And then this is how we can place agents
+on a grid. Self
+self is for the model of course dot
+grid. So the grid of the model place an
+agent on the grid of the model. This how
+you can understand always starts from
+the right and place that agent with that
+coordinates.
+So that coordinates that agent consider
+that agent and consider and place it on
+this um coordinates
+um on the grid that we defined of
+course. So place the agent at
+coordinates x and y. This is how you can
+place agents.
+Okay. Now we defined space and we placed
+agents on the space. But let's see now
+how we can uh move agents how we can
+allow agents to move. Uh so we need to
+add new functions uh to the agent that
+allows them to move and that's move
+function. So everything that we defined
+before will hold true of course. So
+we're not going to repeat them. But this
+is the one additional function that we
+need and we call it move.
+And at some point after at the end I'm
+going to put everything together so you
+can see all the you know agent class or
+all the methods and all the functions
+inside the agent agent class all
+together. So define move function.
+This is how we want the agent to move.
+So, we want the agent to um to move to
+any of the eight directions that's
+around it because every cell on a grid,
+it has eight uh eight different cells
+that are in the neighborhood. First, we
+want to get the neighborhood of that
+cell. So, get the neighboring cell.
+Possible steps. These are the steps that
+an agent can do given its current
+location. possible steps equal
+we are going to use the get neighborhood
+um method that's inside MEA. So the get
+neighborhood method of the grid of the
+model that's this that this agent is
+associated with and that get
+neighborhood it needs um these uh
+parameters. So the position of the agent
+the more whether it's true or false more
+if it's true it allows um you know it
+includes diagonals if it's false it does
+not include the diagonal. So if it's
+false it's only four cells that are in
+the neighborhood up bottom uh right and
+left and if if it's eight if it's true
+then it's also the diagonals as well. So
+it's eight and whether you want to
+include the center or not. If you want
+to move to your same location, in this
+case we don't want to move in the same
+location. So we we exclude the cell
+where the agent is currently uh located.
+Okay. After now after we define the
+possible steps,
+we need to choose one of these possible
+steps. So we need to choose a new
+position. And this is how we can choose
+a new position from the possible steps
+that we defined here.
+Choose one step randomly and assign it
+to a new position. So now we have a new
+position that's that's a random position
+from all the possible steps that we
+defined before.
+Okay. And now we want to assign this new
+position to uh to uh that agent. This is
+how we can do this.
+We're going to use the method move
+agent. This is how we move the agent
+which is a method of the grid. So the
+method move agent of the grid of the
+model that this agent is associated
+with. And we have to provide
+that agent. So which agent we're talking
+about this case self.
+Okay. And the new position.
+and it it will move that agent to that
+new position.
+Okay. Now our our agent can move but we
+also want to give uh money to one of the
+other agents that are present at the
+same cell. So before we used to give
+money randomly but now we want to change
+that behavior so that every agent will
+give money to only two agents who are on
+the same cell. So we need to check who
+who else is on the same cell. Okay. So
+everything that we've defined before
+including the move is there. It's
+hidden. So we're just going to write a
+new function that's give money.
+So we define new function. We call give
+And um all right. So because we want to
+check um you know other agents who are
+on the same cells. So we define new
+variable called called cellmates.
+And this is the uh command that we use
+in this case. So get cell list content.
+So this
+um a method here or function here allows
+us to extract uh all the contents that
+are in the cell in this case um you know
+other agents.
+So this is a method of the grid. So get
+cell list contents of that grid of that
+model etc. And it needs only one thing
+which is the position of the agent. So
+if we give it the position of that
+agent, it's going to tell us who else is
+placed on this very cell and we we
+assign all these to uh the variable
+that's called cellmates.
+Now if cell if the length of the
+cellmate is greater than one so two
+three etc
+it means there is more than one agent in
+the cell. So if length of uh this
+cellmate um object is greater than one,
+it means we have more than one agent in
+the cell. Okay, so it's it's not only
+the agent that's on the cell, but there
+are also other cellmates actually on the
+same cell. Plus if it's equal to one, it
+means it's only that agent that's
+placed. So there's no cellmates there.
+So we check that first. If if length of
+a cellmate is greater than one, then we
+need to choose another agent. And this
+is how we do this using the random
+choice from cellmate. We're going to
+choose one from the cellmate. And we're
+going to assign it to a variable called
+other. Now, if other if that other is
+different from self because it could be
+our self. It could be the same um agent.
+So we check if that other is different
+than self
+then we give them one unit files and we
+extract one units from the h otherwise
+by one and selfwell reduce by one. Okay
+and with those two methods the agent
+step method becomes that. Now we need to
+also change the step method that we had
+before. So first every agent we want
+every agent first to move self.move by
+calling the move function that we
+defined here. So they are going to move
+according to this behavior here. And
+then when they move after they move
+they're going to we're going to check
+their wealth. If they have if they have
+any wealth they're going to
+uh we're going to call the give money
+function that you define here. are going
+to implement this which means they're
+going to check if they have any
+cellmates and they will give them money
+in the 12 and deduct one wealth from
+their own and this is our new step
+function of the agent. Now let's put
+everything together. This is what we
+have right now. Money agent the initial
+wealth. Now we have the move function
+which is the one we just we've just
+written and we have the GIF function
+and we have the give function which is
+exactly what we had before and we have
+the step function.
+Now for the model it's exactly the same
+because the only thing that we're doing
+here that we used to do here is to uh
+shuffle do step which is the same but
+whatever happening inside the step is
+now different. So we do not change the
+money model.
+Now let's create a model with 50 agents.
+And now we need to because we have a
+grid
+um we need to define um you know the
+width and the length of that grid in
+this case 10 by 10 and we want to run
+our model for 20 steps. So new model
+model equal money model 50 agents width
+equal so in the same order. So first one
+is for the L, second for the width and
+third for the height.
+This means we are initializing the model
+with 50 agents in a 10 * 10 grid and we
+want to run the model for 20 steps. So
+for i in the range of 20 model step,
+it's going to iterate over i from uh
+model to 20 uh and uh or from 0 to 19
+because that's Python. And every time
+we're going to uh step the model for one
+step, it means 20 steps in do.
+Okay. Uh let's make sure we have run
+this just to update everything. And then
+we run this model and we step the model
+for 20 steps. Okay. And now let's do
+some visualization.
+Here we're going to we are using a
+seaborn um library because it's just
+better way of visualizing. And here what
+we have is um it is a heat map. So we
+are using the heat heat map uh method of
+seabour of course feel free to um you
+know to uh to look this up but this is
+really seabour thing and not me thing
+but we're going to use just for
+visualization and this is the result
+that we get. So we have a grid with a
+heat map and then with a number of
+agents at every uh at every cell. So
+from 0 to 9 which is 10 uh tick and from
+0 to 9 which is 10 ticks here and at at
+every intersection is a location and we
+have the number of Asian that is that is
+located. So if we if you count all these
+number you get the total number of Asian
+it should be 20 3 4 5 6 7 8 9 10 12 11
+it's more than that because we have 50
+agents. Sorry, I thought 20. So if you
+sum everything up, it should be 50
+agents. Yeah, 50.
+So let's see now how we can collect the
+data.
+So up to this point, we've been only
+able to check the result at the last
+time step of the model. But what if we
+want to uh you know uh collect all the
+data that we have at every single step
+uh of the model and we want to collect
+many things at the same time. What can
+we do? So there is a module um uh or
+there is a way in Mesa that's called
+data collector that allows us to collect
+uh you know data at every time step in a
+very simple way. So let's see how the
+data collector works. First let's define
+uh you know a a function uh that
+computes something so that we can
+collect it so that we can compute it in
+the model in the simulation later on and
+then collect the result of that uh
+function.
+So we're going to build we're going to
+create a function called compute genie
+which is genie is a coefficient um if
+you're not aware of if it's a
+coefficient that is ranged between 0 and
+one where zero represent perfect
+equality of income in this case and one
+represent perfect inequality. So if we
+if all the model has a genie coefficient
+of zero then all of our agents in that
+model has the same amount of wealth and
+if it's equal to one then one individual
+has all the income or all the wealth in
+the model and everybody else have no
+wealth at all. So this is how uh you
+know the ag the genie coefficient or
+genie function looks like. Of course you
+can go in details and see uh what's
+going on but mainly it's going to return
+the genie coefficient at the end. So
+whenever we call this function and we
+give it a specific model
+so it's going to do this computation and
+it will return genie coefficient to us
+that we could collect. So now we're
+interested in collection in data
+collection and collecting of data not
+actually in what this uh genie
+coefficient um does.
+So now we to in order to introduce the
+data collector
+now uh this is the same agent that we
+had before. So we don't have any uh we
+do we do not introduce any changes to it
+because the data collector is something
+that we introduce that belongs to the
+model that we introduce in the model. So
+this is a model class that we had
+before. So we had the agent, we had the
+grid and this is how we created the
+agent before. So nothing new here so
+far. This is how we introduce the data
+collector. Uh self do data collector. So
+this is the name that we give. It could
+be anything that you want. Equal messa.
+Collector
+and this is the method that Mesa uses
+that Mesa has already uh you know built
+in uh that we can use immediately. So
+data collector it's a dictionary uh that
+u it's um it's it's it's a tuple of two
+things. The first one is model
+reporters. So in the model reporters
+uh we have all the things that belong to
+the model that we want to collect and in
+the agent reporters we have everything
+that belong to the agent at the agent
+level that we want to collect. So the
+data collector include a tpple of two um
+items. Now every one of these two items
+is a dictionary
+that has a uh a key and a value for the
+model reporters we want to collect genie
+coefficient that we uh have written a
+function for. So we call it whatever we
+want. In this case we call it uh genie.
+So our key is called genie and then the
+value is called compute genie which is a
+function. Now um it is going to call
+this function and it's going to do this
+computation and it's going to get the
+output of this function and it will
+assign it to this key which is genie and
+that's that's being that's done at every
+time step of course
+and for the alien reporters we want to
+collect the wealth. So we call the the
+key is the wealth and also the attribute
+that we want to collect is also the
+wealth right but whenever you're
+collecting an attribute you put it in
+the code like quotation marks as we're
+doing here whenever you're collecting a
+function you just call the function as
+is. So you do not put it in a code and
+if you don't put the the attribute in a
+quotation is going to return an error.
+Okay. Now we have data collector already
+set up. Now we want to collect data at
+step zero before we run any simulation.
+So that's the initial state. So we
+collect the data at sub zero. And this
+is how we do it. self dot data collector
+which is this guy that we defined here.
+And we ask it to collect at this time
+step that we are at right now which is
+because it's still in the in it in the
+in it. So we haven't done anything yet.
+So we collect step numbers here.
+All right. And now inside the step
+function of the model, we need also to
+collect data at every time step. Now we
+have this um you know
+well this uh activation um uh command
+right. So at every step we're going to
+activate all the agents and when we
+activate them and do their action then
+we are going to collect these two guys
+here every time step. So if you run this
+100 time this will be triggered 100
+times. So we have the data of of every
+single step for whatever we have here.
+And this is how we can collect uh data.
+So let's run the code and see. So we
+create a model which is an instance of
+the money model.
+10 agents width equal to 10 and height
+equal to 10. And we want to run the
+model this time 100 times 100 steps. And
+of course we should expect that we're
+going to collect data of 100 step plus
+one. So now we have run the model for
+100 times and we have collected all the
+data that we want. But there are just
+not seen to us unless we extract them.
+So let's extract some of the data that
+we are interested in uh seeing. For
+example, let's extract the data related
+to Genie. So we define a variable called
+genie which is equal. This is how we
+extract data.
+Now we want to get the um uh the whole
+data frame. Okay, the whole table let's
+call it that that that includes all the
+genie coefficients at every time step.
+This is how we can do it because genie
+is at the model level. So this is how we
+can extract the model the model um level
+data get model variables first uh data
+frame
+uh method and this is a method of the
+data collector of the model that we
+have. So this guy here okay and we
+assign it to genie. Usually when you uh
+when you uh write that command here you
+get all the data that you collected but
+because we are only collecting genie uh
+coefficient here then all the data that
+we have at the model level will be
+changing and that's why we call it genie
+immediately. Okay. So this is how we can
+collect. Okay. And this is how we can
+show. So we just write it as it is. So
+if you don't have that guy here then we
+run it.
+We should run the model and we should
+run this one. And then if we run this
+okay, it's stored in genie but it's not
+uh visible unless you retrieve it by
+running by uh writing the variable name
+again.
+And this is what you get. So a long
+table with time steps here from 0 to 99
+because we have 100 steps and for every
+step you have the GD coefficient. We
+start from zero because we start from uh
+every agent having one unit to 12. So
+that's equal a perfect equality and
+that's what we said before about genie.
+When it's zero then it's equal per uh
+equality. Then genie will increase
+because the there will be no perfect
+equality anymore because of the exchange
+of money. Okay.
+All right. Let's plot the data just to
+see everything because checking a table
+is not really uh it's difficult to draw
+any insight out of it. So let's plot
+um you know the results of the genie and
+if we run it we get this curve. So we
+can see kind of behavior of genie
+coefficient is increasing around
+something between 0.5 and 0.6 and it's
+then fluctuating.
+Now let's retrieve the the uh agent
+level data. So we still use data
+collector dot but now instead of get
+model we we we write get agent variables
+data frame and because the wealth is the
+only thing that we have collected. See
+here
+we get all the data frame and we call it
+wealth
+agent uh wealth equal model data
+collector get agents variables data
+frame we retrieve agent wealth and then
+we we uh we show that we display the
+last few entry here. Okay. If you don't
+have that, you have everything.
+But if you are interested only in the in
+the last entry, write tail.
+If you're interested in the first
+entries, you write hat.
+All right. Everybody kind of starting
+from well from one, but then at the end
+tail, it's changing.
+This is the head.
+Um, and this actually concludes the part
+about collecting data. So, there's so
+much more that you can do with it.
+Now, let's see uh how we can visualize
+the data. Now, Mesa has a built-in um um
+method for visualization for visualizing
+data, but it's still kind of
+experimental. Sometime it works,
+sometime doesn't really work. So,
+they're still really working on and
+trying to improve it. Um um we're
+expecting that this visualization module
+to to get better really soon. So, it's
+really um at a level where we can really
+use it uh and rely on it. contents. It's
+not um it's not the case. Um so there's
+that code that uses the visualization
+module in in Mesa, but there's no
+guarantee that it it works. So but for
+the sake of this tutorial, I have
+written a script that allows us to to
+see uh what's going on. And that's
+exactly what I show you what what I
+showed you in the beginning of this uh
+tutorial today. And this script relies a
+lot on matt plot li on uh ipython. You
+don't really need to understand what's
+going on inside. But um but the main
+idea here is that um visualization of
+the simulation is very important because
+it really allows you to see some of the
+dynamics that's usually difficult to see
+if you're just looking at data or at uh
+some uh you know plots of the data. It's
+always nice whenever you have the
+opportunity actually to build this kind
+of visualization
+uh do that because it um it will always
+give you some additional insight and
+that's why I showed you before we can
+see in every step the movement that's uh
+done and here it's really it really
+helps you to verify the model because
+maybe you see some agent are teleporting
+going from one cell to very far cell but
+that's not the behavior that you uh
+coded in the first place because you
+coded that every agent moves
+one um one one step at a time, right?
+One uh cell at a time. But if this is
+not happening here, then there's an
+error. It's very difficult to see if you
+don't have this kind of visualization
+and so on.
+Now we have a complete model. But what
+if what if you want to run many many
+simulations, you want to try different
+combinations. Uh you are doing some
+experimentation for like um some purpose
+and you want to try different things at
+a time. How can you do it? like what if
+you want to try the effect of increasing
+the number of agents on your model. So
+what you would normally do is that you
+would run a simulation with 10 agents
+and then you would run another
+simulation with 11 agents and with 12
+and with 14 and then every time you
+collect the data and you find a way to
+put things together to compare them to
+draw something. Now we have something in
+Mesa called batch runner that allows us
+to do these kind of uh you know
+combinations of or trying different
+you know different values of the same
+variables and and creating different
+simulations uh considering different
+combination of these values. Um there's
+a way to do that and that's the batch
+runner and this is what you should do in
+order to use the batch runner. Of
+course, whatever we had before, the
+model and the agents are the same. So,
+as long as you had these two here.
+So, after you have the money agent and
+money model, you can proceed and
+immediately
+implement a batch rider. And this is how
+you can do this. First, you want to
+define a variable called whatever you
+want to call it. In this case, we call
+And it has the three things that we want
+to change. Well, these are the
+parameters that are required by our
+model. There's n, width, and height. So,
+number of agent width and height of the
+of the of the grid, right? Um, now if
+there is one of these, if one of these
+variable is a variable that you want to
+change, you provide different values for
+it. So, what we're interested in in this
+experimentation here that we are doing
+right now is to see the effect of
+changing agents. So we want to allow the
+agent numbers to vary from 10 to 50 and
+increments by 10. That means 10 20 30 40
+and 50. So we use a numpy np.range. Of
+course we should have already imported
+the numpy before. NP dot u uh a range
+from 10 to 51 every 10. It means 10 20
+30 40 and 50. So those are five
+different uh values for the number of
+agents and then width stand height 10.
+So it's only one value for each of these
+two um uh parameters here width and
+height. So how many simulation that we
+we are going to do out of that there are
+five different simulations. The first
+one is when you have 10 agents width 10
+and height 10. The second one 20 10 10
+30 10 10 40 10 50 10 10. So five
+different simulations. Now you can also
+you can also add additional value to the
+width for example 10 and 20
+and then the total number of simulation
+will then be uh 10 simulations because
+this is number of combination that you
+can get out of those. But for now we're
+only going to change the um you know
+number of agents. Okay. So we define the
+par the parameters uh that we have and
+those especially those that want to vary
+and now this is how we can execute the
+batch run. So we we define a new
+variable
+you call it whatever you want. In this
+case we call par p param run equal
+mesa.batch run. And this is a function
+that's uh uh defined by inside mea
+already.
+It needs the following uh parameters. So
+it needs the name of the model which is
+we call it m model.
+It needs the parameters which are the
+parameter parameters that we defined
+right now here. So all the parameters
+that the model require but now with
+varying values.
+Uh we need the number of iterations. So
+number of times each parameter
+combination is run. If you set this to
+one, so the number of simul of uh of
+iteration or simulation will be five.
+But if you set to two that every
+combination will run twice. So if this
+is two, so you're going to run two times
+the combination when you have 10 agent
+and two times the combination when you
+have 20 agent. This is kind of getting
+more real reliable results at the end.
+So uh um yeah or want to do Monte Carlo
+simulation for example of having
+multiple iteration for each combination
+so the result will be trusted more now
+steps maximum number of step 30 that's
+the maximum number of step the model
+runs for each iteration number of
+processes if you're using um yeah par
+computing then this is relevant if not
+just set this to one especially if your
+model is not complex
+and data collection period. Here you can
+identify at which step the data is
+collected. So you don't have to collect
+every time step. But in this case we
+want to collect at every time step. We
+set it to one. So each time step and if
+you want to see the progress bar this is
+a progress bar. Now if we run this then
+because this is that's it for the batch
+runner. Then we can run the cell and
+then we can execute all the simulations.
+All simulation runs.
+You see it's printing everything.
+Let's go again to it
+and not print everything for now.
+let's restart the kernel because seem to
+be like a little issue here
+and
+let's run everything again and see what
+Okay. So,
+yeah, loading widget. Normally, normally
+there there seem to be a little little
+issue now with my current session here.
+Maybe I should refresh or something. But
+normally you see like loading bar and
+that loading bar like gets filled as the
+simulation uh getting towards uh towards
+the end. But but uh the uh it's still
+being executed. Now if we want to see
+the result we can run this parameter
+run. So we can check this but we we will
+get the long list as we've seen before
+we will get the long list of uh all the
+result and really really messy way. So
+let's do it again and see
+this is what we get. It's very long list
+of all kind of result with run ideas
+iteration with steps with everything all
+together. But this is not really a nice
+way of presenting a result. It seemed
+like a complex structure of list
+containing dictionaries. Luckily, we can
+turn this into well organized pandas
+data frame using a simple command.
+Okay, if you're not familiar with
+pandas, um um mea relies a lot on pandas
+for the data organization and so pandas
+is very important to know the basics at
+least of pandas.
+Um we want to store the result. It's
+something called batch batch 1D results
+because 1D because we're only changing
+one variable. If you're changing two
+variable, maybe we put 2Ds. But it's
+really up to us to uh name uh this data
+frame whatever we want.
+PD
+dot data
+um data frame. So this is a method
+that's inside inside pandas.
+If you in the previous cell we have
+already um we have already called yeah
+we have imported plan that's why we can
+use PD now right now
+uh let's clear out patell
+yeah so now it's better just let's
+move this so that we don't get it again
+um yes so batch w results equal pd dataf
+frame frame that's method of pandas and
+then turn this parameter run. So
+whatever we got before this messy
+structure into data frame and show me
+the last 50 so the tail of that and see
+how neat this is.
+So this is what we get. This is the last
+50 um you know rows of that big. So, and
+what we have here for every one of these
+row is a run ID
+because we said we have five different
+uh simulation runs and it's starting
+from zero. See the hat
+is starting from zero. So, we have the
+run ID, we have number of iteration in
+this case only one iteration which is
+iteration ID zero.
+We have the step. We have number of
+agents because in the first we have 10
+agents but later on we have 20 and then
+30 40 and 50 width height genic agent ID
+and wealth. So we're collecting
+everything together.
+Okay. So all the data are in one place.
+Okay. Let's see the last ones.
+Here
+we have 4,650
+rows because we're starting at zero uh
+of course. So see here number of um and
+so this is 50. This is number of uh uh
+agents for that simulation is 15.
+Uh but why do we have so many rows?
+Because if because
+for every single simulation run we have
+we have 10 agents I guess I guess we
+have a lot of agents sorry so we have 10
+agents and then we are also extracting
+the wells of every agent of that of
+those 10 agent but then for the
+simulation that has 20 agents we're
+extracting the wells of every agent of
+those 20 agent and then for the 30 for
+40 and that's why it gets really really
+high.
+Now if you do the math on how many rows
+you should get, it should be exactly
+this number.
+Okay. And this is how we can extract.
+But now let's visualize this data
+because this is very complex. I mean you
+cannot get any insight out of it just by
+looking at it. So we need some kind of
+you know plots to help us do that. Here
+we again use uh caborg. So what we want
+to plot is
+um the following. So we have the number
+of steps. So we have 30 steps here and
+we want the gen coefficient
+and for we want to plot for each
+simulation for each simulation um um I
+mean because we changed number of agent
+from 10 to 50. So we want to draw all of
+them. So this plot here is related to
+simulation when we have where we had uh
+uh 10 uh 10 agent this is 20s this is 30
+40 and 50. Mainly we just want to see
+the effect of increasing the number of
+agents exchanging money on the genie
+official. And we can confidently say
+that the the increased number of agent
+will lead to more inequality because the
+higher the genie coefficient is the more
+inequality we have. So the more
+population higher number of population
+we have in our world that are doing
+transaction this leads to um more um you
+know wealth inequality
+and now accessing pandas
+um pandas is very important. So this is
+this was just one example to uh for for
+the students who are going to have
+access to this uh notebook to actually
+experiment with this pandas and trying
+to manipulate data in different ways
+because panda is very important to me
+and you really need to know pandas so
+that you can extract whatever number you
+want from this data frame or number of
+rows or number of columns of combination
+of whatever you want. There's all kind
+of way that allows you to do that in
+pandas. So there are a lot of
+documentation out there for pandas. You
+can use this data frame that I present
+here to try different things. For
+example, what if you want to uh get the
+areas of all the cities of Canada. What
+if you want to get the population of of
+uh one city of USA and one city of
+Canada? What if there are a lot of
+whatifs that you can do to learn how you
+can extract data from a data frame.
+Now uh to wrap up so these were the
+learning object that we presented today
+in the beginning of this tutorial. So
+what we've done in this tutorial is that
+we discussed important concept of Python
+including but not limited to classes and
+inheritance. We have practiced a wide
+range of Python commands and we built um
+a minimal Asian-based model um which is
+kind of simple economy model using the
+Mesa Shepherd.

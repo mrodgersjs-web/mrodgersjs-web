@@ -1,0 +1,730 @@
+So, the 2025 devstack is getting out of
+control. You still have your languages
+and your tools, your frameworks, your
+general workflow, but now AI is woven
+into every single part of it. And if
+you're drowning in all of the AI noise
+and hype and chaos, well, I'm hoping
+that this video kind of clears things up
+by walking through the software
+development workflow and showing you how
+AI can help you do each step along the
+way. And look, if you're like, "Well,
+I'm fine with my current stack. Why
+should I care?" Well, if you're coding
+for fun, maybe AI can help you eliminate
+some of the parts that you don't find as
+enjoyable. But if you're coding
+professionally, a good dev that uses AI
+to his advantage is going to be more
+efficient than a good dev that doesn't.
+So, when you have your quarterly review,
+you're going to be asked why you're not
+getting as much work done as your
+teammates. It's the same idea as why you
+use code editors instead of just Notepad
+because it helps you do your job better
+and faster and all of it. That's what AI
+can do when you use it right. I've got
+timestamps below, so feel free to scrub
+through to whatever part of the workflow
+you want help with. But let's start at
+the beginning. Planning and
+architecture. This could be an entirely
+new project or adding a new feature to
+an existing codebase. What you normally
+do is you gather requirements. You
+whiteboard the data flow and schema.
+List spikes. get a quick team thumbs up,
+drop the spec in docs, and then and only
+then do you start coding. And I'm not
+saying remove all of this, but there are
+instances where AI can help with this.
+For entirely new projects, you're going
+to have all of those requirements from
+different members of your team or
+thoughts in your head and things written
+down and things in emails. And what you
+can do is take all of those pictures or
+copy and pasting into a tool like
+chatgpt or clawed bythropic just a
+simple web interface. I like to use the
+advanced reasoning models for this but
+you can use whichever you like and
+throwing them in there and having it
+give you a crisp one-page PRD. You can
+do the same exact thing for the data
+flow and schemas that you drew on the
+whiteboard. Throw it in, have it
+generate you a mermaid sequence diagram.
+Or if you like to use another tool,
+maybe they have AI built in. But here's
+the thing, you as the expert, the
+software engineer, the team want to be
+the source of truth. Sure, you can use
+AI to help you figure out some
+requirements or maybe you didn't think
+about everything and you can lay it out
+within AI and say, am I missing anything
+for this goal based on this PRD? Like
+what what are some missing spots? And
+you can read through and say, oh yeah,
+we did miss that. But again, you want to
+be the source of truth, not here's the
+idea. Give me a full PRD. Unless maybe
+you're an indie hacker and that's just
+kind of how you like to go about things,
+you can do that. However, if this is a
+new feature in an existing codebase,
+then you're going to want to use a tool
+that actually has context of the
+codebase, that being cursor or clawed
+code or augment code or zed, because
+they have that context of your codebase.
+So they know your patterns, your style,
+and how everything connects, including
+what variables you use. So if you say,
+"How should I add user notifications to
+this app? I want to extend the Prisma
+schema in order to add notifications."
+It has all that stuff. But I will say a
+very quick tip is that AI, especially
+right now, loves to be a yes man. If you
+say, "I think this is the best way to go
+about it." It will agree with you even
+if it's not. So, you need to tell it to
+be critical, be honest, and actually
+challenge you and find the best way to
+go about it or leave some things
+open-ended. That goes for this example
+as well as throughout the rest of the
+video. And now, in our workflow, we have
+project setup and scaffolding. But not
+only that, you know how when you would
+need an admin dashboard, you would just
+buy a template and then use that
+template, integrate it into your
+existing project, that type of work as
+well. And it all started off with
+basically every single folder and file
+in your project you created yourself.
+Then it evolved into something more like
+I can use create new V project or create
+a new spring boot project or I've been
+really liking better tstack lately
+because you can pick and choose frontend
+backend OMS off databases things of that
+nature. And those are still all very
+good options. Another option I'm not
+going to say a better option. Another
+option now though would be using one of
+these app generation tools like VO by
+Versel or Lovable or Bolt. New or Chef
+by Convex. They sell it to you as hey
+this is a one-stop shop from zero to
+full app. I don't agree with that. It's
+more of a hey this is a project setup
+and scaffolding tool with my context in
+UI because that's the thing is when you
+use any of these other tools you get a
+very basic UI. When you use these AI app
+generation tools, you have the
+scaffolding, but you also get UI that
+fits your existing project. So, if
+you're building some sort of task
+management software like a Trello clone,
+it'll have effectively what looks like
+Trello. But just like these project
+scaffolding tools, it is very techstack
+dependent. If you're looking for some
+sort of admin dashboard or UI component
+that has a shad CN Tailwind CSS look
+with Nex.js or React, then VO by Versel
+is pretty good at this. Whereas you have
+something like Bolt new which claim
+they're full stack and they're more of a
+React with Vit front end with TypeScript
+and Tailwind CSS but NodeJS on the back
+end and they can integrate with various
+databases. Lovable.dev is very similar.
+React TypeScript Tailwind CSS Superbase
+for the backend and database and then
+Chef by Convex which is built on bolt.ne
+React TypeScript Tailwind CSS on the
+front end obviously convex on the back
+end but you can have APIs and
+authentication and it's a full database.
+This one has been my favorite but of
+course it locks you into Convex. And if
+you haven't noticed, all of these are
+TypeScript, JavaScript, presumably
+because that is the largest market for
+AI tools and programming in general.
+It's what AI is best at. There's no VO
+for Java or Bolt for Python that I know
+of. Supposedly, Replet can do some of
+these other languages, but I would not
+recommend it considering it just deleted
+an entire database for an app that it
+had built or is working on. That's the
+dangers of working with AI. Even if you
+set restrictions and boundaries and
+things that it shouldn't do, sometimes
+it goes rogue and actually still does
+it. Now, the meat of it, actually
+writing code. These are going to be the
+tools that you have heard of everywhere.
+But there are two main ways to do it.
+And that is again with a tool that has
+context of your codebase. Whether that
+be IDE based like using augment code in
+VS Code or in Jet Brains using a VS Code
+fork like Cursor or Windsurf which I
+don't even know if Windsour is still a
+thing. It's been passed around more than
+I'm not going to finish that sentence
+but it's been passed around in potential
+acquisitions for the past like however
+many months. I don't know what's going
+on with that anymore. Or Zed. I love
+Zed. Love the team at Zed. Their AI is
+pretty good. But that's the IDE code
+editor based side of things. There's
+also the CLI side of things like clawed
+code, open AI codeex CLI, SST open code
+or warp because it's no longer just an
+AI terminal. It is also an agentic
+development environment as they call it
+which all of these is my understanding
+can run multiple agents tackling
+multiple tasks all at the same time and
+just they're pretty good. Clawed Code.
+Even though I had a bad first impression
+of it, people seem to really really
+like. And you can also have it open
+right in your Jet Brains IDE or VS Code
+code editor. But they all work pretty
+similar, just a little bit different uh
+user interface. It is a chatbot if you
+will that has context of your codebase
+that you can highlight code or reference
+a file or your entire codebase and say
+refactor this implement a new feature in
+this file based on these requirements.
+Convert this to TypeScript. Add error
+handling to this function. Or you can
+ask why is this throwing an error? Or
+you can highlight the stack trace and
+control I typically which will throw it
+over in the chat box as context and ask
+a question like hey or or just tell it
+to to fix this. And all of these as my
+understanding you can have it run
+commands for you. It'll write code for
+you. It'll write tests for you. It'll
+look for linting errors. It'll run
+commands. It'll run your application if
+you wanted to. And you can do manual
+steps all along the way or just have it
+run itself. So you don't have to approve
+every single step. But what you always
+want to do is review the code that it
+outputs. Because at the end of the day,
+whatever is being pushed from you to
+master is on you regardless of whether
+you manually wrote the code or AI did it
+for you. You can also have it write
+tests for you. And a lot of these idees
+and code editors will have autocomplete
+code completion built right into it. So
+if you're manually typing, it'll
+recommend the next 10 lines of code or
+two lines of code or the entire function
+that you want to write based on what
+you're typing and based on your styles,
+its knowledge, your variables, how it
+ties into the rest of your code because
+it has that context. And a lot of the
+time it's pretty good and you'll hit
+tab, maybe change one or two things, but
+it saves you from writing 10 lines of
+code manually. And those, you know,
+little 10 seconds or 20 seconds of
+typing add up over time. There are also
+features where you can have it tied
+directly into your linear or Jira boards
+and assign it a task and have it do that
+task instead of you typing out the task
+manually, which is a pretty cool
+feature. and might I add exactly what I
+had predicted multiple years ago when I
+talked about AI and coding for the first
+time. Just let me brag for a second
+because I successfully predicted
+something. But when you do this, like I
+said, review the code, give it small
+tasks, maybe even smaller than the task
+at hand. And just like you normally do
+as a software engineer, commit often
+because it may delete your code,
+refactor your code, or do that to code
+that you didn't tell it to. And you want
+to be able to have records of everything
+along the way. And I did say there were
+three ways to do it. The two ways I
+mentioned were the IDE based, code
+editor based, CLI based. The third way
+is the browserbased, but that does not
+have any context of your codebase
+whatsoever. So it's not as good. The
+only times is when you are building
+something from scratch, like a little
+script to do something or you want to
+blackbox test something. I guess uh it
+does have a learning advantage when you
+do it that way because you have to
+figure out how to take this code just
+like you would copy from Stack Overflow
+and fit it into your code with your
+variables with your styles with all of
+that which is good but it's not I'm
+talking about efficiency here using AI
+to help you with that and that's that's
+not it. So, I just wanted to address
+that. And one of those scripts that I
+used to always do was web scraping
+scripts, which brings us to the next
+section in the sponsored portion of
+today's video. Browser automation with
+browser bases director and stage hand.
+So, normally you'd write or have AI
+generate you Selenium scripts or
+playwright scripts. I can't be the only
+one that has some sort of reaction every
+time I see web driver weight. So,
+browserbase created a new tool,
+director.ai, AI where you can automate
+anything in the browser using human
+language and it generates stage hand
+code which is browserbas's AI browser
+automation framework. So, if you need
+detailed research with live information,
+like if you're getting data for your
+job, for your company, or just something
+personal, you can research anything. You
+can have it perform tasks like pay for
+your parking tickets, or you can have it
+go through authentication like approve
+my teammates's PR on GitHub, and
+director.ai is the way to do that using
+human language. So, what I'm going to do
+is say go to the Y Combinator jobs page
+and get me the current listings on the
+first page. You can see that
+director.ai. You can open this in
+playground. You can add it to codebase
+once it's all done. And as you can see,
+you can view the code as it's generated
+or you can come over here and watch it
+as it works. So, you can see it's at y
+combinator.com/job
+and it is currently extracting the job
+listings down here. It's showing that
+this guy is trying to talk to us, but
+we're not really there. And there we
+have it. We've extracted the job
+listings. It's outputed all of them. 20
+job listings. Remember, we just
+specified that first page. And here is
+all of the information. The company, the
+job title, the location, the type of
+job, and when it was posted. And I'm
+sure you have a lot of use cases for
+this at your work, in your personal life
+that Director.ai AI makes it a whole lot
+easier to actually take action on. So
+check it out using the link in the top
+of the description down below so that
+they know that I sent you. Or of course
+you can always just go to director.ai.
+All right. Now, let's talk about testing
+and debugging, which I already touched
+on in the actually writing code section,
+but there's more to it. And I know
+you're thinking, well, I don't write
+tests anyway, so who cares? Well, now
+you can have AI write tests for you, and
+now you actually have some tests. And
+you're going to use the same tools to do
+it. Any of those AI agents as they call
+it, clawed code or warp or augment code
+or zed or cursor. And these tools will
+generate test suites from your
+functions. But here's the thing, and I
+learned this the hard way is that
+they're really good at happy path, but
+they're not so good at like some weird
+edge cases that you know about because
+you have that domain knowledge. So like
+user inputs valid email get success
+response. It can figure that out. But
+what about when somebody inputs an email
+with a Turkish character in it or when
+your server's clock is off by 5 seconds?
+Those types of things you have to
+specify. Because while you can write
+those tests yourself, as long as you
+specify those tests, it can still write
+it for you. it just won't be included in
+the test suite for a function that you
+just broadly say, hey, create unit test
+for this function. And for debugging, I
+did already mention how you can
+highlight a stack trace and then do
+controlI or control K or whatever the
+command is for your tool and have that
+directly into the AI agent for that
+direct context and then prompt it to
+have it fix it or explain to you what
+the issue is. But what you can also do
+is have the AI do npm rundev or run
+whatever project that you are building
+click around within the application to
+break it and then it'll have the context
+right there within itself because it's
+the thing that's running the program.
+And now one of the more important
+sections I guess not necessarily part of
+your workflow but that can be fully
+within your workflow and that is MCP or
+model context protocol which I didn't
+understand at first and I didn't really
+dive into but it's pretty wild. So MCP
+is a protocol created by Claude and it
+lets Claude and other AIs as well
+connect directly to your tools and data
+sources. So let's say you're debugging
+production issues and you're using data
+dog or something instead of copying the
+logs over here and just doing everything
+manually. All you have to do is say
+check your data dog logs for timeout
+errors in the last hour and correlate
+them with our database slow query log.
+And what Claw does or whatever AI that
+has the ability, it goes into Data Dog,
+pulls the logs, checks your database,
+and tells you your timeout started when
+this specific query started taking 5
+seconds due to a missing index. Or you
+can have it tied directly into Jira or
+Linear and be able to access the tasks
+at hand and assign your AI agent those
+tasks and then it can update those tasks
+based on what branch it's on, that it's
+in progress, that it's done, or that
+it's awaiting a PR or whatever. Now,
+setting up MCP is very rarely just click
+and go. What you need to do is install
+MCP servers which are typically built by
+the products themselves and that is for
+each individual tool. So there's ones
+for Postgress, there's ones for file
+system access, Slack, GitHub, Google
+Drive, Jira. Each one needs a config but
+once it's running it's giving your AI
+access to every part of your development
+environment. Just be careful with
+permissions. I already told you about
+the replet thing and how it deleted an
+entire database. So yeah, you probably
+don't want AI to have access to your
+production database or maybe only read
+access, right? Because if you want to
+find out the issues in production, then
+maybe it needs that access, but only
+read access. No write, no deletion,
+nothing else. Then our beloved code
+review is being tackled by individual
+tools as well. This is your favorite
+step of the process, I know, and still
+should have human intervention not
+completely outsourced, but we all know
+how it works. You, you know, push your
+PR, ping your team in Slack. Hey, can
+someone review this? You wait 3 hours
+just to get a LGTM
+response to it or a bunch of silly
+nitpicking about spacing or this and
+that, which you should have set up in
+your IDE to auto format and style per
+your codebase requirements, but can also
+be done within the repo itself. But
+that's neither here nor there. But enter
+tools like Code Rabbit. That's the most
+popular one. That's one I know. What
+this does is it reviews your PRs
+automatically before your team even
+looks at them. And it's not just
+linting, though it does that too. It's
+catching actual logic bugs and security
+issues and suggesting better patterns.
+So, it's the PR before the PR and it'll
+give whoever is reviewing your code
+effectively an overview of what could be
+fixed and they'll look at it and say,
+"You're not exactly right on this code
+rabbit." or maybe code rabbit is right
+on this and needs to actually expand
+based on and then it's able to do the
+actual human review and you also have
+GitHub and GitLab and I don't know about
+Bitbucket who knows that are building
+these types of tools within the platform
+themselves but something I have found is
+that these AI reviewers and a lot of AI
+are oftent times very confident even in
+bad suggestions it'll double down triple
+down quadruple down even when you're
+like hey this doesn't seem right? Are
+you sure about that? Oh, I'm definitely
+sure it's not. I've seen some of them
+suggest optimizations that would quite
+literally break production. So again,
+use it as a first pass. Let it catch the
+obvious stuff for your human reviewers
+to then look over. So that way those
+human reviewers can actually focus on
+the bigger picture and more of the niche
+aspects of why you're adding a function.
+And now documentation. Uh many of y'all
+if not most of y'all probably don't even
+write documentation or at least you
+don't like to and you do it reluctantly
+or you're all stuck in oh you know I'll
+document this function later but you all
+know later doesn't come. So what you can
+do with the coding tools like zed and
+cursor and claude code well how does it
+work in clawed code? Well, how I do it
+in the IDE based ones is you highlight
+the function so that the AI agent has
+that exact context and you just say add
+comprehensive Java docs to or JS docs to
+this or whatever you have some API
+endpoints do the same thing generate
+open API for this spec readme files
+write a readme file for this entire
+codebase but the bad thing about it is
+that a lot of the times AI likes to
+document the what and ever the why,
+which is actually the more important
+part. So, it'll say this function
+calculates user scores, but it won't
+tell you we calculate scores this weird
+way because of that one client who
+threatened to leave in 2021. That
+context to why you did it this way.
+That's on you to add because it doesn't
+know that. So, let AI handle the overall
+structure and you sprinkle in all of
+those other aspects. Now, let's talk
+about Git. Uh, a bit of a bad habit that
+I've fallen into is I don't even write
+git commands anymore. I just say, "Hey,
+get commit and push." And then it'll do
+it for me. And maybe I'll say with this
+commit message, and it'll do everything
+for me. And you can do that within warp
+or claude code or a lot of these
+terminals built into something like
+cursor or zed have AI capabilities. And
+you can just use human language. Just
+make sure it knows that it's that you're
+using human language and it'll write the
+commands for you. This is not just your
+git workflow, though. This is for Docker
+commands. So that way you're basically
+any command that you use and you're not
+needing to Google I forget how do I do
+this docker compose or how do I do which
+speaking of Docker stuff I don't know if
+I talk about this later in this video
+but you can have it generate your Docker
+files and your Docker configs and your
+Terraform files and your Kubernetes
+manifests and all of that tedious stuff.
+it can do it for you as well as GitHub
+actions and CI/CD workflows and all of
+that can be generated using AI. So
+you're never all within context of your
+codebase. It is that is probably one of
+my favorite things because I don't like
+doing that type of stuff. Now I'm just
+going off the rails. I've also found
+that I have been using warp a lot and I
+use warp in my iuntu dro and I was
+having trouble trying to swap my
+keyboard from the Mac layout to the
+Windows layout which I know how to do it
+but for some reason it wasn't working
+but it has full context of my operating
+system. So I was able to just tell warp
+the AI, hey look into here or basically
+just swap it. And it took maybe two or
+three prompts in order to get it
+actually done after I had wasted like an
+hour or two doing exactly how it was
+supposed to be done, but some for some
+reason didn't work. Silly issues, I
+know, but those silly issues are
+sometimes nice to just kind of outsource
+the AI and have it do it for you. And
+then there's API development, which used
+to be pretty tedious. You'd manually
+write those open API specs. Don't need
+to do that anymore, even if you ever did
+it to begin with. But you would also
+create Postman collections one endpoint
+at a time generating mock data by hand.
+Now all you have to do is describe your
+endpoints to any of these AI tools. And
+this is one where it is actually good at
+generating things with edge cases or if
+not you can specify. So it'll give you
+back regular names, names with capitals
+in the middle of them with apostrophes
+with hyphenated names, unic code names,
+sometimes stuff you would forget to
+test. And then there's database stuff.
+SQL. It is so good at SQL. I mean,
+before you would stare at a query with
+three joins wondering why it's returning
+10,000 rows instead of 10. So you can
+have it write whatever query you want.
+Optimize whatever you already have. But
+always remember to test on staging
+first. I don't care if AI swears you can
+just reverse the migration. Don't trust
+it like that. And then we have DevOps
+and deployment which I mostly mention
+just sprinkled out throughout this
+everything from YAML files to Docker
+files. No more googling Kubernetes
+deployment YAML example for the hundth
+time mind you because who remembers that
+stuff? I I don't because I don't do it
+enough. A lot of these things where you
+just kind of set up once maybe every
+year if that you're really not going to
+remember it. So you have to relearn it
+basically every single time or you just
+outsource it to AI. And yes, you're
+going to be using the same tools that
+have context of your codebase for all of
+this. The cursor, the claude code, the
+zed, the juny, maybe the augment codes.
+But listen, you need to keep in mind
+this is infrastructure code. If you
+don't review the code that your AI
+writes for JavaScript, okay, there's a
+userfacing bug that this button is a
+little bit different or takes you over
+here. But if you have a bug in your
+Kubernetes config, your entire platform
+is down and you're sitting there
+explaining to your CEO why nobody can
+use the app. So when you're writing a
+GitHub actions workflow that runs tests
+and builds and deploys to staging and
+waits for approval, then deploys to
+prod, review it like your job depends on
+it because it kind of does. Am I getting
+overly animated with this? Yes. But
+it's very interesting stuff. But then
+there's security and monitoring. It used
+to be you'd run some security tool, get
+back 500 vulnerabilities, spend the next
+week figuring out which ones are real
+and which ones are noise. But now tools
+like CodeQL and Sneak, they're using AI
+now to not only just find issues, but
+also to explain them in human terms.
+See, things like this, you have an
+existing platform, an existing tool that
+then utilizes AI to improve it. I really
+really like as opposed to just having an
+AI tool as an AI tool. Or if there's
+something weird in production, you can
+take those logs and paste them into chat
+GPT or clawed because they're very good
+at pattern matching and say, "Why did
+our API response time spike at 3:00 a.m.
+and it'll probably spot that one
+endpoint that is getting hammered by a
+cron job?" Just make sure you're not
+pasting anything that is like sensitive
+customer data or API keys and things
+like that. But I also want to talk about
+the pitfalls real quick, which I
+addressed a lot of as we went along. One
+I didn't mention though is that skill
+atrophy is real. If you are depending on
+AI for basically all of this to write
+all of your code and your tests and your
+docs and everything we talked about,
+you're going to get worse at it because
+you're not exercising that muscle. And
+if you can't debug without AI, you're
+screwed if it decides to hallucinate
+something. And security is another big
+one. AI will introduce vulnerabilities
+or maybe suggest patterns that seem
+clever but are actually dangerous.
+Always review, especially infrastructure
+code, but all of the code before you
+commit it. And we just went over a lot
+of information. You may be feeling
+overwhelmed by all of this. But just
+pick one thing at a time. whichever piqu
+your interest because it solved a
+problem that you hate addressing. Pick
+that one and then start using that and
+learning that. There's more to all of
+these tools than I went over in this
+video. This video is supposed to be more
+of a a gateway drug to AI, if you will,
+not an end all beall tutorial. So, week
+one, you're working every single day.
+You're using Zed now and using the AI
+features and the code completion in the
+terminal down there and you're testing
+out different models. For models, you
+probably want to use Opus 4 if you have
+all the money in the world, Sonnet 4 if
+you don't, and then Gemini 2.5 Pro if
+you don't care about tool calling and
+you want something cheaper than Sonnet
+4. But a lot of those are on plan. So
+you it doesn't really matter that much.
+Just manage your usage and then just
+slowly get used to using this for
+different things like writing tests and
+then reading stack traces and trying to
+fix bugs or maybe even finding bugs or
+creating diagrams because you don't have
+an architectural diagram for your
+existing codebase and it can do that for
+you. And then just slowly add and learn
+as you go because the dev world has
+changed whether we like it or not. And
+it's not about AI replacing programmers
+onetoone. It's about programmers who use
+AI being prioritized over those who
+don't. But the good news is you're not
+behind. You can start today. Get up to
+speed and learn as much as you can. I
+hope this helped in some way. If it did,
+subscribe only if you're going to watch
+more of my videos. Like the video, and
+I'll see you on the next one.

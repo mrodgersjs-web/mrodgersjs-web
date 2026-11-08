@@ -1,0 +1,217 @@
+Now that we've gone over all the major
+components of the NetLogo interface
+and how to create basic models,
+we're actually going to create our very
+first model.
+And for this we're going to use a model of
+a game that's quite interesting,
+it talks a little bit about emergent
+properties as well,
+that's why we're going to start with
+this one.
+The game is called 'Heroes and Cowards',
+at least that's what Uri Wilensky and I
+call it.
+It was used by the Fratelli Theatre Group
+in the 1980s and 1990s
+to explore emergent phenomena
+and was presented at a conference called
+'Embracing Complexity' in 1999.
+Normally, to play the game you need a
+group of people
+and you have people actually act it out.
+Here on the screen you can see a couple
+of examples of that.
+I'm hoping to get some video that I can
+link to later
+to show some examples of how the game is
+actually played.
+But it's a very simple game.
+You get a group of people together...
+and essentially you have everyone choose an
+enemy and a friend randomly from the group
+and then there are two stages to the game.
+In the first stage, you're going to place
+your friend between you and your enemy,
+that's called the 'cowards' stage,
+because you're trying to use your friend
+to shield you from the enemy.
+In the second stage, you're going to place
+yourself between your friend and your enemy
+and that's called the 'heroes' stage,
+because you're trying to protect your
+friend from your enemy.
+What's interesting about this, as we'll
+see as we build this model,
+is that this creates very different
+patterns of behaviour,
+even though the rules are almost identical
+between the 'heroes' and 'cowards' phases
+the outcomes are quite dramatically
+different.
+So we're going to explore that.
+But you don't really need to know the
+emergent outcomes to build the model.
+So let's build the model first, and then
+we'll explore the outcomes.
+So we're going to start building our model
+The first thing we know we need to do is
+to get some turtles in the world,
+so let's go over to the code tab...
+and we'll start creating a place for the
+turtles to come in.
+So we can do this by writing the stubs
+that I always write right off the bat
+'to setup' and 'to go'.
+Then for the 'setup', the first command we
+almost always have is 'clear-all',
+as we talked about, which starts the model
+over again
+and destroys any variables and turtles
+that are there.
+And the last command in 'setup' is almost
+always 'reset-ticks'
+which we discussed, which resets the tick
+counter back to zero
+and tells NetLogo to start the tick
+counter running.
+Then one thing I often do, depending on
+the the way I'm doing it,
+is I ask the patches to set their patch
+colour to white:
+'ask patches [ set pcolor white ]'
+This just creates a blank slate for the
+world to exist in,
+also it's easier to print the image of
+turtles on a white background
+than it is turtles on a black background.
+So if you're printing out the results,
+it's easier to have a white background.
+I like to start to comment my code as I'm
+writing it,
+so I'm going to write a comment here that
+this is a blank background:
+';; blank background'
+Then the next thing I'm going to do is
+I'm going to create a set of turtles:
+'create-turtles 100'
+And I don't like to go too far before I
+check to make sure my code is right,
+so I'll hit the check tab to check the
+syntax... everything seems ok...
+I'll go back to the interface and I'll
+type the word 'setup'
+and it seems like it's doing what I expect
+it to do at this point.
+I could do some more in-depth debugging,
+but this is a good place to add some more
+code.
+One thing I'm going to want to do right
+away is to add some buttons...
+so I'll add a button for 'setup'...
+and I'll add a button for 'go', and we
+want to make this a 'Forever' button,
+so I'll click that 'Forever' button in
+the button editor.
+Now if I hit 'setup' I can run that code
+again and again.
+We're not quite done with the setup
+code,
+if you think about it from the perspective
+of the 'Heroes and Cowards' model...
+we want to create a bunch of agents
+that are roaming around a space
+and so the first thing we've got to do is
+give them an initial place to exist,
+and so we're going to set their x,y
+coordinates to random x and y to start:
+'setxy random-xcor random-ycor'
+Now, we can see the model creates them
+in random locations.
+One other thing we mentioned is that there
+are going to be two phases
+there's going to be a 'Heroes' phase and
+a 'Cowards' phase,
+and so at this point we can think about
+what those two phases might look like.
+One way that we can easily do this is to
+have the turtles change color
+to indicate what phase they're in.
+By doing that we have a more visual
+representation of what is going on
+So we're going to set what we're going to
+call the turtles' personalites,
+which is whether they are a hero or a
+coward
+and we're going to do that based on a
+chooser, which we haven't created yet
+we're just going to call it
+'personalities'
+it's going to be the global variable that
+controls this,
+and we're going to check if
+personalities equals "cowards"...
+then we're going to set the
+color to blue:
+'if ( personalities = "cowards" ) [ set color blue ]'
+and if personalities equals "heroes", we
+will set the color to red:
+'if ( personalities = "heroes" ) [ set color red ]'
+If we check the syntax now, it will tell
+nothing named 'personalities' is defined
+and that's correct...
+often we start creating code before we've
+created all the variables to back it up.
+So we can go over to the interface tab
+and create a chooser for 'personalities'
+So I'll name it 'personalities'
+and we'll give it the choices of either
+"cowards" or "heroes",
+which is what we're checking for in our
+So now if we go back to the code, 'check'
+will say OK.
+And we can see if this works, because we
+know that if we set it to "cowards"
+then the turtles should set their color to
+blue.
+So we do that, and sure enough, it sets
+the turtles color to blue,
+and if we change it to "heroes" and we
+hit 'setup',
+it sets the turtles color to red.
+So that seems to be working correctly.
+Now the last thing we should do - if you
+remember the initial startup phase -
+is we need each of the turtles or players
+to choose a friend and an enemy.
+So we can have them choose their friend
+and enemy in the group.
+There are some quick ways to do this.
+We can have them set their friend to one
+of the other turtles:
+'set friend one-of other turtles'
+and 'set enemy one-of other turtles'
+So we're just choosing randomly.
+You'll notice when I hit 'check' of course
+it says nothing named 'FRIEND' is defined,
+'friend' and 'enemy' aren't standard
+turtle properties,
+so we have to go up to the top and add
+these in as turtle properties
+as we described in the last few lectures:
+'turtles-own [ friend enemy ]'
+And now when we hit 'setup' they'll be
+there.
+We can now hit 'setup' again,
+nothing appears to have changed, because
+these are happening internally,
+but what we can do is we can inspect
+one of the turtles,
+and sure enough, this is turtle 38 that
+I'm inspecting
+and there are variables 'friend' (turtle 28)
+and 'enemy' (turtle 64) that are set up.
+So let's pause there now we have the
+'setup' routine pretty much done
+and we'll start on how to make this model
+actually work in the next talk.

@@ -1,0 +1,2166 @@
+[MODERATOR] --from Harvard.
+She's gonna talk to us
+about A New Perspective on
+[HOST] Causal Inference.
+[PRAGYA SUR] Thanks so much
+to the organizers for the
+invitation to speak here,
+and thanks to the amazing talks
+and tutorials the last few days.
+I've certainly learned a lot.
+So I'm gonna talk
+about causal inference.
+It's a topic that has not
+been touched upon that
+much in this workshop yet,
+and it doesn't seem directly
+related to deep learning theory.
+But first, this is an area
+that has piqued the interests
+of researchers across varied
+communities; statistics,
+econometrics, machine learning,
+computer science and so on.
+And second, it's also an area
+which actually provides this
+interesting questions of
+statistical inference with
+which machine learning can
+interact quite a bit.
+And you'll see at the
+end of my talk what I
+mean exactly by that.
+So this is joint work with
+three wonderful collaborators.
+Guan-hao Jiang
+He's currently a second
+year graduate, I mean,
+finishing second year,
+rising third year, grad
+student in Harvard Stats.
+And it's been really
+amazing working with him.
+He has infinite
+amount of energy.
+So I think people who work on
+causal inference would probably
+agree that it's generally a
+very hard problem and causal
+inference in high dimensions
+is, okay, that's even harder.
+But at some point we were stuck
+with sort of pages and pages
+of math, and it was really,
+Guan-Hao's persistence
+that saw us through.
+So really kudos to him for
+this collaboration experience.
+Rajesh Mukherjee,
+he's currently a faculty,
+a assistant professor in
+the Harvard School of Public
+Health and a great collaborator.
+Shubhabrata, who's
+in the audience,
+and many of you know him.
+He's also in Harvard Stats.
+Okay.
+So the problem for today's
+talk is causal inference
+from observational studies.
+I will not assume much
+background on causal
+inference from the audience,
+so I'll try to give a short
+tutorial at the end to make sure
+everybody's following along.
+But this is also my first
+paper on causal inference.
+So if there are errors in
+the tutorial, I'm not the
+person from whom you should
+be getting the tutorial.
+So yeah, that's just FYI.
+And our main goal our end goal,
+is to sort of understand these
+problems in settings which we
+can call high dimensional
+without strong structural
+assumptions and
+underlying signals.
+Specifically, we're
+trying to move away
+from sparsity assumptions.
+So your signals could be sparse
+or dense, you just don't know.
+And so we are trying to
+build theory and methods
+in these settings,
+and that's the end goal.
+And in this talk,
+we'll sort of take
+some of the first
+steps towards that goal.
+So there is one main
+result in this talk.
+It's a new central
+limit theorem.
+So once I present that, you'll
+see it's a, some nice estimator,
+is routine consistent?
+Is it stationary or normal?
+It's all about
+characterizing the variance.
+So you can go to
+sleep after that.
+That's like the main result.
+And I will say some insights
+into our proof techniques and
+time permitting, but that will
+merge nicely with some, some of
+the material Ahmed was covering
+in his tutorial this morning,
+because we do use quite
+some insights from the
+fields of statistical
+physics, high-dimensional
+probability and so on.
+All right then, as a promise,
+there'll be something
+on opportunities and
+implications for
+machine learning.
+Okay, so what is the problem?
+We are in a slightly different
+setting here than the supervised
+learning settings you've
+been seeing through large
+parts of these workshops.
+And now we have an ID samples
+for this talk, but I have
+three kinds of variables.
+So the YIs are my outcome
+or response variable.
+The XIs are my covariates
+in sub p dimension.
+But I have another
+set of variables.
+These are the treatment
+variables, and for this
+talk they're gonna be binary.
+You could talk about
+continuous treatments,
+but we are gonna talk about
+binary treatments for this talk.
+And the main question
+in causal inference is,
+can we estimate the effect of
+the treatment on the outcome?
+So the treatment could
+be whether you assigned
+chemotherapy or not to
+somebody, and you want to
+understand is that effective?
+But this is a humongously
+challenging problem.
+Why?
+Because I'm talking about
+data I've observed and
+I had no control on the
+design of that experiment.
+So the issue here is for
+every unit or individual I,
+you only observe the outcome
+corresponding to the
+assigned treatment.
+So for any given individual,
+you'll never get to see
+what would've happened
+if the other treatment
+would've been assigned.
+And, among many challenges
+in causal inference,
+that's often referred to
+as a fundamental problem.
+And so to navigate this
+problem, what do you need to do?
+We need frameworks for talking
+about these things, and there
+are many frameworks that have
+been proposed over the years.
+The framework I'm going to do
+work with today is the framework
+of potential outcomes, which is
+also alternatively known as the
+Neyman–Rubin Causal Model.
+And what does this
+causal model tell us?
+It basically says that let's
+denote YIT to be the outcome
+we would observe if treatment
+T were assigned to individual I,
+and I don't get to see both
+of these in my data.
+But once you define
+these quantities,
+you can talk about how to
+estimate the effect of the
+treatment on the outcome.
+And how you estimate that
+is by introducing various
+target parameters of
+interest, which have
+some causal interpretations.
+So the simplest of this is
+the average treatment effect,
+which is simply expectation
+of the difference of these
+potential outcomes.
+You know, one step up in
+some sense is the conditional
+average treatment effect,
+which is this expectation,
+but you're now looking
+conditionally straighter
+by straighter depending
+on the covariate values.
+And so there can be many other
+such causal effect estimates,
+that's what we'll call these.
+And this talk will be about
+the simplest and perhaps the
+most canonical one of these.
+Okay?
+So we'll talk about
+the average treatment.
+Yeah?
+[AUDIENCE MEMBER] This
+is 01, right?
+[PRAGYA SUR] Which one, sorry?
+A?
+[AUDIENCE MEMBER] Yit.
+T is like 01, right?
+[PRAGYA SUR] T is
+zero or one, right.
+So for this talk, I'm,
+I'm keeping T to be zero or one.
+Yeah.
+Now, what's the problem?
+As I said, you never get to
+observe both outcomes
+for any individual.
+So you actually expect this
+to be an ill-posed problem.
+So I cannot identify
+this parameter from
+my observational data
+without further assumptions.
+Um, so there is this entire
+sub-area of causal inference
+broadly that tries to
+figure out what are,
+what is the structure
+I need on my observed
+data distribution so these
+causal effect estimates
+can be identifiable?
+I'm here laying out sort of
+three standard assumptions.
+You can find this in sort of
+causal inference textbooks.
+They have different names
+depending on the branch
+of causal inference
+you're working with.
+And this talk will not
+be about identification,
+so you know, this is all
+causal identification.
+It's a huge literature
+and people are stress
+testing these assumptions,
+trying to come up with better
+assumptions and procedures
+for testing this and so on.
+So this is causal identification
+and what it says is that under
+some standard assumptions
+quantities like the ATE can
+be identified from the data.
+And what that means
+is the following,
+that you can write
+your ATE, which on the
+left side was, you know,
+it's functions of at least
+one of them is unobservable
+for each individual, right?
+You can express your
+ATE as a function of the
+observed data distribution.
+So the right-hand side is based
+on conditional distributions
+and marginal distributions of
+your observed data, right?
+So if you can have such an
+identification equation,
+then your goal, and now we are
+in inference land where you try
+to estimate this quantity given
+the data you observe, okay?
+So our goal today is to
+not think about when this
+inequality is true, but try
+to estimate this quantity.
+So that's what you need for
+identifying this parameter.
+And then so now we
+can talk about ATE
+estimation, and that's a very,
+very well-studied problem
+in the literature.
+And there has been seminal
+works in this context, right?
+But if I were to sort of quickly
+summarize the flavor of these
+works what I would need to do
+is introduce two nuisance
+functions that show up.
+And what's a nuisance function?
+It's something that's not your
+actual object of interest,
+but it shows up in the
+process of estimating the ATE.
+And the first nuisance function
+is the conditional distribu--
+or the conditional mean of
+your treatment variable
+given the covariates,
+and that's called the
+propensity score.
+And the second nuisance
+function is the conditional
+expectation of your outcome
+variable given the treatments
+and the covariates.
+And because the treatments
+are binary here, I can simply
+look at these two conditional
+distributions individually.
+So these are known as
+our outcome regressions.
+So what sort of happened in
+this literature is based on
+which one you're modeling,
+different approaches
+were proposed.
+Perhaps one of the most
+classical ones or inverse
+probability weighting goes
+back to classical literature
+and sample surveys and so on.
+And that really tries to model
+the propensity scores well.
+Now you can flip around that
+view and instead try to model
+the outcome regressions well,
+that gives you the class
+of estimators known as
+G computations roughly.
+And then of course you have
+two nuisance functions,
+you can hope to talk about how
+can I smartly model both of them
+or borrow best of both worlds?
+And that falls broadly under the
+category of what are known as
+augmented inverse probability
+weighting estimators,
+targeted MLE, and so on.
+In some sense,
+this third thread is
+better in the sense that
+it tries to combine the
+best of the both worlds.
+So today's talk is about
+this augmented AIPW.
+A lot of you might know
+this estimator under the
+name of double robustness
+or w-robust estimator.
+I use this term because
+we will be in slightly
+different regime than existing
+literature where it's unclear if
+it still stays w-robust or not.
+So I used its like original
+name from when the thing
+was introduced and we'll
+actually try and stop using
+the term w-robust estimator.
+So this is an
+estimated real study.
+And this is very commonly used
+because it has nice properties.
+I will show you that.
+But just so we are
+all on the same page,
+let me first introduce
+this estimator formally.
+So to introduce this AIPW,
+that's the natural acronym.
+So what it does is it
+computes estimates for
+these nuisance functions and
+then uses a plug-in principle.
+Seems natural.
+So let's denote these to be our
+estimated nuisance functions.
+You can do--
+You can have
+an estimator
+for each sample
+because, you know,
+you have a different XI
+for each of them, right?
+And then the AIPW is simply
+difference of two terms.
+That's just math equation,
+not really giving us
+much insights, right?
+So this is my first term,
+this is my second term.
+You can see I have labeled
+them by the treatment values.
+So that should say that this
+first part is corresponding
+to the treatment arm,
+and the second part
+is corresponding to
+the control arm.
+And the best way to see
+that is AI is 0 or 1, right?
+So if AI equals one,
+this term actually survives.
+So you see the contribution
+here, whereas if AI equals
+one, this term vanishes.
+So if AI equals zero,
+then this term survives.
+So, this is what's
+happening along each terms.
+But the important thing
+here is there are two parts
+to this estimator, right?
+The first part is your classical
+inverse probability weighting.
+It is really trying to model
+the propensity scores and doing
+inverse probability weighting
+and it's using nothing about
+the outcome regressions.
+And this is the second part.
+And now we see the outcome
+regression estimators showing
+up and there's a rescaling
+factor, which is actually
+very carefully designed.
+The rescaling factor
+involves the propensity
+score estimates, okay?
+And this combines best of both
+worlds in a sense that when you
+analyze this estimator you look
+at its deviations around the
+true ATE, then in some sense
+the error terms that show up
+as products of two error terms.
+One part comes from
+the propensity scores,
+one part comes from the
+outcome regression.
+So if you have products of two
+errors, then if you model one
+of them really well and your
+error is really low, you can pay
+less price for the other one.
+So if something is really,
+really small, you can still
+multiply with something,
+a relatively large thing,
+so that overall thing
+is really small.
+So that's the idea.
+That's why you have sort
+of two parts to this.
+So that's classical
+AIPW for you.
+And I summed over all
+the observed samples.
+Okay, cool.
+Now, why is this
+estimator so popular?
+It's popular because
+it has this fascinating
+double robustness property.
+This remains consistent.
+I'm just talking about
+very classical work here
+under fixed dimensions,
+large sample asymptotics,
+even when one of the models
+has been specified.
+And it happens precisely
+for this reason that if you
+look at these deviations,
+you get product of two terms.
+So, you know,
+you have some
+room to play with.
+So that's classical causal
+inference in 10 minutes
+for the background I'll
+need for this talk.
+So now we are Yeah.
+[MODERATOR] Sorry, what's Ah.
+Right, right,
+[PRAGYA SUR] Right.
+Okay, thank you
+for asking me that.
+So what I did so far here,
+I just wrote this as
+conditional expectations, right?
+And I did not assume any
+model on any of them.
+But in practice you could
+maybe model these by parametric
+models or people also do
+non-parametric models, right?
+So this AIPW has this nice
+property that, so this, if you
+have a model for this, that's
+your propensity score model.
+If you have models for this,
+that's your outcome
+regression models.
+And so AIPW has this nice double
+robustness property that even
+when one of your assumed models
+is wrong for one of the nuisance
+parameters, the estimator still
+remains consistent for the ATE.
+So it allows natural
+misspecifications and
+that's why the form of the
+estimator is really important.
+So you can be completely
+misspecified in one of
+the nuisance models and
+your eventual estimator
+is still consistent, right?
+Okay,
+And so I just said double
+robustness and the classical
+definition is like this,
+but actually this
+estimator does more.
+It stays ROOT inconsistent,
+asymptotically normal also
+when things are misspecified,
+one of them is misspecified,
+so all of this kind
+of understood now.
+Okay, so fast-forward
+to the recent few years.
+There has sort of been an
+explosion in understanding
+causal inference in the
+presence of high-dimensional
+covariates or confounders,
+whichever way you might call it.
+And of course the natural
+reason is because we have
+a lot of high-dimensional
+data everywhere these days,
+I don't need to motivate
+high-dimensional data
+for this audience.
+But also there is another
+reason that is often cited
+that is having an unmeasured
+confounder that affects both
+your treatment and outcome,
+invalidates your
+causal statements.
+So if you had access
+to lots of variables,
+you'd basically like
+to include all of them,
+and that might be your one
+good hope to mitigate the
+unmeasured confounding issue.
+So, okay.
+But basically point is,
+for a lot of reasons,
+we need to have value
+theory and methods that
+allows us to do causal
+inference in the presence of
+high-dimensional covariates.
+And there have been lots
+of works along these lines.
+And broadly,
+these works
+try to push
+the frontier on
+double robustness.
+So there is lines of work which
+are known as rate double robust,
+and there are lines of
+work which are known as
+model double robust.
+And what they do is they try
+to allow different forms of
+misspecifications and sort of
+push the frontier on what you
+can see, even when you're in
+very high-dimensional settings.
+And when I say high-dimensional
+here, most of these are sort of,
+the number of variables
+is really, really large,
+so ultra high-dimensional, much
+larger than number of samples.
+And a common theme in this
+literature is you can have
+number of variables be
+really, really large,
+but whether you have
+well-specified or
+misspecified settings,
+at least one of your
+nuisance models has to
+be highly sparse, okay?
+And that's a common theme.
+And that's there for
+reasons that you really
+need it in those regimes.
+So, okay?
+For the theoretical analysis
+and so on and so forth.
+So that's a common theme
+that across this literature,
+at least one of your nuisance
+models needs to have highly
+sparse structures for the
+theory and methods to work on.
+And this is sort of
+where we come in.
+Um, to motivate what we're
+trying to do and why we're
+trying to do that, I'm gonna
+show you this simulation.
+And to some of you
+this might be familiar
+if you're familiar with
+the high-dimensional
+regression literature.
+So here what we are
+doing is the following.
+I have number of samples,
+10,000, number of features, 700.
+So it's moderately dimensional,
+it's not really high-dimensional
+in that sense.
+And we're just plotting a
+version of the AIPW and what it
+is that we're exactly plotting,
+so we're taking the AIPW
+estimator, empirically
+calculating its standard
+deviations and doing many
+replicates of this and getting
+histogram of those objects.
+And that's the blue
+histogram on the right.
+Now if I go back to the
+existing literature,
+whether classical
+fixed dimensional
+asymptotics or the sparse
+ultra high-dimensional
+literature, in such a setting,
+this is the red line.
+And what do I mean
+by such a setting?
+So there is a lot more that's
+happening in this setting,
+I have sort of IID-Gaussian
+designs, I could change the
+designs to be sub-Gaussian,
+that part matters less,
+but the crucial thing is
+I have used a linear model
+for my outcome regression,
+I have used a logistic model
+for my propensity scores,
+and the underlying signals are
+IID-Gaussian, okay?
+So for this simulation
+that means all of the
+coordinates are non-zero.
+And the fact that all of
+them are non-zero is less
+important even if a positive
+fraction of them were non-zero,
+we would see something similar
+but there is something about,
+we don't have spiked non-zeros
+which are really large and
+everything else is zero.
+That's not the structure.
+So what do we see here?
+We see that the true
+variability of the estimator
+is much higher than what the
+existing results tell us.
+And this kind of variance
+inflation by now is very
+well understood in the
+context of high-dimensional
+regression and you just have
+a vanilla regression problem,
+you're trying to infer
+coefficients there,
+something similar happens,
+that's more or less well
+understood by now,
+and in the causal
+inference context formally--
+I mean although you expect
+such variance inflation
+and it was alluded to
+in the econ literature
+for several years now,
+it was formally pointed out
+in this recent really beautiful
+paper by Steve Yadlowski.
+So what does this tell us?
+It tells us a few things.
+First, the existing
+literature does not capture
+these regimes, and it can,
+those results can actually fail
+when you move away from some
+of the sparsity assumptions.
+And two, you don't even need
+to go very high dimensional
+to see such phenomena, okay?
+So our goal is to try to explain
+this plot through this talk.
+Nothing comes for free,
+so instead of assumptions
+on the signal structure,
+we will have strong
+assumptions on the covariate
+di-- covariate distributions.
+And then we'll sort of discuss
+how much of those can be relaxed
+So I more or less motivated
+this, so what's our goal?
+We want to analyze a
+commonly used version of
+the AIPW in a regime that
+we can still say this is
+arguably high-dimensional in
+the sense that you see pure
+high-dimensional effects in
+that regime without assuming any
+sparsity-type assumptions on the
+underlying nuisance parameters,
+whereas the nuisance parameters
+are high-dimension.
+All right,
+so there are
+a few parts to
+this question.
+So the first part to this
+question is understanding
+AIPW in some regime like this,
+and the moment you go to
+high-dimensional regimes, the
+AIPW that I introduced before
+kind of doesn't work directly.
+Instead, there are versions of
+that estimator that people have
+come up with which they actually
+work with because the original
+AIPW where you're computing
+the estimator with all the
+n samples, it is actually
+very hard to analyze.
+So what I'll do next is
+I'll first introduce the
+versions of that estimator
+that people usually look at
+in high-dimensions and then
+sort of segue into our--
+our-- our formal setting
+and then our results.
+Okay, so what are
+the versions of AIPW?
+[AUDIENCE MEMBER] So when we
+are saying high-dimensional
+here, like, so I-- I'm gue--
+guessing are you thinking
+of B still smaller than
+n, but you want, like,
+the previous results to be more
+capture better what happened?
+So I--
+So I'll hold off on that
+question because for our--
+for our main result,
+that is sort of the regime
+we'll be in, but there is,
+there are-- there are lots
+of layers to that question.
+So I'll sort of slowly segue
+into what I mean by that.
+So--
+So maybe I'll hold off on
+answering that right now
+And you should find the answer.
+So yeah, any other questions
+before we move on to the next?
+Okay, so first thing that
+happens is you get a large
+number of covariates, if all
+your nuisances estima-- AIPW,
+everything is calculated from
+your full data, things become
+intractable and there are also
+other issues that happen,
+so the standard thing that
+people do is sample splitting
+and then cross-fitting.
+So let me explain.
+One thing you could do to
+analyze these estimators
+better in high-dimensions
+is you split the sample
+into, let's say, three parts.
+You had two kind of nuisances
+that you need to estimate.
+Estimate your nuisances
+from two of the folds,
+and then you estimate your
+final AIPW from a separate fold.
+So you had three folds.
+So then you can switch the
+role of the folds, like,
+you know, we often do.
+That gives you three
+factorial estimators and
+then you can average them.
+So this final step where
+you're averaging all of this,
+that is called cross-fitting,
+and there are other
+versions, right?
+So for instance, I can split
+into two folds calculate all
+my nuisances from one fold,
+the AIPW from the other,
+get two average, Okay?
+So that's version 2.
+And something really nice that
+used to happen in the earlier
+literature, even if-- when
+you're ultra high-dimensional,
+if you have nice sparsity in
+at least one of your nuisances
+is-- So let's focus here.
+I, before the averaging,
+have three factorial estimators.
+And on the root n scale,
+what happens in the earlier
+literature is the covariance
+between these estimators becomes
+asymptotically negligible.
+So what is effectively happening
+is your sample splitting
+to keep things tractable,
+but then when you average, you
+gain back the lost efficiency,
+and that's really nice, and
+that has sort of, you know,
+that's why you should
+cross-fit in reality, right?
+So this is sort of what
+happens in prior works.
+Uh, for our talk today,
+we will focus on this
+version and one thing
+that we will see is,
+we don't have this
+nice vanishing
+cross-covariances anymore,
+but I'll make that precise.
+So this is where we'll
+focus, just so we are
+all on the same page.
+I'm sorry for repeating,
+but sometimes it's good to
+repeat to make sure that we
+all know what estimator we're
+looking at, you're splitting
+into three parts, propensity
+scores from one part, outcome
+regressions from the other part,
+and the final estimator is from
+third part, and that gives me
+three factorial estimators.
+If I switch the roles of the
+three folds, we average this,
+and that's my final object.
+So what do we call this?
+I mean, we don't need
+to name this, but it's
+helpful for the talk.
+So it's a three-split,
+split into three parts
+cross-fit three-split AIPW.
+It's not known by this name
+in the literature, it's just
+AIPW is a general estimator,
+you can do it whichever
+way you sample split.
+So but just so we know
+what we're talking about.
+Cool.
+So now maybe I'm slowly
+getting into things that starts
+addressing Ladri's question.
+What do we want to do?
+We want to understand this
+estimator going away from
+sparsity assumptions, right?
+So what are the main hurdles?
+First main hurdle is, okay,
+so we have these three factorial
+estimators before averaging
+and maybe what we want to do
+is let's characterize their
+asymptotic distributions
+pre-cross-fit, but, okay,
+that's not enough because
+we're cross-fitting, so we
+need to understand joint
+dependencies eventually.
+But even when we want to do
+this, if we don't assume--
+if you don't wanna assume much
+structure on the signals up to
+p signals are allowed, right?
+All of them could be non-zero.
+If you want to have
+sort of a motivating
+example for this setting,
+such settings are known as many
+instruments or many regressors
+in the econometrics literature
+and there are surveys written
+on these kinds of settings.
+And so what happens is,
+the moment I allow this,
+it's sort of the moment
+p is going to diverge
+higher than small o of n,
+you would start observing
+high-dimensional effects,
+in the sense that on the
+scale of these orders.
+So even if the ratio is,
+even if p is less than n in
+some sense, but it's diverging
+at a rate higher than this,
+you should already observe
+high-dimensional effects, okay?
+This is starting to get at,
+you know, what, what I'm
+calling high-dimensional
+in this scheme of things.
+And as I said,
+just this asymptotic
+distribution is not enough.
+We need to track the
+joint distributions.
+And so suppose magically I
+know they're jointly Gaussian,
+then what I need to track
+are the variances and the
+covariances between these.
+All right, so we
+need theoretical
+tools that allow
+us to do this,
+and that applies for
+a broad set of dense,
+sparse signals alike
+in these kinds of
+high-dimensional regimes.
+There's a whole or more than one
+area that gives us such tools.
+They are, you know, they come
+from statistical physics and
+parts of probability.
+And so at the end hopefully,
+we'll go back to some things
+that Amit was talking about.
+And just to highlight,
+this is not very hard.
+What will be hard
+is understanding the
+covariances between
+all of these estimators
+when I don't have much
+signal structure.
+So now I get into
+my formal setting,
+and this is where like we
+were told to be critical
+of our own work, right?
+This is where there's a lot
+of things to critique because
+we're trying to get at really
+precise answers going away
+from signal structure,
+and it, that comes at a cost.
+So the price to pay,
+at least for this work,
+which also is one of the
+first central limit theorems
+in this regime, so hopefully
+we can relax some of the
+prices, but right now not yet.
+So the price to pay is that
+we have well-specified models
+for my propensity score.
+So these were, you know,
+these were the treatments.
+So they're Bernoulli with
+some link function uh,
+some xi transpose beta.
+We did it with the logistic
+link, but anything else that's
+like that should also work.
+And then we have a linear model
+for the outcome regressions.
+And my formal high-dimensional
+setting is this proportional
+scaling regime where the ratio
+between number of features
+and samples is going to
+some positive constant.
+For our theorems, we will need
+to restrict the ranges where
+this constant can lie, okay?
+This is the
+strongest assumption.
+For now I only have simulations
+to show you that this is not
+the only regime where our
+results work, but there is
+a lot of universality result
+that does need to be proved
+in this area to relax this.
+Okay, so we don't have sparsity
+structure on the signals,
+but we do need something because
+if you don't assume anything,
+your signal-to-noise ratio
+can go to zero or explode.
+And, you know, you may,
+you would not hope to
+do-- you know, in some,
+one case the thing
+should become trivial.
+In the other case,
+it should become too hard.
+So what I'm writing here,
+it looks in the form of these,
+you knows if I define an
+empirical distribution on these
+parameters, that gives mass,
+let's say 1 over p to each
+of these coordinates.
+Then this is really the moments,
+the second moments of that
+empirical distribution.
+But it looks odd why
+this thing comes up.
+A better way to probably
+visualize this is if I
+take the variance of my
+log odds, that's basically,
+so that's just variance of,
+let's say xi transpose beta
+in this first model.
+And this is a re-scaling of
+that because I have normal
+zero identity over n.
+So what I'm really doing
+is I'm trying to hold the
+signal-to-noise ratios to be
+finite in the limit, and this
+part is just saying that my
+two regression models, you, you
+can't be like wildly different
+from each other in some sense.
+So these are,
+you should think
+of these as SNR,
+controlling the SNR,
+having moderate SNR problems.
+And I don't want
+these to be infinite.
+Okay I want to comment
+a bit about this regime.
+You can call it
+whatever you want.
+proportional syntactics,
+proportional scaling,
+but there have been many, many,
+many different areas that have
+been looking at this regime.
+On the stat side, you know, s--
+we, it started with, you know,
+Johnston and Lu or
+maybe even earlier.
+We have all of the random
+matrix theory stuff.
+And more recently people
+have been looking at this
+regime in the context of
+other problems where you
+use tools from you know,
+stat physics and probability
+theory and so on.
+There's a whole econ literature
+which does this, and that is
+the many instruments and many
+regressors line of works.
+And in machine learning we know
+of such scaling limits, right?
+Not all of this are
+in this exact setting,
+but even when you're taking
+certain scaling limits of like
+how many neurons you have and
+how things are growing, you
+work with such scaling limits
+and you see a lot of phenomenon
+because of nice scaling limits.
+So I didn't include
+any references here
+because there are a lot,
+and these are really sort
+of the areas from where a
+lot of the tools I at least
+use a lot of the tools from.
+So if you're interested in
+the original references here,
+I'm happy to speak after the
+talk, but this has much,
+much older roots, and I mean,
+I mean Georgios Perdisis got
+the Nobel Prize last year
+and he's the creator of the
+cavity method that, you know,
+one of the co-creators and
+stuff that Amit talked about.
+Okay, so this is
+our main result.
+Um, under sort of the
+assumptions that I laid out,
+if you estimate nuisances
+using things we can nicely
+track, I'll come back to this,
+then the AIPW I was interested
+in is, as I said, we have one
+CLT, it's a root-inconsistent,
+asymptotically normal.
+So what's going on?
+Why was it hard
+to prove the CLT?
+Because we characterize
+the variance pretty like
+pretty explicitly.
+And one of the things you can
+do once you characterize this
+variance is that it clearly
+it's much higher than the
+classical variance or
+the previous ultra-high
+dimensional literature variance.
+So this explains the
+variance inflation plot
+that I was talking about.
+The other thing that happens
+is-- I'm sorry it's written
+in these equation forms,
+but this part actually has
+a nice interpretation in
+that if you look at your
+xi transpose betas along the
+treatment arm and the control
+arm and take difference of the
+norms of those or like just the
+absolute values, you'll, in the
+limit, that's what you get,
+and you actually expected to
+see that difference somewhere.
+So that's sort of
+the main result.
+Let's do some stress
+testing or simulations.
+First it's really
+simulations in our setting.
+So what are we doing here?
+I'm plotting sample quantiles
+versus theoretical quantiles
+of the AIPW estimator.
+And so the darker blue points
+correspond to our formula just
+from the previous slide,
+and this is the classical
+formula which also is the
+same as the sparse ultra
+high-dimensional formula.
+So the variance is different
+for these two plots, and you
+can see that in these sorts of
+settings it's a similar setting
+as my variance inflation plot.
+That was very--
+That was our home ground
+So naturally we do better.
+That's not a surprise.
+Just saying, what is this plot?
+So the AIPW has this propensity
+scores in the denominators,
+and so if I use, let's say,
+logistic models
+I'll get the sigmoid here.
+So if that becomes close to
+zero or one things blow up.
+So what people do in practice
+is they just trim this object,
+you know, so that they're
+away from zero or one.
+So this is just a bit more on
+the tail, that's a bit better.
+Okay, so any questions so far?
+So the plot I want to spend some
+time on is this one actually.
+So what am I doing here?
+Remember we were looking
+at this AIPW which had
+sort of three factorial
+estimators I was averaging.
+Um, here I'm taking
+one of those estimators
+and looking at its empirical
+standard deviation scaled by
+1 over square root of 6.
+Because I have six of these I
+scale that by 1 over square root
+of 6 so that is this histogram.
+But now I look at the crossfit
+AIPW which was averaging all
+these estimators and that,
+the empirical standard
+deviation for that is here.
+So this difference
+is not observed in
+the broad literature.
+So crossfitting--
+Okay, this is a setting
+where the blue histogram
+moves to the left.
+So what does that suggest?
+That suggests that crossfitting
+buys you a lot, because if
+there are no covariance
+terms then these would have
+been the same essentially.
+Yeah,
+So maybe I can--
+Right, for this particular plot.
+So my AIPW crossfit
+is I have some over i in some
+set, there are, you know,
+three factorial many AIPW 1
+and, you know, I have these
+things or just i, right?
+So there are three
+factorial things,
+and now I'm claiming
+that this plot shows,
+at least in this setting,
+that the covariance between
+these is non-negligible.
+So the right-hand side is just
+my standard deviation of one of
+these, marginally they all have
+the same standard deviation.
+Scaled.
+And the left-hand
+side is this object.
+And so this is a phenomena that
+surprised us because of course
+lots of benefits of crossfitting
+have been talked about in the
+literature before and the
+main argument has been, "Oh,
+if you sample split then
+cross-crossfit you recover
+back the lost efficiency."
+But here it seems you
+actually gain more,
+so we were very excited
+about this initially and then--
+So now I don't want to claim
+much because in some settings we
+are starting to see this might
+also go a bit to the right.
+So what happens is
+how you estimate your
+nuisances really matters,
+but the main phenomenon
+happening here is that
+your cross-covariances
+are no longer non-zero
+at the root end scale,
+whereas this is not something
+you would have observed before.
+So it's very important how you
+do your nuisance estimation.
+Okay, so the other thing we
+were interested to see this
+although we expected this
+And I think you would expect
+this, that is when we u--
+so we can use ridge
+regression for estimating
+the propensity scores.
+If we use that and we plot as a
+function of the tuning parameter
+the standard deviation of
+our estimator then this
+is the plot you see.
+And so if you try to obtain
+the lambda by optimizing
+for the prediction error
+you would not recover this.
+So I don't think that as a
+phenomenon should be surprising
+and this we are doing with
+leap-one-out cross validation
+which for the prediction
+error should be consistent.
+So this, the plot shouldn't
+be surprising but what this
+says is we actually need
+better ways to tune our tuning
+parameters that are explicitly
+optimized for the inference
+properties of the estimators.
+So for instance we need to
+identify this lambda if we
+were to use ridge less or
+whatever and for that we
+actually need a good estimate
+for the downstream variance
+that shows up in our CLT.
+So that's something
+we're thinking about now,
+we don't yet have that,
+but there's something
+to lay out that if we
+just naively optimize
+for prediction error we would
+be far from the optimum lambda.
+So these are some of the
+immediate upshots and you
+can stress test assumptions
+and simulations, right?
+Um, and these are basic
+simulations to see what
+happens if my covariates
+were not Gaussian but let's
+say they are sub-Gaussian.
+So we did it for many settings,
+we kind of expect to see
+the same thing if you have
+sub-Gaussian tails and there
+are universality results
+in the area that allude
+such things would happen,
+so this is just for a uniform
+you see a similar plot and this
+is for a discrete distribution
+when your covariate values
+are supported on zero, one,
+and two, but that's not a proof.
+So there is a long way to
+go in terms of how much we
+can relax the assumptions on
+the covariate distributions.
+Okay, so how am I doing on time?
+Okay, sure.
+So now what I want to talk
+about a bit is about the
+proof techniques because
+one thing that happened
+was slightly to my surprise,
+I've worked on this professional
+asymptotics area quite a bit
+before, but one thing that
+happened here was we needed a
+few different proof techniques
+and then we needed to put them
+together as sort of pieces
+of a big jigsaw puzzle and
+that was a bit of surprise.
+So one of the techniques
+we use a lot is this
+leave-one-out technique,
+which is alternatively
+known as cavity method
+in statistical physics.
+It has really old roots
+in that literature.
+And if you're interested
+to study this in the
+context of, let's say,
+statistics regression
+problems, then a really
+nice short reference is
+this paper by El Karoui et al.
+In the proceedings of the
+National Academy of Sciences.
+So there they actually did
+it for linear models and the
+derivation is really short
+And it's nice to read in the
+sense that usually cavity
+method papers are pretty long.
+But this,
+because this
+was six pages--
+--I learned the
+stuff from there.
+So I strongly recommend
+if you have to learn this.
+This is actually
+very good reference.
+If you're interested
+in like GLMs and stuff,
+then you can look at some
+of my earlier works.
+And then there are also
+more recent works on
+spectral methods and
+stuff by Chen et al.
+This is a really nice survey.
+Okay, so that's one
+of the techniques.
+The other technique we used
+is this whole sort of zoo of
+things known as approximate
+message passing theory and
+it presented that quite a
+bit for one of the models.
+And what this does is-- Okay,
+so what does leave-one-out do?
+Its main goal is to
+help you de-correlate
+dependencies in various terms.
+At least for my purposes,
+that's what it does.
+And what does AMP do?
+For my purposes,
+it has other uses,
+but I usually use it
+as a proof technique.
+So it basically helps track
+properties of estimators in
+models where you don't have
+closed forms for your estimator.
+So whenever you don't
+have closed forms,
+things become hard to track,
+at least in the proportional
+regime you can do random
+matrix theory stuff with
+some recent developments.
+Maybe you can in some cases,
+but in a lot of cases you
+can't and that's where this
+sort of tool comes in.
+And then we actually also needed
+something known as deterministic
+equivalence from the random
+matrix theory literature and
+this helps track quadratic
+forms of random matrices by
+connecting to more tractable
+deterministic matrices.
+So what I want to do in the
+next few minutes is try to
+give a crash course on these
+two and sort of show a bit how
+these show up and why these are
+important for understanding
+certain models and statistics.
+Okay, so this is a
+very quick peek into
+leave-one-out in our setting.
+Now to describe this,
+I have to remind you
+that what was our
+cross-fit AIPW like?
+The AIPW had many terms,
+but without cross-fitting
+it had something like AIYI
+by propensity score estimates.
+So if I assume a
+logistic model let's say,
+my estimates look like the
+sigmoid applied to XI transpose,
+let's say some beta hat,
+and our theorem was for
+the ridge regression.
+So these terms show up.
+There are many other terms,
+but the important thing is that
+for the cross-fit estimator I'll
+have these terms when my eyes,
+let's say dep-- Let's say I is
+in the first split and the
+corresponding beta hat could
+be from any of the other splits.
+So that's nice because those
+are independent, right?
+But in the cross-fit
+estimator when I'm averaging
+three factorial quantities,
+somewhere I have all the Is
+from S_s a and somewhere else
+in the estimator I have the
+beta hat from that same fold.
+So there are lots
+of dependencies.
+And so what the leave-one-out
+allows you to do is you get
+something like-- Oops.
+You get something like
+XI transpose beta hat.
+Let's say this is from S_sub c
+And this is from S_sub a
+And then somewhere else
+I have from S_sub a
+And you know, j could be,
+let's say it'll just switch.
+So what it allows you to do,
+it starts helping you
+to decouple things.
+So what I could do is,
+let's say for simplicity,
+this is from S_sub b.
+This is for simplicity,
+but we'll get more
+complicated terms too.
+So my dependency here is
+arising because of the XI from
+S_sub a and this from S_sub a.
+But the nice thing is you
+can calculate the same
+estimator by leaving out
+the I observation, right?
+And that gives me--
+except you incur an error
+because of this approximation
+so you have to track this error.
+So this slide is a I don't know,
+it's a not so good attempt at
+trying to say exact-- the step.
+That is, what we do is we
+connect your beta hat SA to
+the leave-one-out quantity.
+One question you can ask
+is, how do I connect them?
+The way you connect them
+is this satisfies some,
+let's say this is my
+regularized likelihood function.
+So this is solution to some,
+you know-- this has some also,
+solved some first order
+stationary conditions and
+then I can leave an observation
+out, I get something like this.
+So these arise as
+solutions to first-order
+stationary conditions.
+You basically just write
+them out and do nice algebra.
+But somebody has to teach you,
+like some nice paper has to
+teach you how to do the
+algebra for the first time.
+So that algebra gives
+you a relation like this,
+where this object does not
+depend on these observations.
+That's nice because I
+know a lot of stuff about
+these kind of quantities.
+And even we observe quantities
+where I have, let's say,
+the XI and a beta hat,
+and I drop this out.
+So I know that these
+kinds of quantities,
+these are independent.
+So I basically have these to be,
+if I have Gaussian covariance,
+I have Gaussian with some norm
+squared roughly conditioned
+along this object, right?
+And then if you can show that
+this norm object actually
+concentrates you know,
+you can track this quite well.
+So that's how the
+leave-one-out is helpful.
+It's really helping
+to de-correlate
+dependencies, as I said.
+Now suppose I have to
+track these kinds of norms.
+Let's say the underlying model
+was logistic regression or
+something that doesn't
+give me closed forms.
+The same leave-one-out
+can help you track that.
+That proof becomes
+many more pages long.
+So we, I don't know
+if we wanna do that.
+But there is this whole other
+set of tools that helps you
+track any low-dimensional
+functional of this form
+whenever estimators don't
+have closed forms, and
+that's where your approximate
+basis pricing comes in.
+Can you say a bit louder?
+Sorry.
+[KONSTANTIN] Which Gaussianity
+do you need for this?
+What do you need for it?
+[PRAGYA SUR] Okay.
+That's a regression.
+So for this heuristic
+de-- derivation,
+I actually don't
+need any Gaussianity.
+It is really like write out
+your optimization equations
+and you get this relationship.
+To make things formal, you,
+you need actually up to
+some Gaussian tails.
+But we start needing Gaussianity
+when, when we go to the what's
+the actual distribution of the
+estimator and stuff like this.
+So we need Gaussianity
+downstream in proving the CLT.
+Um, well, in some sense,
+we need Gaussianity to
+track these things.
+But okay, we need Gaussianity
+in many other cases, but the,
+the concept of leave-one-out is
+really if your system satisfies
+certain stability conditions,
+then at least leave an
+observation out is, is okay.
+I haven't told you
+what's the problem.
+The problem is we don't
+have one leave-one-out step,
+and that's how causal
+inference is different
+from regression problems.
+We have many of these steps.
+So these errors actually
+cumulate downstream.
+So that is where sort of our
+contribution was on this work.
+But if I were to just
+explain leave-one-out,
+I-- I'm, you know, I can
+just explain it writing
+out these KKT conditions.
+Other questions?
+So
+I'm gonna quickly gloss
+over the main steps of AMP.
+In this case,
+it's a big sort
+of machinery,
+so we are not
+gonna cover it in
+like a few minutes.
+But what does this
+machinery allow us to do?
+What it does is basically,
+okay, so we, I said the MLE,
+but it can be something else
+that satisfies, let's say,
+a first-order KKT condition.
+It doesn't have a closed
+form, hard to track
+in high dimensions,
+so we wanna replace it
+by a tractable surrogate.
+So what is it that you do?
+The first step is you need
+to introduce a suitable
+iterative algorithm.
+What does suitable mean?
+Suitable has two stages to it.
+One the algorithm needs to
+be such that we can analyze
+the asymptotic behavior of
+the algorithm iterates,
+because otherwise why am I
+introducing my algorithm, right?
+Like, I can't study this
+estimator, and if I then
+introduce an algorithm
+where I can't study the
+iterates, that's not helpful.
+So I went from one intractable
+problem to another, right?
+So it's a really
+nice algorithmic
+proof technique for
+this work where the
+algorithm iterates
+are their behavior
+can be tracked.
+And that's tracked.
+Using a formalism that has been
+developed in the literature
+known as state evolution in
+a series of beautiful papers
+by Donoho, Malleki, Montenari,
+then Bahati and Montenari
+and in more general models,
+Jarvin-Mardon, Montenari.
+But that's one part
+of the suitable.
+The other part is your algorithm
+iterates need to converge to
+your estimator of interest
+in some appropriate sense,
+because I want to track
+this object, right?
+So I went here,
+but then I need
+to come back here.
+And so what happens is so
+this first step is always
+the pain in the sense that
+you have to understand what
+algorithm you should be
+looking at for your problem,
+so you need to come up with it.
+This step, you can rely on
+existing literature.
+Once you have AMP
+algorithms, you know,
+you can usually cast it in
+one of these forms and you
+know, track this behavior.
+But this last step is
+always problem-specific.
+And problems need a lot of
+structure to do this last step.
+But what it gives you as an
+upshot is you can track--
+So what you can track,
+let me just show here,
+you can track norms very easily.
+And if you can transfer all
+information of the iterates
+to your estimator, you can
+track norms of your estimators,
+and that's what we needed.
+Okay, so why is this hard?
+None of this is actually new,
+because AMP for all these
+things was done by other
+people and myself in the past.
+It's hard for this precise
+reason, and I alluded it--
+to it in answer to
+Konstantin's uh, question.
+That is, causal inference really
+uncovers novel challenges,
+and that's because when you
+look at these estimators,
+you have among many other
+quantities, all of these.
+So I can be in SA or SB or
+SC, one of the three splits,
+and then K is equal to one
+of the others, and you need
+to look at all of this
+simultaneously, right?
+So leave-one-out
+helps de-correlate
+pairwise dependencies.
+It's always an
+equation like this.
+And each time you use
+it, you pay a price.
+So if you use, if I use
+this leave-one-out relationship
+N times-And I don't have errors
+that are at the right order.
+These errors are
+gonna accumulate.
+They can accumulate pretty bad.
+So, we actually need to track
+many of these dependencies
+simultaneously and the
+error terms cumulate,
+and that requires very
+careful analysis.
+We've had to sort of summarize
+in a nutshell why we had sort
+of one result, but the proof
+took like 100 pages.
+It's because, you know,
+they start accumulating,
+and we didn't realize it
+when we started the problem
+that the cross-fitting is just
+gonna be so sort of difficult.
+But that's the price you pay if
+you want very precise answers.
+So, what are the steps
+where one could interact
+with machine learning?
+We were doing pretty
+naive nuisance estimators.
+And note, I restricted to MLE
+for the outcome regression
+always.
+And what's actually done in
+practice following this double
+the bass machine learning work
+and several others is, you
+use pretty fancy machine--
+modern machine learning-based
+methods for nuisance estimation.
+And so, we do not understand yet
+How, you know,
+what we proved and
+results like this,
+how that interacts
+with if you use more
+fancy nuisance estimators.
+I mean, there are obvious
+roadblocks in our proof,
+but there's also a lot
+that has been understood
+under such scaling limits
+on the machine learning
+side in the last few years.
+So, maybe there is some hope
+that these can be, you know,
+meshed together nicely.
+So, quick summary.
+I showed you a CLT
+in an arguably high
+dimensional setting for
+the cross-fit AIPW estimator.
+This was our goal,
+moving away from
+these assumptions
+comes at a price.
+We quantified the precise
+variance inflation.
+And something to note is
+if you assume sparsity
+now within our stuff,
+you'll go back to the
+variance that was before.
+So, in some sense,
+you recover that
+in the limit,
+but we don't have a
+formal proof of that.
+If you simulate in very sparse
+settings, you using our formula,
+you will get back the
+classical formula.
+And we see these non-trivial
+cross-fit covariances or
+covariance between these
+three factorial estimators,
+which is certainly a new high
+dimensional phenomenon, which
+wasn't really observed before.
+And so,
+why do we
+care about CLTs?
+Because they give us at
+least asymptotically valid
+confidence intervals if you
+can estimate the variance.
+And that's sort of a big
+question going forward.
+And there are, of course,
+two easy to see--
+I mean, okay,
+I don't know if
+elephants in the
+room are easy to see,
+but there are two
+elephants in the room.
+And of course, like,
+how do we relax these
+assumptions and how do
+we go to more general
+nuisance estimators?
+And of course,
+then what happens to other
+causal effect estimators?
+So, I'll finish with that.
+Thanks so much for
+your attention.
+I
+(applause)
+[MODERATOR] Think we have
+time for one or two questions.
+[AUDIENCE MEMBER] So,
+when you talked about
+double machine learning,
+is it using different
+estimators to estimate
+those nuisance parameters
+and getting CLTs using sort
+of maybe more involved MLEs?
+Was that--
+So the double so what I
+didn't say was the AIPW is
+part of this double machine
+learning based estimators.
+And so, what changes
+there is really how you
+estimate the nuisances but
+The-- Sorry.
+The AI of the formula is
+the same, but they are
+able to go through more
+fancy nuisance estimators,
+assuming it's structured
+around the sequence.
+There is a trade off between
+what you're looking to achieve.
+But in that setting,
+you can use more fancy
+estimators and as long as
+you have some assumptions.
+So they actually want to
+estimate the nuisances
+sort of consistently,
+and then do a plug-in.
+But something that's
+important is, in our regime,
+we want to have a consistent
+nuisance estimator.
+You can't estimate the full P
+dimensional vector consistently.
+But what's important is,
+you can still get a T estimates
+that are consistent because
+the A T is a low dimensional
+parameter we're looking at.
+So there is a fundamental
+difference between
+the two regimes.
+Um,
+[AUDIENCE MEMBER] I,
+the plot you showed with
+the cross fitting having
+lower variance than the--
+than the Monte Carlo sampling,
+basically by it would be
+as if you had sampled the
+same number of things
+independently averaged them.
+[PRAGYA SUR] Mm.
+So, they are both Monte Carlo.
+[AUDIENCE MEMBER] Right.
+[PRAGYA SUR] So,
+they are both
+Monte Carlo,
+just I'm plotting a
+different estimator.
+So, one of them was a,
+one of the three factorial
+estimators, just its
+variability scaled by, Yeah.
+[AUDIENCE MEMBER] Yeah.
+So, the difference between
+the two is that one, each
+summand is independent,
+and the other it's not.
+[PRAGYA SUR] Yeah.
+I'm trying to figure
+out why I should expect
+the function there.
+No.
+[PRAGYA SUR] Sorry.
+So I was trying to say
+through that is none of the
+summands are not independent.
+So, let me go back.
+Let me go back.
+So if I go to either fixed
+dimensional settings or the
+sparse ultra-high-dimensional--
+[HOST] Right.
+[PRAGYA SUR] --then all the
+summands will be a limited scale
+independent at the same time.
+And then if I take one of them,
+let's say this is my summand
+one and let's say I take
+its standard deviation,
+[HOST] Right?
+[PRAGYA SUR] So what do I get?
+I have basically one over
+root six times, and that's
+my standard deviation of
+the cross fit, right?
+These are supposed to match up,
+and this is what happens in the
+prior dimension, but I was
+trying to show that plot.
+One of the histograms
+was plotting this with
+one of the summands.
+The other was just plotting
+the cross fit estimator,
+and both were using root 1.
+[MODERATOR] Sure.
+I think I understand.
+What I was trying to get
+intuition for is why the
+covariance is negative Right.
+[PRAGYA SUR] --between
+[MODERATOR] The different
+folds or whatever you,
+however you would call it here.
+So, that is when we used
+MLEs for both the nuisances,
+and we thought that some
+universal phenomenon,
+and thought that should point
+to the fact that, you know,
+cross fitting always helps.
+Like, we get even more
+variance reduction.
+But we have more simulations
+with other nuisance estimators
+now where we don't see
+it negative anymore.
+We just see these are different.
+So, we see that the cro--
+this covariance are non-zero
+even though they're
+still asymptotically.
+These are wide.
+But I have to come back with
+an answer in like two months,
+like when they are negative
+and when they're positive.
+Because initially,
+we thought we were actually,
+like there is something more
+going on with cross fitting,
+and that it has further
+benefits in this regime.
+And you see that when
+you do things like MLE,
+which are unregularized,
+so you shouldn't actually
+be doing them, so cross
+fitting kind of helps
+you with the variance
+eventually, which is nice.
+But then if you do like
+regularized things there, you
+start seeing like other things.
+So, yeah.
+So I don't know if
+there, that is there.
+I mean, for the MLE it's there,
+but that's also I think
+because MLE is backwards.
+You kind of, again,
+get stuff back.
+All of that could have an
+[MODERATOR] Analogy
+for cross-validation.
+Right?
+Oh,
+And
+[MODERATOR] Then the same
+question you could ask,
+exactly the same question
+[MODERATOR] Probably
+similar analysis as well.
+[PRAGYA SUR] I think so.
+So, I started thinking about the
+cross-validation problem after
+we kind of were finishing this
+and we were like, "Hey, this
+is like what you would expect
+in cross-validation also."
+And also like the option three
+was sort of a thought we made
+just to see if there's a fix
+there for cross-validation
+or randomization.
+But yeah, that's,
+all of these-- I think they,
+the analysis should be similar.
+I'll be happy to
+talk about it after.
+[HOST] Okay.
+I think we should thank Ragya,
+and that concludes today.

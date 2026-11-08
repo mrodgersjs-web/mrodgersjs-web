@@ -1,0 +1,185 @@
+in this final portion we'll see where
+the small world structure might arise
+from now you can of course just assign
+properties to nodes such as spatial
+location or group membership and then
+add edges accordingly so you can have
+many edges between people who are in the
+same small group but people who are tied
+only very loosely through a large group
+are much less likely to have an edge
+however it would be even neater if we
+knew you know something underneath
+that's driving that edge formation that
+doesn't dictate ok if you're in this
+size group your probability of linking
+is X can we sort of derive small world
+networks from some sort of basic
+criteria that we would like to optimize
+in the network so I'm going to show you
+two very related to your graphical
+models where we're going to place nodes
+in on a 2d surface so they're going to
+have a location but we're going to
+determine who is going to link to whom
+based on various criteria so one such
+function we may want to optimize is you
+know you can term it energy or anything
+like that we're going to have a penalty
+essentially for the average shortest
+path so we want nodes to be a few hops
+away from each other so we want to
+minimize the average shortest path and
+at the same time we also want to
+minimize the length of the edges the
+actual physical length of the edges you
+can imagine that you have spools of wire
+and the wire is copper and it cost
+something right so you want to not have
+wire all over the place you want to do
+things efficiently and so the average
+shortest path is just going to look at
+all distances between I and J but in a
+graph sense the graph distance and then
+this other wiring distance is going to
+actually look at the coordinates and see
+how much wire did you expend wiring
+these
+together so here's your quiz question
+given that this function incorporates
+two things a person's preference for
+short distances and a small number of
+hops let's think about two different
+networks one is a road network where
+you're driving and another is an
+airplane or actually air transit network
+where you're taking a plane from city to
+city so from the passengers point of
+view what would you like to optimize in
+an error transit network as opposed to a
+road network okay so hopefully for the
+air transit network you want to minimize
+the number of hops because landing and
+then you know switching planes is a very
+risky business right because your plane
+might be late you might miss your
+connections etc versus covering long
+distances physically is relatively easy
+in a plane so you might go from San
+Francisco to Atlanta only to end up in
+Detroit and that's not so bad but if
+you're making such a big detour driving
+you you'd be pretty unhappy if the road
+network looked like the airline
+transportation network so let's look at
+what these networks
+how they're structured if you optimize
+and the method here and I'll provide
+hopefully a net logo app that you can
+use to simulate this yourself but what
+what it's called it's simulating
+annealing simulated annealing so first
+you raise up the temperature meaning
+that you're willing to accept
+configurations that are high energy that
+is maybe you have high wiring cost or
+lots of hops or something like that and
+then you tune the energy down and or
+actually the temperature down and you
+get into lower and lower energy
+configurations until you hopefully find
+some sort of optimum so here we have the
+cost of the wire becoming cheaper and
+cheaper and you can see as this happens
+you get more and more edges that cover
+more and more distance until finally you
+get you know kind of a hub configuration
+where every other node is connected to
+one node meaning that it has you know a
+very short number of hops right if
+they're all connected to the same node
+at most it's two hops to anywhere else
+in the network but you've just expect a
+lot of wire or you may get
+configurations with actually multiple
+hubs as well so I'll let you play with
+that for the assignment and see if you
+can get this nice hub structure and
+another cute way of looking at this is
+to you don't want to do this while
+you're optimizing because of course then
+it's going to mess things up because
+your nodes now have moved and so the
+distance between them is no longer
+accurate but you can start out with the
+original lattice laid out and then kind
+of let it let the springs to do their
+job and so the this one has a few
+short-range shortcuts and you can see
+the the network kind of coming in and
+then here is that network with the big
+hub and several and several hubs and
+here I guess in several hubs as well so
+you can you can actually see the network
+kind of contracting due to these
+rewiring it's it's making it from a
+large world to a relatively small world
+here is a second model with a similar
+idea that again you have some penalty
+for the actual Euclidean distance that
+you have to traverse and then also the
+number of hops and here instead of
+starting with all the links from in the
+beginning you're going to just apply
+this rule
+that you're going to add edges and
+you're going one by one and you're going
+to add the one with the smallest weight
+that is this distance so for example if
+you're if you're laying rail tracks so
+you know how much track do you have to
+put down and then what is the distance
+to the root node so depending on this
+parameter beta then you're going to get
+different different types of networks
+and in fact when you put a high price on
+the occluding distance you get something
+that looks more like a road network when
+a distance is cheap you get something
+that looks more like those air transit
+networks that are nicely plotted in your
+in-flight magazine the quiz question a
+network that contains many hubs with
+far-reaching edges is indicative of
+which of these following criteria that
+led to the network being formed okay so
+to recap the world is small if you look
+at it as a network yeah it has lots of
+interesting local structure in which we
+can capture with a clustering also we
+can do a deep dive look at motif
+analysis watts and Strogatz came up with
+a nice simple small world model other
+models though including one created by
+watts look at other structures and
+geographical of models and hierarchical
+models that say that it's not just
+random rewiring the probability of an
+edge existing depends on the physical
+distance or the organizational distance
+between two nodes and finally the way
+that we get to this structure may be a
+result of some sort of optimization
+process these networks are going to be
+used maybe there are transit networks or
+maybe there they
+are a result of how individuals have to
+communicate within the company and so
+that that makes actually the structure
+extra interesting because it tells us
+about the underlying needs and the
+underlying processes next week what
+we're going to be doing is learning
+about how learning and diffusion are
+affected by small world and other
+network topologies so I'll see you then

@@ -1,0 +1,326 @@
+good morning my name is Marek truesdell
+and I'm one of the partners in bass
+fusion LLC which is one of the youngest
+members of the EMDs consortium I'm going
+to tell you briefly about bass fusion
+then spend most of my time on patient
+networks and the relatives
+show you one slide of architecture of
+genial smile and after the presentation
+I'll give you a brief demo of genii bass
+fusion LLC started in recesses research
+lab at the University of Pittsburgh
+where I'm also professor we developed
+genius mile over a period of 20 years
+have had several users and became quite
+well known for the quality and
+functionality of the software in 2015 we
+formed a company with some of our people
+acquired license for genius mile but and
+it's a commercial company but we are
+continuing the tradition of the decision
+systems lab in making the software
+available free of charge to academic use
+Bayesian networks are a cyclic directed
+graphs consisting of the structure of
+the graph the qualitative part typically
+mimicking the causal structure among
+variables and the quantitative part
+which are the numbers composing the
+joint public distribution over the
+variables the numbers reside in the
+nodes of the network in those nodes that
+have no predecessors we have prior
+probability distributions in all nodes
+that have predecessors we have
+conditional probability distributions
+conditional on the predecessors Bayesian
+networks are used to calculate the
+impact of observations on other
+variables for example if we want to know
+the probability of an invasive cervical
+cancer in a patient with high grade
+dysplasia with history of HPV infections
+the HP cans
+the state is in the cervix node
+observations are in the HPV and Pap test
+note we can imagine that as spreading
+the information over the network and
+calculating the conditional probability
+distribution of interest answering
+effectively the question that we are
+asking here is a network demonstrating
+the power of representation using
+Bayesian networks there are over 2,100
+variables in this model brute force
+representation would require 2 to the
+power of 2100 parameters this network is
+represented by just 12,000 parameters
+the mean and and magnify the middle part
+of the node the network you see that
+this is a spaghetti of connections and
+then the parameters 2 to the power of
+2100 is roughly 10 to the power of 6
+hundred which is orders and orders of
+magnitude more than the currently
+believed number of atoms in the
+observable universe Bayesian networks
+are very close to equation based systems
+systems of simultaneous equations in
+which some of the equations describe the
+interactions among variables and other
+equations describe settings for
+exogenous variables a system of
+equations like this can be shown by
+means of a directed acyclic graph that
+is work dating back to 1950s spreadsheet
+based models are also an instance of a
+relative of bayesian networks you can
+imagine putting arrows between cells
+that feed each other of course this kind
+of representation would not be very
+convenient because that would remind us
+of a spaghetti of things as well
+directed graphs of bayesian networks are
+much better
+our software focuses on presentation
+that is a hybrid of systems of
+simultaneous equations and Bayesian
+networks here's an example of a hybrid
+network in which quite a number of nodes
+have equations and continuous
+distributions in them and then you can
+also have discrete nodes and influences
+that are typical of discrete Bayesian
+networks these are hybrid bayesian
+networks our software allows you also to
+represent dynamic models dynamic systems
+here is a somewhat naive we believe
+representation of dynamic models in
+which we have the same variables
+replicated in time T and T plus 1 and
+showing influences that span over time
+the representation used in geni
+is closer to graphical representations
+of systems of difference or differential
+equations every node is represented just
+once and we show temporal arcs with
+labels of the temporal influence we
+allow temporal influences spanning over
+several orders of of time which is a big
+step towards systems of differential
+equations with derivatives of various
+orders the architecture of genius model
+is quite simple there is the API
+application programmers interface C and
+C++ are native to smile and then we have
+several wrappers allowing the users to
+access smiles smile functionality from
+Java let's J smile from dotnet programs
+like Visual Basic and even on pocket pcs
+like Android or or Apple devices and we
+also have a wrapper for direct access
+from Python Genie is just a simple GUI
+graphical user interface working on the
+windows but also underlying Knox and
+Apple Macintosh
+I will give you a brief them after this
+presentation the recent developments
+after we created the company our hybrid
+Bayesian networks some of the ideas I
+showed you in this presentation we also
+have an interactive model repository
+that can be installed at clients user
+site and allows local users on a local
+network to access the models and play
+with them we also have smartphone apps
+for iPhone and soon for Android devices
+that allowed to use this technology very
+soon an exciting development for this
+community's support for map based
+applications spatial Bayesian networks
+allowing us to perform calculation on
+individual grids of a larger map and
+we're also planning several enhancements
+to learning such as learning dynamic
+Bayesian networks from time series and
+various algorithms and concluding
+remarks based on probability theory
+works there are plenty of successful
+applications that solve real problems
+some people call 21st century the
+century of data others call it the
+century of days genius smile are popular
+in academia because of their because
+they are free but they are also prime
+choice for commercial applications and
+we have quite a number of commercial
+users and it is our users who drive our
+development in terms of improvements and
+new new features so we encourage you
+very strongly to get in touch with us if
+you need help or if you have any
+suggestions for the future thank you
+very much
+[Music]
+I'm going to give you a five minute
+introduction to Bayesian networks what
+they are how to build them how to learn
+them from data and finally how to use
+them in practical applications we will
+build a simple network that models an
+investment decision will create two
+variables chance nodes the first one
+will be named success of a venture let's
+define that variable we will give it an
+identifier success and name success of a
+venture this variable models the
+probability of business succeeding
+suppose that the probability of business
+succeeding is around 20% which means
+pretty much that 20% of all small
+businesses startups succeed and 80% of
+them fail that's a probability of
+success of a new business if we want to
+estimate the probability of success we
+may ask an expert to give us an
+evaluation of this business let's call
+this variable expert forecast or in
+brief forecast the variables are going
+to be defined as the forecast may be
+good fair or poor I'm going to add
+another state of this variable to denote
+poor now let there be a connection
+between the two
+typically we interpret connections as a
+causal connection
+this arc this arrow means that success
+of a venture has a causal impact on
+expert forecasts in other words the
+expert is guided by the potential
+success of this venture in her forcas if
+the business is going to be successful
+let the expert give 40% chance of
+succeeding the same 40% of a statement
+that the business is fair and poor 20%
+in other words for all successful
+businesses the expert will estimate them
+as good with 40% chance fair with 40%
+chance and poor with 20% chance if this
+business is going to be a failure the
+expert can still make a mistake and call
+it a good business with 10% chance fair
+business with 30% chance and a poor
+business with 60% chance a Bayesian
+network is a specification of a joint
+probability distribution over a
+collection of variables once we have
+this collection of variables we can
+perform inference with them we can
+reason the main type of reasoning in
+Bayesian networks is calculating the
+impact of observation on other variables
+in the network to show you that let me
+view these two variables as bar charts
+at this point we can see the states of
+each of the variables and also their
+probabilities success of the venture is
+20% probability failure 80% expert
+forecast that's so-called the marginal
+distribution our expert calls 16% of all
+businesses that she's asked to evaluate
+52% of them poor and now a reasoning in
+Bayesian networks I'm double clicking on
+the outcome good given that the expert
+said that this business is good the
+probability of success of this business
+goes up to 50% if the expert says poor
+again I'm double clicking on the state
+poor the probability of success of this
+venture is only 8% as you see I can use
+Bayesian networks to calculate the
+variables this is their fundamental way
+of working suppose we have a data set
+this data set has been collected at a
+bank then we have we are dealing with
+10,000 records of bank customers who are
+measured on quite a number of variables
+starting from payment history work
+history and ending at a variable called
+creditworthiness has discussed summer
+paid her his or her loan back we can
+learn a new Bayesian network from these
+data I'm picking one of the algorithms
+which proposes a structure for this
+network we are learning this structure
+let me reorganize it slightly I'm going
+to view it as a bar chart I'm going to
+expand the notes a little so that we can
+see what they mean and then also change
+the layout of the graph here we are we
+have a new Bayesian network created from
+the data set a Bayesian network that is
+immediately useful in predicting the
+creditworthiness of an individual
+applying for a loan if this individual
+comes from a similar population to the
+population that we measured over
+time and then we can predict whether
+this individual will pay back the loan
+typical questions on a loan application
+payment history work history income I'm
+observing this variables age and as you
+see all of these inputs the data are
+impacting the creditworthiness of the
+individual so a Bayesian network that we
+just constructed can be used immediately
+in the same way that we used our small
+two node Network for predicting the
+success of a venture we can predict
+whether this customer will pay alone
+finally a very large network consisting
+of over two thousand variables two
+thousand one hundred and twenty seven
+variables used for diagnosis of diesel
+locomotives this network illustrates one
+more application of Bayesian networks
+let me first show you this model it's an
+impressive model I'm going to fit it to
+the window please note that it is really
+very complex it models various ways a
+diesel locomotive can break and various
+symptoms of that of different failures
+of the locomotive as you see the network
+is very complex
+let me demonstrate diagnostic
+application of these methodologies I
+have opened a special diagnostic window
+in which in the upper left corner we
+have all possible ways that the
+locomotive can fail the quite a number
+of them and on the right-hand side top
+right-hand side we see various symptoms
+rank order from the most to least
+informative suppose we want to know
+more about this possible failure which
+is the most likely one at the moment
+these are the two most important tests
+suppose we are suspecting for of this
+different failures here are the tests
+that are going to be distinguishing
+among the most if I choose something
+that is judged by the program not
+informative then not much is changing
+among the four if I pick one of the top
+symptoms test results that are judged to
+be very informative you will see that a
+lot is changing among the possible
+failures this demonstrated a diagnostic
+application of Bayesian networks which
+have been very successful in diagnosis
+this concludes my brief presentation
+please do not hesitate to get in touch
+with us if you have any further
+questions or if we can be of any help to
+you thank you very much
+you

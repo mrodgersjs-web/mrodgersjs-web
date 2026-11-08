@@ -1,0 +1,199 @@
+hello everyone and Welcome to our System
+Dynamics video
+tutorial this is the second in a series
+of videos that explain how to build
+simulation models using System Dynamics
+and the I think modeling
+environment next to these videos you can
+also find detailed explanations and
+demonstration models on our website
+www.bus prototyping
+tocom in this second session we'll
+introduce the stock and flow modeling
+technique stock and flow diagrams enable
+us to go a step further with System
+Dynamics modeling writing a model using
+stocks and flows allows us to do more
+than just showing the important parts of
+a system and how they interrelate it
+empowers us to precisely quantify all
+parts of the system and the connections
+between them using data and simple
+mathematical
+equations this is possible because stock
+and flow models have precisely defined
+mantics the diagrams can be translated
+directly into mathematical equations
+that can be solved numerically using
+simulation
+software these diagrams thus form the
+basis for an in-depth simulation of how
+the system will behave over time under
+varying conditions the great thing is
+that you don't have to worry about any
+of the mathematical details this is
+taken care for you by the I think
+modeling
+environment let's see how we can build a
+model using stocks and flows to do this
+we'll revisit the project management
+problem we investigated in the last
+session using causal Loop diagrams in
+the present session we're going to model
+the same problem using stocks and flows
+instead of causal Loops an iink model
+consists of multiple layers ranging from
+the user interface to the equations to
+build a stock and flow diagram it's best
+to use the map layer initially this is
+where you can map out a stock and flow
+diagram without adding the information
+needed to quantify the model the actual
+quantification itself is performed later
+on the model layer we'll discuss this in
+detail in the next
+session we start with the two most
+important parts of our system the open
+tasks and the closed tasks both of them
+accumulate and or deplete over time
+therefore we'll use stocks to model
+them the first symbol on the toolbar is
+a stock represented by a rectangle
+we click on it to create one and name it
+open tasks then we create another and
+name it closed
+tasks there is a flow between these two
+stocks when a task is completed it
+leaves the open task stock and moves to
+the closed task
+stock to make that happen in our model
+we need a flow through which the tasks
+will be transferred
+the flow's rate is controlled by a valve
+attached to the flow pipe to create such
+a flow I click on the second symbol on
+the toolbar and connect the flow between
+the open tasks and closed tasks and name
+it completion
+rate now we ask the question what
+determines the completion rate if we
+look back to the causal Loop diagram we
+created for the same problem we see that
+we had identified many factors that
+influence the completion rate so we need
+to create each one in turn and connect
+them
+appropriately the first such factor is
+the number of Staff working on a task I
+create a stock and name its staff then I
+connect the staff to the completion rate
+using a connector
+the next factor which influences the
+completion rate is the effort that each
+task requires in order to get done to
+keep our model simple we assume this
+effort is constant and is the same for
+all tasks we model such constants using
+converters they're represented by small
+circles the third icon on the toolbar I
+create a converter and name it effort
+per task I connect it to the flow using
+a connector
+another factor that obviously influences
+the completion rate is the number of
+open tasks so again I connect them using
+a
+connector productivity is the last
+factor that influences the completion
+rate so we create another converter for
+it and connect it to the completion rate
+as we discussed during the first session
+productivity is not the same at every
+point of time it depends on the schedule
+pressure the higher pressure we get the
+more productive we become maybe this is
+not the case for everyone but we make
+this assumption for our model so
+schedule pressure is our next building
+block we create another converter for it
+name it and connect it to
+productivity but what increases or
+decreases our schedule pressure well
+obviously the number of open tasks has a
+direct influence on the schedule
+pressure so we draw draw a connector
+from the stock open tasks to the
+converter schedule
+pressure let's see if any parts of the
+system influence our schedule pressure
+before trying to come up with new ones
+the number of employees working for us
+has also something to do with the
+schedule pressure the more employees we
+have the smaller the schedule pressure
+will be let's create another connector
+for
+that the schedule pressure is also
+affected by the effort per task this
+makes sense if you give it a little
+thought if all external factors such as
+the number of tasks and the deadline
+remain the same and the effort per task
+increases then the pressure you feel is
+bound to
+increase in order to model this and keep
+our diagram neat I will introduce an
+another feature of I think called the
+ghost variable a ghost is just a
+representative of an existing part of
+the system that can be placed anywhere
+on the
+diagram instead of connecting one part
+of the system to another directly you
+can also create a connection from a
+ghost of the original part using ghosts
+allows me to draw connections without
+entangling the
+diagram to create a ghost of a stock or
+converter I first have to click on the
+button with the ghost on
+it then I click on the part I want to
+produce a ghost of in this case the
+converter effort per
+task now I have to decide where I want
+to place the ghost in order to keep the
+diagram simple I place it next to
+schedule pressure and connect them using
+connector the schedule pressure is also
+effective by the remaining time we have
+to complete the open
+tasks I create a converter to represent
+the remaining time and connect it to the
+schedule
+pressure the remaining time is defined
+as the difference between the deadline
+and the current date therefore I create
+two more converters and name them
+current date and deadline
+I connect them both to the remaining
+time but how does I think know that we
+Define remaining time time as the
+difference between deadline and current
+date well that's what we're going to
+show you in our next session where we'll
+discuss how to define the equations that
+specify the model so that's it for this
+session we built the model of the
+project management problem using stocks
+and flows most people find stock and
+flow diagrams more obscure than causal
+Loop diagrams but actually these
+diagrams are still quite simple since we
+only use four kinds of building blocks
+to model everything stocks flows
+converters and
+connectors in our next session we will
+fully quantify the model by writing the
+equations that Define the exact nature
+of the system's Parts goodbye for now
+and thank you for watching

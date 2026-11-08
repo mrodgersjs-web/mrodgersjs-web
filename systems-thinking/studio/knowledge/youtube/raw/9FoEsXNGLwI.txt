@@ -1,0 +1,241 @@
+Somebody just open-sourced a hedge fund.
+Okay, so here's something kind of wild
+that's been climbing the GitHub trending
+list this weekend.
+There's a Python project called Trading
+Agents that just crossed 53,000 stars,
+and what it actually does is pretty
+unhinged when you think about it. It's a
+multi-agent LLM framework that mirrors
+the structure of a real Wall Street
+trading firm. You spin it up, point it
+at a stock ticker, and it runs an entire
+simulated firm under the hood.
+&gt;&gt; [snorts]
+&gt;&gt; Fundamentals analyst, sentiment analyst,
+news analyst, technical analyst, bullish
+researcher, bearish researcher who
+actually debate each other, a trader
+agent, a risk management team, and a
+portfolio manager who approves or
+rejects every transaction.
+All of them powered by LLMs talking to
+each other.
+53,678
+stars, 9,768
+forks, Apache 2.0 license, and version
+0.2.4
+shipped 3 days ago.
+It started as a research paper out of
+UCLA in late 2024, then quietly got
+open-sourced, and the GitHub repo has
+been doubling stars every couple months
+since.
+Let me show you what's actually in it.
+So, the core idea is that real hedge
+funds don't have one person picking
+stocks. They have entire teams, and
+those teams argue with each other
+because that argument is what produces a
+defensible position.
+The authors looked at how a typical
+trading firm actually operates, broke it
+into specialized roles, and built one
+LLM agent per role.
+The analyst team is four agents working
+in parallel.
+Fundamentals digs into the company
+financials, sentiment scrapes social
+media and public mood, news monitors
+macroeconomic indicators, and technical
+runs MACD and RSI and the usual chart
+indicators. Then it gets interesting.
+The researcher team has two agents, a
+bull and a bear, and they're explicitly
+designed to disagree. They take the
+analyst reports, and they argue against
+each other for a configurable number of
+rounds before they hand off.
+The trader agent reads everything,
+decides timing and position size, and
+proposes a transaction. The risk
+management team evaluates that proposal
+against volatility and liquidity, and
+finally the portfolio manager either
+approves or rejects it.
+The whole graph runs on LangGraph, so
+every agent transition is a node. You
+can resume from a checkpoint if it
+crashes, and there's a persistent
+decision log that learns from how
+previous trades actually played it out.
+Okay, so why is this a big deal when
+there are already a hundred other
+algorithmic trading frameworks out
+there?
+The honest answer is that most of them
+are either really mechanical, like
+rule-based moving average systems, or
+they're black-box machine learning
+models that spit out a buy or sell
+signal with no explanation.
+Trading Agents sits in between. Every
+decision the system makes is fully
+traceable.
+You can read the analyst reports, you
+can read the bull and bear debate
+transcripts, you can see exactly why the
+trader picked that position size, and
+you can see why the portfolio manager
+rejected it. It's auditable in a way
+that traditional quant systems are not.
+The repo is written in Python, sits at
+53,000 stars and 9,700 forks, ships
+under a permissive Apache 2.0 license,
+and the underlying paper is published on
+arXiv as paper 2412.20138
+with full citations.
+Let me get into the actual agents
+because this is where the design choices
+start to matter. The fundamentals
+analyst pulls the latest filings, runs a
+ratio analysis, and writes up an
+intrinsic value estimate. The sentiment
+analyst scores Reddit, X, and other
+social signals to gauge near-term mood.
+The news analyst tracks global macro
+indicators and breaking events that move
+prices.
+The technical analyst runs MACD, RSI,
+Bollinger Bands, the standard pattern
+detection toolkit.
+All four run in parallel, all four
+produce a written report, and the system
+explicitly does not collapse them into a
+single vector. The disagreement between
+them is signal, not noise.
+Then comes the layer that I think
+actually makes this interesting. After
+the analysts file their reports, two
+researcher agents read everything. One
+of them is structurally bullish, the
+other is structurally bearish, and they
+argue across multiple debate rounds.
+You can configure how many rounds they
+go.
+The bull argues for opening the
+position, the bear argues against it.
+They cite specific numbers from the
+analyst reports, and at the end the
+trader agent reads the full debate
+transcript and makes a call.
+After the trader proposes the trade, the
+risk management team evaluates
+volatility and liquidity, and the
+portfolio manager has final approval.
+If approved, the order goes to a
+simulated exchange. If rejected, the
+loop ends with a written explanation.
+Under the hood, the whole orchestration
+runs on LangGraph, which means every
+agent is a node in a directed graph, and
+every transition between nodes is
+checkpointed. That checkpoint resume
+feature is opt-in, but if you turn it on
+and a run crashes halfway through, you
+don't lose the analyst work.
+You resume from where it stopped.
+There's also a persistent decision log
+that's always on.
+Every completed run appends its decision
+and its reasoning to a markdown file in
+your home directory.
+Then on the next run for the same
+ticker, the system fetches the realized
+return, computes alpha against the SPY
+benchmark, generates a one-paragraph
+reflection on what went right or wrong,
+and injects that history into the
+portfolio manager prompt. So, the system
+literally learns from past trades.
+Setup is honestly painless. You clone
+the repo, create a Python environment,
+pip install, set the API key for
+whichever LLM provider you want to use,
+and run the CLI. It supports basically
+every major model.
+OpenAI GPT, Google Gemini, Anthropic
+Claude, XAI, Grok, DeepSeek, Qwen, TLM,
+OpenRouter, and Ollama for local models.
+The CLI drops you into an interactive
+picker where you choose your ticker,
+your analysis date, your provider, and
+how many debate rounds you want.
+Version 0.2.4
+shipped on April 25th, so 3 days ago,
+and it's actually a pretty significant
+release. The big headline is structured
+output decision agents.
+The research manager, the trader, and
+the portfolio manager now use Pydantic
+schemas with each provider's native
+structured output mode, which means
+decisions parse cleanly, and the failure
+modes drop dramatically. They added
+DeepSeek, Qwen, GLM, and Azure OpenAI as
+supported providers.
+Docker support shipped with multi-stage
+builds, and there's a five-tier rating
+scale now: buy, overweight, hold,
+underweight, sell, used consistently
+across the research manager, the
+portfolio manager, and the persistent
+decision log.
+So, who should actually pay attention to
+this? If you're a quant researcher doing
+systematic strategy work, this is a
+clean reference implementation of how to
+wire LLMs into a multi-agent decision
+graph.
+If you're a hobbyist trader who's been
+wanting to experiment with AI-driven
+analysis, you can spin this up against
+your own portfolio in about 10 minutes.
+If you're a fintech founder building
+tooling for retail investors, this is a
+permissively licensed foundation you can
+fork and extend.
+And if you're just an indie hacker who's
+curious about how multi-agent LLM
+systems actually work in practice, this
+is one of the cleanest examples I've
+seen in any domain.
+Okay, let's be honest about the
+tradeoffs. Running this on every
+analysis cycle burns real money in LLM
+tokens because each ticker triggers four
+parallel analyst calls plus multiple
+debate rounds plus the trader and
+portfolio manager calls.
+The authors explicitly say this is a
+research framework, not financial
+advice, and you should not yolo your
+retirement into whatever the portfolio
+manager spits out. And the simulated
+exchange is a backtest. It's not a live
+broker integration, so you're going to
+have to wire that part yourself if you
+want to actually trade.
+But for everything that's a caveat, the
+project is real.
+Apache 2.0 license, 53,000 stars in 4
+months, weekly releases, multi-language
+documentation, and an actual published
+paper backing the architecture.
+If you build with LLM agents in 2026 and
+you have not at least cloned this repo
+and read the LangGraph wiring, you're
+missing one of the cleanest reference
+implementations out there. Repo link is
+in the description. Thanks for watching.
+I'll catch you tomorrow.

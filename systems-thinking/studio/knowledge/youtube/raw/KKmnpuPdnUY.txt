@@ -1,0 +1,2782 @@
+$54,613. That's how much hit my Stripe account in the last 30 days.
+12 payouts, more than 6 clients, and that's not even our only payment processor.
+And here's the part that's gonna sound insane. I didn't write a single cold email.
+I didn't review a single discovery call. I didn't even draft the proposals.
+An AI agent did it. Not ChatGPT, not flawed, not OpenClaw.
+A different agent. The one that sat in on 1713 of my calls.
+Learned exactly how I sell and now runs the entire front end of my agency for me.
+It's called Hermes. It's open source, it's free and it does one thing no other
+AI tool on this planet does.
+It gets smarter every time you use it.
+In this video, I'm building the whole system from scratch.
+The meeting engine, the outreach engine and the mission control dashboard, everything.
+So by the end, you can run the same system in your own agency,
+even if you have one client and no idea how to scale to 10.
+Let's go. And quick intro, if you haven't met, I'm Mani Kanasani and I run an
+AI agency out of Vancouver, BC.
+And over the last three years, we've deployed production AI systems for everyone
+from solo e-commerce founders to Fortune 100 enterprises.
+Meaning, when I show you something on this channel, it's not theory.
+It's what actually working in real client environments right now.
+So section one, what is Hermes and why should you care? So what is Hermes agent?
+I want to be clear up front. This is not your OpenClaw. People confuse them constantly.
+They're completely different tools. OpenClaw is like your Swiss army knife.
+It connects to 20 different platforms. It does everything.
+It's the general purpose AI assistant. Great too.
+I done a whole 10 hour masterclass on it. But Hermes is different.
+Hermes is built by Nous research.
+These are the people who actually train AI models for a living.
+So they built Hermes model family and they built this agent with one core belief. And I love it.
+An AI agent should get better the more you use it. So every other agent out
+there, Chatbot Claude, ChatGPT, or even OpenClaw, they reset every time.
+You ask it something today, it answers, and you ask the same thing next week,
+it starts from zero or repeats the same behavior.
+Like you have that one school friend who never remembers anything you tell them, right?
+Hermes doesn't work that way. After you give it a complete task,
+it records everything it did, every API call, every decision,
+every tool it used, and in what order.
+And they call this a trajectory. And then it looks at the trajectory and asks
+itself, can I package this into something reusable?
+And if the answer is yes, it creates a skill. A skill is basically a standard operating procedure.
+This Hermes agent wrote for itself. So next time you ask something similar,
+it doesn't start over. It runs the skill.
+This time faster, cleaner. And if something has changed, it refines the skill.
+It gets better. This is amazing. I'll show you the actual skill files on my machine.
+You can read them they are just markdown files in
+a folder now this has 27 000
+github stars and over 200 contributors right
+it's mid licensed completely free and
+it runs on basically any model you can
+use your chat gpt subscription or use cloud subscription which i was until they
+banned it three days ago we'll discuss about that too or you can use free models
+on open router helmi's own models or local models using olama you can pick anything.
+And you can use any model. Section 2, cost.
+Let me talk about cost because there's a lot of outdated information out there.
+I've been using Hermes AI with my cloud subscription and it was great.
+Opus 4.6 is the best model there is, there were no issues.
+But four days ago, Anthropic banned all third-party tools from using cloud subscription.
+And that includes OpenClaw, that includes Hermes, that includes everything that's
+not cloud code basically.
+Now they give me a $200 one-time credit because that's what my subscription is.
+So they call it something called extra usage.
+These are not API credits. So that's what I'm using today.
+So Opus 4.6 on Anthropics credit
+is what we are using i want to show you
+what hermes can do at its absolute best
+but when the credit runs out i'm switching
+to chat gpt codex link for 20
+bucks a month you can get you do have
+some limits but it's okay it doesn't have
+any part token billing you can set that up in the
+onboarding wizard if you want for most of you watching that
+don't have any credits maybe that's the way
+you can start with chat gpt plus 20 bucks
+it has codex included best value so
+if you want to use the free option you
+have new research offers their own model i
+think it's called hermes 3 on open router just completely
+free zero dollars not the smartest but
+it will work and if you are into local you
+can use olama you run a model on your own gpu it's free it's private it's slower
+but it works and finally this would be the most expensive option if you are
+someone who is in a position to generate tens of thousands of dollars every month.
+You can pay for tokens too, right? I wouldn't, personally wouldn't.
+So if you use Anthropic API, you pay per token, best quality with Opus.
+And what I'm using today is my credit.
+So the real cost can start with zero and max 20 bucks a month is what I would
+recommend for something that helped me close six deals in three weeks.
+So section three, three levels of Hermes.
+So before we install, let me show you the three levels of using Hermes.
+Because most tutorials, I feel like they stop at level zero.
+Level zero is what I call using your terminal and telegram.
+You install Hermes, you chat in the terminal, or you connect your telegram,
+you text it from your phone.
+That's what most people are doing.
+That's where they stop it. But you are flying blind.
+You can do much more. And there are people who are level one,
+the Hermes workspace. Most people are here.
+It's an open source web app that gives you a dashboard.
+You can see every conversation, you can browse the memory, you can manage the
+skills, you can watch the agent actually think in real time,
+which is really amazing.
+And it's like going from having a command
+line to your actual cockpit but
+level two this is where you level
+up and literally this is what we are building today
+your own custom command center a web app we will use cloud code to build it
+that connects hermes it pulls in wherever your meetings are for me it's fathom
+it tracks your outreach it manages your clients everything in one screen,
+and this is really tailored to your own agency and nobody else has built this
+yet so we are going through all three let's start with the install.
+Section four install level zero
+level zero is just one command
+and it barely takes 60 seconds and
+this is their help me's website and you can
+see these are some of the steps how you
+can start chatting it's a simple web app nothing too
+crazy what we see with openclaw you can copy this
+command obviously i did this because it's
+mac os but if you are on other platforms
+you can go to install here and maybe
+a good way to quick start is the
+documentation and windows users
+install this first and then run the command above
+and they have some other installation steps
+too if you want to do it in next
+so setup and all of that so detailed documentation
+but what we need since i'm using a mac i'm using this on a fresh machine i haven't
+installed it on this yet so agent installer open source ai agent by news or
+new research it's installing.
+Perfect we will do a quick setup and now
+we have options i talked
+about three options you can go to new portal and you
+can go open router there are some
+three models if you want to use right now
+it says anthropic cloud models api
+gear clockwork i'm not sure they got the news or they
+have updated whether they know obviously they
+would know cloud code anthropic now
+bandit you can still use it
+through extra usage that's why maybe that's
+why it's there and also can use
+your api key if you don't have api key
+and you don't have the extra usage i strongly
+suggest you use codex because it can api is super expensive so github go pilot
+hugging face you can configure all of those so now we have choices one two or
+three i will select one and it logged me in authorize.
+So for some reason, first time failed. So we are trying the quick setup again.
+So I was researching with plot code.
+So there was an error going on.
+The 500 error is a non-anthropic server site. But because of in the last 48
+hours, people are complaining that they have been running into some issues.
+So the transition is not smooth. So you can use OpenAI Codex router or Kimi.
+But I did manage to make it work after three tries.
+So I will use my Opus, my credit.
+But you might have to keep trying or by the time you watch the video,
+they might have fixed it already.
+Now let's start with setting up our Telegram.
+But before we do that i just want to mention there
+was an issue with opus 4.6 although it
+accepted the token and the onboarding once i
+started using it it is giving me error
+after error i think that's the ban in effect
+i'm not sure why they said you can use
+extra usage i don't even know where to use
+that extra usage now but it is what it
+is they are not letting us use
+it so this tutorial now we moved
+it to GPT 5.4 so I
+was using my codex subscription and
+to set up our telegram these are
+the steps we need a bot token
+from botfather so if you've been using this for a while now it is one of the
+most standard steps by this point if you are here from any 10 days you already
+know and have used your fair amount of godfather.
+So let's begin have a token ready we can either open here or create a new token
+either thing works so to create a new token you can just do a forward slash new part.
+Target chat id is also needed to find your target chat id you can open one of
+these there is also a user info bot this is my telegram user id,
+After I gave it my bot token, it configured the whole thing.
+It took some time and it said done.
+I configured my, configured telegram in your Hermes environment and it saved
+a bunch of things, right?
+And then I said hi and it was not working.
+I did say hi and nothing happened.
+And I took a break. It's not like it's working for 30 minutes.
+You see a big difference. so then when
+i said hi and it's not working it found the
+issue the hermes was not running as a
+single clean telegram gateway instance we added
+your telegram settings so it whatever
+it did it did that on its own and restarted
+the telegram gateway and said please
+send another message hi to test obviously when
+i see this message it is probably configured i
+said hi and it immediately got back how
+can i help you so most people we
+basically text rai from our phone right it's running
+on the machine that's level zero honestly
+for a lot of people this is enough because
+i can ask it to how do i give
+access to my google workspace and then
+it gave me two things it gave me full
+workspace access we use OAuth 2 and
+the option one gmail only I
+don't really need to see all of this happening in the
+background right the code and all of that and the skill view google workspace
+I think instead of running all of this it is showing me this on a high level
+so you won't really miss too much if you are honestly speaking and it doesn't
+make superhero sense technically.
+For those of you who are into no good, no good.
+Or a lot of people this is enough but,
+I want more visibility.
+And let me show you level 1, which is a section 5 Hermes workspace.
+And this is the level 1.
+This is an open source web dashboard.
+And we can set it up. We can clone and run this Hermes workspace.
+So I opened a new terminal. and you need to paste this command that i'm about
+to paste here and git clone and it is cloning this repository it is done and
+let us open the workspace and we open the workspace,
+and let's do an install pnpm install okay pnpm is not found so we ran all the
+commands i will link what commands you should be running in the free guide that
+you can get in the second link in the description.
+Perfect. We have, welcome to Hermes workspace. This is on our local host run.
+This is where we can chat with OpenAI Compatible Backend Gateway APIs, Connect Backend.
+Right now, let's skip it. Now
+is a good time to get your cloud
+code involved anytime you run
+into any kind of issues i could copy in
+the commands where i took a screenshot of it you can
+go to your cloud code agent and
+we need to set up the backend or if you want you can have your hermes agent
+do that too how many of these can you run and you go ahead and run it so essentially
+if you don't have cloud code or you can't talk to your help is agent.
+Most of these commands they can run it for you that's how i've been doing it
+the lazy way you can obviously when it usually when we are following this we
+will run into some issues,
+and anyway i'm not going to use this too much but i will give you step by step
+and usually and it ran into any issues it will let us know that hey this is
+not working and I tried this one, this approach worked,
+dependencies installed, now start the gateway and so these dependencies if we
+look at ran three commands and what commands it ran see,
+we have it set the path and
+step two clone the Hermes Asian gateway way to
+this and flowing into Hermes agent path
+setup python vnv and install and these are the two things that it did but a
+python version issue so all of these one of the things that would make your
+life so easy is depending on.
+Other AI agents, builder agent or a coder agent, a codex can do this for you
+too, setting up the backend or I should have tried with Hermes itself, see how that goes,
+I wrongfully tried to do
+this with cloud code out of habit but
+i believe hermes can
+do this for realistically because if
+i go to terminal and look at
+what hermes was able to do for
+us for example if you
+look at this all of these commands running
+this command gateway is starting
+and all of this is an intelligent agent this is
+codex gpt codex 5.4
+was able to run a bunch
+of commands for us so i could have told gpt hey i am running this thing i'm
+setting up my hermes workspace and i'm running into these issues i want you
+to go fix it and the exact steps of what you're seeing here.
+Obviously, we rely on Opus more than Codex.
+I'm not sure if you are into Anthropic or OpenAI, but these are the steps that would usually fix it.
+So once this backend is done, I will start speaking again.
+Okay it is actually doing the work and gateway is already running from here with the hermes setup,
+now go back to workspace and it'll show
+setup screen click auto restart auto start
+hermes gateway come here click on
+auto start maybe a good
+thing if i refresh connecting to back-end or
+to start okay let's see what did should detect the already running gateway and
+connect go to local house 3000 in your browser a workspace should connect now is it working.
+So I still see an error in the same
+error that we were seeing earlier but it should
+be a simple issue set path.tml now
+restart xperia dev till the current one and rerun dnbm dev so we or if you need
+me to do it yeah i think it did already so let's refresh just in case to start,
+no maybe it said let's re-end PNPM dev I'll open my terminal and go to the terminal which has the,
+okay that was not the plan PNPM dev,
+localhost 3001 let's copy this copy.
+So it finally got, there was an issue earlier, and I managed to fix it.
+And I managed to ask a revision that there is an issue, and then it looked at,
+it ran a few commands and looked through the files, and there was an issue with
+web API, and it fixed it all by itself.
+All I had to do was give commands.
+And it took a bunch of tries, right? so realistically you're
+looking at 10-15 minute time savings here
+at least if you are not
+technical this will drive you nuts all
+right and i don't want mobile access right now i just want to show you this
+is like the level two sorry level one from just using your inner chat to using
+this and you can chat with the agent here right now.
+You can browse its memory, everything it remembers, every skill it's created.
+You can run terminal commands all from this window.
+This is what most users are using it right now. But I personally need more.
+I need my Fathom meetings in here. I need my outreach data.
+I need my client projects. This workspace doesn't have that.
+It's a general purpose dashboard.
+So I started using Opus 4.6 again I think my X-ray user is kicking in.
+Before that, now that we installed this Mies workspace, let's do a quick,
+let me give you a quick overview of what this is.
+We can look at every panel. This is the chat.
+As you can see, I added some message and gave me step by step on the way I work with AIs.
+The way I like to work with AIs is there are some steps that AIs can do.
+Some of the steps they can't do and they want us to do. So anytime I ask it,
+how to configure a cron job, give me step by step, how many of these steps can you do and I should do.
+Okay, this is basically chat. This is where you actually talk to Hermes.
+Same thing as Terminal, but in browser.
+You type a message, Hermes will respond and it will stream text as well.
+And tool calls will also happen in real time, like daily cards that show you
+what tool it's using, what arguments is passing, back and forth.
+And if I want to do a 9am email, how to set that up, should I give you Gmail access first?
+And when i send this message you can see the little card that is thinking and
+once it responds it will show the response and the models that i can use from
+my subscription is also available here,
+so next up we have files this is
+like your workspace file browser you can
+navigate your project open files edit
+them here you can use the monaco
+editor that they have this is
+useful when hermes creates a skill or writes
+a script you can actually see it right here
+without switching to your file explorer
+previously if cloud code but
+to do something like this i have to open anti-gravity or
+i have to open my folder to watch it
+like visual studio code but now i
+don't have to and we have terminal terminal
+has full shell access right in the browser this
+is a real terminal you can run any command people use this to monitor their
+hermes gateway and you can check logs or run scripts alongside their chat you're
+chatting with hermes on the left and running terminals on the right so everything is put one window.
+Test this we can run a quick command like Hermes
+version and we'll get the version so
+that is terminal and we have
+jobs right now just not available but
+this is where it gets really interesting Hermes
+has a built-in cron system similar to
+cloud code scheduled tasks or open
+class cron jobs so you can schedule tasks
+and run automatically if you want every hour every
+morning once a week and the jobs
+panel will show you every scheduled task
+and then it last run and
+what it's running next and the output so for
+example you could say every morning at 9 a.m you
+can check your famous news sites
+like maybe hacker news for any ai news
+and send me a summary on telegram you can
+just say that and hermes will create a
+cron job runs it on schedule and delivers the.
+Results to your phone automatically no code
+no n8n no make.com just
+from one sentence it will build the whole thing and the
+better your model better it will perform if you
+having a hard time if you are using like a
+free model or a local model you
+might have to use a better model
+to set this up you might have to spend some
+api or if you use your gpt
+subscription that's fine too but people are
+doing wild things with this i've seen someone set up a
+cron that monitors their competitor's pricing page every six hours and send
+them a telegram and alerts when something changes and another person has one
+that pulls their stripe revenue every monday morning and sends a slack summary to their entire team.
+And remember, these cron jobs can have skills attached.
+So meeting notetaker, we are about to build a meeting intelligence agent.
+You could schedule it to process your Fathom meetings or your Fireflies meetings
+every night at midnight and have a summary waiting for you in the telegram when you wake up,
+listing all the action items that you need to do that day.
+And how amazing is that? So now we have memory.
+This is under knowledge memory. This is where Hermes stores what it knows about
+you and your environment.
+So it uses two files. One is memory.md and this is essentially the agent's personal notes.
+The things that you learned about the tools, your project structure.
+Workarounds it discovered, and user.md is your profile, your preferences,
+and your communication style, and how you like things done, right?
+And these are small files, about 2,000 characters, maybe 2,200, I think, to be exact.
+But they're loaded into every single session.
+So every time you start a new conversation, Hermes
+already knows who you are how you work and
+it doesn't start from zero so if you haven't watched my open clock masterclass
+I used something called introducing yourself to AI I have a strategic context
+prompt so this is a level one context prompt it is for beginners who want to
+avoid starting each conversation from the beginning.
+Was intent initially made for using with
+chat models but it works well with openclaw
+it works well with hermes any agent even cloud
+code so if you look at my context what
+is your name your title organization key responsibilities your work style including
+communication style your approach your preferences current projects challenges
+goals areas of interest specific ways you want AI to help you and preferred behavior.
+So all of this is only level one and it's already one page long.
+And if you go level two, it's really deep.
+And level three, I can't even begin.
+This is like enterprise level to take good.
+10 hours or more to finish the whole thing
+10-15 hours so i will add
+all of this so you can add this in
+your user.md file not everything
+but at least the level one context it
+knows exactly who you are and what
+you do everything and we have skills this is
+like the brain of the learning system every skill
+Hermes creates lives here you can browse them
+read them edit them install new ones so.
+This is a marketplace that's already available right
+here for github issues powerpoint popular web
+designs these are available already pre-built
+but in the community hub we have
+close to 2000 or over 2000 skills everything
+from github br workflows so even kubernetes management
+but the real power is not the pre-built
+ones it's the skills Hermes creates
+itself so it will create skills based
+on what you do and how you work and
+when you give this a complex task something that
+takes five or more tool calls
+Hermes records the entire process every
+API call every decision every step
+basically then it asks itself can i
+package this into something reusable and
+if the answer is yes it writes a skill file and
+a markdown document with the detailed instructions pitfalls to avoid or any
+lessons learned during the process and any verification steps and the next time
+you ask for something similar it doesn't start from scratch it will run the skill faster,
+cleaner, and it will be more consistent.
+And if something changed, let's say you added a new data source, it refines the skill.
+And this is what I really loved about Hermesia. This is like.
+Procedural memory and the agent is
+literally writing its own playbooks and
+i did not see that anywhere the sessions here
+is where you can see all of your past sessions
+every conversation you saved you
+can click any of these and you can pick
+up where you left off you can continue this
+is a session when i was having issues with
+it and i was not working previously was gpt codex
+which i hit limits with so 20 plan
+does have its limit you cannot use it like you
+do with a regular 200 subscription so hermes also has a full text search across
+your sessions so six months from now you want to ask a question right if you
+want to search about a certain thing and I'd say Google is the word I want to search.
+Anything that I spoke about or.
+Said if it's in skill if it's in chat
+if it's in file everything will show
+up here and this is a game
+changer for a lot of people so this is Hermes workspace
+you've seen dashboard chat files terminal jobs
+memory skills sessions everything in
+one window but here's what it doesn't have
+it doesn't have my fathom recordings
+my meeting recordings my outreach data my
+client pipeline my crm so this
+workspace is a general purpose command center
+i need something specific to
+my business so let's go to
+level two and we will use cloud code to
+build and hermes will run and
+learn from this before we build out our application
+i want to show you something called clobbery this.
+Is my mission control where my agents can come
+in and start booking this is one of
+the earliest versions or actually the version
+that i continuously improve and give
+to my community this is where i
+test out new things and skills and tools
+it has a ton to give you some context this is what we are building today a meeting
+intelligence agent where we have all the meetings that I had like hundreds of
+meetings or 1700 meetings which month.
+Has how many number of meetings what are
+my busiest days what are external
+organizations i had meetings with all
+of that in detail and each call will have key
+takeaways topics next steps action items
+linked so it knows which team
+member to contact all their emails and everything so this
+is what we are trying to build and not just this taking
+whatever we have in this what's
+happening in your meetings day to
+day and sending a digest learning from
+it and if it's discovery calls that
+you're looking at how to write proposals how to
+create prototypes and all of that will make Hermes
+do it and you might be wondering okay
+you built an application of a map how does
+an agent control it so it is
+just only scratching the surface rain we have some youtube
+related apps that i built here and
+i also have a research hub autonomous brain
+i have an email agent that
+i can send emails with this is actually in.
+Test but we have another agent
+that is actually sending the emails and everything so
+this is also something we would build and we will trap how many opens how many
+bounces how many delivered how many clicked all of that engagement we'd be able
+to see it and analytics we'll build all of this too in our outreach agent and also.
+Phone agent all of this i covered actually in my
+10 hour open floor video i also show
+you how to build this light version of
+this mission control in that video as well and we
+have some agent teams we have multi-agent orchestration
+agents that can assign work to
+each other and completely autonomous autopilot
+we talk about a lot of things so that is not the key now all the three topics
+that we are going to discuss here is significant improvement from what i discussed
+in my past video so if you are wondering how we are going to connect the agents from.
+Whatever application that you're building to this
+is we have something called integration guide
+integration guide as you can agent can
+register their identity it can poll for
+tasks it can look at what tasks are
+being assigned to it or by human
+or another agent doesn't matter it can pull it
+can run crons so there is an onboarding prompt
+and this works with cloud code agent open
+flow agent hermes agent anything so the
+sheer amount of functionality that this has if
+you look at this ai tasks it has
+14 types and 14 types all
+of these are api requests by the way if i open these 14
+tasks each task will further have
+more actions that you can take so these are 14 different features task has eight
+actions you can create a task you can update a task delete a task list a ask
+get the task so essentially we are giving all of these amazing features.
+To our agents that they can
+take actions they can cue the work they
+can create a sub-agent or manage a
+sub-agent they will create sub-agent in
+their own platform but they can also create an
+entry here so we can see what's happening with
+that sub-agent activity all log questions agent
+where place where agent can ask you questions status
+showing you in real time if they
+are idle if they are online every single
+minute if you want to and assignee
+subtasks insights budget report raw
+report identity so there are a bunch of actions
+a bunch of tasks ai can do and there
+are report web hooks ai can generate process
+reports there is goal analyzer this is
+related to api you can create office
+you can create animated workspaces where
+you can create a bunch of little agents that
+they can work when you assign tasks
+it's so funny to watch but that's a.
+Video for another day and if you want to
+get access to this we are going to build this by the
+way and if you have to skip everything and
+get this so you can set this up in
+one click it's available in agents in a box
+and we have a bunch
+of things in here the main mission control
+and we have templates of every video
+that i make and i have a master class where
+we take an idea raw idea to prototype to production and we also do three hour
+hackathon sessions every week every weekend on saturday where we build live
+applications and give that away at the end So if you are interested, do check that out.
+And before we begin, I want to just add a quick disclaimer.
+This is not how I usually build systems because this is not how to build your systems kind of video.
+This is more of a how to use Hermes agent to improve your business or agency kind of video.
+How do I do this if I'm building a full loan application, a real application.
+If I look at my workflow, if I want to build an actual application, this is what I would do.
+I would create a five-layer context.
+Call this a knowledge fortress.
+We have documentation layer, PRDs, database schemas, UI, UX.
+Security layer, robust security best
+practices cloud code has some codex has
+some whichever application that you're using has unique
+security documentation that we
+need to follow or frameworks to follow so technically
+prompting best practices tech stack selection strategy
+layer personal preferences and project direction knowledge layer
+research any historical interactions that
+you have about this project or any research that
+you did online all of this combined goes
+to the club project that we are doing and your
+builder agent so it goes to a folder it can be a markdown file pdf file doesn't
+matter so what is the actual workflow workflow looks like something like this
+from idea to context generation whichever idea so let's say we are building
+this agency mission control our Hermes mission control.
+So it goes from idea to generating context.
+We have a chat with clock, Opus 4.6 and generate just the documentation layer.
+Everything else is standard. We already have it. And then once we generate this
+five layers of context, we generate a prototype.
+And how do you generate prototype? I like to use Lovable because that's where
+I can create amazing designs.
+Now, from the past month or so, we've been using Google Gemini 3.1 Pro, which is amazing.
+And then once you build that prototype with amazing looking UI UX, you will build logic.
+You will build the actual backend, the actual friend and you wire it with super
+base or AI models and create integration guide, we are building applications
+that both humans and agents can use.
+How do humans use? Beautiful UI regs.
+How does agents use it? Through API building all the edge functions.
+We do that and finally we deploy.
+And also most people don't realize this, how important this is. This is agentic AI.
+This is architecture for efficiency. I distinguish agent roles into three categories.
+This is to maximize efficiency and control costs.
+I have been creating content using Vibe Coding Tools from October 2024.
+So I've been doing this for a really long time. And,
+I categorize agents into three areas.
+Orchestrator agent, builder agent, and executor agent.
+So orchestrator agent is your open flaw. This will be like the manager that
+will coordinate the task and will delegate to other agents and handle edge cases.
+All of that will be your orchestrator.
+And your builder agent is your cloud code, codex. This is your developer that
+will write the code and construct the systems.
+And executor agents, these can be sub-agents or agents themselves,
+like you can use Cloud Code, Agent SDK,
+or you can use OpenFlow, you can use Hermes, or you can use OpenFlow sub-agents
+as executor agents as well.
+These will be your specialized workers that complete specific tasks.
+Okay before we start building i need to
+address something because this is a question that most
+people have should i use open claw or hermes or
+did hermes kill open claw should i switch i use
+both extensively i have a 10 hour open claw master class on this channel so
+let me give you a honest answer you know not the clickbait version so they are
+not the same too they don't even compete in the same category in my opinion.
+Think of it this way. I covered it in the intro as well.
+OpenClaw is your Swiss army knife. It has 50 plus platform connections.
+Claw Hub with over 13,000 community build skills.
+It has native telegram, you know, Docker, 170,000 people in and Discord.
+Thousands of contributors.
+346,000 GitHub stars. It does everything.
+It's like a general purpose workhorse. It does a ton.
+But Hermes is your specialist. It has 65,000 stars and it's fastest growing
+agent on GitHub right now.
+From the time I started this video till now, it gained over 35,000 stars.
+So it does fewer things, but the things it does.
+Native self-improvement or three-layer persistent
+memory skill creation that you know compounds
+over time it does better than anything else
+on the market now i want to be fair open
+clock has been catching up they have been you
+know they added memory wiki for cross-session
+memory in recent update and it's
+like the highest rated skill on all
+of claw hub is actually a self-improvement
+agent skill that mimics what Hermes
+does natively so the community is building
+as a plugin but in Hermes it's
+the core architecture not an add-on right but here's my honest take on what
+category on where each one wins right so this is in when it comes to self-improvement
+OpenClaw, it's an add-on.
+It is available in Claw Hub, but in Hermes, it is native. It is the core feature.
+And memory, memory wiki, it is across sessions.
+Hermes Agent, it has three-layer persistent memory.
+When it comes to speed, OpenClaw, if we call it standard, this is almost,
+Hermes is almost 40% faster on repeated tasks because it has skills.
+And the stability, there is enough frequent breaking updates with OpenFlow.
+You know, a lot of contributors, a lot of friction, a lot of,
+you know, they're improving, but breaking all the time.
+Hermes is more stable. Am I saying it's perfect?
+Not at all. It's not even close. But comparatively, more stable than OpenClaw.
+And Skills Ecosystem, ClawHub has over 13,000 skills.
+And Hermes Agent has some inbuilt skills, has community skills.
+But the biggest value comes from
+self-generated skills and self-improved skills
+and when it comes to integrations it has
+OpenClaw has more than 50 plus platforms and
+Hermes has six native channels and it
+works with any API and Telegram native
+built in both of these platforms and when
+it comes to github stars 346 000
+stars you know how viral open
+claw was every person and their dog was starring just out of the virality not
+saying everyone is using it today but 65 plus this is slow steady and it's you
+know one of the fastest growing right now and by the time this video is aired,
+it might have more than 100,000, 200,000 UNOs.
+Community 170,000 Discord members and Hermes Agent is built by New Research.
+I don't think they have a Discord.
+Code quality is good for OpenClaw, better for Hermes, according to reports.
+Best for orchestration and multi-level. Hermes Agent is more for execution,
+you know, deep work, learning, autonomy.
+Now, here's what comments are saying. I like to review all the,
+you know, most viewed videos across the topic.
+For example, Alex Finn's video has more than 95,000 views at the time of filming this.
+And there are other videos talking about Hermes as well.
+But some of the top comments that are reading this, after a day of playing with
+Hermes, I deleted OpenFlow.
+And some people say, I switched from OpenFlow to Hermes and it's night and day in quote quality.
+And then the third person said I tried Hermes
+for 15 minutes and gave up OpenFlow immediately and
+I had a lot more people that talked to me talk about
+Hermes how significant improvement they've seen
+obviously the features that matter
+most to them Hermes doing it so much better
+but there is also the other side
+right OpenFlow's ecosystem is bigger OpenFlow has
+way more integrations and 50 plus platforms and
+i run both but i see openclaw as
+an orchestrator and hermes as an executor
+so the real answer it depends on what you're
+building and if you need a multi-platform
+orchestration hub you know ton of integrations 13 000 skills on claw hub docker
+deployment at scale openclaw is still the play both the native tele both have
+native telegram by the way it's not just one.
+If you need an agent that gets better over time and remembers your business
+context across all the sessions and it creates its own standard operating procedures
+and produces higher quality code,
+Hermes is the place. But honestly.
+PowerMove is both, in my opinion. OpenClaw is an orchestrator, delegating tasks.
+Hermes as your executor, doing all the deep work and autonomy.
+That's what I built in my system. If you go to my agents in a box community,
+we have something called ClawBuddy.
+That's the exact system. Being OpenClaw as an orchestrator, everything else as execute.
+A ClawedCode agent, Hermes agent. you can add other open flaw agents as executors
+or sub-agents as executors so.
+If you're interested see where we do three
+hour weekend hackathons it's amazing
+you can find one on the about page if you're interested on how that works next
+section is migration guide now for those of you who watched my open claw masterclass
+and you're thinking okay money i'm sold i want to switch to hermes how do i
+actually migrate do i lose everything,
+here's what the most valuable thing you build
+in open flaw is not the agent it's your
+context your strategic prompts your skills
+your memory all of that will transfer and
+i've put together a complete migration guide and
+the link will be in the description below it
+has everything that you would need and
+you can the complete step-by-step migration
+in five commands and i
+also added whatever i described right now
+it's also included in this guide a quick table on
+why each of where each of these two
+shines and you can
+run both like i said and the first step
+is to find your OpenFlow data and this is
+how I would have showed you but this is
+not my main machine now OpenFlow is running in my Mac
+mini I don't use it on.
+My main machine so if you want to
+run it you need to this
+is the first step you need to find your OpenFlow data
+and you will see all the skills
+memory config dot env and you need to
+copy one by one you start by copying
+the skills and this is the expected output and
+you transfer the context and then you know
+system prompts and then you will start with
+moving your api keys and you
+start your enemies and introduce your first if
+you want this guy it will be available in
+the third or fourth link in the description it's
+completely free now you can get it
+at any point if it's not working or skills some of the skills are not going
+throughout working fine I showed you I added a troubleshooting section what
+you should be doing and if it's you want to run both simultaneously what happens and yeah if you.
+Run into elite challenges you can comment in the video
+i will see you know comment whenever
+i have some time but if you need more
+support you can join school as well okay now
+you know the difference and you know how to migrate let's
+build something so what
+are we doing here we are building using
+Cloud Code Builder Agent and our orchestrator and executor will be Hermes and
+we build this mission control application for both humans and agents to use
+and humans interact with UI UX and the agents will interact with API.
+That is the takeaway from what I've just explained.
+So before we start, at the bare
+minimum we need a cloud md file
+to begin with so how do you come up with this cloud md file i'm actually doing
+a master class on cloud code next week as soon as this video is up and if it's
+over one week it should have been up on my channel already so i really encourage you to check that out.
+But what we are doing in this cloud.md file is basically whatever we are building.
+So if you look at this markdown file, machine control, what are we doing?
+Command center web app that visualizes and control Hermesie agent system.
+Three integrated roles, meeting intelligence, outreach autopilot, custom dashboard.
+So the front end, we are using React, Beat, and Tailwind CSS.
+Back-end this agent hermes agent
+run autonomously builder cloud code agent apis fathom recent hermes gateway
+and now messaging telegram bot for mobile notifications and we have i should
+have blurred that but we do have all of this to go off of and i also created a design.md5.
+This is important because we want
+our application to look really nice like
+dashboard meets sci-fi command center the reason i
+like to create this design.md file or
+give this cloud code
+or any of my builder agents some kind
+of an inspiration it is humans not the agents
+that will see the application agent can
+use api and doesn't care
+how the ui looks but i
+care i like having to look
+at really good applications and
+interact with it and use it so we have a couple of options where you can go
+to dribble and you can search for dashboard for really good looking dashboards
+and you can do the same thing with v0.dev also and you can look for community templates.
+You don't have to pay for anything. If you like something, you can either take
+a screenshot for the inspiration that you can.
+Use it for building this application or
+you can just rely on design MD file that we created so I like this one better
+but I will say I need this in a blue theme I will copy this and I will go to
+this builder agent and I will just say.
+Read a cloud.md file we are
+building that application and i
+need to give you the api key for fetching
+my fathom meetings and also
+i'm hoping the ui would
+look something like this futuristic this has a green theme but i want to go
+with the blue theme feel free to improve the visual aesthetic of this application
+make it futuristic and also let me know how to add,
+the api keys securely in the chat also i
+don't want to share my api keys
+in the chat nor you should display them in
+the chat tell me about the secure way to share them
+is you can give me a .env.local file
+for me to update so this is
+the prompt i'm starting with and all of the prompts all
+of the cloud.md files and everything will be
+shared in a free guide find the second link
+in the description that says kit you can get it for free now we have a place
+to add these api keys securely but if you look at the folder itself we can't
+see it it's hidden So you need something called an IDE or those of you who don't know what an IDE is.
+It's a code editor, Visual Studio Code, Antigravity, all of these are IDEs.
+So I will open the folder.
+Once I open this Hermes Mission Control, once I open the folder, I should be able to.
+Access.env.local so it already populated my superbase url and now it's asking
+me for my fathom api key so i will just add the fathom api key and recent api
+key here if you don't know what,
+both of them are i will cover that in
+a minute but i won't be opening or
+showing my api keys on here
+okay so fathom is a note taker that joins my meetings automatically and takes
+notes and it's amazing the level of detail that you can get the questions you
+can ask it can even you can ask questions across all of your meetings and it can go through.
+1,715 meetings I have so far and get answers from there.
+It takes some time. It is slow and it's not even perfect.
+It's not like opus level intelligence. It may be some GPT mini or a haiku kind
+of thing, but it's cool to have.
+So to get your API key, you need to go to settings. You need to scroll down
+and it doesn't matter what note ticket that you are using.
+Fireflies, Otter, All of these will
+have an API key that you can get from wherever you have your meetings.
+Also, I realized something when I was adding the API keys.
+It also has where to get these API keys from.
+I thought this is really convenient. You don't even have to go to your browser
+and do all of this manually. And now I replaced my Fathom API key.
+I want you to make the API calls and let me know how many meetings I have.
+Based on that, we will make a plan to import it over.
+So it will take a while because Fathom doesn't have a feature to check how many
+meetings we have right away.
+It has to do some pagination stuff and there is also a bit of rate limit.
+It has to wait a minute, check again. So it is a 5 to 10 minute thing,
+but I will be back when it's done.
+It almost feels like Cloud Core is a bit lazy today.
+It would come back after all the meetings are
+done right now it says your fathom account has
+around 1160 plus actually i do know that my fathom account has over 1712 meetings
+but i don't need everything i need all the calls that happened in the past 45 days.
+Let's import them to our super base
+and create a new table with relevant
+details date meeting name transcript
+summary action items company name
+if you can figure it out emails any kind
+of details that you can type of the call we are
+bringing over 45 calls and also
+i'm giving you the ui ux of
+the application that i like you can follow the design.md guidelines that are
+available in your folder and also make this app really futuristic and my inspiration
+has a green theme in it but i want a blue theme.
+So I will add the screenshot that we have earlier.
+Now I will send the cloud code. I use this plan mode where it plans first and then I prove the plan.
+But again, I'm not doing this like a builder tutorial.
+So I'm doing these things a bit differently now.
+So usually if we do plan mode, it
+will come up with proper to-do list and update
+the 2d list as it goes and works really
+well but this is going to take a
+bit of time we already have the api key we
+already gave it the inspiration now it's up
+to claude to build this basic
+structure basic foundation for us to use for
+our next phase it took some time but it managed to create some this is pretty
+good for the first try especially when we are not using any tool like Lovable
+or Google Gemini Pro to do UI works and if this is coming up with the first.
+Go then it's nice right now i do
+like the elements and like the class morphic design i
+like the glow animations and it actually
+fetched the 30-day meetings and meetings
+i have are up to date and you
+can see april 6 and then i open the meeting nothing
+is happening which is okay we only asked
+it to build the skeleton of this application
+and it was a big task so moving
+forward what i try to do is maybe go to plan mode and then we also have a bunch
+of things we can do so 111 meetings for the last 45 days and we have good lots
+of existing tables but no further meeting Okay,
+this is happening because we are reusing an existing Superbase database.
+If you are using a free tier and you need to log in to Superbase CLI,
+and once you give access, plot code will take care of the rest.
+You don't have to manually run SQL code.
+So for those of you who haven't logged in to Superbase CLI and.
+Cloud code can ask you from time
+to time this is the sql code i want you to run
+it in your account in the prompt itself i came
+in the environment variable i started with the project url and then on key in
+nose even if you don't have superbase cli i think that is enough to a certain
+extent now you can see the number of turns fetch 45 meetings and then loaded tools and.
+Two commands and seven commands use it all installing all
+dependencies reading all the files so it
+did a bunch of things and of all
+of the things once it's done app is running looking great i can see right side
+of your screen sidebar with ermy's branding dashboard navigation okay this is
+good now that's your second monitor showing different chrome window so it was using plot in Rome.
+I can see the Hermes Mission Control app running beautifully in the center of
+your screen. Here's what's visible.
+So it actually took control of the entire screen.
+It was weird. Because I did give access to the computer use,
+it can now see the entire screen, which is great.
+Here's what we accomplished. Fetched all the meetings. Fathom
+45 days with full transcript summaries perfect
+now i want some visual improvements
+okay tell me prompt now i
+want some visual improvements to this application
+right now if you look at the
+text it is really tiny and the
+sidebar menu is ugly and it is not readable in some areas text is just too light
+we need to make it brighter whiter and also I would need a dedicated page for these meetings as well.
+Based on what you have in Fathom Meetings table, I want you to come up with
+a visually pleasing page design.
+Let's make a plan for it. I want you to do two things in this pass.
+First is improving the text size, making it visually pleasing.
+And the second thing, creating a page for each meeting,
+a page loader, design a visually pleasing page
+based on what we have data that we
+have in a fathom meeting
+but also add additional
+sections leave additional dedicated
+sections for Hermes to add notes or generate proposals or generate custom action
+items on top of what fathom already generated and these insights is a section
+I'm looking for in this page.
+And anything you feel like Hermes can add to this page should be taken into account as well.
+So when you do this in plan mode, whatever you say, it will take that.
+And this is why I love plan mode.
+Imagine you are explaining AI, a simple command, right?
+You're saying, hey, I want to build an amazing web page. That's it.
+Then you go to an AI like Opus 4.6.
+Maybe you can get away with it because it follows the best practices it knows.
+And it will think, okay, user is asking me to create a web page.
+What do I know about it? And if I have introduced myself as an AI agency owner
+and I sell these services, it would assume, okay, money is asking me to build him a web page.
+It will assume everything else. It will assume the tech stack.
+It will assume whatever it needs to create this web page.
+Now, moderns like 4.6, they will ask you for certain context.
+Oh, before I build, go out and build, this is what I would need from you. What is this page about?
+What do you need? Do you have any assets? All of these questions, which is great.
+But for the sake of our example, what I'm telling you is, if you give the same
+thing to the plan world before it goes to an actual AI and actual AI works on it.
+It will make this amazing plan whatever
+you give it it will update it
+right now when we open the plan it will
+show you so much more than what
+i initially gave it would talk about the
+tech stack things it would talk about shadsy and
+ui components and it would say for this page these are the sections that are
+important and because i don't even know what it created for tables right what
+are the columns that are available in super base i don't even know that but this ai knows and if i.
+Skip the plan mode and just give this command it
+will come up with something that it
+assumes now a lot of
+things will be lost in this assumption and
+plan mode we will show you imagine this
+prompt going to an ai and whatever the plan
+ai creates going to ai this
+is significantly better than the previous version
+and we will see that once the
+plan is done so it created a really
+detailed and plan it's amazing so if you look
+at the context it says mission control app
+is running the text is too small to them and then
+meeting detail page is too basic just three tabs needs
+to showcase a page for filming and also we
+need to understand because meetings
+page only had this external internal and
+it is not voting it is not giving
+me a dedicated page so assume that there is no meeting page there might be meeting
+page we will see so sidebar make nav readable dashboard bright and everything
+meetings metric cut this step three so imagine.
+This prompt going to plot and it
+took a good seven or eight
+minutes for to come up with this plan so that's
+why i don't go to plan mode
+for simple edits for simple actions i will just ask
+it directly opus is smart enough
+to handle that but when i
+need something really detailed big or
+when i'm doing this for the first time usually i would
+go with a plan mode now i've been
+doing something about this application after
+visual improvements the spacing
+looked a bit off and the text was a
+bit slow and the padding everything it almost
+felt like it was made with a junior dev or
+a novice right even though opus 4.6
+is a good model sometimes you cannot
+just ask this to improve it
+so it doesn't work it stops at one point so what i started doing initially is
+using cloud chat models to improve my code models or using codex to improve through.
+Plot code models how does that work it's almost
+like king solomon's advice it doesn't work
+for him it works for everyone else so it's
+that kind of thing so i've been making some changes
+i said it doesn't look like there is padding in
+corners logo has empty space before the menu starts
+maybe should be at a mission control so you
+can talk to this like a friend and it
+won't go out and make a plan like we did for
+eight minutes nine minutes it will answer to you under a minute
+and this is what it came up with
+and i've been fixing it in few rounds now
+so we have this checklist and
+this round three i will copy this we
+are asking for some padding we are asking it
+to move it to middle somewhere here and
+improve the spacing i don't think i added spacing i
+will ask that here also i'm not sure if you
+realize the dashboard some of the cards they look like they are overlapping
+there is no proper spacing and we need to work on that as well so i haven't
+sent in the round 3 prompt yet i want you to update so used to clicking this before it generates,
+so i will just add this.
+I know it is going to give a round four so we have everything we need we'll copy.
+The whole prompt it's a really big prompt and paste
+it hit send to take
+some time obviously because it will update the
+to-do list so whenever we give it like a proper checklist.
+Proper prompt like this it will come
+up with this to-do you can see rebuilding app way
+out rebuild sidebar fix dashboard
+fix main content padding build trust
+and verify so now it has
+access to this site it can see the site and it
+is also using the computer to take
+control and looking at this site as well
+so we should have an
+update within a few minutes this is
+done and this got significantly better
+i don't think it still has the
+padding i will do one last pass
+you don't have to we are okay with it
+it's fine but i want my other agent to
+comment on so i observed
+this any prompt that you give you can
+be sure that 80 of this is being
+worked on that's what this cluttered me
+i don't think code agent worked on padding at all the corners it still looks
+going to the edges and also it fixed the padding between individual cards but
+when i look at the sections they're still overlapping.
+It fixed the row, but not the column, if that makes sense.
+So I will do one last visual polish and call it work on our actual features.
+But if you were to use this in your actual workflows, you would want something
+that's visually pleasing.
+You want to feel like using it.
+Obviously, we will have an integration guide for other agents can come in and
+use it. So that will be my next prompt.
+Once this is done, this is what we are going to do.
+We are going to ask it to create an integration guide page that will have all
+the functions that this app is capable of, doing it in such a way that both
+humans and AI agents can use it.
+How does AI agents use it? They have edge functions.
+We need to create super base edge functions to pull that off.
+So let's see if the prompt is done. yes it is
+done while this is done i want to discuss what
+it said for the honest take or something when code
+agent partially completes a multi-part prompt like
+this it usually means it stopped at
+the first file it could find a match in and
+didn't traverse up to the root layout two ways to
+prevent this next time tell it explicitly which file to edit instead of add
+outer padding say open app.tsx or whatever the root layout is and wrap top level
+div with padding container so run the visual test yourself before I accept it.
+Okay also by the way the logo block the stack cards all of them are nice it
+automatically opened it and it's checking what the issue is so the code agent
+says they're already fixed,
+and it is confirming visually by the
+word i don't see it i don't think you see
+it too it's choosing opus 4.6 the
+prompt that we ran last time is you
+can see it added padding right
+and also everything else
+is fine but when i try and open this it
+is failing it is not opening so i
+went to my cloud code agent and asked it great it was but when i open one of
+the meetings go to a blank page for example the first meeting i open surrounding
+working So once whatever it built so far is working, we go to the next stage.
+What is the next stage? I want to build a webhook. I don't want to manually
+sync meetings every day.
+I want to happen it automatically. As soon as a meeting is done,
+it has to show up in my database.
+How does that happen? i have
+to set up few things we need to create
+a webhook and you need
+to add that webhook into our
+fathom to show that okay
+anytime you have a meeting send this
+data to the webhook and this webhook is made in our super base in our application
+so it is not tied to your local machine you don't have to keep it on to make
+it work it runs automatically their meetings will show up in the database automatically,
+so let's see it said it fixed it and when i open it still not we didn't do a refresh,
+okay even then it's not king meetings,
+okay second meeting is working what about third meet.
+Some meetings are working they're opening for example out of three meetings
+that are listed second one is opening, first and second leads to a blank page,
+so I will take a screenshot of this and share it,
+and someone you're not seeing the wait times in the video because we've been
+cutting it out but someone said accurately the one of the worst things about vibe going however,
+magical this technology is waiting vibe
+waiting i'm not sure if this is a popular term i heard it from someone the sheer
+amount of time you have to wait for this to finish is crazy and obviously you
+can multitask you can work on other things come back but it breaks the flow and i think.
+Devs have it easy now i've been deaf
+for i graduated in 2015 so
+i've been in tech for more than 10 years at this
+point it's easier now
+more than ever to build applications do things
+but it's also gotten to
+a point where you're not doing anything except
+speak the words everyone these
+days are using these speech to
+text models and i think if you
+haven't been using it it is one of the biggest unlocks
+i am not even kidding for example i will show you my stance i was using two
+applications and this is the main application and it to give you some context
+it saved me 442,000 buds and that's 4 days of typing.
+And I've been using it I think almost 8 months now not even 1 year and it's
+completely changed the way I book and makes you so much faster.
+And with all the tools right now it's one of the important things edges that
+you can book and grab double anchor JSON,
+react added save parts again let's see fish before we try is that sort still
+and work okay command shift art let's do a hard refresh.
+So the second meeting which was well is also working,
+it did not fix the issue I want you to research deeper why that's happening
+I did the hard refresh and it not work I want you to make a plan and fix it and be thorough,
+okay quick lesson here it created a plan if you see three changes and two files
+it identified the root cause in
+bunch of areas line 383 of meeting detail renders directly inside a ptile,
+fathom stores assigny as an object not a string react cannot render objects as jsx children this,
+So this always existed. There was a problem.
+But I was not able to identify when I did not make a plan.
+It depends on how much time you have or how you want to make this work.
+Usually people keep trying the first approach.
+Till they brute force it now i tried three four obvious things but i think this
+is the one so you can naturally end up at this solution and also not every problem has to,
+have one solution you can have other solutions as well and maybe this is not
+the only issue or only problem there is.
+So two things here.
+What should you do? I will share what I would do.
+Anytime I run into error, the first time I ask it to, hey, this is not working, can you fix it?
+And once it does that and comes up with a response, I will try. If it fixes, great.
+Usually it doesn't fix the issue what do i do i would say i can sit here if
+i'm prepared to do it six more times saying hey this did not work this did not work this did not work.
+And usually i'm not i don't want to
+do that will that be twice no maybe not i don't know that's why if one time
+fails and it did not fix the issue the first time i will go to plan mode because
+plan mode 8 out of 10 times will fix the issue,
+Because now it has a lot of time to review, go deeper and do a bunch of things.
+So yeah, it is the issue is fixed. So the hack obviously worked.
+What is the next step? Like I said, we can go to Hermes right away.
+But that's not valued. I wanted to show you the complete engine.
+So the next part in my meeting intelligence engine is automatic webhooks.
+So if you look at my ClawBuddy application that I'm giving in my school community
+and if I open Meeting Intelligence, all of this is happening automatically.
+In my automation section, I can go to functions and webhook.
+I created a fathom meeting function and this is the fathom meeting webhook.
+So I will take a screenshot of this and
+say you don't need a screenshot you
+can just explain this to cloud code and it would
+be able to figure it out and whatever
+tool that you are using let's say if you are using
+fathom or if you are using fireflies you just
+need to go to the settings and you
+will find an api key and within
+the api key you can add an
+api key generate an api key or public app or
+you can edit one of the existing keys it already
+has access to this api key i will copy
+the webhook secret we need
+to build webhooks and functions what are webhooks and functions webhook is what
+we set up in Superbase and functions are like the prompts a user or an agent can create.
+Based on the webhooks we have. Let's say I created a fathom webhook.
+I can add this webhook to fathom.
+So that way, anytime there is a new meeting, this webhook receives the data.
+And once it receives the data, it has to process it.
+So a human or an agent can prompt or add additional context.
+We call it functions. these functions are
+basically explaining in
+natural language what needs to happen with
+the data that it's receiving with this
+webhook this can be simple instruction
+or a full-blown multi-page prompt i'm adding
+a screenshot of an application that i'm currently using
+where i implemented this feature and also
+you have access to the fathom api
+key fathom also needs a
+webhook secret and this need to be included when
+we are building this fathom webhook and once you give me the webhook i will
+update that in our actual fathom application let's get to it or you can use
+flawed in chrome if you want to add that manually or automatically.
+So that is a big prompt. I want you to come up with a detailed plan to implement
+this and a checklist as well.
+So now I want to go with plan mode and also if you have your favorite creator
+tell you something else how they would use plan mode.
+I think it's completely fair because right now we are in a stage where everyone is figuring it out.
+So if you want to start and do build things with react or python or.
+Some established tool or language or
+framework what have you you have a
+standard operating procedures now these technologies
+have been around for decades or at
+least multiple years now so everyone knows about
+everything and they can give you details step
+by step so it would be obvious if this person knows what they're talking about
+or bullshitting about this feature or this too but right now with AI I don't
+know whether to call this like an opportunity or it will be harder to guess
+because everyone is figuring out what the best practice is.
+I use plan mode for something, Nate Huck can use for something,
+Nick Serev can use for something, you know you can use for something else.
+At the end of the day, we are sharing what works for us individually.
+Sometimes it's work in practice. Next week, flawed changes something,
+launches something that will make some of this obsolete.
+We don't even have to go to plan more, maybe. I don't know. But,
+Here we are today, April 8th, 2026. This is what's working for me.
+It might not for you or your favorite creator, but keep that in mind whenever
+you're watching these tutorials.
+This one's going to be a big plan. So it has 10 steps actually.
+Database migration, adding webhook secret. And then we have Superbase edge functions
+and query helper library, sidebar and routes, webhook list page, add webhook model.
+Webhook detail page, function grid.
+So this is a really big build and it takes some time, but we will verify whether that's working or not.
+So we hit a minor roadblock here. It said, I built everything,
+but Superbase CLI is needed for deployment.
+I said, can you check if you have Superbase CLI?
+It said it is installed at Homebrew, ready to deploy.
+But all of this, sudden it says I need to authenticate first.
+So we are going to authenticate. And this is how you would do it.
+I thought this would be a good thing to include in our video.
+So I will add, open a new tab, enter to log in automatically.
+I think last time we used GitHub.
+Let's do that again enter the verification code
+and go to the terminal you're now locked
+in a new version of base and you're talking wonder clearly
+update okay now i will copy this and paste it with cloud code if it can update
+it it will update it anyway if you have a token you can set as environment variable
+so token is also a good way to use it.
+Where do you find the token you can come here or you can just ask it to give you the access,
+token link so it as well as you click on the link you will be redirected to the page name,
+so it actually created the webhooks page and when i click on register webhook
+actually created a webhook as well if you want to resend the book so including
+the book paid register webhook now.
+Right now it's by default giving me i don't think i saved the you know okay
+let's see also yours the ui is a fathom webhook secret doesn't apply for new webhooks,
+or everywhere right now i'm trying
+to create a webhook but it comes
+with a default webhook secret which is not needed
+we need to update both the
+functionality and ui if you read this right
+now fathom webhook is saying missing webhook id so what we need to do is come
+here wherever you have this you need to click on add webhook and the webhook
+that we created previously We copy it and come here.
+Paste the webhook, my recordings, external recordings.
+We don't have teams, so I want to
+give transcript also. I enable basically everything that it let me enable.
+And then we can come back and say, I added the webhook to Fathom.
+It should work now. Test that. And then we have also. we don't really need blind
+mode right now because these are straightforward instructions.
+Once I send these and then it fails and then again it's showing me the webhook
+secret which is only applicable for fathom not others.
+I would then go in and say hey even after I asked you not to repeat it.
+You are repeating it. It's not fixed.
+Go to blind mode. Now, it takes some time, but it fixes for good.
+So clean build, here's what's fixed, webhook test,
+webhook fully functional and operational create and then we have a ui fixes
+service selector pop up and we have webhook secret is conditional fathom's specific config,
+success state only shows secret if one exists.
+Webhook list cards fixed existing recent webhook corrected surveys from fathom
+to recent clear name, correct webhook secret hard refresh,
+check webhooks so we will go to webhooks and simple refresh is fine I guess
+recent webhook, we have the webhook functions and events I love this,
+great job we can create functions we
+should say two things right
+now just make it
+so that the data that we
+receive from fathom for this
+webhook is automatically saved to our meetings in future
+when we want to add additional functions we
+can do but for now just save
+that as an automatic behavior this way it gives
+you it almost becomes like a make.com prompt
+right this is what we are basically doing with make it
+you trigger a webhook you receive data
+you send it to other applications via api all
+these make functions are api calls at the end of the day and now think of it
+like a vending machine right people ask me money what is the difference between
+an innate automation and an agent, right?
+The difference is you have an intelligent.
+Entity reviewing everything and
+doing things for you while compared to previous
+any 10 automation or whatever so think
+of it like having a vending machine you click a button
+you receive a chip or a coke whatever you
+press that for you will receive it but think
+of an ai agent almost like a chef right it
+knows who you are what your preference is you like
+spicy medium mild or it
+knows what dish you like and it will
+create that dish make that dish and bugs
+anytime you want it to so that's the real
+difference and why it's super valuable today now
+more than ever so that's already done fathom the
+book automatically upsets every
+incoming meeting so the
+next thing is actually big build and significant step
+in making this work with or
+any other agent we are ai fine
+r application what do
+i mean by that you need to create another page called a settings page or an
+integration page what this has is this integrations page will have all the API
+calls that an agent can do to use our application.
+So if it wants to read the tables.
+Create webhooks or functions. Everything a human can currently do,
+move certain things, fetch certain meetings,
+add certain meetings, create webhooks or any other functionality that we are
+adding in the future, whether that's outreach or meeting or calls.
+I don't care. whatever feature we humans
+are using AI should be
+able to use it as well an AI agent should
+be able to use it so we do that by
+creating edge functions that an
+agent can call so this is going to be a
+big bill and we want to AI-fi so
+we are making this app usable by both humans and AI and every future moving
+forward so if you want to update that in your .md file you can but also this
+is an important change and we need to.
+Fill that edge functions and integration guide
+the idea is as soon as I copy the integration guide and paste it to my AI agent
+it should be able to pick up everything and start using the application it can
+be hermes agent cloud code agent or open claw agent.
+So this is a big thing and we
+need plan mode because i don't want to half-ass anything because especially
+this is a big thing right so once it comes the plan comes up with a plan i will
+review the plan and then we will see what plot creates.
+So the recording field, it created a plan.
+As you can see, this was before I ended this. This is a significant architectural change.
+And now the big one.
+And it came up with 19 endpoints.
+And I'll see if I can find any plan-related language here. No, I don't.
+Maybe if I open this plan, will I have it?
+Yeah, so this is it. Make every feature and database mission control usable by AI agents.
+Any AI agent, not just humans. So it came up with 19 endpoints that agents can call.
+And also, if you look at the plan, also update the Cloud MD,
+the files that need to change.
+Add a section documenting that every feature must be API accessible.
+Future features, outreach calls, etc.
+So this is a significant to do
+and that to do right now step one
+two three is done and we have three more
+steps i'm building integration page writing into sidebar wiring into sidebar
+and app.jsx and also updating plot.md with the ai first principle once that
+done we will review these features together because right now we have an option to.
+Once this is done, we will give the integration guide, whatever we generate, to our Hermes agent.
+And that's when this application becomes AI agent usable.
+And from there, because it has access to the database.
+Because it has access to our meeting information,
+we can build additional tools around
+it and functions and skills because remember
+hermes is a self-improving agent
+if you have clawed if you have open claw if
+you have gpt doesn't matter these will not
+improve themselves unless you
+explicitly say hey i want you
+to add this to lessons learned or based
+on what you learned in this new proposal i want
+you to update our proposal prompt so previously when
+we don't have this we used to have a cloud project where
+we have all the proposals successful proposals
+so if it closes in a day two days it
+will be our gold standard if it something closes sooner
+it will be the new one right but whatever
+we are learning we have to still manually update the
+proposal prompt this is the main proposal
+prompt this is what we are learning this is what we are doing but
+herpes takes this to a whole new level so
+whenever a discovery call happens it looks at okay what
+is the current proposal prompt that we have
+and what did we learn last time when
+we sent this proposal client said i don't
+want to see monthly retainer it's too expensive for me do you have any hourly.
+Support that i can use so now it automatically flags that and in this new prompt.
+New skill that it's going to update it will create we need to do this automatically so.
+From last time to this time, whenever you run skill, if there is any kind of
+change, any kind of feedback, it automatically updates a skill.
+And I haven't seen that with any AI agent so far.
+Now, we have software-written readjust. It finished doing the app in and it created two pages.
+I haven't asked the CI skills, but I asked for the declarations through.
+And it has a connection that it gives.
+It has the API and PACE API and the key that it can use for Hermes API.
+And it has meanings by plugs, functions, and stats.
+So what I need to know is I will copy the API key and come back to I'm going to read my Hermes is.
+You can go to the camera as well.
+So I see something along the lines of I'm trying to make you work on any of the creations.
+We will be working off of Hermes Visual Control application where I have access to my all my meetings.
+So I will give you the integration guide. The key is you take that integration
+guide and let me know your thoughts.
+If you need to save it first, save the integration guide and this guide will
+be in Pro.1 updated week-end week because we are also going to create,
+outreach and related solutions as well.
+The key is right now with the meetings, we will be creating skills for proposals,
+how we run a discovery call, subjections we are updating and we will create
+skills off of these meetings, and we will include these skills with new meetings.
+So that is the task, and if you have any feedback about the application,
+and what are some of the features that you would use,
+and would like to see, you're getting suggest more, but I want you to go through this guide for us.
+So i will just in case take a screenshot of this because this seems important,
+at the very least i will only do this screenshot in
+the chat everything else i've been using my
+natural language right so i pasted 287 lines of text i pasted one block 292
+lines and taught me this is already let me save this in the question first then
+give you my thoughts preparing mct scope manage.
+Now it is going to create skills for all of this. And I'm not really interested in that yet.
+Because I'm more interested in the self-employing, just health.
+So right now it says at least mission control, okay, has mission skills built on meetings.
+Okay, we are getting into something interesting.
+Okay, meetings, let's get We have 5 talks, we have 4 sheets.
+What did it do? Okay, we just, man. Like, we saved this context already,
+so I don't place the big picture of good kind of state. Let me test you in, please.
+Medium, seamless, you are an insane context.
+Yeah, allow for this session. I want to actually allow this.
+And then, traditionally, we will set that up later, but for this session, I just want to.
+Do this so API is live and booking here's
+what I see and my thoughts you have
+double meetings of 1-12 that is accurate but I'm
+not sure if you saw 1-12 by the
+time this is recorded I actually had
+another meeting if you remember the first meeting that we had was this one April
+8th as of recording this I had another meeting and it's added automatically
+added it's not like I not having any days between time seven.
+I did multiple actually. And those happened before I set up this webhook, right?
+So what happened after the webhook is more important.
+So bottom line is, it is picking it up.
+It is showing external, internal and unique companies mine total hours,
+75 hours of recording this week so far seven.
+Right now, my thoughts on integration start the REST API easy to work with,
+update insights action is a clear feature I can write structure analysis back
+to meetings webhook plus functions pipeline means we can automate on new meetings
+proposal drafts show a sort that meeting is not what I built in this order,
+analysis, immediate pull all 78 external meetings analyze transcripts build
+discovery cloud frameworks skill from patterns, objection handling skill from real objections,
+proposal template skill.
+Right now I have two things, I'd love to see an API. Okay.
+I want you to improve or actually rewrite
+your answer i will give you two finds one
+is our proposal engine what we are
+currently using and the prompt and the other one is discovery call prick these
+two documents are directly responsible for making us fifty thousand dollars since the past 30 days.
+And the funny cutting, which is also done by Hirvi Sisu.
+So I am conferring it is not as powerful as you, so I would last like you today
+to go at it and improve it against what you've done in these calls.
+And also note all of those 72 meetings are not sales calls.
+Look for Discovery Covell, 30 minutes with these are sales quotes.
+So we need to get two things, I will do that actually away from the computer,
+away from the street recalling, because I only want to do it.
+I will show you our current 34 prong, and then,
+actually, maybe we should use a older disc 34 prong.
+So i actually got this from an agent we
+have this on this document told me
+what we should do more just this is
+a living document updated after if it goes so i
+will copy the entire thing i will go
+to my terminal and paste it there first so it knows this is a proposal also
+document and also for the discovery call this is what we use and it is also equally,
+long you have all of
+these regions and both of them i can link it in the resources
+it's not secret or anything but this
+has helped those job industry so we have this discovery
+call framework and it takes the instant prospect prospect
+seemed in url company website and called orphans and
+we take all these three and create a
+set of questions it also has that services right so whatever we create at the
+end it will get the best output so we are setting this up it is taking two things
+right it is seeing the story call and also the,
+priples so now it has two things there's a serious player power.
+Let me save both documents as skills pull
+the actual sites calls from mission control and then give
+you a proper read so now we
+are getting into the action this is the
+sauce this is what you need you need
+someone that can drive you not just
+your sales clubs it should identify what
+you are doing with your clients and it will
+find the upsell opportunities for you or it
+can find any anything that
+you are missing because ai does that let's say i do a lot of q a and one of
+the sessions that we do is called deploy day right and when you go to deploy
+day I will show you what happened a couple of weeks ago.
+I don't want to open your family. I just want to show you in the browser.
+When I ask my family questions, I will ask, how many people asked for one-on-one coaching?
+And you don't want
+to know how many people actually attended one person
+might ask about possibility of one-on-one coaching and
+also someone i mean you know
+swipy also mentioned parent christian one-on-one
+so the reason i'm saying this is only
+four people attended the session and two
+of them actually asked me for one-on-one i work
+on a bunch of things it's easy for me to
+use that content I brought follow up with them but imagine if I have an AI engine
+that is actually going through all of my calls flags this conversation says
+hey you have someone that asked for.
+Abonan Makut why haven't you
+reached out let me reach out to you instead Vertigo Proposal
+Engine version to be released at any proposal convert
+all five and the hand of items and money transcript
+notes budget path the royal price internets proposal
+structuring this is a skill we have
+a skill and now it is saving both of
+these proposals and I think it also saved this story
+called framework skill which in-house
+these are the inputs that are vipwire.chinoe and archimony how do you so it
+omitted all the 68 lines but you see we have run with this now we have an agent
+that is going to take care of discord accounts and that should.
+You've been asking me for a bunch of questions.
+Update your allow list or contact machine. So you will talk to me yes.
+So we have sales calls. Mike, Jessica, Antoine. And we have Clouds here.
+Discovery call.
+And we will pay your transcription to Alham.
+So now you have an agent that can learn from every meeting.
+And also when your Gmail, which I believe you should.
+It knows which proposals are sent and what the response is and everything.
+That happens and it can even generate. Because this agent has the maximum context
+of what's going on to that point.
+You would be this would probably be the best agent or best position to answer
+before most important calls actual parents.
+And once you know about I want your team,
+do you like that answer what you want to see me build to take this to next level
+because this is not going to stop at the client meeting level we are going to look at,
+what calls are having Q&amp;A calls
+and identify opportunities we will
+look at client calls like Brian or
+any other client meetings and find upsell
+opportunities so every meeting goes through your eyes that is what we need to
+set up do you want to set up a call to achieve that or any additional features
+you want happen and the mission control let me know now.
+So what we did there was we allowed all of the command and concerning to any cpl,
+now you won't have to worry about you know give access which and the end of
+the day is hassle line this is going to be for superbase but it should be bit
+questionable when you're giving any descriptive commands,
+allowing or giving it the power to access to these descriptive commands you have to be.
+So it's quicker than clock code, omissions fixed data and the server browser.
+I've now looked at actual data and different types of calls.
+Discovery calls, 30 minutes a spouse, planning check-ins, hard seat,
+onboarding, updates, everything.
+So now I have Vortex, qualification, pain points, delay insights.
+For sales calls, budget objections, close probability, flying seconds,
+uptown signals, funders, satisfaction, hard seed, prospect numbers,
+market intelligence, onboardings, productivity, expectation.
+So, I have seen people talk about these.
+Can they? I'm not sure most people are realizing how important this is.
+Now, all of the meetings, I was told I'm the top 0.1% user of Fandong because
+I sit in a lot of meetings.
+Till now, all of this intelligence is not going anywhere.
+It's just sitting there. But now, for the first time, there is an agent that
+can actively learn and improve itself on every single aspect and explain,
+Trying to make my content better, trying to make my outputs better,
+trying to make my deals lose and or deal flow and how they close the conversion and everything better.
+I cannot see how powerful this is long enough so at least needs your input.
+I can set up these ground jobs right now which do you want to first meet.
+Meeting analyzer runs every two hours pings you on telegram for rth meeting
+analyzer debriefing all three let's do i want all three so we have,
+while you're building that do you want me to prompt my builder agent for any updates on,
+herni's machine control or do you want me to point you towards,
+the repository and you need the changes I
+prefer the first case because I can
+comment I can add my whole input and
+you prove it as we go so I
+would still prefer then you give it when you give me client so I can relay but
+in the interest of time if you want to make changes also I can point you towards
+the repo now where the folder is so you can make changes let me know.
+So this is important. At this point, because it's Opus 4.6, if I was using subscription,
+I would have left it to do its own thing.
+But now, we have to worry about text for users.
+The mighty running on load tokens, it's already doing these heavy cron jobs,
+reviewing all these transcripts.
+They are using self. And you can see the context building up.
+And why did we do that i don't want to add the stress of holding the whole thing
+okay so that's what i said for now i prefer option one to urinate and you make
+it build perfect so if you look at this,
+is amazing right things i should tell you without asking daily morning reading
+to telegram meetings today who they are with and what i know about them open
+action items from yesterday's meetings account health scores deployments,
+any leads going cold deeply fried and wrap up deals in the pipeline where they stand,
+total hours in meetings vs billable work skills that got updated this week top
+3 upsell opportunities across offlines real-time instant alerts hotly detectable
+on the story called telegram pay,
+okay and what do we do big but what i need from mission control these are feature updates.
+I love you.
+Okay we have oh what did i miss waiting for model response while you're reading that okay okay,
+all three ground jobs are alive okay i think this is like that good variation
+copy paste there is spec one meetings yeah i think that's the same thing and
+says you beating what yeah.
+Give these to your presentation and this order of
+clarity search transcript unblocks path analysis without
+clarification transponing into real-time tags
+enable pipeline tracking bulk get performance
+optimization contacts long-term crm foundation
+we are implementing everything
+and ideally i will go
+to plan work but this is if it
+requires plan work it will do it
+on its own is my expectation at this
+point we'll see what it does but
+this is a big set and a
+big list why this is going
+on i want to open my terminal okay
+let's see the to-do list building transcript
+search spectra meeting not tagged it is
+about get conversion web hub integration so
+this is why i don't use plan more all the time when ai agents are giving instructions
+to other ai agents usually they are detailed enough there is no for too many
+assumptions and things that can go wrong at least that's what I found but.
+Can you send how these three alerts look like in telegram next up is I will,
+do a resend integration where you can you have the ability to send email so
+eventually we will change this to both telegram alert and email alert but for
+now I want you to send me that,
+how each of this would look like.
+So I'm not sure if this is going to be 100% accurate on those things I'm looking at again.
+You'll get these three separate messages, quick and quick.
+In the next few words, they have a link in studio, one-to-all,
+meetings, and templates.
+Once you see that, tell me what to change. In the moment, what's two wordpresses are two sparse.
+He would day upon servicing whether the parent agency learns to get it.
+This was, let's check the net speed, how do you learn?
+Oh this is what it's great if you i want your own,
+so we're here so my camera is not blocking crown
+job response vision control now let me compile
+each repo and check six meetings in total one discovery call hotline kickoff
+one premier dfc skills updated proposal engine four patches average channel
+foot movement button pricing model and added consulting quality rate $100 an hour,
+6 calls for 3K for builders. Door guidance on network.
+Added a quarter payment option for existing clients.
+Added multi-phase agent build price instruction. 18.5K phase one.
+And 150K plus one year. Added 3 new green flags to watch for.
+Discovery framework, 3 patches. so you
+see after every sales call it's already
+improving this is amazing and the
+channel key patterns this week channel partnership new
+growth lever i can build it but i
+don't have the time fastest feels community members
+who watch their master has and already use
+the tools are closing in 24 hours so i
+don't want to talk too much about clients but
+multi-agent orchestration is a new high ticket
+anchor two big deals mentioned this week 150k
+and 35k brian wordy
+is tipping point cash is time to gain i don't
+want to okay client falls let's see my away from it but now this is amazing
+okay i received one okay so i'm assuming the funnel or this is some books i
+should receive the others sharply as well.
+This is amazing. Great job.
+So let's see what I found good to me.
+Now API has 21.0.24, total 5.0.1 added.
+So this is a great news for who? Oh, peace.
+So we base it. This is just the beginning once you land.
+Tell me more to tweak in the form and not be landmark to short.
+Whether the insights I wrote and the machine control claim.
+Oh, okay. I completely miss it.
+Had me enjoy that so we go to meetings
+and maybe i will add one of these open one of these and scroll down we have
+had these insights well positive deal probably is on the fire follow up within
+48 hours decision maker pricing this does no next send for part and should propose.
+This is how busy at least
+i think that is amazing comment down below what do
+you think and this is just a starting point like
+it said just in this video we will be building tons of amazing features that
+every business every service business in my opinion should have like a serious
+evolving proposal discovery client upsell system at their fingertips this is
+like intelligent superstars,
+Everyone I know records their meetings the way they record their fan and buyer choice order.
+I'm sure a bunch of you who are watching this video also record these meetings.
+But what are they doing at the end of the day? Sales are really useful.
+But flank calls, team calls, all of that is sitting there. But for the first
+time, you have a self-enacting issue.
+I tell you what. We need to add some feedback mechanism.
+At the insights level for each page so you can launch out effectively I want
+to add that to the build as phase two that's coming next.
+Tell me what to do and how are you how long how often are you pulling this mct
+i'm actually envisioning like a feedback button and how often are you pulling this mission control,
+for new readings and changes that
+i make and i think this comment
+and feedback section will be a nice addition to
+for me to give feedback or additional context
+about anything so essentially we need a
+place to communicate for me to add additional notes
+for each meeting and for you
+to work off of that so give
+me a prompt that i can give my builder agent focus and the api is for so you
+whatever the prompt that you need to set pull that you need to set to make this
+work to use local data and process anything that can make you enter now,
+anything goes.
+We got a little prompt so this is essentially making your meetings or we are
+now going into almost introduction level stuff.
+Initially, I was not planning to go this deep because this is what we do,
+what are the actual meetings.
+But I'm in a role, I just want to create this and see where we end up.
+Because I know now we are going into meetings.
+You know, my agent has a knowledge. It can do certain things.
+But combine that knowledge with your human end, it's unstoppable.
+So if you look at the rule list, create meeting feedback table,
+add five feedback API actions, deploy her BCPI and test call. So it's gone.
+Okay we have daily briefing
+dashboard yesterday's today's action
+items pipeline client health events
+okay now this is
+amazing it needs full dig down
+yes this is i've already if you
+remember i was geasing it i haven't decided whether i should do it or not but
+when we are building or doing this application i showed you how to i'll keep
+access to my google workspace then
+you give your headpiece agent access to google workspace it's on these,
+okay now all four up like and all
+three okay mcf system media analyze
+and ddb fare and case girls a few bucklers ordered a free 30 minutes you on
+mission control deal 12 play wrong direction size to Randy this guy was just
+a program 9 context and interaction request okay give that a better.
+Actually, I gave down from to building, but I am hoping to give you even more
+visibility to what's happening in my business.
+So, to that end, you need to access my Google Posting account.
+So, how can we set that up at least amount of friction?
+Can i give you an api key so you
+can set up all the google's cloud and acquired permissions and everything or
+should i talk to my buildup agent which is cloud core to do that for me or there
+is no way i could avoid some manual work here what are we looking at.
+So you got everything from the transcripts sheet now it is a skill that's already
+there so it knows the music if
+anything else is set up now it won't be or she's set up i'm not set up yet,
+here's the other sounds never up to me there's no way i don't sound manual steps,
+google requires you to do a potter is in a browser but
+you didn't really my head out i'm going to hear that here's the
+split about five minutes in one
+time and go to here create a project so I will do that anyway step by step so
+I will move this around and have my new row well open so that way you know what
+I'm doing you can see working.
+So create a project.fusexsustainable so maybe we have all here is so it's kind
+of wide to this idea we used any of this in this fire list,
+let's use the mini wall and I know this is made for my mini simply go API create
+project enable API and services and enable,
+API and you search for G,
+generic AI bring up you enable like.
+And now we have KED.
+So, next thing we search for Google Calendar API.
+Go to Calendar API, and let me do it.
+I don't know how or why we should adopt the test I thought we went into the
+other one actually that made a bunch of things easier and could rule up the drive API,
+enable this,
+Google Sheets API,
+Google Docs API I thought it would open Docs.
+BINPO API.
+So once we enabled all of that, we need to go to credentials and create credentials.
+No pattern is understood,
+and create mentions and try and id to hold on and application type.
+So, I'm so happy to be here.
+I'm so happy to be here.
+I'm happy to be here. We should have the ears and all that hurt, and shit.
+It's my bad, okay. I can grow to own. I can show smaller.
+And this is what I need to create.
+Okay, the benchmarks to enter the activation type is the application,
+and then click here create and alter the JSON and probably I need to block the screen.
+I'm being entangled,
+Okay Go back to the occupation,
+Yes, I'm sorry, I'm playing Google Call the Json file,
+Got the Json file.
+So, our military agent actually came back to Higg, who made us now,
+and when one of the discovery calls,
+we have our feedback, such a, and now we have, in flight, speed up,
+genius, asked her may still, a real alliance draft and So this glasmorphic design
+is okay for now, but inside it's clear,
+And hardly clear,
+So I think it's giving me an example on how this could be doing But this is, I like it,
+We can go back to our nation, so we can go on and give me a power to the Muslim
+candidate to call consent.
+Okay, and do it just now.
+Okay, we have this going.
+Do we have any locals here.
+That's the word I can wrote.
+Better than that, you'll now have access to my client communication so you can
+see what's going on there.
+But make sure you're not sending me emails unless I specifically see so. And that you.
+Usually, if it's open to law, I would never do this because it's really bad.
+And again, so she got to create and they
+were called and said and I just
+realized that I was not searching for the exchange usage for some reason.
+I don't know how long this would last because in client communication or communication
+the email that we received they said,
+I won't be able to use headmease explicitly because they didn't even name open it all but they,
+explicitly named,
+headmease that I cannot use it for some puzzle crazy reason my other headmease
+account is also using 6 string usage but it's not using it is actually using my current session.
+Do you feel like it's a bit faster this time around?
+It's nowhere near what they said, so okay. Might not last. It might do.
+Really, it has created what we asked, the feedback and everything.
+What you want to do now is basically go to my agent and rent in the registry.
+So we work on recent. But now, your agent has complete knowledge.
+It's time we are going to bow, we are up rich, so I rule.
+We will call this a self-improvement k-r-sdr and the idea is we,
+have a licp builder and a campaign creator which
+can create campaigns based on
+you can manually upload a csv file or it can scrape based on the scrapers that
+i provide whether that's it while you're on these scrapers so it can either
+take a manual campaign where you manually upload,
+a csv file and it should be able to provide an example on their own.
+Tell me csv that it likes the format of so we have the manual campaign creation
+out and an automatic campaign creation.
+So for example, one of the sclapers, if we build a Google Maps API,
+we can hack, and we can scrape the data just by saying accounting prompts in my core.
+And it will, we will use an AI, we will use an API key, we will create a search
+body that searches on Google Maps to get that list.
+And once we get that list, we can create a campaign. So we have a manual campaign,
+we have an automated campaign.
+That's the first piece. And the second piece, and the second part of the application
+or the function is ability to create campaign.
+Do you want some AI customization for AI customization?
+And then the third was high level we can create a custom lead map as well like
+an AI opportunity for something of those lines.
+That is the level of campaign that we want to be.
+And the key here is we are going to use a leesend because that's the best for
+best email for developers.
+Once we use leesend, we can create a webhub and we can track open rate,
+bounce rate, get to read, everything.
+So the idea is when these campaigns are going on, You will learn what is happening
+with these campaigns and we improve our campaigns every single day,
+a couple of times a day needed.
+So you will be also using that recent skill to send me emails about the daily
+piece, about meetings, episode opportunities and all of that.
+So we are building complete self-improving AISDM and we already have an outreach
+page in a nice mission control application but it doesn't really have any outreach,
+and this is keep this on hold everything that I told you is important and we
+are going to call it as a second step but for the first step I want you to give me.
+A prompt that I can give to my builder agent, cloud code agent that can create a skills page.
+Whatever skills you have, you need to be populating that page,
+these skills, and show me every day what you add and what you improve.
+So this is a log of how far the skills came from today, everything, the journey.
+So I want to build that next. once that is done once we've built through the
+whole thing we will block on service improving AISDR got it.
+You broke a search at nine lines that is a big chat indeed I was going to take
+a screenshot of it and include it in a guide but it is what it is you would
+have to watch it got it AISDR is saved for step two.
+First, let me understand what I'm working with skillset and give you a builder prompt.
+Now, this is important for a few reasons.
+You can see the gem. 81's can still be customable today.
+Now let me save the SDF vision for later. Then give you a builder prompt.
+So, they actually saved the vision that it has for here i still have version
+version 0.1 and now it also gave me the pin so now here's the prompt for your
+build-up agent i will copy all of this.
+Not big i had
+let me set up context things skills to
+machine control okay they want to
+so i just want to be able
+to see everything and this the
+prompt is detailed enough so i don't want
+to go through it but if you
+want you can test creating skills they
+will add seven api skill cp actions
+to our mcpi deploy mcpi into
+skills endpoint build skills page ui
+update sidebar nack.js it stops update integration speech and in the models
+we have built and mutified the whole thing perfect we have 7 skill endpoints
+to our mcpi when we got this building we can go to our api.
+To see what the
+flow will be right now meeting analyzer
+is starting every 2 hours daily briefing 8
+day weekly skills update 5 day feedback responder
+every 30 minutes skills sync 9
+am daily scan 81 skills sync to
+mission country what many manu sees
+on in skills page 81 skills sync 4
+custom mission control ones Proposal Engine Discovery
+Framework KSDR Vision Send it on
+the built-in So we do So we do We create
+our patches Proposal Engine So whatever it change
+Whatever it learn I have a highly Overview of
+what's going on Now that My Intel agent is working on this It will Take a while
+That will get back Now your job is to prepare A detailed plan For The Self-interving
+I guess you have the right, don't you?
+Keep in mind that you will be responsible in the journey this is the art this
+certain flowing is there feel free to enjoy as many features be called plans
+there and hello before tomorrow,
+and the other room take care of.
+So it has the vision across the board I've worked and built.
+But what I'm saying is, this is not for me.
+It's for you to work on. And I can only imagine what would happen if Clara Maitos
+was to take over and do something like this.
+It scares me and makes me excited at the same time.
+And that's one of the reasons I've been decided to post.
+And not everyone deserves or has to know what is possible and this might give
+you a different idea to work on your own thing you don't have to build the seed
+things that I am building.
+This proposed engine helped Brian
+to come up with his own thing and he calls it
+a malcomand and anytime he has a
+client it can prepare landing pages it
+can prepare and the delivery work now being
+done automatically and based on client feedback
+he's improving the system and now
+the system learns is this a
+client specific change or a process
+specific change it will ask for it okay this is
+a client specific cjam world update my
+actual skill file but this project specific variables I will update but if it's
+something that would be applicable for other clients it will improve it for
+m3bo right so the next time it does it it doesn't make the same mistake.
+So the only bottleneck for this is your imagination and your creativity once
+you know what you build what to build to make your life easier you can build with these agents.
+While that finishes writing the prompt for us, it actually went ahead and created
+everything that we asked for to learn code.
+So I copied this to give it to my agent.
+I know we have played the phone, but there should be a matter of way for these agents to communicate.
+But now when I go to AI skills, I can see reading summarizer and the story of
+humor and patched create the end.
+This is nice and biting skills i don't see many but the idea is,
+chloracold builds the structure builds the
+basics and hermes will
+come in and do the rest so now
+that it's finished i will go to my terminal and it
+is still okay i think let me save
+this as a reference i will paste this for the time being and if i go to the
+middle of the full spanked ground i can see which is full subject past proposal
+and again your voice is cellophane drawing,
+our person's in the fire and his pop onto it.
+Done. The full prompt is that is the I-B-L-P-R-O-N-D.
+Here's what better is given.
+You get to go there, when the still space is gone on how constantly the woman declares life.
+This is there. I will find my,
+green hole,
+and this direct piece from here and onward search for where this is.
+We can,
+now, I just open now,
+so this is what we have in the entire column a very easy detail,
+okay now I want to read the whole thing it just takes forever.
+Let's see, X, we changed the file, ok, we have audio, we have solid skills,
+change to log, we need building skills, this is custom skills, these are art skills,
+Some see guitar chords review in my life, high-sky radio accelerator recordings.
+So if these skills ever change i can see change of what's actually going on
+and i will probably come up with a custom button,
+we already have it, but make it custom,
+so it won't be annoying to see,
+because I don't think I would ever use Salsi or Xenetra makes sense and Jupiter
+makes sense but some of these things doesn't make any,
+density Thank you.
+It's feeling,
+here is still space for slowing and properly turned out to fish you'll see the
+skill state called aircleaning id and my key to detect any violence in this
+way from the patch locked and automatically properly.
+Also we need to save your memory,
+or one of their solo-based tables,
+because when the web day is contacted there is a test of losing context so I'd
+like you to set up a query to yours to even update your daily memory file,
+and the entire.
+Long-term memory which you already have but I
+can I should be able to see so create a
+memory page for us where i can see your daily
+memory logs that you're updating and out on persistent memory boom and anytime
+we call that we need to save dual memory log what we learned what's working
+and everything before we do that,
+how does that sound maybe my idea is still raw if you can refine it somehow
+do so i have super base cli it's authenticated maybe you can use it,
+glue create the table yourself or i don't mind what we are doing right now since
+the funding is a lot i think better approach would be giving me a problem i
+will give i build a patient.
+So this is like a bonus that you can have.
+Since Hermesia is already self-improving, this is like a bonus that we are looking
+at. We now came up with a set time.
+And before callback, then you're losing our remedy.
+If anything happens that needs to be properly, the idea is don't lose context
+when you're not prepared. Here is the redefined equation.
+The callback starts at any of the session currently.
+7.30 small stable high signal Daily vibratoom's engine here I object the arrows
+for talking about an antision Context as much no narratively,
+that press human race to small from it Session snapshots before any complexion
+in the end of certain flow up in context this way safety net if something gets
+compressed away it's desirable here Key insight,
+press in memories of facts and that always matter DD log is for context and
+matches to speak sessions,
+captions are created and something falls through the cracks let me check what
+I think you have in memory and give you builder prompt this is nice,
+while that is working we can look at work to hire.
+So we have a bunch of freezes. Rezoned their pockets from trends.
+To make this work, we need to get rezoned.
+Key. I have to.
+Rezoned is a platform where you can convert email for developers.
+But see here it's so cool. But you have a bunch of free stuff.
+A bunch of... You get 100 emails a day.
+3,000 a month roughly and also you have the ability,
+he's so old that they dropped and made it so actually love that about the enemies,
+so again I will properly
+do this update for my three what I'm
+doing is I'm creating a recent API key
+and I will copy this key this
+glad they knew it is secured they are not exposing it I copied it I went to
+my .env.local file and updated it because if I don't it will probably ask me
+hey you know you haven't updated it.
+Your api key so for those of you who updated the api key it won't work right away,
+will work but the idea is it will you'll be able to send test emails and marks,
+to really make it work you go to domains and you
+click on add domain and when you
+click on add domain it will ask you to
+okay enter your domain don't add
+your v domain because you already have your emails linked to it right or i would
+suggest you just use a completely different domain that you that is not linked
+to your main domain and even then i like to add a sub domain so My main email,
+my main domain name is growthcreators.ai But I added updates.growthcreators.ai
+Systems.wordiosystems.io When I do this,
+they will give me a set of DNS records that I need to update Some MX records, some text records,
+CNAME records Whatever they give, I just need to update in my GoDaddy,
+Namecheap, Hostinger, Cpanel But wherever you have traffic, development,
+wherever you have your details, just update them, fix, everything works.
+Once you have data, it will take about 20 minutes, less than 20 minutes, and you are done.
+And once your domain is verified, once you give the API key to your platform,
+.env.local, you got the running data.
+And the other thing that you need to do is you copy the recent webhook and you
+come here and go to webhooks and I want to add a webhook and I will add a webhook
+here and give out all the ads.
+Once you give all events add,
+so we added all events.
+I added a recent,
+api key in .env.local and this is the signing secret for webhawk I added our
+recent webhook that we made for the app in recent as well,
+and you can use,
+growthcreatorsupdates.growthcreators.ai domain to set up our email sending,
+and the sender name should be had in his mission so that was the cut that I expected recently.
+So i will come and go to i don't know in a show of the way,
+okay it's now the data prompt is ready so paste it text and also once it is
+done we have to paste another text but look at what are the enemies,
+but um another thing for us,
+and we go,
+add it down this time install the window,
+and open,
+maybe this time I'll open the folder just that way I can,
+we're just done I forgot what it's called,
+yeah, memory page builder,
+memory page builder.
+Then group is a spell generation,
+just place it here and the only additional pen that i'm going to do here is probably,
+wait till what it does and whatever summary that gives me i will just copy that
+summary and give it to the agent back till i have his agent and once we are
+done with that we continue building our SDI.
+So I did two things. The first thing is the memory page builder,
+the prompt that it gave me, I dropped it and said, once this is done,
+let me know what you built.
+And then we are working on this one.
+So it finished everything.
+It said all done. This is what it worked and then the second thing both features
+are complete it also said you know recent webhook secrets saved so it just,
+created answered.
+So it just created, actually recreated what it already said.
+And then the second feature, agent memory dashboard.
+So let's go to our app and check.
+Let's do a quick refresh. And now we have memory.
+And if we go to memory, we have persistent memory. We have daily logs.
+Build complete machine control with outreach, memory, feedback systems.
+Massive integration day build complete mission control decision made things learned context,
+active projects blocked items, skills updated you see how detailed this is daily
+logs and snapshots we have day one complete and every day so this is being updated
+by Hermes agent so we'll have more things,
+we will build up more things as we use and
+it says syncs every three hours so I
+don't think it hasn't been three hours yet maybe
+two hours or something now I
+copied whatever cloud code agent gave me and I just copied this last part both
+features and I went into the terminal and paste it so it also created whatever we gave it earlier.
+We pasted 78 lines, right, the previous input for everything is light,
+let me update visual control skills with final endpoint count,
+and it did that Hermes mission complete, day one complete,
+and then these 78 lines, actually, everything, the two outputs that it gave
+me, that the summary, that conclusioned.
+Now, we are here. We are, give me a status update of everything,
+what we built so far, and current workflow.
+What do I see every single day? What can I expect?
+And also, I want you to send me those three test briefs and everything through Resend.
+Okay i want to delete,
+this first mine give me status update of everything we built so far i really
+want to wait till we finish sdr and then talk about it because right now we don't really have,
+memory sync run hours everything is back to visible so I want you to send me
+those three test briefs and everything through recent that is more than enough my email,
+need and,
+I just give it my email.
+It's funny it said you explicitly asked i thought,
+we are only setting limits on gmail
+uh resend it's all set up
+after it but you see how it actually made it a hard rule no matter the tool
+you don't have or you don't want to send emails without any authorization or
+without explicitly user asking so this is a good thing.
+So something happened when I was using that speech-to-text.
+When I was, if you look at the email that I received, onboarding at recent.dem,
+and the reason that it happened is
+because it is trying to send from growthcreatorsupdates.growthcreators.ai.
+It happened because of my speech-to-text.
+So I will first give this additional context. I want to type other, it was supposed to be,
+I'll talk to Builder Agent to fix it,
+but I want to give you the API key,
+what is the best way to share API key with you, so you can configure recent
+on your end as well to send these emails,
+so
+My speech to text, Masrida, it was supposed to be Hermes at,
+that's the domain that I already own.
+Can you make the changes and also create a dedicated email function that agents
+can use to send, to use Resend to send me emails.
+So cloud code will make the changes and by the time it does that pick how you
+want to share share share with the local player,
+add it to .emv myself because i can paste it here but it's not the best approach,
+so for those of you the safest is echo recent api and hermes.env,
+so we'll copy this from here I will do this away from the screen.
+Okay let me check if domain is already verified or if another verified domain we can use and also,
+try calling recent directly since api key is in super base sequence now when
+i go to my email all systems operational 76 endpoints deployed and then recent
+is working three briefings incoming and daily briefing,
+these are the meetings that I have the office and the total meetings part I should model,
+client help active on it.
+And then we have meeting analyzer hotly
+detected beginning insights written back
+and we also have weekly intelligence this
+is i don't know what you
+think but i personally think this is amazing we
+have integrations and right now we have the outreach
+dashboard campaign leads icps insights we will work on this features next we
+do work on outreach since the prompt itself is initiated by our main agent which is herpes agent,
+I will make it involved so I received all the three briefings great.
+So what we did in the first run is we took whatever we generated in terms of meeting,
+in terms of how the workflow is and everything, application,
+and made it AI-friendly, ability for AI agents to use it.
+And we brought that slide to Hermes agent and said, hey Hermes,
+this is what I want you to use.
+And it started using it. It asked for improvements. We asked for,
+we did the improvements.
+In the second round, I wanted to show you how the other way works.
+Let's say I, this is the goal.
+I want you to prepare a brief for me on how you would build this or how you
+would want this built so you can use it for the best of your abilities.
+So, these will be more AI-centric than human-centric. What do I mean by that?
+If you see campaigns, right now I don't see create campaign button.
+And it comes to leads, I have test leads, but that's it.
+ICPs, I have Canadian accounting firms, but that's it.
+Insights, no insights yet. So, everything that has made all the 300 or 350 some
+lines of prompt that outreach had was entirely AI centric.
+So, I purposefully made it so because I want to be as minimally involved in
+outreach. But this is not the end result.
+We are going to improve this significantly.
+Just like how in meetings, I can take actions, I can do a bunch of things.
+In outreach also, we should be able to, just like how we have webhooks that
+I can register a webhook manually and fathom, resend any custom webhook.
+Just like that, we would be using our own human-generated ones as well.
+So without further ado, let's read it. I'm glad to hear it.
+That's the complete system running end-to-end. meetings come
+in get in analyzed insight insights
+written back a briefing to go out via telegram and email skills learned from
+every call memory backups every three hours and you can see everything on mission
+control when you're ready for the next step we got str builder prompt waiting
+first live campaign is just icp definition and a lead list away,
+love that okay i just need to do one more thing i want you to make sure the
+integration guide is up to date with all the new info the outreach sdr components that you built.
+So once the sdr component
+the outreach component and the reason how other
+agents can use the platform vision
+control to send these emails or
+whatever we have 77 endpoints in total but the integration guide may not be
+reflecting all of those so it's really important for us to make sure it is updating
+and we give the updated guide to Claude so to Hermes as well.
+Okay now the integration guide has been updated I will do simple refresh and
+go to integration copy for API reference now I can go to my terminal,
+I almost feel is it sometimes better to use telegram instead but I can I I definitely
+feel like Terminal is much better.
+Or we could have used that interface as well. For some reason, I like Terminal better.
+Not every Terminal, but Herbie's Terminal.
+Before we go into our AISDR complete build-out, I want to add something like a bonus here.
+What is this bonus I want to add nurture sequences this is like a level up for people so let's see,
+hey I want to add,
+email nurture sequences now that you can see my calendar you can know as soon
+as someone books a discovery call,
+And when someone books a discovery call, I want to subscribe them to an email sequence.
+So this is a nurture sequence. And this will be a proactive nurture sequence.
+Sometimes if they have a week long, we will send alternate days,
+a mandatory 24 hour and one hour before the events.
+So two emails go out regardless. So cal.com also sends a notification So you
+don't have to worry about it.
+So, when I was doing that, I was entering my prompt into the terminal.
+I realized cal.com also sends a notification.
+I don't want it to confuse between any other discovery call or a follow-up call
+that we book with the clients for a sales call and send these nurture sequences, right?
+So, you don't have to worry about it. I added
+cal api key in the Hermes
+environment and created a
+webhook in our Hermes machine
+control and sent it to one of the webhooks on cal so I want you to build this
+nurture sequence component the goal of this nurture sequence is to make them show up to the com.
+I will give you additional case studies inputs and all of that as well kind
+of businesses that we worked in the past and you can use and search any case
+studies as well do some more research or happy on relevant applications,
+so two things you know how we did the echo,
+recent api key equal to the whole thing I did the same thing for the cal api
+key and we go to our Hermes and are we going to register webhook cal.com webhook,
+register webhook I will copy this webhook click done it may be different if
+you are using another application but this is what you would do for cow how
+long after users don't show up on cow in your meeting that's fine,
+enable webhook booking cancel create and all of that good create webhook now we have this and,
+I went to the terminal this is the.
+Webhook that I added in cal.com,
+and I will paste our case studies here so you have some context.
+I also added one more thing, which is client project documentation.
+These are the case studies, some of the case studies, not all case studies that we worked with,
+where we documented what problem was solved and what improvement it did,
+who were the actors involved, timeline for this, and any additional context,
+the impact and everything.
+It is a great resource for nurture sequences.
+And when I go to my I
+already pasted this in the final
+five lines is the pasted
+block this document and when I looked at Fathom when I looked at Webhook it
+says Fathom that's one I thought okay may not be working I thought since we
+made Fathom Webhook the first thing it's showing that but right now it goes deep
+cal.com webhook is pointing to fathom
+endpoint which expects a fathom payloads cal.com
+sends a completely different format we need dedicated handler
+here is the full builder prompt
+and let me set up the agent side
+ground that personalizes nurture emails okay
+is this the prompt or is
+the prompt say okay natural
+sequence build a prompt build a natural sequence that is okay we do have that
+temp folder maybe i can just go to i need to go to n natural sequence.
+There may not be the right place them looking what happened builder prompt is
+temp nurture sequence builder.
+Yeah we'll take this and just drop it here.
+So it showed me what how the flow works issue sequence system trigger someone
+works by account but hook,
+so we do have bunch of calls onboarding calls we have consulting calls strategy
+calls we only need to trigger this for discovery calls make a note of that and
+this is the output from our builder agent,
+i want you to give me a follow-up prompt where,
+not going to ask for a follow-up prompt i will just paste whatever output that
+the builder agent gives in here,
+so it finally finished building this and it said cal.com webhook update change
+from fathom webhook and point to this we'll copy this and go to webhooks and
+edit this yeah they are letting me edit,
+point to this webhook and save,
+the book updated successfully I,
+come here.
+I go to,
+my agent,
+and taste it.
+While that is going on, we can review this.
+We have anything that it created for natural sequences.
+We'll see.
+Persistent Pembryskill and Nurture personalize your call all new Nurture Sugar's discovery call,
+No, not just 30 minutes with money It says discovery call from can If you don't
+see that, if you just see 30 minutes with money Don't worry,
+don't trigger Nurture Sequence and for those only for discovery calls booked on cal.com,
+so it is doing everything that we
+don't mentioned so I want
+to build the work we
+did so far I think this will be where the CRM piece we are talking about right
+now we are leveling up whatever we initiative is allowed to do so I don't want
+to go off script too much let's continue working on AISDR,
+right now I'm.
+We have two flows right manual and an automated manual is user updates,
+uploads to csv and you create the campaign and you populate the campaign with
+different sequences like being agitated solution or using certain case studies
+using what we scary from their website,
+so we create a nurture sequence,
+I don't think we should call it nurture sequence we create an NL sequence that
+we will use to target this cold audience and generate leads that way, that's the first thing,
+it can be a manual upload or automatic, like I said.
+We need a place to upload the csv file and you take care of these campaigns you take over,
+so you are working on a lot of things I
+want to see a log somewhere AI log for
+your last poll last check
+in and 3 hours makes sense
+for memory 30 minutes makes sense for some of
+the meeting related stuff feedback but nurture
+sequences should be sooner don't you think and shall
+we do 15 minutes or do you have another plan how often do you want to check
+and will there be a local demon that wakes you up or can you do that automatically
+by setting the cron let me know how that works.
+So we will go to our mission control once and look at where we are at we have,
+close to 90 endpoints right now we do have bunch of things that we can do we
+have this memory feature i don't think it is accurately syncing and we have
+daily logs why does it show it's ninth.
+Oh, okay, three hours ago.
+Choose single iOS API, its function pattern, log, contact driven, analysis,
+memory sync every three hours, local sign, and snorted crumb noise,
+read-only, GitHub, Googlebox, is never done without approval nice it is working
+and we will check back a few more,
+minutes later to see if we received any update okay agent memory it says plastic never,
+it's a good thing to flag.
+Good question let me answer each then we'll build a name
+agreed nurture his book discovery calls
+cold outrageous campaigns or email sequences two different
+system different intent timing for natures nurture center it's all runs every
+15 minutes super base and that handles the actual sending on time my nurture
+personalizer at 30 minutes is just for customizing content And before it sends,
+that's fine because welcome email sends immediately handled by Kyle.
+Now wait, when the emails are scheduled for 9am next day, I have hours to personalize.
+24 hours and I have all templates, so the timing is all. You're right, dodge it.
+They run inside gateway process. No separate daemon. When gateway is up,
+crons flyer on schedule.
+Each cron spawns a fresh Asian session, does its work and delivers the result
+and exits. AI activated log.
+This is the missing piece. You should be able to see exactly when I checked
+in, what I did, what's coming next. Build into the system.
+And let me create a cron that manages campaigns end to end. Let me update all
+crons to update log their activity.
+Hit crons now feedback.
+Create this activity log should be a page on Hermes machine control that's one
+and also when I looked at memory it says last sync never and we set it up more
+than 3 hours ago why did it not run,
+and when it runs I need to see the AI log in on your dashboard so can you give me,
+so I'm hoping the prompt that you already gave me does this please confirm so
+we have AI activity log prompt dot MD I will go to.
+The temp folder and copy right here and hit send,
+so i'm not sure how many of you are reading this i won't get this intentionally
+so you see activity allowed as dedicated page we are building that now get your
+two questions also add a dedicated activity page done also make our memory synchron
+parses correctly going forward,
+so I think there may be a
+bunch of things that it
+does activity now what builder
+covers what's already working builder prompt fixed
+all crowns now locked activity now refresh memory
+page so you see entire entries now
+0 minutes ago perfect persistent memory
+user dot user rules and Manif
+Kansani founder and we have nurture only agent memory outdated docs don't know
+why it shows 9th already this is 8th snapshots perfect love it.
+Great. Now our next task should be,
+I want you to review what AISDR was already built and how we should take it
+forward in the sense of managing the campaigns.
+We agreed on timing, but the next step should be how to customize and actually
+sending these emails through Resend.
+What inputs that you would need from me for if you make the manual workflow,
+where I can upload the CSV and you can create the campaigns and send and trigger
+the campaigns and monitor what we receive on webhook and everything,
+then based off of that we will build an automated ICP builder,
+campaign builder as a second step,
+And this application should be both human and AI agent friendly,
+both should be able to use it.
+Right now it feels like AI, it's only made for AI agents.
+Let's see,
+so this csv file,
+create a dummy csv file that users can download.
+And include that in a builder prompt and once i download that i go add real data,
+and I will start with my personal data
+to see how it works then we will produce an actual ICP builder maybe something
+simple like Google Maps scraper or something or Appify or LinkedIn scraper and
+test it with real prospects,
+so i have a picture it's
+looking c file yeah sometimes
+i feel like it they are talking over each other and i'm restating a bunch of
+things while it gives me this new better prompt I want to look at what AI log was,
+where the AI log was created I don't see anything so we have.
+Yeah i don't think we have ai log i will ask,
+so manual campaign what i need from you
+csv file who are these people
+what is the goal any tone or angle preferences that's it the flow we have the
+entire flow and it is saved at one of the folders I believe we have CSV campaign
+flow builder prompt I want to go here,
+upload hit send.
+We need another UI-focused prompt when we are at table. I think you misunderstood what the AI log is.
+I want to see a persistent miss last check-in on screen.
+When was the last time you polled to check tasks or the last check-in?
+And also a dedicated AI log page where I can see the activity log of everything
+you've been doing both on Hermes and by yourself.
+So I don't have to leave, I don't have to wander.
+Also create a calendar based on what on my calendar and based on what tasks that you're working on.
+So if you see a cron if you have a cron a
+brief add a simple this is
+where the brief will be sent this is where you would be checking for campaign
+but if you are checking campaign for every 15 minutes you don't have to show
+up show that in the calendar for tasks that are over three hours long.
+They qualify for a place on calendar and any other insights you want to add
+to this calendar page and AI log page, feel free to do.
+So we'll also see whether this is a big ui build okay maybe it takes time let's wait for what,
+the terminal comes back
+with hermes will say okay and
+this is the prompt i made whatever the prompted
+comes back with i will just drag and drop
+with the builder and i know this is a telephone game but this is the best we
+can do right now it almost feels like I have two cloud code terminals working
+together now but Hermes is the more intelligent and more you have to,
+build all of this on cloud to make it this powerful the skills self-improving
+skills yes you can build that to an extent on plot core itself but we'll see.
+It came back with the builder prompt is ai presence builder prompt,
+and also i think campaign flow builder the campaign redesign from earlier these
+two give you complete human friendly experience did we not give campaign flow builder I think already,
+my AI is currently finished working on campaign flow builder prompt,
+this is the output,
+and the next thing will be presence builder prompt so if you see here agent task rounds Inc.
+So this must have both the presence, all the three, presence by AI log page,
+unified calendar, three features that make AI agent feel present and visible
+across machine control.
+This is also an important thing.
+This is done.
+AI presence builder is next. While that is working on that, I will come back
+here to the terminal and paste it here.
+So let's take a look at good campaign for human-friendly for the BuilderPulse.com,
+just enter in campaigns but with the existing API to make sure everything works
+before you put real leads in,
+so we go to outreach we go to campaigns create new campaign,
+okay I asked for,
+test outreach Vancouver.
+Upload CSV, example I think it's, it happened because it is working on,
+the app, right, campaigns,
+10 dollar real estate ready for you,
+ok, I think my agent is my Hermes agent is working on this right now so I'll
+see, I don't want to test myself.
+Okay, I missed a bunch of things,
+What's pressing is my honest assessment What's not working yet?
+CSV file with real leads Format only email is required,
+majority call email down preferences,
+ok, assume everything and send a test campaign to mani at growthcreators.ai,
+and I'll just review to,
+give you a green and move on over to making the automated flow where you can
+scrape the leads yourself okay,
+just send the test campaign to,
+the above email or actually make it send it to.
+So my builder agent must have finished a bunch of things whatever it's updating
+I can see things refreshing in the side,
+why does it has the AI log now manual,
+meeting analyzer cron status and it has integrations I thought there will be a calendar page as well,
+last check in two minutes ago nice,
+analyze three meetings, three leads, oh this is nice actually,
+this is a cool little upgrade,
+there is a calendar page, I don't see, oh okay,
+I think once our agent takes a look at this, we'll update the calendar.
+I checked the campaign desk for a question about Acme Dental.
+Hi John, noticed Acme Dental was serving patients in Vancouver.
+Had a quick question, how much time does a friend desk spend answering the same questions every day?
+I know this is not perfect it's not crazy
+but it is something it all comes down to how much what is the quality of your
+lead list came across my reality group had a good question when i knew late
+comes in sell out your website how long does it take so i will update the,
+copywriting best practices that's working for other
+clients and the basically in the point of using Hermes AI is Hermes agent will
+figure out what's working and what's not working and improve every single day. That's the idea.
+So let's see if it is refreshing anything.
+Now that calendar 12 events showing all pages are populated with real data.
+Is it, did you populate with real data,
+yeah shift command R let's do a hard switch.
+I don't see,
+calendar populated it's empty right now.
+We have, let's look at AI log,
+ramp-in manager, naturopers, slicer,
+so these are all the check-ins that's happening every single day,
+so there is one line fix that needs to be done.
+With the builder,
+so now that the campaign is working i went to,
+the appify platform i have a five dollar free grid,
+so for proof of concept we'll build something simple so i copied the api key
+i went to my dot env dot logo in the Hermes Mission Control folder.
+Now I just going to
+say I want to build an automated campaign creator or ICP builder feature that
+we have in outreach section.
+So when we are creating this automated campaign we should be able to use Appify,
+API F5 I already added the API key in the,
+.env.local file I want you to take that search for scrapers,
+do some research use proof of concept,
+use this as a proof of concept it doesn't have to be perfect from day one I
+just want to show that it's working so for you to make this work you can,
+depending on scraper what they would need in the ICP builder so you can ask me for Or...
+Entering all the parameters or
+criteria required you can make some
+by default you ask which vertical they
+belong to like law firms geographical location you
+can it can be dropped down like us canada and
+further cities i don't want
+to go broad or global but now so
+once we have that in the campaign you need
+to go out and scrape these leads so i
+haven't updated my appify so we'd
+have to use something from their free plan keep that
+in mind free scrapers we do have five dollar credit and
+once we scrape those leads we would send create a campaign and our agent will
+our Hermes agent will take over from there so build this feature and update
+the integration guide with anything new that haven't been done so far.
+So this is a big prompt a big
+ask so whatever this creates
+once it finishes we will take the output to the agent now that we also am upgrading
+the integration guide it knows exactly what we did and where to look for automated campaigns.
+But if you are using this for your own agency or if you want to use this for a client,
+obviously you would have to figure out a bunch of things in advance like what
+scraper you're going to use and what they because they have a targeted icp right you,
+don't want them to come up or figure out what their acp is so if you are building
+something like this in production it would be different.
+So, run a real google maps scrape file, it'll be fine so, we'll copy the whole thing this is good,
+decorations page escape the scrape arounds,
+maybe, we will try and give everything that we have here to our agent and,
+outreach campaigns find leads and auto campaign accounting firms in Vancouver,
+next Canada US,
+so Vancouver BC next scrape
+max results 20 can start scraping and that speaks 30 to 60 seconds I like the
+UI to design and everything while this is processing we can come here and give it,
+and I think our agent will come back faster than the AI.
+So, the agent told me there was an error,
+and when I went back to check the outreach that we are doing,
+and also through an error,
+we are going to give our builder agent the same error.
+So we have a fixed and deployed client leads and auto campaign.
+I want it to be human because why not?
+If agent is creating a bunch of taras, law firm Vancouver,
+law firms.
+Get my English,
+LBC Dex 20 starts creating.
+So I don't want to go to my agent for a second I feel like maybe both of us
+tried to do this at the same time, both human and agent, and did something.
+I haven't read the error, what it was in detail, so I don't know really.
+But while this is going on, I'll just wait, see how this goes,
+and then involve, hey, I got a campaign for you.
+And to do the same thing with open flaw
+and cloud code it took me a lot of time so
+the script is complete it is literally
+less than opinion i'm not sure if this is accurate or even close we will look
+into that so when you go to campaigns law firm vancouver ai processing saying
+I will go back to the agent and paste it.
+I also manually created a campaign for you, Law Firms Vancouver.
+So law firm campaign is ready for your review check
+your email you got the notification that's nice and i
+don't want to be receiving these
+emails just because i'm sitting here i want
+to be in a position where i receive these
+emails even when i'm not right so your
+campaign 20 leads 3 email sequences review and
+mission control now it's in localhost i'm not sure what
+it's doing sending me links but once it's deployed you can expect actual things
+so if we refresh and go to the campaigns platform ready for review right now
+it's not opening which is a problem,
+right now the campaigns when I click on them they don't open I see ready for
+review, processing, but when clicked, nothing happens, we need to fix that.
+And because plan mode is taking really long okay it's fine i don't want to,
+go rely on plan mode if we just
+follow what i taught you earlier your
+first try you try and fix it by itself if
+it doesn't work you do this right and also
+i wanted to show you something the kind of webhook events
+that we receive when we send
+out these events so we are sending
+recent emails and these recent emails
+are sending back at it
+so anytime i open anytime i click
+a link all of that is tracked so you
+can see 45 events that's written here 45
+events email click open delivered all of this in detail so who opened it what
+is the message that is sent so great information very useful for building the improvement flows,
+so I want to make this a real thing as real as possible so if you have any thing related to the.
+They look good and I am working 100% on vision control.
+We need an approve button and you need to be polling like every 15 minutes for approvals.
+So we go to outreach we go to campaigns what did our builder say,
+campaign guides and outreach are impliquable they are just there with no navigation
+let me add you through with three changes they are now clickable if i open this
+at Asian Notes platform strength elites from Google Maps,
+placeholder.local what is that?
+So one is active,
+and go back,
+and also some of the emails have placeholder in the address maybe we can skip them,
+I just realized something campaign updates even though it's a test we don't
+want to send from it this mission control I wanted to,
+change that.
+Right now I'm updating the sender to money kunasani and may and I had group
+at updates dot growth creators dot AI so that way they receive email from my
+need for these campaigns not had me set mission control,
+builder agent also made these changes,
+So essentially that is it, now we have a working campaign system that will,
+as soon as we approve, it picks up its sense, I'm just waiting because it's
+7pm where I live, not the business hours.
+Right now it says window is nine to five and limit 50 so i will resume this,
+and because i see the change from there too.
+Now you've already seen how it
+works with whether we show
+sent delivered bounced open clicked
+or not everything we have seen the
+events in here in the webhook
+section so all of these would be tracked and maybe tomorrow i will because this
+is not business hours like it's suggesting anyway now you keep it that way and
+that is it right now what did we set out to do we wanted to build a meeting,
+assistant meeting intelligence and outreach that is improved every single day,
+we need to set a cron at every
+single night or day whichever you
+prefer based on what campaigns are working what kind of messaging getting more
+opens and more clicks whether the lead magnet ones are performing well so based
+on these insights we improve the skill and improve.
+Our copywriting skill what do you think of this idea should we set a cron jaw for this.
+As it should be dedicated from not bolted onto campaign manager,
+here's my thinking send emails respect send windows stack till execution need
+to run often daily at 9 pm make sense and window 9 to 5 pm is closed all of
+today's opens clicks have had time to register and the insights feed into tomorrow's sense.
+So it created something,
+now i want to upgrade on what we have in our skills page so we have all skills
+we have changed long this is good but i want to add a skill builder.
+We go to our agent and say, okay, the next feature that I'm envisioning is improving
+or adding another tab into our skill speech.
+This is called Skill Builder.
+What this does is it takes a URL or a YouTube transcript or an article,
+MCP, any kind of documentation.
+And once we paste it, we extract a skill from it.
+What we can learn from this, you will be the one who is processing.
+We will just enter and submit for review.
+AI will process and update the output.
+What do you think of this flow? what you need to make this happen once we finish
+our discussion we will come up with a prompt for both human and AI friendly front end,
+an API endpoints for you to work on it.
+Here's the system so daytime rehab 9 to 5 camping manager recent webhooks tracks
+events nighttime STR intelligent analysis results,
+Find patterns in data, patches, outreach, copywriting skill Tomorrow sends use
+improved copy PASP, nash text solution,
+email score, initial copy Knight SDR intelligences On subject day, 28% skill patches,
+login site Campaign manager uses updated pattern Knight,
+more data, more pattern skills I don't know how many of you got to this point
+than actually reading this deserves in the first intro because this is amazing. We are talking about,
+an ai that can improve itself over and over every single day based on results
+this is amazing okay and now we have this prompt we can learn from this,
+it will simply enter and submit it,
+okay the next feature yeah we it is cutting.
+Great idea, this turns skill creation from something that only happens during
+our sessions into something you can feed anytime.
+Drop a URL, paste, transfer, or process it into a structured skill.
+Here's how to find the flow.
+Paste URL transfer, pick the category. Add nodes, focus on X.
+Click Submit for Processing.
+Extract all of this and by spot's teachable knowledge here.
+And when to use, generatestructuredskill.md. save
+as draft file and click approve still
+goes live in my skill library this is next level what i can handle url the transcript
+products pdf what i need the content the url paste helpful key distinction to
+each submission we can once go or should be smart enough to decide,
+different topics yeah multiple skills each get their own approval and i want
+you to i write a prompt for my builder agent,
+it's full prompt is available in the temp folder as always,
+you can scroll down skill builder
+prompt we'll give this to agent and then discuss what it does briefly.
+We have paste URL, click extract and analyze fetches content,
+analyzes adjusting skills, create proposals review each proposal card, approve edit, reject,
+skip, creates actual skill files,
+so the builder is doing that, I like the new 15 minute polar podcast too.
+Yeah i don't want to wake up my armies or talk to armies just for that let's go to ai log,
+we have sync to memory entries three minutes ago which is nice campaign law firm,
+i want to go to bc market for review 20 leads let's move it okay well strip
+20 leads king of maps this is nice that is,
+detailed the text is still a bit light it
+can be brighter i believe but it is manageable we've come a long way so the
+final skill that i was thinking the final part once we build this skill builder is we need to work on.
+And I think the third part that we created already is linked to meetings and emails, I believe.
+For the third build, we wanted to look for what's going on with our clients.
+Figure out upsell opportunities, project management and all of that.
+It is already doing it in the emails that we are sending.
+I think that we can conclude
+this way after we built this
+skill builder i think it's long enough
+you do you manage to build the
+complete meeting intelligence engine and now
+your agent can send alerts to the
+team members as well if you give it team member emails and
+say after the meeting you assign tasks to
+these devs you send emails to these devs
+it will do that all right just like
+how we are doing this outreach and if
+you look at campaigns ready for review and if
+i go here it has 20 leads ai str processed
+and pitched 20 leads info a
+lot of info emails it's fine
+i don't mind let's approve
+and see what happens and again it's not like it we are going to send this today
+it is going out tomorrow if i haven't edited or posted this video by tomorrow
+i haven't edited the video by then i will make sure to record this first thing
+in the morning and show you how it goes.
+So let's see the status and if we look at the to do i think it's,
+a big list creating skill builder tables add eight skill builder api endpoints,
+deploy and test endpoints build skill builder tab ui update integration page will then verify,
+so it is done this is a summary copy it I want to see it first,
+if we go to skills and skill building.
+So we have AI still processing right now I did not do anything it is my agent saying,
+submission is in everything is live let me do a quick end-to-end test submission
+is in content extracted waiting for processing let me process it right now so
+you can see the full slope,
+and now it said click approve okay he's in deliverability that's new i don't see it,
+so maybe a refresh will fix that skill builder he's sending the best practices,
+okay email deliverability best practices and demand bomb mark pounds management optimization,
+this is a test anyway.
+So when we when i go to an integration it's not integration second long i can see the con,
+all the crons are updated in array i long because i don't think i see the one
+for this skill builder that you are,
+polling every 15 minutes,
+one two three four five six seven eight I don't think all crons are here cron run and we'll see,
+so how do we make sure you're updating the AI log not forgetting when we add
+new cron which file needs updating to fix that.
+So the skill builder cron just updated and also when i go to skills and skill builder,
+ready for review approved approved ones will be worked upon in 15 minutes so
+we already checked the log that the crons are running cron runs you can see,
+all year runs friday there
+are some weekly skills there are some nurture center
+runs every 15 minutes we have simple base gone no nurture in all due str intelligence
+standing by runs nightly at 9pm no campaign data to analyze yet so the only
+thing that's near keep your machine on and all of this works,
+So I just sent this message.
+And it should fix it. But overall, this is an amazing application from what I was reading.
+One of the messages that he sent me was saying, you have all of these things, amazing things.
+What do you want to, where do you want to go next?
+I thought it was a good way to end the session. That line is really strong.
+Where do you want to go that's fixed two layers of protection skill file when
+I can treat in your crime no single config file controls it for instructions
+if you want a harder guarantee your builder could make activity touch stats,
+it's okay I want you to take care of it.
+Perfect, we have that we resolve that everything that we set out to build I
+think gets built already,
+we to double check that we can ask our builder agent I want you to review the
+PlotMD file did we build everything we set out to build or is the third feature still missing,
+I think the third feature actually evolved into something even better.
+Awesome, actually, we built everything that we set out to do.
+Meeting intelligence, outreach autopilot, custom dashboard.
+So all three are built, but the cloud.md is still.
+It still references all schema on me to full rewrite.
+Yes, go ahead.
+So that's not really that important at this point Okay,
+What do you think about the system?
+I think we can, it is a good point to start at this point.
+Read whatever my Hermes does. And maybe towards the end, what we have for campaigns, I will update it.
+So what we build today is not a tool. It's an operating system for your business.
+That's what I've been telling you.
+Most agencies have scattered tools. CRM here, emails out there,
+meeting notes somewhere else.
+Founders brain holding it all together. what you have now
+is single brain that sees everything so this
+is just scratching the surface
+50k your proposal engine made
+in 30 days for the static system this one compounds what's your take what feels
+right and what feels off yes we will improve the system we can make and additional
+videos on Hermes if you are interested.
+But the next video we are going to go is Cloud Code Masterclass.
+If you don't want to miss it, please subscribe.
+And also, Agents in a Box, if you want to skip the entire thing, get all of this.
+And also, the application that I was showing you earlier, which is even more
+powerful, even more in points. it's like, I can, right now this application has, what, close to.
+99 endpoints or something this one
+has almost 3x that
+and so many other features you
+can build skills you can build tools you can build mcp
+servers you can build apps the op
+center itself has meeting intelligence research hub phone
+agents email agents lead enrichment we have
+a skill factory we have agent teams we have workspace
+animated offices and we have i
+can go on and on if you are interested and want
+to get access to this and also weekly three
+hour live sessions i'll see you in my agents in a box school community first
+link in the description and everything that was discussed every prompt i used
+all of this step by step i will create a master class guide.
+That guide will be available in the second link in the description.
+Thank you and I'll see you in the next one.
+For those of you who are wondering how do i access this
+we cannot do this forever in
+a local host right i would
+ask this to push the code
+to github and deploy to netlify you can
+just ask that command and it will do it i want
+you to push this to github and deploy to
+netlify and this is the only command
+that it would need to do that except we
+if you were to push this
+to github and netlify i want you to use the super base authentication where
+the people that are getting in should be authenticated properly and you need
+to be creating sign up sign in pages you have allotant i can show you quickly how to do that too.
+But the video has been really long so far,
+and I've did that in my previous videos and will do that in the future video
+as well this is something that you would be using as an internal tool anyway
+so you don't really need that in my opinion now you have a place,
+a control center a meeting, intelligence engine,
+outreach engine a self-evolving AI SDR,
+everything at your fingertips.
+You can see all the skills.
+You can build new skills. You can see all the changes to your skills,
+whatever changing, however, you know, your skills changes after the meetings.
+And if you want to see more on agency side, how to automate your business,
+how to build self-evolving skills around your business, comment down below and I will do that.
+And I'll see you in the next one.

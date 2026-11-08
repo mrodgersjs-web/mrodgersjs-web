@@ -1,0 +1,236 @@
+so the first model this is the one that
+I I if I had to bet you know making a
+probabilistic joke I would say that you
+probably most of you have at some point
+encountered
+um but I'll I'll uh I'll do a quick
+review anyway so each node in a BN will
+call them BNS uh we have a directed a
+cyclic graph so no Cycles corrected
+edges uh each node represents a discrete
+random variable typically in examples
+and everything typically you do a
+Boolean random variables and if there's
+an edge between two nodes X and Y we say
+that there's that X is a parent of Y and
+this represents direct dependence we'll
+see this in a quick example in just a
+second
+and each node is assigned a conditional
+probabilistic distribution or called a
+conditional probability probability
+table that precisely encodes this
+dependence so the the probability that
+the variable takes on the different
+possible values given all possible
+values for their parents and that
+quantifies the effect
+this is what the nice computational
+aspect about this is that each variable
+is independent of its non-descendants in
+the graph given the state of the parent
+so if you know what the the parents
+values are then you have probabilistic
+Independence and you can do
+um tractable computations answer queries
+that kind of thing and the absence of an
+edge between two nodes represents
+conditional Independence so I won't get
+into exactly how this works because it's
+a little bit complicated but there's
+another concept that we'll see again
+with Mark of random Fields called the
+Markov blanket that in the case of
+Bayesian networks is a bit more
+complicated that's why I didn't put them
+on the slides but the Markov blanket of
+a node is comprised of
+um the parents of the node the children
+of you know of the of that node and the
+parents of the children so if you have
+that Universe of
+of
+[Music]
+um
+of nodes and you can fix them you'll say
+that we'll see that that's
+um the probability of the of the node is
+independent of the rest of the graph
+that might sound like that's not much
+but imagine uh a Bayesian Network with a
+thousand nodes that you can never you
+know really do brute force computations
+on and maybe that Markov blanket is
+comprised of five six eight nodes then
+you're in luck because you can do
+computations basically with that severed
+part of the graph
+so the classic example here is this has
+been you know explained to death um but
+it's really it's a really nice example
+by UDA Pearl where we have and another
+thing that I always like to point out uh
+due to pearls from California so
+um that's why there's always some
+reference to earthquakes and that kind
+of thing so this this person has an anti
+uh burglary alarm in their home it's
+pretty good as we'll see the the
+probabilities that they have detecting
+um you know burglaries but it's
+sometimes also responds to small
+earthquakes so
+um the setup here is that we have two
+neighbors John and Mary who have agreed
+to call us at work if they hear the
+alarm so imagine the house and you know
+Mary lives on one side and John the
+other
+John will always call when he hears the
+alarm but sometimes he mistakes the
+sound of the phone with that with the
+alarm so you know it sounds pretty
+pretty similar so maybe you'll
+um he there will be a false positive
+there Mary on the other hand enjoys
+listening to loud music so sometimes the
+your alarm sounds and they they don't
+hear the alarm at all so the kind of
+questions that we want to uh to address
+in given this kind of tool is given
+evidence regarding who called of course
+who didn't we would like to estimate the
+probability that there is in fact a
+burglary so should I be worried or not
+it's basically the question so like this
+this scenario we're at home John calls
+saying that he hears the alarm but Mary
+does it
+is there a brokerage so here we have
+let's consider these five
+um Boolean variables burglary earthquake
+alarm John Carlton area
+and one way to model this is
+with this Bayesian Network so we have
+we'll see that
+nodes that don't have any parents are
+called
+um prior just they have prior
+probabilities so what's the probability
+that your house
+will be
+um the victim of a burglary suppose
+we're in a pretty uh
+you know safe neighborhood it's one in
+one thousand and because we're in
+California it's twice as likely that
+there will be a an earthquake so it's
+two in one in
+um in a thousand
+here's where it gets interesting the
+alarm
+as we said is pretty good at detecting
+burglaries so suppose that uh here we
+have one entry for each kind of uh
+setting that these could have so if
+they're let's let's look at this one
+um this was the most interesting if we
+there is in fact a burglary no
+earthquake so true for B and false for E
+there's a 94 chance that the the alarm
+will detect it
+if there's very unlucky scenario where
+there's both a burglary and an
+earthquake then it goes up slightly to
+95.
+this is the the third row here is where
+there's no burglary but I get a false
+positive due to the earthquakes it's you
+know it's pretty high 29 chance that the
+alarm will sound but there has to be
+about an earthquake so it's a small
+small chance at that event and if that
+happens there's a 29 chance within that
+universe that
+um the alarm will sound anyway and the
+last one is
+the probability that the alarm would
+just go off for some other reason right
+so no burglary no earthquake there's
+still one in one thousand
+chance that this will will sound
+these
+um these two
+cpts or conditional probability tables
+they encode what we had in the in the
+problem statement where we said
+um suppose that the the alarm sounds
+John will call most of the time 90 of
+the time
+and if the alarm doesn't sound he'll
+um he'll call us five percent of the
+time
+right
+so for Mary Mary's is lower because as
+as a problem statement said she enjoys
+loud music so it's a lower chance that
+she'll hear it so that's why this is 0.7
+and she has
+a lower uh false positive also than John
+so
+the theory tells us that the joint
+probability distribution of of you know
+all possible worlds given this these
+five variables can be factored in this
+way because of the conditional
+Independence that I was talking about in
+in the previous slide
+so there's a really interesting property
+that given any probability distribution
+there exists a Bayesian Network that
+encodes it though there might be very
+you know unwieldy structures in the
+graph that might be necessary for this
+to happen so it's not it's not the case
+that
+any probability distribution can be
+encoded in a nice nice one like this
+this is a pretty nice structure you see
+this is they're
+um you know no it's a very simple
+structure but imagine it with five
+variables you could have you know
+everybody with everybody connected in
+the whole mess that would be you know
+not very not a very good model
+and there are several common problems to
+solve given a BN
+um the most one of the most common is
+probability of evidence so compute the
+probability that a subset of variables
+uh have given values uh marginally a
+posteriority probability that is given
+evidence e in a variable x i compute the
+probability
+and most probable explanation that is
+given evidence find the assignment for
+the rest of the variables that has the
+greatest probability so for instance in
+our in our case we might say
+John called and Mary doesn't then
+what's the most probable setting for
+right and as you can see I went over
+these but these are all bad complexity
+classes so sharp people please be
+complete in the decision version NP
+complete is the the nicest class and
+it's still you know a very
+um it's an intractable class in general
+so all of these problems are intractable
+in their General case but the good news
+with these models is that they have
+special cases with Associated uh
+polynomial time algorithms that are
+either depending on the case either
+exact or approximate so it's a very
+it's a very noble noble model about VNS

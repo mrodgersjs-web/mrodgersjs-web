@@ -1,0 +1,415 @@
+Today we are talking about why everyone
+is talking about context graphs. What
+are they? Why you need to pay attention?
+And why they might be AI's next big
+idea. Welcome back to the AI daily
+brief. You could feel basically everyone
+in the business world right now shaking
+off the slumber and restfulness of the
+holidays and starting to get back to
+work. And I anticipate that it will be
+almost no time before we start getting
+big announcements in AI land again.
+However, as people come back, there have
+been a couple of conversations recently
+which I think are particularly pertinent
+to the shape of the AI industry and what
+people are focused on building and
+implementing in 2026. And one of those
+is this idea of context graphs. The
+concept is about what it takes to get
+agents to do more and more important
+work, which it turns out some argues is
+not just about giving them access to
+better organized data, but about giving
+them access to a type of data which
+right now might not exist. So today
+we're going to talk about what contacts
+are and why everyone's talking about it.
+But we actually have to go back to an
+essay from earlier in December by
+investor Jamine Ball who wrote long live
+systems of record. And while his
+starting point was a debate in the
+startup and VC world around how agents
+change systems of record and what it
+means for the startup landscape,
+underlying this is actually a much more
+important conversation about how AI is
+going to intersect with human knowledge
+work. The animating idea that serves as
+our jumping off point comes when Ball
+writes, "If an enterprise workflow needs
+to know something at a specific step,
+where is the one place that answer is
+considered canonical?" Because as
+workflows get more automated and more
+agent-driven, the fragility point often
+has nothing to do with the model and
+everything to do with whether the agent
+pulled the right value from the right
+system at the right time. Now, Ball goes
+on to dramatize this. He writes, "Anyone
+who has spent time inside a large
+company knows how messy this gets in
+practice. Take something as simple as
+what is our ARR? Ask the sales or and
+you will get one number. Ask finance and
+you get another with a different set of
+exclusions and adjustments. Ask
+accounting and now you're talking
+revenue recognition, not bookings. Ask
+legal and they will correctly remind you
+that half the ARR in a fast growing
+business is backed by contracts that
+look nothing like the neat recurring
+subscriptions you want it to be. Now he
+continues, imagine you tell an agent, go
+calculate ARR by segment and send a deck
+to the board. Which ARR should it use?
+Which table is canonical? If sales and
+finance disagree, who wins? If the
+billing system and the warehouse have
+drifted by a few%, which one does the
+agent treat as truth? The more we
+automate, the more important it becomes
+that someone has done the unglamorous
+work of deciding what the correct answer
+is and where it lives. Now, Paul points
+out that even before agents,
+rationalizing and reconciling all this
+data is something that has been a
+priority for big companies over the last
+decade. It's where we got all of these
+data lakehouse and data warehouse
+companies. However, in practice, how
+much these things actually change the
+way companies operate is up for debate.
+Ball writes, "The problem is that most
+of this lived downstream of the
+operational world. The sales team still
+lived in Salesforce. The finance team
+still closed the books in Netswuite. The
+support team still worked tickets in
+Zenesk. The warehouse or lakehouse was
+the retrospective mirror, not the
+transactional front door. Now agents
+come along and in his words change the
+equation. Agents are inherently
+cross-system, meaning they don't live
+solely within one of those functions and
+they are actionoriented. They are not
+just trying to gather information. They
+are trying to make use of that
+information to do things. That
+combination, he writes, means agents are
+only as good as their understanding of
+which system owns which truth and what
+the contract is between those truths.
+Under the hood, something still has to
+say this is the canonical customer
+record or this is the legally binding
+contract term or this number is the one
+we report to Wall Street. That something
+might be a traditional system of record.
+It might be a warehouse back semantic
+layer or it might be a new class of data
+control plane product but it is
+absolutely not going away.
+Now this is where we jump from the
+systems of record essay into the context
+graph idea. This was written again by
+investors Jay Agupta and Ashug from
+Foundation Capital which they called
+AI's trillion dollar opportunity context
+graphs. Their key observation is that
+there is actually an entire category of
+information missing. They write, "Balls
+framing assumes the data agents need
+already lives somewhere, and agents just
+need better access to it, plus better
+governance, semantic contracts, and
+explicit rules about which definition
+wins for which purpose." That's half the
+picture. The other half is the missing
+layer that actually runs enterprises.
+The decision traces, the exceptions,
+overrides, precedents, and cross-system
+context that currently lives in Slack
+threads, deal conversations, escalation
+calls, and people's heads. The
+distinction, the authors say, is between
+rules and decision traces. Rules, they
+say, tell an agent what should happen in
+general, whereas decision traces capture
+what happened in this specific case. I
+think for our purposes on this episode,
+an even simpler way to understand it is
+the what versus why gap. And the simple
+idea here is that while systems of
+record are good at state, i.e. this
+particular deal closed at a 20%
+discount, they are bad at decision
+lineage. Why a 20% discount was allowed
+this time? As the authors point out,
+those decision traces, i.e. The why
+lives in Slack and DMs and in meetings
+and in human heads, limiting how much
+autonomy can then scale. As the authors
+put it, agents don't just need rules.
+They need access to the decision traces
+that show how rules were applied in the
+past, where exceptions were granted, how
+conflicts were resolved, who approved
+what, and which precedents actually
+govern reality. Now, the good news, they
+say, is that agents have a really great
+ability to collect exactly this sort of
+information. They write system of agent
+startups sit in the execution path. They
+see the full context at decision time.
+What inputs were gathered across
+systems? What policy was evaluated? What
+exception route was invoked? Who
+approved and what state was written? If
+you persist those traces, you get
+something that doesn't exist in most
+enterprises today. A queryable record of
+how decisions were made. And this is
+what they call the context graph. The
+sum total of those decision traces. as
+they put it, a living record of decision
+traces stitched across entities in time.
+So precedent becomes searchable over
+time. The context graph becomes the real
+source of truth for autonomy because it
+explains not just what happened but why
+it was allowed to happen. Again, the
+what versus why. So just to make this
+crisp, here are a couple other examples
+that they give. One category is
+exception logic that lives in people's
+heads. For example, we always give
+healthcare companies an extra 10%
+because their procurement cycles are
+brutal. That's not in the CRM. They
+point out it's tribal knowledge passed
+down through onboarding and side
+conversations. Another category is
+precedent from past decisions. We
+structured a similar deal for company X
+last quarter. We should be consistent.
+Again, this is the common knowledge of
+the organization that lives in
+conversations, not queriable databases.
+Another obvious but important one is
+cross-system synthesis where a person a
+human looks across data in Salesforce
+open escalations in Zenesk read a slack
+thread where someone flagged churn risk
+and ultimately synthesized all of that
+in their head decided to escalate
+leaving a record that only says
+escalated to tier 3. The final category
+of examples they give are approval
+chains that happen outside of structured
+systems. And this happens all the time.
+your boss happens to be walking by and
+you ask them if you can add an
+additional 5% to the discount. They give
+a thumbs up and keep walking. The record
+is only going to show the final price,
+not who approved the deviation or why.
+The context graph is the sum total of
+all those decision traces if and as they
+get captured. So what would it look like
+to actually have this context graph
+available and play out in real life?
+Here's the example they give. A renewal
+agent proposes a 20% discount. policy
+caps renewals at 10% unless a service
+impact exemption is approved. The agent
+pulls three SEV1 incidents from pager
+duty, an open cancel unless fixed
+escalation in Zenesk, and the prior
+renewal thread where a VP approved a
+similar exemption last quarter. It
+routes the exception to finance, finance
+approves. The CRM ends up with one fact,
+20% discount. The context graph,
+however, has all of that information
+about why it contains all of those
+decision traces. And once you have the
+decision records they write, the why
+becomes first class data. Over time,
+these records naturally form a context
+graph. The entities the business already
+cares about, counts, renewals, tickets,
+incidents, policies, approvers, and
+agent runs connected by decision events,
+the moments that matter, and why links.
+Companies can now audit and debug
+autonomy and turn exceptions into
+precedent instead of relearning the same
+edge cases in Slack every quarter. The
+feedback loop they conclude is what
+makes this compound. captured decision
+traces become searchable precedent and
+every automated decision adds another
+trace to the graph. Now the big question
+quite obviously becomes how do you start
+to map this? Is this something that can
+only be forward-looking or is there any
+way to go backwards? Is this something
+that is only going to be relevant as
+agents come online which can naturally
+create this context graph and map the
+why or are we talking about adding the
+mapping of decision traces to the human
+processes that exist right now. For
+example, are you asking leaders to talk
+to a voice agent after making decisions
+that does that capturing and
+categorizing? Now, this essay was hugely
+resonant and tons and tons of people
+took and ran with the ideas. And one of
+the areas where people spent the most
+time is in this question of how best to
+design these systems. One of the most
+interesting follow-ups came from the
+cogent enterprise substack who basically
+argued to not pre-onstrain the AI in the
+design of these context graphs. And this
+a little bit hearkens back to the idea
+that I've shared before of why I think
+automating existing human workflows is
+sort of a dead end or at least is mostly
+about short-term value. My argument is
+that ultimately agents are going to find
+ways to do things that come to the same
+output differently than the way that
+humans would do it. And so trying to
+constrain agents to just doing the exact
+same things that human did doesn't
+really make sense. The cogent enterprise
+substack is arguing something similar
+about how we think about the design of
+context graph mapping. They write the
+most counterintuitive development. We
+shouldn't predefine these context
+graphs. Traditional knowledge graphs
+fail because they require predefining
+structure up front. Context graphs
+invert this completely. Modern agents
+act as informed walkers through your
+decision landscape. As an agent solves a
+problem, traversing through APIs,
+querying documentation, reviewing past
+tickets, it discovers the organizational
+oncology on the fly, it learns which
+entities actually matter and how they
+genuinely relate through use, not
+through a manual schema someone designed
+in a workshop. Each trajectory leaves a
+trace, which systems were touched
+together, which data points co-occurred
+in decision chains, how conflicts were
+resolved. Accumulate thousands of these
+walks and something remarkable emerges.
+The organizational schema reveals itself
+from actual usage patterns rather than
+predetermined assumptions. These become
+world models, not just retrieval
+systems. Trying to give this a specific
+example, you can imagine in a lot of
+organizations that they have one type of
+policy that in practice they break
+almost every time. In other words, the
+exception isn't actually the exception.
+It's just the rule, but for whatever
+reason, it's not been codified into
+policy. Going back to that discounting
+for health companies example from the
+original piece, if that happens every
+time, that's actually not an exception.
+That's just the policy in practice when
+it comes to that type of organization.
+And what Cogjent Enterprise is arguing
+is that if you allow the agents to
+figure out this organizational schema
+from the actual real life experience,
+they're going to be able to show those
+policy in practice areas rather than be
+constrained by the preassumptions of
+policy that people would have programmed
+into them. Now, of course, the other
+question that comes up is where humans
+fit in all of this. Box's Aaron Levy
+also wrote an essay about similar themes
+called the era of context. One of the
+big questions that he explored was that
+if everyone has the same access to
+talent, i.e. all of these agentic super
+intelligences, how do they then
+differentiate? What makes a difference
+between a good company and a great
+company? For him, it comes back to
+context and how we design for it. And
+here Aaron puts crisply why context
+engineering was one of my key
+predictions for enterprise AI in 2026.
+He writes, "Designing our systems to get
+agents access to that data and ensuring
+that all of our agents can interoperate
+on that data is going to be incredibly
+important. Further, companies will have
+to drive a substantial amount of change
+management to make this all work. We
+imagined that AI systems would adapt to
+how we work. But it turns out due to
+their extreme power and inherent
+limitations, we will instead adapt to
+how they work. This means we will have
+to optimize our organizations and
+workflows to best enable context for
+agents to be successful. The core tenant
+of this change is that the user is
+responsible now for directing and
+guiding agents on how to do their work,
+ensuring it gets the right context along
+the way. In essence, he writes, the
+individual contributor of today becomes
+the manager of agents in the future.
+Their new responsibilities will be
+providing the oversight and escalation
+paths, a meaningful amount of
+coordination throughout the work that
+the agents are doing, and shephering
+work between the various agents. Just
+like managers of teams in the preAI era,
+one might say that the decision traces
+that make up the context graph are the
+most uniquely human part of how work
+gets done. They are the decisions that
+break the rules or even if they don't
+break the rules technically, break out
+of the patterns by which previous
+decisions were made. So much of being a
+good company is about being nimble and
+responding to reality as it presents
+itself, not as you imagined it. And it
+seems to me that as we figure out and
+negotiate the relationship between agent
+workers and human workers, it's likely
+that a lot of the human roles are going
+to be in these areas of judgment.
+Anyways guys, that is a little primer on
+context graphs. I think it's a concept
+that you're going to hear a lot more
+about this year as part of the larger
+conversation around context engineering
+and hopefully you now feel more
+prepared. For now, that is going to do
+it for today's AI daily brief.
+Appreciate you listening or watching as
+always and until next time, peace.

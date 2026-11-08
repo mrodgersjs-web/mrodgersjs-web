@@ -1,0 +1,1035 @@
+ladies and gentlemen good afternoon and
+welcome to our webinar I'm really
+excited that we have had so much
+interest in today's event we've had over
+300 registrations so that's really a
+great sign in terms of interest for
+Bayesian networks and Bayes yeah lab let
+me start off by introducing myself my
+name is Stefan Kennedy and I'm the
+Managing Partner of bei Zi USA and with
+me on the line is my colleague stacey
+logit whom some of you may already know
+from telephone conversations and web
+demos so let me talk about what we're
+going to do today
+this is today's agenda we'll briefly
+talk about motivation and background for
+all this and I really want to keep this
+very brief and simple so we have a
+maximum amount of time for our examples
+so I expect about 10 minutes for the
+introduction and then 50 minutes for the
+actual examples to work through the
+examples we're going to look at are two
+examples pretty much from daily life but
+as we will see they're fairly tricky to
+reason about even though they may look
+trivial on the surface we will see how
+Bayesian networks in Basel AB can help
+overcome some of the old cognitive
+limitations that we have just real quick
+all the slides you see plus a recording
+of this webinar will be available later
+this evening so you can watch all this
+again and look at the slides in detail
+also
+today's examples are very
+straightforward so you can easily
+replicate them even with the simple
+trial version as you may know we have
+two different types of trial versions
+one very simple demo or somewhat not
+simple restricted I should say and then
+you can also apply for an unrestricted
+trial but for today's topics the simple
+demo will do
+as always in our webinars please submit
+your questions why are the question
+panel even though we won't have time to
+respond to them live you can simply
+submit them and we will respond to you
+via email and we will also post the
+answers onto our user forum but or
+rather we will post both questions and
+answers to the user forum but don't
+worry we will post those anonymously so
+don't hesitate to ask questions that you
+may think are perhaps silly questions
+every question is a good question and
+perhaps others will appreciate if you if
+you raise a point like that
+all right let's talk about our
+motivation today and let me begin here
+really for for two thousand years or so
+logic and reasoning have been very
+closely associated and you you know when
+you have a conversation with somebody
+and this person may appeal to your
+reason they may often say just think
+logically about this and that is not
+necessarily wrong to to request logic in
+reasoning but it is not sufficient
+because what we need to realize is that
+logic is not enough let me share with
+you a quote in this context and that is
+classical logic has no explicit
+mechanism for representing the degree of
+certainty of premises in an argument nor
+the degree of certainty in a conclusion
+given those premises so that's a very
+very important point so you may ask well
+you know what do we do
+well first of all we need to realize
+that actually a lot of the reasoning we
+need to do in real life in everyday life
+really stretches across across a broad
+spectrum in terms of the strength of our
+it's actually very few things are on the
+side of pure logic that's when you have
+a hundred percent certainty regarding
+the conclusions and the premises but a
+lot of things that we reason about are
+somewhere in between we use premises and
+and arguments that may be either be
+strong or weak that puts us in the space
+of inductive logic which is really the
+biggest part pure formal deductive logic
+is just this tiny tiny little sliver at
+the right end of this spectrum so how do
+we how do we deal with this how can we
+work in this space
+if formal logic doesn't work in the
+majority of the cases well roughly 2,000
+years after Aristotle we have our
+Reverend Thomas Bayes has come up her as
+Discoverer has realized how we need to
+reason with probabilities what is now
+known as Bayes theorem or Bayes rule
+allows us to compute our confidence in
+an assertion given supporting evidence
+so Bayes told us how we need to compute
+with probabilities how to reason with
+probabilities and um again let me share
+another quote to emphasize that Bayesian
+inference is important because it
+provides a normative and general purpose
+procedure for reasoning under
+uncertainty now you may think this is
+some arcane mathematical formula that is
+only of theoretical interest but let me
+non let me let me let you in on a secret
+and that is human reasoning is very very
+flawed or can be flawed and therefore
+this formula Bayes rule is hugely hugely
+important there's an interesting book by
+Kahneman at fair
+skee title judgment under uncertainty
+heuristics and biases and that book
+provides many examples of how reasoning
+can go wrong and one of the examples
+that I will share with you later is
+derived is adapted from that book but
+here you need to be a little bit more
+explicit or precise because human
+reasoning is not universally bad as it
+turns out human reasoning in the
+direction from cause to effect is
+actually pretty good it's actually
+fairly consistent with normative
+reasoning so what we intuitively come up
+with in our heads our intuitive response
+to a situation as long as we reason from
+cause to effect such as from disease to
+symptom is rather consistent with
+normative reasoning meaning what would
+be the proper result had we computed the
+situation with Bayes rule however where
+things fall apart is when we go the
+opposite direction such as again
+returning to this relationship between a
+disease and a symptom with the disease
+being the cause and the symptoms being
+an effect if we have to reason against
+the direction of causality that's when
+really things start to fall apart and
+our it intuition is no longer right
+that's where we get into fallacies and
+there are some very famous fallacies in
+that context such as the prosecutors
+fallacy that you may have heard of and
+that is of great consequence in many
+situations and there there are probably
+lots of people wrongfully convicted of
+wrongfully acquitted based on that
+fallacy occurring in courtrooms today so
+and this is an interesting statement
+again
+my final quote for today that says
+despite the mathematician of probability
+in the Enlightenment mathematical
+probability theory remains to this very
+day
+entirely unused in criminal courtrooms
+when evaluating the probability of the
+guilt of a suspected criminal so and you
+may perhaps find that surprising given
+that all the sophisticated stuff that
+happens in forensic labs and DNA testing
+and you may think how can go how can
+things go wrong in this very scientific
+environment well for that purpose I want
+to share with you our first example and
+start to reason and highlight how
+reasoning can be quite tricky so I'm
+going to tell you a story and this is
+all about establishing the color of a
+taxi so here here's the story the
+situation is that we have a taxi that
+was involved in a hit-and-run accident
+at night
+that's what we know as it turns out in
+the city where this happened there are
+only two taxi companies the yellow cab
+company and the white cab company now
+the yellow cab company is the market
+leader they account for 85% of the taxis
+in this particular city 15 percent of
+the taxis belong to the white cab
+company so 85% taxis are yellow 15
+percent are white nothing else so now we
+have a witness of the accident that says
+the taxi that caused the accident was
+white so that's the information that we
+have with that information we go to
+trial now we start our trial in a
+fictional country named lodging land
+where formal deductive logic rules yeah
+that's why they have a black and white
+flag it's either this or that so let's
+just goes where our premises we
+taxi cause accident premise 2 - taxi
+companies in town yellow and white
+premise 3 accident witnesses taxi was
+white conclusion the only possible
+conclusion the white taxi company is
+responsible for the accident well done
+however we live in likely land where we
+work also with probabilities so instead
+of black and white we have shades of
+grey so in at the trial in likely land
+we also involve an expert witness who
+tells us about the accuracy of human
+vision under specific lighting
+conditions and after assessing the
+situation he says at the lighting given
+the light conditions at the time of the
+accident the human vision had would have
+an 80% accuracy in terms of
+distinguishing between white and yellow
+so that's his statement we can formally
+encode this in the notation of
+probability so this would mean given
+that the color of the taxi is white or
+yeah given that the color of the taxi is
+Wyatt in 80% with an 80% probability the
+witness would correctly detect it
+conversely in 20% of the cases the
+witness would incorrectly determine or
+incorrectly state that the taxi is
+yellow so same applies to the other way
+around as well so that's our accuracy
+that we have all right you are now the
+jury in likely land and you have to
+determine whether in deeds white taxi
+cab company is responsible for the
+accident now we've heard everything we
+learned the mix between
+yellow and white taxes on the road is
+85/15 we have a witness statement that
+says taxi is white and we have the
+expert witness who says we have an 80%
+accuracy in terms of the reliability of
+eyewitnesses with that I would yeah I
+will literally make you the jury and ask
+you what you think as to what the
+probability is of the taxi actually
+being white so please take a moment and
+let me know your answers we're now
+collecting the responses and then we
+will see how that relates to to what we
+calculate very formally using Bayes rule
+so I'll just give you a few more seconds
+I see that the answers are still rolling
+in
+okay I will close the survey now I think
+we have enough responses and I will
+share the response with you now what we
+have collected so far and this is really
+quite interesting because we have a kind
+of a bifurcated or a bimodal
+distribution where we have almost the
+same amount of people who think the
+probability is in the 51 to 75 percent
+range and 25 to 49 percent range so it
+seems to be quite interesting so um
+obviously we have lots of smart people
+who are attending this seminar so how
+come we are not in easy intuitive
+agreement in this regard all right let's
+find out what the correct answer is well
+we can use Bayes rule to compute the
+correct answer we simply have to plug in
+the values we know the premises the
+expert statement and so on and with that
+we can compute the answer I will not
+give you the numerical value yet we will
+we will see this shortly now while this
+is the correct the technically correct
+approach it's quite impractical you
+couldn't just do this on the back of the
+envelope so you certainly couldn't do
+this in your head and I would argue you
+would probably even struggle if you had
+to do this with an Excel spreadsheet it
+very quickly becomes quite cumbersome
+and bear in mind we only have really one
+witness statement here but in most real
+cases we would presumably have tons of
+witness statements and perhaps
+disagreements among them so what are we
+going to do here
+that's where Bayesian networks come to
+the rescue
+we're going to
+use our domain knowledge what we know
+what we have heard so far about the
+problem domain we will encode this in a
+Bayesian network and the way we will
+encode this is in such a way that it is
+in sync with how we naturally think
+about problem domain so we'll encode our
+knowledge from cause to effect what
+comes naturally to us where we are
+intuitively right and then we will leave
+the more tricky part reasoning in the
+other direction reasoning from effect to
+calls we will leave that to computer
+aided inference I'm calling it that
+casually that's where we use Bayesian
+networks in Bayesian lab now in previous
+webinars and seminars we have used
+machine learning to create Bayesian
+networks we have had lots of data and we
+used learning algorithms and so on we
+will perform knowledge discovery today
+however we have no data we just have
+some premises we have a witness
+statement and from that and that we need
+to use so what we will do today is we
+will encode our knowledge we will
+literally draw this network ourselves
+and then use that for diagnosis in a way
+the witness statement is like a symptom
+and we're trying to reason back to the
+cause to what happened and who is
+responsible for the accident so we're
+going to use our Bayesian lab software
+of course that's the software platform
+we can use for encoding knowledge for
+machine learning Bayesian networks for
+editing performing inference analyzing
+and so on but today we will exclusively
+focus on the manual encoding part and
+performing inference so let me just give
+you a quick preview of what the
+graphical user interface looks like very
+straight forward on the
+left side of the user interface we have
+what we call the graph panel that's
+where the Bayesian network graph is
+encoded and then on the right-hand side
+that's where we have the monitor panel
+that's where the little monitor is
+reside that allow us to see what's
+inside the nodes that each represent a
+variable from our problem domain so
+those two parts we will see and I will
+now try to pause where where is my
+button here I will try to pause
+PowerPoint and switch into Bayesian lab
+just bear with me as I make that
+transition
+okay now you should be able to see basal
+ab our our graphical user interface and
+initially you just see a big blank blue
+screen now we will open up a new a new
+graph panel this is the canvas onto
+which we will draw our network so that's
+what we're going to do now now we need
+to encode our problem domain into a
+network so the first variable that I
+want to encode represents the color of
+the taxi
+that's the node we want to infer so I'm
+going into modeling mode or node
+creation mode and place a node onto our
+screen here let me just make this quite
+a bit larger we won't need a lot of
+space for many nodes today so I've just
+created the first node and I will name
+it taxi color all right and I need to
+define the states of my nodes now of not
+all of my nodes of the states of my
+newly created node so I'm opening up
+this node and my basil AB node editor
+comes up by default new nating new nodes
+have the state's true and false which is
+not appropriate here so I will replace
+these two states with the state's yellow
+and white okay and in addition to
+defining the states we also can apply a
+probability because we know the marginal
+probability of yellow and white taxis on
+the road we know 85% of the taxis are
+yellow and 15% are white so absent a
+witness statement
+that would be our expectation for any
+taxi that's on the road so but now we
+have a witness statement I'm creating a
+new node and call it witness I call it
+witness color that's the color that the
+witness claims and I need to do the same
+thing here I'll just create rename the
+state's yellow and white whoops okay but
+for that for that node I cannot provide
+a marginal distribution because that
+doesn't exist
+you know a witness statement only exists
+in the context of some some event so
+we're now saying that the witness color
+depends on the taxi color in a way the
+taxi color causes the witness statement
+of the witness belief regarding the taxi
+color so I'm drawing an arc a in this
+case a causal arc saying the taxi color
+causes the witness color however now
+what we heard from the expert witness
+then the accident witness isn't
+perfectly reliable or human vision is
+not entirely reliable so I can now
+encode the accuracy or the lack thereof
+in a conditional probability table that
+tells us what the probability of the
+witness color is given the taxi color
+and here this is very straightforward we
+learned this from the expert witness
+given that a car taxi is white the
+witness would say it's white with 80%
+probability in the same form for yellow
+okay now we have a fully specified
+Bayesian network and we can perform in
+France
+I will now so
+back and I need to move my panel here I
+will now not I will switch into
+validation mode and bring up the
+monitors of our two nodes so here is the
+first one I will make this a lot larger
+so you can see that this is the node
+that represents the taxi color and here
+is the node that represents the witness
+color and given the probabilities we've
+provided basil AB has automatically
+computed the marginal distribution for
+the witness color so but that's not of
+interest what we now need to find out is
+what is the probability of the taxi or
+what's the probability of the taxi color
+being white given that the witness says
+it is white such a trivial question but
+as we saw earlier in the poll results it
+was easy to get a consent it was
+difficult to get a consensus on that now
+that we have our knowledge encoded in a
+Bayesian network now we can use Bayesian
+lab to perform inference and we can
+perform that in either direction the
+direction of interest now is let's set
+an observation on witness color to see
+what the taxi color is here in Bayesian
+lab that is quite simple I simply click
+witness color is white and given that
+observation given that piece of evidence
+I now get an updated distribution for
+taxi color the result is now that given
+this observation there is a 41%
+probability that the taxi is actually
+white so it looks like it's still more
+probable that a yellow taxi would have
+caused this accident conversely we can
+just try this out if this witness had
+said the taxi color is yellow then we
+would know with near certainty that it
+was indeed a yellow taxi and I wanted to
+share with you this
+example because this is such a typical
+example and court cases are really very
+practical tool to illustrate this
+because here everything depends on the
+base rate how many what's the marginal
+mix of the colors and therefore this is
+also often called the base rate fallacy
+and intuitively we just get that wrong
+very often so I would like to conclude
+this example now that most of you would
+have actually 70% of you have realized
+that you got the answer wrong let me
+move on to the next example perhaps a
+little bit more complex example let me
+try to make the switch again from bei Zi
+lab and go back to PowerPoint and
+everything that you've seen so far you
+will have screenshots in your slide so
+you will be able to follow all of this
+ok ok let's go to example 2 also very
+straightforward example in fact we've
+written about this particular topic in
+chapter 4 of our book so you can read up
+on this in detail so this example is
+taken from my life so it's really a very
+real-world example and this relates to a
+trip I took a few years ago from
+Singapore back to the US perhaps you
+know we have a small office in Singapore
+that's why I travel back and forth
+between the u.s. and Singapore like once
+or twice a year now at the time I took
+this trip I think it was like four or
+five years ago excuse me there was no
+direct flight between Singh
+poor and the us now there are direct
+flights again but at the time they were
+not so I had to fly from Singapore via
+Tokyo Narita changed planes and then
+continue on to Los Angeles so let me
+take you through this entire process
+step-by-step so I I check in in
+Singapore with one piece of luggage
+now however once I've checked in there
+was a thunderstorm or actually a typhoon
+which delayed the departure as happened
+so often so I finally depart from
+Singapore and arrived in Tokyo
+unfortunately I arrived quite late so
+I'm worried about catching my onwards
+flight from Tokyo to LAX so I race
+across the terminal building I have to
+go through security again and it's very
+much anxiety inducing but I make it in
+time to my departure gate so out of
+breath I arrive I get my boarding pass
+ready to step on the plane but then the
+gate agent says yeah I'm not sure your
+luggage will make it now because that
+may not be transferred quickly enough
+between the gates and the terminals so
+she says yeah there's a 50-50 chance
+that my luggage will make it onto my
+onward flight to LAX so I get on the
+plane not knowing whether my bag is on
+that flight aisle and then I go through
+immigrations all that stuff go to the
+baggage claim area and now wonder
+whether or not my luggage will arrive so
+let's now analyze the situation so I'm
+now at the baggage claim area luggage
+starts being delivered it's coming down
+the chute and now after five minutes of
+waiting I still do not see my bag so the
+question now is what is the probability
+that I will
+we'll get my bag now interestingly most
+people just say you know there's really
+no way how we can know anything you know
+there's so little we know about the
+domain there's really no proper way of
+reasoning about it but let's think about
+this what we want to reason or what we
+want to infer is whether or not my bag
+made it onto this last flight from
+Narita to LAX so I want to infer is my
+bag in the cargo hold or was it in the
+cargo hold and of course I can't
+directly see that I can't look inside I
+don't have a tracking device so based on
+circumstantial evidence I now need to
+update my belief whether or not my bag
+made it okay so here's the proposed
+workflow
+I will encode my available knowledge and
+admittedly that knowledge is very very
+limited
+I'll take that encoded as a Bayesian
+network and then perform probabilistic
+inference given our observations and you
+will see that that is quite useful even
+though we know so little about this
+problem domain okay I will leave
+PowerPoint again and switch to bei Zi
+lab just bear with me as I'm making that
+all right now you should see the
+Bayesian app screen again and once again
+I will start from scratch with a new
+graph panel so let's think about what
+nodes we need to represent here now I
+already mentioned we want to infer
+whether my bag was on that last flight
+so I will create a new node and call
+that new node my bag on plane that we
+want to get an update on based on our
+observations now we have some
+information about this particular node
+and that is we learn from the gate agent
+that our expectation is 50/50 she said
+there's a 50-50 chance that the bag will
+make it so I can enter that as my
+assumption as my marginal distribution
+and by default States true and false are
+perfectly appropriate here okay I'll set
+that to okay and now we need to think
+about what we can observe because
+there's really not much that we can
+observe we can as I said earlier we
+can't look inside the cargo hold of the
+plane what we can see are two things one
+is whether or not our bag is on the
+baggage carousel so that is what we can
+see and so I call this node my bag on
+carousel the baggage carousel and that
+too has just two states true and false
+there's one more thing we can observe
+and that is the time that has elapsed
+since bag started coming down to shoot
+so for that I create a node
+and call that time now of course time is
+not binary rather time is continuous but
+I will keep things quite simple here
+I'll just say our time horizon is 10
+minutes meaning that I expect all
+luggage is typically unloaded within 10
+minutes and there are some places in the
+world where that is actually true such
+as Singapore they usually deliver all
+luggage within 5 minutes or so I don't
+know how to do it but it really works
+there so um let me now change the states
+the true in fall states and change that
+in two minute intervals
+I will now create eleven states from
+minute zero two minutes ten no oops no
+that is that would be from 0 to 100 let
+me change that okay so now I have
+created states from 0 to 10 and time has
+a very attractive property in and that
+is that it progresses evenly every time
+slice each time slice is as probable as
+another so I can simply apply a uniform
+distribution I do that by simply
+clicking delete need not leave complete
+and then I have uniform probabilities
+across all my time slices okay so now
+that is defined my bagon plane that's
+fully defined time is fully defined now
+we need to think about how these
+variables relate to my bag on carousel
+my bag on carousel really cannot be
+defined independently because of course
+that depends on the states of the other
+variables how well I would argue that my
+bag on plane is a cause of my bag on
+carousel now if the bag is not on the
+plane then it cannot be in
+carousel however if the bag is on the
+plane then that will cause my bag to
+appear on the carousel ultimately in a
+similar way we should think of time
+because intuitively I would say the
+longer I wait the more probable it
+should be that my bag appears so let me
+first just qualitatively draw this arc
+so and this this is quite important
+about Bayesian networks because we have
+these two aspects of Bayesian networks
+we have the qualitative structure
+through the nodes and the arcs and then
+the quantitative part through the tables
+and conditional probability tables so
+for my bagon plane and time I've already
+provided the quantitative part for my
+bag on carousel we now need to do it so
+let's open up the node editor for my bag
+on carousel and similarly to what we did
+earlier with the taxi colors now we need
+to enter the conditional probabilities
+now here on or let's start here so the
+true and false columns they relate to my
+bag on carousel and then here on the
+side we have my bag on plane and time
+now I would say to top part of this
+table is quite easy to fill out because
+if the bag is not on the plane then I
+would say it can never appear on the
+carousel so this is very easy
+I'm simply entering hundred percent
+false all across and then simply
+complete and add the zero for the true
+column so that was easy
+but now we need to think about mmm
+excuse me what does that table look like
+for the true part for the bottom half
+now let's perhaps start with the
+simplest cases I would say in minute
+zero just as the carousel starts turning
+there's a zero percent probability
+because no bags have been delivered yet
+now in minute 10 assuming it can only
+take ten minutes to deliver all bags
+then we would have a hundred percent of
+the bags and now I make the highly
+simplistic assumption that the bags are
+unloaded in a linear fashion so that the
+longer from zero to ten my probability
+of receiving the bag increases from zero
+to one hundred percent
+let me fill in the other part of the
+column so for the false column then
+obviously it the progression of values
+is the other way around okay so let's
+accept that now we have a fully
+specified Bayesian network both the
+qualitative part and the quantitative
+part now the question was we waited for
+five minutes we've waited for five
+minutes we have not seen our bag yet
+what is the probability that we will
+still get our bag that's what we have to
+infer now from from what we've observed
+so I will once again start a poll and
+ask you what do you think what the
+probability is that that we will get our
+bag remember the a priori belief the
+gate agent said it's it's 5050 so so she
+said she doesn't know whether the bags
+come across
+so that was our original assumption now
+he we have waited for five minutes and
+want to figure out what is the
+probability now I'll just leave the poll
+open for a few more seconds
+the results are still rolling in okay
+now we have a majority that has voted so
+I will close the poll and share with you
+the results so this is the result now
+this is a much clearer picture we have
+45% of the responses in the 25 to 49
+percent range then 23 percent believe
+it's under 25 percent in terms of
+probability and a good amount think
+nothing has changed it's always
+interesting I like this example when I
+do this in a real seminar because
+sometimes you get some really really
+heated debates about well how one should
+reason about this okay but um let's
+answer the question we can now use our
+Bayesian network it's very simple I am
+bringing up the node for my bagon plane
+which is here then I'm bringing up the
+node for time you know I need to
+rearrange this a little bit so we can
+fit everything onto the screen and keep
+it large enough that you can see it so
+now we enter our observations we say it
+is minute 5 and we have not yet seen our
+bag so I said my bag on carousel to
+false okay here we are
+so the probability oh sorry I forgot to
+I'm glad my colleague Stacy alert with
+me I didn't switch back to to the to to
+Basel AB sorry let me repair that okay
+here we are thanks Stacey so so here's
+the result I've set evidence on time and
+I've set evidence on my bag on carousel
+to false and so given this observation
+now the probability for my bag on plane
+has gone gone down to 33% let me just
+repeat that since since you didn't see
+the process so I said it is minute five
+and my bag on carousel is false well so
+now we could ask a question of what
+happens in minute six let me update that
+so now we have set time two minutes six
+minutes seven minute eight and we can
+see where this is going the probability
+is declining we can more formally
+analyze that let me just remove time
+here make my bag on plain targetnode and
+we can get a nice visual analysis of how
+the probability progresses so this is
+what we call target mean analysis in
+basil AB on the x-axis you have the time
+on it and on the y-axis you have the
+probability of still getting the back
+all right now what we've done is
+actually quite interesting what we have
+done here is what we call inter causal
+reasoning because we have reason from
+one cause that is time via the effect my
+bag on carousel back to the other cause
+and this is now if you think the taxicab
+example would have been difficult enough
+to compute with Bayes rule just think
+about how tricky this would be so again
+this is an example of how we can easily
+encode our limited domain knowledge here
+and then let's
+the computer in this case the Bayesian
+network and beige-y a lab do the heavy
+lifting
+okay let's make this a little bit more
+realistic and let's say so so we stand
+at the at the airport still we we still
+wait for our luggage we're still in
+minute five we have not yet seen our bag
+but now we see a colleague let's say I
+see Stacey am at at the carousel and I
+didn't see Stacey earlier because Stacey
+traveled first class whereas I was in
+coach and so we we meet at the luggage
+carousel and discuss our dinner re and
+we realize we've had exactly the same
+dinner airy and therefore had the same
+tight connection in Tokyo so now I see
+Stacey's bag now that I see Stacey's bag
+on the carousel so she gets her bag that
+went through the same tight transit
+how should I update my belief in me
+getting my bag okay let's do that let's
+encode that for that I'm just realize
+realigning the nodes here a little bit
+so I will now oops here rearrange my
+notes I just copied the nodes for my bag
+on plane and my bag on carousel and I'll
+change that to Stacey's bag on plane and
+Stacey's bag on carousel
+okay let me just position this a little
+bit more nicely and now I would argue
+that Stacy's Bagon playing in my bag on
+plane are exposed to the same process
+and I would call that the force that
+kind of affects both of them the transit
+time so I create a new variable that
+reflects how much time the baggage
+handlers actually had to move the bags
+from one plane you know sort them and
+you know wherever they go through the
+airport and then finally load them onto
+the other plane so I call that transit
+time and again I'm making assumptions
+here and they are highly simplistic but
+as we expand the model to get closer to
+reality we could get more and more
+information and perhaps ask somebody at
+the airport read statistics who knows
+what we could perhaps make better
+informed assumptions about this problem
+domain but for now I'll just say in an
+ideal world we perhaps have a hundred
+minutes of time to transit all the bags
+I I think that's what the airline's tell
+you if you have to make it a connection
+please allow for at least you know let's
+say a hundred minutes and once again
+that I would initially assume a uniform
+distribution again that's that
+simplistic and we can later on update
+that to something more real so transit
+time that now affects Stacey's bag and
+my bag and what I'm thinking
+the longer the transit time the more
+likely is it that my bag gets on the
+plane so so if there was indeed
+if we had a hundred minutes of transit
+time then there would be a hundred
+percent probability of getting the bag
+across if we only 0 minutes then there
+would be zero chance and again I'm just
+saying that the probability of transit
+success increases and conversely I
+complete this column for the false
+column and now the same applies or I'm
+assuming that the same applies to
+Stacey's bag but perhaps for her bags
+since she's traveling first class she
+may have all kinds of premium class
+stickers on there perhaps she gets
+preferential treatment if I'm making
+such an assumption I could encode that
+in here as well but for the time being
+I'm saying
+Stacey's bag and my bag they're all
+equal ok once again we have a fully
+specified Bayesian network and we can
+perform inference let's start or just
+rearrange this a little bit so it looks
+ok and bring up my notes the first node
+is my the node of interest my bagon
+plane I can observe my bag on carousel I
+can observe Stacey's bag on carousel and
+I can observe time so let's repeat again
+what we saw earlier let's say it is
+minute five I have not yet seen my bag
+but so my the probability of getting my
+bag decreases to 33% as we saw before
+and just to come back to the poll most
+of you were actually right with your
+intuitive guess so that's that's really
+good
+so now I see Stacey's bag I set that to
+true
+so now my probability of still getting
+my bag increases by 20% now we're at
+roughly 54%
+so that's the information that comes
+through from Stacey's bag and updates my
+belief in my bag so you may wonder well
+how does the house is really possible
+what we have again is we have the flow
+of information between causes but in
+this case we don't just have the
+information flow from time via my bag on
+carousel to my bag on plane but we also
+have the information path the other way
+around so let me just illustrate it we
+can very nicely visualize this with
+Bayesian lab we can look at the
+influence path in this case to our
+target node my bag on plane so here is
+the influence path number one from time
+by a my bag on carousel to my bag on
+plane and here is Stacey's path and we
+can see that there is information flow
+the I our Stacey's bag on plane via a
+transit time ultimately to my bag on
+plane so there is more information
+coming this way and therefore I'm
+updating my belief in the probability as
+to whether I'll get my bag or not now
+you can see how we can easily extend
+this further and add many many more
+elements and we're running out of time
+to to go through further such examples
+let me just show you a slide in this
+regard hold on let me switch back to
+PowerPoint
+no hold on okay now you should see
+PowerPoint again we could now extend
+that model and think about beyond just
+looking at whether I see my bag and
+Stacy's bag I could start counting bags
+and see well how many bags have been
+delivered so far I could speculate about
+well how many bags do fit into a plane
+overall what is the speed of unloading
+all these things I can take into
+consideration to update my belief and to
+come up with a better estimate so what I
+think is so fascinating here that even
+though that even though we know so
+little about this problem domain by
+putting together what we know by putting
+together our assumptions we actually can
+reason about this properly properly now
+of course whether or not you you get
+your bag or not I mean it's not a
+trivial issue but it's perhaps not a
+life-and-death situation but they're
+probably much more important cases where
+this type of reasoning might be
+important for instance we might want to
+reason about whether or not a patient
+will ultimately respond to the current
+treatment continue the antibiotics or
+stop that and try something else or you
+might want to reason about a
+search-and-rescue effort what is our
+belief that the person or the ship or
+the airplane to be rescued might still
+be out there or in a business context we
+may want to reason about is the original
+business strategy working or not should
+we hold the course is it still is it
+about to happen will success come kind
+of come down the chute and we just don't
+see it yet
+so those are examples and obviously way
+more important examples and I think this
+type of reasoning the
+type of probabilistic reasoning can
+tremendously help in such contexts so
+let me conclude I think we have quite a
+few questions that have come in through
+the last hour or so as I said we will
+post the answers on our user forum now
+hopefully you find all of this
+interesting enough that you might want
+to look at how to use Bayesian lab in
+your research workflow in your everyday
+work please take a look at our website
+look at the licensing options
+configurations you may want to take a
+look at our beige-y a store where you
+can see everything from academic
+additions to perpetual enterprise-wide
+licenses and if you thought this seminar
+is a track was interesting and
+attractive perhaps you may want to think
+about joining us again next week and two
+weeks from today next week we'll talk
+about risk management without data so it
+will be a somewhat similar example but
+this time we're reasoning about the
+value of having a raid architecture is
+it and the risks we are taking exceeding
+speed limits again an everyday life
+example but I think it is useful to
+illustrate the concept of reasoning
+without data then on March 16 then we
+will switch gears again that's when we
+will talk about health policies with
+Bayesian networks now we also beyond
+these short webinars we also have
+extensive courses three-day courses
+actually one is running right now in
+Dubai and the next one here in the US
+will be March 13th through 15th in San
+Francisco we still have space in that
+course so I very much like to encourage
+you to consider that it's a fabulous van
+venue that we have for that course it's
+actually old Federal Reserve building
+and we have a very nice large room there
+so it should be really cool to host and
+then there please consider joining us
+for that event so with that I would very
+much like to continue the conversation
+with you the dialogue with you please do
+feel free to reach out with questions
+connect with us on LinkedIn Facebook
+Twitter etc and yeah please please do
+send us questions we'll be happy to
+answer them and with that thank you so
+much for your time and interest and have
+a fantastic week and see you again next
+week

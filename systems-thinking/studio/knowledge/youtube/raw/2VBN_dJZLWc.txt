@@ -1,0 +1,1780 @@
+all right thank you some
+and to see all of you here and to talk
+about one of my absolute favorite topics
+and
+dynamical systems so I love dynamical
+systems it's why I am where I am today
+is to study things that move and change
+in time and so I prepared this this
+tutorial and tomorrow's tutorial on
+dynamical systems to have a pretty
+healthy mix kind of intro material that
+lots of you will know with some advanced
+material that maybe some of you don't
+know also a lot of old historical
+material mixed in with the new and
+up-and-coming techniques that people are
+using and so I really really want you to
+ask me questions and interrupt and tell
+me what you're interested in because
+basically I've organized a bunch of
+little mini tutorial lectures and I can
+mix and match them if you find one area
+more interesting or less or if your
+background is deeper or shallower and so
+on and so forth so please do interact
+with me and I'm going to ask you
+questions and I'm going to stack I'm
+going to expect you to like raise your
+hand and tell me how much dynamical
+systems you know and things like that
+because that's going to help me tailor
+the material a little bit better
+okay so dynamical systems I'm gonna mix
+a little bit on on the screen and then
+on the board if do some by hands my
+definition of a dynamical system is very
+very simple it's any system that evolves
+or changes in time according to some
+rules so pretty much anything you can
+think of is a dynamical system okay you
+can definitely think of things that are
+not a dynamical system your chair is not
+a dynamical system until you sit in it
+then it is for that moment that it moves
+a dynamical system where you have
+earthquakes for that so it can be forced
+and become a dynamical system it has a
+spring constant okay so anything the
+changes in time according to some rule
+is a dynamical system and I'm gonna give
+you a lot of cool examples that motivate
+me in a daily in my daily work so again
+a quick show of hands how many of you
+work with dynamical systems on a kind of
+daily or weekly basis it's part of your
+bread and butter beautiful how many of
+you have you know learned about
+dynamical systems in school but maybe
+haven't used them for a long time this
+is kind of you know undergrad material
+okay excellent how many of you really
+couldn't write down the solution to an
+OD e if I woke you up at 2:00 in the
+morning and forced you to
+okay good good so I'm gonna I'm gonna
+have a little bit of something for
+everybody all right it might happen so
+okay good so I'm just going to give you
+some examples of dynamical systems I
+actually realized that at the beginning
+all of my pictures were pictures and in
+reality I should be showing you movies
+because dynamical systems are
+essentially movies of systems evolving
+in time so I love rollercoasters I think
+we should all go to Magic Mountain
+sometimes while we're here
+fluid flows are high dimensional
+nonlinear dynamical systems that
+describe for example in this case the
+evolution of vorticity or how much the
+fluid swirls at each point in space and
+time I couldn't find a good movie but
+imagine your brain is an incredibly
+complex multi scale dynamical system
+it's constantly changing States so if
+you're paying attention to what I'm
+saying you're in one state of mind if
+you're kind of relaxing and zoning out
+that's a different state of mind and the
+evolution of those thought processes and
+how you learn and interact with the
+world is an extremely interesting
+dynamical system something important to
+mention about the brain and this is a
+theme that I'm going to bring into this
+entire discussion on dynamical systems
+is that I think of dynamical systems
+most often in terms of engineering
+objectives like optimization and control
+so you can't just study a brain in
+isolation people tried to do this you
+take a dead fish from the supermarket
+you can study its brain but you don't
+learn that much okay what you want to
+study is how this brain uses its robot
+body to interact with the world that's
+much more interesting so dynamical
+systems generally are interfacing with
+some external environment that might be
+causing it to have stochastic forcing
+slow varying parameters and maybe the
+the dynamical system wants to achieve
+some some task there's also other
+interesting examples of high dimensional
+dynamical systems like disease modeling
+and spread climate science social
+networks these are all high dimensional
+nonlinear multi scale dynamical systems
+that evolve in space and time because
+that's going to be my theme high
+dimensional nonlinear multi scale
+dynamical systems that evolve in space
+and time
+okay this is one of my favorite images
+from Philip Dutoit
+who is a PhD student at Caltech and he
+basically showed these invariant
+manifolds in the ocean this is again it
+should be a movie but each frame takes a
+supercomputer maybe a week at the time
+he computed this to compute so the ocean
+is a dynamical system the atmosphere is
+a dynamical system and there are
+extremely important and kind of
+societally relevant things that matter
+from dynamical systems like we want to
+be able to predict the future evolution
+of the dynamical system we want to be
+able to put some uncertainty bounds on
+our future prediction if I take actual
+measurements of my system and I have a
+model I might want to be able to
+reconcile those two that's like the
+calman filter and again eventually I
+might want to change the optimization of
+a system I want to I want to change what
+I'm doing to the system to optimize or
+control its behavior okay this is again
+one of my favorite videos I do a lot
+with inverted pendulum because they're
+really fun and they're really easy to
+analyze so this is a SpaceX rocket and I
+claim that this is basically an inverted
+pendulum right you're putting force at
+the bottom of a long stick and in this
+case you know they're going to to try to
+land the inverted pendulum and this is a
+pretty interesting and challenging
+control problem so the model has to be
+pretty accurate and my model prediction
+has to be fast enough that I can use
+this in closed loop for real-time
+feedback control in this case to slowly
+and gently land a rocket okay a human
+Walker is a very interesting control
+system so I am approximately some double
+or triple pendulum with spring mass
+torque dampers in my body and I'm
+neutrally stable so if you shot
+novocaine into my legs I'd fall over
+okay
+but that neutral stability allows me to
+move very very efficiently so that's
+also an important aspect there are
+instabilities in the system right if you
+pushed me and I had I wasn't using the
+muscles in my foot and leg I just fall
+over but that instability is what allows
+me to walk very very efficiently because
+all I have to do is kick myself just a
+tiny bit
+in the unstable direction and I get a
+lot of transport essentially for free
+okay so that's another concept that
+we're going to use a lot is instability
+and dynamical systems I like to think of
+the kind of astrophysics applications
+and motivations of dynamical systems so
+a lot of what I'm going to tell you
+today and tomorrow is going to be about
+parallels between how we learn basic
+physics F equals MA Newton's law general
+relativity physics which are dynamical
+systems and parallels with how the state
+of the art and machine learning and
+artificial intelligence are evolving
+today okay so there are these deep
+parallels between the the giants of
+classical astrophysics Kepler Newton
+Tomei and others and kind of these
+different perspectives on machine
+learning that we're using today so I'm
+going to bring up a little bit of that
+in and again this picture looks static
+it doesn't look like a dynamical system
+it's not a movie but for example and
+also if we measure these objects they
+don't move that fast right like as far
+as we're concerned they're essentially
+stationary we're rotating of course but
+if you measure their redshift then you
+can start seeing that everything is
+actually moving incredibly fast and
+accelerating according to these basic
+basic laws of motion okay so this is
+data that has been the underpinning of
+all of our knowledge of dynamical
+systems for for thousands of years was
+was essentially started here okay so I
+love dynamical systems they're super
+interesting all kinds of fun things you
+can do with them and I'm gonna start
+walking you through an overview of what
+I'm gonna talk about for the next two
+tutorials today and tomorrow and then
+we're gonna jump into a couple of
+examples just kind of baby dynamical
+systems where we can look at a few
+interesting things that you might do
+with them and then I'm gonna start
+building up the modern data-driven
+dynamical systems perspective that's
+probably most relevant for all of us how
+do you actually discover dynamical
+systems from data how do you find the
+right coordinates where they become
+simple things like that okay any
+questions before I jump in
+everyone's ready okay good
+how many of you love dynamical systems
+okay good I hope I hope all of you love
+dynamical systems by the end of this
+this workshop okay so when I say a
+system that changes or evolves in time
+of course I need to care to describe the
+state of the system so I'm going to
+start with a differential equation in
+terms of some variable X I'm going to
+use underbar to denote that this is a
+vector of states and I have DDT the time
+derivative of that state X is equal to
+some function of X of time of some
+control input U and probably of some
+parameters B and so I want to just go a
+little bit slowly through all of this so
+that all of us are on the same page so X
+is the state of my system and generally
+when I say state I mean the minimal
+description the minimal set of variables
+I need to describe my system okay so if
+I have a cannonball I need its position
+and its velocity and three components so
+that's six variables I need to
+characterize okay if I have a pendulum
+then I need to characterize the system
+by its angle theta but also by its
+velocity its angular velocity theta dot
+I need to know if it's going this way or
+this way
+that's the minimal state of the system
+and I would append those as terms and X
+yeah
+so for now I'm talking about a system
+that continuously evolves in time
+according to this differential equation
+but there is another formulation in
+terms of discrete time where I maybe
+measure my system at a fixed interval or
+my system is seasonal like if I want to
+measure the bunny population in Seattle
+every March
+that's a discrete time dynamical system
+so essentially you could write that as
+XK plus 1 exit at time k plus 1 equals
+some function of the previous state yeah
+so this is discrete time this is
+continuous time and you can kind of
+often go back and forth between these ok
+good and when I say that the state is
+the minimal state used to describe the
+system often what I mean here is that my
+future state or the time derivative of
+my state only depends on the current
+measurements I have at time T now so
+that's that's very important is that
+this X is measured instantaneously now
+and I'm assuming that all of the
+information I have now is what I need to
+predict the system in the future so
+that's true for the pendulum right if I
+know theta and theta dot right now I can
+tell you what's going to happen in the
+future but that might not be a true of
+the stock market okay so if I just give
+you the stock prices right now I need to
+know if they were going up or going down
+I need to know what Trump was tweeting I
+need to know all kinds of stuff about
+the past to inform that so that's not a
+minimal state of the system okay so I'm
+assuming that there is no history
+dependence here ok good now in general
+this this function f these are what I
+call the dynamics and in some sense I
+think of this as a vector field because
+it's a vector of values at every point
+in space and time and it allows me to to
+move along like like a vector field and
+generally the dynamics encode all of the
+physics and constraints of the system so
+if I have conservation of energy if I
+have symmetry if I know that my
+my pendulum is is forced to be on a
+circle all of that comes into these
+dynamics f okay this is where you encode
+your knowledge of physics and
+constraints these dynamics can change in
+time so maybe I should draw a little
+picture of a pendulum okay so that's my
+pendulum and it's moving according to
+gravity but if there's an earthquake
+these dynamics are gonna change in time
+okay everything if I if the gravity of
+Earth changes slightly if I do this on a
+spaceship or on an airplane then these
+dynamics are going to change slowly in
+time you is often my actuation or
+control inputs so this is usually what I
+think of is I have control over you I
+get to do something to the system to
+change its behavior maybe I can move the
+base of this pendulum maybe I can apply
+a magnetic field maybe I can do
+something like that
+and then finally beta contains all of
+the parameters that are relevant so the
+mass the length the strength of gravity
+things like that okay and this is the
+basic basic formulation of a dynamical
+system that we can use to describe all
+of the systems I showed you they're much
+more complicated but that's that's the
+basic underpinning yeah question
+you absolutely could fold all of these
+coefficients beta into the coefficients
+of F but what I'm really interested
+often is how the qualitative dynamics of
+F change as I vary these parameters so I
+want to look at the explicit dependence
+of F on these parameters yeah so for
+example I want to know yeah does my
+stability change at some point if I
+change the length of the pendulum arm
+things like that so it's really
+important for analysis design and
+control it's just essentially for
+guarantees I want to understand that my
+system is not gonna break if I change
+these parameters you could ask that
+question but that might not be the most
+relevant question to ask yep
+you had a question yeah
+so this is a great great point and I was
+gonna wait to talk about this but maybe
+I'll talk about it now
+about deterministic versus probabilistic
+systems so I'll give you just a couple
+of maybe in a couple of minutes I'll
+tell you about that the probabilistic
+analogue of this yeah so there are some
+assumptions X is the state and it could
+live in a vector space it could live in
+our n X could live on some manifold it
+could be you know the fluid flow on the
+surface of Earth like I would need to
+consider the the topology or that sorry
+the the geometry of the manifold I'm
+working on if I was for example in
+simulating hurricanes yeah so usually
+I'm going to to punt and just say that
+this can be embedded in a sufficiently
+high vector space I'm just gonna work on
+vectors because it's easy and that's
+that's often what we do but sometimes
+you actually need to take into account
+the geometry of the manifold that the
+state lives on for example I'm
+implicitly I map licit implicitly
+assuming that theta or X here lives on a
+circle rather than in a continuous line
+okay great questions other questions so
+you right now I'm gonna say is a
+function of T that I get to play with
+but sometimes I'm going to build a
+little widget that measures X and feeds
+it back and that will be feedback
+control great in the back yeah
+you can all if you as a function of X
+then this all becomes just a function of
+X yeah that's right so again I'm
+separating out the things I have control
+over versus the things I don't have
+control over versus the things that I
+might want to be robust to changes in
+and time they're all really really good
+good points okay I'm gonna get to the
+probabilistic description in a minute
+okay and I'm gonna talk right now
+about some of the challenges of these
+systems so so the modern challenges that
+we have that I'm gonna repeat these over
+and over for all of this lecture and and
+the one tomorrow so you're gonna hear
+this a bunch for me so I don't think of
+these as problems I think of them as
+challenges the first most fundamental
+challenge is that usually we don't know
+F for the systems I actually care about
+okay so one we don't know F now you
+might be saying to yourself we know lots
+of s we know F equals MA we know quantum
+mechanics we know general relativity we
+know all of these basic equations
+navier's stokes equations that describe
+how physical systems evolved that's true
+we don't have an equation for the brain
+we don't have an equation for how
+disease spreads we can't agree on
+equations for climate okay and even the
+equations we do have access to the
+Schrodinger's equation and the navier's
+stokes equations that describe these
+complex systems we want and interact
+with those equations are not at a
+resolution that's useful for us as
+practitioners so solving the
+navier-stokes equation as a PDE makes
+great movies but it's very very hard to
+use that for real time optimization and
+control so I want a reduced description
+that's useful for the things I care
+about so I would argue even in the cases
+where we do have the governing physics
+we might not have a description in terms
+of an effective state that's useful for
+us in our daily lives
+and so so I'm thinking of F as my model
+of reality and this model doesn't have
+to be perfect there's always a balance
+between accuracy and can comprehend is
+and how complex or slow or cumbersome or
+detailed the model is and so there are
+different levels of resolution even if I
+have the Navy or Stokes equation very
+accurate very cumbersome I might want to
+find a reduced order model that I can
+use for my quadrotor control loop okay a
+question good okay so a lot of what
+we're going to talk about in this entire
+three-month workshop is based on the
+fact that we don't know F and we're
+going to discover it from data or
+effective reduced order models okay - is
+that F is often nonlinear okay so
+nonlinear F and depending on which which
+day of the week it is
+I might alternate which of these is a
+bigger problem for me okay so
+non-linearity is what keeps us all in
+business fundamentally you have job
+security
+we all have job security for our entire
+lives presumably because F is nonlinear
+in most cases that are interesting okay
+so when I say nonlinear versus linear
+differential equation how many of you
+have a gut feeling of what I mean how
+many of you would like me to just very
+quickly remind you why linear and
+nonlinear is important okay so a linear
+differential equation is something so if
+it was linear meaning X dot is equal to
+some matrix a times X or or if X was a
+scalar just a single value then X dot
+equals lambda X then I know everything
+about the solution of these differential
+equations if I know a or lambda so X at
+any time T in the future I hope can
+people see when I'm writing ya is simply
+e to the lambda T times my initial
+condition X measured at time 0 so if I
+have an initial measurement of my system
+I can tell you what that state will be
+at all future times just by multiplying
+it by e to the lambda T for a scalar
+system
+or by the matrix e to the matrix eighty
+times my vector of initial conditions
+and there's some linear algebra for how
+you actually compute this thing but this
+is completely computable and I can tell
+you the solution at any time in the
+future I can develop control laws with
+one line of Python code everything in
+life becomes easier and the reason is is
+because solutions superpose if I have
+two solutions of my differential
+equation and it's linear I can add them
+up and that's also a solution to my
+differential equation all of that goes
+out the window if my system has even a
+tiny amount of non-linearity an epsilon
+non-linearity destroys all of the theory
+we have for for generic theory of
+differential equations it's unsolvable
+in general okay kind of a mess to be
+honest those are the two big ones and
+then I'll talk about a few more there's
+not doesn't end there and please do
+again interrupt high dimensionality is a
+huge problem so high dimensionality
+that's just to say that X is in RN but n
+is a really big number like a million or
+a billion or a trillion so if I want to
+model the climate or model the weather
+or model the spread of disease I need
+millions or billions of states that I'm
+measuring to know how the system is
+going to evolve from one time step to
+the next it's very expensive very
+cumbersome and you can't use it that
+easily for real-time computations so
+you've seen this consistently in these
+molecular dynamics simulations and is
+ridiculously large but we know from for
+example the theory of gases that
+Avogadro's number is not the actual
+number of degrees of freedom I care
+about right I care about things like
+temperature and pressure you know there
+are a few often leading order quantities
+that you can extract from that high
+dimensional data and it's actually the
+dynamics and those coordinates that
+matter and so these are all really
+related even if I knew the equations for
+gas dynamics of an individual gas
+particle I might need to learn
+pressure and temperature so that I could
+learn the effective thermodynamic
+equations on those variables okay
+so high dimensionality is a huge
+challenge that goes hand-in-hand with
+multi scale so the gas dynamics is
+actually a great example of something
+that's super high dimensional but not
+that multi scale I can kind of
+homogenized over you know over the small
+scales and I get a few equations but
+there are lots of systems that are
+inherently multi scale we believe the
+brain is multi scale we believe that
+turbulence is multi scale meaning that
+if you look at a picture of the system
+and you zoom in and you zoom in there
+are structures that matter at every size
+scale and also at every time scale so
+think of a human your cells certainly
+matter but you don't think about your
+cells on a daily basis your organs
+matter right you want to keep those
+healthy your cells and your organs rely
+on your DNA which rely on your basic
+fundamental chemistry so it's multi
+scale in space it's also multi scale in
+time right now again you're paying
+attention to the few words I just said
+you're trying to connect those to
+something I said five minutes ago but
+you also have you know days and weeks
+and months you have a lifetime of time
+skills that are presumably relevant for
+you okay so multi scale is that's what
+I'm talking about
+you can't just extract one set of
+equations at one scale and this is
+really probably the major complexity
+that modern methods in optimization data
+science and machine learning are opening
+up most rapidly I would say we're really
+starting to be able and with with just
+large-scale computations okay we have
+chaos chaos is super interesting I'm
+going to give you a whole like ten
+minute thing on chaos how many of you
+again have a gut feeling of what chaos
+is how many don't all right good
+other things there's noise so I really
+should probably have said this is plus
+you know some kind of stochastic forcing
+some exogenous forcing that I can't
+measure and I don't know about and I
+might not even know what it's statistics
+are so noise and forcing and then the
+last one is the fact that what I told
+you here does anyone see any big
+problems with this maybe I'll let you
+decide what's what's the big glaring
+problem with what I wrote down all of
+this is hard but I'm assuming I'm making
+a big assumption here yeah so steady
+state and transient so transients is
+also very important I want to be able to
+describe oftentimes steady-state
+behavior and transient behavior but I'm
+thinking something maybe even more
+fundamental yeah that what so the model
+does exist yeah okay the derivative
+exists again we could go to discrete
+time these are good yeah in the back ok
+so it's a marina nailed it so I'm
+assuming that I have X the full state of
+the system that I actually am going to
+describe everything in terms of which is
+great for theorists and computational
+ist's but I don't often know what the
+right thing to measure is of an
+experiment so assuming that I am
+actually measuring the variables that
+matter to describe my system at the
+dynamics is a huge fundamental
+assumption that we usually make and
+don't even think about it so I'm gonna
+lump that all into latent variables and
+I mean so many things by this and I'm
+overloading this term maybe there are
+hidden variables that I'm not measuring
+that matter and I have to estimate them
+and I don't even know they exist
+maybe I measure far too many variables
+like in the gas dynamics and I want to
+distill that down to two or three or
+four variables that actually matter
+maybe I don't know what I should be
+measuring and writing my state in terms
+of this is in some sense coordinates and
+most of the history of mathematical
+physics is driven by seven one and two
+okay Fourier transform trying to find
+coordinates to make a system simpler
+okay everything that Kepler and Tico
+Bray and told me did was essentially
+trying to find coordinates so that they
+could get dynamics that actually made
+sense culminating in Newton's second law
+and maybe I'll write that equation this
+is important enough to write down that
+usually I don't actually I don't just
+have this differential equation what I
+often have is some kind of an output
+equation of a measurement equation so
+usually what I'll have is some y equals
+G of X and again it could depend on you
+it could depend on T you could depend on
+lots of stuff I'm just going to say G of
+X where Y is my measurement of the
+system usually that's all I get to see
+is my measurement of the system Y and I
+might not I might or I might not know
+what G is okay for a long time did we
+know that the temperature G was the
+average kinetic energy of the molecules
+right we might not know what G is
+we might just know that there's a
+measurement we get all right and there's
+uncertainty in everything in beta in T
+my measurements of T have uncertainty my
+measurements of X my measurements and
+everything has uncertainty that's a
+challenge - okay good that's a lot these
+are a lot of challenges but that's good
+we are gonna be in business for a long
+time we've got lots and lots of work to
+do in modeling these complex dynamical
+systems that are multi scale where we
+don't know the right coordinates where
+there's non-linearity where we need to
+reduce descriptions for optimization and
+control okay so run with me so far
+good any questions about this
+yeah no absolutely not
+so most of our continuum descriptions of
+systems like if we if I have a
+conservation law like conservation of
+mass momentum and energy of this gas I
+write down as an infinite dimensional
+conference conservation law and then I
+discretize it to simulate i discretize
+into a finite dimensional end so very
+yeah and in fact a lot of what I'm going
+to tell you is taking a state X lifting
+it to infinite dimensional's infinite
+dimensional state often allows me to
+linearize my nonlinear dynamics so if
+you know about the kernel trick in
+machine learning this is just like the
+kernel trick but for dynamical systems
+okay good other questions yeah sorry
+I'm gonna call that coordinates yeah so
+if I'm 80% right I'm happy
+so maybe okay I could give you a few
+example uses of these models a few of
+the techniques I'm gonna talk about and
+then I'm gonna give you your
+probabilistic model unless who would
+like to see the probabilistic model
+first who would like to see the uses of
+the model and the techniques first sorry
+because they're outvoted okay so the
+uses of the model so I've already
+described most of these I'm just gonna
+kind of summarize them again the primary
+uses of the model are prediction and
+what I mean by prediction is of the
+future I don't have predict the past
+we'd often test our methods by acting
+like we didn't know the past and then
+predicting it but really predicting the
+future and this could be a deterministic
+prediction for example in the pendulum I
+can do deterministic predictions but in
+statistical systems or systems with
+large uncertainty or chaos I might want
+to do a statistical forecast I might
+want to tell you the probability of
+being in a state or the distribution of
+my state as it evolved in time so this
+could be an ensemble or a statistical
+prediction often I'll want to use these
+models for design or optimization so for
+example I think we've heard a lot of
+cool examples of drug design the design
+of osmotic membranes for desalination in
+my field of fluid mechanics we think of
+design optimization for things like
+Formula one cars and super yachts and
+aircraft and transportation vehicles so
+we want to reduce drag increase ground
+force and things like that okay so
+actually a lot in my field of these
+reduced order models are used for design
+and optimization of Formula One and
+super yachts
+hundreds and hundreds of millions of
+dollars of simulations
+probably Saturn 5 Rockets you know out
+the wazoo to design and optimize Formula
+one cars and super yachts which i think
+is kind of fun but also yeah it's a
+luxury so design and optimization things
+that also matter are where you put your
+winglets on an airplane so that it has a
+few more percentage fuel efficiency that
+translates to billions of dollars and
+and tons of of carbon ok control I'm
+going to talk a lot more about control
+and when I say control how many of you
+know what I mean usually what I mean as
+I measure the system I make some
+decision based on that measurement of
+the system and I change you to
+manipulate the system to some behavior
+in real time it's basically real time
+optimization and in fact the lines
+between optimization and control are
+becoming blurred with supercomputers and
+GPUs and an onboard computation and
+probably the thing that gets left out
+the most in engineering and that I think
+is really important is understanding we
+don't just model to control we also want
+to understand the world we want to gain
+insight we want to understand why these
+are the right coordinates and why this
+is the physics and communicate and
+understand because that will in fact
+help us do better design prediction and
+control if we actually understand the
+system and so there's a few aspects of
+understanding and I more or less
+speaking to the machine learning people
+in a lot of this what I mean by that is
+I want my model to be interpretable and
+generalizable those are two of the most
+important things to me so I want my
+model to be interpretable and I want it
+to be generalizable
+and I might be willing to sacrifice some
+percentage points of accuracy for
+interpretability and generalizability
+because I'm going to gain later when I
+put this in my engineering loop so it's
+so vague and I can't tell you that my
+definition of interpretability is barely
+interpretive bowl and I guess what I
+mean by interpretability is you can
+analyze make reason of communicate
+distill down you know I think of F
+equals MA as a fairly interpretive 'mad
+'l kepler's ellipsis we're also
+interprete bowl Newton's second law is
+the ultimate generalizable model you can
+learn about it from a falling Apple you
+can use it to design a rocket to put
+people on the moon
+okay so F equals MA is kind of my model
+at least of generalizable interprete
+Buhl's a little bit more subtle right
+usually what I mean by interpretable is
+sparse or low rank I want there to be a
+few things I have to look at and
+communicate because I'm a human and for
+me more than 3d is Heidi okay and then
+some of the techniques I'm going to talk
+it out and these are really techniques
+for what I'm going to call modern
+dynamical systems so I'm going to talk a
+little bit more about classical
+dynamical systems but modern dynamical
+system is really trying to solve those
+bullets based on data I want to point
+out all of the uses of my model except
+for maybe understanding our optimization
+problems obtaining the model from data
+is an optimization problem I want to
+find the best parameters beta or the
+best model f that describes my my data
+maybe with a penalty on complexity of f
+that's an optimization problem this is
+all optimization with data and when I
+oversimplify the world all I think
+machine learning is optimization with
+data it's a set of improved techniques
+for optimization and regression based on
+data all of these are
+Automation and regression based on data
+so they go perfectly with emerging tools
+in machine learning okay so the
+techniques I'm going to talk about are
+go-to for the last and this is not new
+at all since the 60s has been regression
+techniques
+so the calman filter is essentially a
+linear regression that reconciles
+measurements of data in perfect
+measurements with an imperfect model so
+regression and I'm gonna break this up
+into linear and nonlinear and then
+there's other variants you can add
+penalties by Gil arised regression
+sparsity regularized regression there is
+an increasing movement to use neural
+networks and deep learning for these
+tasks so I'll certainly talk a bit about
+that and there's pros and cons of each
+of these neural networks as you know
+have greater expressive power but often
+less interpretability and
+generalizability regression models are
+very very communicative all
+interpretable and often generalizable if
+you regularize them but they don't have
+the same expressive power
+okay so generalizability really is about
+regularizing your problem and you can
+regularize both of these of these these
+techniques and then a third area that i
+don't do as much with but i think is
+super interesting and it started off
+this whole data driven discovery in the
+modern era is the use of genetic
+programming by HOD Lipson and others
+don't ask me to spell genetic
+programming so essentially learning
+dynamical systems and conservation laws
+with genetic programming okay now there
+are so I said that all of these things
+are optimization problems machine
+learning is a growing body of
+optimization techniques and regression
+techniques based on data with fancy and
+improving regularization but that's not
+the entire story dynamical systems have
+extra knowledge that is very very
+important when you're building these
+these models using machine learning so
+for example I know about
+conservation laws I know that mass is
+conserved and energy is conserved in
+certain systems I know about constraints
+and symmetries so for example if you
+trained a neural network to predict the
+motion of a pendulum and you gave it the
+X in the Y position I bet you'll get a
+model that is pretty accurate and gives
+you pretty good sinusoidal motion but I
+think you're gonna be hard-pressed to
+guarantee its to be stable and stays on
+the constraint of the pendulum arm
+staying on a circle fixed length that's
+the kind of thing we know from our basic
+physics lots and lots of constraints
+that are hard to get out of a basic
+machine learning architecture without
+baking it in ahead of time okay
+conservation constraints symmetries
+stability is a huge one and so on and so
+forth ok ok good I should stop and ask
+for questions for a minute
+yeah I mean these are essentially some
+of the things I'm gonna talk about
+there's lots more but I'm gonna break it
+up into these basic categories and there
+there is more regression techniques
+neural network techniques and let's just
+say other machine learning techniques or
+modelling F for learning coordinate
+systems where the system becomes simple
+for handling high dimensionality for for
+things like that ya know I mean that
+that's the modern industrial landscape
+has been defined by expert humans
+writing down equations of motion from
+expert knowledge first principles and
+then designing a control law and then
+implementing that in hardware so it
+works we have aircraft we have
+automobiles like that is how the modern
+world is built but there are roadblocks
+that we hit when we try to apply those
+methods from a complex system like an
+aircraft or a car or a construction
+equipment to an extremely complex system
+like a human brain or a disease system
+or the climate so absolutely that works
+if you can do it by first principles by
+hand write down the control a lot like
+that is what we've been doing for the
+last forever
+yep yeah so I think of that as a another
+form of a regulatory feedback where the
+control has some state that is
+accumulating information some dynamical
+system and then those two systems
+regulate each other yeah so the
+closed-loop system might have different
+dynamics than without control you can
+change the stability with control of
+these systems so if I have let's say a
+pendulum you can a picture and holding a
+broomstick and if I don't move my hand
+it's unstable but if I look at the
+broomstick and I move my hand when I see
+it wobbling I can if I'm lucky stabilize
+it for a little while okay yeah
+yeah so there is so the theory of
+differential equations I'm gonna again
+oversimplify we understand everything
+about linear systems so if I have a
+linear system that a matrix I take its
+eigenvalues and its eigenvectors and it
+tells me what directions in state space
+are important what x directions are
+important and what their dynamics are
+that's a very useful analogy in in more
+complex dynamical system so so there's
+six points a fixed point means yeah I'm
+gonna give you some basic dynamical
+systems overview and maybe I'll do that
+sooner sooner than later so I'm just
+going to talk about a few basic things
+this is gonna be super fast just a
+refresher of words you should know and
+if you don't please ask me okay and
+there's no real order to this to be
+honest with you so I told you that if I
+have X dot equals ax this is a matrix
+this is my state then X of T equals e to
+the a TX not
+so this is a linear system and there's
+some there's one fixed point at the
+origin so so let's say I have X dot
+equals f of X a fixed point is defined
+as some point X bar so that F at X bar
+equals zero and what that means is that
+DDT of X at X bar is zero
+I have no motion my system is fixed so
+if I take my pendulum in the down
+position that is a fixed point of the
+technically my pendulum in the up
+position is also a fixed point is just
+unstable if you perfectly balanced it in
+a vacuum it might stay there for a
+little while but if you breathed on it
+it would go unstable and start swinging
+okay so fixed points are very very very
+important in dynamical systems often we
+want to model the behavior at the fixed
+point to see if the system will go
+unstable we linearize these non-linear
+dynamics around this fixed point and see
+if my eigenvalues are stable or unstable
+okay so what I would do is I would look
+at X I would say it's you know I'd look
+in some little Delta X neighborhood
+let's say I have a fixed point X bar
+what I would do is I'd look at some
+little epsilon neighbor of that
+neighborhood of that and I would plug
+this into my differential equation and I
+would try to derive a differential
+equation for Delta X dot and it turns
+out a legal the Jacobian of F evaluated
+at X bar dotted with Delta X plus higher
+order terms you just get this from the
+Taylor series and this is like an a
+matrix so if I have a fixed point of a
+very high dimensional super complicated
+nonlinear system if i zoom in to that
+fixed point i can linearize the dynamics
+approximate for small Delta X
+neighborhood the dynamics look linear
+you get that from the Taylor series I
+skipped one step where I plugged this in
+and I Taylor series expanded and this is
+the leading order term in the Taylor
+series
+and then what I do is I look at that
+linear dynamical system near that fixed
+point to see if it has any unstable
+eigenvalues and eigenvectors and if it's
+unstable then that means that weird
+stuff can happen and I can get carried
+away from this neighborhood and my
+system will go into other behaviors that
+might not be beneficial if they're all
+stable then that means that this fixed
+point at least is going to locally these
+trajectories are going to go towards
+this fixed point so a concrete example I
+think about in fluid flows is the
+boundary layer over your wing so this is
+your wing surface this is the boundary
+layer which basically says fast flow is
+up here and the flow has to accelerate
+up to that speed from the surface to the
+free stream so this is called the
+boundary layer and a laminar boundary
+layer is what you want this is a low
+drag laminar boundary layer but if you
+have any turbulence or roughness or
+anything at all in a modern aircraft
+what's going to happen is your boundary
+layer is going to become really
+turbulent and messy and unsteady and
+you're gonna have high drag and it's
+going to bump the people around on the
+plane and it's going to cause fatigue
+all kinds of bad stuff so what you might
+want to do is analyze the stability
+around this is a fixed point it's an
+unstable fixed point I might want to
+understand why it's unstable how its
+unstable and then control to stabilize
+it so that I avoid this on my wing okay
+yeah so a lot of what we think about how
+many of you know about phase portraits
+how many how many don't okay so phase
+portraits are kind of how I think about
+going from linear to nonlinear systems
+so I'm just going to draw a really
+really simple one
+so let's say I have a differential
+equation X double dot equals X minus X
+cubed so this is force equals mass times
+acceleration this is my acceleration and
+this is a force from a potential this is
+a gradient of some potential fee that
+looks like this so the way I want you to
+think about this there's literally a
+wire and there's a bead on that wire in
+a gravitational potential and if I let
+that be go you can picture it moving
+around this surface
+yeah it's like a roller coaster so I can
+write down X dot equals some velocity
+and V dot equals X minus X cubed and
+then what I do with this system is I
+think what are all of the fixed points
+so step one is I list the fixed points
+and the fixed points so for X dot and V
+dot to be zero I need V to be zero and I
+need X minus X cube to be zero x times
+one minus x squared to equal zero so I
+have three fixed points X can be 0 X can
+be 1 X can be minus 1 so I have 1 0
+minus 1 0 and 0 0 this is X and this is
+V then what I would do is I would
+linearize these equations I'd compute
+this there's a partial derivative of F
+with respect to X at these fixed points
+and I would get an a matrix and I would
+look at its eigen values and eigen
+vectors to see if it's stable and so
+then what you can do in X and V
+coordinates I have a fixed point here at
+0 0 I have a fixed point here at 1 0 and
+I have a fixed point here at negative 1
+0 and this is extremely consistent with
+your intuition that if I started the
+bead right here with zero velocity would
+stay there that's what zero zero means
+if I started the bead right here with
+zero velocity it would stay there and if
+I started it here but then when I
+compute the linearized equations about
+these
+three fixed points what I find is that
+this fixed point is stable so if I add a
+little bit of energy to the system it
+basically stays just oscillating same
+with this one but if I look at this
+fixed point it's unstable it'll have a
+positive real part of one of its
+eigenvalues and what that means is that
+if I push the system a little bit of off
+equilibrium it's going to move really
+far really fast away from that
+equilibrium and so those directions if I
+computer the eigenvectors would look
+like this
+and then there's a conceptual leap where
+I can complete these circles because I
+know what's happening at all of these
+fixed points and I have some intuition
+for the system so this is a phase
+portrait you've probably seen these
+before okay if I add friction these turn
+into little sinks and everything spirals
+into them and so that's really I mean
+I'm gonna again oversimplify a little
+bit but that's kind of the state of the
+arts linear systems are easy I know
+everything about this system so if I
+have a nonlinear system what I do is I
+try to find all of the fixed points
+where I can linearize and then I go and
+do the thing I understand in these
+regions and I try to connect the dots
+that's really what we do in dynamical
+systems okay okay good
+any other questions so linearization
+stability and I'm glossing over I'm
+gonna see me most of you know that
+stability is determined by the
+eigenvalues and eigenvectors of a so if
+you need you know to brush up on that
+that'll be helpful how many of you have
+heard about bifurcations and normal
+forms okay how many of you like feel
+pretty comfortable at bifurcations many
+fewer I'm not gonna belabor this but it
+is really important and I think it's
+something that is going to be
+increasingly important in the context of
+machine learning is thinking about
+remember there are parameters that might
+might change in the system so I don't
+always just care about about a system
+with fixed parameters often what I want
+No is how will the system change if I
+change the parameters of this system
+does it does it go from stable to
+unstable that's important for me to know
+if I'm designing an airplane if my
+airplane is stable at one velocity in
+the air and it becomes unstable if I
+increase that velocity by ten miles per
+hour that's a pretty bad design okay
+and so bifurcations I'm just going to
+give a really simple example here so I'm
+going to take X dot equals beta X minus
+X cubed okay so I get to vary beta from
+negative infinity to positive infinity
+and I want to know how the system
+changes as I vary beta okay how many of
+you've seen this example so again I can
+look at the fixed points of the system I
+say the fixed points are when x times
+beta minus x squared equals zero so I
+always have a fixed point at x equals
+zero and then for positive beta so beta
+greater than zero I have a fixed point
+at x equals plus or minus root beta okay
+and again I can compute the stability of
+each of these fixed points by basically
+computing the derivative of this with
+respect to X and plugging in these
+numbers okay so if I looked at you know
+x equals zero then my derivative of my
+vector field with respect to X is just
+well my derivative is always beta minus
+three x squared and if I evaluated at x
+equals zero I plug x equals zero in here
+then this equals beta which might be
+positive might be negative if x equals
+plus or minus root beta then this will
+equal beta minus three beta which is
+minus 2 beta
+and I said this was only for beta
+positive and so a negative to beta is
+definitely a negative number
+which means this is always a stable
+fixed point and so what you can do is
+you can plot these trajectories on the
+beta line and let's say this is beta
+equals zero and the y axis I'm gonna say
+is the fixed points of X so if beta is
+negative there's one fixed point there's
+only one value that satisfies this when
+beta is negative it's x equals zero and
+for beta
+negative the fixed point at x equals
+zero is stable because it's eigen value
+is stable I get basically X dot equals
+theta X locally near x equals zero and
+so I have a stable fixed point as I
+increase beta through zero I pick up two
+additional fixed points plus and minus
+beta so I have two new fixed points that
+branch out x equals plus beta root beta
+and x equals minus root beta and I claim
+because I plugged in that that value and
+I get a negative number that eigen value
+is stable and so these branches are
+stable fixed points and the fixed point
+at x equals zero becomes unstable when
+beta goes positive because now my eigen
+value is positive and this grows blows
+up exponentially and so now this becomes
+an unstable that's just what a dashed
+line means in dynamical systems and so
+this is like the simplest example you
+can cook up where you have a very simple
+differential equation but now there's
+some parameter you get to play around
+with and as you go from negative values
+of that parameter to positive values
+really weird qualitatively different
+things happen so a bifurcation is one of
+these points where the dynamics
+qualitatively change you get new fixed
+points your stability changes things
+like that and these are what you're
+looking for in lots and lots of
+engineering systems like a seizure might
+be described by a bifurcation in the
+dynamics
+your aircraft might go through a
+bifurcation of the dynamics where the
+instability like the flutter on the wing
+starts to amplify and the wing rips off
+this happened a lot in the 30s actually
+happened to the a380 before they
+redesigned it bifurcations happen
+everywhere so it's really important to
+understand what parameters actually
+change with with your system and what
+the sensitivity of your dynamics are to
+those parameters okay that was really
+fast
+that's all I'm gonna tell you about the
+background of dynamical systems okay any
+any questions so the words you need to
+know linear systems eigenvalues and
+eigenvectors stability of fixed points
+which are determined by those
+eigenvalues phase portraits for
+nonlinear systems and bifurcation
+bifurcations and normal forms okay good
+so now I think I'm going to tell you a
+little bit more about kind of what I
+think of as modern modern dynamical
+systems and this is going to set up what
+we're going to talk about in the next
+the next part of this okay yep
+yes so there's a lot of theory I'm
+completely glossing over that's very
+very interesting and so there's
+something called the Hartman Grubman
+theorem which basically says depending
+on certain properties of my dynamical
+system if i zoom in close enough to the
+to a fixed point of a nonlinear system I
+can describe it by its linearization and
+so it looks linear if i zoom in enough
+yeah so there's a whole theory called
+normal form transformations which allow
+you to change your coordinates to make
+that window of validity bigger and
+bigger and bigger and that's actually
+what they did what they've been doing in
+space mission design for a long time
+there are a bunch of fixed points in the
+solar system
+and what they do are these normal form
+transformations to make them as linear
+as possible for as large of a radius as
+possible yeah any other questions okay
+so some things I'm gonna talk about our
+kind of this progression of complexity
+from increasing non-linearity from
+linear systems where we know everything
+and notice I put the pendulum here this
+is linear for very small amplitudes it
+becomes nonlinear as you make the
+amplitude bigger kind of weakly
+nonlinear systems where there's a few
+fixed points but it's relatively
+periodic or quasi periodic to full-blown
+chaotic systems like the double pendulum
+the Lorenz system and things like that
+which I'll talk about a little later in
+practice what we often do in dynamical
+systems is if we have the equations of
+motion F what we'll do is we will
+integrate trajectories through that
+dynamical system so using modern
+numerical integrators like runge-kutta
+fourth order runge-kutta or Euler what I
+can do is I can take these dynamics and
+I can cook up some scheme to step X
+forward one Delta T at a time one small
+time step at a time and so in this case
+here what I've done is I've taken a grid
+of initial conditions in white and I've
+integrated them along some fluid
+velocity field this is flow past a wing
+this is like a mosquito wing or a moth
+wing
+and you can see a lot about the dynamics
+based on where those particles go so for
+example you can color code regions where
+a lot of stretching occurs or there's a
+lot of sensitivity and you need to
+measure or control in those those
+locations okay so a couple things I want
+to point out and I'm gonna end soon
+in modern dynamical systems the first
+thing I want you to know is that if you
+want to know more about any of the stuff
+I've been talking about and any of this
+stuff I will talk about we just wrote a
+book data-driven science and engineering
+and this is not just a shameless plug
+for the book I have put up a complete
+copy of the PDF on my website so you can
+get it for free you don't have to buy it
+if you like it you can but you can get
+the entire PDF here and it has
+everything I'm going to talk about and
+it goes into a lot more depth about how
+you linearize around fixed points why
+eigenvalues are important all of this
+stuff so if you feel like I rushed over
+that and you didn't catch it chapter 7
+is gonna walk you through all of it okay
+and databook u-dub calm we actually have
+videos for every section of every
+chapter of the book so all of these are
+on on youtube if you want to like walk
+through really really carefully all of
+this information so slightly shameless
+plug but a lot of free material out
+there if you think I went too fast okay
+so the things I think about that I'm
+going to talk about for the rest of my
+time today and then for the entire
+tutorial tomorrow are really these basic
+themes and so I'm gonna take from those
+challenges one through seven on the
+board I'm gonna pick my favorite ones
+and that's what we're going to talk
+about okay the first one is that often
+equations are unknown or partially known
+or the form of the equations is not
+useful for me and so we're going to talk
+a lot about model discovery using these
+techniques of linear and nonlinear
+regression genetic programming neural
+networks and so on and so forth the
+other aspect that I'm going to focus a
+lot on is the aspect of non-linearity so
+again non-linearity immediately hampers
+our ability to cook up generic simple
+solutions and predict for arbitrary
+times in the future and so what I'm
+going to talk about
+are ways that people are using
+data-driven methods to discover affected
+coordinate systems that simplify your
+system now simplify means very different
+things to different people
+okay for me as a control theorist if I
+can linearize my dynamics that's like
+the ultimate simplification because I
+know everything about linear systems
+sometimes making my systems sparse would
+be a simplification because there's less
+terms I have to analyze and think about
+and again the history of mathematical
+physics is defined by moments where
+people had epiphanies where they came up
+with the coordinate transformation that
+explained their system and made their
+system simple okay so if you think about
+the Fourier transform the Fourier
+transform is my favorite example of this
+bori didn't do this for no reason he
+cooked up the Fourier transform to
+diagonalize the heat equation it is the
+coordinate transformation that makes the
+heat equation simple and in his case
+simple means linear diagonal decoupled
+and sparse okay and it's with us today
+and so increasingly we are able to
+discover these coordinate
+transformations and represent them in
+these more powerful representative
+architectures like neural networks and
+then the last one is the challenge of
+high dimensionality so high
+dimensionality often obscures our
+understanding of the dynamics think
+about the gas dynamics example it took a
+long time to go from individual atoms to
+a thermodynamic description and but we
+know that patterns exist in most systems
+we care about and that facilitates
+reduction okay so I have a little bit
+more time I guess I have ten minutes are
+there any questions before I go into
+more like more technical stuff yeah
+yes so so so this should be simplify and
+then my definition of what simplify
+means is it changes every day of the
+week sometimes simple means mean field
+sometimes simple means
+higher-dimensional but linear sometimes
+simple means probabilistic it really you
+know whatever I can get an effective
+model that allows me to solve some of my
+objectives of you know design
+optimization and control like that's
+that's what I want
+sorry I never got to probabilistic
+description is of dynamics and I might
+not have a chance to you at this moment
+so I'm gonna do a
+choose-your-own-adventure
+there are a few things I can talk about
+I could talk about chaos and give you
+some cool movies or I could talk about
+control and give you some cool movies
+how many of you would like control good
+how many of you would like chaos all
+right control has it and I'll start off
+next lecture with with with chaos
+okay good so this is an experiment built
+in my lab by Karthik Amon this is a
+double pendulum on a cart that you can
+actuate and you can essentially swing
+this thing up and stabilize it again
+there's a fixed point with both of them
+up but it's unstable but by measuring
+the system there's little encoders that
+measure the angles here and here I can
+measure that and with a model of the
+system I can feed that back and change
+the dynamics and stabilize it pretty
+cool so that's one of the things you
+would want to do with a model so how
+many of you have some expertise on
+control and feel pretty comfortable with
+it how many would like to learn more
+about it beautiful okay so there's two
+there's a lot of dichotomies in control
+that you can talk about and I'm gonna
+just give you the the most kind of naive
+division of these there is active versus
+passive so passive means you're not
+putting any energy into the system it's
+a stop sign a stop sign is a passive
+control active would be a stoplight okay
+so you're actively putting energy into
+the system and changing the control
+input so a stop sign is passive stop
+light is active and then in terms of
+active control there's open loop and
+closed loop open loop just means that
+you have a pre-planned control strategy
+that you hope works so my stoplight just
+turns red for a couple you know 30
+seconds then it turns green for 30
+seconds then it turns red then it turns
+green that's open loop that's not how it
+works in Los Angeles there's
+measurements in the road to see what the
+traffic flow is to make it faster but a
+normal traffic system with a simple dumb
+stoplight is just open-loop the
+controller does some pre-planned
+thing to give the the desired output
+behavior that you want and you'll get a
+better job if your city if you have a
+model of your system okay so another
+example I think of is like a toaster
+oven if you want toast at a certain
+level of doneness of toasted miss your
+toaster oven basically just sets a timer
+and cooks it for that long and usually
+it comes out about right okay there's a
+model for how fast things toast but then
+if you put another piece of toast in
+right after
+what happens gets a little burnt because
+the toaster is hot and your models wrong
+okay unless you have a super fancy
+toaster like my grad students just
+bought in which case it measures the
+temperature and changes the the time for
+that system so there's a lot of
+challenges and problems with open-loop
+it relies on a good model but it
+fundamentally can't stabilize unstable
+dynamics so in my pendulum on a cart
+example there's no way of stabilizing
+that system without actually taking
+measurements of the system there's no
+perfect pre planned trajectory that can
+stabilize an inverted pendulum so that
+if you blow on it it doesn't fall
+because it can't know that you're gonna
+blow on it okay and it tends to over
+react to noise and disturbances and it's
+not robust
+so the solution what we all do is we
+measure the output of the system line
+and we feed that back into the
+controller so now the controller is
+actually measuring the response seeing
+if the system actually did what you told
+it to do and then it changes its control
+input to modify the system based on this
+kind of discrepancy between what it
+thinks the model should be doing and the
+measurement of the actual system okay so
+this is a very very standard feedback
+control 101 is that you get a lot of
+benefit just by measuring your system
+kind of obvious but again you're now
+reconciling a discrepancy between your
+model of the system and the output of
+what the system actually does okay so
+with feedback control you can stabilize
+on stable dynamics you can compensate
+for uncertainties you can handle sensor
+noise and disturbances so if you're in a
+windy room you can stabilize the
+pendulum on a cart and you can push on
+the pendulum a little and the system
+will react okay these are all the things
+that control is good for okay now the
+standard industry control there's two
+standard algorithms that almost every
+industry in the world uses the first one
+is PID proportional integral derivative
+that's been around forever and the
+second one is model predictive control
+so most
+like construction equipment and you know
+chemical plants and advanced process in
+manufacturing uses model particular
+control advanced robotics uses model
+predictive control because it allows you
+to use a model that you have for your
+system even when the model is nonlinear
+and there's constraints and there's you
+know things you have to like if I can
+only control so much or my robot arm
+can't hit a wall
+I can build those constraints into this
+model predictive control optimization
+and so the basic idea here is you might
+guess it's based on a model so what
+model predictive control does is you
+have some goal that you want to achieve
+you want to drive your system from here
+to here and so what you do is you set up
+this really heavy optimization where I
+try a bunch of different control laws
+over a finite time horizon I see which
+control law in my model gets me closest
+to where I want to be and I take one
+step in that direction that's this first
+step here
+then I reinitialize everything I rerun a
+bunch of optimizations with these new
+control laws I take the one that gets me
+closest to where I want to be and I take
+another step in that direction and
+another step and another step and I can
+build in constraints I can do this with
+nonlinear systems and it's extremely
+robust to relatively poor models all
+kinds of stuff and this is the the
+backbone of like modern industrial
+control design is model predictive
+control
+yeah what do I mean I basically try a
+bunch of U of T's in open-loop often
+like I just I cook up a bunch of U of T
+U of T functions of things I could try
+for control and I picked the one that
+does the best and I take I apply that
+control offer a little bit of time it
+would pick which it would pick it yeah
+it would basically decide what bangbang
+sequence gets me closest to the
+objective and then it would start doing
+that bangbang sequence for a little
+while and then it would rerun that
+optimization in kind of a moving window
+yeah so that it's really robust because
+even if your dynamics aren't that great
+if you're moving in the right direction
+model predictive control will keep
+moving in the right direction you had a
+question so there's a lot of parameters
+you get to choose which is your
+prediction horizon for your model how
+long you apply that control law before
+you reoptimize and the ultimate horizon
+for your set point and those are all
+depending on how much computation you
+have onboard how fast the time scales
+are because this is all limited by how
+fast you can run this optimization okay
+so this is one of those cases where you
+want you don't want the best model
+possible if it's really expensive you
+want the best model that gets you close
+to the right direction as fast as
+possible because you're running this
+real time optimization this massive
+optimization and so what people actually
+do now is build essentially deep model
+predictive controllers where they use
+deep learning for the model very very
+fast model evaluations and then you wrap
+this model predictive control around a
+deep learning architecture I do want to
+point out that in some cases you
+actually need a pretty good model so
+this is what happens when you do this on
+a bad model actually it's not even that
+bad of a model it's a pretty good model
+and this is what happens when you do it
+on a good model so you have to really
+get a good models in some cases in
+others it's not so important
+and so what's happening nowadays there's
+two major fields where machine learning
+is entering control one is deep model
+predictive control so using deep
+learning to learn the model that you
+then use for model predictive control
+and the other one is in reinforcement
+learning so how many of you have worked
+with reinforcement learning so this is
+the engine for alphago and for the
+computers that can be people at chess
+and things like that where essentially
+if you have a complex let's see if this
+starts so I'm just gonna play this in
+the background this is learning how to
+play an Atari game you've probably seen
+this before chess is a pretty tough game
+to learn a control strategy to win
+because there are so many
+combinatorially many board
+configurations you as a human you have
+rules of thumb to tell if you're winning
+or not like if my son takes my queen
+he's probably winning it's like the
+simplest thing is just like count the
+points on the board
+that's one number to assess if a board
+is good or not what deep reinforcement
+learning does is it essentially uses
+deep neural networks to learn a value
+landscape of what is good or bad on your
+board or in your video game so it learns
+the same kinds of intuitive proxies for
+what is a good board strata to a
+strategic position versus a bad
+strategic position which is would
+normally be combinatorially expensive to
+enumerate okay in this case I really
+like this example because eventually
+this deep reinforcement learning learns
+the advanced human trick
+have you seen this before yeah so it
+learns the advanced human trick of
+trying to weaken one side and then it
+solves it all instantaneously for it so
+this is kind of amazing the the computer
+actually learned is this kind of an
+epiphany it learned the the strategy
+that you know an advanced human we have
+learned over a long period of time you
+can also use this for robots playing
+catch this one's kind of cool I'm going
+to
+we soon with a few trials this is a
+model where they've actually
+incorporated some rudimentary physics
+into the learning procedure so if you do
+reinforcement learning with no model and
+you just try to learn the value
+landscape it's extremely inefficient so
+download Google like reinforcement
+learning pendulum stabilization and run
+it on your computer it'll run for eight
+hours before it learns how to stabilize
+the pendulum unless you give it some
+basic physics and then it can learn
+after maybe 3040 trials I don't forget
+exactly how many it is but that's about
+how many a kid actually takes to learn
+this task so it's pretty impressive
+towards human level performance if you
+bake in some some physics knowledge and
+then this is when I always show Boeing
+executives which is this great
+compilation video of all of the failures
+of reinforcement and you know big basic
+robotic control so we still have a long
+way to go these bodies don't understand
+themselves they don't understand their
+own physics okay so I'm gonna end there
+what we're going to talk about on the
+next tutorial is mostly how we learn
+coordinates and how we learn models from
+data using increasingly sophisticated
+regression and optimization techniques
+with data okay thank you
+[Applause]
+you

@@ -1,0 +1,51 @@
+{
+  "dt_days": 1,
+  "horizon_days": 14,
+  "domains": {
+    "gtm": {
+      "stocks": {"sendable": 400, "staged": 40, "replies": 8, "meetings": 1, "deliverability": 0.92},
+      "note": "meetings are the health stock; send volume is a flow. Deliverability is a stock 0-1.",
+      "scenarios": {
+        "baseline": {"send_per_day": 40, "see_bounces": false},
+        "volume_plus_40": {"send_per_day": 56, "see_bounces": false},
+        "rank6_information": {"send_per_day": 40, "see_bounces": true}
+      }
+    },
+    "linkedin": {
+      "stocks": {"drafts": 6, "published": 8, "unanswered": 12, "inbound": 0},
+      "note": "inbound is the health stock. unanswered comments decay distribution.",
+      "scenarios": {
+        "baseline": {"posts_per_week": 5, "comment_sla": false},
+        "volume_plus_40": {"posts_per_week": 7, "comment_sla": false},
+        "rank6_information": {"posts_per_week": 5, "comment_sla": true}
+      }
+    },
+    "sales": {
+      "stocks": {"opps": 12, "proposals": 4, "stuck": 5, "signed": 0},
+      "note": "signed is the health stock. stuck>14d is the leak.",
+      "scenarios": {
+        "baseline": {"discount": true, "next_step_visible": false},
+        "volume_plus_40": {"discount": true, "next_step_visible": false, "new_opps": 1.4},
+        "rank6_information": {"discount": false, "next_step_visible": true}
+      }
+    },
+    "founder": {
+      "stocks": {"open_loops": 32, "aops_min": 50, "deals": 0, "energy": 0.6},
+      "note": "deals is the starved R2 stock. open_loops is R1.",
+      "scenarios": {
+        "baseline": {"new_starts": 3, "pushback": false},
+        "volume_plus_40": {"new_starts": 5, "pushback": false},
+        "rank6_information": {"new_starts": 1, "pushback": true}
+      }
+    },
+    "mike-os": {
+      "stocks": {"open_loops": 32, "aops_min": 50, "deals": 0, "energy": 0.6},
+      "note": "same as founder; regulators installed.",
+      "scenarios": {
+        "baseline": {"new_starts": 3, "pushback": false},
+        "volume_plus_40": {"new_starts": 5, "pushback": false},
+        "rank6_information": {"new_starts": 1, "pushback": true}
+      }
+    }
+  }
+}

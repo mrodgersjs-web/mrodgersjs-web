@@ -1,0 +1,640 @@
+Bayesian networks have given shape to
+the most complex problems that provide
+limited information and resources it's
+being implemented in the most advancing
+technologies of the era such as
+artificial intelligence and machine
+learning keeping this in mind I welcome
+you all to today's session hi everyone
+I'm Celica from at Eureka and today
+we'll be discussing all about Bayesian
+networks now without any further delay
+let's discuss the agenda we're gonna
+start the session by understanding what
+exactly a Bayesian network is then we
+move on and look at what a directed
+acyclic graph is after which we look at
+an example and try to understand how
+Bayesian networks work next we'll see
+how Bayesian networks can be practically
+implemented by using Python here we'll
+be trying to solve a problem known as
+the Monty Hall problem we'll be
+discussing in depth about this in a
+short while finally we'll end the
+session by looking at the different
+applications of Bayesian network also
+before we get started make sure you
+subscribe to Ed Eureka YouTube channel
+in order to stay updated about the most
+recent and trending technologies so
+let's get started with what exactly is a
+Bayesian network a Bayesian network
+basically falls under the category of
+probabilistic graphical modeling also
+known as PGM technique that is used to
+compute uncertainties by using the
+concept of probability so you need to
+understand the mean and the most
+fundamental concept behind Bayesian
+networks is probability right so
+probability is a pretty simple concept
+right and a lot of mathematical models
+are actually based on the concept of
+probability now you might have heard of
+Bayesian networks as belief networks or
+casual networks right they're also known
+as belief and casual networks they are
+used to model uncertainties by using
+directed acyclic graphs now it might
+seem a little confusing or the
+definition might seem a little vague to
+you you know what I'm saying that
+they're used to model uncertainties or
+they're used to model unknown values
+right that might seem a little wave to
+your but I'll be explaining this with an
+example so don't worry right now all I'm
+telling you is that a Bayesian network
+is based on the concept of probability
+it can be represented by using a
+directed acyclic graph now let's
+understand what exactly is a directed
+acyclic graph a directed acyclic graph
+is used to represent a Bayesian network
+and like any other statistical graph it
+contains a set of nodes and links where
+the links denote the relationship
+between the different nodes so take a
+look at this diagram here you see a
+couple of nodes 1 2 3 4 basically
+represent the nodes the arrows directing
+from each of these nodes represent the
+relationship between these nodes if you
+look at the figure you can see that no
+number 3 is dependent on both no number
+1 and no number 2 all right because you
+can see links or you can see arrows
+directed towards no number 3 meaning
+that no number 3 is dependent on 1 and 2
+or you can also say that 1 in 2 are the
+parent nodes of no number 3 right
+similarly no number 4 is dependent on
+node number 3 which makes no number 4
+the child of node number 3 and it's a
+simple relationship that we all can
+understand by just looking at the figure
+right we learnt all of this in probably
+our 10 standard in 1200 mathematics
+right so like I said the nodes represent
+random variables and the edges will
+define basically the relationship
+between these variables but the question
+here is what do these graphs model what
+output can you get from a directed
+acyclic graph a directed acyclic model
+will basically value the uncertainity of
+an event occurring based on the
+conditional probability distribution of
+each random variable
+a conditional probability table is used
+to represent this distribution of each
+variable in the network now I know some
+of you might get confused might not know
+what conditional probability is so
+before we move any further let's
+understand the basic math behind
+Bayesian networks so like I mentioned
+earlier Bayesian models are based on the
+simple concept of probability so let's
+understand what conditional probability
+and what joint probability distribution
+means a lot of you might actually be
+familiar with these terms but I'm just
+going to brush you up over the basic
+concepts or the basic idea behind these
+two probabilities right so joint
+probability is a statistical measure of
+two or more events happening at the same
+time basically the probability of event
+a B and C occurring it can also be
+represented as the probability of the
+intersection of two or more events
+occurring right so that's the simple
+concept behind joint probability now
+what I want you all to do is y'all can
+leave a couple of comments in the
+comment section and tell me an example
+of joint probability at on the top of my
+head I can think of the cards and the
+decks but those are very common examples
+let's come up with different examples
+right so please leave your examples in
+the comment section next we have
+something known as conditional
+probability so conditional probability
+of an event X is the probability that
+the event will occur given that an event
+Y has already occurred right so this P
+x-pipe Y basically represents the
+probability of event X occurring given
+that event Y occurs right now there are
+two ways you can represent conditional
+probability if x and y are dependent
+events then the expression would be
+something like this write probability of
+x and y divided by probability of y
+however if x and y are independent
+events and then the expression would be
+something like this right
+now if x and y are independent obviously
+the probability would be just given by P
+of X so if you're finding the
+conditional probability of P of x given
+that x and y are independent then
+obviously your answer is going to be
+probability
+of X alone that because both of them are
+independent of each other right so guys
+these were basically the two basic
+probabilities behind Bayesian networks
+right I actually expect all of you to
+know these because Bayesian networks is
+a more in-depth concept you require to
+have a basic understanding of
+probability concepts and that's why to
+learn more about the concepts of
+statistics and probability I'll be
+leaving a couple of links in the
+description box if you don't know these
+concepts and you can go through that
+video right so now let's come back to
+Bayesian networks and let's look at an
+example of Bayesian networks now let's
+assume that we're creating a Bayesian
+network that remodel the marks M of a
+student on his examination right so now
+the marks will obviously depend on a
+couple of factors right we've considered
+a couple of factors on which the marks
+will depend it will depend on the exam
+level which is denoted by E right exam
+level is basically a discrete variable
+that can take two values it can either
+be difficult or easy right so exam can
+either be difficult or easy right so if
+you look at the figure you can see that
+exam level is directly connected to
+marks meaning that your marks is
+dependent on your exam level next we
+have IQ of the student now IQ of the
+student again is a discrete variable
+that can take two values it has value
+high and low right so your marks are
+also directly dependent on your IQ level
+right now the marks will in turn predict
+whether or not a student will get
+admitted into a university
+now this admission into university is
+represented by a variable E right so the
+probability of a person getting admitted
+into a university will depend on his
+marks right that's why there is a direct
+link from marks and admission now an
+additional note that we have added here
+is that the IQ will also predict the
+aptitude score of the student right
+meaning that your aptitude score is
+basically dependent on your IQ level so
+I've represented this distribution
+through a directed acyclic graph and a
+conditional probability table right you
+can see the table that is connected to
+each of these nodes these are
+basically the conditional probability of
+each of these nodes right for example an
+IQ level since they are root nodes or
+since they have no other parent nodes
+they just have a basic probability but
+when it comes to marks you can see that
+the conditional probability table has a
+separate column for IQ level and for
+exam level right this is because marks
+is directly dependent on exam level and
+IQ level and that table will basically
+represent the conditional probability
+similarly for aptitude score you can see
+that the conditional property table has
+a separate column for IQ right and for
+admissions there is a separate column
+for marks this is because there are
+links between these nodes right I hope
+all if you understood how you can
+represent a problem statement through a
+directed acyclic graph right that's the
+first step in building a Bayesian
+network so like I mentioned this graph
+will clearly show how each variable or
+each node depends on its parent nodes
+right since we're creating a Bayesian
+network that will model the marks of a
+student on his examination based on his
+performance what we're going to do is
+we're going to factorize a joint
+probability distribution right so joint
+probability distribution like I
+mentioned earlier is the probability of
+events occurring at the same time so if
+you take a look at the slide there is a
+formula for joint probability
+distribution right I mention all the
+variables the probability of a comma M
+comma ie and s right so let's see what
+each of the easily present the first
+variable conditional probability of a is
+2 M 3 presents a conditional probability
+of a student getting an admission based
+on his marks right the second variable
+represents a conditional probability of
+the students marks given his IQ level
+and exam level right the third variable
+denotes the probability of his IQ level
+the fourth variable denotes the
+probability of the exam level whether
+it's difficult or if it's easy and the
+last variable denotes the conditional
+probability of his attitude scores based
+on his IQ level right these are all the
+dependents
+and all the probabilities that you get
+when you factorize a joint probability
+distribution so to sum it up what we did
+here was we studied the relationship
+between the parent and the child known
+for example the marks of a student
+depends on the exam level and the IQ
+level of the student
+similarly the aptitude score depends on
+the IQ level and finally his plans of
+getting into an university or getting
+admission depends on his marks so we
+represented this with a directed acyclic
+graph and we then measured the joint
+property distribution right now if you
+haven't noticed already there is a
+pattern here like the probability of a
+random variable will always depend on
+his parent nodes that's why we can
+formulate the Bayesian networks as this
+equation right here EXIF I basically
+denotes a random variable whose
+probability depends on the probability
+of its parent nodes right this is
+extremely simple right there is not much
+complication in this all you need to
+understand is the probability of a
+random variable depends on his parent
+nodes right now there's this is the
+thing about Bayesian networks they're
+one of the simplest yet the most
+effective techniques that are applied in
+predictive modeling in descriptive
+analysis and so on now to make things
+more clear let's build a Bayesian
+networks from scratch by using Python so
+guys before we get into the details and
+before we get into the coding part let's
+try to understand our problem statement
+I mean this demo will be using Bayesian
+networks to solve the famous monty hall
+problem for those of you who don't know
+what the monty hall problem is let me
+explain right the monty hall problem is
+named after the host of the TV series
+let's make a deal it is a paradoxical
+probability puzzle that has been
+confusing people for over a decade so
+this is how it works the game involves
+three dough's given that behind one of
+these doors is a car and the remaining
+two have goats behind them right through
+basically the three rows and behind one
+of these doors you will find a car if
+you're lucky enough you'll win the prize
+and
+the remaining two doors there are goals
+so how you start is you start by picking
+a random door let's say you pick a door
+number two right similarly the host
+which is basically Monty knows where the
+car is hidden and he opens another door
+see door number one right behind this
+door there's going to be a goat one
+hundred percent he's not going to open a
+door which has the price right because
+he's the host of the TV show now here's
+the catch you're going to be given a
+choice and the host will basically ask
+you if you want to pick door number
+three instead of your first choice that
+is row number two right initially you
+chose door number two now you'll be
+given a choice whether you want to
+switch your tour let's say you make up
+your mind and you choose door number
+three now right now what we have to do
+using Bayesian networks is we have to
+find out if it is better for you to
+switch your choice or should you stick
+to your first choice right this is
+exactly what we are going to model we'll
+be creating a Bayesian network to
+understand the probability of winning if
+the participant decides to switch his
+choice so like always the first step is
+to build a directed acyclic graph so the
+graph has three nodes like you can see
+right the door selected by the guest is
+represented by this node called guess
+door the door containing the prize is
+basically represented by prize door and
+the door Monty chooses to open is
+represented by Monty door so now let's
+understand the dependencies here right
+this door selected by the guest and the
+door containing the car are completely
+random processes I think about it our
+guests can pick up any random door and
+the door that contains the prize is a
+random door right that's what we
+assuming however the door that Monty
+chooses to open is dependent on both the
+doors it depends on the door selected by
+the guest and the door the prize is
+behind right Monty has to choose in such
+a way that the dole does not contain the
+prize and it cannot be the one chosen by
+the guest right these are the conditions
+you need to remember Monty has to choose
+in such a way that the door does not
+contain the price and
+it cannot be the one chosen by the
+guests right these are the two
+conditions for Monty opening a door now
+guests door and price door can be
+selected at random now what we'll do is
+we'll open up I Chum and code this
+problem statement so guys a short
+disclaimer is I'll be using Python so
+guys for those of you who don't know
+Python I'll be leaving a couple of links
+in the description box right it's a
+pretty simple code you don't have to be
+advanced Python order right a basic
+understanding of programming language
+would do all right so let me quickly run
+you through the code and let's see how
+we can predict whether a person should
+switch his choice or not
+so I've opened my buy charm right now
+and I've typed out the entire code in
+order to save up some time it's a pretty
+small demo to be honest there's not much
+a lot of brains required in order to do
+this it's a pretty simple and
+understandable demo we just have to
+implement what exactly we understood
+from the Monty Hall problem right now in
+order to execute Bayesian networks in
+Python there is a package known as
+pomegranate right that might seem like a
+funny name but this pack is basically
+implements flexible probabilistic models
+which are ranging from individual
+property distributions to compositional
+models such as Bayesian networks and
+hidden Markov models right now this
+package is not very widely used since
+the release of PDI BNN which is
+basically the Python package for
+Bayesian belief networks or something
+method I'm not sure but yeah this is
+also an important it's a quite simple
+package it has all the functions for
+discrete distribution for computing your
+conditional probability distribution
+joint probability distribution and so on
+all right so it has inbuilt functions
+for all these and I think it's a very
+good package right so let's start off by
+understanding what these code snippets
+are doing so initially obviously we're
+going to start by importing the packages
+that we required then we're going to
+move on and we are building the guest
+variable so like I said initially the
+guess we'll choose a door at random now
+before we speak about that let's
+understand what this a B and C
+represents ABC basically represents the
+three-dose right guess represents the
+door picked by the guessed price
+represents a door behind which there is
+a price and Monty represents the door of
+which Monty opens right so now when it
+comes to understanding which door the
+guest will pick it is a random process
+that's why the probability of him
+choosing door a B and C is 1 by 3 right
+there equal chances of him choosing any
+of the three doors
+similarly the door which has the price
+is again a random process right any of
+the rows can contain the price now since
+the door picked by Monty depends on both
+the guest door and the prize door we've
+created a conditional
+probability table over here these are
+the different probabilities so we are
+basically mapped up all the possible
+scenarios at Hin take place right then
+we're defining States with each of the
+guests price and Monte doors and the
+passing in these states to the network
+and this is where we create the Bayesian
+network now what we're doing in this
+code snippet is we've assumed that the
+guest has picked Doe number a look at
+the parameters here have passed a
+parameter guessed a meaning that we've
+assumed that the guest picks door number
+a given this information the probability
+of the prize door being a B or C is
+equal so now that we've created the
+Bayesian network what we'll do is we'll
+test out a couple of use cases in the
+first use case we've defined that the
+guest picks door number E right let's
+look at the output of this first right
+here it says guest is do number a now
+when it comes to the prize door the
+probability that a B or C might have the
+prize is equal since any of the dolls
+having the price behind it is again a
+random process that's why the
+probability of the prize being behind
+any one of the doors is equal rights 0.3
+0.3 0.3 now when it comes to Monte here
+if you notice that the probability of
+Monte opening door number a is 0 now why
+is this if you want remember very
+precisely I mentioned that Monte will
+not be able to pick the door that is
+picked by the guest okay there are two
+conditions that Monty has to fulfill he
+cannot open the door which is picked by
+the guest and he cannot open the door
+that contains the price now there's only
+one thing we know for sure from our
+input which is that the guest opens door
+number a meaning that there is no way
+Monty is going to open door number a
+that's why the probability for Monty
+picking a is 0 then we have no number C
+and row number B the probability of
+Monty picking C or B is equal there is a
+50% chance of him picking either of the
+doors right now to make things more
+interesting in the next case what we
+have done is we have given two inputs
+the
+said that the guest has picked two
+number a and we know that Monty has
+picked door number B right now what we
+are going to do is let's model how this
+looks here it shows guest has selected
+row number eight and here it shows Monty
+has selected row number B now what
+happens when it comes to the prize door
+the probability that the prize door is
+the door number a is zero point three
+the probability that prize door is Doe
+number B is zero now why is this zero
+now like I mentioned earlier Monty will
+never pick the door which contains the
+prize
+so as we know Monty has picked door
+number B which means that the price is
+definitely not behind door number B
+right that's why this probability is
+zero now the probability of a prize
+being behind door number C is zero point
+six six percent now this is a little bit
+odd so what we're doing here is
+initially the guest picked door number a
+now this Bayesian networks basically
+tells us that if the guess which is to
+do number C there is a higher chance
+that the prize is located in door number
+C right so if you notice the output the
+probability of the car being behind door
+number C is approximately 66% I'd this
+proves that if the guess which is his
+choice he has a higher probability of
+winning although this might seem a bit
+confusing to some of you it is a known
+fact that guests who decided to switch
+those won about 2/3 of the time though
+she's basically 60% of the time and
+guess who refused to switch one about
+1/3 of the time so this is not a bluff
+you can actually look it up on the
+internet a lot of people have used
+Bayesian networks to solve this paradox
+right to understand how this is possible
+but you can look up more about this if
+you want to go ahead and research about
+why there's not a 50% chance of the
+price being behind a and C right so
+Bayesian networks are used in such cases
+that involve predicting uncertain tasks
+and outcomes right so that was a simple
+demo of how Bayesian networks can model
+the Monty Hall problem right
+as I hope you found that interesting I
+find the demo extremely interesting
+because there's still some sort of
+mystery behind why there is a 60% chance
+of a person winning when he switches his
+choice of doors
+right for now let's move on and discuss
+the last topic which is the different
+applications of Bayesian networks
+Bayesian networks have innumerable
+applications in a varied range of fields
+including healthcare medicine
+bioinformatics information retrieval and
+so on right one of the most famous one
+is disease diagnosis so Bayesian
+networks are commonly used in the field
+of medicine for the detection and
+prevention of diseases like we saw
+earlier it can predict uncertain
+activities and uncertain probabilities
+right so they can be used to model the
+possible symptoms and predict whether or
+not a person is diseased right with
+limited information they can perform a
+huge amount of predictions then it's
+also use in optimized web search right
+Bayesian networks are used to improve
+the search accuracy by understanding the
+intent of a search and providing the
+most relevant search results they can
+very easily map your user intent to the
+relevant content and they'll deliver
+this through the search results so
+Bayesian networks have actually been
+used in a lot of web search engines
+right apart from this it's also used in
+spam filtering so Bayesian models have
+been used in the Gmail spam filtering
+algorithm for a couple of years now
+along with the knife bias algorithm in
+machine learning they are use
+effectively in order to filter out
+emails which are spam right so they
+basically classify documents by
+understanding the contextual meaning of
+the email they are also used in other
+document classification applications
+another application includes in gene
+regulatory networks now gr ends our
+network of genes that have many DNA
+segments right they are effectively used
+to communicate with other segments of a
+cell either directly or indirectly
+so basically mathematical models such as
+Bayesian networks are used to model such
+cell behavior in order to form
+predictions and you know in order to
+form some sort of hypotheses about
+diseases and so on
+apart from this is also used in bio
+monitoring so it plays a very huge role
+in monitoring the quantity of chemical
+doses that are used in pharmaceutical
+drugs right so why is that was it about
+the different applications of Bayesian
+networks basically they are an
+uncertainty management system that will
+help you find out possible outcomes of
+find out possible solutions when you
+provide limited information
+so guys that was all about Bayesian
+networks I hope you found this session
+informated have any doubts regarding the
+session please leave them in the comment
+section and we'll get back to you at the
+earliest so thank you so much for
+joining me today I have a greatly

@@ -1,0 +1,389 @@
+hello everyone and welcome to a special
+episode of Code and porum where we are
+going to talk about caal inferencing I'm
+not going to be showing my face in this
+video because there's some technical
+detail that you don't need to be
+distracted by my face for and so we'll
+get to it but before that please do hit
+that like for Content like this please
+join us on Discord because we have a
+Discord server links are down in the
+description below do be a part of the
+community and we would love to have you
+subscribe for more and let's get back to
+the
+video before talking about Cal
+inferencing we need to talk about
+randomized control tests we call these
+AB tests in the industry but I'll use
+randomized control tests here since each
+term makes more
+sense I own an e-commerce store and I
+want to send out emails to individuals
+about our products hoping that'll
+increase purchase conversion but I don't
+know if these emails are going to help
+or hurt and so I want to test out with a
+randomized control test this involves
+five steps we first select the users to
+participate in the test and ideally
+you'll select them based on a uniform
+criteria then we split these users into
+two groups evenly and then we give one
+of the groups the emails and don't send
+the other group any email whatsoever and
+then we monitor the purchase conversion
+for each user over time and once the
+experiment is complete or once the test
+is complete we make decisions like yes
+the emails increase purchase conversion
+or just the
+opposite now let's break down the phrase
+randomized control test we're selecting
+users at random to be a part of the
+control group and the treatment group
+this is because the only difference that
+we want between these two groups is just
+the fact that one receives emails and
+the other does not if we quote unquote
+control the effects of other variables
+through randomization
+we can then be confident that if the
+experiment says that sending email
+increases purchase conversion then it is
+almost certainly true that sending
+emails indeed causes purchase conversion
+increase and that's kind of why
+randomized control tests are so
+important and they can also be used for
+inferring
+causality but there are many situations
+that we just cannot run these randomized
+control tests one is that well setting
+up the experiment might be impossible
+for example instead of testing the
+efficacy of emails what if I wanted to
+test the efficacy of billboard ads for
+my products now you can't just randomly
+go to cities and set up Billboards just
+for the sake of a test and so this test
+setup is
+impossible and another reason where we
+can't use these rcts is because the
+experiment takes too long and in order
+to combat this it makes sense to make
+inferences based on historic ially
+observed data so in this sense we don't
+need to set anything up because the data
+already exists and we also don't need to
+wait for any experiment
+time now this is great but observe data
+is messy and randomized control tests
+are cool because we can control for
+variables that can affect our causal
+inference and so if we're going to
+perform causal inferencing on past data
+we need to be able to somehow control
+for the other factors that plague the
+observations let's let talk about three
+main challenges to causal
+inferencing the first is
+confounders I'm going to take a medical
+example for this so the flu is a problem
+for the world and I developed an Elixir
+that should cure the flu but before
+releasing it to the public I want to run
+a clinical trial now this test isn't
+really hard to set up and it's also not
+going to take an obscene amount of time
+and so I can actually run an experiment
+or a test for this so I take some users
+who have the flu and tell them to use
+the Elixir and they are my treatment
+group and then I take another set of
+users who have the flu and give them a
+placebo or rather just not treat them
+and this is my control group after a few
+weeks I see that the number of people in
+the treatment group that recovered from
+the flu is way better than that of the
+control group now this means that the
+Elixir is actually working and causing
+the flu to go away right well not
+necessarily because if we look at the
+experiment closely I see my control
+group has an average age of 65 while the
+users in my treatment group have an
+average age of 35 this means that like
+the people in the treatment group
+probably could have recovered on their
+own even without the Elixir but this
+test doesn't definitively prove that is
+the case and in this example age is a
+confounding variable it's a variable
+that we haven't controlled for and that
+can have some causal effect on whether a
+person recovers and this is exactly why
+when conducting AB test we randomize in
+order to make sure that the age and also
+the other potential confounding
+variables are equal between the two
+groups but like I said in many cases we
+cannot conduct a trial like this and so
+confounding variables is a challenge in
+causal inferencing that uses prior data
+you need to be vigilant of these
+confounders and control them
+too now the second topic that I wanted
+to talk about is selection bias and
+confounders actually very well seg way
+into this topic so selection bias occurs
+when a group of users chosen for the
+treatment group isn't a good
+representation of all users in the
+population this is exactly the case
+where you know the treatment only
+represents young people and is not
+really representative of the population
+and so there is a selection bias here
+and we need to account for this when
+looking at prior
+data the third challenge we need to
+account for is
+counterfactuals facts are truth
+counteracts are What would would have
+been the case had this person not
+received the
+Elixir when using prior data and also
+conducting a test we need to compute
+counterfactuals for each individual this
+is done to so that we have an Apples to
+Apples comparison there are a few
+strategies that we can use to actually
+calculate these counterfactuals like
+machine learning techniques as well as a
+technique called
+matching we'll take a look at this soon
+very
+briefly let's now talk about some of the
+assumptions that we need to make for
+causality so first off why do we need to
+make assumptions we want to tailor prior
+data to make it as representative as a
+randomized control test as much as
+possible we need to make assumptions
+because there will always be some
+confounders that have some weird and
+unintended effects on the outcome that
+we simply will never control for the
+assumptions make the problem of caal
+inferencing with past data possible so
+first assumption here is the caal Markov
+condition when doing caal analysis we
+need to talk about caal graphs causal
+graphs are graphs with directed edges
+that show causation for our medical
+example we have a graph that kind of
+looks like this but this is kind of
+convoluted and so to simplify the causal
+graph to be a directed a cyclic graph we
+have confounding variables that have
+direct causal effect on the treatment
+and sickness outcome and the treatment
+itself has an effect on the outcome but
+there's nothing more than
+this another assumption that we make is
+Suva which is a stable unit treatment
+value assumption a sample in the control
+group doesn't affect the samples in the
+treatment group that's basically what it
+says this assumption is required to
+prevent any interaction effects and for
+our medical example this is true we
+don't have people who receive the Elixir
+influencing the people who don't have
+the elixir
+and a third assumption that we're going
+to make is ignorability this assumption
+says that there exists no additional
+confounders that has an effect on the
+treatment and the output this is an
+extremely important assumption otherwise
+even if we see the treatment group doing
+better we wouldn't be able to pin a
+cause since the cause for getting well
+or getting sick could be pinned on
+potentially an unmeasured confounding
+variable and so we assume we have no
+missing confounders since this is such a
+super important topic I'm going to link
+more details down in the description
+below on a discussion in stock exchange
+so do check it out if you are interested
+in some more details all right so now
+let's get on to actually measuring the
+average treatment
+effect let's say that in our medical
+case we want to answer the question does
+the Elixir make people feel better we're
+working with some hypothetical data in
+this table the First Column is the
+person the second and third columns is
+whether the person got better or not
+better depending on whether they
+received the treatment and so we only
+see one of these two columns being
+populated for a given
+sample AJ received the Elixir and got
+better Sam didn't get the Elixir and
+also got better The Simple Solution to
+answer the question does the Elixir make
+people better would be first of all
+let's count the people who got the
+Elixir and who also got better and
+divided by the total number of people
+who took the Elixir this gives us 0.6 in
+this
+case next we count the people who didn't
+get the Elixir who got better and
+divided by the people who didn't get the
+Elixir which is 0.4 and then we subtract
+these numbers and this yields a positive
+0.2 so overall this looks like the
+Elixir has a positive effect right but
+there's a problem here let's add a
+column for age well looky here looks
+like the average age for those who reive
+the treatment is 48 while that of the
+control is only 29 and2 now that's a big
+enough difference that age could
+potentially be causing some effect on
+the output and so like we mentioned
+before age is a confounding
+variable to solve for this problem we
+need to determine the counterfactuals
+for every person taken into account and
+so we need to determine the
+spaces the counterfactuals essentially
+say for the people who received the
+Elixir would they have gotten better
+without it also for the people who
+didn't receive the Elixir would they
+have gotten better with it one way to do
+this is by matching essentially you have
+to try to find people of the same age
+who receive the other treatment and use
+that as the counterfactual estimate so
+in this example here Sam and Rondo are
+the same age and they receive different
+treatments so if Sam received the
+treatment we might see something similar
+like we did with Rondo and also vice
+versa and this kind of makes sense
+another slightly more complex way that
+we can fill these spaces that is
+determine the
+counterfactuals is by using machine
+learning that is like building a model
+that takes in age and treatment as the
+input and then predicts the
+output we train it on factual data and
+try to predict the
+counterfactuals I'd like to go over
+these two techniques probably a little
+more in a separate video but for now
+whatever Technique we use let's say the
+counterfactuals are populated as shown
+in red to determine the average
+treatment effect we subtract the case
+where the person got or would have
+gotten the treatment with the case where
+they had not gotten or would not have
+gotten the Elixir treatment this number
+is going to be the individual treatment
+effect and we calculate this for every
+single individual
+we then take the average of the
+individual treatment effects to get the
+average treatment effect now this final
+value is plus
+0.1 so it looks like the elixir does
+indeed help even when accounting for
+age now if I'm just looking at this one
+number I would probably make a policy
+that says for everyone who has the flu
+let's just give them the Elixir now
+let's just see how true this actually
+holds up so we have age as a confounding
+variable and now let's determine the our
+treatment effect which is conditioned on
+age and this is known as the conditional
+average treatment effect so the Kate
+will help us answer how does the Elixir
+affect people over the age of 35 and how
+does the Elixir affect people under the
+age of
+35 so for this we would just average the
+individual treatment effects for those
+values of H greater than or equal to 35
+and then also those values that are
+lower than 35 so the conditional average
+treatment effect where the age is
+greater than 35 is a positive
+0.4 and that which is lower than 35 it's
+a
+0.2 hopefully the simple algebra is easy
+to understand here so it's clear here
+that the treatment affects different age
+groups differently and this is what we
+call treatment
+heterogenity and So based on the
+assumptions that we made on the cajal
+graph and based on the Kate values that
+we are seeing here we can conclude that
+this Elixir indeed does help older
+people or older patients get better from
+the flu but it doesn't seem to have a
+positive effect on younger people so now
+looking at all these values and based on
+all of these constraints I would only
+prescribe The Elixir to older people who
+have the flu and just let the younger
+people recover on their own note that we
+determine all of this without actually
+conducting a randomized control test and
+it's purely based on past observed
+data all right so lots of things in this
+video in a short amount of time so let's
+summarize what we did here we first
+introduced randomized control tests and
+why we cannot always perform them and
+hence we try to use causal analysis and
+causal inferencing that simulates
+randomized control tests based on past
+data we then talked about the challenges
+in trying to make the past data behave
+as a randomized control test like the
+presence of confounders which leads to
+selection bias and also the need for
+counterfactuals then we talked about the
+assumptions required for causal
+inferencing and with a medical example
+we showed how to determine the average
+treatment effect to definitively prove
+that a treatment has an effect on the
+output and then we also looked at the
+effect of the treatment conditioned on
+different age groups to make better
+decisions that's all we have for this
+video there's so much more that I want
+to talk about in causal inferencing and
+I'm going to make a separate playlist on
+the topic and so stay tuned for more and
+until then hit that like please
+subscribe for more weekly uploads from
+yours truly and join us on Discord for
+some fun we'd love to have you and I'll
+see you very soon bye-bye
+[Music]

@@ -1,0 +1,51 @@
+{
+  "measured_at": "2026-08-30T19:30:00Z",
+  "node_count": 7,
+  "node_count_source": "xd://rig_fleet action=status (live inference-verified table)",
+  "inventory_host_count": 8,
+  "inventory_host_source": "/Users/rig128gb/.rig/mesh/fleet-inventory.json nodes keys",
+  "nodes": [
+    {"id": "local-128gb", "state": "READY", "class": "M-series 128GB", "source": "rig_fleet status"},
+    {"id": "mimo-8655", "state": "READY", "class": "MiMo local plan server", "source": "rig_fleet status"},
+    {"id": "proxy-8317", "state": "WEDGED", "class": "subscription proxy", "source": "rig_fleet status"},
+    {"id": "rig-256gb", "state": "READY", "class": "Mac Studio 256GB", "source": "rig_fleet status"},
+    {"id": "rig-36gb", "state": "READY", "class": "Mac Studio 36GB", "source": "rig_fleet status"},
+    {"id": "rig-96gb", "state": "WEDGED", "class": "Mac Studio 96GB", "source": "rig_fleet status"},
+    {"id": "blackwell", "state": "DOWN", "class": "GPU vLLM", "source": "rig_fleet status"}
+  ],
+  "agent_count": 24,
+  "agents": ["alfred-linkedin-cron","clara-customer-success","daphne-avis","darius-gtm","darius-sales","eleanor-finance","iris-jr-os-intelligence","iris-sr-research","iris-strategy","jordan-app","jordan-jr-ai-engineering","julie-job-search","madison-recruiting","marcus-film","nadia-data","nico-instagram","opal-product","otto-operations","pedro-partnerships","prime-jake-pai","ralph-linkedin","steve-content","theo-design","vera-security"],
+  "schedulers": [
+    {"name": "Hermes cron", "path": "/Users/rig128gb/.hermes/cron/jobs.json", "state": "present", "job_count": 146},
+    {"name": "Prefect", "path": "http://127.0.0.1:4200/api/health", "state": "LeafFleet reported live; re-check at report"},
+    {"name": "Temporal", "path": "xd://mcp__temporal_connection_check", "state": "MCP mounted; liveness not re-probed by driver"},
+    {"name": "Kestra", "path": "xd://mcp__kestra_list_namespaces", "state": "MCP mounted; liveness not re-probed by driver"},
+    {"name": "Jake workflows", "path": "/Users/rig128gb/Developer/jake-workflows", "state": "21 workflows, runs index present"}
+  ],
+  "hermes_job_count": 146,
+  "desktops": [
+    {"name": "OpenBot", "path": "/Applications/OpenBot.app", "id": "com.rodgersintelligence.openbot"},
+    {"name": "Agent OS", "path": "/Applications/Agent OS.app", "id": "com.rig.agent-os"},
+    {"name": "RIG OS Agency", "path": "/Applications/RIG OS Agency.app", "id": "com.rig.os-agency"},
+    {"name": "Adler Coach", "path": "/Users/rig128gb/Developer/RIG-Adler-Coach-AIder", "id": "com.rig.rig-adler-coach-aider"}
+  ],
+  "knowledge": [
+    {"name": "Recall", "source": "LeafFleet jake_recall stats", "cards": 853, "note": "not re-counted by driver this minute"},
+    {"name": "GBrain", "source": "LeafFleet http://127.0.0.1:3131/health", "state": "reported healthy"},
+    {"name": "Jake staged", "path": "~/.jake/workflows/staged"}
+  ],
+  "upgrade_surfaces": [
+    {"system": "jake-workflows engine", "current": "21 workflows, det-first, schema-gated LLM", "v2_move": "Temporal journal + Gate-D suspend", "risk": "duplicate schedulers", "source": "jake-workflow list"},
+    {"system": "24 agent specs", "current": "JSON specs, 3 graphs compile", "v2_move": "budgets + evaluators in spec", "risk": "spec drift vs live cron", "source": "agents/specs"},
+    {"system": "Hermes cron", "current": "146 jobs", "v2_move": "one scheduler of record per job class; freeze extras", "risk": "cadence regression", "source": "~/.hermes/cron/jobs.json"},
+    {"system": "Prefect OmniScout", "current": "systems-thinking campaign + distill", "v2_move": "clean live watchdog; no stale auto-schedule", "risk": "API backlog", "source": "prior cutoff proof"},
+    {"system": "Fleet inference", "current": "4 READY / 2 WEDGED / 1 DOWN of 7", "v2_move": "route only READY; repair 96GB and blackwell as named workstreams", "risk": "silent fallback to cloud", "source": "rig_fleet status"},
+    {"system": "Adler desktop", "current": "hash-bound analyze-only workflows", "v2_move": "cockpit for Jake run/status, not a second engine", "risk": "two control planes", "source": "Adler engine.ts"},
+    {"system": "OpenBot / Agent OS / Agency", "current": "menu-bar + apps live", "v2_move": "single operator shell or kill extras", "risk": "surface sprawl", "source": "/Applications"},
+    {"system": "MCP jake-pai", "current": "16 tools", "v2_move": "keep as attach; add durable resume + cost", "risk": "tool sprawl", "source": "jake-pai-mcp/server.py"},
+    {"system": "Recall/GBrain", "current": "853 cards; GBrain health reported", "v2_move": "dreaming cron into per-agent git memory", "risk": "duplicate brains", "source": "LeafFleet"},
+    {"system": "Gate-D ledger", "current": "request/check MCP", "v2_move": "interrupt=suspend, approval=resume exact run", "risk": "fake PASS", "source": "gated.py"},
+    {"system": "ProofPackets", "current": "seal exists", "v2_move": "mandatory on every department daily cycle", "risk": "theater greens", "source": "proof.py"},
+    {"system": "Systems Thinking studio", "current": "3.428GB cutoff, 12 L2 cards, v3 STAGED", "v2_move": "promote only after two-source-class topics", "risk": "doctrine promotion without evidence", "source": "proof/systems-thinking-studio-cutoff-20260830.json"}
+  ]
+}

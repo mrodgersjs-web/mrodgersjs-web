@@ -1,0 +1,156 @@
+Building scalable systems isn't just&nbsp;
+about writing good code - it's about&nbsp;&nbsp;
+anticipating and solving problems&nbsp;
+before they become critical.
+Today, we'll explore eight system design&nbsp;
+challenges that every growing system faces,&nbsp;&nbsp;
+along with the solutions that&nbsp;
+top companies use to tackle them.
+Every successful application eventually faces&nbsp;
+the challenge of handling high read volumes.
+Imagine a popular news website where&nbsp;
+millions of readers view articles,&nbsp;&nbsp;
+but only a small team of&nbsp;
+editors publishes new content.
+The mismatch between reads and writes&nbsp;
+creates an interesting scaling problem.
+The solution is caching.
+By implementing a fast cache layer,&nbsp;&nbsp;
+the system first checks for data there&nbsp;
+before hitting the slower database.
+While this dramatically reduces database&nbsp;
+load, caching has its challenges:
+keeping the cache in sync with the&nbsp;
+database and managing cache expiration.
+Strategies like TTL on keys or write-through&nbsp;
+caching can help maintain consistency.
+Tools like Redis or Memcached make&nbsp;
+implementing this pattern easier.
+Caching is especially effective for read-heavy,&nbsp;&nbsp;
+low-churn data, like static&nbsp;
+pages or product listings.
+Some systems face the opposite challenge -&nbsp;
+handling massive amounts of incoming writes.
+Consider a logging system processing&nbsp;
+millions of events per second,
+or a social media platform managing real-time user&nbsp;&nbsp;
+interactions. These systems need&nbsp;
+different optimization strategies.
+We tackle this with two approaches. First,&nbsp;&nbsp;
+asynchronous writes with message&nbsp;
+queues and worker processes.
+Instead of processing writes immediately, the&nbsp;
+system queues them for background handling.
+This gives users instant feedback while the&nbsp;
+heavy processing happens in the background.
+Second, we use LSM-Tree based&nbsp;
+databases like Cassandra.
+These databases collect writes in memory and&nbsp;
+periodically flush them to disk as sorted files.
+To maintain performance, they perform compaction:&nbsp;&nbsp;
+merging files to reduce the number&nbsp;
+of lookups required during reads.
+This makes writes very fast
+but reads become slower as they&nbsp;
+may need to check multiple files.
+Handling high write loads is&nbsp;
+just one part of the puzzle.
+Even the fastest system becomes&nbsp;
+useless if it goes down.
+An e-commerce platform with a single database&nbsp;&nbsp;
+server stops entirely on failure - no&nbsp;
+searches, no purchases, no revenue.
+We solve this through redundancy and failover,&nbsp;&nbsp;
+implementing database replication&nbsp;
+with primary and replica instances.
+While this increases availability, it introduces&nbsp;
+complexity in consistency management. We might&nbsp;&nbsp;
+choose synchronous replication to prevent&nbsp;
+data loss and accept higher latency,
+or opt for asynchronous replication&nbsp;
+that offers better performance but&nbsp;&nbsp;
+risks slight data loss during failures.
+Some systems even use quorum-based replication&nbsp;
+to balance consistency and availability.
+Critical services like payment systems need true&nbsp;&nbsp;
+high availability. This requires both load&nbsp;
+balancing and replication working together.
+Load balancers distribute traffic across&nbsp;
+server clusters and reroute around failures.
+For databases, a primary-replica&nbsp;
+setup is standard:
+the primary handles writes
+while multiple replicas handle reads,
+and failover ensures a replica can&nbsp;
+take over if the primary fails.
+Multiple-primary replication is&nbsp;
+another option for distributing&nbsp;&nbsp;
+writes geographically, though it comes&nbsp;
+with more complex consistency trade-offs.
+Performance becomes even more&nbsp;
+critical when serving users globally.
+Users in Australia shouldn't wait for&nbsp;
+content to load from servers in Europe.
+CDNs solve this by caching content closer&nbsp;
+to users, dramatically reducing latency.
+Static content, like videos and&nbsp;
+images, works perfectly with CDNs.
+For dynamic content, solutions like edge&nbsp;
+computing can complement CDN caching.
+Different types of content&nbsp;
+need different cache-control&nbsp;&nbsp;
+headers - longer durations for media files,
+shorter for user profiles.
+Managing large amounts of data&nbsp;
+brings its own challenges.
+Modern platforms use two types of&nbsp;
+storage: block storage and object storage.
+Block storage with its low latency and high&nbsp;&nbsp;
+IOPS is ideal for databases and&nbsp;
+frequently accessed small files.
+Object storage on the other hand costs&nbsp;
+less and is designed to handle large,&nbsp;&nbsp;
+static files like videos and backups at scale.
+Most platforms combine these:&nbsp;
+user data goes into block storage,&nbsp;&nbsp;
+while media files are stored in object storage.
+With all these systems running, we&nbsp;
+need to monitor their performance.
+Modern monitoring tools like&nbsp;
+Prometheus collect logs and metrics,
+while Grafana provides visualization.
+Distributed tracing tools like OpenTelemetry help&nbsp;
+debug performance bottlenecks across components.
+At scale, managing this flood of data is&nbsp;
+challenging. The key is to sample routine events,&nbsp;&nbsp;
+keep detailed logs for critical operations, and&nbsp;
+set up alerts that trigger only for real problems.
+One of the most common issues monitoring&nbsp;
+reveals is slow database queries.
+Indexing is the first line of defense.
+Without indexes, the database scans&nbsp;
+every record to find what it needs.
+With indexes, it can quickly&nbsp;
+jump to the right data.
+Composite indexes, for multi-column&nbsp;
+queries, can further optimize performance.
+But every index slows down writes slightly&nbsp;
+since they need to be updated as data changes.
+Sometimes indexing alone isn't enough.
+As a last resort, consider sharding - splitting&nbsp;
+the database across multiple machines,
+using strategies like range-based&nbsp;
+or hash-based distribution.
+While sharding can scale the system significantly,&nbsp;&nbsp;
+it adds substantial complexity&nbsp;
+and can be challenging to reverse.
+If you like our video, you might like&nbsp;
+our system design newsletter as well.&nbsp;&nbsp;
+It covers topics and trends&nbsp;
+in large-scale system design.
+Trusted by 1,000,000 readers.
+Subscribe at blog.bytebytego.com
+Tools like Vitess simplify&nbsp;
+sharding for databases like MySQL,&nbsp;&nbsp;
+but it’s a strategy to use sparingly&nbsp;
+and only when absolutely necessary.

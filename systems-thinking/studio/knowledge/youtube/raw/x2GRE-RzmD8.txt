@@ -1,0 +1,364 @@
+If I drop red dye into this beaker
+of water, the
+laws of physics say that the
+particles will diffuse throughout
+the beaker until the system
+reaches equilibrium.
+Now, what if I wanted to somehow
+reverse this process to get back
+to the clear water?
+Keep this idea in mind
+because this concept of physical
+diffusion is what motivates the
+approach for text to image
+generation with diffusion models.
+Diffusion models
+power popular image tools
+like DALL-E-3 and sample
+diffusion where you can go from a
+prompt like a turtle
+wearing sunglasses playing
+basketball, to a hyper
+realistic image of just that.
+At a high level, diffusion models
+are a type of deep neural network
+that learn to add noise
+to a picture and then learn how to
+reverse that process to
+reconstruct a clear image.
+I know this might sound abstract,
+so to unpack this more, I'm going
+to walk through three important
+concepts that each build off each
+other.
+Starting first with Forward
+Diffusion.
+Going back to the beaker, think
+of how the drop of dye diffused
+and spread out throughout the
+glass until the water was no
+longer clear.
+Similarly with Forward diffusion,
+we're going to add noise
+to a training image over
+a series of time steps until
+the model starts to lose its
+features and become
+unrecognizable.
+Now this noise is added by what's
+called a Markov chain,
+which basically means that the
+current state of the image only
+depends on the most recent state.
+So as an example, let's start with
+an image of a person.
+My beautiful stick figure here
+and labeled this image X
+at time T equals to zero.
+For simplicity, imagine that
+this image is made of just three
+RGB pixels and we can
+represent the color of these
+pixels on our x, y, z plane
+here.
+Where the coordinates
+of each of our pixels correspond
+to their R, G, and
+B values.
+So as we move to
+the next timestep, T equals
+to one...
+We
+now add random
+Gaussian noise to our image.
+Think of Gaussian noise as looking
+a bit like those specks
+of TV static you get on your TV
+when you flip to a channel that
+has a weak connection.
+Now, mathematically adding
+Gaussian noise involves randomly
+sampling from
+a Gaussian distribution,
+a.k.a.
+a normal distribution or bell
+curve, in order to obtain
+numbers that will be added
+to each of the values of our RGB
+pixels.
+So to make this more concrete,
+let's look at this pixel
+in particular.
+The color coordinates of this
+pixel in the original image
+at time zero, start
+off at 255, 0, 0, corresponding
+to the color red.
+Pure red.
+Now as we add noise
+to the image going to timestep
+one, this involves
+randomly sampling values from our
+Gaussian distribution.
+And say we obtain
+a random values of
+-2, 2, and 0.
+Adding these together, what we get
+is a new pixel
+with color values 253, 2,
+and we can represent this new
+color on our plane here.
+And show the change in this color
+with an arrow.
+So what just happened basically
+is that this pixel
+that was pure red in the original
+image at time zero
+has now become slightly less
+red in the direction of green
+at time t goes to one.
+So if we continue this process,
+so on and so forth,
+say we go two times, step two..
+Adding more and more
+random Gaussian noise to our
+image.
+Again by randomly sampling values
+from our Gaussian distribution
+and using it to
+randomly adjust the color values
+of each of our pixels,
+gradually destroying any
+order or form
+or structure that can be found in
+the image.
+If we repeat this process many
+times,
+say over a thousand times
+steps, what
+happens is that shapes
+and edges in the image start
+to become more and more blurred,
+and over time, our person
+completely disappears.
+And what we end up with is
+completely white noise
+or a full screen and
+just TV static.
+So how quickly we go
+from a clear picture
+to an image of random noise
+is largely dictated by what's
+called the noise scheduler
+or the variance scheduler.
+This scheduling parameter controls
+the variance
+of our Gaussian distribution.
+Where a higher variance
+corresponds to
+larger probabilities of selecting
+a noise value that is higher
+in magnitude, thus resulting
+in more drastic jumps
+and changes at..for each
+color of each pixel.
+So after forward diffusion comes
+the opposite - reverse diffusion.
+This is similar to the process of
+if I took the beaker of red water
+and I somehow removed the red
+dye to get back to the clear
+water.
+Similarly for reverse
+diffusion, we're going to start
+with our image of random noise.
+And we're going to somehow remove
+the noise that was added to it
+in very structured and controlled
+manners in order to
+So to help me explain this more,
+there's this quote by the famous
+sculptor named Michelangelo,
+who once said, "Every block
+of stone has a statue inside
+it and it's the job of the
+sculptor to discover it.".
+In the same way, think of reverse
+diffusion as every image
+of random noise has a clear
+picture in it.
+And it's the job of the diffusion
+model to reveal it.
+So this can be done by training a
+type of convolutional neural
+network called a U-Net to
+learn this reverse diffusion
+process.
+So if we start with an
+image of completely random noise
+at a random time T,
+The model learns how to predict
+the noise that was
+added to this image
+at the previous time step.
+So say that this
+model predicts that the noise that
+was added to this image was
+a lot in the upper left hand
+corner here.
+And so the models objective here
+is to minimize the mean squared
+error between the
+predicted noise from the actual
+noise that was added to it during
+forward diffusion.
+We can then take this scale noise
+prediction and subtract
+it or remove it from
+our image at time t in
+order to obtain a prediction of
+what
+the slightly less
+noisy image looked like
+at time t minus one.
+So on our graph here for
+reverse diffusion, the model
+essentially learns how to
+backtrace its steps
+from each pixel's augmented colors
+back to its t noise colors.
+Now, if we repeat this process
+many times, over time,
+the model learns how to remove
+noise and very structured
+sequences in patterns in order
+to reveal more features
+of an image.
+Say slowly revealing
+an arm and a leg.
+It repeats this process until it
+gets back to
+one final noise prediction.
+One final noise removal
+and then finally, a clear
+picture.
+And our person has magically
+reappeared.
+So now that we've covered forward
+and reverse diffusion, it's time
+to introduce text into the picture
+by introducing a new concept
+called conditional fusion or
+guided diffusion.
+Up to this point, I've been
+describing unconditional diffusion
+because the image generation was
+done without any influence from
+outside factors.
+On the other hand, with
+conditional diffusion, the process
+will be guided by or conditioned
+on some text prompt.
+So the first step is we have to
+represent our text within
+embedding.
+Think of an embedding as a numeric
+representation or a numeric vector
+as able to capture the semantic
+meaning of natural language input.
+So as an example, an
+embedding model is able to
+understand that the word
+KING.
+Is more closely related to the
+word MAN than it
+is to the word WOMAN.
+So during training, these
+embeddings of these text
+descriptions are paired
+with their respective images that
+they describe in order
+to form a corpus of
+image and text pairs
+that are used to train this
+model to learn this conditional
+reverse diffusion process.
+In other words, learning how much
+noise to remove in
+which patterns at
+a given the current image,
+and now taking into account the
+different features of the embedded
+text.
+One method for incorporating these
+embeddings is what's called self
+attention guidance, which
+basically forces the model to
+pay attention to how specific
+portions of the prompt
+influenced the generation of
+certain regions or
+areas of the image.
+Another method is called the
+classifier free guidance.
+Think of this method as helping
+to amplify the effect
+that certain words in
+the prompt have on how the image
+is generated.
+So putting this all together, this
+means that the model is able
+to learn the relationship
+between the meaning of words
+and how they correlate with
+certain de-noising sequences
+that gradually reveal different
+features and shapes and edges
+in the picture.
+So once this process is learned,
+the model can be used to generate
+a completely new image.
+So first, the users text description
+has to be embedded.
+Then the model starts with
+an image of completely random
+noise.
+And it uses this text
+embedding along
+with the conditional reverse
+diffusion process it learned
+during training,
+to remove noise in the image
+and structure and patterns, you
+know, kind of like removing fog
+from the image until
+a new image has been generated.
+So the sophisticated architecture
+of these diffusion models allows
+them to pick up on complex
+patterns and also to create images
+that it's never seen before.
+In fact, the application
+of diffusion models spanned beyond
+just text to image use cases.
+Some other use cases involve image
+to image models, in painting
+missing components into an image,
+and even creating other forms of
+media like audio or video.
+In fact, diffusion models have
+been applied in different fields,
+everything from the marketing
+field to the medical field
+to even molecular modeling.
+Speaking of molecules, let's
+check on our beaker.
+If only I could.
+..
+Well, would you look at that
+reverse diffusion!
+Anyways, thank
+you for watching.
+I hope you enjoyed this video and
+I will see you all next time.
+Peace.

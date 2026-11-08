@@ -1,0 +1,412 @@
+It's not like when we download an LLM,
+we can just run it like an executable
+file on our computer. When you download
+the model, you actually get a list of
+artifacts that look something like this,
+which means you have to figure out how
+to take this recipe and make inference
+with it. And depending on what inference
+engine you use to get the job done, they
+all have different ways to load and
+serve the model. Kind of like you have a
+recipe, but different chefs might have
+different ways of making the dish. So,
+you have engines like llama.cpp written
+in C++, vLLM and
+text-generation-inference primarily
+written in Python, and a mix of
+languages like TGI and TensorRT-LLM that
+use Rust, C++, and Python, as well as
+more derivatives of these engines. Now,
+looking at this diagram that shows how
+fast each programming languages solve a
+large Fibonacci sequence, you might
+think that llama.cpp or TGI should be
+the fastest since C and Rust is faster
+than Python. Turns out programming
+language overhead in inference engine is
+actually not as bad as some people might
+give credit to. In fact, vLLM that's
+primarily written in Python runs faster
+in some ways than llama.cpp. So,
+clearly, there's something more going on
+when it comes to inference. So, what is
+it? Welcome to Guild Bytes Code, where
+every second counts. Quick shout-out to
+Zo, more on them later. Let's say I
+downloaded Google's Gemma 4 model from
+Hugging Face. What I get is a list of
+these files, let's call them artifacts,
+and they are all essentially ingredients
+and recipes to build and serve the
+model. In other words, we can't just
+double-click the file and run it. We
+need an engine that can operationalize
+this. The biggest file here is the 15 GB
+file called model.safetensors, which
+actually holds the model's weights in
+this format that on the inside looks
+something like this, which is
+essentially a large JSON file that
+contains the model's weights. We'll get
+into quantization later, which will
+essentially take this large file and
+reduce the dimensionality into lower
+precision with various techniques. Now,
+when we open the config.json file, this
+is where you get the model's entire
+architecture outlined in a single file.
+The file contains information about the
+model architecture, like number of
+attention heads, how many layers the
+model uses, what kind of attention
+mechanism it uses, the size of
+vocabularies, and the whole nine yards.
+All of this lives inside our SSD. So, we
+have to rely on the inference engine to
+take these and load it into the proper
+memory hierarchy, whether that's in our
+RAM and CPU or GPU to start doing
+meaningful work. So, naturally, we have
+the following phases that go from model
+to loading, prefill and decoding, and
+serving. And today, we'll be focusing on
+the loading portion, since the
+subsequent phases require its own
+dedicated video, given how complex
+inference really is. Now, when we talk
+about loading the model, one of the
+first challenges you'll face is the
+availability of memory in this hierarchy
+of memory. Some engines, like llama.cpp,
+are great at bifurcating the memory, so
+you can essentially use it kind of like
+a bunk bed, where the model's weights
+can be offloaded to an accelerator for
+certain tasks, while keeping the model's
+weights loaded in RAM. Now, there's some
+nuances to this, since the naive way to
+approach this might be to create
+duplicate of memory in RAM, since you
+have to first read the model's weights
+from SSD to our RAM, and then copy them.
+In this scenario, the temporary space
+that is used to copy from will
+eventually get evicted, and you'll
+permanently reserve the RAM for your
+model's weights. But, this is clearly
+not a really efficient way to load the
+model. Most inference engines,
+especially llama.cpp, uses what's called
+mmap or memory map to get around this.
+And the idea behind it is simple. You
+essentially allow the operating system
+to manage the memory by holding the
+memory weights that are stored in SSD,
+and keeping track of its logical
+location of these. And when they're
+needed by the inference engine, it'll
+then load it lazily, instead of eagerly
+so that you save time loading the model.
+And once the weights are loaded in RAM,
+the operating system could eventually
+evict this since RAM is a competitive
+space since other applications like
+Google Chrome might be needing that
+space. So, if the inference engine then
+later tries to access the evicted
+weights, the OS will then just load it
+once again from SSD back to RAM. So,
+assuming the model that we just saw that
+is 15 GB in size is held in the 32 GB
+RAM, the communication medium between
+the SSD and RAM is the PCIe bus which
+runs at around 7 GB per second on PCIe 4
+NVMe technology. So, even if we say
+around 5% of our 15 GB model is evicted,
+which is only 750 MB, at 7 GB per
+second, that's roughly 107 ms of latency
+to load it from the disk. Now, if we
+assume accelerators like GPU is doing
+most of the heavy lifting like matrix
+multiplication and critical operation
+during inference, we have to then push
+these weights once again to the GPU.
+But, memory bandwidth typically gets
+faster higher up the memory hierarchy
+chain. So, the overall latency from
+using mmap is a really good trade-off in
+terms of not tying up your entire system
+and also making the time to load the
+model extremely fast. That's why when I
+use llama.cpp to load this quant 3.5
+model, it takes me less than 10 seconds
+to actually get started to get the first
+token generated. Meanwhile, while vLLM
+also supports mmap by default, the load
+time could take a few minutes given that
+vLLM needs to compile the model with a
+large import overhead and also a much
+heavier initialization for better
+scheduling and concurrency, which will
+get more important in the later stages
+of inference that we talked about
+earlier. So, all in all, depending on
+what inference engine you pick, it will
+have different opinions about how the
+model should be loaded and served. But,
+what we haven't talked about yet is
+quantization, which is a really
+important topic when it comes to owning
+your own stack for inference. And
+speaking of owning your own stack,
+here's a quick word from Zo, sponsoring
+this video. Open Claude showed the world
+what a personal AI agent could look
+like. But, if you actually try to set it
+up, it's actually not as easy to set it
+up properly. Zo takes a different
+approach by turning your laptop into a
+server. Zo gives you your own computer
+in the cloud with AI built in. It's
+fully isolated, so you're not one bad
+configuration away from exposing your
+whole machine. Out of the box, you can
+integrate with Gmail, Google Drive,
+Stripe, X, Spotify, and more. You can
+also build websites, set up automations
+that run while you sleep, and even code
+full projects right from chats. My
+favorite feature is texting Zo on
+iMessage or Telegram and talking to my
+agent. Zo is always on, always yours
+without configs. Link in the description
+below. When it comes to quantization,
+there are different methods and formats
+like RTN, AWQ, FP8, GG UF, EXL2, and now
+EXL3, NVFE4, Bits and Bytes, and more.
+Now, you might think why are all these
+necessary, which is a fair question, but
+all of these have a lot more in common
+that you might expect. Sort of like how
+when you zip a file, you have file
+formats like ZIP, TAR, RAR, and 7Z,
+which all effectively get the same job
+done. And honestly, you might not care
+about the difference between these
+compression methods, just like how you
+might not care to know the differences
+between these quantization methods here.
+So, if you really want to know more
+about the intuition behind data
+compression, you can check out the
+recent video I did called Turboquant,
+which explains the nuance behind
+quantization. So, at the core, the main
+idea is to take the model's weights,
+which are typically stored in BF16
+precision, and reduce them to lower
+resolution like INT4. Sort of like going
+from 4K resolution to 1080p and then
+getting it back to 4K without losing
+information. Although, this isn't a
+perfect analogy, but you get the point.
+Standard quantization might take the
+entire tensor and just reduce the
+precision from BF16 to INT8 or lower.
+But, there are other ways to group them,
+whether it's per channel or per group.
+And this is called RTN or round to the
+nearest method, where it's sort of like
+a naive approach here, since you're
+brute-forcing the quantization. One of
+the ways is by grouping the weights,
+like grouping 32 weights into one and
+reducing the precision within that group
+after normalizing them. So, in this way,
+you find the min and max within the
+group to find the optimal range for the
+matrix and normalize the rest of the
+data set within that group using that
+scale. And after they've been normalized
+and rounded up or down to the nearest
+value in the lower precision, you keep
+the original scale at 16-bit, later to
+be used for de-quantizing later on. But,
+quantizing the weight this way is
+simple, but can lead to a big drop in
+accuracy because the scale is uniform.
+What I mean by that is every value
+contained in the 32 weights need to be
+rounded up or rounded down to the range
+of values that are available. For
+example, INT8s can only store integer
+values between -128 to 127. And INT4 can
+only store values between -8 and 7,
+which means values like 0.9124, for
+example, after being normalized and
+rounded, has to fit into an integer
+value within this range. So, given
+vector values like 0.9124,
+1.31, 6.34, 3.32, 5.4, converting these
+into INT4 precision, which can only hold
+16 values in total, will certainly pose
+a challenge in information preservation.
+One possible way is to find the biggest
+value here, which is 6.34, and assume
+that +6.34
+and -6.34 is the range that we'll use to
+quantize the weights within this group.
+This is called symmetric quantization.
+Another way to do it is by finding the
+lowest value, which is 0.91, and the
+biggest value, which is 6.34, and using
+the asymmetric scale this way. And this
+will be especially relevant when we look
+at GGML formats like Q4_0 and Q4_1,
+where Q4_0 is going to resemble more of
+the symmetric quantization, since it
+only stores one extra value, and Q4_1,
+which holds two values, which includes
+the bias, since the data set is
+essentially shifted by the bias, which
+resembles more of the asymmetric
+quantization. There are other types of
+quantization methods like Q4_KS and
+Q4_KM. These are called K-quants. And
+here's a brief implementation in code if
+you want to pause the screen and look at
+how it works. But the idea behind it is
+to add a hierarchical scaling and mixed
+precision. What I mean by that is
+instead of grouping 32 weights together
+and then quantizing them within that
+group, either symmetrically
+we just add one higher level of scaling
+and one local scaling. So, a group of
+256 weights with eight groups of 32
+weights. That way, we have a large
+context and lower bound context. So,
+values that might have been silenced out
+due to anomalies within the local now
+has a higher chance in being quantized
+more effectively. Now, mixed precision
+refers to varying accents that are put
+in place at various places of model
+architecture for quantization. If you
+look at model architecture more closely
+and selectively quantize different types
+of work like embedding, attention,
+feedforward network, outputs, and
+normalization, and they all have varying
+purposes, and some might be more
+sensitive than the other to the final
+output. So, for K-quants for S, you
+quantize them all in four bits except
+for the normalization, and K-quant for M
+might set the output projection and
+feedforward network gate in six bits.
+And depending on what level of
+quantization you pick here, you'll have
+varying tradeoffs between quality and
+compression. But the most popular one
+seems to be K quant M here. So, when we
+go to hugging face to see models, that's
+why we see all of these different GGML
+formats available at various
+quantizations. Now, we haven't covered
+methods like AWQ or EXL2. AWQ is a
+slightly different approach where the
+intent is to first send a calibration
+data set through the model to find
+important weights by looking at the
+activation magnitude. And these
+important weights are called salient
+weights. Now, we just saw how
+hierarchical scaling in K quant helps us
+preserve some local underfitting that
+might happen, but this isn't perfect
+since it's more of a systematic guess
+that it'll fix the problem. Let's say
+you have this following data set. So,
+here we have the index of each of the
+weights here, the actual weights for
+each of the index, and using symmetrical
+quantization where we find the maximum
+value and divide it and normalize across
+that and round to the nearest number for
+the in four precision. And later when we
+dequantize these numbers, we get the
+following error, which measures the
+dequantized weights compared to the
+original weights to see how far the
+quantization has lost in accuracy due to
+our compression methods being used here.
+Let's say that we found that the index
+three, seven, and nine are actually
+salient weights. We need to first scale
+these weights to reduce the error rates
+to make sure that the quality isn't
+degraded from these salient weights to
+reduce the error on these important
+weights. EXL2 is similar in that it
+finds the salient weights first, but
+instead of scaling the weights
+separately, it uses mixed precision to
+store higher error groups to higher
+precision like four to six bits, for
+example, and lower error groups to lower
+precisions like two to three bits. And
+finding the sensitivity of weights error
+is done using the Hessian matrix, which
+from calculus class we learned that it
+is a second partial derivative, which in
+this case is the loss to the weights.
+Now, looking at the performance of these
+quantizations, EXL2 is certainly the
+fastest in tokens per second in this
+very example that compares Llama 2 13B
+model, while also keeping the lowest in
+perplexity. And the compression size is
+somewhat comparable to other types
+that's shown here. And we even have the
+newer EXL3, but GGUF still happens to be
+the most popular method, likely due to
+the fact that most people running models
+locally have memory limitation. Just
+like how we talked about earlier in
+offloading the weights in hybrid RAM and
+GPU. While model sizes certainly have
+been getting smaller and better within
+the 30B size, most consumer grade
+graphic cards can't support more than 32
+GB for hobbyists or even 60 to 70 GB for
+enthusiasts if you're assuming dedicated
+graphics cards. And speaking of
+hardware, there are hardware specific
+quantizations as well like FP8 and
+NVFP4, which ties closer to the tensors
+inside the GPU to actually run their
+operations in lower precision natively.
+For these quantizations, you need to
+have the right graphics cards in place.
+For example, FP8 is natively supported
+in Hopper architecture cards and NVFP4
+is supported by the Blackwell chips. So,
+taking a step back and looking at what
+we covered so far, we still barely
+scratched the surface when it comes to
+loading the model in quantization, but
+hopefully this gave enough of a tour
+guide around the area in terms of
+inference. And I'm not sure when I'll be
+releasing the next phases like the
+prefill and decoding and serving, which
+will more get into topics like
+disaggregated inference, speculated
+decoding, scheduling, concurrency, and
+KV cache management. But, if you think
+that I should continue on the series,
+let me know in the comments so I can
+gauge how soon I should be working on
+the follow-up.

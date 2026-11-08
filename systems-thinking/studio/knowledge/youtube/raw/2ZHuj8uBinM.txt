@@ -1,0 +1,3313 @@
+[Music]
+in my programming classes we we were
+taught things about graph theory I've
+shot some of the basics of this like
+what's a planar graph what's bipartite
+graph what's a cleek etc etc I thought
+wouldn't it be gonna be neat if you did
+that with people but wouldn't be cool if
+like someone I wonder if anyone's ever
+thought of that of course I mean at my
+department nobody did social network
+analysis so there was this one obscure
+journal in the library called social
+networks with a bunch of formulae I
+couldn't make sense of and I thought
+well no maybe somebody's done it but it
+seems kind of complicated and mathy and
+not really not really that important and
+boy was I wrong
+so I when I went to graduate school I
+went to studied under a gentleman named
+Barry Wellman Barry was the founder of
+insta this is the Institute
+international network for social network
+analysts in Snell and a long way he had
+along the way he had I thought I was
+gonna study technology with him because
+he's a he's got a book out called
+networked and it's about technology and
+he was doing also source stuff on the
+internet and how now the Internet is not
+really a cyberspace out there but rather
+it is more of a a way of connecting and
+arranging our relationships to other
+people and so lo and behold - I sort of
+stumbled into work with somebody who was
+a pioneer in social networks and I'm
+like well I did this stuff in computer
+science it's like graph theory it's like
+yeah of course that's what we do and so
+for him this is so completely obvious
+now after after there after I graduated
+I went to University of Oxford and
+that's where I've been ever since this
+class is an introduction to network
+analysis and particularly to social
+network analysis to structural analysis
+but it kind of in my way and to say it's
+in my way that's to mean there are these
+two communities if you will there's a
+social network analysis community and
+the network science community now the
+network science community has become
+considerably larger it's tends to be
+derived from the physics community and
+the social network analysis community
+tends to be derived from sociology now
+the two of them are not so separate
+but they do there does seem to be not a
+huge amount of overlap between the two
+however networks science as a practice
+is tends to be more relevant for those
+that are doing work in big data high
+dimensional data spaces longitudinal
+networks but it really varies so today
+I'm gonna give a flavor of social
+network analysis that's been very much
+informed by network science now for some
+people in social network analysis the
+network science principles are a bit
+sort of different or far apart from
+themselves but for me they were they're
+kind of second nature I mean I I learned
+graph theory in computer science before
+I learned that it was a sociological
+concept the first book in networks that
+I was given by sociologist barry wellman
+was Duncan Watts --is six degrees and
+Duncan was a physicist to them was hired
+into a sociology department at Columbia
+before moving on to work at Yahoo
+research and ultimately Microsoft
+Research and I'm pretty sure he's still
+at Microsoft New York there today so I'd
+kind of understood both of these and you
+know I'm also I get what do we call us
+zhenia 'ls I'm not quite a millennial
+not quite a Gen X sort of in between I'm
+in this in this period like those people
+in their late 30s who kind of grew up
+with the internet coming but it wasn't
+there when we were in high school it
+wasn't really there in junior high I
+didn't have a Facebook page before I was
+12 but I kind of saw this internet
+coming and as I saw it coming what we
+also see is this on rush of digital data
+and the the digitization of everyday
+life has led us to want to think about
+kind of the core issue in social science
+okay a core issue in social science
+that's now which we can now kind of
+understand with a little more
+granularity now in social science
+perhaps the core issue is how to
+understand the relationship between
+micro level behaviors and macro level
+phenomenon we know that there's
+institutions we know that there's
+nation-states we know that there's
+culture but these are very abstract
+to enlarge principals what is what is
+culture it's like you know it's very
+easy at first to say well my culture is
+my heritage or its how I cook or it's
+the way I behave but then you think no
+maybe those are all things on different
+scales and how are they learned how is
+it transmitted what do we what do we do
+for boundaries what does it mean to be
+British for example what does it mean to
+cook a certain kind of food what is
+authentic about that it's very micro
+level stuff but then at the same time
+those kinds of food let's say I'm trying
+to cook Canadian food which is not
+really very exciting at all and like
+maple syrup and bacon I suppose but no
+I'm from Newfoundland and so
+Newfoundland has its own distinct
+culture but that would be Newfoundland
+sculpture now how was that transmitted
+to me at all of Newfoundland get
+together and decide this is what it is
+know who there's there structures
+involved we used to always talk about
+that metaphorically you know oh there's
+there's these notions there's sentiments
+there storytelling but now we were
+trying to do that with a little more
+granularity a little more specificity
+and instead of just saying that there's
+this these macro level features
+institution societies that feed into
+micro level behaviors that we act at the
+micro level that feedback at the macro
+we can now do that with more specificity
+instead of saying look there's just this
+array of people denizens oh you know
+unsorted on incoherent in some way these
+are actually thumbnail photos from the
+people who I guess around five or six
+years ago liked the radio for page on
+Facebook and this is their profile
+photos I did a did some research with a
+high school student for BBC's so you
+want to be a scientist and this would be
+well back in the day it's five six years
+ago yeah Nina Medina Jones so we looked
+at what was who was smiling in these
+photos who was happy what did they put
+in them when do they put their self in
+but these are all meant to be
+independent and we did because they were
+all seen as independents different
+separate people
+we did it we did an als regression or
+actually we did a logistic regression on
+the odds of them smiling in the photo or
+not and what sort of features were would
+lead to someone having a profile photo
+where someone was smiling and this is
+sort of classic you know classic
+regression oriented techniques you know
+you have some sort of space of data and
+you have some sort of sets of cases that
+you think are independent and then you
+want to predict whether those cases lead
+to some outcome and if it's a logistic
+regression what we're doing is
+predicting a binary yes or no did they
+do it did they not do it in a linear
+regression of course you predict some
+sort of proportion some sort of line in
+this data space you know as this
+increases that increases but the whole
+premise of that is that these are all
+independent cases presumably that we've
+sampled from some distribution and so
+then we can we can model them in that
+way but this is not how those people are
+this is not how people actually are this
+is just how our sample is around the
+same time this is what Facebook looked
+like in a different view I mean these
+aren't just the radio for listeners
+these are actually a sample of 10
+million ties on Facebook I believe in
+2010 and this is the edges between them
+that have been rendered as a
+visualization and what's nice about this
+visualization is that it shows well
+Facebook is pervasive we're gonna get a
+bit critical about Facebook later but
+for now let's just think of it as
+amazing incredible data source Facebook
+is pervasive people have ties across the
+world when you geocode these ties it
+actually shows in some ways a
+representation of the world so that's
+pretty powerful that with 10,000,000
+friendships you can start rendering a
+map of the world that is not perfectly
+faithful but pretty reasonably faithful
+to many aspects of population density
+around the world now there's a caveat
+here it's not really perfectly
+representative of the world it's not
+like the brightest spots here are the
+brightest spots of population the most
+populous country in the world China
+second very close India
+represented in wildly different ways on
+this map well first of all Facebook is
+not available in China these WeChat
+they're instead at the moment actually
+it's going through some pretty turbulent
+issues that are really gonna be of
+consequence absolute geopolitical
+consequence as WeChat is moving to a
+real namespace you're only supposed to
+have one account on WeChat and that
+account is supposed to represent your
+your proper name or your given name or
+your legal name which kind of weds your
+online behavior to an offline
+identification of the self so it's
+really really consequential stuff but
+it's not Facebook any Facebook have a
+real name policy as well sometimes it's
+been enforced more authoritative lis
+than others but nevertheless we get a
+map like this and what we get here is a
+sense of social structure we get
+connectivity happening you can see dense
+amounts of connectivity between North
+America and Europe we've seen places
+that are absent on Facebook Russia China
+because of state level intervention
+perhaps also because of disinterest so
+this actually tells us in some ways a
+little more from these connections than
+what we can from this sort of
+independent look here well it depends on
+whether you do computer vision I suppose
+but these sorts of structures at this
+wider level are not the only way in
+which we can look at social structure we
+can also bring that down we can bring
+that down to the local level and this is
+a personal network it's actually my
+personal network the ties here represent
+friendships between people I know I'm
+not represented on this map you don't
+see me there's no like Bernie and then
+Bernie connected to everybody
+anyone hazard to guess why I've removed
+me from this from this map because I
+would be connected to everyone yes that
+is that's part of the reason now why
+would I remove it then why would I
+remove me it doesn't really no it
+doesn't really it adds a little bit of
+information and I mean both that in the
+sort of entropic sense but also in the
+sort of usability sense there's a story
+about these
+of maps that they used to be able they
+used to be available on LinkedIn among
+other places and we're gonna get back to
+this sort of story about these
+visualizations on LinkedIn later when I
+talk about visualization software
+because it was done by a guy who's he
+was hired to LinkedIn and he was also
+the person who developed the software
+that we're gonna I'm gonna use later to
+show you some social networks in action
+the the people at LinkedIn as the story
+goes I don't know this is only hearsay
+they saw these maps and they said well
+where am i and so well you're not you're
+not on this map because it's just all of
+your friendships and if you add you then
+it doesn't really add any new
+information in fact if anything it might
+destroy some information because that
+one dot me linking to everybody occludes
+some really important features here
+there's some particularly important
+features not so much in a personal
+network but certainly in a business
+network the fact that we have these
+little dots down here single event
+friends these are the sort of people
+that like oh hey that's that's really
+cool yeah you should have me on Facebook
+all right cool you don't know any of my
+friends and I never speak to them again
+it's happened I'm drinking at a pub and
+strike up a conversation with somebody
+well I'm not having a cigarette
+of course it's back in the day when AI
+was on Facebook and B when I smoked but
+a you know cherdon that you sort of
+accumulate these now in network analysis
+terms these people here are called
+isolates isolated isolate if I am linked
+to every one of them then what it's
+going to do is is going to include the
+fact that there's o 12 odd isolates here
+now in a business context that's really
+relevant because that means there's
+twelve people that I know or know
+sufficiently to have added on LinkedIn
+that don't know anybody else in my
+network that could represent an
+opportunity similarly if my network had
+two different very clearly distinct
+partitions the fact that I'm the only
+one that connects those partitions is of
+relevance that's of relevance to me that
+gives me a sense of leverage that oh you
+know sociology you know computer science
+hey I know both of you let me tell you
+about the things in sociology that are
+relevant
+Peter science and vice-versa if I'm in
+there if you take me out you can see
+they're two different groups you put me
+in there's a whole bunch of connectivity
+going on and it kind of obscures the
+fact that I am the one performing that
+connectivity or ego as we would say in
+this because this is an ego centered
+network another thing to notice about
+this network here is that we have these
+sort of convex hulls that's what they're
+called in sort of computer graphics
+terms and the VIS network or the VIS
+literature convex hulls are convex is
+and they're sort of round or round it go
+around a specific cluster now the convex
+hull here is meant to represent a thing
+that in network science is referred to
+as a community now a community is a
+technical term for a set of nodes
+typically it's a set of nodes where
+there are more there were there is more
+connectivity within the community than
+there is connectivity between that
+community and the rest of the network
+and that's kind of a tricky way to
+measure we'll get into a little of that
+later about how in the past 10 to 15
+years the algorithms for determining how
+to calculate and detect communities has
+been evolving very rapidly and actually
+well until about oh I'd say till about
+five years ago there was a real period
+of absolute rapid expansion of community
+detection algorithms and that's actually
+kind of leveled off a little bit now and
+now we're actually exploring a lots of
+more complicated versions of that
+problem but the general problem seems to
+be in the realm now of good enough
+they're all good enough they all give
+pretty similar partitions hey if you
+guys are reaching over on this side
+there's there's other screens over here
+you're more than welcome to check out
+the rest of them it's long if it's
+visible that's okay so these communities
+I have labeled but I did not I did not
+assign the partitions myself the
+partitions were just assigned using an
+algorithm the
+Gervin Neumann algorithm will we'll
+cover that one a little bit later
+actually well maybe but the point is is
+that now we have enough data that we can
+go from these sort of you know
+disorganized just islands of features
+this person has brown hair this person
+smiling this person has a cartoon for
+the profile and then actually said no
+when we connect them together those
+connections are not random they're not
+arbitrary those connections actually
+indicate some sort of patterns of social
+structure and we can see that both at
+the macro level and at the more micro
+level this would be like sort of the
+micro level where we have a specific
+user and that users or a specific
+individual and that individuals friends
+what do we want to do with this sort of
+stuff well there's a variety of
+different questions that we can answer
+with network analysis some of them are
+descriptive some of them are analytical
+descriptive questions are of interest
+when we want to say just like how
+separate are the separations you know
+how partitioned how polarized is a
+voting network for example how polarized
+is a consumption network
+do I read substantively different things
+than you do
+does my world view is my world you
+changed in such a way that what I am
+reading is very different from what you
+are reading but I don't notice that
+because it's very similar to my friends
+my friends and I all read say the
+right-wing press and all your friends
+read left-wing press the fact that we
+now associate presses as either being
+right-wing or left-wing rather than
+thinking of a press as sort of this
+institution that's trying to provide
+some sort of fact-based representation
+of the world well that can be an issue
+but that it's not it's not that any one
+person has signed the press to be one
+way or the other it's that over time you
+can evolve the network to be
+increasingly polarised and as it gets
+polarized it kind of takes on a life of
+its own and unfortunately that can have
+real serious consequences for
+institutions
+four and four the way we understand the
+world we can think of polarization
+happening by various social categories
+by age we can say is a network assorted
+disa sorted by age so a sorted means
+that the people who are of similar age
+are connected to each other and people
+of different ages don't connect to each
+other we can think of it as clustered by
+race you think about the friends that
+you have you may be in a class you may
+be in a world where you walking down
+London lemons very international I did
+grad school in Toronto
+Toronto is extremely international very
+very very multicultural Toronto's they
+talk about as the visible minority white
+people are less than 50% in Toronto
+there's a lot of people from East Asia
+but a lot of people from South Asia a
+lot of African people in Toronto but
+then when you look at someone's
+individual Network is their network
+similarly composed of a random sample of
+all these distributions is my network
+when I'm in Toronto you know 40 percent
+white is a 20 percent Chinese is a 15
+percent South Asian no not really not
+really at the micro level we see
+patterns of clustering and we can
+observe those now it's been some really
+great work in social networks and
+particularly in the American Journal of
+sociology on this sort of clustering at
+the local level we can compare places
+and then say well we notice that the
+clustering is more extreme here than it
+is here well what might account for that
+difference then we start learning what
+kind of clustering we want now let's not
+let's not assume that all clustering is
+bad clustering is efficient sometimes
+clustering could be too efficient well
+it'll be too efficient well what if
+everybody is all all gets their advice
+from the one person that graph is as
+efficient as possible because this one
+person broadcasts out to everybody we
+are going to eat chicken today you know
+like and then everybody knows and it's
+now that's now what we do but now let's
+say you want to disrupt that network
+well I'm I don't really like chicken I
+don't want
+chicken today well we take out that one
+node that one central node that's
+connected to everyone and now the
+network is fragmented its diffuse we
+could do that or we can have everybody
+connected to everybody and then somebody
+decides well I want to eat chicken I
+want to eat fish I'm vegetarian and then
+and then we have this network where
+everybody is kind of diffusing their
+message and it's very inefficient but
+you can't take out any given node and
+then disrupt the network
+well actually then it seems like what we
+really have what we've observed in the
+real world are networks that are
+somewhere in between these that are not
+just as inefficient but resilient as a
+grid nor are they as efficient but
+fragile as a star one with like many
+points going out there somewhere in
+between and we call those small worlds
+this is an example of a small world
+network we'll talk about that a little
+more now in a sec okay so now today's
+menu first off I assume most of you are
+most of you are here the Turing so you
+know this anybody any visitors any
+visitors okay excellent well the toilets
+are back through the kitchen do you guys
+know where the toilets are all the way
+but it's really far so you got to go
+wait till break get a generous break
+today fifteen minutes or so
+there abouts it'll be in about an hour I
+guess it's all the way back there though
+and then you go around and see some
+signage fire alarm if it goes off it's
+not a drill okay that's important the
+back door the event space is not an
+exhibit no we go fire exits follow that
+sign go out through the front and Wi-Fi
+access if anyone needs Wi-Fi the
+password and user name are on the column
+in the middle of the room okay well
+there we go if anyone needs the Wi-Fi
+otherwise use edge room okay oh and this
+is being live-streamed so hello to
+anybody who's watching listening I'm
+sorry I can't really engage as as much
+as I'd like for the the remote users
+but we still want to be considerate to
+the remote users and one of the ways we
+can be considerate is by ensuring that
+if you have a question that they can
+hear that question as well so if it's a
+brief question I can restate that
+question simple enough if it's more of
+like a if it's a substantive question we
+have a microphone we would like you to
+use that microphone just raise your hand
+it's okay we're not in too much of a
+rush today if we don't get through it
+all it's okay because we can't get
+through it all I mean this is a huge
+paradigm of research I'm just trying to
+give you guys today a little bit of
+literacy in this you can seek out a
+topic yourself we're gonna have very
+little in the way of formulate today
+very little in the way of code we're
+gonna do some of that more in the next
+class in class too in that class you'll
+be expected to bring computers and we'll
+give you a list of things to install so
+you can perform the sort of network
+analysis yourself but today it's just
+sort of sit back and see how much of
+this you can absorb and hopefully let it
+generate a question or two for you
+within your own domain this is not on
+here but I'm curious can we get a show
+of hands for people who are from those
+social sciences anyone all right cool
+and then of the rest computer science
+proper computer science calls themself a
+computer scientist engineering all right
+maths sistex that's the stats kind of
+engineering kind of maths and stats all
+right very good
+anyone who hasn't raised their hand
+wants to shout out a discipline yes
+part of me social science I'm okay with
+that
+I mean I'm not a I'm not a strict social
+constructivist I believe we have
+biological bases too many of the things
+that we do we don't really want to
+overemphasize them and you know but we
+don't want to under emphasize them
+either that's it'll just lead to trouble
+some people are just taller but you know
+we don't want to make doors so that tall
+people can't get through them all right
+so it's a mixed bag of people trying to
+speak to all of you of that'll mean I'll
+have to do this at a
+kind of a general level I will sort of
+drop little asides here and there feel
+free to take those notes I wanted to
+start with some examples from network
+analysis and kind of talk through them a
+little bit and then we'll get to some
+core concepts the classic finding number
+one the big one the best one the siren
+call that launched a thousand ships is
+the strength of weak ties by Mark
+Granovetter so mark Granovetter was a
+graduate student at Harvard at a very
+exciting time this was in the early 70s
+and many of the people that we now
+associate with social network analysis
+were his contemporaries or his tutors
+people like Harrison White were the ones
+who came from physics originally over to
+sociology tutored many people came up
+with an idea called block modeling other
+people there at the time barry wellman
+claude fisher bonnie erickson ron
+bragger these are these names still
+persist today and have made actually
+some real great strides in network
+analysis and a young studious Mark
+Granovetter at the time was exploring a
+particular concept in psychology and
+that concept was called balanced
+psychological balance it was originally
+by Fritz Heider and hiders notion of
+balance was that there are certain kinds
+of triads which we find more balanced or
+more stable and others we find less
+balanced or less stable it's very easy
+to think of examples of these also it's
+possible to think of some ways in which
+this this doesn't actually work so we've
+don't worry there's been lots of
+exceptions and provisos to this but
+let's roll with the general story I like
+bananas
+you know bananas a pretty mundane food
+to like you know it's I mean not when
+they're I mean when they're ripe and
+stuff it's nice
+my partner hates bananas my partner
+hates this like people when they eat
+bananas with their mouths open of these
+geez can't handle it he's so there's no
+bananas in our house now
+this if I really cared enough about
+bananas this would be a form of tension
+this would be a form of conflict in the
+house and hider
+talked about these but it's not I don't
+really care that much I survived all
+your banana here if I need one but Hyder
+talked about this in sort of psychology
+in terms of balance that you can think
+of some triads as balanced and
+unbalanced I like bananas I like my
+partner my partner doesn't like bananas
+so before we go bananas what am I gonna
+have to do I have to resolve that triad
+somehow and the way we resolve that
+triad because it's unbalanced is I cut
+out the bananas you know it's either if
+maybe it's either me or the bananas and
+what just don't bring it banana in the
+house it's really simple but it's not so
+simple when the stakes are raised when
+the stakes are raised we have say oh I
+don't know it'll be really fast and
+loose with geopolitics right now but
+bear with me the u.s. trades with China
+China or so yeah China trades with North
+Korea China trades with the US the US
+and North Korea are not getting along
+right now I've checked Twitter lately
+apparently they're not getting along so
+this is unstable we're like well what's
+China gonna do about North Korea will
+they provide sanctions well it's because
+we have this unbalanced triad if China
+was really like you know anti-north
+Korea a very aggressively aunty North
+Korea and we're like Oh China in the
+u.s. their interests are aligned so then
+we would have this sort of triad China
+in the u.s. they trade and they don't
+like North Korea this would be balanced
+but this is not how it is how it is
+currently it's more in this unstable
+state and a lot of geopolitical actors
+we can see the examples of these
+unbalanced triads creating instability
+Syria for example is an absolute
+minefield of unbalanced triads the Turks
+don't like the Kurds the Kurds don't
+like the Isis Isis don't like Sunnis and
+it's just all these triads there make it
+so that allegiances are unstable you can
+use the stability or instability of
+these triads
+model what would be the expected outcome
+or settled state for a network assuming
+that this sort of there's banana in the
+back assuming that this is how this
+operates and this is not how it always
+operates but it tends to be a way which
+networks operate well now Granovetter
+kind of took this a little way and said
+well what if it's not so extreme as you
+know love or hate but more like I really
+I really like this person and these
+people don't know each other so it's
+instead of like negative and positive
+it's more like positive and neutral so
+then we get something like this we get
+this emergence of trying to closure and
+try to closure here says that like well
+Al and Don I mean Don don't doesn't
+doesn't he's a colleague it's not that
+important it's okay he's a friend no big
+deal but Don loves Barb and Don loved
+Carl tend to be ABCD names for the nodes
+but so so Don's like Oh barb Carl should
+do this with a Boston accent like Bob
+and Carl or something but say Don really
+likes them both and once oh you guys if
+you meant it would be like you'd be like
+a house on fire you would really get
+along so he introduces them and then
+barb and Carl they're like oh yeah
+actually we do have a lot in common we
+both saw Blade Runner we thought it was
+a movie I haven't seen it so I don't
+know I'm assuming it's the critics seem
+to think it's long but anyway you know
+this is an example of tried it closure
+they've got a lot in common
+a lot in common be in sociology we tend
+to call it homophily Homo Feliz love the
+same or same level so they have a lot in
+common they agree with each other they
+they end up being really close friends
+well what happens then
+well they share a lot of information
+with each other they share like oh well
+you know oh dear about this no of course
+I heard about that geez
+who hasn't heard about that well
+actually al hasn't heard about that you
+know poor al poor Alda colleague not a
+friend a bit cut off well you know what
+let's not discount al because Al
+actually has his own friends and those
+friends are good people and they've got
+information that barb and Carl do not
+have so this is the strength that weak
+ties is how we have this emergence I'll
+go back here how this emergence of these
+sorts of clusters of people of like type
+that share the same information
+information kind of percolates in this
+it's circulate story circuit well I mean
+there are clique percolation models but
+now for today it circulates within these
+clusters right here and doesn't escape
+the clusters that easily now obviously
+we'd say well that's because there's
+more ties within than between well yes
+because we've now observed how a network
+emerges how it forms where people of
+like type tend to cluster together and
+then you get these pockets Granovetter
+said well some things in life are not
+things for our closest ties they're not
+just social support they're not like a
+shoulder to cry on but they're
+information from a generalized search so
+generalized searches we do those a lot
+where am I gonna live who has
+information on a good place to live well
+could be right move could be my friends
+could be somebody at the office where am
+I gonna where am I gonna get my next
+grant what about a postdoc what about a
+job of any sort do you have a job well I
+know about a couple positions that are
+open but there might not be right for
+you and and so you see this sort of
+circulation of information where you
+have some people strong ties who all
+have kind of redundant information
+because they all know about this great
+job that opened up these guys did but
+these people don't know anything about
+that and so forth and so forth so
+Granovetter tested this that the
+consequence of balance theory of these
+closed triads is that for some types of
+information for some types of network
+activities our weak ties are more useful
+than our strong ties and he first did
+this with a survey of who did you get a
+job from and were they your were they a
+close friend or a less close friend and
+found that most of them were from less
+close friends and then people like oh
+that sounds like a really really
+important finding is it true in a lot of
+circumstances well we've got lots of
+caveats for that now here's one caveat
+Alexander Marin in her dissertation work
+she was looking at tech entrepreneurs
+and found that it's not entirely true in
+some areas of the tech industry because
+people wouldn't tell their weak ties
+that they knew about a job because there
+was some sort of reputational risk that
+like I'm not just going to tell somebody
+that there's a job available because
+they asked that's you know if that
+person needs a job because they're they
+screwed up their last job and they come
+to me and say hey do you know about a
+new position I'll be laying no not
+really
+oh I mean there's this one but it's not
+really right for you know you know
+because they so they don't necessarily
+do that
+another one is ing bien it's about two
+two decades ago talked about indirect
+ties and how for some kinds of jobs it's
+not about specialization it's not like
+finding you finding the right job it's
+about anybody could get this job so I
+want to make sure that I give it to
+somebody that's gonna give be of value
+and these would be Chinese party
+memberships and so there were party
+memberships at the state level where or
+or like a contra not not a whole
+province level but like sort of smaller
+I can't remember what that we called
+that but that the people who knew about
+these jobs would give them to their
+strong ties because there wasn't it
+didn't require a specific qualification
+to be the party member for this like
+local area but if you had that job then
+that's so that's a solid job so you're
+not just gonna tell any old weak tie
+that there's a job available you're
+gonna let people know and that paper is
+bringing the strong ties back in
+indirect ties and job seeking in China
+but overall what's nice about this is
+that actually presage of Granovetter it
+actually priests aged our notion of
+small worlds and how information
+circulates in these pockets and
+sometimes only reaches these bridges and
+that as a strategy
+for searching for information you've got
+to escape these local clusters to get
+outside of it so second finding is the
+classic these six degrees of separation
+anyone here has never heard that phrase
+before it's possible I was teaching a
+student in HCI who'd never heard the
+term cyborg recently so like what he and
+the students like No maybe I don't think
+so so so it's possible but you've all
+heard about this the six degrees of
+separation nice nice a sanan stew it
+nice sounding is it really 6 degrees
+though well the original experiment by
+Stanley Milgram Stanley Milgram is of
+like pop culture Fame as the guy who did
+the experiment that zapped people and
+then you watch the people getting zapped
+and everyone found that upsetting it's
+one of those things we teach in research
+ethics that day you should not do you
+and the reason you shouldn't do it this
+is the original experiment was there is
+sort of a guy in a lab coat person here
+dial it says shock them if they get a
+wrong answer person over there getting
+shocked because they kept getting wrong
+answers the dial had like xxx do not
+exceed on it and what they found is that
+the closer the person in a lab coat was
+to the person on the dial the more
+likely they were gonna go to xxx do not
+exceed this is a really important
+finding for how good people do bad
+things and they do them because they
+defer they defer the responsibility so
+if it's like somebody in the next room
+was like a ball they like like it says
+xxx I probably shouldn't but if there's
+like some stodgy old dude in a lab coat
+going now son you know yeah it's for
+science okay and so that was important
+that was important finding but it turns
+out the people didn't realize that this
+was an actor and then when they were
+told afterwards it's like oh my god so
+you totally messed up my head made me
+think I could kill this guy just just
+for science and they're like yeah for
+science so we don't do that anymore
+the Milgram is known for very
+interesting experiments some of which we
+still allowed to do including six
+degrees of separation and this is one
+where
+a bunch of people in Nebraska
+why Nebraska because it's in the middle
+of the states it's kind of you know far
+from the coasts far from Boston far from
+MIT Cambridge the other Cambridge that
+you were one and went to the people in
+Nebraska and said here's a package send
+this package to somebody you know so
+that maybe they'll get it to this person
+in emboss I'm not going to give you
+their address just gonna tell you
+they're a researcher and they work at
+MIT here's her name Britain Lee okay and
+so the amount of hops it took for that
+package the ones that were successful
+took about six hops to get from Nebraska
+to MIT as a median not as a mean because
+it was actually really really heavy tail
+distribution sometimes it took like 14
+hops to kind of bounce around a lot of
+the packages never made it at all so but
+6° kind of came out as like maybe it's
+six degrees seems about right
+sure and it's stuck so is it really 6
+degrees well actually it's much smaller
+now how about 3.5 so Facebook have
+recently been able to analyze this on on
+Facebook scale which is now well this
+was a year ago or so it was still pretty
+big then you know we're looking at a
+billion billion in 1.3 1.4 at the time
+people they had done this five years
+previously and it was 3.75 on Facebook
+and now then they did this two years ago
+and it's down to three point five it's
+probably not going to get much lower
+than that for certain reasons of
+cognitive carrying capacity that is it's
+if there's just a level a threshold
+under which you know we don't go because
+that would require people having much
+larger networks knowing many more people
+that were much more diverse and we're
+probably not going to get there
+but nevertheless 3.5 hops from one
+person to any other person on Facebook
+on average it's pretty remarkable as as
+a sight to suggest a certain level of
+connectivity Oh any way you like
+yeah sure it's one second hi I'm curious
+where there's average degrees in
+separation in the x-axis Oh average
+respect to what oh these are Facebook
+users I'm sorry
+yeah oh the x-axis average degrees of
+separation so this would be it takes me
+three point or three hops for me to get
+from me to you and Facebook friends yes
+yeah where's that an average why is that
+an average oh that's because that's for
+me in my network all the people on
+Facebook on average so how many how many
+hops because sometimes it might take me
+five hops to get to you sometimes it
+might take me two hops to get to you
+okay so from me to everyone else on
+average it takes three point I believe I
+did this and I was like two point nine
+five but for you because you're
+somewhere else in the network you might
+be much lower or you might be much
+higher got it thank you okay thanks so
+this is everybody's connection to
+everybody else which for those of you in
+the sort of more computational side of
+things you will know that calculating
+this is in Big O time is just large I
+mean I'm not sure if it's quadratic or
+it's some very high polynomial but
+they've been able to do some sort of
+ways of estimating this to bring it down
+so that we can actually calculate this
+if you were to actually calculate all
+the shortest paths between all the
+people on Facebook we'd still be
+calculating it it's it's np-hard
+np-complete I can't remember it's one
+it's it's hard to do yes basically n
+trailing salesmen yeah so the third one
+actually we're gonna I was gonna go over
+this really quickly it's more of a
+sociology one so the idea there though I
+guess this priest sages some of the
+stuff I was talking earlier about
+polarization in the 20th century
+modernity happened
+modernization led to a lot of concerns
+about the death of community communities
+communities are always dying it's been
+and so one of the things that Barry did
+was looked at how can
+he had been dying for years and years
+and years and years and years but
+something different happened in the 20th
+century that we have time and space dis
+Dancy ating technologies I can now call
+someone on the other side of the planet
+and we can have a near instantaneous
+conversation the lag is so small that I
+barely notice that it's a lag especially
+if it's not like Skype or you know a
+decent phone connection whatever so if
+I'm if my personal network is connected
+to people all around the world that's an
+opportunity cost of people nearby and as
+we shift from a type of networking that
+we might call door to door where I would
+have to literally go somewhere and talk
+to somebody if I wanted to talk to
+somebody to one where we can use poast
+and telephone so I can send it to a
+different place to network with someone
+or where I can just use an arbitrary
+address no matter where the person is my
+my parents call me and they're like hey
+where are you and I'm like I'm in
+Germany he's like oh no surprise but it
+doesn't really matter where I am it's
+like they've just got an address for
+that person well what happens is as we
+shift from these door-to-door forms of
+networking to person-to-person forms of
+networking we stop with the sense of a
+community where everybody's community
+overlaps towards a community where I
+have a personal community that's just as
+coherent to me but it's actually slices
+of different people all across the world
+still just supportive but the people
+that support me are not necessarily the
+people that support the other people in
+my network or the other people in my
+community so we feel less of sort of
+local solidarity even if we get the same
+level of social support so now back to
+I'm not sure when I put that in there
+again I know I did for some reason but
+it's not worry about it
+now let's actually get into some of the
+ways in which we explore these with a
+little more technical introduction
+so the first foremost and most important
+way to think about a a node in a network
+is what we'd call position
+I will be distributing these there's
+like if I think on SlideShare or
+something there it's not perfectly
+recycled I know cuz if it was perfectly
+recycled then I dreamt this morning but
+no I'm pretty confident that they're
+slightly different than other slides but
+there are versions this online and this
+these particular slides will be sent to
+you I ask that you don't distribute them
+that would be best
+position is a way of talking about a
+note internetwork relative to another
+node now nodes and networks are not mean
+if a node is a person
+it exists in space we all exist in space
+but the spatial arrangement of nodes
+isn't necessarily what we refer to as
+their position instead we can think of
+their position in relational space so I
+imagine some people here are friends
+with each other but nobody here is
+friends with everyone else that some
+people here are at the touring all the
+time
+does anyone is anyone here can anyone
+here identify someone who's like here
+all the time like you oh that person's
+always at the touring the thing is some
+people will be able to do this other
+people won't because they are in a
+different position in relational space
+that some people are able to observe
+this social structure more effectively
+than other people myself I'm at the
+touring like once every month two months
+I'm not here that often you're welcome
+to come to Oxford hang out with me I'm
+on email sometimes well we can we can
+describe position using a number of
+metrics but the basic one is just
+counting the number of links the links
+we would call edges if they're symmetric
+arcs if they're a symmetric an arc might
+be like a Twitter follower because I
+follow someone on Twitter doesn't you
+don't have to follow me back and
+vice-versa an edge is kind of like a
+state we share a state we share a
+friendship we know each other
+which is different from I follow and
+then they follow if we have an
+undirected network with edges then we
+would say the number of connections
+incident to a node is its degree it's
+considered degree it's straightforward
+if we have directed networks we would
+talk about in degree and out degree in
+degree and out degree are relevant and
+they're not necessarily the same some
+nodes can have really high in degrees
+some how nodes can have really high out
+degrees a node that would have a really
+high in degree would be a hub a no that
+would have a really high out degree
+would be an authority this is a climb
+berg's
+john Kleinberg sort of the nomenclature
+here he has ways of talking about hub
+scores and authority scores so on the
+web we can think of different websites
+that might be hubs and authorities and
+thoughts of what sort of site would be a
+really high authority on the web as in a
+really high out degree should be a
+couple gonna be too hard I'm not sure
+how high an out degree that would be
+that sends information I mean authority
+in the sense of authoritative because of
+its parsimony with the real world the
+government sends out a travel advisory
+or something we assume it's related to
+the real world but in terms of the
+network structure it might not be
+sending it out to many many channels
+certainly no I wouldn't say that either
+who said Google though Google so then
+the BBC of New York Times might be a hub
+in the sense that a lot of people will
+point to the New York Times they will
+point to that source whereas Google
+sends a lot of information out you go to
+Google you go out to billions of
+websites as opposed to amaz
+Amazon doesn't really send a lot of
+people out but a lot of people point to
+Amazon a lot of people point to the BBC
+a lot of people point to the New York
+Times so we can think of a hub and
+authority in in those ways it's covered
+in the chapter I give but the point is
+is that the web has these different
+structures because the web itself is
+undirected now many many many many many
+many many web sites point from Google or
+are pointed to from Google they're not
+that many point to Google doesn't really
+make that much sense to point to a
+search engine there's the sort of
+condescending let me google that for you
+kind of websites but no for the most
+part you know it's Google really high
+outdegree other places very high in
+degree my website my personal website
+really really small out degree and in
+degree like I don't know I've even sure
+what I have for a website I've got like
+a departmental profile I've got a blog
+that I don't update not many links going
+on there kind of halfway between Google
+and myself it's not really meaningful if
+we take the there's no sort of like
+sense of this distribution being a sort
+of normal distribution we wouldn't think
+about what is the average number of
+Link's sent out by a website or even the
+median number of links sent out by the
+website is a sort of meaningful metric
+and that's because the distribution of
+the links on the web like many networks
+follows this scale-free sort of
+distribution as we can see this here
+that a scale-free distribution and this
+is sort of just a stylized graphic of
+this that I ripped off of Wikipedia
+that's what it's for Creative Commons
+and so forth it stylized graphic we show
+that well it sort of indicates that we
+can have say like this would be some
+sort of heavy-tailed distribute
+right here like a lognormal something
+like that maybe and it's a this is the
+sort of degree distribution you get when
+you take a whole series of nodes and you
+just randomly add links between them and
+you can randomly add those links with
+some probability we might call that a
+Bernoulli graph or a variant of that an
+erdos-renyi graph
+however links are not randomly scattered
+on the web there's no average website we
+either have some websites that have huge
+amounts of connectivity and most
+websites that have very little amounts
+of connectivity comparatively and this
+is more this this scale-free
+distribution is much more like what I
+talked about earlier on this sort of
+star graph that can be kind of fragile
+but very efficient so if you were to
+take out Google take out Facebook take
+out a couple major newspapers and Bing a
+oh I guess you would find it really hard
+to navigate around the web now nowadays
+we really depend a lot on these very
+central nodes this sort of distribution
+is not just for the web sites though but
+also the routing traffic underneath that
+there are say like thirteen primary DNS
+servers around the world there's a bunch
+of really important servers elsewhere
+and then underneath that are different
+local networks this is a very
+hierarchical like structure and it shows
+this power-law distribution like quality
+other things that show power laws are
+like the connectivity of neurons and
+your head the connectivity of roads and
+Road interchanges so we have some very
+important highways the i-90 the m-40 m25
+and then lots of little side streets and
+the distribution of links between them
+also follows this ultra follows this you
+know extreme pattern now it turns out
+that this pattern you can simulate this
+and it doesn't actually properly
+simulate all of the other features of a
+really large network it doesn't get the
+triangles right these networks are not
+only really really skewed distributions
+but they also have lots of pockets of
+clustering in them because they're like
+small worlds but if you were to just
+look at the degree distribution itself
+you can use an algorithm called a
+preferential attachment algorithm that
+will create this pretty simply and the
+idea is that you would add an edge as
+you introduce a node you add an edge
+between that node and another node in
+proportion to the amount of links that
+node already has so if a node has lots
+of links it's disproportionately likely
+or proportionately I guess likely to get
+to attract this edge so that we have
+this kind of rich get richer phenomenon
+as as some nodes get even higher degree
+this sort of gets extreme and more
+extreme until we get this sort of
+scale-free distribution this again
+another stylize graphic not really a
+great one I could probably do better but
+you know you we get the point now this
+what's been important with this model
+it's not so much that it assumes the
+real world works like a preferential
+attachment model it's more that it seems
+that there's one sensible way of
+simulating this particular pattern we've
+since come up with other ways of
+simulating this degree distribution and
+and doing it randomly and I'm gonna
+mention that here this is the
+configuration model and a configuration
+model we will use later on is a random
+baseline and say this is what a random
+network looks like that has a particular
+degree distribution and then we're gonna
+compare other networks to this standard
+network with this proper degree
+distribution but otherwise random
+assortment of edges and the way we do it
+is we take an
+work with its degree and then we split
+each edge in two and then just randomly
+reattach them and then when you randomly
+reattach them because each node is going
+to have these like unhooked in edges or
+half edges it's just a nice mathematical
+quirk that it will always it will always
+find another matching edge half edge
+somewhere and then what you get is this
+random network with the right degree
+distribution that network tends to have
+properties that you know show nice
+differences in it now we tend to use
+that as I'll show later in community
+detection well you show and tell you
+later show you in a couple weeks it has
+this nice properties to it that we can
+now start to see clustering in this
+network and see how much clustering is
+in this network relative to a random
+network we can't say any random Network
+because we really want to believe that
+some that these this this network should
+have something fixed should have maybe
+the right level of connectivity within
+it and in this case the right degree
+distribution but given that do we see
+more or less clustering than we would
+expect well we almost always see more
+clustering there are very few times when
+we would see less clustering than a
+random network that's really uncommon
+it's possible but it's really uncommon
+and the key reason perhaps in most cases
+it's because of homophily and this is
+birds of a feather flocking together the
+only photo I have of actually two
+different types of birds that are both
+themselves flocking the we have they're
+the seagulls and the pigeons most of
+these the photos you look for photos of
+this is just one flock and that's not
+that's not as telling we actually want
+to show two distinct flocks that have
+their own sort of levels of
+attractiveness we're gonna get through
+homophily we're gonna have a little
+break we come
+I'm gonna show a couple Network models
+and then kind of go through some of the
+rest of these concepts I have a little
+bit of time at the end then for
+discussion so homophily individuals of
+like type are particularly prone to
+linking to one another the trick is not
+finding homophily homophily is
+everywhere the trick is finding the
+right level of homophily so baseline
+homophily is how much homophily you
+would expect by chance just yeah you
+shake up a you know a series of nodes
+something comes down you're gonna see if
+you have a room for example that you
+shake them 80% of that room is female
+and 20% of that male and everybody has
+five ties well we would expect there to
+be more ties among women than there
+would be between women and men but
+that's simply because there's more women
+in the room or vice-versa you know if we
+had more men in the room we expect more
+ties because but is that what we see
+well actually we tend to see gender
+being a very strong form of homophony
+such that men are preferentially likely
+to link to other men and women
+preferentially likely to link to other
+women in friendship networks more so
+than we would expect given the amount of
+man in the amount of women in the room
+we also see that again by race we see
+that by age and so forth so that's what
+we would call some have called
+inbreeding homophily more homophily than
+you would expect by chance there's a
+really fascinating documentary name of
+it eludes me it'll come back to me I
+think it's like five steps to tyranny
+it's like a panorama documentary from
+around 15 20 years ago and what they
+they show a lot of these sorts of
+observations from psychological studies
+and one of which was a teacher who did
+this thing with her class where she was
+showing how you can induce polarization
+she said this week I just wanted to let
+you know that people with blue eyes are
+smarter
+that's right people with blue eyes are
+smarter they're smarter they're more
+special and they're gonna do better in
+class than the people with brown eyes
+now
+blue eyes are biased towards certain
+parts of the globe but this was in a
+class that was in the UK that we're
+pretty much and it was most the kids
+were white basically so it wasn't it
+wasn't like there was a thing about the
+specific race of the kid that was going
+to make a difference what happened
+afterwards is that the kids start
+observing each other's eyes and started
+making assumptions and assuming that one
+group was better than another group
+because of the color of their eyes it
+was a completely arbitrary distinction
+but once the teacher made it and again
+probably shouldn't have done this in a
+class but once it was made then it kind
+of it lived on and in fact it lived on
+even beyond the study once they were
+told you know I just made it up I just
+made a distinction but what you started
+seeing was a shift from baseline
+homophily you know some of the blue-eyed
+kids are gonna be friends a blue-eyed
+kids some of the brown-eyed kids are
+gonna be friends with brown-eyed kids
+then you started seeing these this
+pressure that led to inbreeding
+homophily and then all of a sudden
+there's this sort of selective pressure
+or repulsion either attraction or
+pushing away that led to more clustering
+in the class just by making this
+distinction and so then you could
+observe this inbreeding come awfully it
+was consequential but it was also
+artificial and that was kind of the
+important point of this experiment is
+that you can then you can split a
+population give it some sort of
+arbitrary distinction and people when
+they roll with that will start making
+these cleavages and clustering together
+so we want to we want to calculate this
+sort of measure because well we want to
+see our people more or less polarized
+than you would expect by chance there's
+sports fans or brexit supporters leave
+remain etc so some classic metrics the
+first one is the EEI Index really simple
+metrics you take a partition of any sort
+blue eyes brown eyes left/right up/down
+count all the count all the ties from
+this partition to the other one
+then count all the ties in between or
+inside and divide it by the total pretty
+straightforward right it's not a bad
+metric but it kind of assumes a lot of
+things kind of assumes the groups would
+be of equal size when the groups aren't
+of equal size the number that you get
+out of this can get a bit yeah it could
+be very misleading maybe it's just so
+happens that there's many more people
+outside the group than there is inside
+the group and so the e I index is going
+to be low but it's only low because the
+group itself is small so eul's q is an
+example of the EEI index
+that's normalized by the proportion in
+the same in the different category i can
+give you that formula you can look it up
+what we do is we just multiply these
+numbers by the size of the groups and so
+that gives us a more normalized
+proportion another variant on this is a
+sorta tivity now there's two variants of
+a sort as well as two forms of a sorta
+tivity a continuous and a discrete or
+continuous in a categorical and in a
+categorical it's the the likelihood that
+you would see a link that's within the
+same category the continuous is just a
+number or metric for the bias towards
+those of like type on that continuous
+measure the the continuous one is often
+used for degree degree assorted tivity
+do people of high degree do nodes of
+high degree do they link to other nodes
+of high degree or do they link to nodes
+of low degree
+Marc Newman in 2003 his 2003 yes
+published an article in Siam reviews
+Mark Newman Siam reviews 2003 for those
+checking he reviewed a lot of Network
+science insights up to that point and
+one of them was the assorted tivity of a
+variety of different networks biological
+networks food chain networks server logs
+dating networks other sorts of social
+networks citation networks it's not an
+interesting finding here that in a lot
+of natural networks the structure is
+very disis or 'td you have a lot of hub
+and spokes going on you have a lot of
+like one core spinal column extending to
+lots of small nerves or one major
+Junction and the junction is connected
+to lots of small things and so the
+there's not like two junctions that link
+to each other and then more so than the
+little ones the network is dis assorted
+those nodes of high degree tend to link
+to nodes of low degree human social
+networks for the most part put the
+opposite those of high degree link to
+others of high degree people who have
+lots of friends tend to link to other
+people who have lots of friends there is
+in fact a statistical quirk here called
+the friendship paradox that says on
+average your friends have more friends
+sorry guys math being a bit of a bummer
+first thing Monday morning telling you
+your friends have it's it's true it's
+because of the way the network is
+structured
+most people will link to someone of
+higher degree than themselves and this
+has more recently been shown by some
+researchers I can't read with the names
+other than fresh Cod Coody KO o TI and
+his colleagues and this is published in
+IC WSM international conference on web
+and social media 2013 2012
+showing that on Twitter not only does
+the Friendship paradox hold it's
+extremely strong not just for following
+but also for tweeting and liking those
+things that those those people that you
+follow more people follow them then
+average the ones who the the people who
+get more retweets or people that you
+retweet get more retweets than you do
+the people whose statuses you like tend
+to get more likes than you do for just
+about every every metric you can
+conceive of and so the Friendship
+paradox like is really endured it was
+originally introduced by Scott Feld in
+the American Journal of sociology I
+think it was in 1990 so these are nice
+descriptive measures that we can use and
+then we would ask well what leads to
+that sort of what leads to a networked
+being is sorted or DISA sorted what
+leads to hum awfully of one kind or
+another but not just at the micro level
+once we see this homophony emerging it
+actually gives rise to these larger
+formations that I mentioned earlier we
+called community so clusters of nodes
+tend to group together where there's
+more group nodes within a group than
+between a group we call this a community
+now the sociologists have been very
+bitter for a little while about the fact
+that this is called community detection
+because they're like it's not a
+community a community involves symbols
+and social support and all these the
+community stuff and then the physicist
+go yeah but we needed a word so we used
+that word and that's what the word is
+sorry in the end it's just this is the
+difference between technical language
+and everyday English it's just a word we
+use it i wouldn't ascribe too much
+baggage to this although we do tend to
+find that structural communities tend to
+operate in many respects like what we
+would consider as a community or as a
+tribe or some sort of social structural
+formation this one in particular is a
+classic classic network
+in the network literature showing a
+really stark to community structure and
+when I have a hazard a guess as to what
+this is anyone's seen this before
+no one's seen this before okay have you
+seen this before
+mmm yes anyone else yeah it is indeed
+it's Democrats and Republicans this was
+done by Lada Adamic and Natalie glance
+Lada is currently at Facebook she was at
+the University of Michigan before then
+she worked with Mark Newman Bernardo
+Huberman it's done all sorts of really
+really amazing sort of data science II
+stuff and she's now one of the does some
+of the coolest research at Facebook but
+at the time her and Natalie Natalie was
+that I'm not sure where natalie is now
+but at the time she was at Nielsen net
+metrics or Nielsen net scam whatever it
+was Nielsen's way of looking at traffic
+on the web nielsen the ratings people
+they labeled a whole series of blogs as
+right or right or left this was I
+believe hand labeled this was not using
+machine learning at the time there was
+no great categorization metrics so
+somebody went by hand and said
+republican-democrat and had to had to
+like infer all this a lot of work some
+graduate students I hope were well-paid
+and then once once these were labeled
+and then they they visualize them they
+visualize them in a piece of software
+called guess I really like guess it's
+not in use at all anymore really but at
+the time it was a program oh I missed
+this one when it had a window so you
+could do a real-time visualization of a
+network and you could interact with that
+network underneath with a console and
+the console used Python or actually used
+a subset variant of Python called guys
+on but for guests but I just found this
+this console interactivity thing to be
+the bee's knees
+nowadays we really kind of split into
+pointy clicky or into really complicated
+program but guess was a nice little
+halfway home and rendered them as
+vectors why am I talking about this the
+reason is this because well if you're
+gonna do a network analysis you're gonna
+want to show a network to people either
+in terms of some sort of abstract
+distribution which I'm sure you would
+already know how to do you ggplot an arm
+matplotlib spss stuff for the spss
+people or Stata maybe a really MATLAB or
+ggplot and you will want to show these
+in vectors you want to show a nice clear
+diagram you want to communicate this to
+people
+this communicated this so well the
+yellow ties are links between the two
+clusters the blue ties the red ties are
+links within the clusters they are in
+fact directed that's what these little
+triangles mean the triangles mean that
+this is I I linked to your blog this is
+the 2004 election this is when George
+Bush was re-elected I guess he was
+versus John Kerry the former Secretary
+of State Kerry didn't win obviously and
+but yes you can see now what's
+interesting about this is not just that
+there's these two communities that
+there's a whole bunch of other things
+that are interesting buried underneath
+it the paper is really cool
+it's called divided they blog by Adamek
+ata m.i.c and glance first thing is that
+these communities were very easily
+recoverable with a community detection
+algorithm Lata actually does a diagram
+or a demonstration of this it's really
+cool it's the same one that I used
+earlier the Gervin neumann algorithm and
+what it does is over time it kind of
+deletes edges based on the edge that is
+the most okay we haven't really
+introduced betweenness i cut that out
+for some stupid reason but i'm gonna
+have to bring it back in
+another measure of position is how many
+shortest paths does a note lie on so a
+this will be of relevance and then we'll
+kind of pause there and really yeah let
+me come back to this okay so this
+network right here this my my network
+the nodes are sized proportionate to I
+believe to between this and between this
+function calculates all this well
+doesn't have to but more or less
+calculates all the shortest paths in the
+network and then looks at which nodes
+are on the most of those shortest paths
+that would be the note of highest
+between this the node that's on no
+shortest paths is lowest between this
+and everybody would be somewhere in the
+middle the distribution itself is kind
+of wonky it's like an exponential
+distribution so you can have a score
+like three or score of four thousand so
+it's kind of more handy if you just put
+it into a you know rank order some sort
+of nonparametric statistic but
+nevertheless the point is is that you
+have some nodes that really link across
+and some that don't so this one right
+here in my network
+this is family and this is high school
+so you can see somebody links between
+family in high school and my network
+when I hazard a guess it's a sibling
+it's my sister my sister knows people we
+went to high school she's a couple years
+younger than me this is an ex-partner of
+mine which kind of makes sense because
+it's somebody who knows family who knows
+high school who knows grad school and so
+forth and so forth this is somebody from
+grad school who also sort of ended up in
+academia I was getting a second who
+ended up in academia and so therefore
+that kind of their larger node there in
+between these two groups
+my sister Angie is in between family and
+high school and so you has a high
+betweenness score now quick question
+sure
+okay so again between this function
+you can look up the actual formula it's
+if you just look up between this
+centrality the first hit will get you
+there but the idea the general idea is
+you calculate the shortest path between
+all the nodes in the network some of
+those some of these nodes will commonly
+occur on the shortest path like this one
+right here is going to occur on a lot of
+shortest paths from over here to over
+here so this node ends up having higher
+between this this node right here
+there's not any shortest path that links
+that traverses this node right here most
+of them like this will most go here this
+will go here this will go here some it
+doesn't really have any between this at
+all so when the early I will repeat the
+question sure along each edge does have
+the same weight in the standard between
+this formula you can do it between this
+formula there's all sorts of variants on
+this so weighted between this is a
+classic variant there's also and I
+mentioned Mark Newman already a couple
+times Mark Newman's best cited paper and
+social networks is using random walk
+betweenness so rather than the shortest
+path just sort of randomly let them walk
+from one to the other and then calculate
+the random walk between this and and
+yeah and then there's lots and lots and
+lots of variants but I mean I can
+obviously why see why that question
+would emerge if we're like well the
+shortest path may not actually be that
+meaningful if in fact you know let's say
+it's about throughput and this is like a
+freeway between these two people lots of
+conversations happening and this is like
+they just met once and then they added
+each other on Facebook so why would we
+treat that edge equivalent where there's
+their best friends and there's lots of
+chatter going along why would we treat
+that is equivalent as this one when they
+just added each other on Facebook well
+we shouldn't we shouldn't treat them
+that way so we could use weighted
+between this but so the reason why
+mentioning that here is that
+instead of doing betweenness on the
+nodes what is the note of heist between
+this is in a node that's on this path
+you can do between us on the edges which
+edge commonly gets traversed or gets
+traversed the most often
+so the Gervin Neumann algorithm was to
+calculate the edge of highest
+betweenness the edge that's on the most
+shortest paths and then delete it then
+recalculate this is an expensive
+calculation you can see why we wanted
+more efficient ones later but it was a
+good start it's a nice idea that which
+has the it's on the shortest path that
+seems to be like the point of like best
+connectivity so you get rid of it and
+then you get rid of the next one and so
+if there's only these handful of links
+that go between red and blue your get
+will not handful I mean probably a
+hundred or so but there's thousands in
+each of these you get rid of these you
+get rid of them you keep getting rid of
+them you keep getting rid of them and at
+some point this whole group it's gonna
+split into two this and this group we
+call this group a component a maximally
+connected set of nodes is a component at
+some point you keep getting rid of edges
+you're gonna split it into two
+components now this was kind of a big
+deal at the time because it was
+different from a max cut min flow
+problem where that's a classic one in
+computer science you want to partition
+into two but we don't really meet we
+don't really know how many we're gonna
+partition this into here it seems pretty
+obvious it's two blobs but maybe there's
+three blobs how do you know well now we
+need to come up with a quality function
+to determine what's the best outcome
+because otherwise we could say well just
+delete all the edges and then we have n
+communities where n is the number of
+nodes it's kind of trivial but that's
+not really useful or we could say let's
+just have one community well what's the
+best way of doing this and that's
+modularity that was that's a particular
+metric which we'll look at after the
+break okay so we're going to pause here
+I would like yeah we're going to pause
+here I'll take a question or two and
+then we'll come
+afterwards first so the question was is
+there anything signified by the distance
+between the nodes we're going to get to
+that in visualization
+the answer is topology as in nodes that
+are that have greater connectivity
+shared among each other are more likely
+to be spatially closer to each other
+nodes that have that are far our paths
+between each other are more likely to be
+far away that's the basis of
+force-directed algorithms although
+there's all sorts of ways in which
+they've been tuned in recent years to
+either look more or less effective to be
+more or less coherent all right so when
+that clock every one shorter long are we
+feeling feeling good I say when we go
+with seven when that clock is on seven
+down there so that's 11:35 you got
+twelve minutes have a comfort break have
+a cigarette if you'd smoke we shouldn't
+and then we'll start we'll start again
+then and we'll kind of go through the
+rest of this so this paper by Mark
+Newman the structure and function of
+complex networks what's kind of
+mind-blowing for me going back and
+visiting this paper is this was 14 years
+ago now that a how much was done in this
+paper and B how much was not done in
+this paper and yet he still had a
+hundred pages of paper here that's just
+chock-full of network science this was
+before we had modularity as we currently
+understand it modularity is not like the
+bee's knees it's not the best but it's a
+very good metric for determining how
+well your partition how well your
+clusters work as a quality function
+actually well in the social network
+analysis literature they had a quality
+function which was similar but I digress
+what is important well one thing is cute
+here is that we can what he's shown is
+how these networks have these sorts of
+really clear clusters that be here this
+is this this is the network of
+collaborations between scientists and
+this network of collaborations has this
+weird
+sort of
+sure to it but that structure is also
+mirrored spatially so where the where
+the researchers were in the building and
+that sort of thing I'm gonna show is it
+in the paper yes we're gonna look at
+this network in a minute in a program
+called Goffe and this network shows
+school class and friendship nominations
+and this is how you can see that the
+school class is clustered somewhat but
+unfortunately by race it's also
+clustered by grade and it's not
+particularly clustered by gender and
+we'll be able to observe that what we
+won't be able to do is demonstrate that
+statistically in this lecture but if you
+would like to ask me about that later
+I can show you a small series of
+statistics that can be used to do that
+although they're quite formidable to run
+but there was a question that came up
+it's like I've been talking about social
+networks what about other networks like
+like an ant colony or something of this
+sort and I said well it's it's a
+topology topologies a topology which
+leads to a couple things the first is I
+want to make clear that networks as we
+understand them are an abstraction they
+are an abstraction from reality they can
+be performative as well as descriptive a
+descriptive abstraction is an
+abstraction where we say all right so
+let's let's try to take everyday life
+and render it in a form that's amenable
+to analysis we'll say we're all people
+people have links between people whether
+they're friendships or not and that's a
+form of operationalization and with that
+operationalization we make compromises
+we always make compromises with
+operationalization but we like to think
+that those compromises are sufficient
+that we can still get insights and those
+insights reflects some underlying
+reality a performative abstraction is
+different a performative abstraction is
+one where we conform to the abstraction
+so facebook is not just a social network
+because we can think of
+Facebook as a social network it's a
+social network because it's deliberately
+engineered to be a social network it is
+profiles the profile is a node a node
+links to other nodes those are
+friendships it didn't it's not
+accidentally like oh you can analyze
+Facebook as a social network that's
+because Facebook was designed that way I
+mean we don't design our everyday life
+like this I don't expect you guys to
+come up to me and we have to like
+authorize it some sort of connection
+before you ask me a question but we can
+do a network of who converses with who
+abstract from that and create a network
+that people get that distinction it's
+kind of important one at least in
+sociology anyway here's that here's that
+table from Newman and our here are often
+refers to correlation or Pearson's
+product-moment correlation he refers to
+a sorta tivity the degree degree
+correlation among the actors in the
+network actor is another sort of general
+term doesn't mean like in a movie it
+just means node oh my computer has been
+real
+I should probably plug this in give me a
+second ok so we can see social networks
+information technological and biological
+now this is hard to see far away but
+this table is on page 10 of Newman's
+2003 paper in Siam s I am reviews and we
+can see for these social networks the
+correlation is positive that is to say
+that people in the film actors Network
+on IMDB or in a physics co-authorship
+network in physics journals or a
+telephone call graph the people who will
+actually this one doesn't have the
+calculation but these here film actors
+visits co-authorship those people who
+are linked to many others the many
+others they're linked to are also linked
+to many others the degree is correlated
+those of high degree correlate with
+those of other high degree so in physics
+this is like some real high profile
+heavy-duty physics professor tends to
+work with other high profile heavy-duty
+physics professors not with sort of any
+little graduate student or somebody from
+some obscure University this can sort of
+you can either see this as maintaining
+quality or reinforcing privilege
+depending on how you're looking at it I
+mean it could be could be both on the
+other hand technological networks down
+here we can still analyze them as
+networks this is the internet series of
+routers power grid train routes software
+packages these are links linkages
+between software packages this package
+imports this one and cetera et cetera
+and these all have slightly negative
+correlations hi welcome back these all
+have slightly negative correlations in
+the sense that say a power grid a very
+large power grid station doesn't link to
+other very large power grid stations it
+links to the local smaller transformers
+and you know local houses and things in
+biological networks we see the same sort
+of thing in a metabolic network or
+network of cellular processes of protein
+interactions proteins interact with all
+sorts of other proteins in really
+interesting ways it's not just like
+protein comes in it does magic things
+and outcomes energy and waste they
+really connect in all sorts of different
+ways and these themselves are also disa
+sorted so we can use the same and here's
+some other statistics they're not we're
+not ready for those yet but they're
+later on you can read them and you'll
+find them fascinating but we can use the
+same statistics regardless of the kind
+of network as long as we create a
+network that has similar properties at
+that level of abstraction now we will
+destroy some things in the in the
+process of abstracting say wait it's
+really hard to handle weight in a
+network meaningfully so we we often what
+we do is we just say we threshold
+instead of calculate weight we don't go
+well there's three emails with you and
+20 emails with you and 50 with you we
+just say let's take the network of
+people that sent at least 10 emails and
+then just analyze that as a network it's
+a bit lazy
+gets most of the job done the problem is
+when you take when you use the weighted
+version
+yeah the calculations are different they
+can be tricky all right so now the next
+thing I wanted to do well I wanted to
+show you guys some network software but
+first I'll finish off a little bit on
+homophily here we got lots of windows
+going so all right oh yes community
+detection so the Gervin Neumann
+algorithm was an early form of community
+detection but it was really expensive
+because we had to keep recalculating
+between this and between this itself is
+really expensive to calculate traveling
+salesman problem as it was pointed out
+this is a this is a slow one it's a slow
+one to calculate it's one of those NP
+problems so we've come up with better
+ones since then that tend to abstract
+from this in nice tidy ways to important
+community detection algorithms that are
+worth paying attention to right now are
+the llueve method or the multi-level
+method and info map INF om ap the Luo
+vein method takes a networking kind of
+like metaphorically speaking you can
+imagine what it does is it kind of like
+it measure if you squint your eyes and
+it's a bit blurry it looks for like
+these large clumps and then of high
+degrees of connectivity and then unfolds
+out from these clumps so that it's
+starting to get clearer and clearer and
+as the clumps bump into each other then
+that seems to be where your communities
+end now that's kind of a loose loose
+bastardization of the formula but close
+enough for for the purposes of this
+lecture info map takes a different route
+instead of going top down to the
+communities it goes bottom-up by doing a
+series of random walks and from the
+different nodes and a nose so until the
+random walk ends up back in a node and
+so the areas of the graph that keep
+getting Trenton
+traversed in these random walks tend to
+be the same community because very hard
+to kind of escape from here randomly go
+here and then escape back to here it's
+much more likely to walk and then sort
+of stay within here or walk and stay
+within here and so that ends up allowing
+us to see communities one of the bonuses
+about info map is that it does very well
+with directed networks and it also does
+very well when we want communities that
+overlap it's not just the case that some
+people are Republican or Democrat left
+or right leave or remain there might be
+event well no but there might be
+advantages to thinking about overlapping
+communities the problem however is that
+they're really hard to analyze as well
+as describe I think I'm gonna pause no
+no I'm gonna keep going until I'm
+supposed to I want to introduce some
+metrics here it's really quickly
+the first one is transitivity and we
+already talked about this a minute ago I
+just kind of an hour ago this strength
+of weak ties transitivity is the idea
+that what's the percentage of two paths
+that are three paths what's the
+percentage of I have two friends and
+they share a friendship of all the two
+paths how many of them are closed the
+formulas actually you have to multiply
+the the triads by three because each try
+out of three is in fact two three two
+paths so you do that and you can get a
+metric out of one for how transitively
+closed the network is a local clustering
+coefficient is the proportion of all
+triads around a specific individual node
+that are closed so it's basically the
+same as transitivity except it's focused
+around a specific node so which one of
+my two paths are closed and then the
+local and the clustering coefficient is
+the average of all of those local
+clustering coefficients so transitivity
+and clustering coefficient are very
+similar but there are some slightly
+different behaviors because one of them
+just looks at all the triangles
+regardless of structure and the other
+one looks at the average around
+different nodes it's not so important to
+know which one to use at the moment but
+that they're both there so when you have
+these sorts of forms of triadic closure
+and clustering and you can build it up
+and then you want to partition these
+things than we have modularity I'm gonna
+skip over conductance it's just a
+different measure it's uriel escovitch
+just use this in very interesting ways
+that's ju r e LS KO VEC uriel escovitch
+chain conductance but for the most part
+let's just look at modularity this is a
+network with high modularity as we can
+see here the green partitions and the
+purple partitions share one edge they're
+almost two different components low
+modularity here we can see that there's
+lots of edges between them so they share
+this is a partition but it's not as
+clean a partition it's not bad I mean it
+depends on what you're looking for
+you're looking for a network that's very
+fragile in the sense of if you make this
+one cut you have a distinct network or
+are you looking for a network that's but
+this might be more efficient
+again more more noisy but it may be more
+resilient if these people fall out of a
+friendship then let's say it's boys and
+girls I guess I don't know the
+heterosexual hetero sex is whatever but
+let's say they're dating they break up
+now none of the boys or friends with
+none of the girls something like of that
+future down here people are friends with
+each other there's a fallout between
+these two boys and girls still hang out
+everyone goes to the dance everyone's
+happy we can look at modularity and
+community detection not just at this
+micro scale but even at the scale of the
+whole UK I really like this this is from
+the sensible a sensible project sensible
+lab at MIT it's from several years ago
+they had access to a call graph and a
+call graph is a great source of network
+data for
+that want to do big data it's also
+highly sensitive so you have to be very
+careful with this they're not going to
+give you a call graph easily i've i've
+used call graph data before required a
+lot of administration so their first
+partition and this was using the
+spectral modularity this is a particular
+kind of community detection algorithm
+that's good we don't tend to use it that
+much anymore lu vein tends to work
+better but Spectrals good
+so the first partition they did in this
+call graph got them three partitions a
+blue blob a green blob and a purple blob
+corresponding to is you can see London
+England and Wales and Scotland then they
+they did it again with a different they
+just basically ran it for a little
+longer and they got these these
+partitions down here which are better
+and they have a modularity score this
+one has a modularity of 0.3 that's full
+we don't have a good way of saying
+modularity with p-values so it's not
+like we can't say there's a star on the
+side that says that's good and then
+below that value it's bad I mean well
+that's that's okay because p-values are
+a little abused like if something is for
+though anyone here some people here
+probably don't know when I talk about
+with p-values is that right do you know
+what p-value you an engineer oh wow you
+guys are all Bayesian now is that it
+everybody's Bayesian statistics okay
+okay should know them all right so in in
+frequentist statistics we get an
+estimate for how likely we are to
+observe this particular distribution or
+are we more likely to dis are we likely
+to see a distribution this extreme or
+more by chance and that p-value is a
+value of sort of giving you an estimate
+of that we're how likely are we to see
+this by chance let's just say that and
+if it's a score of like point zero five
+as in one in twenty and we say well yeah
+it's pretty good
+it's pretty significant it does seem
+like that there's a real distinction
+there well in community detection we
+don't get that same sort of like
+Authority but we can still say
+modularity has meaning to it even if we
+can't say it's precisely this is good
+and this is bad but as a general rule of
+thumb a network with a modularity of 0.3
+or above
+tends to be a good partition it's a
+meaningful partition we can say that
+there's a distinction there a modularity
+score of like point six are above is
+very clear there's very clear
+distinctions between these different
+clusters in this case this one here
+gives us this is 0.58 so this is a call
+graph area this is a call graph area
+this is a call graph area but it's a bit
+noisy see these little blobs in here
+this is because the way the algorithm
+runs has some sort of randomness
+involved to it now what they did then is
+they use the thing called kernighan-lin
+swaps which are just it's like a form of
+annealing you just randomly switch a
+bunch of partitions you say well what
+would happen if we make that little
+square purple what would happen if we
+make that little square blue and then
+they just kind of keep swapping them in
+and out and if they when they swap them
+if the modularity goes up they keep it
+if the modularity goes down they go back
+to what they had before and they keep
+doing that and you can do that as long
+as you want at some point you're not
+going to get any better and so that they
+get this final solution right here now
+what's interesting is that this solution
+right here makes sense it makes sense in
+terms of borders it doesn't make sense
+well no it makes sense in terms of like
+geography it doesn't make sense in terms
+of borders the actual borders this is I
+mean Wales is kind of here split in with
+like Bristol and a little bit of West
+England and stuff it's not very clearly
+exactly the areas even London here kind
+of spills out a little over to the to
+the east but what they did find is that
+the connectivity between the different
+regions and this one helped explain
+economic output really effectively so it
+was what's fascinating about is that
+this is a social region even if it isn't
+is not an administrative region so we
+can look at some clustering here this is
+one
+the final things I want to show you give
+me one second I'm gonna mirror my screen
+so that I don't have to keep looking
+back and forth yes oh that so the last
+one that we just looked at that was call
+graph data so that's eight you have a
+you can geographically identify a phone
+number and so that phone number calls
+another phone number and so if the if
+there's a if there's one calls another
+one then that's considered a tie was
+that clear
+just phone numbers yeah it's worth
+noting that that would be phone numbers
+from one company that shared their call
+graph data with the researchers there's
+different phone companies so when I did
+it I did an analysis with one phone
+company and I only have good data for
+that phone company there's also that
+phone company and numbers outside the
+phone company I don't know any details
+about the when they call outside so
+we're constrained in that in different
+ways and there's only so much you can do
+with these sorts of call graph data it's
+a very big data but it's very shallow we
+also have data that's very what I tend
+to work with now which is very small
+data but very rich so I'm working now on
+a longitudinal study of a thousand
+people thousand people from a sexual
+health clinic ten twenty actually and we
+have five waves of data for them and for
+each wave we have like their local
+network so we have lots of data about
+that network but it's very small data so
+different techniques for different kinds
+of data sets let me so let me mirror my
+screen clear ish this is a program
+called Goffe so in this program i wanted
+to show you this is a social network
+this is a social network with 700 it's
+so small I'm gonna point these things
+out to you this
+is the report up here the program is
+called Jeff eg Eph I Jeffy I believe the
+French Khalid it's done by done by some
+French persons primarily at science Po
+and so within this program here running
+in Java so it's nice and cross-platform
+we see nodes 795 nodes edges 4 1 2 5
+these are friendship nominations in a
+school in the US I do not know which
+school this is but I know that it is
+notorious in this data set for the
+properties that I'm about to show you
+the nodes have been arranged randomly in
+a boundary bounded box so within that
+box they just randomly assort the nodes
+and so that's why it's all kind of dark
+in here little little spots it's because
+there's so many edges going around
+everywhere it's kind of disordered it's
+like that initial photo or picture that
+I showed you earlier on with just like
+the faces a little thumbnails of faces
+they're all just disordered and what we
+want to do is we want to show the latent
+ordering in this graph the graph itself
+is directed and we the students were
+asked to nominate 5 friends so that
+means everyone has a maximum out degree
+of 5 but they're in degree can be well n
+minus 1 if everybody is like friends
+with like that one kid in school it's
+gonna be n minus 1 unfortunately what we
+show it well well fortunately that's not
+the case unfortunately though we also
+show other sorts of partitioning in this
+school that's it's good to show it even
+though it's not good that it exists so
+the earliest layout algorithms in
+networks come from the computer
+visualization literature transactions on
+visualizations and computer graphics the
+the conference is called graphing
+there's also the info vis conference
+which is the larger one from this this
+is the community that does all these
+sorts of algorithms and one of the
+earliest ones if not
+not the earliest but one of the earliest
+ones that's important is the fracture
+Minh Rheingold force-directed algorithm
+and this is an algorithm that has both
+strengths of attraction and repulsion
+embedded in it so if there's a
+connection between so I know basically
+by name two people in this room right
+now Santa and then so let's say I only
+knew one and we wanted to lay out this
+graph well I would I would want to be
+next to Santa here but I don't just know
+Santa I also know Dan so I would for the
+layout I would want to be in the middle
+between these two now if I know a third
+person I meet someone all the way over
+there then I'm gonna want to stretch
+back over this is an attraction
+algorithm now but it turns out there's a
+whole clump of people I I'm not sure
+we've really met have we met guys so I'm
+kind of so then there's a repulsion away
+from those that I'm not connected to now
+that's not just me it's also you you
+have some friends you have some people
+you're not connected to and so you also
+want to settle into a state where you're
+can you're nearby those that you are
+connected to and distant from those that
+you're not connected to so this iterates
+over time as we can see here document
+Rheingold and just sort of like slowly
+as it's doing its thing because it's a
+not very powerful MacBook Air and it
+first of all it gives it a bounded area
+see something like these eye slits right
+here the reason why it has a bounded
+area is because otherwise these eye
+slits would just like fly off into space
+in fact for reasons that will become
+obvious I'm gonna want to get rid of
+those eye slits entirely right now so
+this right here remember I said these
+things are components so I'm gonna
+filter down to the giant component okay
+so those eye slits just disappeared we
+can see up here that says ninety seven
+point eight six percent of the nodes are
+visible all the edges are still visible
+so we only had one big component and a
+couple isolates that neither nominated
+anybody or were not nominated themselves
+I don't know what's the state with those
+kids it could be anything then could be
+I don't know
+I don't want to hazard a guess quite
+frankly okay so right here I'm just sort
+of like varying those and now we can
+start seeing a little bit of like
+there's a blurry bit right here maybe a
+blurry bit down there I don't have the
+patience for this to finish but as you
+can see it's sort of self-organizing
+fortunately faster algorithms have
+emerged since then this is force Atlas -
+this would take the components and
+separate them so the isolates would go
+flying but I've gotten rid of the
+isolates just FYI this is this query
+down here it said I'm querying by giant
+component so we just have the one
+component all the nodes are connected to
+at least one other node in this network
+I'll run this boom there we go nice and
+easy and now we can see now let me
+actually expand this a little bit
+there's some other things we can do in
+this - that help Lin log mode will help
+make the structure even more clear help
+my computer blow up so now we can see
+now I can see that there's this
+underlying structure in this network and
+it does kind of appear to be some
+cleavages we've got like a kind of a
+clumpiness here and here clumpiness here
+and here and what's responsible for that
+well this data has some what we can do
+is we can run a community detection
+algorithm in this case it's just called
+modularity I'm sorry that it's hard to
+see in the back but we have a pane on
+the side here that says statistics and
+we're gonna run some statistics we could
+for example run average degree average
+weighted degree so forth but we're gonna
+run what's called modularity when we run
+modularity we're gonna we're not gonna
+use the weights and for reasons that I
+don't want to get into we're gonna make
+the resolution a little higher that's a
+tunable parameter you can fiddle with it
+more higher resolution confusingly means
+more coarsened
+network
+and so we're gonna get fewer communities
+a lower-resolution means we'll get
+little tiny communities we're going to
+1.8 should get us they're more or less
+number of communities 6 hmm I don't want
+6 communities I actually went 4 so the
+modularity was 0.5 6 which says it's
+pretty good I'm gonna use a resolution
+of 204 communities there we go there's
+my 4 communities now the networks this
+modularity algorithm uses a random seed
+so you run it a second time it will give
+you a slightly different community
+there's no sense in community detection
+of what is the best community we know
+that some are better than others but we
+also know that there's this resolution
+limit over which without additional
+information we can't tell what community
+works best we just know that some work
+better than others so we have a
+community now let's see nodes size color
+why are you okay it's being mean to me
+today
+that's color Oh partition there we go
+modularity class apply so here are four
+different communities that automatically
+detected that this is a community this
+is a community this one and this one and
+we can make them different colors oh
+okay now unfortunately the version of
+this file that I have here doesn't
+actually I have another version I could
+load up but it'll take me a few minutes
+so we're not going to do that because I
+want to show you some other things but
+the other version of this file that has
+race gender and grade shows some things
+about this community the first one shows
+that if you go by gender male and female
+are distributed throughout the whole
+network there's blue nodes and red nodes
+or green
+orange or whatever colors you assign
+that they're all over here
+the second thing that we'll find is that
+this network is also sorted by grade so
+we can see that what will happen is that
+down here are the people in grade 7 then
+it's like the grade 8 then grade 9 grade
+10 and grade 11 and very clearly this
+gradient appears and that gradient is
+because actually there's spatial
+distribution there's like one part of
+the school has the lower grades and one
+part of the school has the higher grades
+and so that's reflected in here and then
+finally unfortunately we can see this by
+race and then we see that on this side
+white kids this side black kids and in
+between our kids of mixed race and Asian
+and I believe they are they code Latino
+kids as a as a different ethnicity as
+well and so most of the school classes
+in the u.s. thank God are not as
+segregated as this Oh actually it's of
+course but in this particular case we
+did see a very segregated Network and we
+can store yes here it is this is the
+same network from Marc Newman's paper
+slightly different layout algorithm
+showing the same sort of thing
+unfortunately he doesn't show the grade
+or anything else in this but this gives
+you an example of how homophily emerges
+within a particular school now this is
+relevant because people were looking at
+this and then looking at how does that
+lead to educational performance and as
+you can imagine the schools that they
+examined where the partitions were
+really distinct show poor academic
+performance than the ones where they
+weren't so distinct and so this is moody
+and white they used a slightly different
+algorithm but moody and white in ASR and
+I believe 2002 analyzed this this is Jim
+Moody's Network data collection and from
+a data set called the add health or the
+Adolescent Health Network in the US okay
+so now back to the slides well we have
+some time okay so with a little bit of
+time left
+as so much I didn't cover but a little
+bit of time left I wanted to show you a
+little bit about the underlying
+structure of a network as collected how
+do we manage this and what sort of
+software do we use for this so we can
+represent networks in a number of
+different ways we can represent it as an
+adjacency matrix I don't really use
+those very often of mathematicians in
+the room people here comfortable with
+linear algebra some some linear algebra
+people yeah well there's some really
+nice features of networks that can be
+done with linear algebra you know you
+can by permuting or getting the identity
+matrix or yadda yadda yadda you can
+calculate all sorts of nice things on on
+the adjacency matrix but I tend not to
+use it just I don't
+Martin Everett who I admire quite a lot
+up at the Mitchell Center for social
+network analysis loves calculating
+things with with linear algebra I tend
+to do things more visually this is the
+same network represented as a sociogram
+and this here is the same network
+represented as an edge list an edge list
+is sort of what you would see as raw
+data this might be a call log Alice
+called Dave Bob called Alice Bob called
+Carol etc etc and then you take this
+list and you feed it into a computer and
+it can then spit out an adjacency matrix
+for some calculations interestingly a
+leading eigenvector is a really useful
+technique for getting community
+detection so you get the leading
+eigenvector this and it'll kind of give
+you a sense of which nodes are likely to
+be in the same cluster or it'll spit out
+this right here as a sociogram and then
+you can visualize it and do things with
+it let's see this is just me doing a
+nice emoji thing on this is collecting a
+network data where you can collect this
+person's that's why we don't actually do
+it very much this this way but you can
+ask for each of the ties are these
+people friends with each other and then
+use that to reconstruct the network
+unfortunately we don't do
+that often because as we could see it
+scales exponentially with the linear
+number of nodes which means is when
+you're doing an interview it gets really
+boring you know you're interviewing
+somebody with they nominate ten ties
+that means that's 45 questions how did I
+know it was 45 you know it's it's a
+formula it's a simple one as we can see
+here with nodes and you know Plex edges
+and multiplex edges multiplex might be
+like let's say you want to connect edges
+on who is friends with who and then some
+of other things that we would collect in
+my work I've done work on sexuality who
+has sex with who who does drugs with who
+we want to see like are these
+overlapping I want to look at risk
+factors
+someone's network could have upwards of
+150 people and if you were to ask 150
+people all the possible combinations
+just you know Plex just Alice know Bob
+within 150 that's 11,000 questions
+that's I mean people can know 150 people
+and they can know in their head a pretty
+good sense of that social structure but
+asking them an eleven thousand questions
+is not very pleasant we tend to think of
+networks in different types this
+diagrammatically is an example of these
+of whole networks partial networks ego
+networks and modal networks a whole
+network is kind of the simplest it's
+just dots
+it's just lines just a set of them but
+what's challenging about it is that it
+requires a boundary so we might do a
+whole network of the people in this room
+so if in fact we may do this in the next
+session it probably won't though I'll
+probably just do ego Nets so the whole
+Nets is a bit tricky to logistic Lee but
+you can imagine we can do friendship
+nominations in this room we could say
+everybody who knows everybody list off
+the people you know we do that list off
+the people you know to everybody here we
+do that we reconstruct it we've got a
+network of
+this class is this class a meaningful
+network though I don't I mean I think
+it's not me I think there's meaning that
+can be recovered from doing a social
+network in this class but I suspect
+actually the Turing itself might be a
+more meaningful boundary or all of the
+students at the Turing might be a
+meaningful boundary or everybody on the
+mailing list perhaps might be a
+meaningful boundary I'm not sure that
+this class is as meaningful a boundary
+because you're all voluntarily here I'm
+sure some of you know people that might
+be interested in this who aren't here
+some people might know people who are at
+the Turing who didn't bother show up for
+this right so I'm not sure that this
+boundary works but you could we often do
+work on school classes you know we tend
+to think of the school class as a
+meaningful boundary a partial network is
+much more common in data science and
+that's because we have networks that are
+on the web that are just so big we're
+never gonna get it all we're never gonna
+get it all we couldn't get it all in
+1999 when Albert and beary bashe did the
+original study to show power laws on the
+web we knew that that was an incomplete
+web Google has not traversed the whole
+web Microsoft hasn't traversed it you're
+not going to do it so instead we try to
+look for a network with a meaningful
+boundary so partial networks there's a
+number of approaches offline we think of
+approaches like respondent driven
+sampling or snowball sampling this is
+really useful for hard-to-get
+populations injection drug users for
+example you go to an injection drug user
+you say tell me about your friends and
+now then you give them chips or coupons
+or whatever you'd call them say here's
+three coupons give them to a friend of
+yours who also does heroin get them to
+come in the lab if they come in the lab
+and they do a network you get an extra
+$50 so as you can imagine people who are
+doing heroin will appreciate this money
+hopefully for food but likely for heroin
+their friends come in the lab and so
+then you kind of spiral out from there
+on the web you would do it by following
+links link traversal so we start off
+with a seed set of blogs maybe we look
+at all the blogs that are pro a
+particular political issue maybe we look
+at a keyword and then we we find that
+key word we find everybody that they
+link to and then find everybody that
+they link to and as long as those
+websites that they link to also use that
+keyword you keep continuing and then at
+some point you stop because you've
+exhausted all the websites that have
+used that keyword and that's your
+network so it's a partial network you
+know it but you can still operate it as
+such five ego net so these are just
+different ego-centered networks this
+tends to be what I work with right now
+we sample from a population and we look
+at the connections around a specific
+individual we calculate differences
+between them this work can also benefit
+from modern computational machine
+learning approaches some of the best ego
+Network to date is by a guy named Claude
+Fischer and that was from 1982 in a book
+called to dwell among friends he looked
+at the size of these networks what kind
+of what are the composition are they
+family are they friends how often do we
+meet each other it was in the northern
+California he was at Berkeley so that's
+where it is and yet just last year a
+really dynamite paper came out that
+reanalyzed this data using random
+forests in order to properly classify I
+wouldn't say properly to more
+effectively classify the different types
+of ego Nets based on their composition
+and he found different styles of
+networking in there that earlier
+clustering algorithms just wouldn't pass
+muster to mode networks are perhaps the
+dodgiest of the networks they're the
+most theoretically tenuous but there's
+still sufficient information in them to
+be extremely useful presumably most of
+you have been on Amazon before heard of
+it it's big site
+I can take over the world I think the
+Amazon is the one that's you know like
+the most most closest to Skynet because
+they have so much material
+infrastructure but what they also have
+is recommendations people who bought
+this book also buy this book people who
+like this also like that that is called
+collaborative filtering it came from
+Minnesota from the group lens group of
+computer science group of men at the
+university Minnesota particular way of
+arranging a database to do this at a
+high speed and what you get from that
+it's really it's just a two mode Network
+it's just fast reductions on a two mode
+Network we have consumers and we have
+products people who bought this well
+they also bought that people about this
+also about that and then you can do that
+that's a two mode Network you reduce
+that two mode network to it's single
+modes here are the customers that are
+similar now you've got micro targeting
+here are the books that's similar now
+you've got a recommendation engine just
+came from the connectivity of who
+browsed what the reason I say they're
+the most tenuous is because normally in
+a network we want to have some sort of
+ontological property that defines why
+there's a link this person knows this
+person this person knows this person
+this links to that website they're all
+in a group with a two mode network we
+can just look at why don't know your
+music collection you know so my music
+collection is similar to somebody else's
+music collection
+did I ever talk to that person no do I
+know that person no so is it really a
+social network is it really a network
+well it turns out it's sufficiently a
+network for the purpose of recommending
+music this is kind of goes through what
+we just did but with a little more
+clarity the adjacency Network versus a
+sociogram you can see this is how we
+would arrange these as directed directed
+or undirected directed we also call them
+these are symmetric networks and the
+reason we say symmetric is because
+they're symmetric around the diagonal
+you may notice that this one has zeros
+on the diagonal and that's because this
+network does not allow self loops but we
+can have self loops in a network
+perfectly reasonable it just depends on
+the type of network we might think of
+trade between countries and a self loop
+then is trade within a country versus
+trade between countries or in some past
+work I've done edits on Wikipedia within
+region verses edits on Wikipedia between
+regions which regions send Wikipedia
+edits to other regions unfortunately
+what we have found in that work is a
+concept I call well I I guess my
+co-author we call it as mark came up
+with it informational magnetism and
+informational magnetism is that the
+areas that have the most information
+already on Wikipedia tend to attract
+edits from the rest of the world so
+unfortunately even though as we were
+doing work on Middle East and North
+Africa a little bit of work in East
+Africa asking like why are they now
+editing on Wikipedia well unfortunately
+it's worse than that when they're
+editing on Wikipedia their editing about
+North America to a lesser extent about
+Europe so this is an area that you know
+Boko Haram's attacking some people down
+there it's some community you've never
+heard of you go to the Wikipedia page
+there's no information on that community
+oh well well it's arbitrary it's some
+people over there similar number of
+deaths similar sort of terrorist act
+happens in a major metropolis with all
+sorts of information about it the
+journalists can cover this more
+effectively you start caring more about
+one place in another place it's not
+represented well and the people from the
+places that aren't represented well are
+not editing about their places they're
+sending their ties to the places that
+are represented well four reasons why
+you'd have to read the paper but it's an
+example another just clarifying this etc
+again and now thinking about some some
+places where you can do this analysis if
+you have a Windows computer there's a
+program called node Excel which is an
+add-on for Excel which can be used to do
+a lot of network analysis really nice
+really I wouldn't say simple but as
+simple as can be because it's not
+necessarily simple but one of the things
+you can do on a Windows computer is with
+node Excel if your email is in Outlook
+you can automatically import it as an
+email network into Excel because node
+excel is just net on for it but then
+you'll see lots of noise in your email
+and so I like this example because it
+helps to talk about how we clean the
+example or clean the data let's say this
+ego me there's only ever email from me
+to a distribution list that the email
+from distribution lists does not get
+addressed to me at least not in the
+header so it's the DL czar in this but
+not in my ego network in my ego Network
+this is somebody else whose email a
+distribution list but I've never emailed
+them they show up in my inbox but
+they're not actually linked to me at all
+so we can filter these people out we can
+filter out the symmetric ties or down to
+symmetric ties I email you email me then
+we can filter that even further like I'm
+email you email me we both email each
+other at least twice we might say that's
+it's really a relationship if we emailed
+each other at least twice if we haven't
+the the network structure might be a bit
+tenuous so it really depends on what
+you're looking for but remember that
+there's different these are different
+categories of people people I email
+distribution lists spam here might be
+spam somebody that emails me 12 times
+and I never email them once I I don't
+really need a luxury watch whatever else
+is in your spam these days
+lots of conferences in the middle of
+nowhere that seem to catch up with me
+with modal data just to point out here
+this is how we would we can reduce this
+in two ways we call a bipartite
+projection when we do that bipartite
+projection we lose information but we
+also gain a little bit of granularity
+about the structure so the one mode
+event
+one two three this is these I think this
+one's meant to be thicker the tie
+between two and one yes because there's
+two people here B and C that have both
+attended event one and event 2 attended
+event - there's a thick line a weighted
+line there's only one person that is a
+attended events 1 and 3 so therefore we
+have a thin line here so this gives us a
+sense of structure you can this is
+really common say for some of the only
+network data that you can still capture
+on Facebook which would be comments on
+stories so I comment on one story you
+comment on a different story
+I also comment on that different story
+so as you sort of accumulate these this
+two mode network of who comments on what
+post then you get a two mode network of
+posts and people and when you reduce it
+you get a one mode Network either of
+which posts are similar or which people
+are similar now if a thousand will say
+50 people not maybe the thousands say 50
+people all comment on that one post then
+you're gonna have a clique of 50 people
+in your one mode projection because all
+of them are connected because they all
+commented on the one post that's gonna
+be a really noisy Network and that's why
+it's important to keep that network
+waited and then maybe trim the weights
+so perhaps we have to comment on three
+posts jointly we have to Co comment on
+three posts in my own work for example I
+have collaborated with a number of
+people but some people have only
+collaborated with once and it might be a
+bit noisy but there's some people I
+collaborate with repeatedly and so
+that's less noisy that's more social
+structure we use the weight to trim out
+those people I only collaborated with
+once and then you get more of a sense of
+social structure yeah okay here's an
+example of that - mode network by Mason
+Porter and these are committees in the
+US House of Representatives and he's
+showing like which committees are more
+likely to be or people to have people
+that are on the same committees together
+and see Armed Services and Veterans
+Affairs have a lot of committees
+together intelligence administration and
+rules people share those committees and
+so forth and so forth and this shows you
+which parts of government are related to
+each other in the u.s. when making
+legislation I guess I kind of I guess
+already really sort of covered this here
+this is that freshman triangle just
+wanted to repeat that we have a random
+network here over time with ten
+iterations it's starting to bunch up and
+by a hundred we really recover this
+structure there's a really fascinating
+paper that shows how this structure is a
+form of modularity maximization which is
+also why it makes sense and why the
+communities tend to bunch up together
+because they share some underlying math
+for each other so finally some things to
+get you started looking at and playing
+around with node Excel I mentioned
+Jeffie i showed i graph i mentioned
+didn't really mention these known excel
+is probably the most lightweight way to
+start requires a Windows computer with
+excel and administration privileges
+because you have to I don't know
+download dotnet or something
+Jeffie is just a little bit more tricky
+but there's lots of tutorials online
+forgetty and it's cross-platform it's on
+Linux Windows Mac it's based on Java so
+it's really flexible
+I graph and also Network X and a number
+of other packages but mainly I graph in
+network X it's a shame I never put it
+now we're good this is for Python this
+is what we will be using in the next
+class sort of getting some statistics
+for modularity getting some statistics
+for doing a bipartite projection and
+then finally tulip tulips really heavy
+duty complicated software for
+visualizing networks it's run in C or
+C++ I've never used it my colleagues
+have used it they like it because it
+does lots of complicated things but it's
+a bit overkill for me so yeah we got a
+minute left
+these will be in the slide so to show
+you that you know in the 1800's we
+started off with a connoisseur bridge
+problem that got us networks about the
+1930s we started doing so Shyama tree
+and then around the 60s the first ego
+net studies we started off today in the
+70s with strength of weak ties and then
+here's some statistical models we didn't
+cover these but they're they're P star
+models stochastic actor oriented models
+collaborative filtering started that's
+in the 90s people like this book like
+that book when and near the end of the
+90s PageRank came out PageRank was a
+network a social network concept
+websites that are linked that other
+websites linked to well that's a social
+signal maybe if I link to a bunch of web
+sites those web sites are of more
+importance of many websites linked to me
+maybe you should show me first in the
+search rankings well turns out Google
+did pretty well for itself with that
+social network algorithm and now they're
+Google well they were Google then too
+but they're still Google in the 2000s we
+do community detection P star models
+which is a model for statistically
+estimating the likelihood of these
+triangles that kind of transformed into
+a thing called exponential random graph
+models where we can statistically
+estimate the likelihood of all sorts of
+features in a graph and then these days
+were into big data we have graph
+databases interactive networks stuff
+that I'm doing seven touch screen
+networks and and we're really just
+continuing on with ever more
+computational power and just some more
+fascinating work so that's it that's the
+the first class and networks I hope that
+was somewhat informative a final
+questions before we before we break you
+were very quiet and hopefully attentive
+audience okay yes I'll restate this
+sure so we talked about community
+detection but what about anomalous nodes
+or outliers in a in a community well
+they're hard to find
+mark Newman had a measure for community
+centrality which was how likely a node
+is to stay within this community because
+the actual distinctive partitions
+themselves are based on a dendogram of
+probabilities and so you just kind of
+cut the dendogram off at a certain point
+but if you kind of raise that dendogram
+you get fewer communities if you lower
+the dendogram everybody is in their own
+little community so you can use that
+data you can recover from that data you
+can recover how likely it is a node that
+is in a community that's one way to
+detect it bootstrapping is another way
+you keep running the same community
+detection algorithm over and over and
+over again and seeing which nodes are
+likely to show up together which ones
+are likely to kind of switch allegiances
+when you keep running it that's I mean
+those are two separate ways beyond that
+there's others it's really to taste but
+yeah there's lots of complicated ways it
+would depend on the research question
+but I would entertain a research
+question of ways of detecting this and I
+could perhaps throw some ideas time for
+one or two more keeping you from lunch I
+wanted it to be just two and a half
+rather than three hours because I was
+lecturing and I thought that you would
+all get tired but ok one then two and
+then maybe that's it Mike yeah physics
+these models have been used to show
+critical behavior phase transitions and
+that kind of thing is anything like
+social science side of things although
+those phase transitions happen in social
+networks so we could think about the
+level of connectivity required Oh
+epidemiology you know why do we why have
+we not all died of Ebola because Ebola
+has a certain
+the where Ebola started has a certain
+level of connectivity and also a certain
+level of virality and what's the other
+term for survival rate so it's very oh I
+can't remember the abbreviations in this
+but a phase transition would happen we
+would model that in a social network
+given its connectivity to see what will
+it take for a particular and these are
+all just guesstimates in a lot of cases
+but based on some large scale features
+of a social network
+what can we estimate is the likelihood
+that we will get a phase transition to
+the sort of a huge superinfection plague
+if you will and it depends on where we
+get it from you know different airport
+hubs and these sorts of things as well
+as you know the the type the life cycle
+of the disease I mean the reason why HIV
+is so prevalent is because it's not very
+and what is that term it's not
+infectious it's not very deadly it kills
+people but it takes
+I don't care emember the term but it
+takes a long time to kill people
+Ebola kills people very quickly if
+you're gonna die you're gonna die really
+soon so that means it's harder for it to
+spread so HIV takes longer to spread and
+it takes long before it even shows up I
+mean you have this like window of weeks
+or months where you might not even show
+up in a blood test depending on the type
+of test so we could use different sorts
+of models of these two to determine
+whether or not we're going to get a
+phase transition towards you know
+everybody a hyper-connected state when
+the classic phase transitions that
+started off you know chaos theory and
+whatever we call that was originally
+from network analysis where it was a
+Bernoulli graph and if you have a
+Bernoulli graph with a probability of
+Ty's tie connectivity being 50/50 the
+graph is almost always going to be fully
+connected so if half the edges are there
+just by randomly you just randomly
+assign that edges half of them are there
+guaranteed the graph is gonna be fully
+connected but under that it's like and
+so the likelihood of the full graph
+being connected
+with the number of ties that are in
+there it kind of takes this nice
+logarithmic shape well at the certain
+point you need like at least n edges for
+n nodes and like an exponential number
+of edges is how many it's possible so
+it's not like linear like this it
+actually no the graph is not gonna be
+fully connected not to be fully
+connected boom it's fully connected like
+that and that's a really important phase
+transition because knowing whether a
+particular innovation a fad a plague
+virus is gonna saturate the networking
+up yeah anything else okay thanks
+was a question down here to find out
+where the actors in the network are same
+so the use case will be finding out
+similar actors okay are they the the
+same person yeah oh that's interesting
+there was work on this by Bell Labs
+years ago like 30 years ago I met the
+guy who did it and his name eludes me
+right now as he was at Microsoft
+Research when I was there I'm blanking
+on it but it's really cool work these
+were people that were using burner
+phones and it's it's basically just a
+it's just a degree correlation really or
+a sort of correlation in structural
+space if they're really correlated and
+then you have a temporal discontinuity
+then they're probably the same so think
+about it this way I deal well I don't
+really deal wheat but but I am Canadian
+but you know so let's say I have a phone
+and I have a bunch of contacts on that
+phone I feel like the police are gonna
+catch me so I throw my phone out get a
+new phone who's gonna call me the exact
+same people are gonna call me so what
+you look at is where do the where is the
+network correlation between you know
+from point a and point B where there's a
+temporal discontinuity people stopped
+calling one numbers start calling
+another number and then clearly it's the
+same person on the end of the line
+because they they slot into the network
+in the same
+place the algorithms for that are
+structural equivalence and regular
+equivalence there block modeling based
+algorithms and a structurally equivalent
+node is a node that connects to the
+network in the same way a regularly
+equivalent node is the node that
+connects to the network in a similar way
+so this was used in a perverted way in
+the war on terror where you have a note
+of high betweenness and a bunch of
+contacts with Middle Eastern sounding
+names and now you're on a million-person
+no-fly list but as was identified by one
+of the people I know from West Point
+that didn't work out very well because
+they could have been calling a whole
+bunch of terrorist cells or they
+could've been the pizza guy and the
+pizza guy calls a bunch of people a
+bunch of totally different people call
+the taxi person high betweenness is not
+a very good signal for the sort of
+threat networks that we want we need
+extra details involved but at the base
+of it at its most trivial there is some
+element of legitimate threat detection
+going on in these things but the place
+we start is structural equivalence and
+so if network is two nodes structural
+equivalent over time they're very
+similar yeah ok so we're gonna we're
+gonna stop but there's about 10 minutes
+overtime I kind of figured that or 20
+minutes early if we were gonna think of
+it as three hours thank you my email is
+there you can email me questions you can
+tweet or follow me I'm not on Facebook
+don't have me
+I am post Facebook there's I don't think
+that's my that's my blog but I wouldn't
+bother go there anymore it's I don't
+doing it so thank you for your attention
+and the slides will be sent via Sam to
+youth
+you

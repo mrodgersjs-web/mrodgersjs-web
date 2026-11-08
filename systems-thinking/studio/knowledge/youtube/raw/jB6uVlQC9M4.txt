@@ -1,0 +1,1488 @@
+Now it's my very great pleasure to introduce
+Steve Butler from Iowa State University for
+today's talk.
+I am going to shamelessly read off his website,
+because he has a lot of math interests.
+They are spectral spectral, combinatorics,
+discrete mathematics.
+This is bound to be a fun talk and in particular
+today he will tell us about a short course
+in spectral graph theory.
+Thank you, Steve.
+All right, well, thank you, wow.
+What an introduction.
+I got to know Esther way back when.
+She studied with me, it's nice to see her
+doing so well.
+So this will be like I say a short course
+kind of a crash course.
+So we are not going to necessarily go into
+a lot of depth because spectral graph theory
+has really grown in the last couple of years
+and it's a beautiful topic.
+But I hope I will convince you that there
+are some interesting things going on.
+Now, you might find yourself becoming distracted
+or sort of losing interest.
+Maybe, I hope not.
+But if you do, here is a pleasant distraction
+for you.
+Here is a small set.
+Has three numbers in it.
+Two minus 1, minus 1.
+So it's a multiset.
+And you can see I have written here the additional
+table and the multiplication table.
+Not too hard since there are only three numbers.
+But here is the interesting part.
+You will notice that they both have a single
+4, both have four ones and four negative 2s.
+In other words, the S plus S all possible
+sums and S times S all possible products are
+the same including multiplicity!
+Now, you might say okay, can other things
+do this?
+Well, sure.
+All zeros.
+Easy.
+All 2's, easy.
+Anything else?
+And that's the challenge.
+So if you find yourself needing something
+to work on, just think about, all right, what
+are some other sets which have this property?
+And the other thing you might think about,
+what does any of that have to do with spectral
+graph theory?
+Why is he bringing this up in this talk?
+Well, wait to the end.
+You'll see.
+All right.
+Where to begin?
+Well, not surprisingly, we are going to talk
+about spectral graph theory.
+It all starts with graphs.
+So we have a graph and if you hear the word
+graph, often time what pops into your mind
+is a picture where you have these points which
+are the vertices, these edges which are the
+connections.
+Now, of course that's not what a graph is.
+A graph is, you know, sets of vertices and
+edges with certain relationships.
+But we like to think of graphs in this way.
+How do we store a graph?
+What's the important information?
+So one way we can do it is as an array.
+And in particular, we can index the rows,
+and the columns, by the vertices.
+We say okay, any particular entry tells us
+the relationship between those pairs of vertices.
+Wonderful.
+Now we have stored our graph.
+Well, along come some spectral people, look
+say don't call us an array, no, no, no.
+Call it a matrix.
+And we are, like, okay, all right.
+Ray, matrix, potato, Poe-ta-t, okay.
+But it turns out that matrix is an array with
+benefits!
+So in other words, we actually gain something
+by switching from just saying oh, there's
+this square table of numbers and say no, no,
+think of it as a matrix.
+And in particular, we think of matrixes, there
+are wonderful properties that come into play.
+It actually doesn't go in both directions.
+Matrices represent both eigenvalues.
+This is where the word spectrum comes into
+play.
+Graph, matrix.
+Now, matrix, eigenvalues.
+Now, here is the challenge.
+Sure, if I have the graph, I can get the eigenvalues.
+But what about this direction?
+In other words, if I know the eigenvalues,
+how much do I know?
+And this arrow, this is really the core of
+spectral graph theory.
+In other words, saying all right, I know something
+about the eigenvalues.
+What can I conclude about the structure of
+the graph?
+And what do I learn?
+What don't I learn?
+What are some things I can't understand?
+Now, in all fairness, spectral graph theory
+in this other arrow as well, but that is where
+we want to talk about.
+Well, great.
+But now there's a question.
+See, I said we can think about graph we can
+associate with a matrix.
+But which matrix?
+It turns out there's not one answer.
+There's many possible answers.
+So we need to visit the build a matrix workshop.
+So how does one build a matrix?
+Well, the key idea is to think about what's
+the matrix representing?
+The matrix says I'm storing this information
+in a nice table, and indexed by vertices.
+So I say, okay, well look, each entry is some
+relationship.
+I have two vertices, U and V. And I want to
+ask the question, okay, how am I related?
+Now, there's lots of ways we could answer
+this question, which means that there's lots
+of different matrices which show up in spectral
+graph theory.
+Now, the three common ones, and I don't want
+to say these are the only ones, but there
+are three common ones are, well we can look
+at the aadjacency.
+Now it says look, am I connected or not connected?
+That's pretty easy.
+And leads to what we call the adjacency matrix.
+Which is one of the most studies matrices.
+That's one of the most studied.
+There's others ones, laplacian and a signless
+version and we will see the laplacian follows
+negative signs.
+Optimistic version.
+I don't like negatives.
+I want everybody to be positive.
+Okay.
+So there's adjacency.
+Another possibility is to look at transition.
+So in other words, I can say how likely am/to
+move from one vertex to another?
+That's the question when I'm asking about
+transition.
+So this comes into play for things like random
+walks and personal favorite, laplacian.
+And the third is the distance.
+It says okay, I have a graph and I have two
+vertices.
+How far apart are these two vertices?
+And that can define our entry.
+Each one of these leads to a different matrix.
+Different matrices have different properties.
+And so we will go through and take a look
+at some of these.
+So we will start with the adjacency matrix.
+And like I said, it's probably one of the
+most obvious metrices when you are starting
+because it's recording our adjacent cy.
+So zero and one.
+One if a pair of adjacent; zero if we are
+not adjacent.
+So here is a graph, a paw graph, very simple
+graph.
+I have indexed the vertices, 1, 2, 3, 4, here
+is the corresponding adjacency matrix.
+When we talk about spectral graph theory,
+we say okay, look at the eigenvalues associated
+with that.
+Now, I should pause for a second and make
+a comment.
+One of the nice things about the spectral
+part of looking at these matrices is that
+we kind of lose information about how we label
+things.
+So in other words, it doesn't matter how we
+label the vertices.
+Ultimately the eigenvalues are still the same.
+We permeate the matrix, yes.
+This is one of the reasons we like spectral
+graph theory, it's saying we are look to lose
+information about the labeling but that's
+probably a good thing.
+Because sometimes labeling can be misleading
+or well, very suggestive.
+So okay.
+Great.
+You might notice there are some graphs down
+here.
+You will keep seeing some graphs pop up as
+we go from matrix to matrix.
+And these graphs are interesting.
+Why?
+Well, you have C4 with single isolate the
+vertex.
+Here is the star.
+K1 4.
+And they are interesting because they are
+two graphs which are not the same.
+Easy to prove that these are not the same
+But they have the same spectrum for the adjacency
+matrix.
+Way back long ago there was the hope, okay,
+maybe if we have the eigenvalues we have everything
+that we could possibility want to know about
+the graph.
+And then after about two minutes, someone
+said well what about this pair?
+Ugh, darn it!
+Well we will have to do some work.
+And so co-spectral pairs, actually it's a
+very interesting topic because it reveals
+the weaknesses of a matrix.
+And each common matrix does have weaknesses,
+things that it cannot detect.
+Now we call this the adjacency, but there's
+another way to think about what the adjacenyc
+matrix is capturing.
+That comes in from the following fact.
+So if I take this adjacency matrix and raise
+it to the k power and I look at any particular
+entry, it's counting something.
+It's a number.
+The thing it's counting is the number of walks
+of lengths k that start at vertex i and end
+at vertex j.
+So in particular, this is a wonderful tool
+for walk counting.
+So if I want to go out and start counting
+walks perfect.
+I know how to do it.
+Sings we know how to count walks, we can say,
+are there any interesting walk lengths?
+Well, it turns out there are some very interesting
+walk lengths for low numbers.
+So, for example, how about walks of length
+2?
+Well, there's only a couple of things you
+can do.
+You can go and move to vertex to another vertex.
+Or you can go back and forth.
+So you will notice that when I look at walks
+of length 2, that return to the same vertex,
+well that's really going to be the edges times
+2.
+Now, because you can really start at either
+vertex and go back and forth.
+But I can also say hey, that says look at
+A square, walks of length 2.
+Look at the diagonal, that's all the walks
+that return to itself.
+So we cam come up with the beautiful facts
+the length of A square is twice of number
+of edges.
+But we also know from basic linear algebra
+if I have the A squared is is the eigenvalues.
+Very similar argument.
+Hey, the trace of A2, well, if I want to look
+at walks of length 3 that start and stop at
+the same point, the only way I can do it is
+move along a triangle.
+But of course I can pick vertices.
+Which way to I transfers?
+We end with six times the number of triangles
+is the sum.
+So there is some really, really nice results.
+Now, I will say that we should think of these
+as actual linear operators.
+So in other words, when I think of the adjacency
+matrix, it's a linear operator.
+It's doing something to the graph.
+And sort of what we should think of happening
+is if I want to talk about Ax equals y, well,
+the way I like to think about this is this
+vector x, I like to call this a valuation.
+Now, what does that mean?
+Well, it's a valuation on the vertices.
+I am going to assign each vertex a specific
+value.
+I am going to say this vertex has weight 2,
+this one has 3.
+Minus 1.
+You know, whatever it is.
+And now what happens?
+Well, this Ax says look, do something to your
+assignments.
+And we are going to produce a new assignment.
+And in particular, the new rule says look,
+if I have a vertex here let's say here is
+x1 and I look at some neighbors, x2, x4, x6,
+well, what's going to happen
+is that when I come into my new valuation,
+my new assignment, says look, according to
+the adjacency operator, it says at up the
+numbers.
+X2 plus x4 plus x6.
+So there is actuality representation.
+Now, the graph is having information about
+what happens to it when you apply the adjacency
+So there is some interesting stuff going on.
+Now, one of the nice things that we can talk
+about with the adjacency matrix is something
+called discrepancy.
+So what is that?
+Well discrepancy is a parameter.
+It's the small number alpha so that for any
+subsets, x, y, and vertices, so think of the
+picture as this.
+You have your vertex set really just the whole
+And then you have x and you have y, so here
+are our subsets.
+So what we want is we want to look at a couple
+of things.
+So the edges between x and y is asking what's
+going on here?
+So how many edges go between?
+This is the actual number of edges.
+Great and then we subtract d over n size of
+x, size of y.
+What is that?
+Well, this would be if we had everything placed
+randomly.
+So this is the expected number of edges under
+some sort of randomness.
+And now what we are looking at is discrepancy
+says hey, let's compare these two.
+Let's look at the actual versus the expected.
+And let's see how small it can get.
+So what we have is this parameter.
+This is sort of a normalizing factor we have
+to take into account just to make sure we
+don't get thrown off by strange small sets
+and so forth.
+So in essence, this parameter alpha which
+is you are discrepancy is really saying how
+random are we?
+In other words, how random-like are we?
+So if we have a small value for alpha, well,
+that's great.
+It says that most of the time when you look
+between sets, it seems like the edges are
+there fairly randomly.
+Whereas if alpha is fairly large, well that
+says okay, there are some sets out there where
+the edges between them are very nonrandom.
+All right, great.
+What does this have to do with the adjacency
+my tricks?
+The expander.
+This is the result -- says look, this parameter
+this alpha is bounded by the second largest
+single value of the adjacency matrix.
+Good.
+So somehow the adjacency matrix is going to
+tell us, how random are our edges?
+Now, how does the proof go?
+You might notice I skipped over something.
+There's this linear algebra result.
+Well, of course spectral graph theory is all
+about looking at matrices and so it's not
+surprising that we should see linear algebra
+coming in.
+The result says for any matrix, x star By,
+always bounded by the largest single value
+of the matrix B times the size of x, size
+of y.
+These are the two norms.
+What does this have to do with discrepancy?
+And the answer is really very simple proof.
+Of course every math talk should have at least
+one proof.
+That's the goal.
+So what's the proof?
+Well, we are going to let your vector x be
+an indicator function.
+It's going to be 1 wherever I have a vertex
+in x and a zero otherwise.
+Because remember we are talking about these
+vectors are assignments.
+And so these kinds of connectors are very
+important in spectral graph theory.
+Say, let's look at essentially subsets.
+So when you are looking at problems involving
+subsets in some ways, you can oftentimes tie
+it into spectral graph theory.
+With vector y, well, similar thing.
+It's the indicator for the set y, and now
+matrix B you take the adjacency matrix dn
+over j.
+And then you apply this.
+And life is good.
+Now I am going to skip a few steps as you
+can tell.
+Why does this work?
+The key here is there's a really important
+assumption that we meat made.
+This assumption here where d regular.
+Now, that's important and why is that important?
+Well, what that tells us is if you know your
+graph is regular for the adjacency matrix,
+you say there's a really, really special vector
+and it's called the all-1 specter.
+So this one we should put a little halo around
+it.
+This is the most important in spectral graph
+theory.
+It says okay, everything is 1.
+So not only do we know that's a vector, it's
+associated with the eigenvalue of d.
+So what happens is that when you take a subtract
+this quantity, what you are really doing is
+you are taking that projection onto your eigenvalue
+of d and you say okay, change it to a projection
+onto zero.
+That's what it does.
+It knocks that down and so now, you run it
+through the computation.
+You take x star by, well, when I take x star
+ay, that's the number of edges.
+X star dnj over -- that's this expect number.
+And then say look, it's the second largest
+single value of this matrix.
+But we look out the largest one so it becomes
+the second largest.
+There we go.
+Say Steve, can I confirm the x star is trans
+pose?
+Yes, the x star is transpose.
+I should say what that is, you are right.
+We will come back and visit discrepancy a
+little later.
+It's a wonderful topic.
+So our next matrix will be the laplacian matrix.
+Well, what is it?
+So same graph and here is the matrix.
+The rule is on the diagonal, put in the degrees.
+And on the offcategorical, it's similar to
+what we have before where -- now adjacents
+are negative 1s.
+Instead of positive ones.
+Now, you might say why are we calling this
+the laplacian?
+Well, good question.
+And so sometimes we think of laplacian in
+terms of differential equations.
+You have the laplacian there.
+It turns out this matrix is actually mimics
+the discrete version of the Laplace operator.
+That's why we call it the laplacian.
+As I mentioned before, look, you lose something
+and here you have a pair of graphs and they
+are very different.
+You might wonder are they that different?
+Well, notice this left one is a triangle.
+And this right one, no triangle.
+And so okay, that's the difference, so they
+are not the same graph.
+And in particular, laplacian can't tell if
+a graph is bipar tide or not.
+Now, there are a couple of nice facts you
+get with the laplacian matrix.
+You can certainly say it's positive definite.
+There's lots of ways to prove that.
+One way if you look at this expression quadratic
+form, that's the sum of all the edges.
+Well, that's always greater than or equal
+to zero because you are adding up a bunch
+of squares.
+Therefore, the eigenvalues have to be positive.
+Well, I should say nonnegative.
+Positive are definite.
+The multiplicity the zero is the components
+so in some sense you can use the laplacian
+to say how connected am I?
+But of course one of the most famous result
+is the matrix tree theorem that says the following.
+Well, suppose our eigenvalues you know the
+first one is zero.
+Zero, zero, so forth and so on.
+Are the eigenvalues laplacian, then the number
+of spanning trees for the graph is one over
+n, lambda 1 up to lambda n minus 1.
+So in other words, you throw out that first
+eigenvalue which you know is zero, multiply
+the rest of them together, divide by n, there
+you go.
+That's the number of spanning trees.
+So for instance up here, this graph it's not
+so hard to check that the number of spanning
+trees, well, it's going to be 3 because there's
+three possible spanning trees.
+They look something like that.
+Can you do anything with this?
+There's a nice result you can do which is
+if you look at the graph G equals Kn, what
+happens?
+Well, for that the laplacian it's pretty nice.
+N minus 1 on the diagonals and minus 1 in
+the offdiagonals.
+It's a very simple matrix.
+All right, great now what's your spectrum?
+Up zero as an eigenvalue and then the rest
+of them are n.
+So there's our spectrum of our laplacian.
+Apply the rule.
+1 over n times
+the values, number of spanning trees of the
+complete graph n to the power.
+That's a nice result.
+Number of labeled trees and vertices.
+So that comes out.
+So three would go.
+Well, switching gears onto more matrices,
+right.
+Well, our next one will be probability transition
+So this is one that's connected to random
+walks.
+And our question is, okay, how likely are
+we to move from one vertex to another vertex?
+So for instance, if I'm at vertex 1, I'm very
+likely to move to vertex 2.
+I don't have a choice.
+Only one way out.
+On the other hand if I'm at vertex 2, I really
+have equally likely chance to end up in any
+other vertex, one out of three.
+And in general, we say look, the entry for
+this matrix Pij, it's 1 over the degree of
+i, if i is adjacent to j and zero else.
+So one over the degree says okay, look, I
+am going to treat each one of my neighbors
+as equally likely to transition.
+Now, you can change and say maybe I'm biased
+to some neighbor or another.
+But for now we are going to be simple and
+say all right, let's just move to each with
+equal probability.
+And here is again another pair.
+Here we have two complete bipartide graphs
+and the same spectrum.
+We have lost information but that's okay.
+We have gained something.
+We are really starting to understand what's
+happening with this process.
+This is about random walks.
+What's happening?
+One of the nice things with this matrix which
+is not so obvious when you see it is not the
+eigenvalues are real.
+The reason I say it's not obvious is it's
+not symmetrical.
+When we looked at the previous two, we said
+hey, something real is going on here.
+But for this matrix, well, we don't have that.
+But still it turns out all the eigenvalues
+are real.
+If you make an assumption connected and not
+bipar tide now.
+Connect and not bipar tide is another way
+of saying Ergodic.
+You can make really well.
+Oh, this has the potential to mix.
+Now, I use the phrase really well.
+How do we know how well things mix?
+Is the question is what's happening with the
+other eigenvalues?
+Because what happens with random walks?
+Well, what you can think of happening is you
+have some sort of initial probability distribution.
+So this is an assignment to the vertices.
+How likely am I at any single vertex at the
+start?
+We want all the numbers to be greater.
+That's a probably distribution.
+And then we say okay, well, how are we looking
+after one step and how likely are we to be
+at any -- times p after two steps.
+After k steps times p to the k.
+And in general, as long as we mix well, what
+happens is this goes to something called the
+stationery distribution.
+And in the stationery distribution, you say
+look, if I apply sort of one step in my process,
+I don't change how likely I am to be in any
+particular place.
+Now, one of the nice things that we want to
+know is well, how quickly can we converge
+to that stationery distribution?
+And that comes back to our eigenvalues.
+Because if our eigenvalues are, say, small,
+in size, near zero, that says that when I
+look at this process, it's going to converge
+exponentially.
+And very quickly.
+But if I have an eigenvalue near 1, .9999,
+yeah, it converges potentially, but boy, .9999,
+it takes a while to get small.
+And so understanding what the eigenvalues
+are helps us to understand all right, how
+quickly is this thing going to converge?
+So random walks, a lot of things about random
+walks can be understood through this probability
+transition matrix.
+One of the fun things look at recent times
+was cheater -- sorry, not cheater, K. constant.
+That says hey, how long will it take for you
+to get to a random vertex?
+Well, turns out you can understand it because
+of the eigenvalues.
+Well, closely related to the probability transition
+matrix in some sense almost the same matrix
+though it doesn't look like it is the normalized
+laplacian matrix.
+There's a joke I heard once and I like it.
+Namely that normalized laplacian should also
+be called the San Diego laplacian because
+most of the time who work with this matrix
+work at San Diego where the person who popularized
+it worked with a lot of good students.
+And well, what is it?
+You will notice at first glance it's very
+daunting.
+All of the sudden we have square roots involved.
+So the key is one of the diagonals and then
+minus 1 over the square root to the degree
+of i degree of j.
+And if you are adjacent -- so the square roots
+can throw you off and sort of what happens
+you are, like, ahh!
+These look terrible.
+Why would you do that to yourself?
+Well, the answer is why we would do it to
+ourselves is the symmetric form of the probability
+transition matrix then slightly shifted.
+So you notice it's the same pair of graphs.
+That's again because essentially it's the
+same matrix, just expressed in a slightly
+different way.
+And there's ways to get around the square
+root.
+So what can we do?
+Well, here is a very nice application.
+So the Cheeger constant.
+Well, there's a technical definition, but
+what it's trying to capture, here is the spirit
+of the definition.
+So it's to say I'm after a good cut.
+So when we are looking for the Cheeger it's
+how well can you cut your graph?
+Now, how do you know if you have a good cut?
+Well, essentially what you are hoping for
+is a bottleneck.
+So where you have some fairly large pieces
+of your graph where you can slice.
+So this is a good cut where we've taken our
+graph into two large parts, very small number
+of edges had to be involved.
+So that's the top says hey, I want a small
+number of edges down there.
+But in the meantime I want to make sure the
+pieces of my individual parts are large.
+And so you can of course cut a graph in two
+parts very simple.
+Find the edges.
+That's kind of lousy because one of your pieces
+are super small and the goal is to say well,
+I want large pieces.
+One of the things Chung was able to show was
+suppose you have the eigenvalues and this
+is for the normalized laplacian.
+Then what you can see is that Cheeger constant
+is tied to this eigenvalue at lambda 1.
+So this eigenvalue here is capturing, you
+know, information about how easy it is to
+find a good cut.
+So if lambda 1 is small, that says hey, somewhere
+out there there's a way to cut your graph.
+On the other hand, if someone out there there's
+a way to cut your graph, lamb 1 one has to
+be small.
+So lo and behold, okay, this first eigenvalue
+gives us a lot of information about connectivity
+and it also of course connects back to where
+the probability transition matrix, gives you
+information about graph processes, random
+walks and so forth and so on.
+I should also add that for the laplacian matrix,
+you also will see the same thing, that first
+lambda 1, that has information about what's
+happening with your graph.
+And so we can learn a lot about how connected
+our graph is to understanding our spectrum.
+Okay, now one question that often gets asked
+with normalized laplacian, you have all these
+square roots.
+Do we gain anything?
+Is there something that we can get from it?
+And my answer is yes, normalizing is good.
+And so to motivate this, I want to sort of
+give an example.
+So imagine we look at the graph that's the
+internet.
+It's a very important graph.
+A lot of people spend their time exploring
+that graft.
+So we will simplify things.
+We will assume things go in both directions.
+And I have picked two websites.
+And one of them is www.funnycatpix.com.
+And you know it's funny because they spelled
+pix with an x.
+It's a real website.
+They have a cat of the day.
+There's another website called Google.com.
+That's also, you can look that one up as well.
+Now, if you are just thinking oh, the important
+thing in my line is vertices, vertices, vertices,
+both of these are equally important.
+But we know that's not true.
+One of these two websites is a major driver
+of internet traffic, and the other one is
+a search engine.
+So we can see that there's definitely some
+sort of, like, wait, we are not looking at
+things the right way if we say let's live
+in a vertex-centered world.
+What do we need do?
+We need to change our view and that's what
+the normalizing does.
+It says hey, don't become vertex-centered.
+In other words, I'm talking about vertex-centered.
+That says it's the number of vertices.
+No, no, become edge-centered.
+And that says look, the important thing is
+not how many things you have, how many vertices
+in your set, but how many connections you
+have.
+And so we call that the volume.
+So the volume is your number of connections
+or really it's the number of edges.
+So that's what's being -- now we can go back
+to the expander mixing that we talked about
+before.
+Okay, you got to assume your graph is regular.
+No, no, no, this is all graphs, this is true.
+It says the following.
+If I look at the number of edges, this is
+the actual number versus number of expected,
+okay, and this expression is weighing things.
+Okay, how connected is one set?
+How connected is another set?
+How likely are they supposed to have edges
+together?
+That can be bounded in terms of this normalized
+adjacency matrix which again you can simply
+connect to the normalized laplacian and you
+have this error correction term.
+So this is a graduate student conference.
+I will say that this was one of my early results
+that I did was to look at this and sort of
+say, okay, can you go back the opposite way?
+So this says, okay, you know, if this eigenvalue
+is small, then it's fairly random.
+Well, in other words, if the eigenvalue is
+small, your discrepancy is small.
+So random means low discrepancy here.
+There's always of course a question how random
+is my graph?
+Well, one of the things I did big result in
+my mind is to say hey, it turns out the opposite
+is also true which says, you know, if your
+discrepancy is small, so in other words, your
+edges are very random, like, your eigenvalue
+has to be small as well.
+And in a very particular way.
+So we see okay, there's this interesting interplay
+going on in that eigenvalues are telling us
+sort of how well things can behave like random
+thing.
+So there's this wonderful idea called quasi-random.
+And this was done, was introduced in the work
+Fan Chung, Ron Graham did this.
+And what's quasi-random?
+Right.
+We kind of had this idea of random.
+Okay, you go around and you flip a coin.
+All right, make a graph this way.
+How random is it?
+You know, how do I know that what I have is
+random?
+And so in some sense, we like to have a sort
+of -- to say hey, this graph behaves like
+what a graph should behave like, what we speck
+a random graph to possess.
+Even though it turns out you can construct
+graphs using lots of symmetry and structure,
+it can still have random-like properties and
+that comes from saying hey, if I can understands
+the eigenvalues one of our properties for
+quasi-random, then that can give me this graph
+behaves randomly and therefore has these additional
+properties.
+So mathematicians use this.
+Tim Gowers likes this idea of random.
+He says okay, look, I have one of two things.
+Either I know it's quasi-random which says
+okay, behaves random like.
+I can use the tool.
+Or I can say, okay, it's not quasi-random
+which means that there has to be a reason
+it's not quasi-random which means there's
+some structure and I can use a tool to use
+is that.
+So this is a really nice way to approach problems.
+On a side note, I will say Fan and Wong really
+love quasi-random and they actually had an
+RV for a while where their license plate was
+Q random.
+So really embrace that lifestyle there.
+Well, onto another kind of matrix, right.
+Always more matrices.
+So the next matrix, well, is going to be the
+distance matrix.
+Now, that one, okay, great, makes a lot of
+sense and we say all right, we have our graph.
+And our entries for our graph is the distance
+between the vertices.
+And you have to have a little asterisk here
+and say okay, look.
+We have to have our graph be connected; otherwise,
+hopeless.
+Forget it.
+And so here is the paw graph again and for
+the paw graph well, it's not too bad.
+Our entries are zero on the diagonal because
+I'm always, I don't have to go anywhere to
+get to myself.
+One if you are adjacent or 2 if you are not
+adjacent.
+Of course you can imagine graphs where very
+far apart and things get kind of unusual.
+Well, as always, doesn't capture everything
+about a graph.
+And these are two graphs which are co-spectral
+for the distance matrix, but they have different
+structure.
+Now, the distance matrix is really kind of
+strange.
+Now, why do I say that?
+Well, I would say that from a graph theory
+perspective, this is a terrible matrix.
+Well, what should matter in graph theory,
+it's our neighbors.
+Our neighbors are the most important thing.
+It's what we care about.
+But when we look at the distance matrix, it
+turns it around and says no, no, no, the neighbors
+in some sense are the least important.
+It's those vertices that are far away from
+you!
+Like, those ones way out there, they matter
+the most!
+And it just seems wrong.
+It's the neighbors that should matter.
+So it's not obvious at all that there's anything
+interesting to say about the distance matrix.
+But there is.
+And so for that we should jump over for a
+second and talk about something called the
+addressing problem for graphs.
+And the addressing problem says look, label
+your vertices with strings, zero, 1, or d.
+And d, by the way, from the original paper
+about addressing stands for "don't care."
+And so what happens?
+Well, the distance is between pair of vertices.
+How often do you differ zero and 1 in the
+entry?
+We don't care about the d's.
+That's why it's called don't care.
+So pick any two vertices.
+So for instance, say you get 100d versus 1101,
+well, they only differ in 01 once and then
+this d one, well, we don't care.
+So you see there's just exactly one difference,
+so we are exactly one with an away.
+What's nice about this addressing?
+Suppose I want to send information through
+my network and I know where I'm at and I know
+where they are at.
+I know my address and I know my target's address.
+Then what I can do is say okay, I know how
+far I am away.
+I will look at my neighbors and say who is
+closer?
+And then I hand that piece of information
+to them.
+And they continue the process.
+And so this is essentially saying you can
+most efficiently route information from one
+place to another.
+Now why do we like this?
+It says look, all I have to know is myself
+and my neighbors.
+So I don't have to store the entire graph
+to be able to know how to pass information
+efficiently.
+So that's why this addressing works really
+well.
+Now, how does this connect to the distance
+matrix?
+Well, the way you do it is to say hey, let's
+look at any single entry.
+And I can say if I look at the first entry
+you can see they are zeros or ones.
+So I have marked zero and ones here.
+And I can say well, look.
+This first entry contributes 1s everywhere
+I see a zero and one difference.
+And so I can think of that as a zero one matrix.
+It's actually an adjacency matrix.
+In fact that's generally true.
+And I do it for each entry.
+This is the first entry in the labeling, the
+second and again for each of the vertices
+and so for the and so phenomenon.
+on.
+You notice in the last entry there are some
+don't cares.
+You get lots of zeros.
+Still we see hey, each of these matrices are
+very nice.
+They have nice structure.
+They are adjacency matrices.
+They are complete.
+In quotes here, bipartite graph just because
+the parts where those are edges, those are
+complete bipartite graphs.
+Why does this help?
+That says each one of these matrices has one
+positive and one negative eigenvalue.
+Unless they are zero.
+When we add them all together, we get the
+That's not so bad.
+That makes sense.
+Because really we are storing how far apart
+we are.
+And now comes the fun fact.
+Suppose I say how many positive eigenvalues
+can I get?
+Well, the answer is, at most, the number of
+pieces of over here.
+So the length of our address bounds the number
+of positive eigenvalues.
+Similar, the length of our address bounds
+the number of negative eigenvalues.
+Again, this is using the fact that each one
+has one positive and one negative eigenvalue
+and I can sum these up.
+So we put these two facts together and lo
+and behold we get the result of Graham and
+Pollack.
+Says look, the length of a valid address is
+at least as long as however many positive
+eigenvalues you have.
+So there's this nice spectral connection so
+we know.
+Now all right.
+Well, why is this the Graham Pollack theorem?
+Most people when they hear Graham Pollack
+think of the corollary.
+What's that?
+Says hey, the edges of Kn cannot be decomposed
+into fewer than n minus 1 complete bipartite
+graphs.
+Well, how do these two connect?
+The answer is if you think about your graph,
+if your original graph is Kn, then this has
+a really nice distance matrix, namely, zero
+on the diagonal, one is off the diagonal.
+And now, you start thinking about is, like,
+okay, great.
+Well, when you talk about your labeling problem,
+your addressing problem, that's really one
+of these completely bipartite graphs is one
+slot in your address.
+And now that's the part where our decomposition
+comes from.
+And the other nice thing is to say look at
+the spectrum.
+The spectrum for this you have n minus 1 series
+an eigenvalue and a bunch of minus 1s.
+We say a-hah, there's n minus 1 of them.
+So we say since there's n minus 1 eigenvalues
+you have to have at least length for your
+address.
+So that's why we have Graham Pollack result.
+Now, I will say by nonspectral techniques,
+Peter Winkler said this also turns out you
+never need more than n minus 1.
+But that's a nontrivial result.
+I will also add that Ron Graham once said
+that this paper, it's not a very long paper,
+was one of his most fruitful papers in the
+sense that he was able to say look, a lot
+of work came out of it.
+But also he said we were able to show people
+hey, there's something interesting about the
+spectral properties of the distance matrix.
+So it's a beautiful, beautiful result.
+Well, now question which often gets asked,
+and we have been talking about spectral graph
+We have been talking about the matrices.
+And you might say, well, is this good for
+anything?
+Because that's a question people asked.
+Now, that's not a good question to ask a mathematician
+because our response is, but we love it!
+And I enjoy working on it, and that's why
+I studied it!
+So how dare you ask me is this good for anything?!
+But okay, it's a reasonable question to ask.
+And so I will say that spectral graph theory
+is starting to show up more as a tool in results
+that really you don't look at and say oh,
+that's a spectral graph theory kind of result.
+So let me mention two of them.
+I will go through them in a few more minutes
+So one of them Lincoln Lu, he used spectral
+graph theory to find small Focalman graphs.
+What's a Folkman graph?
+Well, it relates to rounding theory.
+For instance, you know if your two-color K6,
+say random blue with the edges, well, it must
+be true.
+Well, particularly the edges, you have to
+have a reds triangle or a blue triangle.
+Okay, great.
+Well, that's famous.
+Now, you might say all right, if I have a
+K6 and I have two-color, boom, I have to have
+a triangle.
+But do I need a K6?
+And the answer is no.
+You can actually get away with it if you take
+a graph namely if you take K3 join the graph
+C5.
+So this has eight vertices.
+And again you color red/blue.
+Then you can show you have to have either
+a red triangle or a blue triangle.
+Now, that has a K5.
+Can you get away without a K5?
+And the answer is yes.
+I think there's a graph on 17 vertices; I
+don't know enough off the top of my head.
+You can have no K5 red blue and lo and behold,
+everything is good.
+Now, that graph has a K4.
+Is it possible to have no K4, two-color, red,
+blue, and still force monochromatic triangle?
+In other words, it's almost as close as we
+can get, right.
+So there's no K4.
+There's lots of triangles.
+There's tons and tons of triangles, you have
+two-color, and lo and behold, something is
+monochromatic.
+This is what Folkman graphs are.
+It doesn't matter.
+You can have any parameters involved.
+So it's a generalization of Ramsey theory.
+Now, why do we want small Folkman graphs?
+Well, the proof of Folkman was towers and
+towers, do do do do do.
+And so terrible bounds, terrible bounds.
+So Spencer came up and said hey, there is
+this paper, three hundred million points suffice.
+Okay, you can do it with three hundred million
+Typo, correction, three billion.
+All right, three billion.
+Well, we didn't like that.
+Look, there's got to be something smaller.
+So he offered prize money.
+This one was unusual for him.
+He said look, I want something at least as
+small as a million, but the smaller you can
+make it, the more money you get.
+So it's, like, a million dollars divided by
+the number of vertices.
+That's how much I will give you.
+And well, it's hard because there's many things.
+But what happened, the hard part isn't making
+graphs without a K4.
+The hard part is showing it must have -- so
+that's where Lincoln Lu came in.
+Said look, you can use spectral graph theory
+to guarantee something is going to be monochromatic.
+Another thing --
+Real quick, Steve, could you clarify what
+a joint of graphs is, please?
+A joint of graphs.
+Okay, sure.
+I will draw a picture.
+So what you do is you take K3.
+So here is your K3.
+And then you take your C5.
+And let's see, okay.
+I can count, good.
+Whew!
+So a joint is you just say all right, put
+in all possible edges between those two.
+That's what a joint of a graph is.
+It's very dense in between.
+This one I will just mention, Hao Huang proved
+the sensitivity conjecture.
+And what is that?
+Well, that says look.
+Suppose you take the hyper-Q.
+So high-dimensional Q. And if I take half
+the vertices and take and induce subgraph,
+well, it's possible I can take just the right
+ones and how they do subgraph have no edges.
+So there is a subgraph.
+So there's t to the n vertices on this graph.
+There's a subgraph with 2 to the n minus 1
+vertices induced and degree equals zero.
+That's not so hard to show.
+Again, just take every other one.
+But the sensitivity conjecture was the following
+question.
+What if I say just one more?
+What happens?
+Just one.
+And how bad can it be?
+What can you say about the degree?
+And so there was a problem for a long time,
+and Hao Huang said look, you have to have
+something.
+There has to be a degree of some vertex, not
+all vertices, but some has to have degree
+root n.
+So that was the sensitivity conjecture.
+It says once you have that one more, not only
+do you have to have something, it has to be
+a nontrivial something.
+Your degree jumps up.
+It's like Mantilla's theorem.
+N squared over 4, you can no triangles.
+It's possible to make it no triangles, complete
+bipartite graph.
+But you have that one more edge in.
+You don't just add one triangle.
+You are actually going to add a bunch of triangles.
+And so this was the result.
+And it was all done by spectral graph theory
+tools.
+By looking at the eigenvalues.
+The whole paper takes less than a page and
+a half, and it's beautiful, beautiful result.
+So my time is I think basically up.
+But I do want to get back to that distraction.
+Well, what does it have to do with spectral
+There's two products in graph theory that
+-- well, there's many, but there's two.
+Very nice, very simple.
+Cartesian product which says okay, if I look
+at the Cartesian product, says look, one of
+the pairs has to be an edge, and the other
+one has to be the same.
+That's when I have something stay adjacent.
+And then you have the tensor product says
+look, both pairs have to be adjacent.
+So I have drawn Cartesian product for three-cycle
+and the tensor product for the three-cycle.
+Okay, now three facts.
+Turns out that for the adjacency matrix when
+you look at the Cartesian product, you adds
+the eigenvalues.
+The two smaller matrices.
+For the tensor product, you multiply.
+Okay, this is looking promising.
+And then there's this one beautiful fact.
+It turns out that if you have a cycle on an
+odd number of vertices, the Cartesian product
+is the tensor product.
+So, for example, these two grooves which don't
+look that similar, are actually the same graph.
+This is the danger of when you draw pictures.
+It's hard to convince yourself that things
+are actually different because you get too
+stuck with the picture.
+So how do we use this?
+Well, says great, just take the adjacency
+matrix, find the eigenvalues for that odd
+cycle, and we know them.
+And lo and behold, this is a set S where the
+sum of S is equal to the product of S. And
+it always works.
+And the example 2 minus 1 minus 1, that's
+the adjacency matrix of the three-cycle.
+So all right.
+Well, thank you for coming and let me if you
+have questions.
+Yeah, thank you very much, Steve.
+I suppose those of us on the panel can clap.
+Everyone's clapping at their house, I'm sure.
+So we already got another question coming
+in.
+Robbie asks, are there other sets with S plus
+S equals S times S?
+Not that I've found.
+I was interested in -- oh, this would be cool
+if I could find another graph with this.
+And so I ran through.
+I think I got up through all graphs on eight
+vertices and it's only the odd cycles.
+So I don't think you are going to find another
+one based on looking with this factor.
+Just it's a wonderful coincidence.
+And the way it was found this was actually
+found by Tracy Hall who is -- there's a story
+behind that.
+And we were working on a project and we said
+ahh, there's something interesting about the
+Cartesian product.
+That's showing up as an example.
+And then it came back a couple of days later
+and said ahh we were thinking about it the
+wrong way.
+It was actually the tensor product that was
+interesting.
+But we don't usually think of this graph in
+terms of the tensor product and hey, they
+are actually the same graph.
+Sorry.
+Next question.
+We have got a lot of questions coming in.
+This is awesome.
+The next one I see is, would the eigenvalues
+from the three matrices together determine
+You know, this is a wonderful question.
+And I have had people ask me this.
+Some people say okay, maybe we just haven't
+found the right matrix yet.
+You know, maybe there's some ultimate matrix
+out there which captures everything.
+And if we had that matrix, life would be good.
+And the answer is no, there is almost really
+not one of those.
+There is something called the generalized
+-- polynomial which says look, I can capture
+all the major matrices I have talked about,
+well, not the distance one, but I can talk
+about the adjacency, laplacian, normalized
+laplacian and others.
+Why should we think there's no ultimate matrix?
+The answer is if there were such a matrix,
+that would say I could do the graph ISO morphism
+problem in polynomial time.
+And the graph ISO morphism problem is not
+believed to be polynomial.
+So that's why I personally think that there
+is no ultimate matrix, which is great.
+That means we get to keep exploring, there's
+plenty of matrices to look at.
+Thank you.
+Thank you for the question.
+The next question is matrix theory also gives
+you useful information from the graph.
+Is there any direct relation between spectral
+graph theory and matriod theory?
+I'm not well versed in Matroid theory.
+There are people who work, but I can't give
+anything useful in that direction as an answer.
+Next question is from Vic who says, have people
+examined the Smith normal form of the distance
+matrix of a graph?
+I don't know of that one off the top of my
+head.
+There's a nice survey paper that's been done,
+so if you look at the survey papers on the
+I will say that there's lots of other versions
+of the distance matrix people have taken.
+There's the distance laplacian, for example,
+you can do that.
+And so for sure there is some matrix out there
+where you can find -- okay, people have not
+looked at the Smith normal form.
+But yeah, I don't know the answer to that
+one.
+There's two more questions so far.
+Can the question of giving addresses in the
+set zero 1 d to the n to vertices of a graph
+be seen as computing something like an isometric
+embedding of a graph into a cube?
+Also maybe you can see these since -- that
+was maybe a lot to hear.
+There's basically papers called embedding
+grooves into squashed cubes and isometric
+cubes.
+Yes, there's a whole bunch of literature on
+that, yes.
+I will say that there's a version of the addressing
+problem for directed graphs.
+And for that one, like, nobody knows what's
+going on.
+Like, there's not even good bounds.
+I don't think the cycle is known.
+What's the best way to address the cycle?
+Huh that's because there's probably not a
+good -- I should add that for the Graham Pollack
+theorem, I don't know, most of the results
+or most I should say of the proofs of the
+Graham Pollack theorem heavily rely on linear
+algebra.
+And there are proofs of the Graham Pollack
+theory that don't rely on linear algebra and
+they are terrible to read.
+They are just really, really bad.
+So linear algebra is good.
+If nothing else, just remember that, linear
+algebra is good.
+So there's open problems on the addressing
+problem still.
+Your next question.
+Are there results where the complete spectrum
+is looked at and more information is gained?
+Well, I mean, I guess the question is what
+do you mean by information being gained?
+Certainly there is information in the spectrum,
+but you should always remember that when you
+are looking at the spectrum, you are in essence
+losing information.
+And so when you think about your matrix that
+you started off with, number of vertices,
+usually it's n squared.
+So you are collapsing down to n.
+So you are getting a snapshot of what's happening.
+So Fan Chung in her Book Spectral Graph Theory
+sort of said hey, there's an analogy.
+Says look, I want to understand something
+about what's going on where I can't somehow
+major it directly but I do it indirectly through
+And the example is we have all the stars and
+I know what this star is made out of.
+How do we know that star is primarily high
+energy or primarily helium?
+We can't go and collect anything.
+We can't collect anything from our own star,
+but we can look at the spectrum, in this case,
+the spectrum of light and that captures information
+about the behavior.
+So we are using that spectrum to infer larger
+And that's what's happening in spectral graph
+Says okay, we can use that spectrum to infer
+larger properties.
+I will add it is widely believed that if I
+have the spectrum for a graph, very likely
+with high probability that's the only graph
+with that spectrum.
+In other words, most graphs have a unique
+spectrum.
+There are some people who take a contrary
+opinion just because well, it's good to have
+somebody play the devil's advocate, be on
+the opposite side.
+So there is a lot of information that's stored
+in the spectrum.
+Another thing I will add, and this is may
+be a bit more philosophical is I don't think
+that we actually have learned to use the spectrum
+as well as we could.
+If you look at the most of the resolves in
+spectral graph theory, they say look at the
+largest eigenvalue or the second largest eigenvalue.
+I think I saw one that says looked at the
+third largest eigenvalue.
+There's not one that says look at the 17th
+largest eigenvalue.
+No!
+Nobody looks that far down.
+We don't really understand enough.
+And the reason that we don't really understand
+things and there's eye weakness.
+The further down we go, is because of sort
+of the sensitivity of various conditions in
+And that is to say a lot of graph parameters
+are so sensitive the addition or deletion
+of a single edge can change it.
+So, like, okay, I have I bipartite graph.
+I could have an edge and have it not be bipartite.
+Well, where are your sensitive eigenvalues?
+And the answer is the sensitive eigenvalues
+are almost always at the end.
+Because interlacing says you can only move
+your eigenvalues around near, in between where
+your current eigenvalues are.
+So if I'm sort of deep down, I really can't
+wiggle much.
+That's why I suspect we don't really see a
+lot of results using just eigenvalues.
+We almost always see results at the end.
+Yet somehow those eigenvalues in the middle,
+they have information.
+How do we extract that?
+And then so there's two questions left and
+they are very, very similar.
+So I am just going to ask them together.
+Is there any way to define spectrum of hypergraphs?
+And then if so, how developed is that theory?
+There's lots of ways to define spectrum of
+hypergraphs.
+And so he I mentioned Lincoln Lu.
+And so he's at South Carolina.
+And Josh Grouper is at South Carolina and
+they both were at a conference and they gave
+a talk, both of them about the spectrum of
+And they had completely different definitions.
+By the way, they also had the same advisor.
+Fan Chung was their advisor.
+Josh said we didn't realize we were both working
+on the spectrum of hypergraphs until a few
+months ago.
+The reason I say this, there's lots of different
+ways to do it.
+Almost every way doesn't seem right that we've
+looked at.
+So I do remember Josh Cooper's talk on it
+and he says okay, here's this procedure.
+We have all these nice things if your spectrum
+does this, we have this property.
+And they said well, we were able to compute
+the spectrum for a graph on four I think it
+was four vertices and six edges, something
+on that order.
+And it took two weeks.
+(Laughter)
+Just, like, okay, forget it.
+Hopeless, hopeless.
+So, yeah, hypergraphs are definitely a big
+direction people are trying to go in.
+And they haven't nailed it down.
+There are many different definitions out there.
+There's not a universally agreed on, this
+is the right way yet.
+So maybe you can find it.
+You can be the one!
+Okay,.
+.
+Okay, thank you, I think we are all leaving
+this talk with a lot of things.
+We are past 12:30 so this is a great time
+to wrap up.
+Thank you again, Steve, for the fabulous talk.
+What's next is we have our lunch break for
+a little under 90 minutes.
+We will start again at 2:00 Minnesota time,
+and remember there was a small schedule change.
+So you might want to recheck everything.
+And yeah, thank you, everyone, for a fantastic
+morning.
+This has been really great.
+Organizers, am I forgetting anything?
+Oh, I guess I have been told to remind everyone
+and I will probably do this multiple times
+from Vivian that the puzzle hunt on Sunday
+is not dependent on having completed the puzzle
+hunt yesterday.
+So if you didn't come yesterday, you can still
+come on Sunday and have fun.

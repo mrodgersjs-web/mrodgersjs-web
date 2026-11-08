@@ -1,0 +1,618 @@
+You gave your AI agent a clear task. It
+understood the requirements. It started
+building. Then the session reset. The
+context evaporated. And the next time
+you opened it, it came back building
+something completely different. Not
+because the model failed. Not because
+your prompt was bad. But because the
+moment that session ended, everything
+you agreed on just disappeared. The
+agent had no memory of the plan. So it
+filled in the blanks however it wanted.
+And you spent the next hour undoing work
+that should have never been written in
+the first place. This is not a rare edge
+case. This is the daily of building with
+AI coding agents. And it does not get
+better the larger your code base gets or
+the more sessions you run. It gets
+worse. Because every new session is
+another opportunity for the agent to
+drift further from what you actually
+intended to build. The fix is not a
+better model. The fix is not a longer
+prompt. The fix is a missing layer that
+most developers have never heard of. And
+in this video, we are breaking down
+exactly what that layer is, how it
+works, and why it is already one of the
+fastest growing developer tools on
+GitHub right now. If you're new here,
+this channel is all about AI tools, AI
+agents, open source projects, and
+everything happening in the AI space
+right now. From breaking down frameworks
+that actually change how you build to
+finding the tools that the broader
+community has not caught up with yet.
+That is what we do here. So if any of
+that sounds like your thing, go ahead
+and hit subscribe and turn on
+notifications so you never miss a video.
+And if this video saved you even a
+couple of hours of chasing down agent
+drift, dropping a like takes 1 second
+and it helps a lot more developers find
+this content. AI coding agents are
+genuinely powerful. The ability to
+describe what you want to build and
+watch an agent write real working code
+in seconds. That is not a gimmick. That
+capability is real and it is only
+getting better. But there's a
+fundamental problem with how almost
+everyone is using these tools right now.
+And it has nothing to do with the
+quality of the models. The problem is
+where your requirements live. For most
+developers, the entire plan for what
+they are building exists in one place,
+the chat history. Your instructions,
+your architecture decisions, the edge
+cases you talked through, the approach
+you agreed on. All of it is sitting
+inside a conversation window. And the
+moment that session ends, it is gone.
+The agent does not carry any of that
+forward. It has no persistent memory of
+what it agreed to build. So the next
+session starts from a blank slate and
+the agent does what it always does when
+it has no clear direction. It makes
+things up. This is where the term vibe
+coding comes from. The agent improvises
+based on whatever context it has in
+front [music] of it. While the chat
+history is intact and the session is
+fresh, that improvisation can feel
+impressive. The agent seems to
+understand what you want. It moves fast.
+It produces code that looks right. But
+the second that context resets,
+improvisation has nothing to work from.
+So it guesses. And those guesses
+compound across sessions until the
+output has drifted so far from your
+original intent that you're spending
+more time correcting the agent than you
+would have spent writing the code
+yourself. And here is the part that
+rarely gets talked about directly. This
+is not a problem you can prompt your way
+out of. Writing a longer system prompt
+does not solve it. Giving the agent more
+examples does not solve it. Because the
+issue is not that the agent lacks
+capability. The issue is that it lacks a
+contract. Nobody ever gave it a clear,
+persistent, structured definition of
+what it is supposed to build. There is
+no document it can reference that says,
+"Here are the requirements. Here is the
+design. Here is what done actually looks
+like." So it improvises every single
+time. And the gap between what you
+intended and what it delivers grows
+wider with every session, every feature,
+and every developer added to the
+project. The bottleneck is not the
+model. The bottleneck is
+underspecification. And the answer to
+underspecification is not a better
+prompt. It is a spec layer. A
+structured, persistent, version
+controlled source of truth that the
+agent can read, reference, and build
+against every single session without
+relying on chat history to carry the
+context forward. That is exactly what
+Open Spec is built to be. Open Spec is
+an open source spec framework that
+captures what you're building, why
+you're building it, and how it is
+supposed to work before your coding
+agent writes a single line of code. It
+was built by Fish and AI, a Y Combinator
+W26 company, and it has grown to over
+45,000 GitHub stars in under a year,
+making it one of the fastest growing
+developer tooling repositories in the
+entire AI coding space right now. The
+core idea is straightforward. Instead of
+letting your requirements live and die
+inside a chat window, Open Spec gives
+them a permanent home inside your
+repository. When you initialize Open
+Spec in a project, it creates an Open
+Spec folder with two distinct parts that
+work together. The first part is a spec
+library. This lives inside Open
+Spec/specs, and it is exactly what it
+sounds like, a structured, organized
+library of markdown documents that
+describe how your system actually works,
+broken down by capability. Not how you
+think it works. Not how it used to work
+three sessions ago. How it actually
+works right now. With requirements
+written in clear language that both you
+and your agent can read and act on. This
+is living documentation that stays
+inside your code base and gets updated
+every time a feature ships. The second
+part is the changes system. This lives
+inside Open Spec/changes, and it is
+where all active development happens.
+Every feature you build gets its own
+dedicated folder inside that directory
+containing everything relevant to that
+specific change. The proposal, the
+technical design, the implementation
+tasks, and a set of delta specs that
+capture exactly how the requirements are
+going to shift once the feature is
+complete. Nothing gets mixed together.
+Every change is self-contained,
+reviewable, and traceable. The reason
+this structure matters is context
+persistence. When an agent starts a new
+session, instead of reconstructing
+intent from chat history, it reads the
+spec. It knows how the system works
+because that information is sitting
+right there in the repository alongside
+the code. When a new developer joins the
+project, they do not need to schedule a
+knowledge transfer call or dig through
+old pull requests trying to piece
+together why decisions were made. They
+browse the spec library and the picture
+becomes clear. Context does not
+disappear when a session ends or when
+someone walks out the door. It lives in
+the repository, versioned and permanent,
+exactly where it belongs. And
+critically, this is not another tool
+that locks you into a specific model or
+IDE. Open Spec works with over 25 AI
+coding assistants, requires no API keys,
+no MCP setup, and installs in under a
+minute. It is completely agent agnostic,
+which means whatever tool you're already
+using, Open Spec slots in without asking
+you to change how you work. Now that you
+understand what Open Spec is and why the
+spec layer matters, let's get into how
+you actually use it. Because the
+workflow is where everything clicks
+together. Open Spec ships with a core
+profile by default that gives you five
+commands: propose, explore, apply, sync,
+and archive. There's also an expanded
+profile available for teams that want
+more granular control with additional
+commands like verify, onboard, [music]
+and bulk archive. But for the vast
+majority of what you will build
+day-to-day, the core flow is what you
+need. And that flow follows a clean,
+logical sequence that mirrors how good
+engineering thinking already works. You
+plan first, you build second, you close
+it out properly. Propose. Every change
+starts here. You run the propose command
+with a plain description of your idea.
+Just write what you want to build the
+same way you would describe it to
+another developer. And Open Spec creates
+a dedicated change folder with
+everything you need to review before a
+single line of code gets written. That
+folder contains a proposal document
+explaining why the change is happening
+and what is changing. A specs folder
+with the requirements and scenarios. A
+design document laying out the technical
+approach. And a task file with a broken
+down implementation checklist. Worth
+knowing if you've seen older Open Spec
+tutorials online, the propose command is
+a newer addition that handles full
+proposal creation in one single request.
+The old workflow required running two
+separate commands to get to the same
+place. The current version does it all
+in one shot. This phase is where you
+engage with the plan. You read the
+proposal. You check the requirements.
+You push back on the design if something
+feels off. Because misalignment caught
+here before the agent has written
+anything costs you 10 minutes of
+conversation. Misalignment caught during
+code review costs you hours of rework.
+Apply. Once you have reviewed and
+approved the proposal, you run the apply
+command and the agent begins working
+through the task list one item at a
+time. The key difference between this
+and a standard agent session is what the
+agent is working from. It is not
+improvising from your chat message. It
+is not reconstructing intent from
+context. It is executing against a
+document that it helped create and that
+you explicitly approved. The output is
+more predictable, more consistent with
+your architecture, and dramatically
+easier to review. Because instead of
+trying to reverse engineer what the
+agent decided to build, you're checking
+implementation against a known plan with
+a known outcome. Sync. When the tasks
+are done, you run sync before closing
+out the change. This is the step that
+does the semantic work. Open Spec reads
+through your delta specs, the documents
+that captured exactly what was going to
+change, and merges those changes into
+the main spec library at the requirement
+level. The sections marked as added get
+added. The sections marked as modified
+get updated. The sections marked as
+removed get cleaned out. Your main specs
+now reflect [music] the actual current
+state of the system, ready for the next
+session, the next developer, or the next
+agent to pick up and work from without
+any loss of context. Archive. The final
+step. The change folder moves from the
+active changes directory into the
+archive. The work is on record. The spec
+library is current. And the next feature
+starts from a system that is fully
+documented, fully understood, and fully
+ready for whatever you build next. That
+is the full core loop. Four steps that
+replace the most expensive failure mode
+in AI assisted development, the agent
+that drifts because it had nothing real
+to work from. Most people who discover
+Open Spec focus on the workflow
+commands, the propose, the apply, the
+archive. And those matter. But there is
+one concept underneath all of it that
+makes Open Spec genuinely different from
+just writing a markdown file and
+dropping it into your prompt. And that
+concept is the delta spec. When you run
+the propose command in Open Spec creates
+your change folder, part of what gets
+generated is a set of delta specs. These
+are not your main specs. They're not the
+full picture of how your system works.
+They are interim documents that describe
+specifically what is about to change,
+and they do it using a clear, structured
+marker system that both you and your
+agent can read without any ambiguity.
+Every section in a a spec is labeled.
+Requirements that did not exist before
+are marked as added. Requirements that
+are being updated are marked as
+modified. Requirements that are going
+away are marked as removed. That is it.
+No complex syntax, no special tooling
+required to read them. Just a clean,
+human-readable document that makes the
+scope of a change instantly
+understandable to anyone who opens it.
+And that clarity is what changes the
+review process entirely. Think about the
+standard way most teams review
+AI-assisted work right now. The agent
+finishes a feature, opens a pull
+request, and now someone has to read
+through potentially thousands of lines
+of code trying to piece together what
+actually changed and why. That is an
+exhausting process even for experienced
+engineers. It gets harder the larger the
+change gets. Delta specs flip that
+completely. Instead of opening a pull
+request and trying to reverse-engineer
+intent from implementation, you open a
+two-page markdown document and you
+understand the change in seconds. What
+was added? What was modified? What was
+removed? The reasoning is right there.
+The scope is right there. There is
+nothing to dig for. This is why teams
+that adopt Open Spec often describe a
+shift from code review to plan review.
+The review happens earlier when a delta
+spec is generated and before the agent
+writes anything. That is the moment
+where feedback is cheapest and changes
+are easiest. And because the delta spec
+is written in plain language rather than
+code, it is accessible to more people on
+the team. Not just the engineers who can
+parse a diff, but anyone who needs to
+understand what the system is doing and
+why. And when sync runs at the end of
+the workflow, those delta markers are
+not just labels anymore. They become
+precise instructions. Open Spec reads
+them at the requirement level and merges
+exactly what changed into the right
+place in your main spec library. Nothing
+gets duplicated. Nothing gets missed.
+&gt;&gt; [music]
+&gt;&gt; The main specs update cleanly and the
+living documentation of your system
+stays accurate without anyone having to
+manually maintain it. That is the real
+power of the delta spec. It's not just a
+planning document. It is the connective
+tissue between what you intended to
+build, what the agent actually built,
+and what your spec library reflects
+going forward. Remove it and you are
+back to improvisation. Keep it and every
+change in your code base has a
+traceable, reviewable, permanent record
+of intent. One of the strongest things
+about Open Spec is that it does not ask
+you to change your tooling. It meets you
+exactly where you already are. Whether
+you're building with Claude Code,
+Cursor, Codex, GitHub Copilot, or any of
+the other agents in the ecosystem, Open
+Spec has a dedicated integration for it.
+And right now that list sits at over 25
+supported tools and is still growing.
+When you run Open Spec init, the first
+thing it does is scan your project
+directory for existing tool folders. If
+it finds a .claud folder, it knows
+you're using Claude Code. If it finds a
+.cursor folder, it knows you're on
+Cursor. It preselects the tools it
+detects, so setup is already aware of
+your environment before you answer a
+single question. Then for each tool you
+select, Open Spec installs two things:
+skills and commands. Skills are markdown
+files the agent reads to understand the
+Open Spec workflow. Commands are the
+actual slash commands you trigger
+directly inside the agent interface.
+Every tool gets both structured and
+named exactly the way that specific tool
+expects to find them. Claude Code gets
+its skills dropped into the
+.claud/skills directory and its commands
+into the .claud/commands/opsks.
+Because Claude Code natively reads from
+the .claud directory as part of its
+context loading, the spec library and
+all workflow commands are available the
+moment a session starts. No manual
+injection. No extra setup. The agent
+already knows where to look and what to
+do with what it finds there. Cursor gets
+skills in .cursor/skills
+and commands in .cursor/commands.
+Cursor already has a rule system that
+developers use to shape agent behavior
+inside the IDE. Open Spec builds on top
+of that. So instead of just behavioral
+rules telling the agent how to act, it
+now has a full living spec library
+telling it what the system is actually
+supposed to do. Combined with a complete
+workflow for proposing and implementing
+changes through Cursor's own native
+command interface. Codex is the one
+exception in terms of where the commands
+land. Codex commands do not install into
+your project directory. They install
+into the global Codex home, the
+codex_home/prompts
+folder if that environment variable is
+set, or /.codex/prompts
+if it is not. What that means in
+practice is that once you initialize
+Open Spec with Codex selected, the
+workflow commands are available globally
+across every project you open in Codex,
+not just the one you ran the init
+command from. It is the only tool in the
+list that behaves this way, and it is
+worth knowing before you go looking for
+the command files in your project folder
+and wondering why they're not there.
+GitHub Copilot gets skills in
+.github/skills
+and its commands generated as prompt
+files under .github/prompts
+following the naming pattern that
+Copilot expects for custom slash
+commands. These prompt files are
+recognized natively by the Copilot IDE
+extensions across VS Code, JetBrains,
+and Visual Studio. One important caveat
+here, Copilot CLI does not currently
+consume these prompt files directly. The
+integration lives at the IDE extension
+level. So the full Open Spec workflow
+runs inside your editor, not from the
+terminal. Open Code gets skills in
+.opencodes/skills
+and commands in .opencodes/commands.
+Open Code uses markdown files in that
+commands directory as its native custom
+command system. So the Open Spec
+commands drop in and behave exactly like
+any other Open Code command. Same
+invocation. Same format. No friction at
+all. Anti-Gravity gets skills in
+.agent/skills and commands installed as
+workflow files inside that
+agent/workflows
+following Anti-Gravity's native workflow
+format. This means Open Spec plugs
+directly into Anti-Gravity's agent
+orchestration layer without any
+adaptation. And given that Anti-Gravity
+is built around autonomous multi-agent
+execution, where multiple agents may be
+working through parallel tasks
+simultaneously, having a persistent spec
+that all of them can reference is
+arguably more valuable here than in any
+single agent tool. Every agent in the
+pipeline is working from the same source
+of truth at the same time. Beyond these
+six, the full supported list includes
+Windsurf, Gemini CLI, Kline, Roo Code,
+Kilo Code, Amazon Q, Coder, Augi CLI,
+Coin Code, Code Buddy, Co-Strict, Crush,
+Factory Droid, I-Flow, and more recently
+added tools including Kiro from AWS and
+Pi. Every single one of them follows the
+same pattern: a dedicated skills folder
+and a dedicated commands folder named
+and structured to match exactly how that
+specific tool already expects to find
+things. And the thing that makes all of
+this genuinely useful rather than just
+impressive on paper is what happens when
+you switch tools. You do not lose
+anything. Your spec library is
+tool-agnostic. It lives in the Open Spec
+folder and has nothing to do with which
+agent reads it. So if you move from
+Cursor to Claude Code tomorrow, you run
+Open Spec init again, select the new
+tool, and every spec you have ever
+written is immediately available to the
+new agent. The investment you made in
+building out your spec library carries
+forward completely. No migration. No
+reformatting. No starting over. Before
+wrapping up, it is worth being direct
+about who Open Spec is actually built
+for because it is not the right tool for
+every situation and the people who build
+it are upfront about that. If you're
+building quick prototypes, running
+one-off scripts, or working on something
+small enough to live inside a single
+session, Open Spec is probably more
+overhead than is worth. The spec layer
+adds a planning step before you build,
+and for a small isolated task, that
+planning step may cost you more time
+than the spec ever saves you. The
+framework is designed to be built up
+incrementally as you work, not generated
+all at once upfront. So if your project
+is small and your sessions are short,
+you're likely fine without it. But if
+you're working on a real code base,
+something you return to across multiple
+sessions, something with architecture
+decisions that need to stay consistent
+over time, something that other people
+are also touching, Open Spec is the
+missing piece. The value of the spec
+layer compounds directly with the size
+and age of the code base. A project with
+three months of sessions behind it and
+no persistent spec is a project where
+every new session starts with the agent
+guessing a context it does not have. A
+project with an Open Spec library is a
+project where every new session starts
+with the agent reading exactly how the
+system works and what it is supposed to
+build next. It is also worth naming
+something that the Open Spec
+documentation itself calls out directly.
+Specs only work if you engage with them.
+If you run the propose command, skim the
+output without really reading it,
+approve it immediately, and move
+straight to apply, you are not using
+Open Spec. You are just adding steps to
+avoid coding. The tool works best when
+you meet it halfway. When you read the
+proposal and push back on what feels
+wrong. When you check the requirements
+against your actual intent. When you
+treat the spec as the contract it is
+designed to be rather than just another
+generated artifact to click past. The
+developers building solo on complex
+projects. The small teams trying to keep
+agents consistent across contributors.
+The engineers who have already felt the
+pain of a multi-session code base
+drifting away from its original design.
+That is exactly who this was built for.
+And for those people, the spec layer is
+not extra work. It is the thing that
+makes the rest of the work actually
+reliable. Here is where everything
+lands. AI coding agents are only as good
+as the context you give them. The model
+is not the ceiling. The spec is. And
+right now, most developers are running
+powerful agents against nothing. No
+persistent requirements. No structured
+plan. No source of truth the agent can
+actually build from. Just chat history
+that resets and a hope that the next
+session picks up where the last one left
+off. It does not. And now you know why.
+Open Spec is the layer that closes that
+gap. It gives your agent a contract to
+work from instead of a conversation to
+improvise around. It keeps your
+requirements version controlled and
+alive inside the repository where they
+belong. It makes every session start
+from a position of clarity instead of
+reconstruction. And it does all of that
+for free without locking you into a
+specific model or forcing you to change
+the tools you're already using. If you
+want to try it, the link to the GitHub
+repository is in the description. It
+installs in under a minute and works
+with whatever agent you're already
+running. If this breakdown was useful,
+drop a like. It genuinely helps more
+developers find this content and it
+takes about 1 second. Subscribe if you
+want to be here when we cover the next
+tool the community has not caught up
+with yet. And if you've already been
+using Open Spec or you were planning to
+try it, drop a comment below. I read
+them and I would actually like to know
+how it is working for you. That is it
+for this one. See you in the next video.

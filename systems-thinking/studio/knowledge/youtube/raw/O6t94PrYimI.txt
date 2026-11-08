@@ -1,0 +1,237 @@
+Every AI coding agent you use right now
+is basically flying blind.
+Okay, here's the thing that's been
+bothering me about the whole AI coding
+agent wave.
+You've got Claude Code, Cursor, Codex,
+WinSurf, all these tools that can write
+code, but none of them actually
+understand the code base they're
+editing.
+They read files one at a time, they grep
+for strings, and they guess.
+They don't know that changing your auth
+middleware breaks three downstream
+services, they don't know your payment
+handler calls a deprecated endpoint
+through two layers of indirection.
+They're powerful, but structurally
+blind.
+And there's this TypeScript project
+called GitNexus that's been quietly
+building the fix for this, and it just
+crossed 30,000 stars on GitHub.
+30,095 stars, 3,469
+forks, version 1.6.3 shipped two days
+ago, and the thing runs entirely
+client-side with zero server
+requirements.
+It's been growing steadily since August
+2025, picked up another 600 plus stars
+just today, and it's got integrations
+with basically every AI coding tool that
+matters. Let me show you what it
+actually does under the hood.
+So, the core idea is pretty simple. You
+point GitNexus at a repo, it parses
+every file using tree-sitter, builds a
+full knowledge graph of all your
+symbols, call chains, dependencies, and
+execution flows, and then exposes that
+graph to your AI agent through MCP.
+The tagline is like Deep Wiki, but
+deeper, and that's actually a fair
+comparison.
+Deep Wiki helps you understand code by
+generating documentation.
+GitNexus lets you analyze it because a
+knowledge graph tracks every
+relationship, not just descriptions.
+There are two ways to use it.
+The CLI plus MCP mode is for daily
+development. You install it globally via
+npm, run GitNexus analyze from your repo
+root, and it indexes everything locally.
+No data leaves your machine. Then your
+AI agent connects via MCP, and suddenly
+it can query context, trace blast
+radius, detect what a Git diff actually
+impacts, and plan safe refactors.
+The web UI is the other mode.
+You go to gitnexus.vercel.app,
+drop in a repo URL or a zip file, and
+you get an interactive visual knowledge
+graph right in the browser. Tree-sitter
+runs as WebAssembly, the database runs
+as WebAssembly, everything stays in your
+browser session.
+So, why does this matter when we already
+have things like code search and LSP and
+tree exploration?
+Because AI agents don't use your IDE's
+language server, they read raw text.
+When Claude Code edits a file, it
+doesn't check which other files import
+the function you just renamed.
+It doesn't know that your React
+component uses a hook that depends on a
+context provider three directories away.
+GitNexus fills that gap by giving the
+agent a queryable graph of every
+relationship in the code base.
+It's the difference between handing
+someone a dictionary and handing them a
+map of the entire language.
+The project is written in TypeScript,
+uses a Polyform non-commercial license
+for the open source version, which means
+you can use it freely for personal and
+non-commercial work, but you'll need an
+enterprise license from Aikon Labs if
+you want it in a commercial product.
+It's been around since August 2025, so
+about nine months, and it's averaging
+over 3,000 stars per month at this pace.
+Okay, let me get into the actual tooling
+because this is where it gets
+interesting.
+GitNexus exposes 16 MCP tools to your AI
+agent. The query tool does hybrid
+search, combining BM25 keyword matching
+with semantic embeddings and reciprocal
+rank fusion. The context tool gives you
+a 360-degree view of any symbol, showing
+every caller, every callee, every
+process it participates in.
+The impact tool does blast radius
+analysis, so before your agent edits a
+function, it can check exactly which
+files, tests, and execution flows would
+be affected. And there's a detect
+changes tool that maps your Git diff to
+affected processes, so you can see the
+downstream consequences of what you just
+committed.
+But it goes beyond single repo analysis.
+The groups feature lets you create
+multi-repo graphs that span your entire
+microservices architecture.
+You can track contracts between
+services, run cross-repo impact queries,
+and detect when a change in one service
+breaks an interface that three other
+services depend on.
+There's also a rename tool that does
+multi-file coordinated renames using the
+graph, a raw Cypher query tool if you
+want to write your own graph queries,
+and the wiki command that generates full
+repository documentation from the
+knowledge graph using an LLM.
+Claude Code gets the deepest integration
+with hooks that auto-enrich searches
+with graph context and prompt you to
+re-index after commits.
+Under the hood, the parsing layer uses
+tree-sitter with native bindings for the
+CLI and WebAssembly for the browser.
+The graph database is Ladybug DB, which
+is essentially DuckDB with graph
+extensions, and it also runs as native
+or WebAssembly depending on your mode.
+The indexer does a multi-pass analysis.
+First pass extracts symbols, second pass
+builds call chains, third pass runs
+Leiden community detection to identify
+functional clusters in your code, and
+the fourth pass generates embeddings for
+semantic search.
+The scope resolution system that shipped
+in version 1.6 uses a registry primary
+architecture with SCC-aware
+finalization, which is a fancy way of
+saying it resolves circular dependencies
+correctly instead of just giving up.
+Setting it up takes about 30 seconds.
+You install it globally from npm, CD
+into your repo, run GitNexus analyze,
+and it handles everything.
+It parses the code, builds the graph,
+installs agent skills into your
+.claude/skills
+directory, registers Claude Code hooks,
+and creates agents.md and claude.md
+context files.
+For editor setup, GitNexus setup
+auto-detects your installed editors and
+writes the MCP config.
+One command, done. If you want
+embeddings for better semantic search,
+that's an opt-in flag because it takes
+longer.
+Version 1.6.3
+just shipped on April 24th, so literally
+two days ago.
+The big headline is cross-repo impact
+analysis. You can now run impact queries
+that span multiple indexed repositories
+in a group, which is huge if you're
+working on microservices.
+Python and C# both got upgraded scope
+resolution engines using a new registry
+primary architecture, meaning the graph
+edges for those languages are
+significantly more accurate now.
+They also shipped Docker images for both
+the web UI and the CLI server with
+cosine signing, so you can self-host the
+whole thing and verify the images aren't
+tampered with.
+So, who should actually care about this?
+If you're a solo builder working on a
+side project with 12 files, you probably
+don't need it.
+But if you're maintaining anything with
+more than a few hundred files and you're
+using AI agents to write code, this is
+basically insurance against the agent
+breaking things it didn't know were
+connected. If you run a small team and
+everyone's using Cursor or Claude Code,
+having a shared graph that all your
+agents query means they're all working
+from the same understanding of the
+architecture.
+If you're an enterprise team running
+microservices, the cross-repo groups
+feature is exactly what you're looking
+for. And if you're building AI developer
+tools, the MCP protocol means you can
+build on top of their graph without
+reinventing the indexer.
+Okay. So, let's be honest about the
+tradeoffs. The Polyform non-commercial
+license means you can't use this in a
+commercial product without paying Aikon
+Labs for an enterprise license, and
+that's going to be a deal-breaker for
+some people.
+The browser mode is limited to about
+5,000 files before you hit memory walls,
+and the project is still iterating fast.
+has over 300 open issues, so there are
+rough edges.
+But for everything that's not perfect
+yet, the core value proposition is
+undeniable.
+Your AI agent is making structural
+decisions about your code base every
+time it edits a file, and right now it's
+making those decisions without a map.
+GitNexus gives it the map.
+30,000 developers seem to agree that's
+worth installing.
+The repo link is in the description if
+you want to try it yourself.
+Thanks for watching. I'll catch you
+tomorrow.

@@ -1,0 +1,1498 @@
+good morning welcome to friday morning
+at ndc
+uh my name is james lewis i'm just going
+to sort out my glasses
+so i can see things
+so i'm going to start with a little
+story
+about my favorite author who's a british
+fantasy author called terry pratchett
+so terry pratchett he was quite a humble
+guy
+and when he went to conventions even
+though he's probably you know after jk
+rowling he's probably the biggest
+selling
+british fantasy author
+when he used to go to conventions he
+used to wear a t-shirt and it said uh
+said tolkien's dead
+jk rowling said no
+philip pullman couldn't make it
+hi i'm terry pratchett
+that was his t-shirt so a little while
+ago because he's my favorite author i
+thought i'd have my own t-shirt made
+along the same lines as terry pratchett
+which i'm wearing today right so
+this says
+cheering's dead
+martin fowler says no
+sam newman couldn't make it
+hi i'm james lewis i'm the other
+microservices guy
+now this came in handy
+this came in handy a little while ago
+because i got sent an email
+and the email said this
+said hi james how are you from jacob
+i thought this is exciting it's jacob
+from ndc i haven't heard from him in
+ages right and it's been you know two
+years we've not been doing much
+face-to-face we're doing the live
+streaming and i thought
+brilliant
+this is the next line sam newman can't
+make it
+[Laughter]
+to ndc oslo so we're looking for a
+replacement
+any chance you can do the workshop
+to which i immediately unobviously
+replied
+so i think i'm the first choice for this
+but it could be sam newman and if it's
+sam then
+sorry you got me instead
+so a little bit about me um so i work
+for a company called thoughtworks i've
+been there a long time now coming up to
+17 years um which means i've seen lots
+and lots of different clients we're a
+consultancy we build uh software for
+people
+these days i spend most of my time
+waving my arms and
+wrangling ctos and
+doing yoga with them and whatever ctos
+do
+um but way back when you know i spent a
+lot of time building things like
+distributed systems for banks insurers
+retailers and a little while ago myself
+and my colleague martin fowler i had a
+sleepover at martin's house and we wrote
+a paper defining the microservices
+architectural style we said we cannot
+say there is a formal definition
+of the microservices
+architectural style
+and then we went on to identify a set of
+characteristics
+that we were seeing sort of emerging
+around microservices projects around
+about 20 11
+so this is the sort of the netflix's of
+the world this is the guardian uh
+newspapers of the world these are some
+of the investment banks building um
+trading platforms and so on
+and we were trying to identify the set
+of characteristics that we
+we felt made these uh these these
+software architectures successful
+um and these were the characteristics
+right so
+componentization by services business
+capabilities decentralized data blah
+blah blah you've probably all seen these
+before
+in the intervening time my interest has
+sort of changed slightly i still write
+software i still write code you'd be
+pleased to know if there's no although
+there's no code in this
+i still write code but my interest is
+sort of deepened into
+trying to understand whether there's any
+underlying set of characteristics even
+underlying this set
+and not only underlying this set but
+underlying how we think about designing
+organizations as well as software
+architectures and enterprise
+architectures
+is there a set of common things a sort
+of you know root
+that all these can be sort of traced
+down to
+if you look at some of these
+capabilities products not projects
+decentralized governance all of these
+things in some way talk to the idea of
+decoupling cohesion
+small units of things whether that's
+small teams building smaller services
+organized around you know smaller
+product lines
+uh or whether that's you know
+decentralizing
+um our governance and pushing governance
+down to uh the people who know the most
+rather than relying on the people who
+know maybe the least taking decisions
+there seems to be something running
+through some theme underlying theme
+running through this
+and so i'm going to take you through my
+journey over the last few years
+around how i see the underlying
+underlying characteristics of
+microservices team topologies and
+software architecture
+along the way i'll be talking a bit
+about elephants and blue whales hope
+that's okay also a thing called the
+etruscan shrew which is the smallest
+mammal
+in existence it's about the size of my
+thumbnail
+i'll be talking about how cities work
+and i'll be talking about why amazon
+specifically aws
+is winning so it's a bit of a journey i
+hope you stick with me you've got
+nowhere else to go frankly so unlucky
+so first up team topologies and
+complexity
+so when we talk about team topologies
+obviously this is synonymous with the i
+think canonical text now
+team topologies by emanuel pace and matt
+skelton
+who spent quite a long time in you know
+they're part of their route of
+or spent a long time as sort of members
+of the london devops community or the
+london sort of ci and cd community
+and they took a lot of stuff that we've
+been thinking about as an industry uh in
+terms of the micro services
+characteristics how to do org design
+conway's law and put it into the great
+book they wrote team topologies which i
+love because it gives us a common
+vocabulary around how to think about
+teams
+so i was at an event a little while ago
+it was in
+it's a terrible life i have i was in a a
+workshop in the caribbean on the
+caribbean island of anguilla
+and there were a number of people there
+one of whom was melvin conway now he
+actually exists he's a real person right
+i thought he was a myth mel conway but
+it turns out he's a older gentleman but
+still active and still interested in
+software he came to this workshop
+and in this workshop one afternoon we
+had an open space
+where we were talking about the uses
+that we'd put conway's law to
+and there was someone there from netflix
+and the person from netflix was saying
+you know well actually we design our
+entire building around conway's law
+right so we have our you know ux teams
+sitting at one end of the building then
+we have our platform api teams and then
+we have our micro service teams then we
+have the infrastructure teams the idea
+being if you don't need to speak to
+someone on a day-to-day basis they sit
+further away and if you need to speak to
+someone quite often they sit close to
+you so you can have that sort of
+serendipitous communications
+obviously this is in the before times
+slightly different in the after times
+so you're at this event and we were
+talking about this mel conway was you
+know he wrote this paper back in the
+late 60s right he couldn't believe that
+these giant sort of you know billion
+dollar unicorns are organizing
+themselves according to the principles
+of the law he sort of wrote down around
+organizational design mirroring software
+architecture the mirroring hypothesis
+in 68 69
+there was something else that came out
+of this meeting someone else who was
+working for aws who was there and they
+said this the bigger we get
+the easier it becomes to get bigger i
+can't tell you who it was chatham house
+rules and all that but they sort of said
+they made this statement
+and as aws gets bigger it's easier to
+get bigger as we add more people
+it's easier to add more people as we
+have more products it's easier to add
+more products in fact they said the only
+limit is our hiring the only limit to
+how big we can get and how fast we can
+go and how many products we can release
+is the number of people we can bring in
+and on board
+i mean is that
+usual
+for big companies
+because they're a pretty large
+organization there right aws um how many
+of you in the room work for a large
+company i mean i'm over a thousand
+so a few of you quite a few of you
+how many of you would say as you add
+more people it gets easier to add more
+there's one person sitting at the front
+oh standing at the front
+one person one person
+this sort of flies in the face really of
+common wisdom around how we scale teams
+and scale organizations scale our
+software this you know this the received
+wisdom is the mythical man month right
+you know it's it's the idea that as you
+add more people the slower we get
+because the communication overhead
+increases
+so i was intrigued by this and i started
+looking into why this might be what are
+aws doing
+and other organizations as we'll see
+that enables them to do this that as
+they scale they get this
+this effect where they get faster and
+bigger more quickly
+so i'm going to talk a little bit first
+about value and flow
+so
+my belief is that the goal of a
+successful organizational design is to
+optimize the flow of value right what
+else is subordinate to that
+what do i mean by that it's the opti to
+optimize the idea of products the ideas
+from product people the ideas from our
+business
+and to be able to easily and quickly
+flow those ideas through into some kind
+of product production state and i think
+that's true for anything whether that's
+digital products whether that's physical
+products whether that's you know an
+orange being transported from a field
+onto a supermarket shelf and into your
+house or if it's just a website a
+feature being built and delivered on a
+website
+i quite like this
+quote from daniel tergus north
+the goal of teams and optimizing teams
+and self-reflection in teams should be
+to safely and sustainably reduce your
+leads time to thank you
+i i like the thank you bit it's not
+enough to just get it into production
+someone has to be happy it's there right
+and say thank you at the end
+so this is the idea of flow the flow of
+value from idea into making money saving
+lives whatever it is
+but that does beg the question what do
+we mean by value incidentally
+i've got conference coffee i was really
+looking forward to terrible conference
+coffee it's actually quite good here
+which is rather disappointing actually
+cheers
+what is value what do i mean by value
+value can be anything really it's stuff
+it could be physical goods it could be
+products being shipped through you know
+onto a supermarket shelf into your home
+or it could be digital products
+essentially they're kind of the same
+thing
+like you know an item of clothing that
+zara is selling
+versus you know the feature i'm
+deploying on my you know on my on my
+government website or whatever it is
+they're kind of the same thing in some
+sense because all they are is stuff raw
+materials
+in the case of what the majority of us
+do day to day it's um digital raw
+materials if you like it's bits
+we're going from you know an idea that
+someone has and we're adding more and
+more information to that idea as it
+progresses through a value stream until
+finally we deploy that idea in some
+concrete form into production
+whereas for example for zara uh you know
+that that's going to be an item of
+clothing but they're the same thing you
+know zara there's a designer or any any
+uh closed retailer that is a designer
+who's going to do a design they're going
+to you know put their pen down that
+design gets then sent to a manufacturing
+facility the manufacturer makes it and
+it progresses through a series of you
+know warehouses via lorries until it's
+at a stop and you shop and you buy it
+if you squint everything all these
+systems pretty much are the same raw
+materials and being optimized the flow
+of value into production or some form of
+production incidentally
+zara amazing organization i don't know
+if you've read anything about them but
+from um i mean they're not far north of
+here in acarunia aren't they the the
+head office i was there for a little
+while
+they can go the designer puts the pen
+down
+15 days later that design is being sold
+around the world
+that's a pretty cool supply chain isn't
+it 15 days from penn down to
+in in the store
+so what is value value i think is
+anything right anything that gets
+progressively uh you know uh
+moves through this sort of value stream
+into some production-like state
+but the question is how long it takes
+and as i said with zara they optimize
+their supply chain such that they go
+from pen to store in a really really
+short period of time often the
+organizations we work in big or
+certainly in big organizations they've
+accrued lots and lots of sort of scar
+tissue over the over the years
+so that value stream that value chain of
+getting from idea into production can
+take a while this is a real value stream
+map
+up here how long this is how long uh
+it takes to
+go from idea to production for single
+liner code in a retailer in the uk
+that's not a short process right this is
+not a short process incidentally
+this laser yeah laser works that blue
+square there
+that's writing code that is
+all the rest of it
+is all the other stuff that's accrued
+around how they get stuff done apologies
+if this looks like a bit like your own
+value streams but you've got you know
+assists your system integration testing
+uat performance testing regression
+testing
+uh service handover et cetera et cetera
+et cetera and up this end um you've got
+you know
+requirements uh
+development into bit into documents and
+options and selections and this is my
+favorite bit here where
+these are two sets of data architects
+they've each got their own canonical
+model
+don't think they know what canonical
+means
+and they just update each other's and go
+around in a circle
+four weeks
+adding value there right
+so how long does stuff take often it
+takes quite a long time
+many organizations have value streams
+that look like this so why is it that i
+think team topologies are so interesting
+well team topology is the book team
+topologies
+it identifies a set of team structures
+that help us to optimize for the flow of
+value talk explicitly about four
+different types of team
+we talk about streamlined teams
+understanding what your value stream
+looks like and organizing teams around
+those around those products
+the products not projects long-lived
+streamlined teams we then have enabling
+teams um enabling teams of you know
+those sort of scarce resources that we
+can't get enough of there's never enough
+security engineers there's never enough
+user researchers
+right how do we use those most
+effectively we use them as consultants
+in enabling teams we have complicated
+subsystem teams there's this really
+gnarly kind of you know risk management
+thing down here we might need a team to
+work just on that because they're going
+to build up the knowledge to do so over
+time and then platform teams
+who you know provide tooling and a
+platform to enable the other teams to go
+faster
+so bear in mind this is this is the team
+topologies setup
+so what about software architecture and
+because i've had three things in the
+title software architecture team
+topologies and complexity science
+i'll come back to this quote the bigger
+we get
+the easier
+it becomes to get bigger
+as i said you know fred brooks this is
+the received wisdom adding manpower to a
+late software project makes it later
+because at a certain point the the
+information flow the increased overhead
+of communication between people means
+you slow down means you get slower
+this was true many years ago and it's
+still true in the majority of cases
+there i mean who identifies with this
+statement still
+yeah majority of the rooms putting their
+hand up here
+um and this is why i was thinking this
+is so interesting so i went away when i
+heard this statement from the person at
+aws and i put some numbers together so
+pseudograph any data scientist in the
+room yes there's not many data points on
+this it's all that were publicly
+available and what this is
+this shows amazon aws is growth in terms
+of people it's actually amazon's growth
+in terms of people and growth in terms
+of revenue this is plotted log log
+what we can see
+the 0.49 doesn't really
+mean anything but the 1.15 exponent
+on that line from that graph
+it means that amazon indeed are growing
+faster than they should
+as they add more people as they double
+in size they more than double the
+revenue they're generating
+as they're adding more people they're
+more than generating the revenue that
+they should
+this is not usual
+you know as we double in size normally
+what happens is we slow down a bit and
+we don't generate exactly double the
+revenue we generate slightly less than
+that well i'll come on to that and why
+in a moment
+so again why is this
+why are amazon doing this
+how are they doing this and i thought
+back to you know the famous memory from
+jeff bezos 2004 i think it was
+where he issued a set of directives if
+you like a set of constraints on how
+amazon was going to operate moving
+forward
+some of these include teams must
+communicate via interfaces
+right we we're not going to communicate
+via databases anymore we're not going to
+fertile with each other's privates
+to you know murder the old c plus plus
+joke
+um but we're going to communicate
+instead by apis clearly defined apis
+that are externalizable
+all interfaces i must be able to sell i
+must be designing the interface to my
+team
+as if i was going to sell it to someone
+else
+and then finally the famous one two
+pizza or we'll come on to it dunbar's
+number teams limiting team size
+so these are architectural team
+organizations and all organizational
+design constraints that were imposed on
+the amazon organization way back when
+way back in early 2000s
+is there something about these
+constraints that's meant they're now
+growing faster than they should
+faster than most of the rest of uh
+organizations on any of the exchanges
+i think what they did here what jeff
+bezos did is he implemented or he
+encouraged amazon to implement a set of
+forcing functions for flow a set of
+forcing functions to maximize the flow
+of value from uh from idea through into
+production whilst limiting the blast
+radius while limiting uh the size of the
+architectures uh the systems that his
+teams were building
+so limited interactions to nearby teams
+go back to that netflix example sit next
+to people who you need to speak to a lot
+team isolation
+in the same way that we want to decouple
+our software from other software and
+have cohesive software we want to do the
+same thing with teams it's conway's law
+again
+now the mirroring hypothesis when we
+talk about teams we also talk about
+architecture
+and we scale by this idea of dunbar's
+number which is a social construct which
+i'll come on to in a second
+so talk a little bit about team
+topologies talk a little bit about
+but what do i mean when i talk about
+so this is something i sort of went down
+the rabbit hole on some some number of
+years ago
+this topic of complex adaptive
+systems
+so complex adaptive systems they came
+out if you like from this institute
+called the santa fe institute which is
+in new mexico it's no no no coincidence
+it's in new mexico because santa fe is
+quite close to los alamos
+famously where the manhattan project was
+wrong
+now still the
+national laboratory in the us one of the
+national labs in the u.s
+and a lot of the folk working in los
+alamos on things like chaos theory and
+before that on things like monte carlo
+simulations von neumann he he he
+invented monte carlo
+at los alamos to model plasma physics in
+exploding imploding calls actually
+a lot of those folk got interested in
+this idea of chaos theory complexity
+and they set up this institute called
+the santa fe institute for the study of
+complex adaptive systems
+so what do we mean by complex adaptive
+pretty much complex adaptive systems are
+anything everywhere you look
+you see a complex adaptive system every
+biological unit you look at is a complex
+adaptive system the organizations we
+work in are complex adaptive systems the
+world in which we live the cities in
+which we live
+and mice and elephants are complex
+adaptive systems
+so this
+this graph shows
+uh the body mass per kilo
+uh it's basically the metabolic rate of
+mammals as they get bigger
+and the interesting thing about this
+graph is you see the straight line when
+you actually look at the exponent of
+this graph
+what you find is the exponent of
+that line is the x to the is 0.75
+what what this means is that metabolic
+rates in mammals they follow this thing
+called a scaling law with an exponent of
+three over four
+it's a bit weird but as you double the
+size of of a mammal
+you only need 75 percent of the calories
+that you think the mammal should need so
+as you go from you know a dog to a small
+pony i should work out what's twice as
+big as a dog really as you go from one
+thing to a slightly bigger thing or
+double the size of a thing it doesn't
+need to eat twice as much food
+you think it would it needs to eat or it
+needs to take in you know 75 percent of
+the calories in which it should
+there's another scaling law out there in
+terms of companies organizations
+if you look at uh you know sort of
+doubling the size of organizations over
+time
+as you double the size of organizations
+the revenue that they're taking
+you see a similar pattern a similar
+scaling law
+this is from nasdaq
+nasdaq 100 and what you find here is
+again the slope is three over four the
+vast majority
+of organizations of companies as you
+double in size you get 75 of the revenue
+out
+it's a similar scaling rule
+revenue scales with the number of
+employees following a scaling law of
+about yeah 0.85 as you double in size oh
+got the 75 wrong sorry 0.85 85 percent
+of the revenue out
+similarly if you look at another complex
+set of complex adaptive systems which
+are
+like cities you know conorbations if you
+look at if you look at the cities of
+utrecht and rotterdam for example which
+are roughly double in size
+what you find is as you double the size
+of a thing you go from a village to a
+small town to a bigger town to a city to
+a mega city etc
+the spending on infrastructure only goes
+up by 85 percent as you double in size
+you only need to get 85
+of the
+uh water pipes the sewage pipes the
+electricity pylons the number of petrol
+stations
+it's not double the number of petrol
+stations as you double in size it's 85
+infrastructure scales with population
+with an exponent of 0.85
+so at this point you're all thinking
+great well i started off talking about
+software architecture and teams and
+organizational design what an earth is
+he talking about now well what i'm
+talking about is coming back to the set
+of underlying characteristics
+because whenever you see straight lines
+across lots of different areas you
+should be asking yourself the question
+what is the same about these things
+are there any relations between them
+that's really at the heart of science
+jeffrey west puts it very well he says
+quantities that do not change when other
+parameters of the system change they
+play a special role in science
+it's a great book it's at the end of as
+a reference but scale the universal laws
+of life and death in organizations
+cities and companies
+and what we're talking about here is
+this concept of economies of scale right
+this is what our cfos love right this is
+when we need economies of scale you know
+want to be as we get bigger we're going
+to get economies of scale we'll sip
+certain people together economies of
+scale et cetera et cetera
+and what economies of scale really means
+technically from an economics
+perspective is if you have on a log log
+graph linear scaling this straight line
+as you double one number you double the
+other
+economies of scale means you get this
+concept of sub-linear scaling
+as you double one number you get less
+out on the other axis less than you'd
+expect and the cities mammals metabolic
+rates
+and uh and uh
+and organizations they all exhibit
+as they scale this idea of sublinear
+scaling sub-exponential growth
+so what's that got to do with complex
+adaptive systems why am i telling you
+all this
+well that
+this idea around
+around sublinear scaling can be
+explained by a set of very simple
+characteristics mathematically this is
+there's mathematical proofs around this
+this idea of self-similarity
+the idea of self-organization
+and emergence
+so what do we mean by self-similar so
+self-similar is for example cells in the
+in the body of a horse and a human they
+are self-similar to one another
+self-organization um you know
+apart from the dna you you go from this
+you know incredibly simple
+single cell to this complex mammal and
+it's a self-organized
+growth pattern basically you get
+complexity which you mean by which we
+mean the whole is greater than the sum
+of the parts
+if you run the same thing twice you
+don't get the same results twice and the
+idea of emergent behavior
+now how does this relate to things like
+teams and software
+if you think about when we're writing
+software when we're on teams
+every single every single time we write
+a piece of software
+right
+we're building a complex adaptive system
+within a complex adaptive system
+if you take one component out one person
+is ill for a day if you take
+one person and swap them for another
+person we're going to get a different
+outcome at the end of it it's a classic
+example of a complex adaptive
+system
+and these causes these complex adaptive
+systems they can be explained
+mathematically by these three simple
+principles
+the first one is the idea of space
+filling fractal networks so in this case
+i've got a hierarchical space filling
+fractal network so an example of this in
+mammals is our circulatory system that
+is a space-filling fractal network an
+example of this in an organization is
+the communication pathways through the
+hierarchy of the organization or if you
+like through the value streams of how
+the work is flowing
+the next thing is this idea of invariant
+terminating units
+i'm trying to get our staffing folk in
+thoughtworks to stop calling us
+resources
+and start calling us self-terminating
+sorry invariant terminating units
+instead i think that's a much much
+friendlier term you know i mean it's
+better than meat bags which was also on
+the table at one point
+besides you've invariant terminating
+units in companies that's people doing
+work in in organisms it's the cells uh
+and in in cities it's things like the
+houses that people live in
+and then this idea of optimization
+complex adaptive systems are able to
+self-optimize based on feedback
+so in the case of cities the feedback is
+is sort of based on economics as it is
+in companies in in mammals it's based on
+evolutionary feedback over time um
+selective processes
+so complex adaptive systems they're
+everywhere they're yeah we're in one now
+we live in them we live in we work in
+them and we are complex adaptive systems
+and they can be described by these three
+um
+the key thing is that these three
+principles explain this these scaling
+laws that we showed hierarchical fractal
+networks they scale following a power
+law with an exponent of uh of less than
+one as you double
+anytime you have a hierarchical fractal
+network as you double the size of a
+thing city organization mammal
+you need less than you think of in terms
+of calories less than you think in terms
+of infrastructure and so on and that's
+dependent on the hierarchy
+and incidentally they're self-similar
+across scales so walmart on a
+convenience store they're the same
+they're just different sizes
+i'm going to talk a little bit now about
+corporate metabolism
+so why does revenue growth slow as size
+i showed this graph a little earlier so
+as you double the size you don't get
+double the revenue
+why do metabolic rates slow as size
+increases so as you double the size of a
+mammal you don't need double the amount
+of calories the reason is the metabolic
+rate of the mammal slows down
+and it's down to this idea of something
+called back pressure
+so in any hierarchical fractal network
+what you end up is this idea of
+self-optimization
+where you have bigger things turning
+into smaller things if you look at our
+circulatory system we have a heart then
+we have the aorta they alter splits into
+two arteries splits into more arteries
+and more arteries and more arteries
+every time those things split
+evolution has optimized us so that the
+artery the the cross-sectional area of
+the arteries
+add up to the same cross-sectional area
+of the arteries they split from
+and the reason is kind of obvious when
+you think about it the reason is if you
+didn't do that you'd get essentially
+turbulent flow where the arteries split
+so when our blood is pumped out from the
+from the from the heart goes into an
+artery and it gets pumped through all
+the arteries to our cells and back again
+if you didn't have this idea of equal
+cross-sectional areas
+as the blood hit a split in the arterial
+system there'd be back pressure putting
+pressure back up on the heart causing
+the heart to beat to do more work which
+we've optimized out of because it
+basically gives us heart attacks this is
+why plaque buildup is a bad thing
+because it narrows the arteries and it
+stops them acting as so efficiently
+in terms of cross-sectional areas and
+back pressure
+essentially when we go from one thing to
+a smaller thing
+in complex adaptive systems in
+hierarchical fractal networks what we
+get is the one thing splitting into two
+equally sized things that add up to the
+one thing and this is true in cities as
+well so we'll get a big water pipe
+coming into the city which splits into
+smaller water pipes into smaller water
+pipes the smaller water pipes till it
+hits our homes the homes are the
+invariant terminating units this is true
+in companies as well in terms of the
+infrastructure that they have
+and this is all implied by hierarchies
+so hierarchical fractal networks
+basically explain the metabolic rate
+changes in in mammals
+if you look at a mouse and you look at a
+whale essentially at the bottom the
+cells are the same size right these are
+these invariant terminating units the
+only difference between these two these
+two animals is the depth of the
+circulatory system
+the depth of the hierarchy if you like
+and that depth of hierarchy the number
+of levels in the hierarchy
+that gives you this metabolic rate
+decrease
+here's a fun fact elephants and blue
+whales they don't get cancer
+why don't they get cancer
+well because they operate so slowly
+their metabolic rates are so slow that
+the cells don't have enough time to
+develop mutations to get cancer
+that's how slow the metabolic rate is of
+uh of an elephant and a whale
+they operate really really slowly so if
+you're an elephant looking at humans
+running around you're seeing people just
+go
+in the same way that when we look at a
+mouse the mouse seems to be running
+around really really fast because their
+metabolic rates are so much faster than
+ours are
+consequently they also live for
+different lengths of time mice live for
+a short period of time whales elephants
+live for a really really long length of
+time based on metabolic rates
+so bigger animals it turns out are more
+efficient because they've got this deep
+hierarchy of circulatory system and
+their metabolic rates are much much
+slower and so they turn out to be more
+efficient you don't they don't need as
+many calories as smaller animals
+this is down to this idea of impedance
+matching in the circulatory system the
+hierarchical network split and branch
+and branch and branch and branch until
+you reach some cells this is driven by
+feedback from evolution
+this is also true for companies
+when your cfo says economies of scale we
+want to be more efficient bigger
+companies are more efficient because
+they've got these deep hierarchies of
+infrastructure infrastructure costs
+scales at 85 percent as you get bigger
+but they also develop deeper hierarchies
+as they age they develop deeper
+hierarchies of infrastructure and deeper
+hierarchies of information flow
+and they optimize based on feedback from
+market forces
+but the key thing is both mammals
+and organizations slow down as they get
+older
+so i'll come on to a bit about flow now
+i've showed that value stream map
+earlier
+um if you sort of take one of these
+ideas of a hierarchical network
+hierarchical fractal networks you can
+think of a value stream as one slice
+through the hierarchy the information
+hierarchy of an organization
+and so when you've got these really long
+value streams like we see here like i
+showed earlier what that's showing you
+is that there is a really deep hierarchy
+through which information has to flow
+there's a really deep hierarchical
+network
+and the other thing you do when you do
+things like plot value streams is you
+start to find things like queues
+you start to find where the information
+flows start to split and where back
+pressure is building up so cues in our
+organizations cues of work cues of ideas
+that's essentially the same as plaque in
+mammal's arteries whenever we have a cue
+it's putting back pressure up on the
+informational sort of hierarchy of an
+organization slowing stuff down it's
+making the organization work harder
+slowing things down
+don ronson in the principles of product
+development flow anyone who was in my
+talk yesterday would have heard me
+talking about this
+uh he talks a lot about cues he talks
+about you know the impact of cues uh on
+on on on the work that we do
+and he talks about this idea of
+impedance mismatching the idea that as
+information is flowing it's been blocked
+it's been stopped
+it's building up in these sort of
+backlogs essentially and you know think
+of software developers we all know cues
+and messaging systems if a queue is
+backing up that's not not a great thing
+right it's putting back pressure up the
+system and you know it's it's a it's a
+uh it's it shows that the downstream
+systems aren't able to keep up with
+things that are happening
+so to recap on corporate metabolism as
+companies scale they add more and more
+processes and hierarchy as we get older
+we add deeper and deeper hierarchies in
+terms of information flow our value
+streams extend and extend and extend oh
+we had this problem in production one
+time we'd better put in a six week uat
+period or six week regression period
+suddenly you've got an extra six weeks
+before anything can happen you have more
+processes
+as you add more people oh how do we
+manage these people we will add more
+people into managed deeper and deeper
+and deeper hierarchies every time we add
+hierarchy the math shows
+that things will slow down
+our metabolism the corporate metabolism
+the team metabolism slows with hierarchy
+that's just inescapable it's physics
+it's math
+there is maths to prove that
+things slow down with hierarchy
+but we also as i said deliberately block
+our corporate arteries by adding in
+these cues by having like lots of stuff
+building up waiting to get done it's
+putting back pressure up on the uh up on
+the corporate heart if you like
+it's a bit of a sidebar can we identify
+when this is happening another great
+berkeley seminal book really
+is accelerate
+by nicole fosgrim first author jess
+humble and jean king which summarizes
+the state of devops reports over the
+years
+and in that they identify four now five
+key metrics that we can use to identify
+whether our organization is performing
+well or not whether our teams are
+performing
+um we've probably come across that
+here's a fun fact as a result of this
+research who's who in the room has got
+to change request board that they have
+to talk to or an architectural review
+board
+one two is anyone listening
+excellent people are still listening
+that's good there's a few hands going up
+the research from dora that summarizes
+accelerates
+it shows that change change
+change request boards predict low
+performance and i use that term
+precisely
+if you have a change request board or an
+architecture review board
+it's a predictor of you being a
+low-performing organization in terms of
+i.t
+it's not correlated with it predicts it
+and why is that
+it's because every time we put something
+in like a change request board we're
+again blocking the flow of information
+it's basically like you know we're
+deliberately stopping the heart beating
+every now and again before letting it
+start again
+so can we do this can we use these
+metrics to monitor organizational health
+well these metrics mean time to recovery
+cycle time
+change failure rate number of deploys
+and now i think they call it uh
+scalability i'm going to say i can't
+remember what the final one is
+by monitoring these we can actually
+understand how fast we are going what
+our metabolic rate is as a team as an
+organization
+we can identify how old we are if you
+like and if we're getting older or if
+we're getting younger
+so i think we can by using these they're
+the equivalent really the leading
+indicators of organizational health
+they're the equivalent of going to your
+general practitioner your doctor and
+them taking your blood pressure and your
+pulse you know your temperature
+it's not going to tell you exactly what
+the problem is but it's going to give
+you a pretty good idea of whether you're
+sick or not
+and as i say they're leading indicators
+and that's super useful
+it's like monitoring heart rate and
+blood pressure
+and so we should work to improve these
+down north daniel tearhurst north you
+know he has this lovely phrase as i said
+quoted at the start working to safely
+and sustainably reduce lead time to
+value
+that's what he means we're working
+safely and sustainability to improve
+these metrics to get stuff out into
+production and people saying thank you
+more effectively working on flow
+efficiency but
+it's a big but
+it doesn't matter how good you are at
+these you're still going to be limited
+by the hierarchy in which which the
+organization has
+you can only improve to the point that's
+imposed by the hierarchy the
+hierarchical fractal network that makes
+up the complex adaptive system which is
+the organization
+next up organizational mortality
+so it turns out companies die right all
+the time
+the half-life of a company on a listed
+company
+any one particular company you know on
+average the half-life is 10 years 10 and
+a half years there's 50 churn
+every 10 and a half years right
+companies get taken over they go out of
+business they become insolvent they get
+bankrupt etc why is that
+well it seems that as companies age
+not only do they get slower but they
+also do some other things
+they tend to spend less money
+they make less investment in terms of
+research and development the thing that
+made them successful at the beginning
+is no longer as important the product
+development the innovation
+that's subordinated to the hierarchy to
+cost efficiencies to savings you know to
+being to be
+like managing risk and governance and
+these things
+they lose track of what made them
+successful to start with what made them
+young if you like the investment in the
+products the flow of getting those
+products in front of their customers and
+making them happy making them say thank
+you hopefully having them say thank you
+so as they get as they get older they
+spend less more money less money on r d
+and you end up with more hierarchy off
+usually more processes
+more constraints
+and when you put these two things
+together what you end up with is this
+idea of like like humans as we get older
+we have to have more constraints we get
+plaque buildup eventually we die
+so too true for companies
+so with companies hierarchies they tend
+to grow and grow
+and at the end of it they die
+hierarchic hierarchies hierarchical
+organizations or any form of
+complex adaptive system with a hierarchy
+in it will gain economies of scale for
+infrastructure right about 0.85 as you
+double the size of a company
+you only have to spend about 85 percent
+on infrastructure but they also achieve
+sublinear growth in revenue same about
+the same numbers
+and over time the metabolic rate of the
+company reduces and eventually
+in general organizations will die
+sorry that's the sad bit i'll go on to
+the good news
+next
+so scaling complex adaptive systems
+there's another type of scaling rule
+associated with growth we talked about
+sublinear scaling which is where you
+double the size of one number and you
+don't get double out of the other one
+there's something called super linear
+scaling scaling in advance of the
+exponential as x doubles y increases by
+more than double
+and if you go back to what i was saying
+about amazon at the start
+that's kind of what that exponent was
+1.15
+and cities
+exhibit both types of scaling
+cities achieve
+super linear growth for socioeconomic
+effects innovation wages professionals
+crime disease
+pollution as you double the size of a
+town or a city you get more than double
+the amount of increases in these things
+all the socio-economic factors they
+scale super linearly
+while you know infrastructure scales
+sublinearly
+turns out if you ever realize if you
+ever noticed if you walk if you're
+walking around a big city everyone seems
+to be walking faster
+it's actually true
+there's been research done based on
+mobile phone data by mit
+uh and as as you double the size of of
+of of of a town people walk faster with
+an exponent of 1.10 they walk 10 faster
+as you double the size than they should
+up to how fast your legs will go yeah
+which is uh it's just pretty cool isn't
+it
+so what is it about cities what are
+these socio-economic what's what's the
+underlying
+reason that social these socio-economic
+factors scale superlative it's about
+small world fractal networks a different
+type
+of fractal network talks about
+hierarchical networks small world
+networks like social networks like the
+networks you have with your friends and
+family like basically every zoom call
+that you had with your mates right right
+these are small world networks
+where you have highly connected nodes
+and slightly more loosely connected
+nodes
+then we'll recognize these numbers
+so these i mentioned at the start these
+are dunbar's numbers so we all often
+think of dunbar it's a set of research
+into the number of connections if you
+like that people hold
+and the closeness of those connections
+to them we often think about this done
+by a number of about 150
+that's the
+more most commonly sort of understood
+dunbar number and actually thoughtworks
+we'd scale our offices by the dunbar
+number of 150. any more than about 150
+people and you don't really know them
+personally anymore you know you can't
+say you know oh hey jacob how's the kids
+and all that kind of stuff you know how
+was the golf trip this weekend they
+become sort of faceless so if you scale
+by dunbar's number about 150
+you tend to know everyone in in in the
+same office as you but dumbbells number
+there's a range of them it goes from
+five all the way to 500.5 is like your
+nuclear family which is a bit awkward
+because i've i've got four kids there's
+six of us
+either i love one of my kids less or my
+wife
+which is
+a bit tricky
+but about five
+up to up to about you know 500. and
+these are your nuclear family then your
+extended family then your close friends
+and acquaintances then the sort of you
+know the set of people you might be able
+to rely on then the set of people you've
+probably got in your phone book or
+something
+and these
+these networks social economic uh small
+world fractal networks they drive this
+idea of returns to scale
+so on the one hand we've got hierarchies
+and they drive sub-linear scaling on the
+other hand we've got small world
+networks which drive
+super linear scaling
+how is it that this works
+with hierarchies you've got no real
+option but to increase the depth of them
+right they go information flows in one
+way
+but with small world networks you see
+they see this in cities you can add
+little bits on the outside a little bit
+more on the outside a little bit more on
+the outside
+so they sort of grow by adding little
+pieces
+i know there was a talk on fractal
+architecture i think earlier in the week
+i've got this idea that you should be
+able to actually
+measure the fractal dimension of an
+architecture because fractal dimension
+of a city indicates whether it's healthy
+or not
+you can actually measure the crinkliness
+of the outline of a city and it will
+tell you whether the city
+is healthy or it's not
+and it's because you add these new more
+crinkly bits around the outside the
+higher the fractal the higher the
+fractal dimension uh the healthier the
+city
+similarly i suspect with
+architectures although i've not measured
+it myself
+you add these little bits on the outside
+you don't need to increase this depth of
+hierarchy you don't need to increase the
+length of time it takes
+you know for information to pass between
+things
+so as cities grow
+they gain economies of scale for
+infrastructure
+the game returns to scale for
+socioeconomic factors
+they rarely die most cities don't die
+you know there's the odd one even
+detroit which is a famous you know
+famous city that was in decline is now
+rebounding we know this because the
+fractal dimension is going up
+and in fact they get 115 more stuff both
+good and bad
+higher wages but more disease
+more professionals
+but more crime
+but for 85 percent of the cost
+sounds like a good thing really you get
+you get returns to scale and economies
+of scale
+so are there any organizations out there
+that have taken advantage of this well i
+think to an extent the company i work
+for thoughtworks are as we've scaled
+we've created small small fractal
+networks by opening more than one office
+for example per country we don't have
+one big office in the uk we have one in
+manchester we have one in newcastle we
+have one in london
+similarly in india we don't have one
+giant office in benilou we have a number
+of offices even in bengaluru and then we
+have lots of other offices all the way
+around we try and scale by keeping these
+sort of fractal these small world
+networks so that people know each other
+we take advantage of these networks
+you could argue that spotify is a
+spotify model is a classic example of
+how to scale using small world networks
+how to scale teams around small bits of
+software squads and organize them in as
+loosely a coupled way as possible with
+as little hierarchy as possible just
+enough
+to make sure communication happens
+and then famously valve they
+leaked it was leaked their employee
+handbook a little while ago several
+years ago now actually and in that
+employee handbook they have this picture
+to describe how they organize
+those
+basically they they put it out there we
+are a small world fractal network this
+is how we want to organize zero
+hierarchy it's based on socio based on
+personal relationships
+people get to work on what they want to
+work on and things that valve
+and finally back to amazon where i
+started
+coming back to this graph with
+amazon's growth this exponent of 1.15
+they are clearly scaling super linearly
+so why is it they are scaling super
+linearly in terms of revenue
+as i said at the start there's a set of
+forcing functions that were put in place
+to enable a set of small teams to
+operate independently from one another
+often to the detriment of users of
+amazon software aws is software anyone
+who's used any of the aws apis knows
+that you can jump from one to another
+and there's often no similarity at all
+right it's because the teams are
+completely independent
+but what that means is they can add more
+like cities ads suburbs on the side
+amazon just adds another little team
+building another little product and
+another little team building another
+little product
+doesn't impact the rest of the
+organization and as they do that they
+get this virtual circle where the
+products that they build can be built on
+with other products can be built on by
+other products
+so as most companies get bigger
+it gets harder to get bigger
+as most companies get bigger they tend
+the metabolic rate decreases things go
+more slowly and eventually the company
+will die
+but as amazon gets bigger it's getting
+easier for them to get bigger
+and it's based on maths
+if you look back look at the book where
+i started team topologies the
+streamlined teams independent with the
+other team structures that are you know
+that are combined
+to making those streamlined teams go
+faster those are examples of patterns
+for implementing small world networks in
+your own organizations
+you know these streamlined teams
+enabling teams etc etc fundamentally
+that's what team topologies is about
+it's about creating the socio-economic
+structure based around small world
+networks not hierarchies
+so in summary software architecture team
+topologies complexity science i started
+off talking about the characteristics of
+microservices you know the idea of
+decoupling of decentralization pushing
+stuff out you know decision-making down
+to the people who know the most um you
+know building decoupled software
+cohesive software and organizing around
+business concerns business capabilities
+that's what we identified are the
+starters these characteristics
+you know i think if you take the team
+uh set of teams the the the archetypes
+in team topologies they correlate very
+nicely with what we were talking about
+in terms of microservices and not only
+that they also when you look at the
+complex adaptive system theory
+underpinning it all they kind of are
+almost a guidebook for implementing
+small world networks
+so social networks imply
+super exponential growth
+hierarchy slow metabolic rate inversion
+of control for teams forcing functions
+for flow these are the things we want to
+be thinking about to go faster
+i'm going to finish there these are all
+the books that i referenced during this
+talk
+sorry if you work in a hierarchy
+i'm james thanks very much for your time
+this morning
+[Applause]

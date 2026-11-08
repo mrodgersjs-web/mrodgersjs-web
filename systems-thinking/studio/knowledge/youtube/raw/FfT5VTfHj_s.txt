@@ -1,0 +1,2188 @@
+I'm Amelia.
+I was a student in
+this class in 2023.
+I was the head TA
+last year in 2024.
+I'm currently a PhD
+student, and today I'll
+be continuing our discussion
+of Bayesian networks.
+So, briefly going over the
+agenda and some resources
+before we get started.
+We'll begin with a
+review, then we'll
+talk about parameter learning,
+and then structure learning.
+In this course,
+we're incrementally
+relaxing assumptions.
+So when we began working
+with Bayesian networks,
+we assumed that both the
+parameters and the structure
+were known.
+Then we relaxed the assumption
+that parameters are known
+and learn them from data.
+We relax the assumption
+that structure is known
+and learn that from data.
+And ultimately, we can learn
+everything from the data.
+So, some resources
+that may be helpful.
+There's a textbook, algorithms
+for decision making,
+and this will most closely
+follow the lecture.
+I'll also be writing
+headings that
+have the sections of the
+book that correspond to what
+I'm talking about.
+If you want to go more in
+depth to Bayesian networks
+or other graphical
+models, I highly
+recommend the Cohler
+and Friedman textbook.
+Jack's course
+notes, which you can
+find at this URL
+[? @jemelka.com. ?]
+And that will also be
+shared on Ed later.
+Are a great summary of
+the most salient topics
+from each of the lectures.
+And finally, for
+project 1 in particular,
+which you'll have
+all the information
+you need for by the
+end of today's lecture.
+Highly, highly
+recommend checking out
+the videos on the course website
+on the project 1 page for tips
+on where to get started.
+So, a brief review
+Why are they something
+that we want to study?
+The power of a Bayesian
+network is that it compactly
+represents a joint
+distribution by encoding
+conditional independence
+assumptions.
+And I'll give you an example,
+so we can take a closer look
+at what that means.
+So here we have three binary
+variables X1, X2, and X3.
+And these are going to represent
+whether or not it's raining,
+whether or not I'm
+wearing rain boots,
+and whether or not I'm
+carrying an umbrella.
+When we say a Bayesian network
+encodes conditional independence
+assumptions, we'll want
+to recall the definition
+of conditional independence.
+So we say that X
+is conditionally
+independent from Y
+given Z if and only
+if the probability
+of X and Y given
+Z is equal to the probability of
+X given Z times the probability
+of Y given Z.
+In other words, the way
+we can think about this
+is that once I know Z,
+knowing X doesn't give me
+any more information
+about Y. And we
+can look at how that might
+be encoded in this network.
+So this is the way that we
+could connect the nodes such
+that rain boots and umbrella
+are conditionally independent
+given that it's raining.
+And this makes sense.
+Once I know that
+it's raining, knowing
+that I'm carrying
+an umbrella probably
+doesn't give me any more
+information about whether I'm
+wearing rain boots.
+However, if I had no information
+as to whether or not it
+was raining and I wanted to
+know if I'm wearing rain boots,
+whether or I'm carrying
+an umbrella would be
+a helpful piece of information.
+Now, I'm going to give
+you a bit of notation
+that we'll be using
+throughout the lecture,
+and then we'll get
+into the new material.
+So first we have X from 1 to n.
+And these are our
+discrete random variables
+in the Bayesian network.
+So here in this
+example, n would be 3.
+We have 3 random variables.
+R sub i is the number of
+possible instantiations
+of node X sub i.
+And an instantiation is just a
+value that that node can take.
+So, since these are binary
+variables, each of them
+would have two possible
+instantiations.
+Then we have Q sub i.
+And that's going
+to be the number
+of parental
+instantiations of X sub I.
+And I'll give you another
+example to show what that means
+and how we would
+find that number.
+So let's say now we
+have this network.
+We have X4, X5, and X6.
+And X4 and X5 are
+the parents of X6.
+Neither X4 nor X5
+has any parents.
+And so when that is true,
+we say that Qi is 1.
+So we would say Q4
+equals Q5 equals 1.
+And then if we do have
+parents, the Qi value
+is going to be the product
+of the Ri's of those parents.
+So in this case, Q6
+equals R4 times R5.
+We're still working with binary
+variables, so this will be 4.
+We have one final
+piece of notation,
+and that's going to be pi i j.
+And this is the j-th
+parental instantiation
+of the parents of Xi.
+Just the Xi.
+The differential
+instantiation of Xi.
+So if we look at what
+the different parental
+instantiations here could
+be, we have X4 and X5.
+And we're going to say
+they could both be one.
+One could be 1,
+and 1 could be 2.
+And then both could be two.
+So there are four of these.
+So if we had pi 6 3.
+That's going to be
+this row right here.
+This is the third parental
+instantiation of node 6.
+Yes.
+Does it actually
+matter the order
+that you apply the
+stable values for them?
+Because you could you swap
+the way you wrote it out.
+It would be [INAUDIBLE].
+You just need to
+make sure that you're
+storing it in a consistent way.
+So as long as you can do that,
+mapping the same way every time,
+there's no right
+or wrong ordering.
+Thanks.
+We want you to
+repeat that question.
+Oh yes.
+And to repeat the
+question, it's which
+index we're using
+here for j and pi ij
+depends on how we've ordered
+the rows in this table.
+Is there a particular
+ordering we should use?
+And again, the answer is no.
+You just want to make sure
+that you're doing the mapping
+consistently so that you
+always get the same thing.
+But you can do that any way that
+makes the most sense to you.
+All right.
+So parameter learning.
+In the work that
+we've done so far,
+we assumed that the parameters
+of our network were known,
+and we've used that
+to do inference.
+And let's look again at
+this example that we have,
+and I'll talk about what
+the parameters mean.
+So we have raining, wearing
+boots, and carrying an umbrella.
+And for the purposes
+of this example,
+we're assuming the
+graph structure shown.
+We would say that our parameter
+theta ijk is the probability
+that Xi equals K given pi ij.
+So they're going to end up
+being the summation from I
+equals 1 to n of ri times
+qi total parameters.
+So one per parental
+instantiation and node
+instantiation.
+And then of these, the
+summation from I equals 1 to n
+of R I minus 1 times Q I will
+be independent parameters.
+Now, why are the parameters
+something that we want to learn?
+Let's take one example.
+So we're going to take theta 3--
+we're looking at node 3--
+with the second
+and the second
+node instantiation.
+So in this case, to be
+consistent with the notation
+in the book, I'm encoding
+true and false as 1 and 2
+rather than 0 and 1.
+So in this case, we're saying
+this parameter represents
+the probability that I am
+carrying an umbrella given
+that it is raining.
+And what if that
+parameter were 0?
+We can see this
+probably wouldn't
+be a great model
+based on the intuition
+we have about the world.
+Similarly, I personally lose my
+umbrella fairly often, actually
+multiple times in
+this classroom.
+So having it be one also
+not a great fit to the data.
+How do we find parameters
+that are a good fit?
+We're going to talk about
+two different options.
+The first is maximum
+likelihood estimation.
+So as in previous
+courses we are looking--
+lectures we are looking for
+theta hat, our best parameters
+that maximize the probability
+of our observed data given
+those parameters.
+And there's just one
+change that we're
+going to make to this
+for extending this
+to a Bayesian network.
+It's going to also be given
+our graph structure g, which
+we're assuming to be known.
+We need one more
+piece of notation
+before we solve this
+and that's mijk.
+Which is the number of
+times that X sub i equals
+K given parental instantiation
+j in our observed data?
+So we can write out the
+probability of our entire data
+set given parameters theta and
+a structure g with this product.
+It's going to be the product
+from i equals 1 to n,
+from j equals 1
+to Qi, the number
+instantiations for node i.
+And then from K equals
+1 to Ri, the number
+of node instantiations, of
+theta ijk to the power mijk.
+And I'm going to
+talk, for a moment,
+about where this comes from.
+So we're assuming that all of
+the samples in our data set
+are independent.
+Then, if we want to find the
+probability of the data set
+as a whole, we can take the
+product of the probabilities
+of each of those samples.
+And as we've shown
+previously, we're
+using our parameters
+to represent
+the likelihood of
+a given node value
+with a parental instantiation.
+So if we observe
+x111 two times, we
+would have that theta value
+theta 111 twice in our products.
+So this would be to
+the power 2, which
+is that count of how many times
+we've observed it in the data.
+Basically, this gives us a
+slightly more compact way
+of saying to multiply the
+parameters representing
+the likelihood of each
+data point we've observed.
+If we take the
+derivative of this
+and find where that
+probability is maximum,
+we get our optimal
+parameters theta hat
+ijkr mijk all over
+summation over K prime.
+That's just all
+the possible values
+that our node i could
+take on of mijk prime.
+So if we're using maximum
+likelihood estimation,
+these are our best parameters.
+But just looking
+at this formula,
+can anyone see any potential
+drawbacks of this approach?
+[INAUDIBLE] question.
+So what does the i, j, and k
+in this you should represent?
+Great question.
+And this is one of the things
+that I found trickiest when
+I was learning the material.
+So throughout the lecture,
+we're going to be using indices
+with three positions.
+The first position
+will always be the node
+that we're referring to.
+So if we're looking at
+this graph and we had M1--
+or let's say M2, so
+we have a parent,
+then that would be talking
+about this node here.
+The second index is which
+parental instantiation?
+So if it's M21, this is
+the first instantiation.
+And since we just
+have one parent,
+that's going to be the parent
+taking on its first value.
+And then the third index
+refers to the value
+that the node is taking on.
+So M212 would be the first
+and second node
+instantiation of node x2.
+So in this case, where we're
+using a binary encoding,
+this would be the count of times
+that I've been wearing boots
+when it was not raining.
+With this being wearing boots.
+Not raining.
+And then this is the node
+that we're talking about.
+But the one for the
+is just the first parent
+and not necessarily
+because it's the next one.
+So if there's X5 X6,
+it would be 1 and 2?
+You're saying you
+had two parents.
+So if we had X5--
+It seems ambiguous that it's
+the first parent but also x1.
+Oh, I see what you mean.
+Yeah.
+So, because there's only
+one parent in this graph,
+the two possible
+parental instantiations,
+which is just ri equals 2 for
+that node, would be 1 and 2
+because it's binary.
+But let me see if I
+can think of an example
+where it would be a
+little less confusing.
+We can--
+I guess if there's two
+parents like X5 x6--
+--would you enumerate
+that one to two?
+No.
+So if there are two parents,
+the X5 and x6 and we
+have something like this.
+Then, when we look at
+all possible parental
+instantiations, we're looking
+at the products of values
+that they could take on
+the Cartesian product.
+So if these are binary, we
+would have 11, 12, 21, 22.
+And as I mentioned
+earlier, the ordering
+you put them in in that
+table doesn't matter.
+do it consistently.
+So then here the first
+one would be this row
+where they're both one.
+Great.
+So that's how we would get
+our parameters if we're using
+maximum likelihood estimation.
+Can I just peak one more
+time what each number means?
+Yes, for sure.
+And also go go back
+up so that I can see.
+So when you say what
+each number means,
+are you referring to
+these definitions here
+or on the other page?
+You know we have the same
+question of subscript,
+the i,j,k.
+OK.
+[INAUDIBLE]
+It's easy to get lost there.
+Let me write that
+out one more time.
+So mijk.
+What we have here is
+we have the i-th node
+with the j-th parental
+instantiation and the k-th node
+So the indices are saying
+which node are we at,
+what are the values
+of its parents,
+and what is the
+value of that node?
+Yeah, no problem.
+I'm going to take one more
+question and then move on.
+So an instantiation
+is just a set
+of values that the
+variables [INAUDIBLE]?
+Yeah it's-- for the node itself,
+it's going to be a single value,
+and then for the parent or
+parents it's a set of values.
+If there are no parents we
+would just listen of that
+the same way as this one.
+So, looking at this
+formula here with mijk,
+this is coming from
+our observed data set.
+And one place where maximum
+likelihood estimation
+can be weaker is that
+there are some things that
+could happen in the world
+that we just haven't
+observed in our data set.
+So, for example, let's say that
+I collected data over a week
+when it was raining,
+but it was a week
+when I had lost my umbrella.
+So we're going to have 0 counts
+for me, having my umbrella when
+it's raining.
+And here we would find that
+the optimal way to parameterize
+that was to say,
+there's a 0% chance
+that I'm carrying an
+umbrella given it's raining.
+Which intuitively, we
+know, based on our priors,
+is probably not a great
+model of the world.
+And so one other method
+we have available to us
+that addresses some
+of these limitations
+is Bayesian parameter learning.
+So unlike MLE where we're
+finding a point estimate
+theta hat is the argmax
+of the probability
+of our data given that theta.
+In Bayesian parameter
+learning, we instead
+find the likelihood
+of parameters theta
+given the data set.
+So we're actually inferring
+a distribution here.
+And then to find
+our best parameters,
+we would say that
+optimal parameters theta
+hat maximize the likelihood
+of those parameters
+And we also refer to this as
+a maximum a posteriori or map
+estimate.
+When we apply this
+to Bayesian network,
+we would be looking
+at the likelihood
+of our parameters theta,
+given some graph structure g
+that we still seem to be known.
+And here theta represents all
+parameters in our network.
+So that's just a compact
+way of writing that.
+And this probability is going
+to be the product from i
+equals 1 to n.
+So that's over all nodes.
+And from j equals 1 to qi.
+So over all parental
+instantiations of p of theta ij.
+And when I say theta ij, I
+am referring to this vector.
+So theta ij is theta
+ij 1 to theta ij n.
+So, for the i-th node and the
+j-th parental instantiation,
+we have one element in this
+vector for each instantiation
+the node can take on.
+And we are able to assume
+that this probability is taken
+from a Dirichlet distribution.
+So you'll recall from
+the previous lecture
+that these alphas enter
+Dirichlet distribution are
+pseudocounts.
+And I'm actually
+going to briefly go
+over a few more things about
+Dirichlet distributions
+before we move on.
+So the Dirichlet
+distribution generalizes
+the beta distribution to an
+arbitrary number of categories.
+It's parameterized by our
+alphas, that are pseudocounts.
+And when we observe new data,
+we just update the counts.
+So after observations, we would
+have these counts added in.
+And in our Dirichlet
+distribution,
+the likelihood of parameters--
+so for the simplicity
+of notation,
+I'm just going to write
+theta from 1 to n,
+given alpha from 1 to n,
+is equal to the Dirichlet
+of theta given alpha.
+And this is going
+to be proportional
+to the product over all
+n of our parameters theta
+to the power alpha minus 1.
+And I say proportional rather
+than or equal to because we're
+missing a normalization
+constant that we
+need to make sure that these
+probabilities all sum to one.
+And that's just using
+our gamma functions
+that you'll recall from
+the previous lecture.
+So that constant is
+going to look like this.
+We have gamma alpha 0 over the
+product from i equals 1 to n
+of gamma of alpha i.
+And then just that
+normalizing constant times
+the products we initially had.
+I saw a question over here.
+Yeah, I was just
+curious what-- so
+the notation for the last
+subscript of your summation m
+sub i, j, r, i and
+opposite of i, j, r, i.
+What is that saying?
+Is that [INAUDIBLE]?
+Oh, OK.
+So this would be
+looking at some node Xi
+and parental instantiation j.
+And then we have one parameter
+theta for each instantiation
+that the node can take on.
+And there are R sub I possible
+Oh, so it's m, i, j, r, sub I.
+So i, j--
+That's r Sub I. Yes.
+One more question.
+Is the [INAUDIBLE]
+attached to the priors?
+Sorry, would you
+please repeat that?
+Is the alpha, is that priors?
+Yes those are priors.
+So those would be students.
+And as previously the
+higher the pseudocounts
+are the more confident we are.
+So, given the
+scarcity distribution,
+when we take the likelihood of
+our parameters given our graph,
+we're looking at the
+likelihood of theta i j.
+Given, alpha ij
+our pseudocounts,
+so that would be the prior, and
+m ij, which is our data set,
+and we're just counting
+up how often we've
+observed things in the data.
+And we're saying that this
+is Dirichlet distribution.
+So one parameter
+for each R sub I
+or value that the
+node can take on.
+And there are sub i
+of those for node i.
+I'm going to give you an
+example of how we actually
+compute these parameters,
+because it's a bit more
+complicated than
+what we were looking
+at for the beta distribution.
+So suppose that, again, we're
+working with binary variables
+and we have this
+graph structure.
+We have x3 and x4 that
+are parents of X5.
+Now, the number of parameters
+that we have for each node
+depends on the number of node
+instantiations and parent
+And we can store the
+parameters in a matrix.
+So, first we're going
+to do the matrix for x3.
+to have Q3 rows.
+So, the number of
+since it has 0 parents
+we say that there's
+one parental instantiation.
+And then it's going
+to have R 3 columns.
+So the number of
+node instantiations
+there are two values
+And we're going to have
+the same shape of matrix
+to hold the parameters for X4.
+So, Q4, we have one
+parental instantiation,
+since we have 0
+parents, and R4, we
+have two possible
+since it's a binary variable.
+And then the one where
+things are a little bit more
+complicated is X5.
+So now, since we have
+two binary parents,
+how many parental
+instantiations would we have?
+Four.
+Four, yeah, exactly.
+So we're just taking
+R3 times R4 to be Q5.
+So we're going to have
+four rows in this matrix.
+And then, again, the node
+itself is binary, so R5 is too.
+Can you write down
+what each one is?
+the R3, please?
+Does this Arthur equal 1?
+Oh yes, sir.
+So R3 is 2.
+R4 is 2, and R5 is two.
+Q3 is one, so is Q4, since
+neither of them has any parents.
+And Q5 is four since we
+have two binary parents.
+If we assume a uniform
+prior, we can populate all
+of these matrices with ones.
+And then we're going
+to look at what happens
+if we observe some new data.
+So how do we update
+our pseudocounts
+with our observed counts?
+Let's say we make the
+observations in this table.
+I'm going to begin with x3
+and x4 since those are easier.
+So for x3 here, we
+have one observation
+of it taking on value 1.
+And again, you can order
+the columns and rows
+in your matrices any way
+that makes sense to you,
+you just want to be consistent.
+But I'm going to order them
+so that the first column
+corresponds to value
+1 and the second
+to instantiation of the node 2.
+So we have x3 being 1.
+So we're going to increment the
+first column and first row by 1.
+And we'll apply that
+same thing to x4,
+except we've observed
+it being two,
+so we're incrementing
+the second column.
+Where things get a little
+bit more complicated
+is what we're going
+to do with X5.
+We've observed X5 to
+be 1 So that we're
+over here at this first column.
+And then again, you
+can choose to order
+the rows by parental
+instantiation,
+however makes sense to you.
+But I'll show you
+what I'm doing here.
+And so when we
+look at our table,
+we have parental
+instantiation 1, 2.
+So that's putting us in our
+second row and the first column.
+So we'll increment
+that count by 1.
+We can do-- a yes?
+Can you just explain
+more intuitively
+what you were doing there
+and what you're doing now?
+Do you mean what I'm
+doing in the matrices?
+Yeah, and just the formula
+you had before that.
+This formula?
+Right here?
+Yeah, yeah.
+OK, sure.
+So our theta ij parameters
+represent a distribution
+over outcomes.
+I think it's a little
+bit more intuitive for me
+to think of it as a dice roll.
+So with a dice roll, let's say
+that we just have one variable,
+and it represents a die.
+There are six faces
+on the die, so we're
+going to have six
+instantiations it could take on.
+So this will be 1,
+2, 3, 4, 5, and 6.
+Maybe we think that it's
+probably a fair die.
+So we're going to begin
+with our theta parameters
+representing a
+uniform distribution.
+So these parameters
+will just all be 1/6.
+And then based on
+our observations,
+we want to infer how likely
+these parameters are.
+And the motivation for doing
+that is then in the future,
+we can say, is this
+theta a good model
+for data we might
+observe later on?
+Maybe if you're betting
+on rolls of the dice,
+you want theta that
+matches it really well.
+So we can begin with our
+Dirichlet distribution
+parameterized uniformly.
+So let's say our alphas
+are all going to be 2.
+And this represents a weak
+confidence that the die is fair.
+Then we observe some data.
+So if we just took the
+Dirichlet likelihood of theta
+based on these, it would
+probably be reasonably high,
+not like 99% because
+we're not strongly
+confident but reasonably high.
+And then let's say I roll the
+die 100 times, and I only get 1.
+So I'm going to increment
+this pseudo count.
+We have alpha 1 plus
+m1, our observations.
+And now, our Dirichlet
+distribution parameters
+are very different.
+So if we once again take the
+likelihood of this theta using
+those parameters,
+now we're going
+to see it's much,
+much less likely
+that theta accurately
+represents the data.
+No problem.
+Yes?
+So when we have 2 to
+2, that's when we just
+roll the dice 1, right?
+2 to 2 was our prior.
+So we hadn't rolled
+the dice at all.
+And we can set
+that prior any way
+we want to based on what
+we believe to be true
+and how confident we are.
+So if we believe
+that maybe we're
+a little bit more likely to get
+1 than we are anything else,
+so we might have a prior
+alpha that looks like this.
+Maybe we have 5, and then
+everything else is 2.
+And 1.
+If we are all 1.
+And the first 1,
+then we just add 1.
+Exactly.
+So we just-- now, we
+would have 3, 2, 2, 2, 2.
+And so we can save it here.
+Even though the only thing we've
+actually observed in our data
+is rolling a 1.
+It's still going to be a
+reasonably good fit to the theta
+we have with the
+So in this case, a
+uniform prior would just
+be going through the board
+for all of our frequencies
+and alphas.
+This is one of
+the coolest things
+I think about the Dirichlet beta
+distributions is that we can
+express not only the shape of
+distribution we're expecting,
+but also confidence.
+So we could have
+priors representing
+a uniform distribution
+with any confidence level.
+We say that we're starting
+off with this distribution,
+where confidence is weak.
+And we roll a 1 twice.
+So now, we have a 4 here.
+That's going to have a much
+bigger impact than if we
+had a strong prior,
+where they were all 100,
+and we rolled twice.
+So you can have many
+uniform distributions
+with the magnitude of
+the prior parameters
+indicating confidence.
+So that's the
+Dirichlet distribution.
+And we're going to see
+it again momentarily
+as we get into
+structure learning.
+So in order to learn
+structures from our data,
+we need a way to score them.
+We want some reasonable
+objective measure that
+allows us to say a
+certain graph structure
+is a better fit to
+the data than another.
+Let's look at our
+rain example again.
+So the current
+structure that I have,
+these nodes are
+totally unconnected.
+And what this implies
+is that they're fully
+independent from each other.
+There's no probabilistic
+relationship between them.
+Based on our priors about rain,
+and umbrellas, and rain boots,
+that's probably
+not a great model.
+And we want to be able to score
+it, so that something like this
+would be better if it's
+supported by our data.
+What we're looking
+for, in other words,
+is the probability of a graph
+given our observed data set.
+From Bayes' rule,
+we can see that this
+will be proportional
+to the probability
+of the graph times the
+probability of data
+given the graph.
+And using the law of
+total probability,
+we can see that this is
+equal to the integral
+over all possible thetas of--
+that should be on the outside.
+That's equal to the probability
+of the graph times the integral
+over theta of probability
+of the data and theta given
+the graph d theta.
+So I'm just writing out
+how we're doing each step.
+Bayes' rule law of
+total probability.
+And then finally, we're
+applying the chain rule.
+And we're going
+to get probability
+integral over theta
+of D, our data
+set given theta and
+our graph structure
+times the likelihood of
+theta given our graph
+structure d theta.
+So we're following
+the same assumptions
+we did previously about
+this following Dirichlet
+distribution.
+And we're able to write
+probability of the graph
+given the data is
+the probability of G
+times this product.
+I equals 1 to n.
+So that's over nodes.
+Then j equals 1 to qi over
+parental instantiations
+for node i.
+Gamma function of alpha ij0
+all over the gamma function
+of alpha ij0 plus mij0.
+And these are just going to
+be summations over all alphas
+for i and j and over
+all Ms for i and j.
+Then this will be times the
+product from k equals 1 to ri
+of gamma alpha ijk plus mijk
+all over gamma of alpha ijk.
+Now, why are we
+able to write that?
+The answer is a
+two-page derivation
+that you can find in the
+references of the textbook,
+and that you don't need to know.
+But if you're curious,
+it is out there.
+And there's-- yes?
+Sorry.
+[INAUDIBLE] about something.
+So I was just going
+to say, there's
+only one more step we
+need to take in order
+to put this in the form that
+you'll be using for project 1.
+But yeah, don't worry
+about the derivation.
+Just a very simple question.
+But Bayes' rule, there's also a
+term with the probability of D.
+But does that go to 1 because
+you have the data, I assume?
+No, it doesn't go to 1.
+That's why we're
+saying proportional
+instead of equals 2.
+So it would be divide
+by some conditions.
+So if we were just writing
+this out with Bayes' rule,
+we would have this.
+And the reason that we're
+OK with using something
+proportional to the
+quantity is that we just
+care about maximizing it.
+So if we know that the
+left and right hand
+sides are proportional,
+even if they're not equal,
+maximizing what's on
+the right hand side
+will still maximize
+the left hand side.
+So we're just dropping that
+term for the optimization
+that we're doing.
+But you are right, that
+would be in Bayes' rule.
+So the last step we're taking
+is that for stability we're
+applying the log trick.
+As you can see
+here, we're starting
+to multiply out a lot of
+very small probabilities.
+And instead of
+multiplying them, we
+are going to take the log so
+that we can be adding them.
+So we have the log
+probability of our graph,
+and then this big
+summation over the logs
+of those ratios
+of gamma functions
+that we had previously.
+Oops.
+So gamma alpha ij0 all over
+gamma of alpha ij0 plus mij0.
+And a tip for you
+on the project is
+I highly recommend you start
+from implementing the score.
+We give you an
+example that allows
+you to check that your score
+implementation is correct,
+and that is definitely
+the best place
+to begin before you move on to
+searching over graph structures
+to maximize the score.
+And we're getting a little
+pressed for space over here,
+but it's the same ratio.
+Just inside of a summation now.
+A couple more notes on this
+as it applies to your project.
+So often, we have no idea
+what graph structure is best.
+So in that case, we can
+have p of g dropout,
+and we don't worry about it.
+Sometimes, there are cases
+when we a particular edge
+has to be in the graph, or
+can never be in the graph.
+So in those cases,
+we could say, OK,
+if we ever have a graph with
+this edge that has probability 0
+and the probability of all other
+graphs is going to be uniform.
+Another way that you can
+implement that practically
+is you can enforce the
+constraint by saying,
+just never add the
+prohibited edge,
+or always add and
+keep the required one.
+So you won't need to compute
+p of g in the assignment.
+That's how you would handle your
+beliefs over graph likelihood.
+I see an open parentheses
+after the double summation.
+That closes it over there.
+Definitely want to be careful
+of that for the assignment.
+There's something about
+the log-gamma function.
+Oh, there is
+something that [MUTED]
+like to say about the
+log-gamma function.
+[LAUGHTER]
+So computing the gamma function,
+remember, it's the factorial.
+You don't want to computing this
+factorial because the factorial
+go super fast.
+But computing the log
+gamma, that we can do,
+and it's a built-in
+function where [INAUDIBLE].
+Yes, including Julia.
+So use that for your
+project, please.
+Now, something cool that happens
+when we optimize for this score
+is that it balances
+model complexity
+and the amount of data.
+And I'm going to do a
+drawing of figure 5.3
+that you can find in the book.
+But basically, we are looking
+at on the y-axis Bayesian score.
+So this quantity here relative
+to the true network structure.
+And so up here, we have 0.
+If the Bayesian score relative
+to the true network is 0,
+that means that the
+scores are the same,
+and then things are
+getting negative.
+So down here is
+how much worse we
+are than the score of
+the true structure.
+And then along the
+y-axis, we have the number
+of samples in our data set.
+So 0, 5,000, 10,000,
+15,000, and 20.
+And I'm going to use
+pink to represent
+a completely unconnected graph.
+And so we would see
+that this relative score
+curve looks like this.
+So at the beginning, when
+we don't have much data,
+we actually get a higher score
+for completely unconnected graph
+than we do for the true graph.
+And as the amount
+of data increases,
+we're penalized more
+and more heavily
+for not modeling
+any connections.
+And let me label that quickly.
+This is completely unconnected.
+And then we'll also look
+at completely connected.
+So if our graph is completely
+connected, at the beginning,
+we're doing worse.
+We're being penalized for
+having more complexity
+than we can model
+based on the data.
+And then things kind of plateau.
+So ultimately, if
+we have enough data,
+the completely connected graph
+outperforms the completely
+unconnected graph.
+Although, of course,
+what we want to find
+is something as close to the
+true structure as possible.
+So neither of these is optimal.
+Yes, in the front row?
+Why is the company
+unwilling to go above 0?
+Yeah, great question.
+So because of how the
+Bayesian score works,
+if we don't have very
+much data, meaning
+that there are many parameters
+where we don't have account,
+a lot of our mistakes are 0,
+that it doesn't perform well.
+So in a small data
+set, we might not
+have observed all of the
+relationships modeled
+by the true structure.
+So we're doing a little bit
+better by modeling things
+as totally unconnected with
+a certain amount of data,
+and then that drops back
+down once we have more data.
+I just have to ask about the
+structure of the network itself.
+Sure.
+Went over the conditional way.
+What's the likelihood?
+I'm not sure what the
+prior of the solution.
+I also [INAUDIBLE].
+So when you say the
+prior distribution,
+you mean the prior
+over all graphs?
+That would be this P of D
+term that's dropping out.
+So typically, right here.
+And it's not dropping
+out mathematically.
+But if you don't
+have a prior, you
+can just disregard that when
+you're computing the score.
+An example that
+hopefully isn't too
+much of a hint of another way
+to deal with it is, like I said,
+you can enforce some edges.
+So for the project, the first
+graph is about the score of wine
+based on a number of factors.
+And my parents are winemakers.
+So I asked, are there any
+things that you are super
+confident should be connected?
+And then I would say have
+those be connected every time.
+So that's a practical way
+of implementing a prior
+rather than trying to assign
+some probability to every graph
+structure.
+And actually, the space
+of graph structures
+is so large that we can
+never search all of them
+for any reasonable
+number of variables.
+So this graph at the bottom,
+we are updating graph structure
+as we get new data.
+No, we're not
+updating it at all.
+So we're taking two models
+that probably are not
+an amazing fit for our data.
+Totally connected,
+And then we're looking at how
+they score as we increase data.
+So the important
+takeaway here is
+that using the scoring
+metric, it penalizes you
+for having a lot of
+complexity if you
+have a small amount of data
+and encourages only modeling
+complexity that your
+data can justify.
+So basically, this gives
+us more empirical evidence
+that we're not going to do
+some kind of weird reward hack
+and say, never connect
+anything or connect
+as many things as possible.
+Completely connected.
+You mean just every node
+has at least one errors,
+but it could be like it has
+any number of dimensions?
+I believe that
+would be every node
+is connected to every other node
+with the edges directed such
+that no cycles are created.
+So an example of that would
+be if we have x1, x2, and x3.
+We could have
+something like this.
+So there's no cycles,
+but every node
+has an edge between it
+and every other node.
+So is there a cycle
+because there's no loop?
+I mean, this is not the most
+mathematical way of doing it,
+but when it comes to cycles,
+I'll just start at a node,
+and trace its edges, and see
+if I can get back to it or not.
+So this question of
+cycles is important.
+Because now that we
+have a scoring function,
+we can apply to our graphs.
+We can talk about how
+to find the best ones.
+And this is structure learning.
+So I'm going to give you
+two different techniques,
+both of which would be
+suitable for projects one.
+And the first one we're going to
+talk about is the K2 algorithm.
+So this is polynomial time,
+and it is not guaranteed
+to find a global optimum.
+And I'll show you how it works.
+So in K2, we begin with a
+completely unconnected graph.
+So no edges.
+So maybe we have something
+that looks like this.
+And then in some
+order, in this case,
+I'll choose a very
+simple order, we're
+going to iterate over the nodes.
+So I'm choosing x1,
+x2, and then x3.
+As we iterate over
+the nodes, we greedily
+add parents to maximally
+increase the score.
+So what that means is that we're
+keeping track of our best score
+so far.
+We're starting off probably
+not an amazing best score
+so far since we're
+fully unconnected.
+And then in our order,
+we'll try to add parents.
+And if the score that we
+get when we add that parent
+is greater than our
+best so far, then we'll
+keep that edge in the graph.
+So starting at x1, there
+are no nodes before it
+so we can't add
+any parents to it.
+And K2 enforces this
+order constraint.
+Then at x2, x1 is before it.
+So we'll look at that
+as a potential parent.
+And if the score
+increases, we'll
+add that edge from x1 to x2.
+And then at x3, we will look at
+x1 first as a potential parent
+and see whether adding
+that edge is going
+to improve upon our best score.
+If so we add it, and then
+the same logic at x2.
+If adding that edge to x3
+would improve the score,
+we add it to the graph.
+And so actually
+here, in this image,
+I've added every edge
+that I possibly can
+according to the
+constraints of k2.
+And you'll see that because
+we've enforced this ordering,
+we're never going
+to create a cycle.
+We can only add edges
+in one direction,
+and we'll never go backward.
+So that's how k2 handles
+the issue of cycles.
+Yeah, I guess you already answer
+the question the end of it,
+but I assume that you
+use the issue approaching
+a local maximum instead
+of the absolute with this.
+Yes, exactly.
+So one way of dealing
+that, as you can see here,
+we were limited in
+which edges we're
+able to add by the initial
+ordering that we chose.
+Something you could
+do is you could
+try multiple initial orderings,
+just randomize a bunch,
+and then take the
+structure that was best
+out of all those orderings.
+But yeah, this is prone to that.
+So you need to artificially
+expand the search space.
+Another thing you want to be
+attentive to for the project
+is enforcing a maximum
+number of parents.
+So this is a very small number.
+But the parameters that we
+need grows exponentially
+with number of parents.
+And for the sake
+of your compute,
+I highly recommend
+setting a limit.
+You can start with
+something super low,
+like only two parents
+possible, and then you
+can increase that as
+your resources allow.
+So in general, with
+this algorithm,
+you assume that whatever node
+you start with, iteration
+does not have any parents.
+But if you change the order to
+some x2, then you assume x2.
+So we're totally limited
+by what that ordering is.
+And if you have a data
+set where I don't know,
+some node, like say x1
+should have many parents,
+if you randomly get an
+ordering where x1 is first,
+then you're out of luck for all
+of those potential structures.
+Does this find the
+maximum for that ordering?
+Is this strategy
+finding the optimum
+given that parental
+assumptions you're making?
+Given all the assumptions
+that you're making.
+Does this find the optimal one?
+I don't think so because
+we're adding greedily.
+But no, this does not.
+So we have another option
+for how to deal with this.
+And that is local search.
+Local search is also
+prone to local optima.
+But after I describe
+the algorithm,
+I'll tell you about
+a few ways that we
+can deal with this
+because there's
+some interesting options.
+So in local search,
+unlike K2, we
+begin with some initial
+And you could begin with
+things fully unconnected,
+but you don't have to.
+Whereas with k2, you do
+have to begin with no edges.
+Although actually,
+as I'm saying that,
+for K2, if you had an edge
+that you wanted to enforce,
+you could begin with that edge.
+that in your ordering,
+the edge isn't going
+backwards so that you're not
+introducing a cycle.
+OK, so for local search, we're
+beginning with an initial graph.
+I'm going to have it
+look something like this.
+And the reason that we
+call this local search
+is that we're
+going to be looking
+at all of the graphs in our
+current graphs neighborhood.
+So I'm going to
+define neighborhood.
+So the neighborhood
+of a graph is the set
+of all graphs that are a single
+basic graph operation away
+from the current graph.
+There are three basic
+graph operations.
+First, we can add an edge.
+So this would give
+us, I mean, there
+are a number of edges that we
+could add here so long as we're
+not introducing a cycle.
+But one example would be we
+could add an edge from x2 to x3.
+The next basic graph operation
+is we could remove an edge.
+So in this case, since we only
+had one edge to begin with,
+that would result in a
+fully connected graph.
+And then finally, we can reverse
+the direction of an edge.
+So we only have
+one edge to choose
+from in our initial graph.
+And we're going to flip it so
+that now x2 has an edge into x1.
+at the beginning,
+there's more than just one
+edge that we could add.
+So our neighborhood will
+be a bit larger than this.
+But it's just everything.
+That's one basic
+graph operation away.
+So we start off with
+some initial graph.
+We have all of the graphs
+in its neighborhood.
+And then in local search,
+what we're going to do
+is we'll score all neighbors.
+So long as they don't
+introduce cycles.
+And then we move to the
+highest scoring neighbor.
+So now, the highest scoring
+neighbor is our current graph.
+And we just keep on
+repeating this process
+until we reach a point
+where for the current graph,
+there's no neighbor whose
+score is better than that.
+So repeat until current graph
+has no higher scoring neighbors.
+So as we saw with the
+previous example for K2,
+this is also very
+And we have some
+interesting ways
+that we can get out of that.
+So first we have
+randomized restarts.
+And all of these will be
+in the book in detail.
+So don't feel like you have
+to remember them all now.
+But for randomized
+restarts, we just
+take one of the graphs
+that wasn't selected,
+so a neighbor of
+one of the graphs
+we visited, and then you
+restart the search from there.
+In addition to
+randomized restarts,
+we have simulated annealing.
+This is inspired by metallurgy.
+And so in simulated
+annealing, we
+choose a neighbor with
+lower fitness or a lower
+score than the best neighbor
+some percentage of the time.
+And then we set this
+parameter percentage
+to decrease as we
+proceed in our search.
+So maybe we start off
+choosing not the fittest
+neighbor 50% of the time, and
+then that declines gradually.
+Finally, for examples
+here, but not for things
+that you could choose, we
+have genetic algorithms.
+So genetic algorithms are
+biologically inspired,
+and they begin from a
+population of individuals.
+So in this case, individuals
+are going to be different graph
+structures.
+We encode this population of
+individuals as a binary matrix.
+So where DNA has A, T,
+C, and G, this matrix
+is going to have 0 and 1.
+And we're starting with a
+totally random population.
+For each of the graphs in
+our initial population,
+we're scoring their fitness
+using the Bayesian score.
+And then to produce
+the next generation,
+we select two parents
+randomly, but with likelihood
+weighted by their fitness.
+So the higher Bayesian
+score, the more likely
+that structure is to reproduce.
+We recombine them, taking half
+of the DNA or zeros and ones
+from each, and we
+add some mutations.
+So we flip some of the bits
+that we get doing that.
+And then we continue
+reproducing our graph structures
+until some stopping
+criteria is met.
+So that could be based on
+time, which is probably
+best for managing
+your constraints,
+or score, or any other criteria.
+Is there a typical one?
+Well, just until you run out--
+until you run out of time
+would be the typical one.
+So that's another way that you
+can address this local optima
+problem.
+I see a couple questions.
+How do you enforce the
+graph in that case?
+So when you're
+reproducing, you would just
+have to check that a
+cycle wasn't created.
+And if it was, you can
+sample a 50% from each
+again or resample in other ways.
+So in this context, how do
+you read two graphs together
+to make a graph?
+So let's say that we
+have our initial matrix,
+and I'm going to have
+these be really simple--
+we have 1, 0, 1,0.
+And suppose that
+we're reproducing--
+It needs to be a square.
+Ah, yes.
+And this is a square matrix.
+If it represents
+connectivity, then we'd
+have one matrix per
+So we have-- we're just going
+to take two possible parents.
+And for the sake of
+time, the second parent
+is going to be pretty
+much entirely zeros.
+So then if we were to
+reproduce these two
+matrices with each other, we
+would be taking 50% randomly
+of the positions in one
+parent and 50% in the other.
+To make it a little
+bit easier for myself,
+I'm not randomly going
+to say that we're
+taking the first two
+rows of the first matrix
+and the last two of the second.
+And then that would produce
+a child that looks like this.
+And you would
+imagine that you can
+sample 50% of the different
+matrices in a number of ways.
+But that's just how I did it.
+And you can keep sampling
+until you have something
+with no cycles.
+So in this matrix,
+is it basically
+each argument in the matrix
+represents the connection
+or lack thereof of the I--
+like go 1 to n rows,
+one across the columns?
+So this is just one
+way of encoding them.
+But here, we could assign
+the nodes in this way.
+And so then if we have--
+let's take this one here.
+This means that there's an
+edge going from x2 to x1.
+And you can set the
+direction any way you want.
+Just make sure that you're
+being self-consistent.
+So for that reason,
+I thought they
+ought to be identity matrices.
+Because each node is
+connected to itself,
+like x1, and x1, x3, x2.
+I think.
+Actually, by default,
+nodes should not
+be connected to themselves.
+Because technically,
+that would be a cycle.
+And just add to that, you can't
+have a node like x1, x2, x2
+to x1.
+You cannot have a
+cyclic indicator.
+Yes, you can't have that.
+Is there a formula
+for calculating
+how big is the neighborhood,
+so how many are there
+in the neighborhood?
+Oh, good question.
+I'm not aware of a closed
+form equation for that.
+Do you know of one?
+Oh, so it depends upon
+your graph operations
+and add an edge, delete
+an edge or, flip an edge.
+And so for deleting
+or flipping, that's
+going to be based on
+the number of edges
+that you currently have.
+For deleting, you can
+always delete an edge
+because that will never
+introduce a cycle.
+For flipping, you have to check
+that it won't introduce a cycle.
+And then for adding, similarly,
+you have to make that check.
+But in practice, you would just
+iterate through and say, OK,
+out of all the
+edges that I don't
+have if I add it and
+it doesn't create
+a cycle, what's the score?
+And then you would keep track of
+the best structure and the best
+score.
+Would say asymptotically,
+it's exponential in the number
+of variables.
+So technically, you have
+zeros in the diagonal, right?
+Yes, we would.
+So more generally, like the way
+you define your node structure
+or graph structure?
+One way to algorithmically
+check for cycles
+would just be to check
+that the element directly
+diagonal from any given
+element should not be
+equal to it, like on the graph?
+That would be a way to
+check for simple cycles,
+but we can have
+more complex ones.
+Like we could say we have--
+we could have a cycle
+I believe that we provide you
+code that checks for cycles, so
+don't worry too much about
+how to implement that.
+And an additional
+note on implementation
+is that just to pass all of
+the tests on the project,
+you don't need any of these
+modifications to local search.
+These would be more
+relevant if you're
+looking at optimal
+leaderboard placement.
+Cool.
+So we just have one
+thing left to talk about,
+and that is Markov equivalence.
+So we say that two
+graphs are Markov
+equivalent if they encode the
+same conditional independence
+So encoding same conditional
+independence assumptions.
+And that sounds
+pretty complicated.
+But actually, we just need
+to check for two things.
+First, we need to
+check that they
+have the same undirected edges.
+So I'll give you a couple of
+structures to illustrate this.
+Let's say we have
+x1, x2, and x3.
+So these do have the
+same undirected edges.
+Because we have x1,
+x3, x2, x3 in both.
+And then they also need
+to have the same immoral.
+v structures.
+So you'll recall a v structure
+from previous lectures.
+This would be an example of one.
+And when I say that a
+v structure is immoral,
+what I mean, and this
+was not my definition,
+is that the parents
+are unconnected.
+So if we wanted to make
+this a morally structure,
+we could do that,
+or we could do that.
+But as it stands in
+the example, this
+would be an immoral v structure.
+And so because of
+the second criteria,
+we would say that these
+two graphs are not
+Markov equivalent,
+since in this one,
+we have an immoral
+v structure here.
+And here, we actually have
+no immoral v structures.
+So those are not Markov
+equivalent graphs.
+Same how-- do I ask
+you the exact same?
+Exact same v structure.
+So let me draw out an example.
+So OK, a little bit hard to
+think of an example, actually.
+I'm realizing how many v
+structures you end up creating.
+Maybe I'll just show
+you why this is tricky.
+So we have graphs like this, and
+we can say we'll connect there.
+Oh.
+Actually, I think this works.
+We'll talk through it together.
+This will be a good example.
+So definitely have the
+And then when we're looking
+at immoral v structures,
+we have this one here
+in both of the graphs.
+And here, we have a chain.
+And here, we have--
+is that a fork?
+Is that what you call that?
+A fork.
+So they have the same edges and
+the same immoral v structures.
+So we would say that those two
+graphs are Markov equivalent.
+The reason that we care
+about Markov equivalence
+is that the space of Markov
+sets of Markov equivalence
+is much smaller than
+the space of all graphs.
+So one option is to search
+those Markov equivalence groups
+rather than searching
+And that's computationally
+much easier.
+And we think it's
+safe enough to do
+given that they're encoding the
+Although, as a note, two
+graphs in the same Markov
+equivalence group can
+have different scores
+unless you can have different
+scores within group unless--
+and this is a kappa.
+It's clear in the book, but
+that's not a K. It's a kappa.
+Unless we have kappa,
+which is the sum over j,
+sum over k of R alphas
+and the prior, alpha ijk
+is constant for all i.
+And that's a--
+I would say that's
+a pretty minor note,
+but just worth pointing
+out, Markov equivalent
+doesn't mean the same score.
+But we're assuming that
+it's close enough given
+it encodes the same
+independence assumptions that we
+can search over those groups
+rather than over all graphs.
+I saw a question.
+So if we have the same,
+moral structure or not?
+No, they are.
+So Markov equivalence, if
+and only if these two hold.
+So by a moral, same
+moral structure,
+you just need a
+matching in there.
+So all of you are
+both moral or immoral?
+So if there is--
+if we're looking at
+two graphs A and B,
+if there is an immoral
+v structure in A,
+then that immoral v structure
+must also be in B in order for
+and B to be Markov equivalent.
+And similarly, if there's an
+immoral V structure in B, that's
+immoral V structure
+must also be in A.
+So the set of immoral v
+structures in each graph
+has to be the same for them
+to be Markov equivalent.
+If they have the same moral one?
+Oh, if they have
+the same moral ones,
+if the moral of these
+structures are different,
+then we don't care.
+So let's look at
+another example.
+Let's say--
+So they have the same edges.
+And then if we connect the
+parents in different ways,
+we don't even need to look at--
+yeah.
+So we can connect the
+parents in different ways.
+And that would be fine.
+So for moral v structures,
+they can be different.
+But for immoral, they
+have to be identical.
+And so if we connected
+the parents in one
+and not the other, then they
+would not be Markov equivalent.
+Because here, we have
+an immoral V structure
+that we don't have
+in the other graph.
+Just a quick question
+on the Bayesian score.
+When we derive that,
+is that from using
+the math definition or the MOE?
+That's around the math
+definition using the Dirichlet
+So you mentioned that we
+should search in Markov
+equivalence classes are
+similar in some way,
+but I feel like that's
+a bit counterintuitive.
+I would absolutely
+want to search over
+graphs of different conditional
+Oh, yes.
+Sorry, that's what I meant.
+So the question is, I said
+we can search over Markov
+equivalence classes
+because they encode
+the same conditional
+So we would have
+our search space
+be all of the distinct classes
+rather than the distinct graphs.
+So we would say
+we actually don't
+need to look at two graphs
+within one Markov equivalence
+group because they're
+encoding the same conditional
+I think it would
+be a bit difficult
+to implement searching
+over equivalence classes,
+although you're definitely
+encouraged to try that.
+But I didn't for the
+purposes of the project,
+and it is sufficient,
+and there's
+plenty of optimizing to
+do in the graph space.
+Keeping an eye on
+time, I think we
+can do just one more question.
+Is the condition on
+two different graphs
+have to have the same sum,
+or is it in, for all i,
+or is it just like
+for each individual i?
+So this is for graphs
+within the group.
+And I'm fairly sure that
+this could be accomplished
+by having the alphas be
+1 because they'll all
+have the same edges.
+Oh, actually, they
+wouldn't necessarily
+have the same number of parents.
+Yeah, you need the sum to be
+constant within the group.
+Yes, the book gave
+some examples.
+I think we're at time.
+And if there are
+more questions, we're
+happy to help at office hours.
+Thank you all so much.
+[APPLAUSE]

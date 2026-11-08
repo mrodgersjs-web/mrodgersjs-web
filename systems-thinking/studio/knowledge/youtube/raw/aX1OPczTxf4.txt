@@ -1,0 +1,525 @@
+in this lecture we'll talk about how
+risk estimation in the real world is
+very messy and how black swans can
+greatly impact risk estimates this
+lecture will proceed in four parts
+first we'll talk about black swans which
+are
+extreme events
+and then we'll understand black swans as
+long tail events so we'll characterize
+them statistically
+then we'll discuss the distinction
+between mediocristant and extremistan
+that is
+systems that have
+no black swans and systems that are
+dominated by black swans
+and then we'll turn to a concept from
+the defense community called unknown
+unknowns
+an idea underlying this discussion is
+that things that have never happened
+before happen all the time i should say
+at the outset that this lecture is
+generally more abstract and the concepts
+are somewhat difficult to internalize
+because they're very deep
+this is kind of similar to probability
+when people first encounter probability
+they have difficulty internalizing it
+but when they do they recognize that
+it's often essential for talking about
+uncertainty sensibly
+while one doesn't use probability to
+compute conditional probabilities in
+one's head one often uses the intuitions
+behind conditional probability in
+thinking about uncertainty frequently
+so likewise with talking about black
+swans it provides a basic vocabulary for
+talking about extreme events and while
+you're not computing long tail
+calculations in your head frequently it
+still can often end up structuring your
+thought
+so hopefully this will help
+provide a background in thinking about
+extreme events more precisely what
+exactly are black swans these events
+that greatly impact risk analysis
+black swans can be understood as events
+that are outliers and outliers that also
+carry extreme impact
+in the face of black swans one might
+need to change one's conceptualization
+of reality or consider new variables or
+update one's previous system often how
+one was trying to respond to events has
+to change in the face of black swans too
+they're so called because
+europeans used to think that all swans
+were white but then a single counter
+example of a black swan found in
+australia upended that understanding
+this isn't to say that black swans are
+just corner cases though that can be
+kind of ignored as special cases that
+somebody can get around to and deal with
+and isn't the main part of the problem
+although they're often ignored by some
+people as outliers they're very costly
+to ignore since they often dominate
+dynamics and matter more than many of
+the other events combined let's look at
+black swan events in a machine learning
+application in this case autonomous
+vehicles
+here are some events collected from
+waymo
+so some typical
+outlier events that tend to carry large
+impact and so could be construed as
+black swans would be these events
+these are poor weather and lighting
+conditions so in one case there's a lot
+of snow
+one there's fog and the other it's quite
+dark at night
+more difficult examples include these
+here we have at the left a person
+holding a board and that's partly
+occluding them in the middle we're
+seeing some person's reflection and at
+the right there's a person riding a
+horse this makes it more difficult for
+autonomous vehicles to function
+appropriately because there are very few
+instances like these that they've
+encountered before
+it can also be difficult to generalize
+to the example of the left
+in that example there are people in
+costumes so even though they don't look
+like people they should be identified as
+such
+in the middle there are animals on the
+street which shouldn't be run over and
+on the right there's
+a green light but the vehicle definitely
+shouldn't go because it will collide
+with the ambulance that's going across
+the street
+black swan events can sometimes be
+statistically characterized as long tail
+events so people use them
+interchangeably occasionally and
+people also sometimes use the word fat
+tails or heavy tails or thick tails to
+just describe long tails and in this
+course we'll just consistently use the
+phrase long tail
+a tail of a distribution is the region
+that is far from the head or center of
+the distribution so in this picture at
+the left is the head of the distribution
+and then there's a long
+tail a long tail distribution have tails
+that taper off gradually rather than
+drop off sharply
+this is what distinguishes them from
+many other distributions like gaussian
+distributions
+a key property of long tail
+distributions is that random variables x
+sub i from a long tail distribution are
+often maximum equivalent which is to say
+that the largest events matter more than
+the other events combined
+this is how an extreme observation can
+end up dominating
+the dynamics
+and a single variable matter more than
+everything else
+consequently we're dealing with very
+extreme observations when we're talking
+about long-tail distributions
+another important thing to know about
+long-tail distributions is that they
+sometimes can make the usual arsenal of
+statistical tools become a lot less
+useful in practice
+the mean standard deviation linear
+regression principal components analysis
+and so on are not robust to long tail
+data
+consequently a lot of the machinery that
+we use to handle uncertainty breaks down
+in the face of long tails
+an example long tail distribution
+is the power law distribution so the
+probability density tapers off
+proportional to x to the negative alpha
+where alpha is positive
+we could look at how mean estimation
+behaves for long tail distributions
+compared to distributions such as
+gaussians so at the right is it excuse
+me at the left is a high variance
+gaussian distribution and the mean
+converges very quickly in that setting
+meanwhile we can see that a few single
+examples are greatly slowing down the
+convergence of the mean estimate
+for some other distributions the mean
+might require something like 10 trillion
+examples to estimate which would make it
+very difficult to use in practice
+for some other distributions
+the mean doesn't even exist and so for
+those long tail distributions neither
+would the standard deviation exist and
+so you can see how long tail
+distributions can occasionally make
+these tools break down entirely so we
+can't just apply usual statistics or
+larger sample sizes when dealing with
+them because the larger sample sizes may
+not be enough to capture the mean or
+they may just be infeasible to use in
+the real world a concrete example of a
+long tail distribution is this power law
+distribution that approximates the web
+site's degrees so more popular websites
+have higher degrees
+and as we can see what happens when we
+zoom in to the
+tail of this distribution
+the distribution ends up looking fairly
+similar and if we zoom into the tail of
+this distribution again it ends up
+having a similar structure to before in
+this way
+power law distributions are sometimes
+described as scale free
+this is just one example of a long tail
+distribution there are other
+long tail distributions like the power
+law distribution describing a pareto 80
+20 distribution where
+80 percent of the land is owned by 20
+percent of the people or 80 percent of
+the user complaints on a website might
+come from 20 of the users
+these are some other power law
+distributions there are many real world
+long tail distributions
+for example word frequency follows a
+long tail distribution so very common
+words like the are used substantially
+more than uncommon words such as macabre
+citations are also long tailed so the
+most highly cited papers end up taking
+up the lion's share of the citations
+compared to
+less cited papers
+web hits also follow a long tail
+distribution people use google almost
+all the time whereas unpopular sites if
+you add many of them together sort of
+pale in comparison to the usage compared
+to the most popular ones
+natural phenomena such as crater
+diameter also follow long tail
+likewise solar flares have their peak
+intensity follow long tails
+war intensity is long tail distributed
+too so the number of books sold
+telephone calls received there's also
+long tails earthquake magnitude again
+also long tail distribution net worth is
+long tail distributed so the richest
+people have substantially more money
+than the poorest people in the world
+that's an implication of it being long
+tail distributed
+name frequency is long tail distributed
+and even cities have long tail
+distributed populations the most extreme
+part of long tail distributions can have
+an outsized effect in outcomes
+for example point one percent of drugs
+generate about half of pharmaceutical
+industry sales point two percent of
+books account for fifty percent of sales
+about one percent of bands earn eighty
+percent of all revenue from recorded
+music
+in this way we can see that
+long tail events are not just outliers
+that should be ignored from analysis but
+are some of the most important and
+salient parts of the observations that
+we'll encounter
+this isn't to suggest that all
+real-world distributions are long-tail
+distributions in fact many are often
+thin tailed
+for example exponential distributions
+happen a lot in reality and they're thin
+tailed their probability density drops
+off exponentially fast
+here's a juxtaposition between a long
+tail distribution and an exponential
+distribution
+it looks fairly similar but if we look
+at more extrema values
+then we can see that long tail
+distributions put substantially more
+density on extreme events and if we look
+at the densities on a log scale we can
+see the exponential distributions
+probability decay exponentially of
+course
+and that there are orders of magnitude
+of difference between the density for
+so in this way extreme events are far
+more unlikely with
+exponential distributions
+gaussians have even thinner tails
+instead of their density following
+something like e to the negative x the
+density follows e to the negative x
+squared
+so
+they have even thinner tails than
+exponential distributions and extremely
+large events are substantially more
+unlikely
+long tail events are not necessarily
+extremely likely though it's just to say
+that extreme long tail events are far
+more likely than extreme thin tail
+events
+in trying to distinguish between whether
+a distribution is thin tailed or long
+tailed ask yourself the question can i
+add a zero to it
+if the answer is no
+then that might suggest it's a thin tail
+that's one possible heuristic to have in
+trying to guess what distribution a real
+event follows there are many processes
+that give rise to long tail
+distributions for example if we multiply
+many variables together that can give
+rise to long tail distributions
+that's different from what the central
+limit theorem is saying because the
+central limit theorem is talking about
+addition the central limit theorem says
+that if you add together multiple random
+variables that are independent and
+subject to some basic regularity
+conditions you get a thin tailed
+gaussian distribution but we're talking
+about nonlinear interaction not addition
+an example of a multiplicative process
+that could give rise to long-tail
+outcomes is as follows and take it with
+a grain of salt it's just to be
+suggestive if we have if we're trying to
+consider a researcher's impact that
+could be a function of the amount of
+time that they spend researching the
+number of gpus that they have the amount
+of drive they have the number of good
+ideas or the size of the research field
+that they're researching in
+those are all factors that could
+influence their ultimate impact
+and
+ultimately they interact non-linearly
+not really through an additive process
+not to say that it's exactly straight
+through multiplication but there is a
+non-linear interaction and non-linear
+interactions can arise when parts are
+connected or interdependent
+we could see that if any of those
+variables would become zero then the
+total research then the total output
+would become zero so for example in the
+research output example if the amount of
+time a person has to research is zero
+then they won't have any output or if
+they have no ideas to pursue then they
+won't have any output if they have no
+hardware to perform their experiments on
+then likewise they also won't have any
+output those are some ways to see that
+this is not an addition of variables
+where if
+one variable comes zero in in an
+additive process it's not going to end
+up destroying the ultimate output but in
+a non-linear one where there's
+multiplications for instance then a
+variable becoming zero can completely
+destroy the output this is how you can
+distinguish whether you're dealing with
+variables being multiplied or whether
+they're being added we've distinguished
+between thin tails and long tails
+another pedagogically useful distinction
+is between mediocristan and extremistan
+so mediocristan is associated with thin
+tails extremistan is associated with
+long tails
+stan is associated with the total being
+determined by many small events whereas
+in extremist stand the total is
+determined by a few large events
+in the first situation a typical member
+is mediocre or average and the notion of
+typical in extremist stan really varies
+either they're one of the largest
+elements or they're very small
+in mediocre stand there's tyranny of the
+collective
+individual actions of an agent tend to
+get washed away
+in the collective action of many
+meanwhile in extremist stan individual
+actions can
+greatly affect the dynamics so there's
+tyranny of the accidental or just a few
+in mediocre stand the top few get a
+small slice whereas in extremistan the
+top few get a large share
+like with book sales as we saw
+in mediocristan it's generally easier to
+predict events whereas in extremist
+stand since there are so few events that
+can wildly determine the outcomes it
+makes predictions substantially harder
+in mediocristan the impact is
+non-scalable but in extremist stand the
+impact can scale by many orders of
+magnitude mediocrity can be associated
+with mild randomness and extremists and
+wild randomness
+consequently it's important to know
+which environment one finds oneself in
+are we in mediocritan or are we in
+extremist stand can we use typical
+statistical tools and is the environment
+highly knowable or easier to predict or
+do we need to pay attention to more
+systemic factors and worry about a few
+events potentially subverting the entire
+system
+this is an important question to ask
+yourself in performing risk analysis
+let's now try to distinguish between
+categories of uncertainty and unknowns
+the simplest category is known knowns
+these are things we are aware of and
+understand
+it's associated with the phrase we know
+what we know
+it's associated with facts and
+requirements and can be accessed through
+recollection
+known unknowns are things we are aware
+of but don't understand completely
+we know that we don't know these for
+instance i don't know what the weather
+is tomorrow
+these are classic risks and involve
+conscious ignorance
+they can often be understood better with
+closed-ended questions
+unknown knowns are things we understand
+but are not aware of
+we don't know that we can know is a
+phrase it's associated with
+another phrase it's associated with is
+we can know more than we can tell
+this involves unaccounted facts or tacit
+or implicit knowledge
+and it's often arrived at through
+self-analysis
+finally unknown unknowns are things we
+are not aware of nor understand we don't
+know what we don't know
+these are unknown risks and is
+associated with meta ignorance and these
+are encountered through open-ended
+exploration
+these are some highly useful
+distinctions for talking about different
+types of unknowns especially the
+distinction between meta ignorance and
+how are all these concepts of black
+swans unknown unknowns in long tails
+associated we'll review these
+now black swans are often statistically
+characterized by long tail distributions
+or they can cause long tail events
+because black swans can dominate risk
+analysis we discuss long tails to
+characterize these highly impactful
+events statistically
+and events regarded as black swans may
+be known unknowns to infuse people who
+are in the know but they are typically
+unknown unknowns so black swans are
+associated with long tails and black
+swans are typically associated with
+unknown unknowns
+let's close by discussing some relations
+between black swans and long-term safety
+first is that ai's eventual impact on
+the world may be long-tailed right now
+its economic effects are not that
+substantial but eventually it could be
+shown to be quite the black swan and end
+up having a dominating effect on
+societal outcomes
+black swans are also relevant because in
+the future we want models that can
+detect black swans
+and these black swans are more likely to
+arise in a future
+that is more rapidly changing and
+unexpectedly so the importance of
+detecting black swans will be higher in
+the future
+because black swans may be more
+prevalent in the future
+additionally if we have multiple ai
+agents deployed in the future and if the
+social power or command over resources
+is more long-tailed the collective will
+be less able to rein in the most
+powerful artificial agents so
+consequently extremistan is more
+relevant for thinking about
+future machine learning deployment
+dynamics
+and finally other existential risks can
+be viewed as just sufficiently extreme
+long tail events for instance bio risks
+in their sort of infections
+infectiousness and their intensity can
+be
+thought as a long tail type of outcome
+or asteroids in their diameter we saw
+that that followed a long tail if the
+diameter is sufficiently large that's
+enough to pose an existential risk these
+are just some relations between black
+swans and extreme events and having a
+more precise understanding of longer
+term safety

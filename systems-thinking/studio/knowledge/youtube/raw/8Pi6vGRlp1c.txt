@@ -1,0 +1,736 @@
+Today, I'm going to show you how to
+properly direct an AI to write code for
+you. And in my opinion, not enough
+people are doing this. What I show you
+will massively improve the quality of
+the code that you produce with AI. Make
+sure you stick around to the end because
+I've something big planned for this
+year. It ties directly into what I talk
+about today. When I hear people talking
+about writing code with AI, I always
+hear stuff like, "I made this working
+app in 10 minutes." or "It just took me
+a few hours to develop this amazing dash
+board and now we have 10K monthly
+recurring revenue." Well, first, let's
+be real. There's much more to running a
+business than just having a working app.
+That's almost like a side note next to
+having to do all the other stuff like
+marketing, sales, finances, taxes,
+accounting, etc. Trust me, it's not that
+easy. Second, if your mindset is, "Hey,
+I just want to ship stuff that works."
+well, you're going to have a big problem
+in the long term. Designing your
+software properly has always been
+important. And with AI writing more and
+more of our code, it's even more
+important today. Think of design as your
+main tool for managing complexity. When
+your system is less complex, AI
+understands context better. Your prompts
+become simpler and clearer, and the code
+it generates becomes something that you
+can actually maintain and keep improving
+almost indefinitely. Let me show you
+exactly how to do that using a real
+interaction I had with ChatGPT while
+working on a code example for another
+video. Now, obviously, you can use any
+AI coding assistant. It doesn't really
+matter. I use ChatGPT a lot because it's
+pretty good, and I also use it to help
+me write script outlines. And by the
+way, I never literally say what ChatGPT
+produces. I mainly use it to generate
+some talking points, and then I rewrite
+it at home because, well, it's never
+exactly what I want. For this particular
+interaction with ChatGPT, I was working
+on a video covering the Fluent interface
+design pattern. So, now you know what
+video is going to come out in a few
+weeks. It's not really about the actual
+code here. I just want to show you the
+interaction I had with ChatGPT about
+this and what you can do as well to
+improve the code that you write with AI.
+So, it starts with an example that I let
+ChatGPT generate, that is some sort of
+animation system. And as you can see,
+there is an animation class. It has
+steps like moving, rotating, scaling,
+these kind of things. There's an
+animation runner that uses TK canvas to
+show an animation. It has a couple of
+methods. There's the methods here like
+moving, rotating, etc. And then we have
+a method for running the animation where
+it goes through each of these steps and
+then updates the shape. And finally, a
+demo where we have some animation object
+and we call some method on it. And And
+by the way, this is the whole idea of
+the Fluent interface pattern where you
+can call these things in sequence,
+similar to the builder pattern but
+slightly different. So, that's basically
+the starting point that I let it
+generate. Now, if you just focus on code
+that works, you're probably pretty happy
+with this. And you're like, "Okay, well,
+fine. Let's use that." But as you'll see
+in a minute, I actually spent a lot of
+time tweaking the details and let it get
+rewrite stuff and change things. And
+that's really important step to take.
+So, a bunch of text that it generates.
+Let's see what I write. I write, "Modify
+the design so that actions are not all
+separate methods in the class. I also
+don't like the huge if statement in the
+run methods." So, already I'm
+looking at this code and thinking, "Oh,
+actually, I don't really like this. You
+know, this is a bit messy." because if
+we want to add more actions, well, this
+becomes even larger. You may remember
+the registry design pattern I talked
+about a while back that can help solve
+this. Another thing that I asked it to
+do, I didn't really like having all
+these methods being part of the animator
+class.
+So, let's see what it comes up with. So,
+now it turned each animation step into a
+command class, which, well, kind of
+makes sense. And then it can loop
+through the commands and run an apply
+method on each step. So, what does this
+look like? So, we have now an animation
+step protocol. Well, I said introduce
+some abstraction. We have our steps like
+move, rotate, scale, fade, etc. So,
+that's already an improvement in a sense
+from the version before where basically
+all the actual transformations were part
+of methods in the animator class.
+So, these are now in separate classes.
+So, we improved the design,
+which is nice. And then animation has
+steps. We have a play method that runs
+these things. And then it did something
+weird, which is that it now defined
+separate functions and then it monkey
+patched these into the animation
+class, which is a bit awkward. It's not
+really what I meant.
+And for the rest, there's a couple of
+minor changes as well. It doesn't really
+matter. So, I didn't really like that.
+So, I wrote, "Okay, make the extension
+methods part of the animation class
+after all." And then I asked it an
+abstraction question. Is there a way to
+make the animation step classes
+independent of animator?
+Why is that important? Well, if you look
+at animator, you see that it gets a list
+of animation steps. And if we scroll up,
+we also see that each of these
+animations, they actually get an
+animator as an argument. So, this is a
+circular dependency, and I don't like
+circular dependencies in my designs.
+Now, interestingly, I didn't provide it
+with a solution. I asked it, "Is there a
+way to do this?" And that's also one
+thing you can do when you're working
+with AI assistants is really ask it
+about these things and see what it comes
+up with. So, that's exactly what I did
+here. So, let's see what it came up
+with. So, it says it offers a cleaner,
+more idiomatic design, and then it now
+made animation step independent of
+animator. So, let's see what it came up
+with. So, we have animation step. It now
+has two methods, transform shape and
+transform color. And I like this idea
+because this means that animation step
+deals directly with the things that it
+modifies. So, it modifies shapes and it
+modifies colors. Then we have our
+various animation steps. We have move,
+rotate, scale, fade, etc. And then we
+have our animation class that represents
+a sequence of these steps. Animator is
+currently responsible for setting up the
+TK canvas. It has a shape.
+It draws the shape. It updates the
+shape. It has a helper for the fade
+effect. Run method.
+Already when I'm looking at this, I
+don't really like this design because
+this means that the animator class now
+has lots of different responsibilities,
+which is not great. So, let's see what I
+say next. In terms of design,
+I think an animation shouldn't create an
+animator object. An animation should be
+played on a particular shape. So, here
+I'm instructing it to revise how the
+concepts are related to each other,
+right? So, in this case, it's it's a bit
+weird that an animator object is
+created by an animation. I feel like an
+animation should be part of a shape.
+Makes more sense to me conceptually.
+That's exactly where AI models often
+break down, that they don't have a clear
+understanding of the concepts. They're
+just text generators. So, you need to
+often step in and specify exactly how
+the domain fits together. That's what
+I'm doing here.
+So,
+it agrees with me, obviously, because AI
+always agrees with you. Animation should
+not create its own animator. Great.
+Let's see what it comes up with. Now,
+we have animation step. It's still that
+same protocol. We have our various steps
+like moving, rotating. So, nothing has
+changed there. Then we have the
+animation, which no longer creates the
+animator, apparently. So, this is just a
+representation of the animation in
+steps. That's all it is. The animator
+now has a play method that takes an
+animation and a shape and applies that
+animation to the shape. So, it sort of
+did what I asked it to do. So, let's see
+what I write next. Change the code so
+that moving, rotating, and scaling also
+have a duration. I think the fade class
+can then also have its own method.
+Duration should be part of each
+animation step. So, basically, what I'm
+doing here is I've identified that,
+"Hey, it's actually weird that we have a
+fade helper still doing low-level fading
+stuff still in the animator class."
+And
+this probably happens because there is a
+duration that's part of the fade. But
+actually, I realized while I was looking
+at this code that, well, duration is
+something that could be part of any type
+of animation. So, if you want to rotate
+a shape, that should also happen
+&gt;&gt; [clears throat]
+&gt;&gt; for a duration. Or maybe you want to
+move or do other kind of things. So, an
+animation should always have a duration
+step. And that also means that this
+behavior we should be able to move out
+of the animator class where it doesn't
+belong anyway. And then what I'm
+instructing it to do is that, well, the
+animator is responsible for keeping
+track of time and calling the functions
+correctly. So, let's see what it does
+now. Final code.
+Spoiler, it is not final yet. So, now
+it's also started to import
+uppercase list and tuple from typing,
+which I don't want it to do. But it
+doesn't matter. We have our animation
+step, which is a
+duration, floating point. And then we
+have our data classes that are subclass
+of animation step. And by the way, here
+you also see something strange in that
+you typically, if you inherit, which in
+this case we need to do because duration
+is shared, we might want to turn this
+into an ABC. Makes more sense in that
+way. Protocols, in my opinion, are more
+suited for a typing style of type
+relationships. Anyway, we have the
+animation steps.
+Now what it did is that the fade class,
+it now has an apply method that applies
+to shape and color. Also, you may notice
+that in the past we had these two
+methods in animation step. It reverted
+back to an apply method. I'm not 100%
+sure why.
+Anyway,
+now it means that our animator class, it
+no longer has fade helper methods, which
+I think is much better. Play now deals
+with time. It takes a look at each step
+duration and then plays the animation in
+sequence, which is what I want. And then
+we have a main function with some
+example code. So, let's see. Next, I'm
+wondering, "Hey, why does animator have
+both a draw and update method? Aren't
+these mostly the same?" So, if you look
+at animator, you see that these are
+these two methods here. We flatten the
+sequence of points because that's what
+the canvas requires and we do that in
+both cases and these look
+kind of similar to me. So, why are these
+two separate methods? So, that's what
+I'm wondering.
+Great question and yes, you're
+absolutely right. I love when I work
+with AI coding assistant that I feel
+very right all the time. That's great.
+So, it explains why these were there in
+the previous design. Basically, there's
+apparently a difference between creating
+a new polygon and updating an existing
+polygon in TK canvas. I'm not a TK
+expert, so I didn't know this, but
+that's a good thing to learn.
+And instead, what it did is that it now
+created a render method where it checks
+whether this is a first time draw or
+whether we are updating an existing
+polygon. And the nice thing about doing
+this is that now we only have to do one
+time this point flattening. Let's see
+what I write next.
+Did I like this? Yes, please update
+that. Also, make sure you use type
+annotation where possible. Don't use
+uppercase list, dict, etc., but more
+modern lowercase variants. I normally
+have to do this like three or four times
+whenever I'm creating a code example
+with AI, but all right. So, let's see
+what it did.
+Fine. Yeah, we have our lowercase tuple
+list, which is great. And now we have
+the updated animation code right here.
+So, now let's see what I write.
+In the current design, there can only be
+a single shape since there's a single
+item in animator. Let's take a look what
+it did. So, we have the animator class
+and here you can see we render a
+particular shape. And what happens is
+that the way changed it is that animator
+now has an item integer, [clears throat]
+which is an ID in TK canvas.
+And it stores it there and basically
+does one of these things, which means
+that I can now only keep track of a
+single shape. So, that's the point that
+I'm writing about here. That's not
+clean. Actually, it's not even
+not clean, it's just really bad design.
+Also, it's a bit weird that animator
+creates a canvas. Shouldn't that be part
+of some overall graphics engine? So,
+there again, I'm discussing with AI
+about the domain and how things are
+supposedly related. And of course, if
+you look at the design, you see that
+animator still has a lot of
+responsibilities. It's responsible for
+playing an animation. It's also
+responsible for rendering shapes and
+creating a canvas. To me, that's
+something that should be separated. So,
+let's see what happens. You're
+absolutely right again.
+I feel so happy now.
+Okay.
+Let's see what it does.
+So, we have the updated code.
+Now we have still have our animations,
+we have our shape, we have our various
+We have the animation class, which
+represents a sequence of these steps.
+And then we now have a graphics
+renderer. Yay! And this has canvas, this
+has item, so it now supports multiple
+items, which is great. And then it has a
+render method that renders shapes.
+Awesome. And the shape now also has some
+shape ID that is basically an identity
+that maps to the identity in the canvas.
+Okay. And then finally, we have an
+animator class, which now has a play
+method to play one animation
+on a list of shapes.
+That's also not what we want. Okay.
+Let's see what I write.
+The renderer shouldn't know about shape
+objects. It should get an ID, points and
+color.
+That's the first part. Is there a way to
+rewrite
+this piece of code so it's a bit simpler
+or is there another built-in function
+that can help do this? So, the issue
+that I'm pointing out here is not so
+much that we're playing one animation on
+multiple shapes. I think I'm going to
+address that later, but that the
+graphics renderer needs to know about
+shapes. So, this is a question of where
+do you put boundaries on your design,
+right? So, when we're talking about
+shapes and animations, that's to me
+seems like something that is a bit
+higher level.
+Whereas graphics rendering needs to deal
+with lower level things like polygons
+and colors and stuff like that. So,
+that's why I pointed it out. Also, I was
+wondering if this list comprehension
+couldn't be done in an easier way. So,
+let's see what it comes up with. So,
+first, render shouldn't know about shape
+objects. Absolutely correct.
+Of course. Of course, absolutely
+correct. And then can we replace it with
+something else? So, this thing we can
+actually replace by something else. As
+you can see, there is chain from
+iterable from itertools that we can use,
+which is maybe a bit nicer.
+We can
+define a utility function, sure, or we
+can use this, which just makes things a
+lot worse. So, actually in the end,
+what I did I think is to use this
+version instead of the list
+comprehension. For the second part, the
+render interface. We now have the
+graphics renderer. So, now instead of it
+accepting shapes, we get a shape ID, we
+get points and we get a color, which I
+prefer because then the graphics
+renderer now is nicely low level and we
+can write a layer on the top of it. And
+I like that because now this class is
+also pretty simple. So,
+it incorporates all of that. So, now we
+have our new animation system. We have
+the graphics renderer, which gets these
+lower level things. So, the shape data
+and the color, which we want. And then
+we still have our animator class and a
+sample main function. Okay. Let's see
+what I write next. Animator doesn't need
+to be class, it can be a single
+function. Is that true? Let's take a
+look. Yeah, I actually agree. As you can
+see, animator now simply gets a graphics
+renderer and the only thing it is is
+basically this
+play method and that's all it is. So, we
+don't need it to be a data class. We can
+simply turn it into a function instead.
+What else do I write?
+Another thing is that I write, "Don't
+make animation a frozen data class."
+Doesn't make a lot of sense.
+Split the code into separate files.
+Actually, I kind of disagree with myself
+here because the reason that animation
+is a frozen class is that it's
+non-mutable.
+I basically create a new animation every
+time I add
+some kind of a step to it. So, in that
+sense, I actually still prefer it to be
+frozen now that I'm looking at it. But
+here, I was thinking about it
+differently. It doesn't really matter.
+And then finally, split the code into
+separate files. So, let's see what it
+did. So, we have our graphics file,
+which now has the graphics renderer. Now
+also uses dependency injection to inject
+the canvas, which is nice. Then we have
+the animation file,
+which has animation steps and it has the
+shape class and it has an animation
+class and it has a play
+animation function now, which gets a
+renderer without type annotations for
+some reason. It gets an animation, it
+gets shapes and that's it. So, as you
+can see, it still runs one animation on
+all the shapes. And finally, we have a
+main file where we import all of this
+stuff and then use it.
+So, let's see what I write next. Change
+the code so that a shape object can have
+an animation associated with it. Okay,
+so here I realized that what it
+currently does is play one animation on
+all the shapes, which I didn't want. An
+animation should also have a start time
+and it should return a computed end
+time. So, I'm specifying more clearly
+what I expect in terms of the domain.
+And the play function then gets the
+renderer and the list of shapes with
+associated animations and plays them
+until all animations are finished. So,
+as you can see, in this current version,
+it's different because it gets both an
+animation and a list of shapes, which I
+didn't want.
+So, let's see what it does. It's still
+not getting annoyed with me. I like
+that. So, we have an updated
+animation.py file where again, we have
+all the steps, all the various options
+there. We have a shape. The shape now
+has an optional animation object, which
+is nice.
+And then an animation has a start time
+and well, that's basically it. And then
+we have the graphics.py file, which
+I don't think changed all that much. And
+then we have a main.py file where it now
+added a play scene function. So, it
+moved this from the animation file to
+the main file, which yeah, to me doesn't
+make a lot of sense, but at least now it
+gets a render and gets a list of shape,
+which is what I wanted. So, then we have
+the loop where it goes through all these
+things and it updates the things and it
+renders the shape.
+So, let's see what I write next. I made
+some modifications to the code. See
+below. So, here you see an example of
+where I thought it would be easier if I
+just worked myself on the code a bit.
+So, I probably ran this a couple of
+times in VS Code,
+changed a few things, which was easier
+than doing continuous back and forth in
+the chat. And then I asked it to
+add the missing type annotations because
+it didn't add all of those and change it
+so that the duration isn't stored in
+each step but in the animation object
+itself. I thought that would make it
+easier to add different types of
+animation [snorts] and then the steps
+don't really care about the duration.
+So, let's see what it did. So, we have
+our animation step. We have our various
+types and like move rotate, etc.
+And we have an animation which has steps
+and it has durations and it has a start
+time. And then when I add a step, I also
+specify a duration. Finally, I asked it
+to change the main file so the animation
+is only played when I click on the
+screen because I noticed when I started
+the application, it started immediately
+and then I can't easily show it. So,
+then it added this little bit to start
+the animation a bit later. But then I
+noticed something strange, which is that
+the shapes were really flying off the
+screen and that didn't really match what
+I saw in the way that I defined the size
+of the canvas and the actual
+transformations. So, I asked it I
+thought, "Okay, maybe it was somehow out
+of bounds. So, please update the code so
+that the shapes always stay within the
+visible canvas."
+So, it did that
+by doing something really stupid, which
+is by clamping it to the boundary of the
+canvas. I didn't want it to do that. I
+wanted to change the values. So, simply
+modify the animation. So, then it starts
+to get sidetracked. It's going to update
+the pipeline so that it computes how far
+it would move and then adjust it.
+No, no, no, no, no. I pressed stop. I
+said, "No, just update the actual
+hardcoded animations so that the shapes
+stay on the canvas and make the canvas a
+bit bigger as well because it was like
+this tiny screen." So, let's see if it
+actually got that. So, it increased the
+canvas size, which is great and I think
+it also now updated these points and
+transformations as well so that they're
+a bit more moderate. So, I thought,
+"Okay, maybe that solves the problem
+then."
+Unfortunately,
+the shapes still leave the screen and at
+the end there's like a weird color
+change. It looked really weird. So, I
+asked it, "What's going on?" And then it
+came up with this, which is that
+apparently it applies these
+transformations cumulatively and that
+means that instead of doing a
+transformation in steps, it just adds
+the step every time, which is really
+stupid. I also realized that when I
+looked a bit
+more [clears throat] closely at the
+algorithm that it generated. As you can
+see,
+if you create systems like this, you're
+going to have to constantly deal with
+stuff like that.
+Okay, so
+let's see what it now does. So, then I
+tried to fix it but it went off into
+some tangent again. So, in the end what
+I did is I modified the play scene
+function myself so it doesn't
+cumulatively add the animations.
+There is just some issue with where and
+when do we update these shapes because
+the issue is when you apply animations
+to shapes is that what is the ground
+truth, right? Is it the current position
+of the shape or the current value of the
+shape or is it what the animation is
+playing? And then you get a problem if
+the animation finishes, the shape
+reverts to the previous position and
+stuff like that. So, I need to fix that.
+So, then I went into more of an
+algorithmic discussion of, "Okay, what
+do we mutate? Do we store temporarily
+the animated points and color and then
+apply it later or do we go the other way
+around?" So, that's what the next part
+of the interaction is about. And then
+finally, it came up with this version of
+the play scene function, which well, if
+you
+look at it, it's does the animation then
+applies the final state.
+I didn't like that at all because well,
+that's a lot of duplication. So, then I
+thought, "Okay, how about we modify the
+shape positioning code directly so the
+end state is correct but we store
+temporarily the starting point and the
+color and use that for the animation
+baseline." And then it says, "Oh, that's
+the most clean solution ever." Yeah, of
+course it is.
+So, let's see what it did then. So, now
+again,
+play scene is a lot shorter. It stores
+the original state for the animation
+math, which is nice. And then we have
+our while loop that actually plays the
+animation. But I still didn't really
+like this because if you look at the the
+function, this is now pretty long and I
+thought there was a way to do it in a
+cleaner fashion by letting every step
+simply compute a local T. So, instead
+what I did here is go through each of
+these steps and duration using a for
+loop and then I use some time cursor to
+compute the local time in the animation,
+determine what the points and the color
+is and then basically apply it at the
+end. And then we have basically this
+much cleaner logic for each step in the
+automation. So, in the final for loop,
+actually looks like this, which is much
+shorter than we had before. So, then I
+worked a bit more on this play scene
+function. I pasted it in here. Here we
+have this for loop that we talked about
+before and then finally, it comes up
+with this version of the code where we
+have this for loop like I instructed it
+before. So, as you can see, there's like
+a ton of back and forth before I'm
+actually happy with the code. And very
+few of these interactions are about
+adding features or making the code work.
+They're really about structuring and
+organizing and rewriting everything
+because as you saw, an LM can definitely
+write code but it writes much better
+code when you guide it with the right
+design principles. And in my opinion,
+this is also where things are heading in
+the future. I mean, more and more as a
+developer, you're going to be valued by
+how well you can direct AI coding
+assistants, how clearly they can define
+responsibilities, how well they can
+structure systems and decouple things
+and how well are you able to steer them
+towards solutions that are robust,
+maintainable and scalable.
+And in my opinion, the truth is that if
+you understand good design, you're going
+to move 10 times faster than somebody
+who just prompts blindly because if you
+just end up using the very first version
+that AI generates,
+well, then you're going to build on top
+of that. You're going to create like a
+huge mess in the end. The challenge is
+going to be how to direct AI to
+introduce these design things so that
+the code stays nice and clean. And that
+means that even though AI may write a
+bunch of code for you, you still need to
+understand the fundamental principles of
+design. And that's why I'm working on
+something new. It's called the software
+design mastery program. Now, I'm not
+going to reveal too much just yet but I
+can tell you this. It's way more than
+just an online course. It brings
+together everything I've learned from
+over 20 years of teaching at university,
+teaching hundreds of thousands of
+developers here on YouTube, the
+practical experience I've gained from
+running online courses that have helped
+thousands of people grow their career.
+It's by far the most comprehensive thing
+that I've ever created and it's designed
+to help you future-proof your skills,
+learn to think and design like a senior
+engineer.
+It's going to be something special. You
+really don't want to miss this. If you
+want to be the first to know when it
+opens, get on the waiting list now at
+iron.codes/mastery.
+Finally, I wish you a great new year
+where you will build things that you're
+proud of.
+I've got some great videos coming up for
+you in the next few months so make sure
+you stick around.
+Thanks for watching and see you next
+week.

@@ -1,0 +1,188 @@
+Now we know how an artificial neuron
+works.
+We saw that it takes multiple inputs,
+multiplies them with weights, adds a
+bias, and produces a weighted sum.
+That weighted sum is then passed forward
+in the network.
+Now, if you think about it carefully,
+till this point whatever we are doing is
+just simple math.
+We are multiplying numbers, adding them,
+and passing the result.
+So, if we keep adding more neurons and
+more layers, will the network
+automatically become powerful?
+At first, it might feel like yes, more
+layers should mean more learning
+capability.
+But the reality is a little different.
+Even if you add hundreds of layers, if
+every neuron is only doing linear
+operations, the entire network will
+still behave like a simple linear model.
+And that means it will not be able to
+learn complex patterns.
+It will only be able to learn
+straight-line relationships.
+So, we need something that can break
+this linear behavior.
+And that is where activation functions
+come in.
+After calculating the weighted sum,
+instead of directly passing that value
+forward, we pass it through a function.
+That function decides what should be the
+output of that neuron.
+Now, this is not just a random
+transformation.
+This step introduces non-linear behavior
+into the network.
+And that is what allows the network to
+learn complex relationships.
+Now, to understand this better, let us
+look at some commonly used activation
+functions.
+The first one is sigmoid. It takes any
+input value and converts it into a value
+between 0 and 1.
+So, no matter how large or small the
+input is, the output will always be
+within this range.
+Because of this behavior, sigmoid is
+very useful when we want to represent
+probability, like in binary
+classification problems.
+Imagine you are building a model for a
+football game which predicts whether a
+player will score a goal or not.
+Now, before calculating the final
+output, the model considers things like
+distance from goal, angle, and defender
+pressure.
+Suppose the raw output looks like this.
+Shot one has a score of minus four.
+Shot two has a score of zero.
+Shot three has a score of three.
+But this data is a little confusing and
+does not clearly tell us what will
+happen.
+So, we apply the sigmoid function to
+this raw data.
+After applying the sigmoid function, we
+get probabilities like this.
+Sigmoid minus four is approximately
+0.018,
+which means a very low chance.
+Sigmoid zero is 0.5, which means a 50/50
+chance.
+Sigmoid three is approximately 0.95,
+which means a very high chance.
+Now, it becomes useful.
+Shot one has only a 1.8% chance, so we
+can safely say that if the player opts
+for that shot, he will not be able to
+score the goal.
+Shot two has a 50% chance, so we can say
+that the outcome is uncertain and could
+go either way.
+Shot three has a 95% chance, so we can
+say that if the player takes that shot,
+he will almost certainly score the goal.
+But sigmoid also has a limitation.
+When the input becomes very large or
+very small, the output becomes almost
+constant.
+It gets very close to either zero or
+one.
+And when that happens, the gradient
+becomes very small.
+Which means the learning slows down
+significantly.
+If we consider the same goal prediction
+example, suppose the raw scores given by
+the model are extreme like this.
+Shot one has a score of
+Shot three has a score of 10.
+get
+Sigmoid minus 10 is approximately
+0.00004,
+which is almost zero.
+Sigmoid zero is 0.5, which is normal.
+Sigmoid 10 is approximately 0.99995,
+which is almost one.
+That means shot one has only a 0.004%
+chance, so we can say that the player
+will definitely not score the goal.
+Shot three has a 99.995%
+will almost certainly score the goal.
+Now, no matter how much you change the
+input,
+if becomes minus 20 or minus 50, the
+output will still remain close to zero.
+If 10 becomes 20 or 50, the output will
+still remain close to one.
+The model learns using gradients, which
+is another name for slopes.
+But in these extreme regions, the
+sigmoid curve becomes flat and the slope
+becomes almost zero.
+Very small gradient means very tiny
+weight updates, which leads to very slow
+learning.
+Now, let us look at another function,
+which is ReLU.
+ReLU stands for rectified linear unit.
+In this function, if the input is
+positive, it returns the same value.
+If the input is negative, it returns
+zero.
+For positive values, it does not
+compress the output.
+So, the gradient remains strong and
+because of this, learning becomes faster
+and more stable.
+That is the reason ReLU is widely used
+in hidden layers.
+ReLU and sigmoid both return a single
+value.
+Now, what if we need multiple outputs?
+For that, we use a function called
+softmax.
+Softmax is mainly used in multi-class
+Instead of giving a single output, it
+produces multiple outputs.
+Each output represents the probability
+of a class.
+For example, if we are reading a
+handwritten digit, then we will have 10
+outputs.
+Each output will have a probability
+And all these probabilities will add up
+to one.
+So, the model will choose the class with
+the highest probability.
+Now, let us see how this fits into the
+whole process.
+A neuron first calculates the weighted
+sum.
+Then the activation function decides how
+that value should be transformed before
+passing it forward.
+Without activation functions, even a
+deep neural network will behave like a
+simple linear model.
+So, activation functions are what
+actually give power to neural networks.
+Now, till this point, we understand how
+the network produces an output.
+But, we still do not know whether that
+output is correct or not.
+So, in the next part, we will understand
+how we measure the error in prediction
+using loss functions.
+If you find this interesting and useful,
+do not forget to like the video, share
+it with your friends, and subscribe to
+the channel. I will see you in the next
+one. Till then, let us keep learning.

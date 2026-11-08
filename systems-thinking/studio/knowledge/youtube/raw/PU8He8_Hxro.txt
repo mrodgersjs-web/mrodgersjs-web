@@ -1,0 +1,171 @@
+Picture a company that rolled out an
+automated sales assistant to cut
+onboarding time and instead found days
+of delay, duplicate checks, and a flood
+of manual escalations. The model was
+fine. The system leaked value through
+coordination points. This is the agentic
+executive. Today's briefing focuses on
+one practical insight you can use to
+increase clarity, leverage, and
+decision-making power.
+&gt;&gt; Right. That story lands fast. Teams
+expect linear gains from automation and
+instead build systems that demand human
+stitching whenever something odd
+happens. The system reveals the truth.
+Those handoffs are where returns
+evaporate.
+&gt;&gt; Let me be precise.
+Coordination tax is the measurable
+overhead introduced by agentic systems
+when they require fragile interfaces,
+brittle state, or fuzzy decision
+boundaries. It shows up as longer lead
+time, increased rework, and slow
+decision latency. And you can instrument
+those directly.
+&gt;&gt; Hm. And for leaders, the immediate
+question is where am I paying it? There
+are three predictable spots: interfaces,
+state management, and decision
+boundaries. And each has a different
+fix.
+&gt;&gt; Start with interfaces.
+Imagine your agent calls an internal
+endpoint and the field
+customer_status_code
+comes back null in certain edge cases.
+The agent flags it and a human gets
+pulled in to decide what's valid. That
+pull multiplies as you scale.
+&gt;&gt; Wait. You mean we shouldn't be tuning
+prompts every week when those edge cases
+show up?
+&gt;&gt; Not as a first resort. Frequent prompt
+tuning is a smell. Tighten the contract
+first. Explicit field semantics,
+documented edge behavior, and a version
+API so agents don't break on small
+changes.
+&gt;&gt; Good. Next is state management. Agents
+that assume a single, up-to-date context
+suffer when multiple partial contexts
+exist. If your onboarding flow stores
+context across caches instead of a
+single shard like onboarding context V1,
+you'll get conflicting recommendations
+and needless reconciliation.
+&gt;&gt; Exactly. Pick one canonical shard for
+the flow and accept that other teams get
+read-only projections. Writable copies
+are what create the tower of
+reconciliations.
+&gt;&gt; And the third spot, decision boundaries.
+If it's unclear when an agent should act
+versus when a human should intervene,
+escalation becomes default. Meetings
+balloon, throughput slows, and
+automation births bureaucracy. Give me
+an example of an intense signal.
+&gt;&gt; A simple boolean or enum, intent equals
+onboard, verify, escalate. Add a
+confidence score, too. Use a rule like
+escalate only if confidence less than
+60% and no resolution within 4 hours.
+That binary rule prevents constant human
+triage.
+&gt;&gt; Curious. Measurement, then. How do you
+prove the tax shrank and you didn't just
+move it out of sight?
+&gt;&gt; Keep metrics simple and redundant.
+Instrument three signals for a pilot
+flow. Trigger to resolution latency,
+rework rate, percentage of items
+returned for correction. And decision
+reversals, percentage of agent decisions
+later changed by a human.
+Pair numbers with quick qualitative
+sampling.
+&gt;&gt; Also, a guardrail on sample size. If the
+flow sees fewer than 100 events a day,
+extend the pilot to 7 days or aggregate
+multiple flows. Otherwise, noise will
+dominate your signal.
+&gt;&gt; And keep changes minimal and reversible.
+A single narrow contract tweak can be
+rolled in an hour if it increases
+incidents.
+Treat metrics as hypotheses, not
+absolutes.
+&gt;&gt; Here's a 24/72 hour play you can run
+this week.
+Day one, pick one high friction flow,
+onboarding, triage, or reporting, and
+map every handoff.
+Day two, add the three gauges and roll
+one contract change that clarifies an
+ambiguous field or adds an intent flag.
+Day three, run under normal load and
+evaluate. Small change, fast signal.
+&gt;&gt; We tested this at a mid-sized SaaS firm.
+Their onboarding agent routed compliance
+documents and flagged borderline cases.
+We added a one-line rationale, a
+confidence score, and tightened the
+contract so borderline cases were routed
+to a specialist queue.
+Within 48 hours, latency dropped and
+rework fell by nearly 30%.
+&gt;&gt; Real result, not a model upgrade. But a
+caution, don't over-optimize
+micro-coordination.
+If you lock contracts too tightly, you
+can block legitimate emergent cases.
+Always include rollback criteria and an
+incident playbook.
+&gt;&gt; One common stall is arguing over state
+ownership. My recommendation, assign the
+shard to the team closest to the
+customer outcome. Give them the writable
+shard and require minimal read contracts
+for others. Create projections for
+different views rather than writable
+copies.
+&gt;&gt; I'll push back a bit. Closeness to the
+customer doesn't guarantee incentives
+for global hygiene. Pair ownership with
+a small measurable SLA and a monitoring
+strip that catches divergence early.
+Ownership plus accountability, not
+ownership alone.
+&gt;&gt; Fair.
+Ownership, SLAs, and minimal monitoring.
+Practical, not bureaucratic.
+&gt;&gt; Quick recap for implementation. Spot the
+flow, map handoffs, measure latency,
+rework reversals, make one narrow
+reversible contract change, and evaluate
+with both numbers and a few failed case
+reads. Patterns create power. Look for
+repeated handoffs that fail.
+&gt;&gt; One sentence core insight. The
+coordination tax is the primary limiter
+on scaled agentic leverage. Fix
+interfaces, state, and decision
+boundaries with narrow contracts,
+canonical state, and compact escalation
+protocols to reclaim value. Simple
+moves, outsized returns.
+Stay agentic.
+&gt;&gt; Subscribe for daily briefings with tight
+operational steps you can run before
+lunch. Next episode, how to structure
+incentives so agents optimize for
+long-term optionality, not just
+short-term throughput. The system
+reveals the truth.
+&gt;&gt; You've been listening to the agentic
+executive. Apply what you learn today
+and make your next move count. Clarity
+is leverage. Stay agentic.

@@ -1,0 +1,3447 @@
+hi there and welcome to a project video
+where you'll build and deploy a modern
+react 18 fitness exercises app
+with the functionality to choose
+exercise categories and specific muscle
+groups
+browse more than 1 000 exercises with
+practical examples pagination exercise
+details pulling related videos from
+youtube displaying similar exercises and
+much more gold's gym is the best react
+fitness app that you can currently find
+on youtube and on the entire internet
+alongside building this phenomenal
+project that you can put on your
+portfolio in this video you'll also
+learn advanced react best practices such
+as folder and file structure and hooks
+you'll also learn how to create a
+beautiful user interface using material
+ui
+and most importantly you'll learn how to
+fetch data from unlimited sources using
+rapid api
+essentially you'll become the master of
+working with apis so keep watching and
+i'll teach you how you can build this
+amazing application in just one video
+completely for free in the end we'll
+also deploy the app so you can share it
+with your friends put it on your
+portfolio and get a job before we dive
+into the project i have an incredibly
+important announcement for you
+as you might know for the past eight
+months we've been working on something
+big
+and that day finally came
+we've finalized a custom platform where
+you'll be able to learn by building even
+better and more professional projects
+the video you're watching right now on
+youtube is great and it will enhance
+your coding abilities but if you're
+looking for additional help and want to
+create meaningful projects that showcase
+your skills to reputable companies js
+mastery pro is for you by using the link
+in the description a special youtube
+code will automatically be applied for
+you during checkout so since you are a
+real youtube fan you're getting the
+biggest discounts with two project-based
+courses and a master class focus on
+providing you with groundbreaking
+projects to impress your potential
+clients and employers js mastery pro
+will teach you the technologies needed
+to land your dream high-paying job that
+you can enjoy for many years to come
+once again the link is in the
+description and now let's go on to the
+today's video
+before creating a folder for our project
+code we must first visit rapid api the
+link is going to be down in the
+description
+the making of this entire app is
+possible only due to rapid api because
+we're using their exercises db api
+this api is just one of thousands of
+apis available on their api hub you're
+going to learn how to use most of the
+endpoints from this api like how to get
+exercises by id by target muscle and by
+equipment
+and finally we're going to use one more
+api from their platform which is called
+the youtube search and download this api
+is going to allow us to fetch exercise
+videos straight from youtube
+so to be able to use these apis make
+sure to use the rapid api link in the
+description and then you can click sign
+up or log in
+in this case i'm going to log in since i
+already have an account you can log in
+with google github facebook or your
+regular email
+once you're in you'll be redirected to
+rapid apis hub where you can find
+thousands of apis down in the
+description you can also find the
+finished code for this project if you at
+any point get stuck i would recommend
+that you browse the finalized code
+compare it with the code that you have
+and then that way try to debug i'm sure
+you're going to be successful
+with that said let's dive straight into
+the code to get started with the
+development of our great exercises
+application we're going to start from
+scratch as we always do on javascript
+mastery i'm going to create a new folder
+on our desktop and name it gym
+underscore exercises once you've done
+that you can open up an empty visual
+studio code window or any other code
+editor that you prefer
+then you can simply drag and drop the
+folder into visual studio code once
+we've done that we can make use of
+visual studio codes integrated terminal
+by going to view and then terminal we
+can clear it and then we can initialize
+our react application by typing mpx
+create dash react dash app and then dot
+slash
+of course make sure that you have node
+downloaded and installed on your device
+to make sure that this works and we can
+simply press enter
+this process usually takes just about a
+minute so i'm gonna pause this video and
+i'll be right back and once our app has
+been initialized you can notice that we
+have a few new files and folders right
+here the most important folder right
+here is our source folder this is where
+our entire application will be so what i
+always like to do with create react apps
+is delete the source folder and then
+create a new one because there were a
+few files that we don't necessarily need
+so let's simply create a new folder and
+name it src once we have it every react
+application needs to have a few
+necessary files and the first one is
+index.js
+index.js is the file where we connect
+our application to the dom so we can
+import
+react from react
+we can also import react dom from
+react-dom and now that we have that we
+can say const root is equal to react dom
+dot create root
+and then pass in the document dot get
+element by id and then simply say root
+like this
+this is an addition that we're doing
+because we're using the newest version
+of react version 18. now that we have
+our root we can call the
+root.render and inside of there we're
+going to simply pass our self-closing
+app component
+this app hasn't yet been declared so
+let's simply import it by saying import
+app from
+dot slash
+app
+and of course we don't yet have it so
+what we can do is create a new file
+called app.js
+inside of our source folder to create
+our application we can use a great
+snippet called rafce
+this is going to create a react arrow
+function export component like this
+if what we've just done seemed like
+magic to you you most likely don't have
+the right extension installed so go to
+extensions type es7 plus
+and install the es7 plus react redux
+react native snippets once you do that
+you can type rafce and this code is
+going to be automatically populated for
+you
+with that said we now have our index
+which is currently rendering just this
+app right here so we can put it in one
+line
+and we also have our app.js
+great if we were to run this right now
+everything would work but before we do
+that let's make sure that we install all
+of the necessary dependencies that we'll
+use throughout this project to make sure
+that you can watch this video many years
+after it has been released we're going
+to go to package.json
+and down in the description you'll be
+able to find a github gist containing
+the exact versions of dependencies you
+need you can simply find it below and
+then override the current dependencies
+that you have
+this is going to make sure to install
+the exact same versions of dependencies
+as i'm using in this video so you can
+follow along without any interruptions
+to install these dependencies go to view
+and then terminal and then run npm
+install dash dash legacy dash pier dash
+depths
+and simply run that command
+this is going to install again the exact
+same versions of dependencies for you
+this process takes about a minute so i'm
+gonna pause this video and we'll be
+right back there we go our dependencies
+have been installed there are some
+vulnerabilities but that's not our
+concern right now we're here to create
+this great project and make sure that we
+don't run into any errors while doing so
+and as you can notice we no longer have
+those quickly warning lines
+everything is properly installed
+so with that said we can now try running
+our application for the first time by
+running npm start
+this is going to start our application
+on localhost 3000 and there we go
+application started successfully and if
+you go to localhost 3000 you can notice
+that we have our app right here
+so now the setup is properly done and we
+are ready to start implementing the code
+to make sure that we can code this
+application without any interruptions
+throughout the whole duration of the
+course i'm gonna give you access to a
+css file containing some basic styling
+as well as the assets so that we can use
+the images later on so let's start with
+the css you can create a new file called
+app.css and down below in the
+description there's going to be a github
+gist containing some basic styles
+there isn't any logic happening here
+mostly just positioning of specific
+elements on the page but for most of the
+layout we'll be of course using material
+ui this file is mainly some background
+colors and changing the fonts we can now
+import that file inside of our app.js by
+saying import dot slash
+app.css and of course we're gonna also
+need the assets folder so below this
+lecture inside of that same github gist
+you'll be able to find a link to a
+zipped assets folder unzip it and simply
+paste it inside of the source
+in there we'll have some icons as well
+as some images
+there we go
+so this is going to allow us to simply
+use them later on when we need them and
+with that said we are ready to start
+coding out our application we can of
+course start with our app.js
+inside of here we're going to import
+route
+and routes
+and that is coming from react-router-dom
+we're going to use this to route between
+our home page and our exercise details
+page
+and we're going to also import a box
+component which is coming from add mui
+forward slash material
+a box is essentially just a div with
+some shading and colors
+now inside of our app we can wrap our
+entire app with a box
+and we're gonna give the width of 400 to
+that box like this
+now inside of that box we want to render
+our navbar component we haven't yet
+created it so for now we're just going
+to say navbar as a text
+and then we want to show some routes
+below our navbar more specifically there
+will be two routes so the first route is
+going to be a self-closing component
+that's going to have the path of just
+forward slash
+and it's going to have the element which
+is going to be rendered once somebody
+visits the forward slash that's going to
+be the home component like this
+now of course we haven't yet created the
+home component but we will soon
+and then the second route is going to
+look the same as the first one it's
+going to have the path equal to forward
+slash exercise forward slash column id
+that means that this id right here is
+going to be dynamic it doesn't have to
+be just forward slash exercise forward
+slash id it can be 1 2 3 or any other
+number and that's going to be
+dynamically rendered inside of our
+exercise detail component
+so the element therefore is going to be
+exercise detail
+as a self-closing component
+and we're going to also turn this nav
+bar into a self-closing component as
+well so now we have three components
+that we have to import inside of our app
+so let's go ahead and create them inside
+of the components folder
+right click the source
+create a new folder called components
+folder inside of our components we can
+first create a navbar
+dot js
+and we can run rafce which is
+automatically going to generate that
+component and when it comes to the two
+other components these are actually
+going to be pages because they contain
+more components inside of them so let's
+create a new folder inside of the source
+called pages
+there we can create a new file called
+home.js
+we can again run rafce to create a
+structure of that home
+and we can also create a new component
+called exercise
+detail dot js
+and we can again run rafce
+now we can go back to app and we can
+import these three components so we can
+say import
+exercise detail from dot slash pages
+forward slash exercise detail
+we can repeat the process by importing
+home
+from dot slash pages forward slash home
+and finally we can import the navbar
+from dot slash components forward slash
+nav bar
+and we're gonna also need the footer so
+we can do that right now as well
+footer is going to be a component so
+let's go to our components and create a
+new footer.js component
+run rafce
+go back to the app and import the footer
+right below our navbar
+now we have the basic structure of our
+application
+i know that we wrote a lot of code and
+we haven't seen any changes in our
+website but this was necessary because
+now we have different routes we can
+switch between them and we have the
+basic layout completely set up there are
+two more things to finalize the layout
+and that is adding the sx property right
+here which is going to be width
+on extra large devices is going to be
+one 1488 pixels so we're now making sure
+that this website is responsive on
+larger devices
+and also we're going to have the m is
+equal to auto
+which stands for margin auto
+material ui allows us to do that on the
+box component and since we're using the
+routes and the route there's just one
+more thing that we have to do inside of
+the index.js component
+we can go to the index.js
+and import the browser
+router
+which is coming from
+react router dom we have to wrap our app
+right here
+with the browser router so that we can
+actually use those routes
+so we have the browser router there and
+a closing browser router component as
+well
+and once finalized that's going to look
+great our index.js is now finalized our
+app.js has the basic structure
+once we are on the forward slash we
+should be able to see our home component
+so let's close all of our files
+and just open up the home page now if we
+go back to localhost 3000 that we now
+have a navbar the home and the footer
+the reason why we only have these text
+elements is because we only have divs
+inside of these components navbar
+footer and home
+so what do you say let's start with
+implementing our navigation bar and then
+we're going to continue with our entire
+home component
+great job so far and we're just getting
+started
+to start implementing our navbar
+we can put our browser side by side by
+the editor so that we can see the
+changes that we make live
+there we go on the left side we have our
+code editor and on the right side we can
+see the changes we're making
+so let's start with our navbar
+first we can import the link component
+coming from
+react-router-dom
+and we can also import something known
+as a stack coming from add mui forward
+slash material
+if you haven't used material ui before
+it's a great ui kit it allows you to
+create great looking websites incredibly
+quickly and professionally so let's
+learn about what stack is
+a simple google search on material ui
+stack is going to lead us to the stack
+component it says right here the stack
+component manages the layout of
+immediate children along the vertical or
+horizontal axis so essentially if you
+need some kind of a menu or a list of
+items looking like this or like this you
+can use a stack
+material ui is great and whenever i use
+some new components in this video if
+you're not sure what those mean simply
+go to mui documentation and search for
+those components right here as you can
+see we have the box and you can learn
+what props can you pass to a box
+i always encourage all of the developers
+that watch my videos to learn on their
+own the documentation is your best
+friend and that is also what i teach on
+js mastery pro
+just recently we launched our platform
+including two project based courses
+we're gonna have filmpire which is built
+entirely using material ui so if you
+want to improve your knowledge with
+material ui even further then this is
+the course for you if you're interested
+in web3 development then i would suggest
+checking out the build and nfd
+marketplace course with that said let's
+get back to our video now we have the
+link and stack and we need to also
+import our logo so we can say import
+logo from dot slash assets forward slash
+images forward slash logo
+dot png and let's start creating our nav
+bar we're going to render a stack
+component right here and inside of the
+stack we're going to have a link
+component
+inside of that link we're going to have
+a self-closing image tag and it's going
+to have a source equal to logo
+let's save it and let's go back to our
+react app
+and let's just add a two property to our
+link pointing to simply forward slash
+that's going to make our logo visible
+let's make it a bit smaller by giving it
+an alt equal to logo and more
+importantly let's give it styles equal
+to width is 48 pixels like this
+height is also going to be set to 48
+pixels and finally the margin is going
+to be set to 0 and then 20 pixels on
+left and right of course we're zoomed in
+quite a lot so that's why it is blurry
+if you reset you can notice it's looking
+good now below that link we're going to
+have one more stack right here
+so we can say stack
+and inside of that stack we're gonna
+have two links so let's simply add the
+first link
+this is going to be linked to simply
+forward slash and it's going to say home
+below that link we're going to have an
+anchor tag so let's create it right here
+and this anchor tag is going to have an
+href equal to exercises
+we're going to use this to scroll down
+this page later on we can also give it a
+style
+equal to
+text decoration
+is equal to none
+also color is equal to something like
+hash three a one
+one
+i found this color to look really good
+and let's also say exercises
+so now we have home and we also have
+exercises
+let's style our link just a bit so we
+can go to our link and say style
+let's give it a text decoration to none
+as well
+let's also give it a color of hash or
+pound three a one two one two and
+finally let's give it a border bottom of
+3 pixels solid and then we can specify
+the color ff2625
+and it looks like we're just missing a
+comma right here there we go so now this
+looks more like a navigation bar let's
+also style our stack a bit
+we're going to add a few properties
+direction is equal to row there we go
+let's also give it a gap equal to 40
+pixels let's set the font size to be
+equal to 24 pixels
+and let's also set align items to be
+equal to flex end like this
+there we go so now this is already
+looking just a bit better but of course
+we still cannot see the full vision of
+the navigation bar to do that let's
+style our initial wrapper stack
+right here we can also give it a
+direction is equal to row
+we can also give it a justify content
+equal to space dash around
+we can give it the sx which is
+additional styles properties
+of gap on small devices like this
+and this is a really cool thing about
+material ui it allows you to do
+responsiveness right out of the box
+let's set it to 122 pixels and then on
+extra small devices xs let's do 40
+pixels so now the gap is going to change
+based on the width of the device
+we can also do something else besides
+the gap
+and that is changing the margin top so
+empty
+and then we can open a new block again
+and we can say on small devices 32
+pixels and then on extra small devices
+20 pixels should be fine
+so now this is looking more like a
+navigation bar if we expand this a bit
+you can notice it expands nicely and
+also it retracts nicely as well so this
+is looking good for our navigation bar
+so far
+we can also give it a style right here
+of justify content which is going to be
+set to none
+there we go we want to keep everything
+at the start
+and finally let's also give it a bx as
+part as padding x-axis that's going to
+be 20 pixels
+there we go so now we have our
+navigation bar and we can also look at
+the finished site
+there we go on the finished side you can
+see that we have the logo and those two
+links right here because the image is
+being shown on the right side
+with that said we are done with the
+navigation bar and we can proceed with
+the second component which is going to
+be our home
+so let's open up the pages and then
+inside of our home we're going to import
+the use state coming from react because
+in here we'll be dealing with some logic
+and we're going to also import the box
+component coming from add mui forward
+now inside of our home we'll be using
+many other components so first let's
+wrap everything with a box and then
+inside of there we're going to divide it
+into three more components the first one
+is going to be the hero
+banner which is this part right here
+with the text
+then we're going to have the search
+exercises components also a self-closing
+tag which is going to be this search
+and then we're going to have the
+exercises there we go
+so first we have the hero then we have
+the search and then finally the
+exercises themselves
+great
+so of course we have to create those
+three components and let's start as we
+always do in the components folder i'm
+going to create the
+hero
+banner
+and run rafce in there we can repeat the
+process that's going to be search
+and again run rafce and finally we're
+going to repeat the process for the last
+component on our list which is the
+exercises themselves so exercises let's
+make sure to spell that properly
+there we go and dot js and again run
+rafce right here
+now we can import those three components
+to import them we can say import
+exercises from data
+components forward slash
+and we can repeat or duplicate this two
+times the second time is going to be
+search
+and the third time we're gonna say
+banner there we go so now if we go back
+to our app you can notice that we have
+our navigation bar and then we have the
+hero banner search exercises and then
+the exercises themselves so of course
+the next step is to jump into the hero
+banner and start implementing that
+component inside of there we'll be using
+three material ui components the box
+the stack and then the typography and
+these are coming from add mui forward
+we have already used the box and the
+stack typography is simply like a b tag
+you can think of it as a heading or as a
+paragraph just a text element with some
+additional styles
+let's wrap our entire div
+with a box or rather make this component
+a box
+inside of that box we're going to have a
+typography component
+this typography is not going to be a
+self-closing tag rather inside of there
+we're going to say something like
+fitness
+club
+and there we go
+now let's style it a bit let's change
+the color to something like
+hash ff2625
+let's also make the font weight to be
+equal to 600
+and increase the font size to something
+like 26 pixels
+there we go so this is already looking
+much better
+let's position our box a bit away from
+the navbar
+by giving it the sx property and let's
+put this into multiple lines
+margin top
+on large devices
+is going to be set to 212 pixels
+and then on extra small devices it's
+going to be 70 pixels
+then we're going to also add the margin
+left right here
+on small devices that's going to be set
+to 50 pixels so you can see how easily
+we can add only specific styles for
+specific window sizes
+now we can also give it a position
+relative to this box so position is
+equal to relative
+as well as p is equal to 20 pixels which
+stands for padding
+now let's also add the sweat smile and
+repeat and also check out the most
+effective exercises we can do that with
+a few additional typographies so below
+our typography let's add another one
+typography we're going to simply say
+sweat smile we can add a break tag and
+then say and
+repeat
+and we can also duplicate this
+typography one more time
+and in the last one we're going to say
+check out the most effective
+of course we have to style them a bit
+because right now this isn't looking
+that good
+and as you know on javascript mastery we
+always strive to create the best looking
+applications again i have to mention the
+filmpira application
+which was a marvel of a design we have
+some animations we can change categories
+and do everything else you can do in
+essentially a netflix clone application
+so if you haven't already definitely
+make sure to check it out on js mastery
+that pro
+but with that said we can quickly get
+back and add the styles to it to make it
+look better
+so what we can do is add the font weight
+to the second typography
+and that font weight is going to be
+let's make it a number of 700
+so there we go just a bit bolder
+then we can also apply some additional
+styles like the sx property and we can
+change the font size
+so what we can do is say on large
+devices the font size can be 44 pixels
+and then usually on smaller devices or
+on extra small devices it can be 40
+pixels so just a bit smaller there we go
+and we can do a similar thing for the
+check out the most effective exercises
+we can set the font size to be equal to
+22 pixels we can also change the line
+height
+like this of course to be equal to 35
+pixels
+more like it
+now just below we have to have a button
+explore exercises as you can see right
+here
+so what we can do is also import a
+button component from mui
+and right here we can use or call that
+button component
+now the button is going to say
+explore exercises
+and you can see that it doesn't look
+that good but now let's actually go
+visit material dry docks to figure out
+how we can style it i just visited the
+material ui button component and you can
+see that we need the contained version
+so we can simply say variant contained
+and add that to our button that's going
+to make it look like this
+but now we also have to change the color
+so let's browse a bit
+and there we go we have color success
+color error but let's simply try setting
+our own defined color so color and
+that's going to be this one right here
+if we save that
+and go back
+you can see that that doesn't quite work
+and we can open the inspect element go
+to the console
+and figure out where the error is
+it looks like cannot read properties
+undefined reading dark so let me just
+remove this color right here
+and it looks like that was the cause of
+our issue the colors that you can pass
+right here are mostly the ones which
+correspond to specific colors like
+secondary success or error in this case
+we have a red button so the error might
+be a good fit and there we go this is
+actually looking great and to divide
+this from the button we can also add a
+margin bottom of something like 20 to
+the typography above
+oh that's definitely way too much
+something like two might even be enough
+there we go this is already looking so
+much better but we can divide it a bit
+more so let's do something like 3
+instead
+there we go this is looking good
+now this button is going to have an href
+hash exercises so it's going to simply
+scroll down on this page
+and we also need an image which is the
+final missing piece we can say img and
+then that's going to be source is equal
+to and now we have to import that image
+so we can say import
+banner image coming from that slash
+assets forward slash
+banner dot png and we can simply use it
+here hero
+banner image
+we can also give it an alt tag equal to
+and we can give it a class name which we
+defined in the app.css equal to hero
+dash banner dash img
+now if we fix this right here and save
+it
+you should be able to notice this great
+looking image appear right here and this
+is already looking so much more like the
+design
+that is great
+now there's this cool little design
+element saying exercises here so how do
+we implement that well that's going to
+be a typography above our image so let's
+go back let's add a typography
+and that typography is going to say
+exercise
+now of course let's add some styles like
+font weight is going to be 600
+we can also give it a color which is
+going to be equal to
+ff2625
+and we can also give it a few additional
+styles with the sx prop which is going
+to be opacity 0.1 we want to hide it on
+mobile devices so we can say display
+and then make that an object on large
+devices block and then on extra small
+devices
+none
+this shows you that you don't have to
+dive into css to mess with media queries
+you can do things right here inside of
+your jsx
+and we also want to increase the font
+size by quite a lot so let's say font
+size is equal to 200 pixels and let's
+save it
+you can see this huge exercises appear
+right here but it looks like it should
+be a bit more down there is some spacing
+missing from in between our typographies
+so let's see why is it missing
+looks like our typography right here
+containing sweat smile and repeat
+misses the mb which is margin bottom of
+something like 23 pixels and mt which is
+margin top of 30 pixels
+so if we add that that's going to push
+this down just a bit
+and we can also add some more margin
+right here between our button
+so that's gonna be here margin bottom
+something like four there we go so now
+this is really close to the design but
+this button is looking just a bit better
+than ours so what we can do is we can
+add the
+sx property to our button
+right here we can say sx and change the
+background color to be that same color
+of hash ff262
+5 there we go so this is already looking
+much better and we can also give it some
+padding like let's try with 15 pixels
+that's a bit too much so
+10 might do
+there we go so now this is incredibly
+close to the design
+looking great
+start page of our with the start of our
+homepage but we are moving to more
+exciting stuff which is actually
+searching for exercises
+targeting specific muscle groups and
+showing these exercises right here so
+let's get to that right away we can go
+back to our home page and go to the
+search exercises
+in here we can first import a few stuff
+then do this part which is the visual
+part and then finally connect it so that
+it actually works and it searches for
+new exercises
+let's start by first importing the use
+effect
+as well as the use state hooks from
+react
+we're gonna also need
+to import the box
+a button stack
+text field which is essentially an input
+and finally the typography
+and that's coming from add mui forward
+slash material now we have almost
+everything we need to start creating the
+jsx part
+so first of all we're going to wrap
+everything with a stack component
+that stack is going to have a property
+of align items is equal to center and
+also mt for margin top is 37 pixels
+it's also going to have a justify
+content
+equal to center and finally padding or p
+is just equal to 20 pixels
+now if we save that you can notice that
+now we have some padding right here
+and below we can add a typography so
+let's say typography it's not going to
+be self-closing component rather we're
+going to say something like
+awesome exercises you should know
+so i'm going to simply paste that here
+and we're going to add a br or a break
+tag in between so now if we go back you
+can see that right here
+but of course we can style it a bit so
+let's give it a font weight
+of 700.
+let's also give it the sx property equal
+to font size
+on large devices that can be set to 44
+and then on extra small we can bring it
+down a notch to 30 pixels
+also let's say the margin bottom or mb
+is going to be 50 pixels and text the
+line is going to be set to center
+now if you save that this looks more
+like it there we go now below our
+typography we're going to have a box
+element and that box is going to have a
+position
+as well as margin bottom is equal to 72
+inside of that box we're going to have
+our text field
+that text field is a self-closing tag
+but it is going to have quite a few
+properties let's give it first a height
+of 76 pixels
+let's give it a value because every
+input needs to have a value for now
+that's going to be an empty string
+every input also needs to have an
+unchanged property and for now that's
+going to be an empty callback function
+we're going to fill it soon enough
+we can also add a placeholder something
+like search exercises
+and we can also give it a type which is
+going to be equal to text
+now if we save that you can see our
+input right here which is looking great
+but we can also give it some additional
+styles
+so let's add the sx property at the top
+let's space it out in multiple rows and
+let's say input
+we want to style the input part of the
+text field
+and we want to give it a font weight
+like this of 700
+then we also want to set the border
+to be set to none
+and we also want to set the border
+radius
+to be set to something like 4 pixels now
+if we save that you can notice this is
+looking a bit different now outside of
+styling our input so all of this was
+simply to style the input and we can
+kind of position that so you can see it
+more clearly
+we had the font weight inside of the
+input we had the border and then we had
+the border radius
+but now we are outside of the input and
+we want to style and we want to change
+the width
+more specifically on large devices the
+width is going to be
+1170 pixels and on extra small devices
+the width is going to be 350 pixels
+there we go so now it's actually huge
+and what we also want to do is add the
+background color
+to be equal to
+um i think white is going to be fine so
+let's do fff
+of course we are missing a comma right
+and finally we also want to give it a
+border radius
+of something like 40 pixels
+there we go so now if we compare those
+two you can see that this is more like
+it if we increase the width it's looking
+even better and on small devices it's
+looking great as well
+so we can also add a button below this
+text field right away that button is
+going to
+not be a self-closing tag but it will
+have a class name equal to search
+dash btn
+and it's going to say
+you can guess it
+search now if you save that we can see
+search right here
+but we have to apply some other styles
+to it
+so let's again open up that sx property
+there we go and first we want to change
+the bg
+color like this
+and that's going to be hash ff2625
+we also want to change the color of the
+text
+so we can say right here
+color
+is going to be
+hash fff which stands for white
+we want to set the text transform
+we also want to change the width of the
+button
+if we are on the large device we want to
+make it around 175 pixels
+and on extra small 80 is going to be
+more than enough
+if we check it out this is looking good
+we also want to change the font size
+on large devices 20 pixels will be great
+and on smaller ones 14 will be just fine
+finally we want to change the height of
+the button so let's say height is going
+to be
+something like 56 pixels
+we're missing a comma right there
+and also we want to change the position
+which is going to be set to absolute
+we are doing that so that the button
+comes to the right side of our screen
+now we can also decrease the width of
+our text field a bit to something like
+1000 pixels
+and now it's barely fitting so we can do
+something less like 800 should be enough
+so this is looking good already now on
+smaller devices you can see this is
+looking good as well so this is for
+tablets and even smaller devices like
+mobile phones there we go so let's
+expand it a bit so we can see the image
+there we go and now we have our search
+the search is going a bit to the right
+which isn't happening on the live site
+so let's figure out what's happening
+with this empty space right here
+i'm going to go to inspect
+and i'll try to expand this a bit and
+see where is the space coming from
+just by going over this it doesn't seem
+to be obvious
+let's go into this div
+and
+yeah it's not that obvious but this is
+what happens when you're developing
+websites
+it's possible that i miss something so
+let's slowly try to figure it out
+together
+and that's the thing that i like sharing
+most with you the bugs problems and
+errors that happen
+a lot of youtubers simply go past that
+or cut that out from recording today
+we're going to do that together and
+figure out why this text is not
+appearing in the center rather it's
+appearing a bit more to the right so
+let's figure it out
+well since we are using absolute
+positioning
+we simply have to add the right property
+to this button and set it to zero
+that way it's going to appear like it's
+centered so we have our input and we
+have our search right here
+so everything is looking good so far now
+of course we want to figure out the
+logic for searching the exercises
+so before displaying them and displaying
+these categories right here what we can
+do is deal with the logic so this is the
+first time that we're actually diving in
+using the state using the use effect and
+interacting with the rapid api to fetch
+all of the latest and greatest exercises
+that you can use to improve your body
+so to get started with that what we can
+do is handle the search right now our
+button is not doing anything and our
+input is not doing anything as well so
+first of all let's add a new use state
+at the top
+we can say use state use the state
+snippet and call the state search and
+set search at the start is going to be
+set to an empty string
+now inside of our input right here or a
+text field we can change the value to be
+search and also on change we can simply
+say set search is equal to
+e.target.value
+dot to
+lower case because while we're searching
+for something we want to make sure that
+we don't look in changes in terms of
+typing if we search for squad it should
+be the same as squad with a capital s or
+with a lowercase s
+so now we are managing the state of what
+we want to search for
+so let's add an on click on our button
+on click is equal to handle search
+and this is a function that we are going
+to create right now
+so scrolling a bit up we can create that
+new function const handle search
+it's going to be an arrow function and
+it's also going to be asynchronous
+because we have to fetch some data from
+async simply means that this function is
+going to take some time and in most
+cases that means that it's going to pull
+some data from the api if you want to
+learn async await in depth then our
+movie application is great because we're
+fetching a lot of movie data once again
+the link is in the description so first
+we want to check if the search exists so
+if somebody actually typed something in
+if the search does exist
+then we need to fetch the exercises
+data
+and that's going to be equal to a weight
+and then we're going to create a special
+fetch data function
+this function doesn't exist so i'm going
+to comment this line out so that we
+don't get any errors but now is the time
+that we create this special fetch data
+utility function
+so let's get to it
+to keep our code tidy we can create this
+fetch data function in a new file
+so let's create a new folder inside of
+the source folder called utils short for
+utility functions these are the
+functions that we'll be reusing across
+our code base and let's create a new
+file called fetchdata.js
+this is where we're going to make a
+connection with rapid api
+so what we can do is we can say export
+const fetch data which is going to be an
+async function looking like this it's
+going to accept two parameters the first
+one is going to be the url and the
+second one is going to be the options
+now inside of there we can say const
+response is equal to
+a weight and we're going to use the
+built-in fetch api we want to fetch the
+url and provide the additional options
+so that's going to look something like
+this
+now if we use just fetch and not axios
+we also have to extract the data by
+saying cons data is equal to a weight
+response.json
+and then finally we simply want to
+return the data
+now this is an abstraction of a function
+that's going to actually fetch the data
+because you can see we have the url and
+options as parameters but we didn't pass
+real data so we don't have the actual
+url that we need to call
+so how are we going to get to that
+well if we go to rapid api and search
+for exercise db
+you should be able to find this
+rectangle right here by justin a great
+api and you can click right here to
+subscribe to this api it is entirely
+free for up to 500 requests a month
+and you're gonna get access to all of
+these different endpoints that you can
+see right here
+but first of all we have to copy our
+options so let's simply copy this part
+right here under code snippets
+and let's put that at the top by saying
+export const exercise options is equal
+to and then we can just use the object
+from here
+that's gonna be method get in this case
+we won't be needing the url right here
+and then we're gonna need the rapid api
+host as well as the rapid api key now
+you've seen my key and i'm okay with
+that i want to share everything with you
+guys but i would recommend that you hide
+yours from people that wish you harm so
+what we want to do here is we want to
+take that key
+and put it in something known as
+environment variables so let's create a
+new file called dot env the code that
+you put here is going to be private to
+you and you only so let's say react
+underscore app underscore rapid
+underscore api underscore key and that's
+going to be equal to the key that you
+just copied now for this key to be
+populated what we have to do is open up
+our terminal
+stop it from running by pressing ctrl c
+and then y
+and then re-run our application
+that's how our key is going to be
+populated
+now what we can do is instead of simply
+typing out the entire key right here
+we can use process dot env dot react
+underscore api underscore key now nobody
+knows our key but it is being used right
+so we have exercise options we have our
+fetch data and we're exporting that we
+can go back to our search
+and now we can actually use that fetch
+data function
+now we have something weird right here i
+don't think i've imported that so we're
+going to delete that
+but what we do need to import is the
+so we can import it by saying import
+we're gonna need the exercise option
+or options rather as well as the fetch
+data and that is coming from dot slash
+utils forward slash fetch data
+so what do we want to call we want to
+call the fetchdata function and remember
+the first parameter is the actual url so
+we can say https colin forward slash
+exercise db dot p dot rapid api dot com
+and then forward slash
+and then if you're wondering how i got
+that you can see the url right here
+and then we're specifically looking for
+exercises under a body list part so you
+can copy the entire url straight from
+and paste it there
+there we go and then the second thing is
+to pass the exercise options
+these options are going to authorize you
+to make the request because we added our
+own api key right here
+so exercises data
+now what we can do with this data is
+cons or logit so if we do console log
+exercises data we can add that right
+and then go back to our react
+inspect and then open up the console at
+the start there is going to be nothing
+in the console but if we search for
+something and click search we'll be able
+to see 10 different categories
+but we don't need the categories we want
+to search for specific exercises so
+we'll modify our url just a bit we want
+to simply search for exercises
+if we save that and click search one
+more time we get a total of more than 1
+000 exercises
+isn't that crazy
+you can see that they're divided by a
+body part equipment gif name target and
+so on
+now we want to apply some search
+functionality
+and we can do that like this
+i'm going to expand our code just a bit
+and right here we're going to say const
+searched exercises
+and that's going to be equal to exercise
+dot filter
+inside of that filter we need to pass in
+a callback function where we get each
+specific exercise
+and we want to check if exercise dot
+name dot to lower case
+dot includes
+the search term we're looking for
+or maybe the name doesn't include the
+search but what if the body part or the
+target include that maybe somebody
+searches for back and there aren't back
+exercises but back is a muscle group so
+we can copy this
+and paste it a few times
+three more times to be exact we can
+search for exercise.name we can search
+for exercise.target
+exercise.equipment
+and also exercise dot body part
+we just made our exercises data four
+times stronger because we're applying
+all of these things in our search query
+great so what do we do with those search
+exercises well let's add them to the
+state so that we can later on display it
+we can create a new use state field
+that's gonna be exercises and also
+set exercises right here
+at the start that's going to be set to
+an empty array
+once we're done with the search the only
+thing we want to do is first of all
+clear the search so we can say set
+search is equal to an empty string
+and then we want to set the exercises to
+be equal to to the search exercises
+so now we're handling almost everything
+but of course we actually have to make
+use of these exercises and show them
+somewhere
+that's going to be the next part that
+we're going to do
+but before we search for these exercises
+if you look at our code it seems that
+the exercises come after the actual
+categories so let's get these categories
+to show up first we can do that by
+creating a new use effect
+to fetch the categories as soon as our
+page loads so we have a use effect with
+a callback function
+and we want to call it only at the start
+which means that our dependency array is
+going to be empty
+there we want to create a new function
+called const fetch exercises data
+and that's also going to be an async
+function there we want to get the data
+about all body parts so we can say const
+body parts data is equal to
+let's change this to parts not parties
+fetch data
+now we already have the function we can
+copy the starting part right here
+but we're gonna add one additional thing
+to exercises and that's going to be body
+part list
+and we also need to pass the exercises
+options so you can see how easy it is
+now that we already have created the
+fetch data and exercises options
+utilities
+now what do we do once we get that data
+we simply set body parts to be equal to
+first of all all
+and then we also want to spread all the
+body parts that we got so that's going
+to be body parts data
+there we go and of course we want to
+close that right here
+now we're going to need an additional
+state so we can create a use state field
+body parts
+and also set body parts which is at the
+start going to be an empty array
+now when do we want to call this fetch
+exercise data function well immediately
+so we want to call it as soon as the app
+loads
+now that we have the data about our body
+parts we can actually display them in
+this nice list
+that list is going to be a new component
+so right here below our box we can
+create a new additional box
+this box is going to have the sx equal
+to position relative
+also it's going to have a width of 100
+percent
+and it's going to have a padding of 20
+inside of there we want to render a new
+component called horizontal
+scroll bar
+that is going to be a self-closing
+component to which we're going to pass
+the data which is equal to
+not fetch exercises data but rather body
+parts
+that's going to be all that we need for
+now but of course now is the time that
+we actually create that horizontal
+so we can go inside of the components
+and create a new horizontal
+dot js component
+we can run rafce in there to quickly get
+it up and running
+and then back inside of the search
+exercises we can import that component
+import horizontal scroll bar from dot
+slash horizontal scroll bar
+now if we save that and go back to our
+app you can see that we have the
+horizontal scroll bar right here
+but we cannot see these great looking
+cards
+to get to these cards we can of course
+implement them inside of the horizontal
+we already know that our horizontal
+scroll bar accepts the data prop
+so we can immediately loop over that
+right here i'm going to open a dynamic
+block of code and say data dot map
+we're going to get each individual item
+and for each item we want to return a
+box
+that box is of course coming from
+import box
+from add mui forward slash material
+not icons material
+just material
+that box
+if we render it correctly there we go
+is going to look like this and we are
+missing one more parenthesis
+that box needs to have a key since we're
+looping over it so a key is going to be
+equal to either item.id or just the item
+because later on we're going to pass
+different things into this horizontal
+scroll bar so we want to make sure that
+it is working as it's supposed to
+we need to specify the item id which is
+going to be the same as this so we can
+essentially duplicate this our item id
+as we said is item id or item and our
+title is going to be the same item id or
+item
+and margin is going to be set to 0 and
+then 40 pixels
+of course inside of here we want to
+render our body part so what we can do
+is simply render the item now if we save
+this scroll below you can see we have
+all back cardio chest lower arms and all
+of the other categories
+now we have to turn these pieces of text
+into these nice clickable and also
+scrollable great looking cards our body
+part card is going to be a separate
+component so we can create it we're
+going to call it exactly that
+bodypart.js
+and it's going to be a react component
+as well so we can run rafce
+let's go back to our horizontal scroll
+bar and let's import our body part
+and that will be coming from dot slash
+body part
+there we go so now what we can do is we
+can render the body part component
+inside of our horizontal scroll bar
+that's going to be right here instead of
+item we can render the self-closing body
+part
+and we can pass the item to it that way
+we'll be able to render it differently
+we can also pass the body part
+which we're gonna pass through the props
+so body part is equal to body part and
+also the set body part is equal to set
+these are some properties that we're
+going to pass through props
+so what we can do is go back to where
+we're calling the horizontal scroll bar
+which is going to be inside of the
+search and right here we can pass the
+data to it
+as well as the body part
+is equal to body part
+this is going to be the selected body
+part the one on which we clicked
+and also we're gonna need the set body
+once we actually do this set body part
+one thing that you can notice is that we
+only have body parts plural not a
+singular body part or set body part
+that's because those props will be
+coming into our search exercises
+they'll be coming from the home page so
+what we can do is get the set exercises
+as well as body part
+and finally set body part
+all of these will be coming from the
+home you can notice that we have this
+stay declared here but that state is
+actually going to get moved to our home
+let's go back to our pages and then home
+we can paste this state that we had
+about exercises
+but we're gonna also have two other
+states and these are going to be as
+follows
+use state that's going to be body part
+and set body part which is at the start
+going to be set to all
+and that's going to be it we need the
+body part and the exercises
+the reason why we need to have these in
+the home is because changes in these
+states are going to be reflected all
+across our application
+not just in the search exercises they'll
+also be reflected in the exercises
+themselves so what we can do now is we
+can pass
+the set
+to be equal to set exercises we can also
+pass the body part right here body part
+and finally we can pass the set body
+part to be equal to set body part
+now we're passing all three of these
+props to our search exercises component
+and we can repeat that same process for
+the exercises because these are shared
+states so we can simply copy and paste
+this to exercises as well now both
+components share the same state and if
+you're thinking that we could have done
+this using react context you are right
+if you don't feel like passing all of
+these props to many different components
+you can use the react context api in
+this case we just have two components so
+i simply decided that we can still pass
+the states through props whichever way
+you prefer with that said now we're
+finally properly passing the values to
+our horizontal scroll bar and we're not
+only getting the data we're also getting
+the body parts the set body part
+and that's going to be it for now there
+we go this is going to be singular
+now of course it's time that we go into
+the body part component and we can
+implement this great looking card
+our body part is going to have a few
+imports these are going to be import
+stack as well as typography
+and they are coming from add mui and
+then forward slash material
+we can also import the icon
+from dot slash assets forward slash
+icons forward slash gym dot png
+now to create this great looking card
+we're going to first render the stack
+component like this
+and then inside of that stack we're
+going to have an image so we can say img
+source is going to be icon
+alt is going to be dumbbell so we can
+say dumbbell right here
+and in this case we won't even be
+needing the class name we will simply
+need some styles so we can say styles
+is equal to
+width 40 pixels
+as well as the height which is going to
+be set to 40 pixels as well
+so now we have these huge gym icons
+looks like these styles weren't applied
+but we're gonna fix that really soon
+let's add additional styles to our stack
+we can start by saying type of this
+stack is going to be equal to a button
+because we can click on it we're gonna
+align items
+to the center
+we're going to also justify content to
+the center
+we're going to give it a class name
+equal to body part
+dash card
+and save that
+as soon as we do that we have great
+looking hoverable
+cards but they don't yet look like cards
+so what we have to do is add the sx
+property like this and then we can get
+all of the props that we passed into
+this component
+so these are going to be item
+make sure you are inside of the curly
+braces
+set body part and also the body part
+itself
+so what we can do is check if the body
+is triple equal to the item
+in that case we can render some specific
+these are going to be border top
+4 pixels solid and then we can do that
+red color which is ff2625
+we can also do the background to be
+equal to simply white fff
+and now let's see what do we have here
+looks like we need just one curly brace
+here not two
+there we go and looks like we need to
+close this properly as well and we also
+need what happens if the body part is
+not equal to the item let's simply have
+an empty string then
+and we already have this great looking
+card now let's add additional styles
+such as border
+bottom
+left
+radius and let's set that to 20 pixels
+let's set the width to be equal to 270
+pixels let's set the height to be equal
+to something like 280 pixels of course
+don't forget to add commas right here
+and here
+let's set the cursor to be equal to
+pointer
+and let's set the gap to be equal to 47
+now if we save this make sure to add all
+the commas now this is looking just a
+bit better but still not quite these
+icons are too big and only the first one
+seems like a card
+so let's add the styles for the other
+the ones which are not currently
+selected
+in that case we want to set the
+background to be equal to
+fff
+we also want to give them a border
+bottom left radius which is going to be
+20. we can copy the width and the height
+the cursor as well and the gap so
+essentially all of these styles are
+almost exactly the same
+let's paste them right here save that
+and now we have these cards right here
+but only the one that is selected has
+the border at the top
+of course we could have done this in a
+better way
+we could have had straight right here an
+object of all the styles
+and then we can find all of the styles
+that are the same which is everything i
+think besides the border top
+so let's add that and then for that
+thing that is different like the border
+top
+we can check if the body part is equal
+to an item
+if it is then we show this
+else we show an empty string
+and with that we can remove all of this
+code
+and only keep the one that we're using
+let's save it
+and as you can see everything looks the
+same but it is much simpler and much
+easier to read
+let's just simply indent this properly
+so i'm going to select all the lines and
+push it back a bit
+so now we have the cards but they're
+still not being displayed properly they
+are appearing in a line instead of
+appearing in a row to change that we can
+go back to our horizontal scroll bar and
+import a few things
+these are going to be import
+something known as a scroll menu as well
+as visibility context and these are
+coming from a package that we installed
+at the start called react dash
+horizontal dash scrolling dash menu
+now we can wrap our entire application
+with that scroll menu
+so right here instead of the div we're
+gonna have a scroll menu
+of course let's fix this at the bottom
+we can already scroll if you have a
+mouse with a horizontal scroll wheel if
+not we're missing the arrows so how are
+we going to add those arrows
+well you can simply create arrow
+components which are going to be simple
+images with left and right arrows since
+this part is just writing a lot of code
+and nothing really useful is happening
+i'm going to add the code for these
+icons down below so you can simply copy
+and paste it from the github gist that's
+going to look something like this
+we'll have to import the typography as
+well as the use context and then you'll
+have the left arrow and the right arrow
+that you can use
+the way in which you can use them is
+simply pass them to the scroll menu as
+left arrow is equal to left arrow
+there we go and right arrow is equal to
+you guessed it right arrow
+there we go and these arrows are nothing
+more than a typography that has the
+image inside of them so now if we go
+back you can see those two and we can
+actually scroll through different body
+part exercises
+but these are now simply showing an
+image of a gym and we want to be able to
+see which body part are we clicking on
+so let's simply go back to the body part
+and let's finish implementing this
+below our image we're going to have a
+typography and this typography is going
+to simply render the item
+as soon as we do that you should be able
+to see the text but it is being hidden
+or cut down by the image so let's apply
+some styles
+the font size is going to be 24 pixels
+the font weight is going to be set to
+bold
+the color is going to be set to hash 3a
+1 2 one two
+and the text transform
+is going to be set to capitalize
+now if we save that
+you can see that it's still not visible
+because the image is hiding it
+so let's see why our image is not
+behaving as we thought meaning taking 40
+pixels of width and height
+so this is width right here height 40
+this is looking good to me
+but it looks like i am missing something
+so it is possible that yup there we go i
+misspelled the style for styles so if
+you fix this now you can see we have
+lower legs we have neck upper arms and
+all of the different body parts that you
+can train for extra points if you decide
+to work on this application on your own
+find some images of each one of these
+muscle parts and then add them right
+here to make it even better there we go
+so now we have all of the different body
+parts but once we click on them nothing
+happens
+so let's add an on click right here on
+our stack
+so on click we want to have a callback
+function and we want to set the body
+part to the currently selected item
+that's going to select that there we go
+what we also want to do is call the
+window dot scroll to
+and then scroll to top
+in an object
+to around
+1800 pixels
+also to the left of 100 and the behavior
+of the scroll must be smooth
+there we go so now once we click on one
+of these categories we're going to
+scroll down to the exercises so far we
+haven't yet implemented them but once we
+do this is going to scroll to them and
+it's going to send the state of the
+selected category
+back to our
+component that's inside of the home
+and that is the exercises component if
+you remember or if you think about it
+that's the next component that we need
+to implement we have our great looking
+hero section we have our search we have
+our category filters but we are not yet
+showing anything we're not searching
+through exercises nor are we able to
+switch between different exercise
+categories so let's go to exercises and
+let's implement this component next
+to finally start implementing our
+exercises we can first import a few
+things inside of the exercises component
+so let's import the use effect as well
+as the use state hooks from react
+we're gonna also need to import the
+pagination component coming from add mui
+forward slash material forward slash
+pagination
+and we're gonna also need to import
+the box
+stack
+typography which are coming from our
+regular add mui forward slash material
+now we also already have the utility
+functions so we can import the exercise
+options
+as well as fetch data
+that is the function we have already
+created in
+dot slash utils forward slash fetch data
+that's going to be it for the imports
+for now and we also are getting some
+things through props don't forget
+exercises body parts and set body part
+so we can put curly braces here and get
+the exercises
+set exercises and body part let's see if
+those are the things that we're passing
+through in case i made a mistake so
+going back to the home
+set exercises body part and said body
+no i don't think that's right i think we
+were supposed to pass the exercises and
+set exercises so instead of the set body
+part we need to pass the exercises right
+there we go so exercises set exercises
+and then the body part
+now we can import those mentioned props
+and we are ready to start implementing
+the jsx for our exercises
+let's go ahead and start with the jsx
+part as we always do
+we can render a box element right here
+that box is going to have an id equal to
+exercises so we can scroll to it
+we're going to also give it some styles
+like sx is equal to
+that's going to happen on large devices
+where we're going to set it to 110
+usually the margin top is going to be
+set to 50 pixels
+and the padding is going to be set to 20
+now if we check it out we only have some
+padding right here
+but let's add our first typography
+so right here we can say typography
+and we're going to say showing
+results
+as you can see right here
+now let's make that just a bit bigger by
+providing the variant equal to h4 there
+we go showing results that's already
+looking so much better and to increase
+the size just a bit we can maybe even
+make that an h3 there we go
+let's also give it a margin bottom equal
+to 46 pixels
+there we go now we can show the results
+or the exercises right here
+let's create a stack component that's
+going to have a direction
+row
+let's also give it an sx property where
+we're going to set the gap on large
+devices to be equal to 110 pixels
+and on extra small devices to be equal
+to 50 pixels we're going to also give it
+a flex
+wrap property
+equal to wrap
+and a justify content property equal to
+center
+now inside of there we can map over all
+of our exercises
+so let's simply open a new dynamic block
+of code and say exercises
+dot map
+we get each individual exercise as well
+as the index of that exercise
+and for now let's simply return the
+dot name
+of course let's wrap that in a paragraph
+so we can actually display it
+like this and also we have to make this
+dynamic there we go and if we can spell
+that properly
+and actually close it as we should looks
+like we're missing just one parentheses
+now we cannot see anything
+so what we can do right now is also
+kansa log the exercises to see what
+we're working with so right here console
+log exercises
+let's save that
+let's open up the console and reload the
+we can see that right now they are an
+empty array
+and if we click through these categories
+still an empty array if we search for
+deadlift
+now we get 19 results
+so our search part is definitely working
+and you can see the deadlift definitely
+works out the upper legs
+but instead of showing just these names
+of exercises we actually want to show
+gifts and show this great exercise card
+to show how people can do those
+so to implement that we're going to
+create a new component
+and that component is going to be called
+exercise card
+so inside of the components
+exercise card dot js
+we can run rafce
+we can go back and import it right here
+import exercise card
+dot slash exercise card
+and instead of rendering the p tag we
+can render the self-closing
+but of course we're going to pass a key
+the key is going to be equal to index
+and the exercise we need to pass as well
+so the exercise is going to be equal to
+there we go now we can go inside of the
+exercise card and we can implement this
+great look right here so to start with
+that we're going to import a link
+component because each one of our cards
+is actually going to be a link to the
+details page of that exercise react
+router dom
+and we're going to also import the
+and a typography coming from
+add mui
+as i've said each one of our cards is
+actually going to be a link so our link
+is going to wrap everything
+and it's going to point to
+a dynamic url of forward slash exercise
+exercise dot id
+and we can also give this a class name
+equal to exercise dash card
+now you can notice that this exercise id
+is not defined and that's because we
+have to get the individual exercise
+right here from props
+of course we have to have something in
+there and for starters we can show that
+gif
+so we can say image with a source is
+equal to exercise dot gif
+url
+and we can also provide the alt tag
+exercise dot name and also set the
+loading to be equal to lazy which means
+that it isn't going to load immediately
+and slow down the website load now let's
+save this and
+immediately we get these great looking
+gifs how to do the deadlift exercise
+it looks like we can do it with cables
+we can do it with the whole bar like
+this or with a machine
+so this is looking great already let's
+style those cards just a bit
+we're going to add a stack right here
+and that stack is going to have a
+direction equal to row
+inside of there we want to show two
+buttons which won't really be buttons in
+a sense that they won't be clickable
+but they're going to look like this
+and we're going to explain waste and abs
+so what is working out during that
+the first button is going to have the sx
+property right here
+equal to margin left is 21 pixels
+it's also going to have a color equal to
+it's going to have a background equal to
+hash
+ffa9
+a9 and it's going to have a font size
+equal to 14 pixels
+as well as a border radius equal to 20
+and finally the text transform equal to
+capitalize inside of there we're going
+to render the exercise
+dot body part
+now if we save this
+you can notice that the deadlift
+exercise is working out the upper legs
+now we can duplicate this button
+entirely
+we're going to change the color a bit to
+something like right here
+fcc757
+and that's going to show the target
+muscle so if you save this you can see
+that this is working out glutes
+this is working out the spine as well so
+everything is looking good let's
+continue styling it by adding the
+exercise name below the stack
+we can create a typography right here
+that typography is going to render the
+exercise dot name
+there we go but let's style it a bit
+let's give it a margin left equal to 21
+pixels as well as the color is going to
+be 0 0 0 which is black
+we can also give it font weight equal to
+and let's give it some additional styles
+like margin top is 11 pixels
+padding bottom is something like 10
+pixels and the text transform
+is set to capitalize
+now if we save this there we go you can
+see the exercise name
+let's just increase the font size just a
+bit by giving it a font
+size
+equal to something like 24 pixels
+there we go maybe 22 is going to be
+enough
+this is looking great to me
+now if we search for something like
+cable which is a piece of equipment and
+click search we can see all exercises
+that use cables
+so this already became a great tool
+for all of your workouts and all of this
+is powered with an api that we found on
+the rapid api platforms which has
+hundreds of thousands of phenomenal apis
+that you can choose from
+with that said our exercise card is now
+done and we can continue working on the
+exercises component
+the next thing we have to implement is
+the pagination because right now this is
+just a huge list of exercises and it's
+quite hard to go through it
+thankfully using material ui we'll be
+able to implement the pagination in a
+simple way
+we can do that right here by adding a
+new stack below the existing stack
+that stack is going to have a margin top
+so let's say margin top of around 100
+let's also say align items is equal to
+now what we can do is check if exercises
+dot length is greater than nine
+in that case we want to show the
+pagination component
+so let's render a self-closing
+and let's pass a few props to it
+let's simply say something like
+color is going to be standard
+and now i'm just wondering can we even
+see that maybe if we scroll to the
+there we go we can see the pagination
+let's also collapse this just a bit
+and let's give it a shape
+which is going to be set to rounded
+if you want to know all the properties
+that you can pass to these components
+again just make sure to go to material
+search for pagination
+and there you go
+now going back to our exercises let's go
+back to the home page
+search for something like back
+go all the way down right now since we
+don't have the pagination
+there's a lot
+and we can also set the default page
+to be equal to one but i think it's one
+by default anyway
+we want to set the count of pages to be
+math.seal to get the higher number
+of
+exercises.length divided by 9 because we
+have 9 exercises per page that's going
+to end up being 25 pages
+then what we can do is we need to
+specify a page we're currently on this
+is going to be a state
+of current page that we haven't yet
+created
+we can also specify the on change which
+is going to be a function which we're
+going to call paginate
+and the size is going to be set to large
+of course now we have to create the
+current page state and the paginate
+function
+to do that we can scroll up create a new
+use state
+that's going to say current page and set
+current page
+and that's going to be set to 1 by
+default
+we're going to also have a variable cost
+per page which is going to be set to 9.
+we can now use this variable right here
+instead of this statically typed 9.
+of course we are yet to create the
+paginate component
+so we can say const paginate
+and this component is going to accept
+the event
+as well as the value
+we can see that right here
+because this pagination component
+immediately passes the event
+but it also passes the value
+of the current page that we click on
+this is done behind the scenes by
+material ui
+so what can we do with the event and the
+value
+well we can set the current page
+to be equal to the value and we also
+want to scroll to the top of the page so
+we can use the window
+dot scroll to
+and then we're going to scroll to
+1800 pixels and behavior is going to be
+set to smooth
+so this is going to scroll to the top of
+now if we go forward
+there we go but it looks like we're now
+showing all of the exercises which is
+not something that we want to do we want
+to calculate only the first nine then
+the next nine and so on so let's create
+a few variables
+const
+index of
+last exercise
+that's going to be equal to current page
+times
+exercises per page let's fix that
+times exercises per page
+we also need to get the index of the
+first exercise that's going to be const
+first
+exercise is equal to
+index of last exercise minus exercises
+per page so this is the first exercise
+on that new page
+and we also need to get the current
+exercises by saying const current
+exercises dot slice
+and then we pass in the index of the
+first exercise and the index of last
+now instead of simply going through all
+of the exercises we can simply pass the
+current exercises right here
+if we save that you can now see that
+there are only nine let's expand this a
+bit
+and if we go forward
+it scrolls up and we go to the next nine
+so this indeed is working and it's
+working great our pagination component
+is fully done and with that our search
+is done as well because we can search
+for different exercises
+this is perfect
+of course we are yet to make our
+categories work because now if we click
+it does scroll to that section but i
+don't think it populates the exercises
+so that's going to be on our agenda next
+so let's go ahead and fix our categories
+to do that we'll have to go into our
+horizontal scroll bar and then into our
+right here we are on click setting the
+body part to be equal to item
+so let's see where this set body part is
+it is being sent right here through the
+horizontal scroll bar set body part
+and we're calling that inside of the
+set body part there we go again being
+passed right in
+so let's check the home component as
+well we're passing in the set body part
+so that definitely seems to be all right
+let's go ahead and kansa log the body
+part right here to see if it is actually
+changing once we click on it there we go
+i'm gonna choose lower arms
+yep changed right there
+lower legs yep it is properly changing
+but the exercises are not reflecting
+that so most likely we have to go to
+where we're calling these set exercises
+that's gonna be either here
+set exercises and it looks like we are
+calling it right there searched
+but the question is are we calling it
+anywhere else
+not in this file but maybe right here
+set
+exercises as you can see it is unused
+right here so what we need to do is add
+a new use effect right below this
+paginate
+use effect
+that's going to be a callback function
+and we want to have something in the
+dependency array we want to recall this
+any time that the body part changes
+what we want to do is we want to call
+the new function called
+fetch exercises data that's going to be
+an async function right here
+and first we want to say let exercises
+data is equal to an empty array
+then we want to check if
+is triple equal to all which it is at
+the start
+then we want to make sure the exercises
+data is equal to
+a weight
+and now we want to fetch all the
+exercises and i think we already have
+that somewhere
+it could be inside of
+the search exercises there we go so in
+here we have a call for all the
+exercises so let's copy this await
+inside of the handle search and we can
+paste it right here
+await fetch data exercises forward slash
+exercises and we pass in the exercise
+now if the body part is not all
+in that case we want to fetch something
+similar so we're going to set the
+fetch but now we're going to do
+exercises forward slash
+dollar sign and then curly braces and
+then pass in the body part right here of
+course we need to switch this into a
+template string
+there we go and finally we need to set
+exercises to be equal to exercises data
+so now the changes in our click right
+here should be reflected let's check it
+out
+let's go for something like shoulders
+okay this still seems to be legs let's
+try
+with something like
+back
+nope that didn't do it
+interesting and that's because we never
+called the fetch exercises data function
+so let's simply call it right here
+inside of the use effect whenever the
+body part changes
+let's now
+properly call for example the cardio
+and you can see we can do some jumping
+jacks or something like that
+for back we can do some pull downs
+four chests we can do some push-ups so
+this is now working perfectly as well as
+our search so if we search for a squat
+we can see all different ways in which
+we can do a squat apparently there are
+nine pages of nine exercises in which we
+can do a squat so that is quite
+interesting and with that said our home
+page is now finalized we have our
+results we have the fully functioning
+search and fully functioning categories
+so
+finally now the goal is that once we
+click on a specific exercise we show the
+exercise details page this enlarged view
+with the title
+some text explaining the target muscles
+and then we're going to even pull some
+youtube videos to teach people how to do
+that specific exercise
+finally we're gonna show some similar
+target muscle exercises and exercises
+with similar equipment the best thing
+about this is that you can notice that
+we are reusing all of the components
+we'll be reusing our exercises card as
+well as this entire row right here we're
+gonna reuse the horizontal scroll we're
+gonna reuse everything and that is the
+beauty of react and exactly that is what
+i teach in all of my videos and
+especially the js mastery that pro
+courses so i'm quite excited to get
+started with the exercise details page
+to focus on that we can close all of the
+currently open files
+collapse everything go to source
+go to pages and then exercise details
+this is where we'll be spending our time
+from now until the end of the video
+it's been great having you so far just
+keep learning and let's go ahead and
+implement the exercise details page to
+start with our exercise details page we
+can import a few things and that's going
+to be the use effect as well as the use
+state hook
+we're going to also import something
+known as use params which is coming from
+react dash router dash dom
+we're going to use this to determine the
+id of the exercise we're currently on so
+we can fetch additional data about that
+exercise then we can import the box so
+from
+add mui forward slash material
+we can also import some utility
+functions so we can import exercise
+and that's gonna be coming from you
+already know it
+let's check it out
+dot slash utils
+forward slash fetch data that's going to
+be it for now so let's start creating
+our jsx
+we're going to wrap everything with a
+three different new components the first
+component is going to be the detail
+then we're going to have the exercise
+videos component
+like this again a self-closing component
+and finally similar exercises component
+these are three components that we
+haven't yet created and they're going to
+look like this
+the videos right here and then we have
+similar exercises both for equipment and
+for target muscles
+so what we can do is as we always do
+create those three new components the
+first one being called details or rather
+just detail.js
+and then run rafce inside of it we can
+also get the exercise videos
+and again run
+rafce and finally we're going to get the
+similar
+dot js and run rafce inside of it now we
+can go back to our exercise details page
+and we can import those components right
+here by saying import detail
+from that's going to be
+dot slash components
+forward slash detail
+we can duplicate this two more times
+the second time we're going to import
+the exercise videos and then for the
+last time we're going to import these
+so now if we click on a specific
+exercise let's go with setups we can see
+that these components are right here but
+of course we have to implement the jsx
+for them
+so let's start with our exercise detail
+the key thing is going to be to send the
+exercise detail data right here to our
+detail component so let's go ahead and
+fetch it right away inside of our
+exercise detail component we can do that
+by creating a few states so right here
+let's say use state
+the first state is going to be
+exercise detail and set exercise detail
+which is going to be set to an object or
+an empty object at the start we also
+need to get the id of the exercise and
+we can do that by saying const in curly
+braces id
+use params this is going to give us
+access to that number that we're on
+right here in the url
+great so now that we have this state we
+actually have to populate it we can pass
+it right here but of course it's going
+to be empty
+so let's create a use effect so that we
+can populate it
+that use effect is going to have a
+callback function inside of it
+and it's going to have a dependency
+array that's going to have the id inside
+of it meaning we're going to recall this
+function whenever the id changes
+inside of there we can create a new
+function const fetch
+exercises data like this
+and that's going to be an async function
+there we go before we actually write the
+logic for it we can immediately call it
+right here fetch exercises data
+inside of here we're going to have a lot
+of different api calls so let's first
+set up the urls of the apis that we're
+going to call
+exercise db url
+that's going to be equal to
+we can go back to rapid api
+and right here we can copy this url
+so that's going to be a string of https
+column forward slash forward slash
+exercise db.p.rapidapi.com
+and don't put the forward slash
+afterwards
+we're going to have one more api that
+we're gonna use for our videos that you
+can see right here and for that we're
+gonna use the youtube search and
+download api you can again click
+subscribe right here it is completely
+free and then we can copy the url from
+here so let's take it up to this point
+and let's say const
+youtube search
+and that's going to be a string of this
+right here now that we have those urls
+we can actually make the api calls i'm
+going to expand this just a bit so we
+can better see it
+and let's start making a few calls first
+we need to get the exercise detail data
+remember that fetch data function it
+accepts two different things it accepts
+the url so in this case we can call our
+but we'll have to append something to it
+we'll have to go inside of exercises and
+then forward slash and then we need to
+pass the id of the exercise that we want
+to fetch like this
+and the second parameter is the exercise
+options which contains that key to allow
+us to make that request
+now once we fetch this data we want to
+set it to the state so set
+exercise detail i think that's going to
+be it and we can populate that with
+exercise detail data
+there we go and if you think about it
+that's all that we need to do for now
+we're going to focus for the youtube
+videos later on for now we simply want
+to get
+the
+this data right here
+so we are calling it we are setting it
+to the state and we are passing it to
+the detail component now we can navigate
+to detail component and implement the
+jsx for it inside of here we can import
+the typography
+we can also import the stack and the
+and these are coming from add mui
+forward slash material we're going to
+also import three different images
+body
+part image
+from dot dot slash
+icons forward slash body part dot png
+we can duplicate that three more times
+the second one is going to be target
+image and we can simply get the target
+dot png
+and the third one is going to be
+equipment like this
+image
+and we can simply
+call that equipment or rather fetch the
+equipment image
+there we go we don't necessarily have to
+say image right here so this is also
+fine if you know what you're talking
+about but just to differentiate these
+from components we can use the image
+keyword later on
+now we know that we are getting the
+detail as a prop because we are passing
+it right here to the detail component
+and that exercise detail is going to
+contain additional values so we can
+immediately destructure them at the top
+by saying const and then in curly braces
+in here we're simply doing object
+destructuring
+now before we've noticed what does this
+exercise detail contains it contains a
+it also contains a gif url
+or gif however you want to call it it
+contains a name
+a target and the equipment there we go
+so now we don't have to say exercise
+detail dot body part exercise detail dot
+get url we can simply reference these
+variables by their name
+now let's start creating the jsx we're
+going to have one stack that wraps
+everything
+that stack is going to have a gap equal
+to 60 pixels we're gonna also have some
+additional sx properties such as flex
+direction
+on large devices set to row
+and then usually it's going to be set to
+column by default
+we're going to also have padding of 20
+and we're gonna also have the align
+items set to center
+inside of there we want to render our
+image by saying img
+we're going to provide the source equal
+to gif url
+and we're going to also give it an alt
+which is going to be the exercise name
+or simply name
+we can set the loading to be set to lazy
+and we can also give it a class name
+equal to detail dash image
+there we go so now if we save this
+and go back let's go to our app in
+development
+and we can see something so we see just
+an empty screen right here but we cannot
+really see the gif
+let's check if we properly imported that
+i guess what we can do is kansa log the
+gif url
+to check if we're properly fetching it
+let's open up the inspect element
+console
+and it looks like it is undefined so
+let's check if we can go back
+and then if we can click on a specific
+yep it is still undefined so we most
+likely have an error somewhere we're
+passing in the exercise detail in here
+we're also calling it the exercise
+detail
+and right here we are setting the
+so all of that seems to be good to me
+let's see if we are getting any data
+from our api so right here i'm going to
+kansa log
+the exercise detail data
+and if you put it in curly braces it's
+going to let you know exactly what your
+cons are logging
+so if we go here go to an exercise
+it looks like our use effect is not
+getting cold
+for some reason
+yep we're not getting the line 20 of the
+exercise detail page
+it is possible that we have some errors
+so let's go to errors
+and it looks like
+we have
+a not found 404 so maybe we misspelled
+something
+and there we go exercises db no this is
+looking good exercise is right here
+that's looking good as well
+oh but it's going to be exercise yeah so
+exercise db and then we have exercises
+yep that seems all right where is this
+coming from exercise db
+we get a 404
+interesting let's see
+yeah a 404 let's try to do some other
+and the same thing happens 404
+not found
+it looks like i've made a mistake right
+here the api if we properly look into it
+let's get the exercise by id
+you're gonna notice that it is exercises
+forward slash exercise and then forward
+slash id so we're missing the forward
+slash exercise right here this is not
+following the best rest api rules so if
+you're creating your own apis it is
+enough to have just the plural of the
+name and then the number or the id you
+don't have to do what this guy or girl
+did
+so simply say exercises and then one
+that is already clear enough anyways we
+are back on the road and now we have our
+exercise image right here and we can
+proceed with the development
+this is looking great
+let's go back to our detail component
+and right here we have the image
+but we're going to also have a few other
+things below the image more specifically
+we're going to have another stack right
+that stack is going to have the sx
+property with a gap on large devices
+that gap is going to be set to 35 pixels
+and usually or rather on extra small
+devices we can set that to 20 pixels
+inside of that stack we're going to have
+a typography
+and that typography is going to render
+the name of the exercise
+now before styling it further let's
+render all different typographies that
+we're going to have so below this one
+we're going to have another one
+typography
+and in here we can say exercises
+or rather let's copy what we have from
+here so this is on gold's gym.netify.app
+or you can type it out by hand i'm going
+to copy what we have here and you can
+notice that we have some kind of basic
+demo text
+exercises keep you strong and then in
+here what we want to do is we want to
+render the exercise name
+this is going to be the name right here
+so what we can do is spread this out in
+multiple rows
+and instead of 3 4 situp what we can do
+is render the exercise name
+so if we now
+remove this
+and save it
+you can notice we have 45 side bend
+which is the name and then exercises
+keep you strong 45 degrees side bend is
+one of the best exercises this is
+looking good to me
+but we can just add an empty space right
+here so after the name
+and we can do that i guess with
+a space like so there we go
+now we can keep it going is one of the
+best exercises
+to target your and then in here you can
+use the target there we go so we know
+that it is for abs
+it will help you improve your and then
+in here we can say mood and gain energy
+this is going to be some basic text
+i think this is already looking good
+it's going to look even better once we
+style it maybe we can do that right now
+by simply giving a variant
+equal to something like h4
+for the title
+or in here it's even bigger so we can
+use the h3
+there we go and we can use something
+like variant
+maybe h5 will do
+this is maybe too big so maybe h6 will
+do
+yep this is looking better already there
+we go you can maybe bold the name and
+the target but this is fine as well
+now we want to show these three little
+cards or let's say target muscle groups
+and the equipment that you need so what
+we can do is we can create a new
+kind of array that we can loop over so
+let's say const extra detail is going to
+be equal to an array where we have the
+first object
+we can give it an icon equal to body
+part image and a name which is going to
+be body part coming straight from an api
+we can then duplicate this two times for
+the second time the icon is going to be
+the target image
+and right here we're going to have the
+target and for the third time the icon
+is going to be the equipment image and
+right here we can say equipment
+now we can loop over the extra detail
+right here by opening a dynamic block of
+code and saying extra detail
+dot map we are going to get the item and
+we can instantly return something so put
+parentheses right here
+we can return a stack
+that stack has to have a key because
+we're looping over it so that's going to
+be the item.name
+direction is going to be set to row
+gap is going to be set to 24 pixels and
+align items is going to be set to center
+inside of there we want to render a
+so right here
+a button and that button is going to
+contain our image
+the source of the image is going to be
+item dot icon
+if we go back you can see that we have
+three of these images right here
+below our button we're gonna have a
+and this typography is going to simply
+render the item dot name we can also
+give it a variant of h6
+or maybe even higher something like h5
+should do there we go let's style it
+just a bit so we can give this button a
+few props
+sx
+that's going to be background
+we can do something like hash fff
+to db
+we can give it a border
+of 50
+to make it into a circle
+and we can set the width to be equal to
+100 pixels
+as well as the height to be equal to
+you can notice this is already looking
+better
+for the image we can give it an alt
+and we can also give it a style
+which is going to be width of 50 pixels
+as well as the height equal to 50 pixels
+there we go perfect
+and finally for the typography we can
+give it a text transform
+capitalize
+so now it's going to be capitalized and
+it's going to look just a bit better
+believe it or not that's going to be it
+for our exercise detail but now of
+course we have the exercise videos for
+which we're going to use the second api
+from the rapid api platform
+and then we're going to do these similar
+so let's start with our exercise videos
+for that we have to go back to our
+exercise detail and actually make sure
+to fetch the data from the second api on
+our list
+so how we can do that is we can first go
+to our utility file
+fetchdata.js
+and we need to copy the options for our
+second api
+youtube search and download
+right here you can subscribe and then
+you can copy this entire options object
+we can paste it right here
+we won't need the params so we can
+remove that
+we also won't need the url the only
+thing we need is a method
+and the headers
+but we're going to change the key to the
+process environment so that only we know
+it and nobody else
+there we go and we're going to rename
+this to youtube
+and of course we can export it so export
+cons to youtube options
+now we can go back to exercise detail
+and we can make the second api call
+by saying const exercise
+videos
+we call the same function fetch data
+again we need to call the youtube
+and then we're going to do the forward
+we need to provide the query equal and
+then we need to search for exercise
+detail dot name like this exercise
+detail data dot name this is going to
+give us the videos only about a specific
+exercise that we're currently looking
+the data for and we want to pass the
+youtube options as the second parameter
+so we can actually make that call
+the youtube options are now also being
+exported from our utils fetch data
+perfect now that we have the data for it
+let's add it to the state
+by using the use state snippet
+and let's say exercise
+at the start set to an empty array
+right below we can say set exercise
+videos to be equal to exercise
+and now we can send that data over to
+our exercise videos component
+so exercise videos
+is equal to exercise videos
+and we can also send the name of our
+that's going to be exercise detail dot
+name
+so going to the exercise videos
+component we can start implementing it
+right away
+we already know that we are getting two
+different props which are the actual
+exercise videos
+and finally the name of the exercise
+we can import a few things we're already
+used to those so that's going to be
+let's do box stack and a typography
+that's coming from add mui forward slash
+material
+inside of here we can first return a box
+and that box is going to have a few
+styles so we can say sx
+on large devices is going to be 200
+and then on extra small devices it can
+be something like 20 pixels
+we can also give it a padding so p
+is equal to 20 pixels
+inside of that box we need to add a
+typography that's going to say something
+watch name of the exercise exercise
+so let's create a typography let's give
+it a variant of something like h4
+let's also give it a margin bottom of 33
+and let's paste that
+of course we're going to replace the
+name of the exercise with the actual
+name coming from the props so if we save
+that
+and go back let's check it out
+there we go this is looking good maybe
+we can even use h3 for this we can make
+this of a different color by creating a
+span element right here
+that span is going to wrap our dynamic
+name property
+and we can give it a
+style which is going to be equal to
+let's do something like ff2625
+which is our basic color
+and we can also use the text transform
+right here and we can also use text
+transform equal to capitalize
+now if we save that this is already
+looking more like it below our
+topography we want to loop over the
+so what we can do is create a stack
+element
+that stack is going to have a few
+properties such as
+justify content is going to be set to
+flex start
+flex wrap is going to be set to wrap
+and then align items is going to be set
+to center
+we're going to also provide some
+additional styles with the sx prop
+so we can say flex direction is going to
+be set usually to column
+but on large devices it's going to be
+set to row
+we can also give it a gap
+that gap is going to be equal to 110
+pixels and usually on xs it's going to
+be set to zero
+now inside of here we'll have to loop
+over the exercise videos so let's open a
+dynamic block of code and say exercise
+and then a question mark dot we're using
+the question mark to make sure that this
+actually exists and then we can say dot
+slice because we first want to decide on
+how many do we actually want to take
+if we do 0 to 3 that's going to be 3
+you can of course choose a larger number
+and then we can map over it we get each
+item or a video and then we get the
+index
+for each one of those we want to return
+something and that something is going to
+be an anchor tag because each one of our
+videos is going to be a link to check it
+out on youtube let's give it a key
+equal to index
+let's give it a class name equal to
+exercise dash video
+we can most importantly give it an href
+equal to now we'll have to make this
+dynamic https colon forward slash
+www.youtube.com
+forward slash watch
+question mark v for video
+item.video.videoid
+this is where the url of our video is
+hidden
+we can also set the target to be equal
+to underscore blank to open it in a new
+tab and we can give it a rel equal to no
+refer that's recommended when using
+underscore blank
+of course we won't be able to see
+anything yet because we have to add
+something inside of this anchor tag and
+that's going to be an img tag with a
+source equal to
+item dot video dot thumbnails
+xero
+dot url
+we're getting this data from rapid api
+item.video.title
+we of course crash the website let's
+check out what is happening right here
+looks like exercise videos dot slice is
+not a function
+looks like the exercise videos is
+undefined or it isn't yet populated
+so what we can do is we can add an if
+statement right here
+and check if
+no exercise videos
+dot
+length
+in that case return loading
+there we go we're good to go now we can
+see loading right here
+but unfortunately nothing loads
+maybe because we again have a typo in
+our search query looks like we're
+getting a 400 right here
+you should provide at least query or
+next parameter
+so we're maybe missing something while
+making the api call to get our videos so
+let's check that out
+it looks like i've made a mistake this
+here was supposed to be query and not
+just queue so now if we go back
+and reload the page
+it's still loading but this time i don't
+see any errors
+so let's see if we are getting any data
+to check that i'm going to console log
+the exercise videos
+so let's do that right here
+cons of log exercise videos
+and we do get something but it is hidden
+under the contents
+here is where the videos are not simply
+under the exercise videos
+so what we can do is back in the
+exercise details instead of setting the
+state to exercise videos data we need to
+do that and then dot contents with an s
+at the end that's going to make sure to
+pass the actual videos and you can see
+that we get a list of 20 videos right
+now
+now again if we reload
+looks like we get other kinds of errors
+cannot read properties of undefined
+reading 0 exercise videos line 29
+so if we go right here
+it looks like we're trying to fetch the
+but we don't have them so let's debug
+that together that's the whole point of
+these videos to teach you how to think
+and to teach you how to code on your own
+not just by watching these videos
+so 29 is the image right here let's
+check if we maybe misspelled something
+item dot video
+dot thumbnails
+looks like i misspelled thumbnails right
+so if we fix this there we go we get our
+youtube videos of the 45 sideband
+they are wrapping in a multiple rows as
+you can see right now but we can also
+see them in one row
+so there we go 45 sideband and if we
+click right here it's going to lead us
+to the youtube video explaining that in
+more detail or if we want to watch a
+real person do it we can see that right
+so this is working perfectly
+we have created our exercise detail as
+well as the exercise videos right here
+if you want to show six videos the only
+thing you have to do is change the
+number right here and now you can see
+more videos
+let's choose another exercise
+for example sit ups
+and right here we have a lot of setup
+that is looking great
+the only thing that we can do is maybe
+add the name of that video and the
+creator
+so let's do that right away right below
+our image we can create a new box
+and that box is going to contain a
+item dot video dot title there we go
+and we can also make it a variant
+of something like h5
+and we can set the color
+zero zero zero which is black what we
+can also do is just duplicate this below
+and render the item.video.channel
+name and this can be something like h6
+and there we go now we have the title as
+well as the channel name of each video
+the last step in our journey is to
+create the similar target muscle
+and similar equipment exercises this way
+we'll know what we can do with no
+equipment and we'll know what we can do
+to practice our abs as well in this case
+so let's go ahead and get started with
+that right away
+a great thing about developing our
+similar target muscle exercises and
+similar equipment exercises is that we
+are already familiar with this component
+that we can see right here
+if we go to our home page you can see
+something that looks just like that so
+we'll be able to use the full powers of
+react and reuse these components
+so to start off we can go to our
+exercise detail and then hop onto these
+similar exercises but before we do that
+we'll have to of course first fetch them
+from the api
+so to do that we can make the third api
+call right here so that's going to be
+const target muscle exercises
+data and that's going to be equal to a
+weight fetch data
+we're again going to have a template
+string where we're going to have the
+exercise db url at the start
+forward slash exercises forward slash
+target
+and then we want to use the
+forward slash one more time
+exercise detail data dot target so we
+want to get these similar exercises that
+target the same muscle group and we need
+to provide the exercise options to be
+able to make that call great and we're
+going to make one final call so we can
+duplicate this right here
+and that's going to be not target muscle
+rather that's going to be
+so exercises that use the same equipment
+what we're going to have to change is
+instead of the target we're going to say
+equipment right here
+and also right here instead of target
+we're going to say equipment and now we
+have to create two new states and looks
+like a misspelled equipment right here
+so that's going to be equipment
+exercises data
+let's create the two new use states
+so right here use state
+target muscle
+and set target muscle exercises
+we can duplicate that and create
+equipment exercises as well as set
+so now we can use those states and as
+we've always done we can say set
+muscle exercises to be equal to target
+muscle exercises data and we can repeat
+the process right here
+set equipment exercises to be equal to
+equipment exercises data
+we're finally done with fetching and
+setting all the states and we can pass
+that state into our similar exercises
+so we can pass the target muscle
+is equal to target muscle exercises
+as well as we can also pass the
+exercises and that's going to be equal
+to
+equipment exercises
+now if we go to similar exercises
+we can get those values as props so
+target muscle exercises and equipment
+and that's going to be all that we need
+we can also import a few things that's
+going to be import box stack and a
+typography from mui material
+and we can wrap everything with a box so
+right here we have a box
+we can add some additional styles to
+that box so sx
+margin top is going to be
+on large devices 100 pixels and on extra
+small it's going to be set to 0.
+inside of there we want to show
+something that looks like this so if we
+go to gold's gym we're going to have the
+similar and then similar and then we
+need to render the lists right here
+through which we can scroll
+so that's going to be a typography first
+there we can say something like
+that target
+the same
+muscle group
+that's going to be it for now and we can
+make that variant of something like h3
+should be fine
+now below that we want to render our
+stack component
+that stack is going to have a direction
+equal to row
+and it's going to have styles of padding
+is set to 2 and also position is set to
+relative
+inside of there we want to loop over all
+exercises so we can say if target muscle
+dot length and if that exists meaning
+that there are some exercises
+then we can show the horizontal scroll
+bar so horizontal
+there we go did we import it at the top
+i don't think we did so we can say
+horizontal scroll bar from dot slash
+horizontal scroll bar
+just like so
+of course we have to pass some data to
+that horizontal scroll bar and that's
+going to be data is equal to
+target muscle exercises
+application everything is gonna break
+yep of course that's gonna happen
+so we might need to add some kind of
+loaders so let's create a new
+loader component
+inside of our components let's create a
+loader.js
+let's use a rafce
+and we're going to import the stack
+component right here from
+add mui for slash material
+infinity
+spin
+which is coming from react dash loader
+dash spinner
+the only thing we have to do is wrap
+everything with a stack
+give it a direction equal to row
+a justify content equal to center
+align items equal to center and a width
+100 percent
+and then we can render the infinity spin
+right inside of there with a color equal
+to gray
+that's going to be it for our loader
+component now we can go back right here
+and we can import it
+import loader
+from that slash
+loader
+we can say if target muscle exercises
+dot length so if it exists then we
+render the horizontal scroll bar like so
+and we can say else right here we render
+the self-closing loader component let's
+see if that's going to fix it for us it
+still breaks so let's go to the console
+and it looks like objects are not valid
+as a react child
+the error occurred in a p tag it looks
+like we're trying to render something
+that is an object so let's see what
+we're trying to render
+this error is actually happening in the
+horizontal scroll bar i think that it
+expects some different kind of data here
+so let's go to our horizontal scroll bar
+and we might need to make just some
+slight adjustments
+before we had cards that are four
+different body parts so if we go back to
+our localhost you can notice that we had
+these cards right here
+but we're going to modify that slightly
+so what we can do is we can import
+the exercise card
+exercise card from dot slash exercise
+card because instead of looping through
+body parts we now want to loop through
+these exercise cards the only thing we
+have to do
+is right here
+send one additional prop which is going
+is body parts so are we displaying the
+so we can say if
+is body parts
+then display the body part
+this is a prop that we can send when
+inside of the home
+so inside of the home
+or more specifically inside of search
+we are calling our horizontal scroll bar
+and we're going to pass a new prop
+called is
+this is going to let the horizontal
+scroll bar know that we want to show
+these guys right here
+but if we are not sending that prop
+as the situation is right here where we
+want to scroll through exercise cards
+then what we can do is say if is body
+parts render the body part card
+else we want to render something
+different we want to render the exercise
+card and we want to pass over the entire
+so now if we save that and click on a
+you saw the loader and then everything
+broke
+looks like the error is in the exercise
+card component
+so if we check it out instead of passing
+the item we need to pass the exercise
+because if you go to the exercise card
+you can see that that is what we are
+expecting
+so now if we reload the page
+you can see that it's loading we get the
+videos and then we get the exercises
+that target the same muscle group they
+are loading right here
+what we can do is go back to our
+what was it let's go to the page
+that's going to be similar exercises
+and let's give this typography a margin
+bottom so that's going to be mb equal to
+something like two
+there we go let's try with five
+there we go or they're looking much
+now we're essentially just going to
+duplicate this entire part the
+typography and the stack
+the second time we're going to say
+use the same equipment
+there we go and we want to loop over
+equipment exercises so if equipment
+exercises exist then simply pass the
+data as equipment exercises
+and with that we have exercises that
+target the same muscle group and
+exercises that use the same equipment
+now we can scroll through them
+and this is looking great as you can see
+phenomenal as you can see you can
+unleash the full react's power once you
+actually learn how to reuse components
+we just reused our horizontal scroll bar
+as well as the actual exercise card so
+this is phenomenal
+with that said we are getting close to
+building this phenomenal rapid api
+powered application
+we are just missing the footer so let's
+go ahead and create that footer
+i think we already have it right here we
+just have to implement the jsx for it
+and since we've already done a lot of
+stuff this is now going to be quite easy
+we can go ahead and import the box stack
+and typography as we already used to
+from add mui forward slash material we
+can also import the logo
+which is coming from dot slash assets
+forward slash images
+forward slash logo one dot png
+let's wrap everything in a box
+let's give it a margin top 80 pixels to
+divide it from the content a bit and
+let's set the bg color to be equal to
+ffff3f4
+we can barely see it at the bottom so
+let's add a stack inside of it
+the stack right here is going to have a
+gap equal to 40 pixels
+it's going to have the sx property of
+align
+items is equal to center
+i think we don't even need to use the
+sx property for this we can simply say
+align items is equal to center
+and we can set the padding x equal to 40
+pixels as well as padding top equal to
+24 pixels
+okay we still cannot see anything but
+let's add a logo inside of the stack by
+creating the self-closing image tag with
+the logo in there we can also give it a
+width
+which is going to be equal to 200 pixels
+and the height which is going to be
+equal to let's do something around 40
+so we can see the logo right here at the
+now let's create a typography so right
+typography let's say something like
+we say right here made with love by
+javascript mastery
+let's paste it right here of course feel
+free to use your own name right here
+and let's make that variant equal to
+something like h5
+we can also give it a padding bottom so
+pb is equal to 40 pixels
+and also margin top something like 40
+pixels as well
+that margin top is a bit too much
+so maybe something like 20 pixels will
+also i'm missing a p right here i just
+noticed that so now this is looking even
+better and that's going to be it for our
+footer so now if we collapse everything
+close all of the currently opened files
+we can give our application one final
+look
+of course this is just design that we
+quickly created i want to encourage you
+to change the design make the most out
+of the apis that rapid api offers go to
+their platform and try out some other
+apis or merge our application with some
+additional exercise or gym apis maybe
+add a body calculator maybe add
+something else as well
+provide extended functionalities to your
+users deploy your application to the
+internet and then share it on social
+media platforms and put it on your
+portfolio that is how you can get more
+clients or potential employers to notice
+share your app on twitter instagram
+linkedin and tag javascript mastery we
+will gladly share your own
+implementation of the application
+with that said
+we are done with the exercise details
+page as well as the home page and all of
+this is looking great and it is fully
+functional so we can explore a few
+additional exercises
+this one looks interesting we can see
+how other people are doing it and we can
+see some similar target muscle exercises
+as well as equipment exercises i just
+noticed i'm looking at my previous
+finished site but this one should behave
+absolutely the same so if we go here we
+get the loading and we can see all of
+the exercises right here
+this is perfect i am incredibly happy
+with the finalized product and now the
+final part of course is to deploy the
+application to the internet using react
+that is as easy as it can be let's open
+up our terminal stop it from running by
+pressing ctrl c and then y and then run
+npm run build
+this is going to create the optimized
+production build of our react
+application in about 30 seconds so i'm
+gonna pause the video and i'll be right
+once the build has been created we can
+go to
+netlify.com
+netlify allows you to quickly deploy
+your react applications
+once you log in you'll go to sites
+and then right here you can drag and
+drop your build folder so let's reveal
+in file explorer
+you can drag and drop the build folder
+and in a few seconds your website is
+going to be deployed
+it's still being deployed and there we
+go before we check it out let's go to
+domains and let's go to options and edit
+the site name to something like jsm
+gym of course feel free to use your own
+you can go to jsm gym dot netlife.app
+and there we go our application with our
+two apis is now deployed and is looking
+great if you have any problems with the
+finalized application make sure to check
+the finalized code that's going to be
+linked in the description
+with that said thank you so much for
+watching i really appreciate it and huge
+thanks to rapid api not only for
+sponsoring this video but for creating a
+phenomenal hub of thousands of apis to
+choose from it gives you power to create
+thousands of different applications that
+you can use for your portfolio or work
+once again thank you so much for
+watching if you haven't already and if
+you love this video i would strongly
+suggest that you check out jsmastery.pro
+for even more comprehensive courses on
+web development more specifically react
+and web3 development if you want a
+complete master class experience we have
+that as well so check it out we're
+looking forward to having you there once
+again thank you so much and i'll see you
+in the next one have a wonderful day

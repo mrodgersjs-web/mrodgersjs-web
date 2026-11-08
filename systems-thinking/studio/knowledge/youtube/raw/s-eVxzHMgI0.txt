@@ -1,0 +1,252 @@
+This introduction covers serving
+infrastructure for model inference.
+Starting with the core control loop and
+common architecture patterns. We will
+look at dynamic batching and the
+throughput versus latency trade-off.
+Multibackend serving with Triton across
+frameworks and hardware. Precision
+conversion from FP32 to BF-16, FP16 and
+INT8. Common production failure modes
+like tail latency and memory exhaustion.
+And how to choose between TensorFlow
+serving, torch serve and Triton.
+requests hit the gateway, get cued, and
+auler chooses a model instance and a CPU
+GPU slot. It may batch, but it also caps
+per model concurrency and max batch size
+so you don't oo the device. Metrics feed
+autoscaling.
+Batching is like loading trays in a
+kitchen. The server waits a tiny window,
+groups requests, and the GPU runs them
+together. Throughput rises, but that
+weight adds queuing delay. So P95, P99
+latency can miss SLOs's in bursts.
+CPUheavy pre-processing can also
+bottleneck.
+Framework specific servers like
+TensorFlow serving or torch serve are
+simplest when everything uses one
+framework. Triton is multi tied back in.
+It can serve TensorFlow ferber. it been
+being bleed to the range marketer.
+Triton is multibackend Triton. It can
+serve TensorFlow, PyTorch and Onyx and
+plug into Tensor RT or Open Veno, but
+it's more configurationheavy.
+On a V100 running ResNet 50 over 32,000
+images, raw TensorFlow hit 368 to 386
+images per second in 83 to 87 seconds.
+TensorFlow serving dropped to 267 to 274
+and untuned Triton to 158 to 187 showing
+30 to 50% overhead without tuning.
+Precision is a huge lever. FP16, BF16,
+or IN8 use fewer bytes, so GPUs often
+deliver 2x throughput and about half the
+cost. BF16 keeps the same eight exponent
+bits as FP32.
+Still regression test for numerical
+drift, then canary 10% traffic and watch
+latency/ accuracy.
+So here's the core idea behind dynamic
+batching. Instead of processing each
+inference request one at a time, theuler
+waits for a short window like 20
+milliseconds to collect multiple
+requests, then sends them to the GPU as
+one big batch.
+Here's why batching is so powerful. A
+GPU running ResNet 50 processes one
+image in 5 milliseconds, but it can
+process a batch of 32 images in just 20
+milliseconds, giving you 8 times better
+throughput, which translates to 50 to
+70% cost savings.
+But here's the trade-off. That 20
+millisecond batch window means every
+request sits in the queue waiting before
+any computation even starts. And if your
+P95 latency SLO is 100 milliseconds,
+you've already burned 20% of your budget
+just waiting.
+Under bursty or low QPS traffic, you'll
+see something weird. The GPU sits mostly
+idle because requests don't arrive fast
+enough to form full batches. Yet, your
+P95 and P99 latencies are terrible
+because every request burns time waiting
+in the queue.
+In production, you tune three knobs.
+TensorFlow serving typically uses 4 to
+16 millisecond windows for strict
+latency services, while Triton uses 50
+millisecond windows with batch sizes of
+64 to 128 for throughput optimized
+workloads. And the key is separating Q
+time from compute time in your metrics
+to diagnose where the bottleneck
+actually is.
+So here's the problem teams hit. You've
+got PyTorch models from research and
+TensorFlow models in production. And now
+you're running two completely separate
+serving stacks with duplicate
+monitoring, metrics, and deployment
+pipelines.
+Triton solves this by giving you one
+unified server that handles PyTorch,
+TensorFlow, Onyx, Tensor RT, and Open
+Veno models all through the same control
+plane. So you deploy, version, and
+monitor everything through a single
+infrastructure.
+In production, this actually performs.
+One deployment sustained 5,000 requests
+per second with P95 latency between 50
+and 70 milliseconds while keeping GPU
+utilization above 70%. And using zero
+copy shared memory for large payloads
+like multimegabyte images boosted
+throughput by about 15%.
+Here's
+where it gets powerful. You can chain
+multiple models in a single request like
+pre-processing in Onyx followed by
+inference in Tensor RT and the
+intermediate results stay in GPU memory
+instead of making separate service
+calls.
+Now, the trade-off Triton exposes dozens
+of configuration knobs for back-end
+settings, instance groups, batching
+parameters, and ensemble pipelines. So
+teams report a steeper learning curve
+and typically need 2 to four weeks of
+tuning to match single framework
+performance.
+So you're running a computer vision
+model serving 10,000 queries per second
+and it's eating up four V100 GPUs at
+$20,000 per month. That's a lot of
+hardware just to handle inference at
+full 32bit floatingoint precision.
+Here's the trick. You take that trained
+FP32 model and convert it to FP16 using
+Tensor RT for Nvidia GPUs. The
+conversion halves your memory footprint
+because each number now uses 16 bits
+instead of 32. And modern Tensor cores
+can crunch through FP16 operations 2x to
+4x faster than FP32.
+Same 10,000 queries per second, but now
+you're running on just two GPUs instead
+of four. and your monthly cost drops
+from 20,000 to $10,000. That's a 50%
+cost reduction just from changing number
+precision.
+Now, FP16 and BF16 both use 16 bits, but
+here's the key difference. BF16 keeps
+the same 8 exponent bits as FP32,
+so it has the exact same dynamic range
+and won't underflow on large values.
+FP16 has fewer exponent bits, so it can
+hit underflow with really large or small
+numbers. But for most vision and
+language models, you're looking at under
+0.5% accuracy drop with either format.
+If you want even more speed, INT8
+quantization uses 8-bit integers instead
+of floating point and can give you 4x
+throughput over FP32. But here's the
+catch. You can see 1 to 5% accuracy
+degradation depending on how well you
+calibrate the quantization ranges. So
+you need careful testing with
+representative data sets before you ship
+it.
+So here's the most common production
+failure. Your P50 latency looks amazing
+at 15 milliseconds and GPU utilization
+is only 40%. But your P95 latency is
+blowing up to 200 milliseconds and
+violating SLOs's.
+Here's what's happening. Dynamic
+batching waits for requests to arrive
+and form a batch. But during traffic
+valleys, requests sit in the queue
+burning latency budget before any
+computation even starts. So the GPU is
+idle while requests are waiting.
+The fix is counterintuitive.
+reduce batch window timeouts or disable
+batching entirely during low traffic
+periods, accepting lower GPU utilization
+to actually meet your tail latency
+commitments.
+Memory exhaustion crashes services
+silently. A 2 GB model with batch size
+32 and 4 GB of activation memory running
+with concurrency 2 needs 2 + 2 * 4
+equals 10 GB minimum. And when you
+exceed capacity, you get out of memory
+errors mid request, returning cryptic
+failures to clients.
+Training serving skew creates silent
+accuracy degradation. Models trained on
+batch computed features but served with
+realtime features can see 10 to 20%
+accuracy drops because the computation
+differs slightly in aggregation windows,
+missing features or ordering changes.
+And the fix is using feature store
+abstractions that guarantee identical
+computation offline and online.
+So you've got two simple options for
+model serving. TensorFlow serving if
+you're a TensorFlow shop, which gives
+you saved model signatures and built-in
+AB testing, or Torch Serve if you're all
+in on PyTorch, which packages models as
+Mar files and gets you to production in
+days.
+Now, Triton becomes compelling when
+you're running 10 plus models across
+multiple frameworks. Maybe you've got
+legacy TensorFlow systems and new
+PyTorch research models and you want one
+unified control plane instead of
+maintaining separate TensorFlow serving
+and Torcher infrastructures.
+Here's where Triton really shines.
+Hardware portability. You can deploy the
+exact same model config to NVIDIA GPUs
+with the Tensor RT backend for your high
+QPS services handling 1,000 plus
+requests per second and then deploy to
+Intel Xeon CPUs with the OpenVO BF-16
+backend for moderate QPS services under
+500 requests per second cutting costs 40
+to 60% on lower volume tiers.
+So here's the decision matrix. Choose
+framework specific servers when you've
+got under 10 models in a single
+framework and need fast time to
+production in days, not weeks. Choose
+Triton when you've got 10 plus models
+across multiple frameworks, need model
+ensembles that chain pre-processing and
+inference together, or require hardware
+flexibility for cost optimization.
+Teams report two to four week learning
+curves for Triton versus days for
+framework specific servers, but the
+investment pays off at scale when you're
+managing dozens of models across
+heterogeneous hardware with unified
+metrics and rollout processes.
+Thanks for watching. If this helped you
+think through model serving with
+TensorFlow serving, Torch Serve or
+Triton, subscribe for more ML system
+design videos. See you in the next one.

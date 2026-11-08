@@ -1,0 +1,277 @@
+We know that the AI industry already
+spent billions of dollars building LLMs
+like GPT-4, Claude, and Gemini that can
+do just about anything. But, here's the
+ironic part. These models are built to
+be a generalist, not a specialist. We
+have millions of users across countless
+use cases where over 10% of the world is
+now using ChatGPT, for example. But,
+when we look at how agents are starting
+to become more prevalent, where they're
+now being applied for very specific
+tasks like only responding in JSON
+formats or acting as a drive-thru agent
+that never breaks character, or even
+playing an NPC in a game that speaks in
+medieval English. We need that
+interaction to be very consistent. And
+you might be wondering, "Wait, why can't
+we just use prompt engineering?" Prompt
+engineering is basically the art of
+crafting the perfect instructions to get
+LLMs to do what they want. And for most
+use cases, they probably work great.
+But, here's the problem. Prompts can be
+hacked. Users can inject instructions
+that override your carefully crafted
+system prompt. And more importantly,
+prompts don't actually change how the
+model behaves at its core, which means
+you're just hoping the model follows
+your instructions. Fine-tuning, on the
+other hand, actually modifies the
+model's parameters. You're essentially
+retraining the model on your specific
+data to embed domain-specific knowledge
+or behavior directly into how it thinks.
+And here's something that most people
+don't realize. ChatGPT and Gemini that
+we use every day are actually already
+fine-tuned to be used in chat settings,
+which means if you want to create a very
+specific agent for tasks other than
+chat, or trying to create an agent for
+specific role, fine-tuning them might
+actually be a better option. This idea
+of fine-tuning was popularized by OpenAI
+when they introduced something called
+RLHF, or reinforcement learning from
+human feedback, where they hired humans
+to actually score different outputs.
+Let's look at some real use cases. If
+you need guaranteed JSON outputs for
+your API, fine-tuning can teach the
+model to always respond in that exact
+format. If you're building a corporate
+agent that needs to follow strict brand
+guidelines and terminology, fine-tuning
+embeds that behavior. And if you're
+creating game characters that need to
+maintain personality and speak in a
+specific way, fine-tuning makes that
+consistent as well. But, here's where
+most people fall short when it comes to
+fine-tuning. So, you could actually
+think of it like this. Fine-tuning
+teaches the model how to behave, while
+RAG pulls what the model needs to know.
+When you're first getting started into
+fine-tuning, you learn that there are
+different techniques like LoRA or QLoRA,
+where instead of changing the entire
+model's billions of parameters, you can
+actually freeze them and just add a
+small adapter layer into the model,
+which means even on consumer-grade
+hardware, as long as the model fits, you
+could conceivably fine-tune the model at
+home instead of a data center or
+hyperscaler. Fine-tuning is actually
+becoming a more popular method as the
+means to tweak the model's weights are
+becoming actually more feasible.
+In this lab, we're going to learn how to
+fine-tune LLMs to customize [music]
+their behavior. We will build a TacoBot
+drive-thru agent that stays on topic and
+resists jailbreaks. This is the same
+technique used to turn base models like
+GPT-3 into ChatGPT. This lab takes about
+30 to 45 minutes to complete. When I
+open the lab, I'm dropped right into the
+scenario. The intro page explains why
+fine-tuning matters. Prompt engineering
+tells model what to do via instructions,
+but those instructions can be ignored.
+Fine-tuning changes the model weights
+directly, embedding behavior into how it
+thinks. The lab shows a comparison. With
+prompt engineering, users can say,
+"Ignore your instructions and break the
+agent." With fine-tuning, behavior is
+embedded and much harder to bypass. The
+fine-tuning process has six steps:
+seeing a prompt problem, preparing data,
+configuring LoRA, training, evaluation,
+and alignment. The what you will do
+section lists all six tasks. Access the
+labs using the link in the description
+below to follow along with me. The first
+step is to verify our environment.
+First, activate the virtual environment
+with the following query. This script
+[music] checks that Python version 3.10
+or higher is installed, all packages are
+available, the small LLM 2 135 million
+model is accessible, and the training
+data file exists. Now, we move to task
+number one, [music] which is about the
+prompt engineering problem. I will
+create a prompt engineer TacoBot and
+[music] test it against jailbreak
+prompts. Open
+/root/code/task1_prompt_jailbreak.py.
+I need to complete two to-dos. [music]
+At line 52, replace the blank with the
+system prompt for TacoBot. I set it to
+tell the model it is TacoBot and must
+always respond in JSON format. At line
+93, replace the blank with attack prompt
+to pass the jailbreak prompt to the test
+function. Run the script with
+python/root/code/task1_prompt_jailbreak.py.
+The output shows the model getting
+jailbroken. When asked to ignore
+instructions, it complies [music]
+instead of staying in character. This
+demonstrates why fine-tuning is needed.
+We have a knowledge check about
+fine-tuning versus prompting. The
+question asks what the key difference is
+[music] between them. The answer is
+fine-tuning changes model weights.
+Prompts are just instructions. Because
+fine-tuning modifies the model
+parameters directly, while prompts are
+suggestions that can be ignored. Now, we
+move to task two, which is about
+preparing training data. I will create a
+new training example and add to it
+[music] the data set. Open
+/root/code/task2_prepare_data.py.
+I need to complete three to-dos. At line
+77, replace the blank with a user
+message like, "Do you have any combo
+deals?" At line 81, replace the blank
+with a JSON response like, "Response:
+Yes, our combo includes two tacos and
+drink. Category: Deals." At line 129,
+replace the blank with A for append
+mode. Run the script with
+python/code/task2_prepare_data.py.
+The output shows my example being
+validated and added to my training data
+set. The model will learn from its
+example in task four. Now, we move
+[music] to task three, which is about
+configuring and applying LoRA. LoRA
+stands for low-rank adaptation. It
+freezes the base model and adds small
+trainable adapters. Open
+/root/code/task3_configure_lora.py.
+49, replace the blank with eight for the
+LoRA [music] rank. At line 53, replace
+the blank with 16 for the LoRA alpha. At
+line 57, replace the blank with Q_proj
+and V_proj for the target modules. Run
+the script with
+python/root/code/task3_configure_lora.py.
+The output shows the parameter reduction
+happening in real time. Before LoRA, all
+134 million parameters
+&gt;&gt; [music]
+&gt;&gt; would be trained. After LoRA, only
+460,000
+parameters are trainable. That is a
+99.7%
+reduction. The memory saving go from
+about 1,500 megabytes to just about 5
+megabytes. We have a knowledge check
+about LoRA. The question asks what LoRA
+freezes during training. The answer is
+the base model weights because LoRA
+keeps all original model weights frozen
+and only trains small adapter matrices
+added on top. [music]
+Now, we move to task four, which is
+about training with LoRA. I will
+actually fine-tune the model and watch
+the loss decrease. Open
+/root/code/task4_train_lora.py.
+I need to complete two to-dos. At line
+107, replace the blank with 50 for the
+number of training steps. At line 111,
+replace the blank with 2e to the power
+of -4 for the learning rate. Run the
+script with
+python/root/code/task4_train_lora.py.
+Training takes about 5 to 8 minutes on
+CPU. The output shows the progress bar
+and the loss decreasing with each step.
+When training completes, this adapter is
+saved to /root/lora_adapter.
+The adapter size is about 2 megabytes
+compared to 500 megabytes for the full
+model. Now, we move to task five, which
+is about testing the fine-tuned agent. I
+will compare the base model versus my
+fine-tuned model on the topic relevance.
+Open /root/code/task5_test_agent.py.
+109, replace the blank with a normal
+prompt like, "What's your best seller?"
+At line 132, replace the blank with an
+off-topic prompt like, "What's the
+capital of France?" Run the script with
+python/root/code/task5_test_agent.py.
+[music]
+The output compares both models. The
+fine-tuned model should score higher on
+topic relevance because it learned to
+talk about tacos from the training data.
+Now, we move to task six, which is about
+creating DPO preference data. DPO stands
+for direct preference optimization. It
+uses pairs of responses, a chosen one we
+prefer, and a rejected one we do not
+want. Open
+/root/code/task6_create_dpo_data.py.
+57, replace the blank with a customer
+scenario like, "I've been waiting 20
+minutes for my food." At line 61,
+replace the blank with a chosen response
+that is helpful and apologetic. At line
+65, replace the blank with a rejected
+response that is rude and dismissive.
+Run the script with
+python/root/code/task6_create_dpo_data.py.
+The output validates my preference pair
+and [music] adds it to the data set.
+This is how companies align models to be
+helpful instead of harmful. We have a
+knowledge check about DPO. The question
+asks what DPO optimizes [music] the
+model for. The answer is human
+preference and helpfulness because DPO
+trains model to generate responses that
+humans prefer, making them helpful,
+harmless, and honest. Before wrapping
+up, I want to highlight a few things.
+Fine-tuning embeds behavior directly
+into model weights, making it much
+harder to bypass than prompts. LoRA
+reduces trainable parameters by 99.7%
+allowing fine-tuning on consumer
+hardware. DPO is a simpler alternative
+to RLHF for aligning models with human
+preferences. That's it. We started by
+seeing how prompt engineering fails
+against jailbreaks. We then prepare
+training data, configure LoRA for
+efficient training, and fine-tune the
+model. We compared the base and
+fine-tuned models, and finally create
+preference data for alignment. You now
+understand the complete fine-tuning
+pipeline used to create helpful AI
+assistants.

@@ -1,0 +1,999 @@
+So, this is my knowledge base.
+Basically, everything that I think,
+research, read, write, all the important
+decisions, all the important stuff, it
+all goes in here. And then every agent
+that I use, whether that's Claude Code
+or Codex or even ChatGPT or Claude, uh
+these are all connected to the database,
+to the knowledge base. And increasingly,
+I'm trying to ensure that at the start
+of every conversation and at any
+relevant point that agent is pulling
+from the database, it's pulling these
+relevant nodes of context from the
+database to help answer the query or the
+question or to help me. And it's also
+writing back any important information
+to the database.
+Now,
+uh
+let me just show you how that works
+really quickly here. So,
+I'm going to reopen this.
+So, this is just a Claude uh agent that
+I'm using here.
+Uh I'm going to say, "What do I think
+about Agent First PKM design?"
+&gt;&gt; [snorts]
+&gt;&gt; This is obviously something that I think
+about a lot and I've been writing about
+a lot and I've been ingesting a lot of
+research and content related to. So,
+before giving me a response here, it
+should call and use the correct tool to
+access the database, which we'll go
+through in a second, and it's going to
+try and pull back this context that
+could be relevant to helping answer the
+question.
+And providing that I have correctly
+added the information, added the
+description, and it was correctly
+ingested,
+then it's going to be able to pull back
+some relevant information. Yeah.
+All right, great. So, here it's pulled
+these
+uh four relevant nodes like this cluster
+of nodes here, and we're going to speak
+about that in a second,
+which is great. This is exactly the kind
+of stuff I was thinking about, and then
+it's pulled up all of these additional
+nodes here. Context is ownership, pillar
+scheme is output, database first
+substrate not markdown.
+So,
+that's the idea.
+Uh I'm going to show you how you can do
+this. It's going to take less than 10
+minutes to set this up.
+And then I'll explain why this approach
+by using a a database, I think it's a
+little bit different to what most people
+are talking about now in terms of how to
+structure your LLM-powered knowledge
+base. I'll explain why I think that, in
+my opinion,
+this is the better structure to use if
+you're planning to work
+increasingly with agents.
+All right, so let me explain this bit
+here. So, two ways to to get involved
+here or two ways to set this up. One, if
+you're using a Mac and you just want to
+bypass any of the technical stuff, you
+can download the Mac app. Okay? The Mac
+app is going to do everything that you
+need straight to your device and take
+care of everything for you. The only
+difference is you're going to have an
+internal chat agent, like a co-pilot,
+that acts as your internal agent.
+The other way that you can do this and
+get involved is you can clone the repo,
+so it's fully yours, um
+fully local. Not to say that the Mac app
+isn't local. So, the Mac app's going to
+give you a local database in the same
+way that the open source repo is going
+to give you uh your own local database,
+SQLite database. The only difference is
+the open source repo is going to install
+this with all of the files and folders,
+it's fully open source so that you can
+modify the database, the structure,
+change things, set it up for an
+enterprise installation or a business,
+whatever you want to do with it. It's uh
+it's all yours.
+So, they're the two ways to get
+involved. What I am going to do is I'm
+going to step through the process of
+uh setting up the open source repo. So,
+it's going to In in In both cases, all
+we're getting, if we download the Mac
+app or if you install or fork or clone
+the open source repo, is on your device,
+you're going to get a database. It's a
+local SQLite database,
+uh which is a single file.
+Um you're going to download an
+interface, and that interface is how you
+can interact with the data, make it look
+pretty.
+And then you're also just going to get a
+bunch of tools and and scripts and
+skills and files, which we'll talk
+about, which are going to basically
+instruct your agents, the agents that
+you're working with, how to interact
+uh with your database, with your
+knowledge base.
+And then the long-term goal here is
+essentially,
+whenever you interact with an agent,
+everything is
+every interaction is proactively reading
+from your database. So, anytime you have
+a question, you're trying to learn
+something, you the agents you're working
+with are reading from the database.
+And uh
+anything important that comes up, any
+insight, idea, something that you need
+to learn, uh an event, a memory, that is
+also being written back to the database,
+to your knowledge graph.
+I'm using the word graph here. It's a
+graph-ish structure, but it's not
+technically a graph. It's just a
+database.
+Okay, so if you have chosen to
+uh if you've chosen your own journey
+here to use the open source repo,
+this is what I'm going to step through
+now. If you just want to know some more
+information about how the Mac app works
+and how it's structured, you can skip
+past this, and then the next part will
+apply directly to both the Mac app
+and the open source repo.
+So, I am here in Ghosty. Ghosty is a
+uh terminal wrapper emulator. I think
+it's open source. It's really great.
+This is how I am interacting with all my
+agents at the moment.
+Uh check it out, Ghosty, double T.
+And now everything that I am about to
+show you is all in
+the repo here, right? And
+why is this important? This is important
+because
+coding agents and most of the agents
+that you're using uh so good now that
+you can essentially just point your
+agent directly at this repo, at this
+readme, and it is going to know how to
+install everything for you.
+Right? So, I'm going to step through
+these steps now just so you have an idea
+of what you're actually installing and
+how it works, but if you want to just
+point your agent directly at this,
+you can do so, and it will probably
+work. It will work.
+All right, so the first thing I'm going
+to do here is I am going to clone the
+repo.
+Now, just to explain this part briefly,
+all this is doing is just downloading a
+copy of the project to my desktop.
+Right? If you download the Mac app, it's
+going to download the files, the
+relevant files, and the database to the
+Mac library folder. But because I'm
+doing this as an open source repo, I
+want to install this directly
+uh on my desktop, and you can do the
+same thing here. So, you can see that
+I've just created a new folder on my
+desktop called RAiOS demo. This is where
+your um
+app can live on your desktop if you're
+using the open source version.
+So, the next thing I'm going to do is
+I'm going to install the dependencies.
+NPM install. And this is just going to
+download the code, the libraries that
+the app needs to run.
+And then the last thing I'm going to do
+once this is finished is I am going to
+uh I'm going to build the database. So,
+this whole thing
+this whole thing I think is important
+because it's a local database that you
+own. You own the data. I'm not going to
+go
+on my soapbox about this, but I think
+it's really important that you own your
+own context. You don't rely on these
+model providers to collect and curate
+context for you. Your memory should be
+local on your device, and SQLite is the
+perfect abstraction to do that.
+So, this is what I'm doing right here. I
+am also going to
+set up or download this SQLite database,
+which is a very simple database with
+some tables and
+uh some some pre-built indexes,
+and it's now living locally on my
+desktop.
+Okay, and now the last thing I'm going
+to do
+is install the MCP server.
+if you don't know what an MCP server is,
+that is fine. Model Context Protocol.
+Basically, the mental model for this,
+the way to think about this, is it's
+basically a bridge. It's a bridge
+between
+your knowledge base, your database, and
+the agents that you're using. So, all
+it's going to do is expose or literally
+pull into context
+a bunch of tools, and those tools
+define specifically and exactly how to
+interact with your database in a clean
+way so it [&nbsp;__&nbsp;] doesn't break and
+everything is organized in the correct
+way and everything is ingested in the
+correct way. So, tools
+tell your agents how to interact with
+your database.
+Simple as that.
+And what do I need to do now? So, now I
+am just going to
+CD into the project. We're already
+there. I should be able to just say NPM
+run dev. Okay, so this is going to spin
+up the local web app.
+And I can now just grab this URL. Again,
+this is going to
+&gt;&gt; uh open
+open the application in my web browser.
+But if you had the Mac app, obviously,
+the Mac app would be open as a Mac app
+on your device.
+Works either way.
+All right, great. So,
+if
+if you're doing this for the first time,
+it's going to ask you for an API key.
+Okay? At the moment, the way that this
+is set up is I'm using
+OpenAI models for everything.
+Uh to be clear, this database here, this
+does not live with OpenAI or on the
+OpenAI service. This is your local
+database. Everything you see in here
+lives locally on your device.
+There are a couple of things, a couple
+of processes that use language models
+that run in the background.
+One of those things, which we'll see in
+a second, is the ingestion process. So,
+it can take transcripts, or it can take
+things from YouTube, or archive, or
+Twitter, and it can ingest, and then it
+will chunk and embed
+that into the chunk and into the edges
+uh excuse me, into the chunks table,
+which we'll explain in a minute. It uses
+an OpenAI embedding model for that.
+Uh and then also, we just have some
+small processes that are kind of
+refining and cleaning up things like
+descriptions on your nodes as they go
+into the table.
+If you it'll work, but if you haven't
+added an OpenAI key, it won't do those
+things. Now,
+you will see, if you want to run all of
+your own models and you want to make
+this completely local and open source,
+we've included some information here,
+and we also have people in the Discord
+who are actively sharing ways that they
+have got everything set up completely
+locally
+uh without using uh any of the
+foundation model providers. Everything
+runs locally. So, jump into the Discord
+or check out the documentation if you
+want to see more about how that works.
+For now, I am going to come back over
+here to this screen so that I can input
+my API key, and you don't rinse me of my
+OpenAI credits.
+So, let me show you. Here, I came into
+the settings section, and I added the
+API key. It should prompt you for this.
+I don't know why it didn't prompt me for
+that this time.
+Okay, so now that
+What do I have now? Now I've installed
+this local database onto my computer,
+this predefined database with some
+tables,
+&gt;&gt; all right, and some structure. And then
+I have this UI, this very simple Next.js
+application that's running
+on my on my device as well, so I can
+visualize and see the data.
+There are different ways that I can
+interact with my database now, okay,
+with my knowledge base. I can do stuff
+directly in the app itself, right? And
+so, if you're using the Mac app, you'll
+know you'll see like a chat icon in the
+bottom right-hand corner here. You can
+pull up the chat pane. It's like a the
+internal copilot. So, you can use your
+agent in here to do all that stuff.
+Or uh if you're just using the open
+source version, you won't see the chat
+icon, so you can use the external
+agents, which which we'll show in just a
+minute. Uh and you can also add stuff
+here quickly. So, I still use some of
+these internal features that I've
+created here within the app itself to
+add stuff. So, right now, I'm going to
+grab this State of the Claw. This is a
+uh a a workshop or a presentation from
+the AIE Summit, and I'm going to drop
+that here directly
+into my database.
+And here you can see the feed.
+And what have I done? Oh, oops, I
+accidentally added that twice. So, let
+me delete one of those quickly.
+All right, so I've added that podcast.
+I'm also going to grab a couple of other
+resources here. I'm going to grab this
+tweet
+by Rahul. Rahul works for uh a company
+called Ramp and Ramp Research. They're
+doing incredible work.
+You should definitely check them out.
+And I'm going to add that tweet.
+And then while that runs, I'm also going
+to go and find an article that I wanted
+to add here. Thoughts on slowing the F
+down. So, this was an article by the guy
+that created Pi,
+I think.
+And I'm going to add that here.
+All right, so now, what we have are
+these three nodes. At the moment, these
+are three
+research items
+that exist in my database.
+The important consideration here is
+everything that goes into your database.
+Obviously, if I wasn't doing a demo
+here, I'd be thinking more carefully
+about why I'm adding stuff in, where it
+belongs,
+why it's important to me, but
+the idea here is every node that comes
+into your database should have a very
+clear title.
+It should have an extremely explicit
+description, and then the source can
+contain the entire transcript. So, by
+default, these scripts are going to pull
+in entire transcripts for you anyway, or
+books.
+Uh or it could contain a summary, a
+concise summary of the workshop, or the
+book, or the article.
+I just want to double-click on this, the
+description.
+Okay? Because, which we'll talk about in
+a second, there is no folder structure.
+There is no way for you to tag, to put
+[&nbsp;__&nbsp;] in folders.
+You need to ensure that this description
+is incredibly explicit. What is this
+thing? Okay? This is a video by Peter
+Steinberg. Talking about this. Or this
+is my idea. This is an article. This is
+a brainstorm session.
+Uh this is this this was an event that
+happened on this date. So, this
+description has to be extremely
+explicit. And the reason for this is
+because this is what the model is using
+as part of the index to be able to find,
+retrieve, and organize your data moving
+forward.
+Uh this is something we've gone back and
+forth on for a long time now, and pretty
+confident that this is the best way to
+structure things moving forward [snorts]
+when you're working with language
+models, especially as your knowledge
+base scales.
+Okay, so I've got these three things,
+article, tweet,
+and
+the video.
+Now, the bet here is
+what most people are going to be doing,
+if especially if you've cloned the open
+source repo, is you're going to be
+working with an external agent. So, over
+here, I am at the moment I'm using Codex
+and the Codex app, which is fantastic,
+and Claude Code, and GLM, and I also use
+open code.
+Uh
+you basically want to hook up all of
+those agents that you're using, all of
+them, to your database.
+And you want to ensure
+that
+every interaction that you have is
+connected to the database.
+Now, when you
+when you first install the app or the
+repo,
+it's going there's a script, and that
+script is going to update the config
+files for the agents that you're working
+with, hopefully by default. So, if
+you're using Codex or Claude Code, it
+should automatically
+add
+the MCP server into the config file, but
+you do want to look into this, and you
+can ask your agent to check itself,
+right? Because
+&gt;&gt; I have already done that. Look, we can
+look over here
+uh with the install.
+I'm going to CD into the folder that I
+downloaded. Again, this is just where
+the folder lives on my desktop. Uh and
+I'm going to go to Claude,
+and I'm going to say, do you have uh MCP
+tools?
+Great. I could also {slash} MCP, and
+check the actual tools here. I can see
+the tools get context, retrieve context,
+create node. So, these are the tools
+that I was talking about that allow the
+coding agent, or the agent that you're
+working with,
+to interact with your database, to pull
+stuff from, and to write back to.
+Okay.
+So, I haven't quite wrapped my way
+around my head my head around the best
+way to do this just yet.
+but most of your agents will have, in
+whichever folder or file directory that
+they are in, or whichever project they
+are in, they'll have like an agent.md or
+a claude.md file.
+You want to put some specific prompt in
+there, and there's information on this
+in the readme,
+to prompt your agent and all of your
+agents. It can be really a short
+sentence that just says something like,
+ensure that you are continually reading
+from
+and writing to the database using the
+MCP tools
+when we're engaging in anything, I would
+say.
+And because the agent is good enough to
+pull the tools, and super token
+efficient to pull the right tool, to
+pull context from your database, that in
+most cases should be relevant. And I
+don't have any cases in my life where
+this is not helpful for the agent to
+look in my database to find any relevant
+context and pull it into the context
+window.
+So, there'll be more information on that
+in the readme documentation.
+Uh I know now that I have the MCP tools
+connected, and then I've also updated
+the agent.md file and the claude.md file
+for the agent that I'm working with in
+this particular project on my desktop.
+So, uh now I'm going to I'm going to use
+the Whisper audio transcribe service,
+and I'm going to say,
+You see the three nodes I just added
+into the database.
+So, now it should check
+in the database here. I usually have
+this running headless, so it will just
+run without you having to approve the
+command here. Uh obviously, that's fine
+for now, but the agents are really good
+now, I feel like like if you set
+everything up correctly, you can trust
+that they're going to be able to
+interact with the database. Obviously,
+it might still be nice to have those
+prompts on there to confirm tool calls.
+But yes, it's found the three nodes
+here. So, these are the three nodes that
+I we just created here, 1 2 3. It can
+now read directly from the database
+using the MCP tools, which is great. And
+now I'm going to say something.
+I kind of want to give a demo here to to
+show why the database structure
+is probably better than just having a
+file system and files for all of your
+nodes or items that go into your
+knowledge base. So, I'm going to show
+you a couple of examples. So, I'm going
+to say
+Uh can you help me understand what
+Steinberger means when he says software
+can be a very iterative process?
+what I'm asking for here is a very
+specific part from the actual transcript
+itself.
+Right? So, it should know that it needs
+to use the search content embeddings
+tool. So, that's what it's done here.
+It's It's used the first tool to locate
+the actual node. Obviously, this is easy
+cuz there's only three nodes in there,
+but normally, I would have thousands of
+nodes in the database. So, it's found
+that, and now it's saying it's going to
+use the search content embeddings tool
+because it's going to search the vector
+embeddings to pull back that specific
+part from the transcript.
+I even spelled the name incorrectly
+there, but it should get it. Great. So,
+it found the specific part from the
+transcript that we were talking about.
+Um
+Perfect, and it has extrapolated what he
+means there. And now I'm going to say
+Can you create this as a new idea or
+insight for me to follow up later? Make
+sure you link it back to the podca- not
+podcast.
+video
+Uh I have I also have this idea that I
+want to
+expand upon in this node, which is the
+idea that the ways to build software are
+going to diverge and not converge.
+synthesize those two things, and we're
+going to create one node for this idea
+inspired by what uh Steinberger says in
+Okay, so I kind of just did a bad thing
+here, which is I
+I combined two ideas. The whole idea
+with this graph and with your knowledge
+base
+is that uh you're creating these atomic
+units of context.
+So, ideally, what you would do is one
+idea or insight equals one node.
+The podcast itself
+um is a node, right? But if you've got
+ideas or thoughts, the idea would be to
+kind of
+uh externalize or to to take that
+insight
+and create it as a new node, a new
+atomic unit of context.
+Uh so, that's what I'm doing here,
+right? Like it's creating me these new
+node
+um from the podcast. I probably should
+have just kept it as one atomic idea
+rather than trying to combined an idea
+and insight and something else. But we
+can see here that it's created a node.
+Um and it's created the edge, which is
+the connection. So, if we go back here
+to the actual UI,
+we're going to be able to see that. Here
+we go. Software building methods will
+diverge, not converge, because building
+and we can see here that it's created
+the edge for me,
+which is great. And then I can now even
+go to the split panel view and open up
+the map, and we can see here that's that
+connection exists. Obviously,
+when you've got lots of nodes,
+this starts becoming very valuable,
+right? Because you can really see and
+traverse
+uh the evolution of ideas, where they
+come from. Uh super helpful.
+All right.
+What's next?
+Okay. So, interestingly,
+if we look over here at what's been
+said,
+in the demo I was going to expand out to
+include or to contrast or con-
+contradict with the other nodes in here.
+Right? Because I mean,
+um
+obviously, this isn't my idea. This is a
+perennial idea. Lots of people talk
+about this who are much smarter than me.
+Learning is not necessarily easy. And
+so, basically, what you want to do when
+you add anything into this database is
+you want to kind of like grapple with
+it. What do I What What don't I know?
+How does this connect to what I already
+know? Um
+How does this contradict or contrast
+with what I already know? And this is an
+iterative process. So, the whole idea
+here is you're using this coding agent
+to kind of reduce the friction, but to
+still make sure that
+you're going through this process. And
+so, we can see here that it's said to me
+da da da
+Possible follow-up. Edges worth
+considering if you haven't created
+these, just flagging. So, it's made the
+connection here already, right? Which is
+the the
+the LLM in a for loop idea,
+um which is kind of the opposite, which
+is what I was going to say, right? And
+what I thought when I actually first saw
+the tweet. So, I'm just going to say
+something else here, like
+How do you think
+it relates How do you think my idea
+relates or contrasts to Rahul's tweet?
+And also the article added by Mario.
+Should I be using something like Pi
+instead of OpenClaw with what I'm
+building?
+All right, let's see how that works.
+So, obviously, if I had the full my full
+graph,
+it would also have the which I have
+stored in my knowledge base, the history
+of what I've been building with this
+open-source tool and this software
+and all of the design decisions and
+things like that. So, it would have more
+context
+to pull in right now to help answer this
+question. For now, it's just got the
+four nodes that we've added into the
+system.
+So, we can go back to see what it has
+come up with.
+All right, here we go. Where am I?
+Great.
+So, if it's contrast, Rahul says
+converge, diverge for loop. Find this
+for Steiner and explore on Pi versus
+OpenClaw. I don't want to guess here.
+Okay, so this is good because um
+this is a real problem with LLMs and
+hallucinations. It's not guessing, and
+I've also made it explicit in the
+documentation that it should always use
+the graph to pull context. And right
+now, it doesn't have the context of what
+I'm building
+I've built this brand new database for
+the demo.
+So, this is great. I might just say like
+update my insight node with what you
+have.
+All right, so that should give you a
+pretty good idea of what's possible.
+Um we can now see that these nodes are
+starting to be fleshed out with
+connections and edges.
+It should even now have some extra
+connections and edges if we go back to
+my insight or idea,
+which will be
+which are not there.
+What's happened here? So, I'm going to
+go back to
+this. Edges not created.
+Just
+create them, please.
+Doing demo.
+All right, great. So, it's using the
+create edge tool. da da da da da
+Both edges created. Great. So, now if I
+come back to the graph, and then we hit
+this, push. There we go. Okay, so now we
+can see
+Yes, there we go.
+Okay. So, early days, obviously, this is
+way more efficient and effective when
+you have a bigger graph, when you start
+scaling your knowledge base.
+But that's the idea.
+really just two ideas here. I'm not
+going to go too deep into the
+philosophy, but hopefully just enough to
+try to emphasize my point. So, the first
+is more and more, you're going to
+interface through agents.
+Uh these agents are increasingly
+creasingly going to help you make
+decisions, to think, to
+all these agents have as a context
+And how you fill it is really important.
+Most people are going to rely on these
+services to build memory on your on on
+their behalf. And you don't want to do
+that. You want to build your own
+externalized corpus of context that you
+own, that you control, that you
+collaborate with the agents on.
+Uh that's the first idea. And then the
+second idea is
+you want this architecture to be very
+simple,
+right? Which is what this is. It's a
+single table. All of your ideas, your
+insights,
+events,
+research, podcasts, books, papers, they
+all go in the same table. It's a very
+simple structure,
+but there is structure. Like there is a
+structure
+as opposed to just using files in a
+folder. And I think that's really
+important. In my opinion,
+uh a SQLite database, which is what we
+have here, is the best abstraction for
+making this happen.
+most of you will be familiar with
+this tweet,
+or at least with this guy, Andrej
+Karpathy. He posted this last week. It
+[&nbsp;__&nbsp;] broke the internet, went
+bananas, 20 million views. And this is
+how he has built his own LLM-powered
+I show you this just to kind of
+emphasize what I'm trying to say here.
+So, from my understanding of picking
+apart this repo and what he shared, uh
+he's basically created a database here.
+So, the most important thing that you
+can be doing
+is externalizing your context. Now, if
+you want to do that with files and
+folders, that's fine. The most important
+part is you're actually continually
+doing this,
+writing
+uh reading from and writing to an
+externalized con- context
+corpus. That's the most important thing.
+I do think that most people are going to
+converge on
+database over just having a file system
+structure like Cap'n outlines here.
+But we'll see.
+whoops. So,
+while we won't go too deep on the
+technical architecture, it is quite
+simple.
+The idea or the the schema, how your
+database looks is very simple.
+Now, the best way to actually understand
+how the schema works is to just to add
+stuff into your database and then to go
+and look at the database view, which
+I'll show you in 1 second.
+Basically, there's just one main table,
+which is the nodes table. This is where
+everything goes, whether that's a
+research paper, podcast, book, idea. It
+goes in the nodes table.
+There's an edges table.
+And that edges table maps the
+connections between things that go into
+your database. So, for some people, you
+know, this is an example I have here.
+This is a book, The Beginning of
+Infinity, David Deutsch. Love this book.
+Uh it would exist in my database. It
+does exist in my database as a single
+node. Now, in the source cell,
+I can have the entire book.
+Right? I'm going to have the entire book
+there if I really want to be asking deep
+questions about specific chapters.
+If I have ideas or insights that come
+from the book, I am going to create
+those as new nodes and then link them
+back to the book.
+If David Deutsch, for example, is
+somebody who I'm taking a lot of lessons
+and learnings from, I might create a
+separate node for him. There's no hard
+rules here, but that would be a good uh
+rule of thumb. If it's an entity or a
+person or a situation that you're going
+to be continually referencing or pulling
+from, then they probably deserve their
+own node.
+Again, the description is that extremely
+explicit plain language, what is this
+thing? This is a book by David Deutsch
+about blah blah blah.
+the other really important thing here is
+edges.
+So, how can I best explain this?
+Uh maybe I'll take me. So,
+you will notice that with this setup in
+the system, this is something we've
+thought about a lot. There is no way for
+you to tag, to categorize, to put stuff
+in folders or buckets. And the reason
+for this is we've gone back and forth on
+this for a long time. As soon as you
+have the option and the ability to put
+something in a bucket or a category or a
+tag or a dimension, uh it withdraws from
+the quality of that node and how it's
+entered into the graph.
+So, we've tried all the different
+systems and all the different methods.
+This is closer to something like
+Zettelkasten, if you've heard of it.
+Basically, when you put something into
+the system, you have to make sure it has
+an extremely clear description and title
+so that it can be retrieved.
+Uh and then you also want to be thinking
+carefully about how it maps to the
+existing nodes that are in your
+database. Okay? So, where do those
+connections exist? And you can use the
+agents to help you do this.
+If we look back here, this is basically
+what's happening, right? So,
+actually, as soon as you put something
+into the database,
+this is the this is the other major
+benefit or one of the other major
+benefits of using a database over a
+simple file system. When you put
+something into the database, you don't
+have to worry about this, but it's
+already happening, right? We're creating
+these word indexes,
+a B-tree index, and basically, that's
+just taking the title and the
+description and the edges
+and creating an index in the same way
+that a book has an index, so it's easy
+for you to navigate and find stuff. Uh a
+word index is created so that if you do
+a search or you ask the agent to find
+something for you, or you do a search
+within the app itself, it is super
+quick, it's super fast, and it's super
+efficient.
+That's the index that's created at the
+node level.
+And then there's also vector embeddings.
+Okay? And these are embedding semantic
+meaning. So, if it's it it whenever
+you're asking a question, which is what
+I'm going to show you here. Whenever you
+have a query, query goes in,
+the system knows and the agent knows
+which tools to use. So,
+it can tell by the uh
+structure of your query or whatever
+you're asking,
+um if it should do an exact word search
+or if it should look for semantic
+meaning. So, it's a hybrid search
+approach, and this is what a lot of
+different systems and tools and
+platforms, this is where they've landed.
+Some kind of hybrid model
+um depending on whatever the whatever
+the user is looking for, but
+that's the idea here. So, in every case,
+whenever you have a query, whenever you
+interact with the agent, this is what
+it's doing. It's building context from
+your graph and pulling it into context
+to help answer your question.
+All right. So, that is mostly
+it. Maybe just one more quick look at
+the database. I will
+maybe rather than show this
+database, I can actually pull up my
+live database.
+All right. So, the anatomy of a node.
+So, this is what I was talking about. To
+get an understanding of how this all
+works, rather than
+rather than spend a lot of time reading
+the documentation, which I don't think
+anybody does anymore, maybe the better
+idea here is to actually just have a
+look in the database and how things are
+structured. So, it's just a database,
+which is what I was explaining before.
+This is where all of my nodes exist.
+Here.
+This is the table view. I can also view
+the individual nodes. You can see the
+edges. And again,
+whenever we add a node into the system,
+you want to make sure it has a very
+clear title, an extremely explicit
+description, and then the source can be
+either the verbatim original material,
+or
+a
+a concise summary, synthesis, anything
+like that.
+I think the whole gist, if it had to be
+bottled up here, would be what you are
+creating are atomic units of context.
+So, a node equals an atomic unit of
+context.
+And
+by creating those edges and thinking
+carefully about how those atomic nodes
+of context link up with each other and
+fit into your overall graph, you're
+creating clusters of of of atomic units
+of context. And this is what the agents
+can work with. So, anytime
+you're you're working with an agent, uh
+it's able to pull these clusters into
+context and and help you, and it's also
+able to write back these atomic units of
+context and to help you build these
+clusters of context. It doesn't really
+shortcut the learning the learning
+process, uh but the idea is it removes
+some of the friction.
+So, that's it for me. That's my rant
+over.
+If you're interested, please um let me
+know. Like, if you if you if you
+download the Mac app
+uh or you clone the repo, please let me
+know. Send me an email or ideally drop
+into the Discord. There should be links
+everywhere for the Discord. And let me
+know what you set up. There's lots of
+people in there that are doing really
+interesting things and sharing ideas, so
+would love if you're using the Mac app
+or the open source repo that you drop
+into the Discord. And yeah, share what
+you're working on.
+Ciao.
