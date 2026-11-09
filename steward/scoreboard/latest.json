@@ -1,12 +1,12 @@
 {
   "schema": 1,
-  "date": "2026-11-08",
-  "generated_at": "2026-11-08T17:22:16Z",
+  "date": "2026-11-09",
+  "generated_at": "2026-11-09T21:43:47Z",
   "criteria_sha256": "7a55570a78754c52119f10678e41d6203051a49d9cdf6fdf8b6c0a46b2a927cc",
   "summary": {
     "total": 100,
-    "green": 83,
-    "red": 12,
+    "green": 66,
+    "red": 29,
     "null": 5
   },
   "criteria": [
@@ -92,35 +92,35 @@
       "check": "gh",
       "description": "README does not contain a repo count that differs from `gh repo list --json isPrivate` public length",
       "status": "red",
-      "evidence": "live public count=35; fleet total=366; static claims=[34, 366, 366, 34]"
+      "evidence": "live public count=36; fleet total=366; static claims=[34, 366, 366, 34]"
     },
     {
       "id": "public-cap",
       "check": "gh",
       "description": "public repo count ≤ 35 (raised 2026-10-29 when jev-route shipped; the cap exists to stop sprawl, not to freeze a healthy count)",
-      "status": "green",
-      "evidence": "public repository count=35"
+      "status": "red",
+      "evidence": "public repository count=36"
     },
     {
       "id": "every-desc",
       "check": "gh",
       "description": "no public repo with empty description",
-      "status": "green",
-      "evidence": "repositories without descriptions=[]"
+      "status": "red",
+      "evidence": "repositories without descriptions=['recruiting-calendar']"
     },
     {
       "id": "every-license",
       "check": "gh",
       "description": "every public repo has a LICENSE file (Contents API)",
       "status": "red",
-      "evidence": "repositories without LICENSE=['stageshow']"
+      "evidence": "repositories without LICENSE=['recruiting-calendar', 'stageshow']"
     },
     {
       "id": "no-empty-stub",
       "check": "gh",
       "description": "every public repo has README.md and at least one non-asset file",
-      "status": "green",
-      "evidence": "empty or README-less repositories=[]"
+      "status": "red",
+      "evidence": "empty or README-less repositories=['recruiting-calendar']"
     },
     {
       "id": "birch-private",
@@ -161,8 +161,8 @@
       "id": "no-pycache",
       "check": "gh",
       "description": "no `__pycache__` in public trees",
-      "status": "green",
-      "evidence": "repositories with __pycache__=[]"
+      "status": "red",
+      "evidence": "repositories with __pycache__=['recruiting-calendar']"
     },
     {
       "id": "no-env-files",
@@ -183,14 +183,14 @@
       "check": "gh",
       "description": "every public repo topics include the 7 baseline",
       "status": "red",
-      "evidence": "repositories missing baseline topics=['stageshow']"
+      "evidence": "repositories missing baseline topics=['recruiting-calendar', 'stageshow']"
     },
     {
       "id": "topics-specific",
       "check": "gh",
       "description": "every public repo has ≥10 topics (7 baseline + ≥3 specific)",
       "status": "red",
-      "evidence": "repositories with fewer than 10 topics=['stageshow']"
+      "evidence": "repositories with fewer than 10 topics=['recruiting-calendar', 'stageshow']"
     },
     {
       "id": "desc-no-typo",
@@ -210,8 +210,8 @@
       "id": "clone-org",
       "check": "gh",
       "description": "no public README contains `github.com/rodgemd1-lgtm` or `github.com/rig-intelligence/`",
-      "status": "green",
-      "evidence": "legacy clone organizations in=[]"
+      "status": "red",
+      "evidence": "NotFoundError: File path not found in this revision.. Resolve the check input or provider access, then rerun the steward."
     },
     {
       "id": "unique-desc",
@@ -224,15 +224,15 @@
       "id": "readme-exists",
       "check": "gh",
       "description": "every public repo has README.md",
-      "status": "green",
-      "evidence": "repositories without README.md=[]"
+      "status": "red",
+      "evidence": "repositories without README.md=['recruiting-calendar']"
     },
     {
       "id": "install-first",
       "check": "regex",
       "description": "README contains a fenced code block in the first 80 lines",
-      "status": "green",
-      "evidence": "repositories without early code fence=[]"
+      "status": "red",
+      "evidence": "NotFoundError: File path not found in this revision.. Resolve the check input or provider access, then rerun the steward."
     },
     {
       "id": "how-it-works-visual",
@@ -252,50 +252,50 @@
       "id": "license-badge-match",
       "check": "gh",
       "description": "if README says MIT, LICENSE file exists",
-      "status": "green",
-      "evidence": "MIT claims without LICENSE=[]"
+      "status": "red",
+      "evidence": "NotFoundError: File path not found in this revision.. Resolve the check input or provider access, then rerun the steward."
     },
     {
       "id": "install-registry",
       "check": "http",
       "description": "if README has `pip install <name>` without `git+`, pypi.org/pypi/<name>/json is 200; same for `npx <name>` vs registry.npmjs.org",
-      "status": "green",
-      "evidence": "unregistered install claims=[]"
+      "status": "red",
+      "evidence": "NotFoundError: File path not found in this revision.. Resolve the check input or provider access, then rerun the steward."
     },
     {
       "id": "test-count-honest",
       "check": "gh",
       "description": "no `N/N tests` badge unless latest workflow conclusion is success",
-      "status": "green",
-      "evidence": "unbacked test-count claims=[]"
+      "status": "red",
+      "evidence": "NotFoundError: File path not found in this revision.. Resolve the check input or provider access, then rerun the steward."
     },
     {
       "id": "footer-site",
       "check": "regex",
       "description": "README contains `rodgersintelligence.com`",
       "status": "red",
-      "evidence": "repositories without footer site=['stageshow']"
+      "evidence": "NotFoundError: File path not found in this revision.. Resolve the check input or provider access, then rerun the steward."
     },
     {
       "id": "no-raw-json-tables",
       "check": "regex",
       "description": "README has no line matching `^\\|.*\\{&quot;|^\\\\|.*\\{\"`",
-      "status": "green",
-      "evidence": "READMEs with raw JSON tables=[]"
+      "status": "red",
+      "evidence": "NotFoundError: File path not found in this revision.. Resolve the check input or provider access, then rerun the steward."
     },
     {
       "id": "verify-command",
       "check": "regex",
       "description": "README contains `pytest` or `smoke` or `npm test` or `node --test` or `rigforge`",
       "status": "red",
-      "evidence": "READMEs without verify command=['stageshow']"
+      "evidence": "NotFoundError: File path not found in this revision.. Resolve the check input or provider access, then rerun the steward."
     },
     {
       "id": "hero-ok",
       "check": "http",
       "description": "referenced local images HTTP 200",
       "status": "red",
-      "evidence": "broken local README images=['stageshow:.github/assets/stageshow.png:404']"
+      "evidence": "NotFoundError: File path not found in this revision.. Resolve the check input or provider access, then rerun the steward."
     },
     {
       "id": "no-false-e2e",
@@ -308,22 +308,22 @@
       "id": "readme-size",
       "check": "gh",
       "description": "README.md ≤ 40000 bytes",
-      "status": "green",
-      "evidence": "READMEs over 40000 bytes=[]"
+      "status": "red",
+      "evidence": "NotFoundError: File path not found in this revision.. Resolve the check input or provider access, then rerun the steward."
     },
     {
       "id": "clone-url-self",
       "check": "regex",
       "description": "clone examples use `mrodgersjs-web/<this-repo>`",
-      "status": "green",
-      "evidence": "cross-repository clone examples=[]"
+      "status": "red",
+      "evidence": "NotFoundError: File path not found in this revision.. Resolve the check input or provider access, then rerun the steward."
     },
     {
       "id": "languages-honest",
       "check": "gh",
       "description": "language shields in README ⊆ linguist languages for that repo",
-      "status": "green",
-      "evidence": "unsupported language shields=[]"
+      "status": "red",
+      "evidence": "NotFoundError: File path not found in this revision.. Resolve the check input or provider access, then rerun the steward."
     },
     {
       "id": "details-collapse",
@@ -525,8 +525,8 @@
       "id": "local-57-unadvertised",
       "check": "regex",
       "description": "no public README contains `github-repo-mcp` or `228 tools`",
-      "status": "green",
-      "evidence": "READMEs advertising local adapter=[]"
+      "status": "red",
+      "evidence": "NotFoundError: File path not found in this revision.. Resolve the check input or provider access, then rerun the steward."
     },
     {
       "id": "no-public-mcp-port",
@@ -539,8 +539,8 @@
       "id": "mcp-no-plaintext-tokens",
       "check": "regex",
       "description": "MCP README snippets use `${env:GH_TOKEN}` or `gh auth` not `ghp_`",
-      "status": "green",
-      "evidence": "READMEs with plaintext GitHub token=[]"
+      "status": "red",
+      "evidence": "NotFoundError: File path not found in this revision.. Resolve the check input or provider access, then rerun the steward."
     },
     {
       "id": "copilot-instructions-pins",
@@ -603,7 +603,7 @@
       "check": "gh",
       "description": "if `rig-agent-directory` is public, its listed repo count equals live public count",
       "status": "red",
-      "evidence": "directory claims=[34]; live=35"
+      "evidence": "directory claims=[34]; live=36"
     },
     {
       "id": "no-star-farming",
@@ -652,7 +652,7 @@
       "check": "file",
       "description": "`steward/scoreboard/$(date -u +%F).json` exists after the daily run",
       "status": "green",
-      "evidence": "this run atomically writes steward/scoreboard/2026-11-08.json"
+      "evidence": "this run atomically writes steward/scoreboard/2026-11-09.json"
     },
     {
       "id": "latest-pointer",
@@ -686,15 +686,15 @@
       "id": "issues-for-reds",
       "check": "gh",
       "description": "when latest.red > 0, an open issue labeled `github-steward` exists (checked the day after Orca run)",
-      "status": "green",
-      "evidence": "2026-11-07 red criteria without open issue=[]"
+      "status": "red",
+      "evidence": "2026-11-08 red criteria without open issue=['every-license', 'hero-ok']"
     },
     {
       "id": "readme-receipts-fresh",
       "check": "regex",
       "description": "profile README `recent_receipts` block date ≥ yesterday UTC",
       "status": "green",
-      "evidence": "latest receipt date=2026-11-07; threshold=2026-11-07"
+      "evidence": "latest receipt date=2026-11-08; threshold=2026-11-08"
     },
     {
       "id": "no-direct-main-from-orca",
