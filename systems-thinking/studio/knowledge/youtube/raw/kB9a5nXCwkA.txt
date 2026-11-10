@@ -1,0 +1,433 @@
+Have you been wondering how to get real
+world work done with your local AI
+agent? Today, I'm going to take you
+through the process with Hermes agent.
+We're also going to be using the
+excellent Quinn 3.627b
+dense model and VLLM. I'm going to run
+you through some of the settings that we
+have tuned specifically for this device
+0 3 4 and 5. That's 4090 4090 3090 3090.
+You can see those are all X16 widths.
+And so, those are our CUDA visible
+devices that we've got specified here
+that will be used for processing. The
+VLLM server, you can see we're serving
+up the full 3.627b.
+Serve model name is Quinn 36-27b. That's
+what's going to display.
+Host is 000, port 9876.
+The GPU memory utilization I've got set
+to 0.9. I was able to get that up to
+0.92,
+but I think 0.9 is a little bit safer.
+Enable chunk prefill, I've got that set
+to enable. Tensor parallel size, four.
+So, that is four GPUs that we have here.
+that you should do that. I do not think
+you should do that. I have had
+substantially worse results with that,
+especially in my Hermes agent. Max
+number batch tokens, 8192. I ingest a
+ton of documents that are larger
+documents, so it works very good for
+that.
+Enable prefix caching, enabled. And
+Mamba cache mode is set to align. Max
+number of sequences I've got to four.
+And for this agent, that's fine and that
+supports both me and my wife running and
+sub agents and stuff being called up as
+needed. API key, we have that set to
+nerd tastic. So, let me go ahead and run
+this here. That forward slash.
+Next, we're going to remote into DSP's
+Hermes instance. And you can see I've
+got 16 GB of RAM, way more than you
+actually need, and eight processor
+cores. So, I have seen two fully
+utilized processor cores, and I've seen
+max 6 GB used. So, I don't know when I
+would ever be using more than eight. I
+haven't seen that scenario show up yet,
+but 16 seems very safe. You know that I
+do not have any GPUs here and I don't
+really have that large of a size for the
+SSD, so you can be a little bit stingy
+on your allocation. It's only going to
+be storing basically files that you want
+there. Now that that's up and running,
+we're going to come over to our Hermes
+agent. So this is where we're at over
+here in the .81 SSH terminal and we're
+just going to do a Hermes update and I
+always start every new session out like
+that because there is always so much to
+be updated. For the first time, I'm like
+satisfied with the experience. That's
+why you I my velocity of videos, it's
+I'm just satisfied. I'm creating things
+instead of spending time tinkering with
+things. It feels great actually. It
+feels amazing. So let me just quickly
+start up our Hermes agent and I'm just
+going to take you through a really
+typical workflow here. I've been working
+on some software, slopware, that I'm
+going to share with you guys very soon,
+but I just I I after running through
+this, I wanted to kind of put together a
+good timeline of when things happened,
+what happened, what the like explaining
+the software better than I might be able
+to in a visual format to people. So
+we're just going to have it preview the
+Agent Plex project and create an
+architecture diagram with a complete
+outline of the system. We're also going
+to ask it to create a summary of the
+conversations and the direction of
+development that we have underwent.
+Finally, I'm going to have it create a
+timeline to review the project that as
+we've been working on it so that you can
+kind of get a picture and this is really
+where I saw the efficiency that I wanted
+to make sure that I conveyed is you need
+better and more accurate systems for
+timekeeping especially when you're
+dealing with some of the LLMs. So this
+is actually one of the also places where
+having versioning control, having a time
+enabled might make some sense. So we
+also are going to have it host this on a
+web server. So if you actually get
+presented with an HTML file, you can
+just hit say, "Hey, by the way, host
+that on a web server, provide me the
+URL." And then you can just browse
+directly to it. So, we'll have it chomp
+on this, and we'll take a look over here
+at the performance as it's going along.
+So, the prompt processing now is about
+608,
+and the generation at the moment, it's
+not really generating a ton of tokens.
+It will get there as it starts moving
+through and producing things on this
+project, and this is a fairly
+long-ranging task for it. So, it says
+it's going to start by reviewing the
+Agent Plex project structure and loading
+relevant skills, then build out a
+comprehensive documentation presentation
+for us. So, it does look like it's
+finding all of the stuff correctly, the
+Synthwave UI, the Agent Plex project.
+Approach it like a project, manage it
+like a project, and communicate in an
+effective way with your LLM, and you can
+get some really amazing results here.
+And showing this helps people get a
+little bit better grasp of what the
+actual time looks like that is spent on
+this. So, in reality, when I'm working,
+this is the pain layout that I typically
+use, but I actually run something, walk
+off, come back in about 10 minutes. It
+is a very much more detached state also
+of communication, which is actually
+pretty good because it gives you time to
+think about what's happening, and, you
+know, plan out what you want for next
+steps. Things that in a direct
+conversation chat window, you get a
+little bit rushed feeling because
+there's always the onus of it's back on
+you and it's completed. So, it's good to
+have some extra time to think about
+things.
+So, it looks like our generation
+throughput right now is about 102 tokens
+per second. So, yeah, you're seeing
+that, right?
+Right. And like that contradicts what
+we've seen quite a bit from
+uh the performance and benchmarking. So,
+the real-world results of Llama 3.6 as
+it is in use, as it is doing things, are
+going to look quite a bit different if
+you're running a fairly similar setup to
+what I showed you. And I mean, being
+able to hit 100 tokens per second on Gen
+is pretty freaking sweet. And definitely
+it speeds things up. We're now 13
+minutes deep. You can see that it's been
+thinking on this MD file for about 4 and
+1/2 minutes. It's got a sub agent right
+now working on the file history and
+looking through the file history for
+detailed chronological reconstruction of
+all conversations, decisions, features
+built, pivots, the overall direction of
+development. Look for sessions from
+April 20 8th to the 30th. Specifically,
+extract key milestones, decisions made,
+feature implemented, problems
+encountered, and future directions
+discussed. It would be greatly enriched
+in accuracy if it actually had a Git
+commit history that it was able to go
+back to and peg most of this to. Because
+lacking that, it does have some
+inaccuracies every now and then that can
+creep into, especially creating
+timelines based upon conversations. So,
+I I would be a little bit hesitant to
+say you should accept cart blanche any
+of the timelines without manually
+reviewing them for accuracy. Mm. And I
+just caught this. So, yeah. I
+You'll note that it says that we've got
+a 230-ish
+K context window here for the Qwen 3.6
+27B. Yet, we loaded it with 131,
+basically 128K context size. So,
+for some reason Hermes does not recheck
+the context window size. Or it could
+have possibly gone through and specified
+that. Now, for this example, we'll be
+done before it gets to compaction
+points. But that right there could
+meaningfully definitely impact you if
+you are adjusting models around. So, I
+think this one here is something to look
+into a little bit. It will, if you have
+a 0.7 at 155,
+160, something like that that it kicks
+in at for a compaction, which is well
+outside of the 128K that we actually
+have. And you can see that we are
+currently at 28.6. I expect this to jump
+up to the probably 60 to 70K range by
+the time that it's actually done
+outputting this. It's not super
+real-time with its updating of the
+tokens generated.
+And you can see that it did jump up
+there. We are now at 67,400
+tokens.
+That is quite a big jump. You can see
+that our generation throughput went from
+70 to 41.
+It was at 62 there. And really, the
+entire ergonomics of working in the
+agentic era dictates it that it's better
+to have actually a pacing room than a
+great chair because that's kind of what
+you might spend more time doing. If you
+note the big disconnects in time between
+being able to see something finished
+from the start of the project, it's a
+great idea to take some time, walk
+around. It is a much more detached, more
+relaxed way, less immediacy kind of
+focused way of getting things done.
+We're at 95.3, it's reporting, which
+again, like I mentioned for the
+compaction points, this is one thing
+that definitely be mindful of because at
+this moment, it looks like I am close to
+I'd probably not want to go any further
+here without compressing at this point
+with a 128K context window. View the
+Agent Plex project summary. So, yeah, it
+set up a website for us here. It's
+actually very well designed. The project
+overview, about 4K lines of code, 14
+source files, 11 dependencies, two LLM
+brains. It's saying 24 hours, so that's
+wrong right there, and that's why having
+a better
+timeline uh
+by get commit history is something that
+you would probably be very, very happy
+with versus inaccurate estimations of
+time that it might do on its own.
+Core design philosophy. It nailed it.
+And so, I outlined most of these things
+to it, like having natural conversations
+as a primary interaction mode that we're
+going for here. We I really don't want
+the typing and I want this integrated
+into my house and like I was saying it
+it working in the agentic era
+much less of what needs to be done needs
+to be done behind the screen and it can
+actually be done
+vast amounts of it just verbally
+describing. More fully multimodal one of
+the core design principles dual brain so
+having reasoning segregated from sensory
+is one of the things that I wanted to
+make sure that the system did and in a
+fully kiosk kind of setup. So that
+basically the presentation of it doesn't
+depend upon us having a keyboard and a
+mouse.
+Uh the architecture setup here looks
+correct. Yeah, so it did pull in even
+the details here. Like the webcam is a
+Logitech C920. So it even got that the
+Intel PCH which we ended up having some
+problems with some of that microphone
+input and ended up going back to the
+webcam. So that's actually technically
+inaccurate there. The monitor and the
+speakers it did get those correct
+though. And it integrates those into the
+synthwave front end and it we have a
+fast API back end and we have these
+files which are basically doing things
+like STT, TTS and vision and router. We
+also have an onboarding workflow to make
+it easy for you to get up and running.
+Uh and the onboarding wizard down here.
+It goes through a very good amount of
+the remote LLM brains and dictating down
+the protocol overhead decisions that we
+made about what goes where and when and
+why and it's done a really nice job of
+outlining this. So
+the days of manually creating diagrams I
+feel like are numbered and that is a
+great thing in my perspective. We have a
+file system overview here that is pretty
+darn good. So it does go into the
+Nemoron 3 Nano Omni being our sensory
+brain. Indeed that is correct. And what
+endpoints it's at and what it's doing.
+So I mean just awesome. Just quite
+awesome. Now it does have the reasoning
+brain a little bit light on the max
+tokens here. So, that is definitely
+incorrect. I would say that if you did
+go through this, you definitely still
+want to review this. But, this is
+probably a 90
+ish percent accuracy. I don't think
+we're hitting 33 frames per second. We
+definitely capped out at about 10 frames
+per second, which is a little bit on the
+low side. We came up with some themes,
+and indeed I think the themes that we've
+got are cool, and it has that logic
+built in, so you can come up with your
+own theme just by describing themes to
+it. Uh routing logic is
+I would say a little bit simplistic on
+the input receive side from here.
+However, it does have complex patterns
+broken down. Yet, it doesn't go into the
+complete reasoning chain for those
+complex patterns, which we actually did
+talk about that in quite good detail.
+So, while this can bring me up to speed
+on some of the things,
+you you can't take your brain out of the
+loop. And that's one thing I would say
+is a big takeaway is we are still not
+there. It doesn't matter what you're
+connected to. You're still not going to
+be able to take your brain out of the
+loop. And as a matter of fact, when you
+do that kind of cognitive offloading,
+it's a little bit dangerous with LLMs. I
+would urge you not to do that. We do
+have an API, of course, developed here,
+and that does look like it is described
+correctly here. Going through the
+development history and direction, like
+just just excellent. Excellent to be
+able to refresh myself on what I was
+doing. But yeah, in the build timeline,
+I mean,
+just awesome. Just really, really
+awesome. Those dates might not be right.
+3:51 a.m. There's a freakish amount of
+things happening at 3:51 a.m. 4:20 a.m.
+May not have had the right time zone. I
+recall that there was a time zone issue
+that I needed to sort out recently. So,
+probably need to go back and verify that
+also. This is what it looks like
+currently going through that kind of a
+process with an LLM. It took about
+95,000 tokens. It never finished the
+usage. So, sometimes it'll hang, and
+I've definitely seen that when it gets
+this deep into the context window. So,
+the sweet spot really for hitting the
+cutoff is, in my opinion, on 830 128k
+context window, about 80 to 85k. So,
+just dropping that kind of information
+is helpful and beneficial, I think,
+also. I hope this imparts some
+information to you that you can action
+upon. And let me know in the comments
+below what kind of things you're
+building and what kind of questions you
+have about the process of getting up and
+running. Critical takeaway,
+if you are going twice as fast on all
+your tokens per second, and you get one
+thing wrong,
+you're going to have to redo it. And how
+much redoing has to be redone is
+substantially less token efficient than
+getting them right on a zero-shot. And I
+have a strong predilection towards
+zero-shot being, and most of the testing
+that we've done in the past on this
+channel, really biased and favored it
+for that reason. It is a better way to
+deal with things. And I mean, it's also
+kind of like what doesn't frustrate a
+human. Like, if you have to re-explain
+yourself in the same thing over and over
+to a human, you get very frustrated. If
+it can't do the same thing over and over
+again, it becomes annoying. And that
+actually leads to LLM dissatisfaction. I
+think that's what most of the people out
+there that describe bad experiences with
+LLMs are talking about. Things that just
+continually are wrong. And so, getting a
+really good, high-quality,
+even if it takes longer, answer is going
+to actually save you time in your
+completed development process versus
+getting lots of bad answers, needing to
+do lots of steering, needing to have you
+in the loop more and more. Goal, take
+you out of the loop. And a huge shout
+out to all of our channel members. It's
+because of you guys that we're able to
+do everything. All the buy me a coffees,
+all of the Patreons. Everybody, thank
+you for all you do for the channel. It
+really is because of you guys that we're
+able to do things the way we do things
+today without sponsors like you see on
+most of the other channels. Giving you a
+really independent thought process that
+I hope to be able to preserve with you
+through time.
+If you're looking to get up and running
+with Hermes Agent, you can get a quick
+setup guide here, and that will get you
+basically everything you need to be up
+and running.
+And if you're looking for information on
+LLM hardware and general AI hardware,
+you might check out this playlist here.

@@ -1,0 +1,2550 @@
+So, I'm doing something a little bit
+different in this video. Instead of
+showing you five one-shot Claude design
+demos, I'm going to use it to rebuild
+real parts of my actual business
+&gt;&gt; [music]
+&gt;&gt; live on screen in about 30 minutes. So,
+I run the Agentic Academy on School, and
+for a while now I've been looking at our
+setup thinking, [music] "Our design is
+okay, but it's not really us." So, I'll
+be the first to admit that we don't have
+a proper design system. We don't have
+our own landing page. Our command
+center, which is a Kanban-style UI we
+built for managing our Agentic system,
+&gt;&gt; doesn't have a mobile version yet. We
+don't have a standard sales deck or set
+of slides to produce consistent assets.
+So, rather than just talk about Claude
+design, I'm going to use it to fix all
+of these in this video and talk about
+whether to use Claude design directly or
+use Claude code with specific skills for
+certain things [music] instead. And I've
+done a ton of research going into this.
+So, Peter Yang from the Creator Economy
+posted a really good walkthrough. Ryan
+Mather from Anthropic posted a thread
+full of tips for Claude design. And the
+AI Daily Brief did a full breakdown of
+where to dig deep and where to steer
+clear. And Reddit's already moaning that
+every single Claude design output looks
+identical. So, as we build, I'll show
+you how to avoid that trap and how to
+actually get real business value
+&gt;&gt; out of this tool. So, if you're trying
+to figure out whether Claude design is
+actually worth your time and what other
+tools to combine it with to get the best
+out of it, then this is the video. Let's
+jump straight in. So, before we go ahead
+and build anything, we need to
+understand a few things because if
+you're opening Claude design thinking
+that it's going to replace Canva for you
+or replace Figma because it's tanking
+the Figma stock, then you're probably
+going to use it wrong and get frustrated
+within a few minutes. But, here's what
+it actually is. Everything Claude design
+makes is code under the hood. So, it
+sounds quite technical, but stay with me
+because it matters for how you actually
+use it and that the way that you
+interact with it. So, Peter Yang put it
+really well. Videos, slides, websites,
+apps, animations, they are all
+effectively just code under the hood.
+And because code is cheap, Anthropic can
+use all their powerful models to
+generate any of them with the same AI.
+So, Claude code for your back end,
+Claude design for your visuals, it's the
+same engine, it's just a different
+output on the surface. But, what that
+means for you as a business owner is
+pretty simple. This is not a canvas
+tool, a drag and drop, move the
+rectangle tool like Figma. It's much
+closer to how you would use Claude
+desktop or Claude code. So, you prompt
+it, it builds, you iterate. You're not
+going to be dragging things around, but
+you are able to use some special tools
+that they've implemented to target
+certain things to change. And the AI
+Daily Brief had a really useful framing
+on this as well, which I've taken for
+this video. So, they split design tools
+into two camps. Asset design and system
+design. So, asset design is stuff like a
+single post, a flyer, one image. And if
+you've used Canva before, it's probably
+for this asset design stuff. Then,
+system design, on the other hand, is
+stuff like a website, a full app, a
+front end with a consistent look across
+all the screens. And that is where Figma
+lives. And that is closest to where
+Claude design lives, too. So, Claude
+design doesn't work in the same way as
+Figma at all. And Ryan Mather from
+Anthropic's design team said it
+directly, "Stop thinking of Claude
+design as a traditional canvas tool like
+Figma. It's closer to Claude code than a
+pixel editor." Which then means the same
+principles from Claude code apply. So,
+you give it good context, you let it
+take some actions, and then you iterate
+on those actions. So, you're basically
+having a conversation, even if that
+conversation is with a specific element
+that you see on the page. Which, by the
+way, is the recommended way to interact
+with it. And the other thing that's
+really important to understand up front
+is the 90/10 rule that PT Yang kept
+coming back to in his demo. So, AI is
+going to get you 90% of the way there,
+but the last 10%, the custom microcopy,
+the exact icon you need or logos, the
+bit of human taste, that definitely
+still needs you from what I've tried
+out. So, if you go in thinking Claude
+design will ship your final product, you
+will be disappointed. But, if you go in
+thinking it will get you from zero to
+90% in a few minutes,
+then you're actually going to be blown
+away. Now, there's one thing that
+matters more than anything else in this
+tool, and if you skip this step,
+everything else you produce is going to
+look like AI slop. So, let's talk about
+that. And it's quite clear in the
+community that a lot of people are
+skipping this step because Reddit has
+been going absolutely nuts for the
+design results from Claude, saying
+everyone thinks Claude design has one
+look, and this is it. The top comments
+are roasting the tool for producing the
+same generic AI slop dashboard for every
+single user. Get ready to see that serif
+font, those colored accent bars, and the
+infamous blinking green dot everywhere.
+Some even think OP's original design was
+better. Okay, so here is the single
+biggest difference between your Claude
+design output looking like AI slop or
+another Anthropic website versus
+actually looking like your own brand,
+one that looks like you paid a lot of
+money for it. And that single biggest
+difference is actually dedicating time
+to the design system up front. And one
+of the main reasons that every single
+design looks the same and looks like AI
+slop is because in the background of
+claude.ai/design,
+it's quite obviously using Claude code
+or Anthropic's built-in front-end design
+skill. And the irony is actually it says
+generates distinctive production grade
+front-end interfaces that avoid generic
+AI aesthetics. But, if there's enough of
+them being produced, they become the
+generic AI aesthetic, and that seems to
+have happened with all these one-shot
+prompt landing pages that are being
+built out. And that's because it just
+has a default presets it falls back to
+when you give it a loose prompt. So,
+when you're giving it that loose prompt
+with no design specifications, it's
+going to fall back to those defaults.
+Even Anthropic's own prompting
+documentation now mentions this. It says
+Claude Opus 4.7 has a consistent default
+house style with warm cream and
+off-white backgrounds. So, it's
+literally baked in to the way that
+Claude design works. So, Ryan Mathers'
+number one tip is this: spend that first
+hour in Claude design, maybe two,
+setting up your full design system and
+your key reference screens. So, it's
+going to feel painful at the start, but
+it's going to pay off tenfold when you
+actually see the designs at the end.
+Now, just a quick warning before we
+actually start building this out,
+setting up your design system is
+probably going to burn through more
+tokens than almost anything else you do
+inside Claude design. So, a couple of
+quick rules to protect your quota.
+Firstly, do your design system setup in
+a single focus session, not spread
+across multiple sessions, and only do
+this if you're actually committed to
+using Claude design and not just having
+fun and poking around. And when we get
+past the design system phase, back to
+creating actual screens, you can use
+regular Claude for the copy and the
+structure, rather than using Claude
+design, but we'll come to that. So, let
+me show you how we're going to set this
+up for the Agentic Academy on School.
+And what we're going to tackle first is
+basically a landing page. So, right now
+we live inside School, which is great
+for the community experience, but we
+don't have a proper external landing
+page where people can see more
+information about what we offer. So,
+something that sells the vision, shows
+what's inside, and converts visitors
+into members. Now, we are actually
+running some ads, which link back to a
+mock landing page, but you can see
+they're pretty non-branded, pretty
+generic, and not really represents of
+our brand, not even following the color
+schemes we're using on School. So,
+before we go into Claude design and
+actually start setting up a design
+system, I just wanted to flag one
+important thing, which is inside Claude
+design, it's a separate app from your
+Claude Claude desktop app, and it's a
+separate app from Claude code when
+you're hosting it in VS Code, for
+example. And what that means is that it
+doesn't actually come with inbuilt
+custom skills. So, you might have your
+own front-end design skills, or UI
+design skills, but none of those are
+supported at the moment inside Claude
+Design. I'm sure they will be in the
+future, but what that means is actually
+when you're referencing and using Claude
+Design, you're going to use Anthropic's
+built-in front-end design skill. And
+we've already talked about how that
+produces generic AI aesthetics, or AI
+slop. So, you need to either feed it a
+design system yourself, or
+feed in the right reference screenshots
+to give it a design system. So, we can
+kind of approach this in three ways, and
+we'll actually show you two of those
+ways to compare the outputs. The first
+is using reference screenshots. So, it's
+highly recommended that when you're
+creating your design system inside the
+Claude Design app, we need to make sure
+that when we are actually adding things
+and setting up our design system in
+Claude.ai, we are uploading as much
+context material to create the design
+system from as possible. So, that is
+method one. We're going to use reference
+screens- screenshots. So, we're going to
+collect three to five screenshots from
+websites we like, or our current brand
+assets, and upload that to actually
+create that design system. Or method two
+is actually using a separate skill, and
+actually creating the design system
+outside of the Claude Design app. So,
+using what we have in the skill
+ecosystem,
+and in particular, we'll use a skill
+called Skill UI to basically extract
+design principles from a given website.
+So, we're able to actually extract from
+a website that we like a full design
+system that we can then push straight
+into the Claude Design app. Or equally,
+we could actually do this all in Claude
+Design still, but copy and paste the
+skill content from that Skill UI
+directly into Claude Design. Each of
+these methods has their own pros and
+cons, and all of them will get you to a
+Claude Design system, which we'll show.
+Now, this will get you to that 90%
+point. So, once we have a Claude Design
+system, and we start actually creating
+that landing page, hopefully with a
+design system, we get fewer AI
+aesthetics, and something we're actually
+happy with that's on brand. But, I'm
+also going to show you after that 90%,
+how we can actually export this directly
+to Claude Code, and use additional
+skills to actually create that final 10%
+that takes it even further away from the
+AI aesthetic and closer to your brand
+assets and actually something that you
+look at and you're proud of and takes a
+little bit longer but so worth the
+effort. Because if you remember Claude
+design is going to get you to the 90%
+really quickly but skills on either side
+of that, whether it be for creation of
+the design system or actually optimizing
+the result afterwards, are going to get
+you to that 100% result or at least 95%.
+Now
+&gt;&gt; for this design system input, any
+thinking that we're leaving Claude to do
+is going to cost us in tokens and the
+token usage limits for Claude design are
+separated from Claude code and separated
+from the Claude chat app as well. So you
+have a separate usage limit and there's
+been a lot of rumors going around that
+actually this is a really small limit.
+So you might do one or two design
+systems and then completely wipe out
+your limit, whether you're a pro or a
+max plan. So what we're going to do to
+actually reduce the token usage is to be
+more prescriptive. So the less thinking
+or the less ambiguity that we can give
+Claude design, one, the better design
+we'll probably end up with because we
+put more thought into actually planning
+it out and two, we're going to save on
+token usage because we're not asking it
+to actually go and explore various
+different design systems, we're just
+feeding it in. So even where we're
+feeding in reference screenshots, I'd
+highly recommend following the steps
+that we're going to go through and we're
+actually going to go to chat GPT's new
+image model, image 2.0 and effectively
+create a design system or a starting
+point for a design system that we're
+then going to feed in as reference
+screenshots. Later when we come to
+actually building out the pages, we
+again want to be less ambiguous and more
+prescriptive with exactly what we want.
+So we want a header page with a hero
+section that looks like X. We want
+testimonial section that looks like Y
+and we can go and pull from various
+resources to make it a bit more
+prescriptive, a bit less ambiguous and
+therefore reduce our token usage. So if
+we are going with method one of
+inserting reference screenshots rather
+than using the skill that extracts exact
+design packages, then what we're going
+to do is go to websites that we like or
+like the look of and actually start
+pulling those together inside ChatGPT's
+new image model. And we're going to say,
+"Use your new image model to help me
+actually create a design system." This
+way we're not using Claude Design's
+thinking tokens and saving that for the
+actual execution. And instead, actually
+ChatGPT has really generous limits even
+on the free plan for being able to
+create multiple images. And the new
+images that are coming out of ChatGPT
+image, as you'll see, are actually
+pretty incredible. So, this serves as a
+really good way to actually reduce the
+token usage before we feed it into
+Claude Design. So, I've got a few
+different references of websites that I
+like the look and feel of. And all we're
+doing here is extracting things like
+color palettes, fonts,
+uh the way things are laid out on the
+page. We're effectively taking that and
+trying to create our own bespoke blend
+from websites we like. So, the first one
+is zeno.com, which is a social API for
+developers and AI agents. And you can
+see this has like a nice orangey red,
+and we have a similar orangey red inside
+our Agentic Academy. And I also like the
+uh fonts that are used inside here. And
+it just feels very modern. It doesn't
+feel like AI slop. And it feels, yeah,
+quite quite unique. So, I quite like the
+look of this. So, all I'm going to do is
+just take a screenshot of this. And I'll
+probably take a couple of screenshots.
+And I'm just going to paste them
+directly inside ChatGPT. And I quite
+like the design section here as well.
+These little graphics. Everything feels
+like it's got a place inside here. And
+then the second one that I really like
+the look and feel of, and I kind of like
+to combine Stack AI AI and Zeno, is
+stackai.com.
+So, from process to AI agent in minutes.
+It's all very clean, very modern. I like
+the shine that comes across here. It's
+got this nice video. Everything's got
+these really nicely laid out borders. I
+really like the rounded edges.
+The
+click-through of all these different
+buttons here. And then if you're looking
+for inspiration as well, then I'd highly
+recommend going to either landbook.com
+or Dribbble. And you can basically go
+through all of these pages. There's some
+beautiful landing pages. Say you like
+the look of this one, you can click on
+and it even gives you the different
+color palettes. So, it could in fact
+even paste in a color palette and it's
+even got some parts of the design system
+on there. You can go directly to the
+website by hitting the visit button up
+top and you can effectively take
+inspiration from those as well. So, all
+we're looking is to create a bespoke
+design style for our own website based
+on inspiration. We're not looking to
+directly copy. So, use your new image
+model to help me create design system on
+one page, tokens, buttons,
+colors, typography, use the inspiration
+designs. We just tell it to use your new
+image model because sometimes it decides
+to default to the older image models and
+the new image model is pretty
+incredible. So, the first design system
+came through, but what were I didn't
+make very clear was that we are not
+Zeno. So, we're not creating a design
+system for Zeno and it's pretty much
+replicated that. So, if you want to
+actually emulate an existing service,
+then it's basically has replicated it.
+If we zoom
+a bit closer on screen, you can see all
+of these layouts are very similar to
+what we saw actually on the Zeno site.
+However, I've gone back and clarified
+with ChatGPT actually the designs I
+uploaded were from several websites, not
+just Zeno and they were to take
+inspiration from. Don't take their logo
+and I've updated our logo, added some
+colors from our Agent Academy page and
+then added some screens again from
+stackai.com. It's then delivered a
+second version. You can see this is
+getting closer. We've got a bit more of
+our own color palette here, a bit closer
+to the oranges rather than Zeno's reds,
+some really nice cards appearing in
+here, lots of different colors including
+the neutrals from stackai.com. However,
+it's included stuff that is standard AI
+slop aesthetic or AI aesthetic, things
+like the Inter font, the typography,
+etc. So, what I'm going to do is an
+additional step here is actually direct
+us to this taste skill. A guy called
+Leon has created a taste skill which is
+basically a collection of skills that
+improve how how AI tools write front end
+code and we'll come back to this later
+when we actually export the code from
+Claude design. But, I've actually
+navigated directly into the taste skill.
+So, it's a collection of skills. All
+these different skills in here. I've
+gone into the taste skill, and I'm
+looking for the AI tails. I'm going to
+copy the AI tails section, which are
+basically the forbidden patterns, and
+that includes things like knowing to
+font. We'll take that back to ChatGPT,
+and I'll say, "Follow these patterns to
+copy in that." So, you can basically
+pull stuff from external resources to
+create the design system before we put
+it into Claude design. And you can see
+how this is going to save us a lot of
+tokens because we don't have to do this
+thinking using Claude design's tokens.
+We're actually going to put in something
+that we're almost there with into Claude
+design, and then it's going to take it
+to the next step for us. And actually
+create components that can be put into
+different elements like landing pages,
+etc. So, all of the thinking around the
+design system can be done externally
+before we actually import it into Claude
+design to build the design system, so to
+speak. And that will save you a ton of
+time. It will stop you running over your
+usage limits immediately, and it means
+you're going to have something you're
+really happy with before you put it into
+Claude design as well. So, this next
+version it's created is significantly
+better. It's still kept everything the
+same apart from it's changed a few
+different things around the cards, the
+typography, the buttons, etc. So, what
+we're going to do now is just refine
+these cards. I really like the look of
+the cards that are on stackai.com. So,
+I've taken a screenshot. I'm going to
+describe the edits. Make sure the cards
+are closely aligned with this. Borders,
+shadow, rounded edges, etc. And then, I
+think once we've done that, we'll
+probably have a good version that we can
+take into Claude design. Now, I'm also
+going to quickly show you how you do a
+similar thing to emulate using Claude
+code instead of ChatGPT images, and then
+we'll take our favorite one through to
+Claude design, import that into Claude
+design to actually then create our
+design system. And these are looking a
+lot closer to what we're expecting. So,
+you can see it's now added this uh
+border shadow, which looks a lot closer
+to what we were expecting from here. So,
+we're going to take and download that
+system. One thing I'm going to do as
+well, it's obviously great to upload a
+design style asset like this, but also
+I'm going to ask it to put this all in a
+design .md doc. Like we want to be as
+thorough as possible, so all of these
+standards I basically want a design .md
+doc or just a markdown document to
+actually paste into Cloud Design as as
+well when we come to it. So, another
+method that we're now going to show you
+to actually extract an existing design
+system from a website is using this
+skill UI package. So, this is a command
+line interface tool that reverse
+engineers any design system into a Cloud
+ready skill. So, to install it we're
+just going to copy this command line
+here, and we also want to use ultra mode
+because basically that can go and
+visually extract the elements including
+the hover interfaces etc. from a website
+so that we can emulate it. You can see
+what you get in here. You get all the
+color tokens, the typography, the
+spacing, the hover and focus focus
+interactions. You get scroll journey
+screenshots, and it's all saved in its
+own uh folder. So, if you're emulating
+Notion for example, you get a Notion
+design folder with a skill, and then you
+can jump inside that inside Cloud Code
+itself and say actually inside this
+folder read the Cloud .md, build me a UI
+that matches this. So, arguably with
+this skill, you don't even need Cloud
+Design, but there are a few elements
+where Cloud Design really helps you
+refine your ideas that
+is the exact reason we're still going to
+actually go and use this and port this
+into Cloud Design. So, let's go to a new
+terminal in VS Code. We're going to
+install
+this. So, we're going to run npm install
+-g skill UI. We're also going to go and
+make sure we've installed Playwright and
+Chromium, which are basically going to
+be able to go and scan those websites
+for us. So, we're going to run those
+commands as well. And this is the way it
+works. You extract a design design
+system from a URL. You open the output
+folder and run Cloud Code, and then you
+just ask Cloud to build your UI. But,
+what we're effectively just doing is the
+extraction of the system step, so we can
+then pass that into Cloud Design as
+well. But, we want to do it in the full
+cinematic, ultra mode,
+which uses Playwright to capture scroll
+screenshots, interactions, animations,
+etc. So, we want to see how well this
+can pull from a given design brief.
+You're going to copy this command,
+skill-ui {dash} {dash} URL, and for this
+one, we're going to actually
+use stackai.com because I really like
+the cleanliness of this, and we can
+always add colors at later date. So, to
+clarify, we've already got a design
+system that we've built inside ChatGPT.
+That's one method. The second method is
+just emulating a design system and
+pulling that inside Crawl Code. So,
+we've got skill-ui, stackai mode ultra.
+We need to make sure URL is in there.
+Put the URL afterwards.
+And we're going to run that. It's got
+this really nice interface, website
+crawling, and it's basically using zero
+API keys. So, it's pure static analysis.
+It's not going to cost us a thing to
+scan these websites and actually build
+out a website design system for
+stackai.com that we can then actually
+take into either ChatGPT to create
+design system from that or just put it
+directly with all the text inside Crawl
+Design as well. So, that extracted in
+probably a couple of minutes, and you
+know, it's extracted the colors, the
+fonts, the components, all animations,
+and it's output a completely new file
+called stackai design. That file has a
+skill.md. If we were to come in here,
+inside this folder, and ask it to build
+out a UI, it would directly understand
+to work from this skill.md. It's got all
+of our design elements combined in one
+long design.md. So, you can see color
+palette and roles, CSS variable tokens,
+typography rules. And then, we've even
+got all of these individual things
+broken out into individual folders. So,
+we've got the colors.json, spacing.json.
+We've got screenshots. So, we've got the
+homepage screenshot. We've got literally
+screenshots of every single scroll
+element on the page. We've got
+references for our components, our
+animations. We've got all of the
+different fonts. Then, you can see, for
+example, that we've got longer
+screenshots for the full pricing page.
+And all of these elements we can
+basically work off of. So, if we were
+building a design directly in this
+folder, which we'll do for a comparison
+point, it's basically going to read from
+this design and start building it out
+exactly using these patterns, which is
+super cool. For the purpose of what we
+are trying to demonstrate inside Claude
+Design, we take the design.md and
+probably a few of the screenshots and
+then put that into Claude Design so that
+we can actually edit it and work with it
+in Claude Design. But, I'm also going to
+actually do a comparison directly of
+building in Claude Design versus just
+doing the website inside this folder.
+So, I'm going to CD into the folder
+stackai design, open up Claude, and I'm
+just going to say, "Build me a landing
+page based on the stackai design." Just
+give it a really broad brief. It's going
+to start reading from this specific
+scale. It knows all of the fonts, the
+references, the screens, etc. And let's
+see how close it can get to actually
+emulating the design we had there. But,
+I'm also going to copy and paste that
+design system, the design.md, and take a
+few of the screens, and we're going to
+go back now to Claude Design and start
+building it out inside Claude Design.
+Now, just to remind you, we've got two
+different design systems here, and we're
+going to try them both out. So, we've
+got design system one, which is the
+one-pager that we got from ChatGPT
+images directly. Another way is to
+actually just emulate an existing design
+system, which is why we used the scale
+inside Claude Code. So, just two
+different methods of approaching the
+same problem. Now, we want to actually
+turn this into a design system with
+actual tokens when we're happy with
+inside Claude Design. And we're going to
+do it for both of these methods and then
+compare. So, we're going to go into the
+design systems at claude.ai/design,
+and we're going to create a new design
+system. We're going to do it for the
+Agentech Academy, and then the blurb is
+going to be "Build Agentech systems that
+run your business." We're not going to
+link the code on GitHub because we don't
+have any. But, for the first system, we
+will actually go and link the code from
+the computer, and we will link it
+directly to the stackai design. So,
+we're going to have the full folder of
+assets available from that folder there.
+And we can even add the fonts, logos,
+and assets. Let's go in and add our logo
+first of all. And then, if we go into
+the Stack AI design, we can add the
+fonts folder and we'll also add the
+tokens like the typography, spacing,
+colors because then Claude doesn't have
+to think about what it's doing. It's
+just basically taking the design system
+already. And then we're going to go and
+copy again the design.md and I'm just
+going to paste that design.md directly
+inside here. So we've given it access to
+the assets, we've given it access to the
+full design file with screens and now we
+can continue to generation. It will take
+about 5 minutes to generate a design
+system. Let's keep it open in the back
+ground and whilst we do that, we're
+going to do the same again.
+But this time we're going to pass in
+just the inspiration that we took from
+ChatGPT. So we're going to download that
+image. I'm going to make sure we upload
+that inside the fonts, logos and assets.
+And we're also going to take the design
+system one page markdown document that
+we got it to create from the back off
+the back of that and we're going to
+paste that directly in there. So this
+one has fewer assets to actually build
+from, but let's continue to the
+generation. Let's generate that and
+let's see how our two design systems
+come out. And you can see the first
+design system has started working. It's
+got a bunch of to-dos. It's really nice
+interface because actually it updates us
+with a bunch of like, "This is what I'm
+going to do." So I'm going to explore
+the Stack AI code base and uploads. I'm
+going to read the design tokens. I'm
+going to set the project title. I'm
+going to copy the logo and visual
+assets. And you can see that it's
+updating us as it goes through with
+exactly what it's reading, what it's
+doing and this is why it takes so many
+tokens to do because actually we've
+uploaded a lot of different information
+here and I'm really keen to see how this
+comes out. Now the next step will play
+out that actually Claude will come back
+and ask us a series of questions and
+this is why you don't actually
+independently do this inside Claude
+code. If you want more of an iterative
+flow, then you use something like Claude
+design because actually it's going to
+ask you a bunch of questions, you get to
+feedback on certain things. We're then
+going to show you how to actually
+interact with certain elements on the
+page to make some smaller changes. All
+of these things are much harder when
+you're actually generating a page
+directly inside VS Code or Claude Code
+for example. So let's come back to
+Claude design and review the two
+separate outputs. So, the first one is
+the one that was based on our Chat GPT
+design system where we had all of these
+colors, the Satoshi variable font. You
+can see that it's got really clean
+interface when you start to interact
+inside Cloud Design. It lays everything
+out really nicely. So, you can actually
+give it direct feedback. So, the colors
+look good, for example. So, we can say
+these look good, and then it switches to
+the next card. These neutrals look good
+as well. And then, I guess the semantic
+colors look good. Backgrounds look
+pretty good. And then, uh the primary
+family of fonts is Satoshi variable,
+which I think was correct. So, we can
+say that these look good. And then, we
+even can see the different header
+levels. So, we've got header one, header
+two, etc. And if we wanted to say, you
+know, actually make the top header
+larger, then we could do that by hitting
+the needs work button. But, all of these
+look pretty good. I like the typography
+there. The spacing grid looks good. And
+it looks like it's effectively taken a
+lot of that inspiration from the design
+that we've fed in in the first place.
+And what we're effectively doing is
+heading down all of these different
+cards to approve various different
+things. And you can see this is what the
+buttons are going to look like. So, when
+you hover over them, they're going to
+look like this. When they're disabled,
+they're going to look like this. I think
+these look quite good. Secondary and
+ghost buttons, these look good also. So,
+we basically go through all of these
+different forms and approve them so we
+get an individual look at exactly what
+we're approving. So, let's say actually
+we don't want the focus to blend orange.
+We can actually describe what we prefer.
+So, more subtle orange on the focus box.
+We submit that. That's going to be put
+into the inputs in the chat on the
+left-hand side, and it will effectively
+go and change that and then put it back
+for us for review again. These look
+good. It's now actually made that
+immediately more subtle. So, by editing
+this specific element rather than
+actually just asking about the whole
+site and inserting all of the context
+again, what we're able to do is actually
+reduce the token usage. So, you use a
+lot of tokens up front, but you can
+actually save a lot of tokens by doing
+what we've done and actually designing
+the design system like elsewhere and
+then bringing it into Claude code at a
+later point so that you are more
+comfortable just approving things. If
+we'd just written a prompt to start
+with, there would have been a lot more
+back and forth where we'd use more
+tokens to do this. And equally, instead
+of going through the needs review, you
+can actually go down to any of these,
+right? So, you can see all of the ones
+we've ticked so far and these are all
+the ones that we need reviewing. So, you
+can see the alerts.
+And you can say looks good there. So,
+what we're doing is just giving Claude
+direct feedback on what we think about
+the designs here. And when you tick
+looks good, it's not passing it's not
+costing us any tokens. It's only when we
+say needs work. So, we're going to say
+looks good to all of these. I mean, it's
+done a really good job to be honest.
+Agentech Academy, it's taken the logo
+in. We've got a dark and a light
+version. And now we start to get into
+the actual marketing kit, which is
+effectively our feedback on specific
+designs. So, before we go and actually
+create any pages, it just gives us like
+a hero and how that hero would look. So,
+it's build agentic systems that run your
+business. I don't really like the
+Agentech Academy V2 button up there.
+Orchestrate AI agents with
+enterprise-grade security from process
+to AI agent in minutes. Designed for IT
+and enterprise architecture teams. So,
+it doesn't have any context of the
+audience that I'm serving. So, all of
+that copy is totally wrong. But, we're
+not really worried about the copy right
+now. We're just worried about the AI
+aesthetic. we can scroll down the hero
+and you can see it's reverted a little
+bit here back to this AI icons and the
+Bento grids
+that are commonly seen in AI interfaces
+as well. Let's say looks good for now.
+We then have an app console kit so we
+can see what this might look like on the
+back end. And this is quite nice
+actually. So, we've gone through, we've
+approved everything and it says now your
+design system is ready. And what we're
+able to do is click publish and then we
+can actually use this system to create a
+new design for our landing page. So,
+we've got nothing yet in terms of a
+landing page. So, I also wanted to show
+you that in the back end, you can see
+all of the different design files that
+are feeding any design going forwards
+with this design skill. So, it's set up
+in a similar way to that UI skill
+actually generates designs. So, we've
+even got a skill.md that's been
+generated on our behalf for this design
+system. So, if we open the skill.md, it
+says use this skill to generate
+well-branded interface and assets for
+Agentech Academy. So, anytime we ask it
+to generate something for the Agentech
+Academy, it's able to actually take this
+skill. So, if we wanted to if we didn't
+need the interface here, we could
+effectively take all of these project
+files, download them, put them into our
+cloud code, and then actually use this
+this design system and start building
+out from there. So, if you wanted to
+save your credits, you could actually do
+that. But, I really like the visual
+interface that we're given to actually
+go through all of the different HTML
+elements. You can literally see they're
+all previewing on the right-hand side,
+and you can open those up in larger
+detail, too. But, not only that, you can
+actually ask it to make a tweak. You can
+add a comment that your team can see.
+You can make edits directly, like adding
+a background, changing the fonts. And
+actually, you can just highlight things
+like this. You use voice mode or
+actually just click. And what we could
+say is leave a specific comment on a
+specific element. And this is why it's
+more powerful than using something like
+cloud code out of the box, because you
+are not in cloud code able to at this
+granular level make an iteration. So, we
+could, for example, say, "Make the
+outside of this button glow
+when it's hovered on." And you can see
+preview failed to render. So, it was
+actually working then, but for some
+reason had a bit of a glitch, and this
+is part of the problem so far in cloud
+design that a lot of people experience.
+So, we're just going to try it again.
+Give it more of a glow
+when being hovered.
+So, again, uh failing to
+failing to render. So, you can see that
+these edits are trying to be pushed in
+the left-hand side, but nothing is
+happening. So, maybe we need to do this
+on a
+per design basis rather than going into
+individual files. So, it's a bit glitchy
+at the moment with edits, but the
+interface is really nice. You can see
+also all of the uploads that we added.
+Now, let's quickly view the second
+design system, which to remind you was
+made by emulating stackai.com's.
+So, this is not correct because it
+should be
+the Agentech Academy on stackai. And
+we're going to go through and just
+make sure we're happy with the design
+system used inside here. And I really
+like the fonts that's being used in
+here, and this has been taken directly
+from the stackai page that we were happy
+with. This all looks good.
+Like these handwritten marks. I don't
+like that it's on a gray background.
+Remove the gray backgrounds behind the
+logo. This should be a white background.
+And also, academy should have the same
+font as the Agentech in the word mark.
+And all of those get pushed in the
+left-hand side and back into our review
+queue, which is great. Then we got our
+spacing, the different types of
+elevation, components. And then we've
+got a separate hero section here. Oh, I
+don't like the blue so much now that I'm
+seeing it like this, but I do prefer
+this style over the other one that we
+saw. We go back to the hero section of
+the other one where we created it using
+the ChatGPT images, it looks a bit more
+AI-generated,
+a bit more like AI slop, whereas this
+looks a bit neater in the design,
+especially with these different cards,
+actually. So, right now I'm siding with
+emulating existing website and porting
+in that design system and then taking
+that. I actually don't like the blue in
+the header. Can we change those to be
+like a gray color for like solutions,
+templates, customers, pricing,
+resources? So, change that in the actual
+component, and hopefully it can actually
+understand which component to change,
+and then it goes through and will make
+the changes there. So, it hasn't
+actually understood which component to
+change
+the blue inside, but let's see if we can
+go to the specific component and
+actually make that change. Can we change
+the blues here to more subtle gray
+colors? So, let's see if we change it in
+the component whether it will actually
+change back in the marketing UI kit as
+well. And what's great is you get the
+visibility on the left-hand side of
+exactly what is being changed. So, you
+can see now login and learn more is a
+more subtle color. Make sure the header
+has the same colors as displayed in the
+component. So, it shouldn't have blue
+text for the drop-downs. It should have
+gray text. Okay, so we're happy with
+that design. We can also see the design
+files again and actually share those if
+we wanted to hand it off to Claude code.
+It's also useful at this point to go
+into claude.ai/settings/usage
+and you can see where you are at with
+your current Claude design usage. So,
+I'm on the 20x max plan. So, if you're
+on the pro plan, you might have already
+hit your limit by this point, but we've
+basically got its own weekly limit and
+I've used 25% by just doing the two
+design briefs where we barely had to do
+any thinking. All of the work was done
+outside of Claude design. So, you can
+see how quickly you eat up your usage
+here. But, keep an eye on that as we
+start to build out more. Now, based on
+the two design systems that we've taken
+through, we've got to now decide which
+one we want to build out our landing
+page using. And I think actually the
+clean look of this system
+is a lot more fitting to my brand than
+this which looked a bit more generic.
+Although it has nicer colors, I like the
+oranges that fit with the brand. I think
+this one looked,
+although it's monochromatic, nicer in
+terms of the cards
+and the general layout and the fonts.
+So, I'm actually going to go forward
+with this Stack AI design system. And
+what I can do now is actually use the
+system to create a new design. So, I
+know it seems like we've done a lot of
+work up until this point, but we've
+shown you a few different methods in
+which you can actually create your
+design system. And from all of the
+threads and tips that I've read, this is
+the most important thing, creating the
+design system up front, one that you
+like, being able to stray away from
+those AI aesthetics. So, make sure that
+you spend your time actually planning
+out that process and building a design
+system you like that you can then give
+good references to Claude design and not
+actually sponge all of your Claude
+design usage immediately trying to go
+back and forth with Claude design to
+change a few colors in the design for
+example. Now, the benefit in doing all
+of this up until this point is that
+design system does not only go across
+our landing page. We can now use that
+for our slide deck, our app development,
+and for everything that Claude is
+basically going to add into this visual
+asset list. We can now use this design
+system and we've got consistent design
+system. Now, if you remember we set
+Claude code off in the background with a
+task to actually just build out a UI
+straight up straight off the bat to
+emulate stackai.com. So, let's go back
+and revisit how it actually performed.
+So, whilst we were messing around with
+all this typography and giving specific
+feedback, how did it do straight out the
+box with that scale UI scale in
+rebuilding it based on everything it had
+taken from the website. So, we had the
+original stackai website just to remind
+you. We've got these hover effects.
+We've got the video up here. We've got
+trusted by these different clients. Then
+we've got sections with all of these
+really nice nicely laid out cards. So,
+on the left-hand side is the one that
+it's built on our behalf. It's even got
+this a few stacked things as a logo that
+it's built here. You can see it's not
+exactly the same font, but it is very
+similar. It's even taken the video asset
+from stackai.com. It's copied all of the
+headers up here and has a similar set of
+highlights. All the highlight colors
+look very very similar. The hover effect
+hasn't quite copied over. So, these are
+all got hover effects over here, but you
+actually can't really see the hover
+effects here. The cards definitely
+aren't as nice down here, right? But
+it's tried to emulate this. What we do
+best, stack AI features, and it's
+created a bunch of cards. This is very
+AI aesthetic, so we'd need to go in and
+change that. But you can see that
+actually it's tried to bring all of the
+same text across and we could have an
+image in here. And I must say I'm quite
+impressed with what it's done out of the
+box. Now, if we did not use the Skill UI
+skill to extract this from stackai.com,
+then we probably would have ended up
+with something that was pretty, pretty
+generic and using the Inter font and all
+of those AI telltale signs. But, this
+actually, straight out the box, doesn't
+look that AI generated, and I'm quite
+impressed with that. The difference,
+however, comes to when you want to make
+those iterative changes to specific
+things, specific elements on the page.
+So, it might be quite clear if you want
+to make a change to the title, that's
+not going to be very difficult. But, you
+can't pinpoint a specific logo on this
+page visually, like you can in Claude
+Design and say, "Actually, just change
+this icon." It's basically got to push a
+load of context back into it, and it
+will take a lot longer to identify the
+exact resource unless you go through the
+code base and try and find that
+yourself. So, what Claude Design enables
+is for you to go into those specific
+design files and give the feedback on
+that specific element, and therefore
+it'll be changed across all your
+designs. So, maybe that's in the design
+system, or as we'll see when we create a
+landing page from the design file, you
+can do that on a component level on a
+page, and that is what makes this really
+powerful. So, let's start off with our
+landing page. And we're going to go
+create. We're going to start with the
+context of the design system, and we're
+going to choose our chosen design
+system. We can also actually start with
+a sketch. So, if we have a good idea of
+what things should look like in terms of
+the landing page, then we're actually
+going to start with a sketch. And what
+we are going to do is actually go to our
+ad page and just redesign this ad page
+based on our new design system. We'll
+take the same text, we'll take the same
+video embedded at the top, and what
+we're trying to do is effectively create
+all of this in a nicer format with the
+testimonials, with the FAQs, just a
+simple landing page to demonstrate
+exactly how you build this out. So, we
+can take screenshots now, and I'm just
+going to individually screenshot these
+so we give it the best possible chance
+to emulate these resources. And you can
+see I'm being really detailed adding
+every single
+screenshot. So, that has a lot of files
+to work from. But, what we don't want to
+do what we want to avoid the trap of is
+getting it to just recreate this fairly
+generic structure that we've got in our
+website already. So, we're going to make
+that clear in the prompt. And this is
+where you get a few more issues with
+Claude. So, we've attached loads of
+files and now we have to zoom out
+massively to get to the describe what
+you want to create button at the bottom.
+So, we're going to say using this design
+system I've attached a page that we've
+got that is currently a landing page for
+our Agility Academy. It has a hero at
+the top which is embedding a YouTube
+video. And I can link to the YouTube
+video. It's got a link to the
+school.com/scapes
+which is the Agility Academy. I've
+attached details of all the different
+sections through screenshots on the
+page. Includes features, includes
+testimonials, and includes FAQs. I've
+also attached some of the images as part
+of those feature sections. I want you to
+create a structure based on the design
+system, not based on the screenshots,
+but include all of those elements,
+please. And again, we have to zoom out a
+little bit, but let's
+let's check we're happy with that. And
+now hopefully we've given it enough
+context to actually plan this out in
+detail. If you don't know how you want
+your landing page to look, I'd highly
+recommend going to landbook.com, finding
+a website that looks like you might like
+the sections of. So, if you're on
+e-commerce business, go and find an
+e-commerce website. Or you can go to
+sections inside here and you can see
+like actually I want my you know, value
+proposition to look like this. I want my
+feature section to look like this. And
+this one's quite nice, actually. And
+what you can do is screenshot it and
+then take it back to Claude Design and
+say actually I want the feature section
+to look more like this. So, we're
+actually going to be able to iterate on
+it in a moment. But, if you don't have a
+design already, then I'd recommend
+actually thinking about, you know, what
+sections do you want on the website?
+What sections make sense? And just
+emulate what good looks like right now
+in the market. And you can see, okay,
+it's listing the files, it's reading the
+files. I have enough context to build
+this now. Let me set up the project
+files and build the page following the
+design system. So, it's now starting out
+on actually building out the landing
+page for us. And we'll come back and
+show you how it looks and how we can
+iterate on it. And I'm just going to go
+check my usage and we're currently at
+30%. So, it's only used 5% more doing
+that, but don't forget I'm on the Max
+plan. So, on the right-hand side we've
+got our previous landing page, on the
+left-hand side we've got our new design.
+The text is so much nicer. Like, I must
+say the text is so much nicer. These
+sections also in the features are laid
+out in a nicer way. So, we have the one
+on the left, one on the right, one on
+the left uh switching there. And we also
+have, you know, these subtitles for
+that. It's also actually taken the
+screenshots that I put in of the Agenty
+OS, which were in our old branding
+colors and actually updated those as if
+it was going to be in these new colors.
+So, we need to change them back to what
+the Agenty OS uh command center actually
+looks like. But, you know, this is not
+looking bad. It's also made a bit of a
+mess of some of these screenshots rather
+than taking them as is. However, the
+structure of the general page is fairly
+nice. It's then taken the what members
+are saying. And again, these were
+screenshots from before and I think the
+screenshots probably look a bit better,
+but these are definitely clearer to
+read. A live feed of Windows builds and
+milestones. Yeah, like actually quite
+like this. It's also taken all of the
+text and has it taken it verbatim? Let's
+have a look. What makes Agenty OS
+different from Cloud Code on its own?
+Cloud Code alone has no memory. So,
+yeah, it literally has has taken the
+exact text as well from the screenshots,
+which is quite impressive. Then down
+here we've got our logo, which it's
+turned into this uh spinning GIF almost.
+And it's saying, you know, you can get
+the Agenty OS or watch the intro lesson.
+And then get the Agenty OS actually
+links directly, I can see down there, to
+our landing page. So, join 1,200 members
+using Agenty OS to run their projects,
+clients, and businesses on autopilot.
+And then it's got a bunch of links down
+here, none of which actually link to
+anything right now. Agentic Academy, the
+operating system for code, code, build,
+deploy, and run agents around your
+business. I mean, I must say I
+overall am very impressed, and I don't
+think it looks very AI generated, which
+was exactly the reason we'd gone
+down this approach to generate stuff in
+this style. However, there are a few
+bugs that we can actually draw directly
+on here and comment directly on here to
+change. So, actually if we click
+comment, we get this really nice
+interface that's almost like any other
+web builder, where it says, you know,
+describe the issue or suggestion, and
+it's quite clear that this isn't very
+nice because it's huge. So, we can say
+reduce the size of the
+main header. And we can send that to
+Claude. We can see on the left-hand side
+we are able to actually select
+individual elements, and it will only
+take that little bit of context cuz it
+knows exactly what element it is, and it
+will edit the style.css file directly,
+which is the file that's going to
+determine the font size for these main
+headers, and it will reduce it. So,
+that's not going to take much context at
+all, and we can literally go back to our
+usage. We can see I think that had
+actively updated. We've used 2% to make
+that change. So,
+it's significant, but if we were
+actually going back to Claude code and
+asking it to check make that change and
+weren't able to pinpoint the element, it
+would use significantly more. We can
+also go in and edit it directly, so we
+don't need to use AI tokens. We can
+actually, you know, go in and edit the
+text, so it's exactly like if we're
+using something like WordPress, Webflow,
+or Framer. Let's delete the lesson here.
+How to use Claude code as an Agentic
+operating system.
+And maybe we actually put a space in
+there, and that looks a bit better. So,
+actually now we're starting to get a
+real feel of what things can start to
+look like. We'll say 1,200 members
+letting AI agents handle their work.
+Let's try to draw a function, and this
+isn't something I necessarily want for
+myself, but maybe it's like watch the
+video and points down to the video down
+here just to see if it's able to
+actually do that. Ah, that's cool. So,
+we can click and then start typing. Make
+this watch the video, make it not a
+button, and make it just like an arrow
+pointing down at the video below it. And
+then we can send or queue that message.
+Let's see if it works this time on the
+landing page. And you can see it's
+actually sent the drawing
+with that saying, you know, here's the
+note, here's the drawing, make that
+change. So, again, it's like targeting a
+specific element and trying to make that
+change. So, let's see. So, it's
+reloaded. It's got watch the video and
+then get the Agentecho S.
+Not sure exactly it's understood that.
+So, let's try it with a comment. So,
+again, you know, AI is open to
+interpretation. If I wasn't very clear
+with my instructions, then on me be it.
+Actually, I'm going to try it again with
+the drawing. Then I'm going to add my
+comment. Instead of saying watch the
+video as a button, I don't want it to be
+a button. I want it to just basically be
+a secondary call to action. The first is
+get the Agentecho S, so that should be
+the main button. And then the secondary
+call to action is like a subtext, watch
+the video with an arrow like I've drawn
+pointing down to the video below. So,
+like a graphical arrow. And this time
+I'm just going to copy that text. And I
+tried to add it down here, but it does
+not work. So, let's just make sure we
+have the arrow on there. We might need
+to come across to the left-hand side and
+actually just, you know, find an arrow
+somewhere else and like a graphical
+representation of an arrow to try and
+get this through. But, I'm just trying
+to see how easy it is to actually make
+these edits and how much context it's
+actually going to take up every time.
+So, you say the benefit is like actually
+being able to edit these things, but if
+it isn't able to edit these things at
+the moment, then you might as well just
+be doing this in code code and just, you
+know, asking the same things if it's not
+going to rinse your context. And again,
+it's not understood. It has moved the
+get the Agentecho S to over here, but
+it's still got watch the video and no
+arrow down there. So, what I'm going to
+go to is ChatGPT. This is a better idea
+and give it the same information. Upload
+the screenshot. I want you to create a
+diagram that's a graphical
+representation of this landing page, but
+instead of the watch the video call to
+action, it should just be like a playful
+watch the video with a graphical arrow
+pointing down at the video below it.
+Draw that in the similar style to the UI
+that you see. Let's see if we send that
+prompt if ChatGPT can get close to that
+representation. And once we've got that
+image, then we can bring it back to the
+chat window across here and try and do
+the same again. So, it'll be the third
+time trying to do the same thing. We've
+seen that we can actually make comments
+on specific things, but we can't
+actually append like images. What would
+be really helpful is we if we can make a
+comment directly on this, append the
+image that we're going to get from
+ChatGPT, and therefore make the change.
+Like, in contrast to something like
+Figma or Canva, where you'd be able to
+actually, you know, make the changes
+directly, we can only make the changes
+up to an extent. We can obviously make
+edits on here around background, font,
+the size of things, but these are all
+deterministic things. We can't just drag
+this across the page. We have to
+actually, if we want to move it, like we
+have to decide, you know, how much
+margin it has, how much padding it has,
+but this is all going to be a little bit
+complicated in this app. And the idea
+isn't to build the perfect website here,
+it's to mock up a 90% version so we can
+prove it elsewhere. So, it's mocked it
+up there, like watch the video. And I
+actually quite like that. I'm going to
+download it, and then we're going to go
+back across here, go upload that file
+directly. So, change the watch the video
+to not be a link, but just the text on
+the page like the screenshot attached.
+And with all this back and forth, you
+can see we're still on 32% use. So,
+these aren't using a huge amount of
+tokens, and that is the best way, and
+the way that others advise to to
+actually interact with this website or
+interact with your designs is just like
+pick an element on the page and actually
+focus on that element. Now, what we can
+see is happening is what we probably
+expected to happen, which is we have
+this really great, you know, human idea
+for a design, which can be represented
+in an image, but when we try to actually
+execute it using something like Claude
+design, it's very deterministic. It
+needs to put something on a page in a
+given place. So, it would need, for
+example, to put this image next to the
+Aventador S, and the image is what is
+actually being rendered in the
+background, or the background is
+rendered with this watch the video image
+there. So, it can't quite compute how it
+actually is able to do that, and
+therefore it struggled to do it. So,
+what we're left doing is actually just
+commenting or drawing on here, remove
+the watch the video and blue arrow
+entirely from here, and just center the
+get the Aventador S button. Also,
+everywhere on the page where it says
+plan start at $77 a month, say plan
+start at $37 a month. Let's see if it's
+able to, even though we selected that
+element, actually change elements like
+the plan start at text at multiple areas
+on the on the page. So, really putting
+it through its paces here. But, yeah,
+all the guides that I've read have
+talked about being really specific and
+really prescriptive with the changes you
+want to make, and that's how we got to
+this nice-looking landing page in the
+first place, because we were really
+prescriptive with the design system
+going into it. And, as we expected, it's
+only done one thing at a time, so we
+have to go in and say,
+get rid of this, and yeah, maybe it's
+best to actually pick individual things
+and only focus on one change at a time.
+Plan start at $37 a month, and you can
+see
+that we can, you know, queue a bunch of
+changes and see how when it reloads,
+hopefully all of those changes we made.
+So, make a single change at once, and
+then reload it after all the changes.
+But, yeah, be really prescriptive with
+that single change, and that's the
+lesson you learned there. Now, the
+problem with, you know, it redesigning
+these images is it's actually built out
+these images, and they are not images,
+they're kind of elements. It's actually
+mocked up. So, we can see, for example,
+how this might struggle when we actually
+start to compress the page. You can see
+that we've got things like the buttons
+starting to squash there, and the page
+is not responsive. So, we're just going
+to use a blanket statement, which is
+make the page
+mobile responsive. Also, in the features
+list,
+e.g. one dashboard for everything, make
+sure that the images that are showing
+the dashboard are just the actual
+images. So, I'm going to upload the
+actual now. In order I think we had four
+images, which I'll attach here. And then
+we can reload, let it try and tackle the
+responsiveness, and let it try and
+tackle the images and insert the images
+instead of trying to mock up these
+dashboards. It's kind of done too much
+work um for us because we weren't
+prescriptive enough in our landing page
+design. Okay, so we've reloaded. It's
+changed these to $37 a month, and you
+can see it's it's really messed up on
+this image addition there. Let's see if
+it's responsive.
+It is looking pretty responsive. There's
+a few bugs here and there, but we're not
+worried about uh fixing those too much
+for this demonstration. But this image
+issue is a problem, so let's go down
+here. The images that you just added,
+that I uploaded, they're huge. So, they
+no longer fit next to the features. Can
+you scale them to be this a similar size
+to the actual features like schedule
+once, run 24/7. And once that is ready,
+I think I'm pretty happy with this. It
+looks like an authentic landing page
+that is branded in a way that I like and
+I think fits our branding. The text
+obviously on yours might be a bit
+different if you didn't have a landing
+page that you're already working off and
+you were working on one that you needed
+to spin up. And I would not recommend
+using Cloud Design to optimize the text.
+I would use a copywriting skill or a
+conversion rate optimization skill.
+We've got more info in the community
+around, you know, the different skills
+that you can use for that. However, for
+the design, this is really a cool way to
+interact with it and build out, you
+know, you've got the different design
+files, you've got the landing page HTML
+which you can interact with directly,
+draw on, make comments, even if it
+doesn't work perfectly. Now, the
+difference, if you think about it,
+between how we've built this up with
+claw.ai/design,
+their design tool, versus what we did
+earlier where we just used the uh
+skill UI to basically mock up the same
+landing page. Like, this looks pretty
+good, but we need to make a hell of a
+lot of changes to actually apply all of
+our brand contacts, convert it to
+everything that we see on screen,
+whereas this has taken these same
+elements, but actually
+able to apply it to our contacts and our
+brand. So, there are benefits in
+obviously emulating this directly from
+claw code and doing that. There are
+benefits of doing it inside the design
+system which we've seen today. You can
+see it still hasn't managed this image
+problem, so I'll keep fixing that. And
+then, once we've managed the image
+problem, we can then export it to claw
+code and what we're going to do is take
+the taste skill. I'll leave the links
+down below in the description. We're
+going to install by just running this
+command in the terminal, and MPX skills
+add the taste skill, and then we're just
+going to go into VS code, give it the
+contents of the file that we download
+from claw design, and just tell it,
+"Okay, we're going to use the redesign
+skill. Use this when a project already
+exists and needs to be improved. It
+focuses on auditing the current UI
+first, fixing the weak layout, spacing,
+hierarchy, and styling decisions." So,
+it's designed to take what we've got and
+add that 10% that we talked about at the
+end of it. So, basically, building the
+app, which we've done, and then taste
+skill in claw code is that final 10%
+polish, and we'll see how that compares
+to the claw design they actually created
+here, and show you whether it's actually
+worth doing or not. So, we can see it's
+sorted out the images now, and I'm
+pretty happy with how this is all
+looking now.
+I might even go back and increase the
+font size here. And then what we can do
+is hit share. I'm interested to do it as
+a handoff to Claude Code, so we can send
+it to our local coding agent, or we can
+send it to Claude Code web, or we can
+download the zip. So, it's going to say
+fetch this design file, read its read
+me, and implement the relevant aspects
+of the design. Let's copy the command.
+Let's open up a new Claude Code terminal
+here. And then we're going to use the
+taste skill to redesign that specific
+HTML file or that design. So, when we
+use this taste skill, because they're
+effectively just a set of skills, we can
+point it at any file. So, we're just
+going to say use the redesign skill on
+this landingpage.html file. So, once
+that's built, we'll just type that into
+Claude and let the taste skill go to
+work, and we'll show you the difference
+between the version that we've mocked up
+in Claude design versus the version
+where it's actually the AI'd and done
+the extra 10%, and we'll see what it
+identified as like AI traits in which
+are the things that it's actually gone
+and changed. And okay, we've come across
+an error, so it says, "Could you
+download the HTML file or paste the HTML
+content into that?" So, we're going to
+go back to share, and let's just export
+it as a standalone HTML.
+Right now, we don't need necessarily the
+design files to come with it. If we did,
+we'd download the whole project as a
+zip. And this will make it quicker
+because we'll just take it directly into
+this instance, and actually just use the
+redesign skill directly on that. So,
+make sure you install the redesign
+skill, and I've got mine in here in my
+Agentic OS. There's redesign skill. So,
+we're going to just open up Claude Code,
+and we're going to say redesign based on
+the best practice in the
+there's redesign skill. I'm just going
+to add a new file in here,
+landingpageoriginal.html.
+I'm going to take that opened up HTML
+file. And there are probably easier ways
+to do this, but I'm going to put it
+inside
+this landingpageoriginal.html
+file, save that, and then just right
+click, copy the relative path, give it
+that, and let it spin off and start
+working on that landing page redesign.
+And then I'm really keen to see side by
+side like what things it identifies as
+AI aesthetics and then how that looks
+compared to the version that we've
+actually spun up at the end.
+&gt;&gt; So, bringing it back here
+[clears throat] now, it's run through
+the redesign. Here's what the redesign
+addressed from the audit. So, it's added
+some
+formatting around the typography,
+including weight variety, to give it
+some like inconsistency, I guess natural
+inconsistency. It's changed some stuff
+around the colors, the layout, removed
+the zigzag reverse pattern. Features now
+alternate media position, interactivity.
+So, when you actually active or press on
+all buttons, there's some difference in
+how it scales. It's changed the content
+from generic numbers like 1,200 to 1247.
+So, it's a non-round number. It's added
+some stuff around accessibility and code
+quality and then some components have
+been changed. So, for example, the
+testimonial avatars they're using uh
+squarcles or rounded squares instead of
+circles and the FAQ replaced the
+traditional accordion. So, we can now go
+into the HTML file that it's spit out of
+this and yours might spit out a HTML
+file as well. And above that, it also
+has a bunch of stuff it's identified in
+the audit, by the way. So, we can uh go
+back and we can open up just a HTML
+previewer and on the right-hand side,
+you can see the reformatted version,
+which is supposedly a little less AI
+generated. So, you can see it's changed
+the numbers up here. It's made
+everything a bit more rounded.
+Ooh, I don't like this. So, it's changed
+the bullets to uh emojis there. Instead
+of uh having these uh alternate features
+on here, it's got kind of individual
+features, although it's replaced the
+images with stock images and then it has
+also changed down here these
+testimonials to put them in more or
+less. Now, it is very responsive, like
+this is better for the screen size that
+I'm operating on and then if I open it
+up, let's see if it actually Yeah, it
+does It does do better for the uh screen
+size elements. However, most of it I
+would say I actually prefer the Claude
+design out the box. Whether it looks
+more AI or not, I think the actual
+design of this is much cleaner than what
+we've been given over here at the edge.
+It's also changed the logo for some
+reason. So, it's quite clear that this
+taste design does not handle some things
+very well, but it does do it to a
+specific aesthetic. Now, one thing that
+we should try also is to actually run
+the same prompt again. If we press up,
+redesign based on the best practices,
+but instead now we will say, for
+example, there's more skills inside
+there. One of them is the brutalist
+skill. So, it's going to apply Well, we
+can either do minimalist or we can do
+brutalist. Maybe we'll do both and see
+the difference. But let's actually use
+this skill because it's a a useful skill
+to see different output. So, I'm
+actually saying not redesign, reformat
+using Let's do the brutalist skill. And
+let's point original landing page rather
+than the one it has just edited. So,
+reformat using the brutalist skill. I'm
+also going to open up a second terminal
+and do exactly the same to do the
+minimalist skill. So, it's going to
+redesign both of those. Let's have a
+quick look at the brutalist skill, quick
+look at the minimalist skill. I'm just
+showing you this because actually maybe
+Claude design isn't the be-all and
+end-all and you can actually leverage
+skills inside Claude code to do this
+instead or to do the work that Claude
+design would be able to do. And if we
+just quickly flash up the two that we've
+redesigned with the taste skill. The
+first one is the minimalist. So, you can
+see that it's kind of changed all the
+aesthetic on the fonts. And then as we
+go down, it's kind of just made things a
+little bit more simple and animations
+have been added to sort of load in
+things as you scroll through the page.
+But not a huge amount has changed, but
+actually it's quite nice and minimalist.
+And then the other style that's built in
+that we've tested out is the brutalist.
+And you can see that this is totally
+totally different. And of course, you
+can go in and change the color schemes
+here, but this is completely different
+style, but I actually quite like it.
+It's very agentic operating system vibe,
+where you've got everything in this dark
+chromatic view with like some accent
+red. We've got like this code script
+type text. You've got the
+nice hover animations across to play the
+YouTube video. All of these sections
+which have been been put into grids. Of
+course, it's taken the incorrect images
+again, but we could always replace those
+quite easily. But this is quite a nice
+way to lay this all out, and this is
+very, very different style and does not
+look AI generated at least from from my
+point of view at all. So, let's say the
+landing page is now complete. Okay, so
+the next project now we finished the
+landing page is wireframing. So, another
+thing that Claude design is supposedly
+really good at is creating prototypes or
+wireframes of different processes, and
+we didn't really get the interactivity
+of Claude asking us different questions
+because we were so prescriptive in the
+last a brief for the landing page, but
+now we should see when we go to actually
+create a wireframe for our command
+center, let's call it. Then actually
+this time is going to ask us questions
+and be really interactive, and it's one
+of the other benefits of using something
+like Claude design. So, if we hit
+create, and what we are effectively
+going to do this time is create a mobile
+app for something that we've built out
+inside our community, which is the
+agentic OS command center. So, think of
+this as a UI that sits on top of your
+terminal, where if you as a business
+owner can just write down your
+goals that you want to achieve, similar
+to like you do in a terminal window in
+Claude code, where you type in
+different tasks. But the difference is
+that actually you can go into a series
+of project tasks and see multiple
+conversations under one hood. So, you
+can see the progress of multiple chats
+or multiple tasks which relate to a
+single goal. So, it's like a way of
+raising us above the individual tech
+bits of tech overhead like GitHub
+commits etc. to just focus on literally
+different goals. All I'm going to do is
+actually screenshot this right now and
+what we're trying to design is an app
+interface, a a mobile interface so that
+users could actually use this on the
+mobile. So right now it's just a desktop
+interface. It works really well. People
+are giving really good feedback but
+actually nobody's able to use this on
+their mobile at the moment. So I'm going
+to actually go back into here and we're
+going to paste in uh screenshots. We
+want to make sure we connect it up to
+the correct design system and what we
+are doing
+is yeah, pasting in screenshots for this
+wireframe and then we will give it a
+brief. But we're going to keep it a bit
+more open this time and it will come
+back and it will ask us questions and we
+can obviously also point it to the to
+the code, too. I don't want to take up
+too much context of it reading the whole
+code base. So what I'm going to do is
+just give it a couple of screens and
+then ask it to design how it would
+actually view these screens on mobile.
+So we're going to give it the main
+screen and we're also going to give it
+the scheduled task screen where we
+create different scheduled tasks that
+can run on repeat without a user having
+to touch them. And we're just looking
+for effectively a design wireframe. So I
+want you to help me build out a
+wireframe for a mobile app or just a
+mobile interface, a responsive design
+for mobile for a product that we've
+launched inside our Argenta Academy
+called the command center and I'm just
+basically attaching all those screens
+making sure again we are prescriptive
+enough that it's not going off the rails
+and we don't need to use loads of tokens
+to get it back in the right direction
+but still open enough that it's going to
+come back and actually use the
+interactive feature to come back and ask
+us questions like what do we actually
+want the mobile app to do. And you can
+see right now it's already mapping out
+the different questions it has. So this
+is like a planning stage that's really
+useful inside this
+uh inside Claude design.
+&gt;&gt; That helps us feed more context in and
+get a design that's more accurate
+straight off the bat rather than having
+to rework a lot of different things. And
+of course, it does this as well inside
+the claw code terminal, but this is laid
+out in a really nice manner and relates
+directly to our design. So quick
+questions on the command center mobile
+wireframe, do I want it to be like a
+sketchy hand drawn? I'd quite like it to
+be closer to the real design system.
+Which screen should I wireframe? Pick
+all that apply. So let's do the feed,
+let's do the goal detail, let's do the
+schedule job jobs list, and skills list,
+and skill detail edit. How many
+variations per screen? So this is really
+powerful. We can basically ask for
+multiple variations per screen so that
+we can choose from those. So let's do
+two variations per screen in in the
+order of preserving
+our tokens. What should variations
+explore? Probably navigation pattern. In
+fact, decide for me. I'm not exactly
+sure. Any nav pattern you already
+prefer? No preference. How important is
+the workspace switcher on mobile? That
+is the workspace switcher between
+different client folders. So this is
+really important. How should a user
+start a new goal on mobile? Persistent
+composer bar at the bottom maybe. So
+like a chat window at the bottom. You
+can see these are really in detail
+questions that are really making me
+think about the design, and that is the
+purpose of this design planning. Feed
+grouping on mobile, decide for me.
+Create job on mobile, decide for me. We
+want to view the skills that's most
+important, but we also want to edit the
+skills. What should tweaks be toggled?
+So we're going to explore the feature of
+tweaks. So tweaks are something that's
+going to show up in the design previews
+that's going to allow us to actually
+flick between two things. So light and
+dark screens,
+sketchy versus clean stroke, variations
+per screen, density. So let's just do
+light and dark and sketchy versus clean
+stroke. We can also suggest other
+things. How should screens be laid out
+in the deliverable? All variations side
+by side on one infinite canvas. Yeah, I
+like that. Device frame, let's go for
+iPhone. Do you want annotations and
+callouts? Yeah, let's have callouts. And
+anything else I should know? No, let's
+just go ahead with it. And let's check
+in. We're at 38% used on our Claude
+design. Let's see where we get to by the
+end of this wireframe. So, right now
+we're seeing exactly how each step, now
+that we've got the design system, is
+actually affecting our context and token
+usage. But based on what everyone said
+so far, I'm actually quite impressed
+with the lack of token usage. I guess
+I'm on the max 20 X plan, so if you're
+on the pro pro plan, you would have
+blown through your usage by now, but
+I've been able to do quite a lot so far
+back and forth because I've done the
+upfront planning in the design system.
+So, we had the landing page, which was
+really scoped out, and now we've got the
+wireframe, which is much less scoped
+out, and it's asking us those questions
+and giving us the ability to actually
+decide on the design direction, which is
+really cool. This is the stuff that you
+don't get inside the Claude code
+interface at the moment, for example.
+Okay, so we are at 42% used now, so that
+took around 4% to make. And we'll have a
+look through those, but I just want you
+to remember also that the power in using
+something like Claude design is that you
+get all the files in the background. So,
+if you ever want to take these projects,
+you've effectively created the
+underlying HTML and CSS files, which is
+brilliant. It's just a way to actually
+see that code translated in this
+preview screen, I guess we can call it.
+And you've got the command center mobile
+wireframe. I like how this is totally
+different. Like, this is like a canvas
+view like you'd see in Figma versus what
+we saw before, which was like more like
+a web page HTML preview scroll down.
+This one is like literally like a canvas
+view where we can like drag and drop
+things around. Like, they're quite
+rigid, but we can like, you know, swap A
+and B if we wanted to. And it's got a
+little summary like a read me at the
+top. So, mobile wireframes for Agent QAS
+command center, two variations per
+screen. A sticks to the desktop mental
+model. B reframes for one-handed mobile
+use. so I quite like that. Fonts and
+colors come from the Agenta Academy
+design system, great. Everything else is
+intentionally low detail to keep
+structure in focus. So, you can see that
+we've got a few things that we've not
+seen before. On the right-hand side,
+we've got these tweaks. This is an
+awesome feature that basically allows
+you to do like a a switch between
+multiple settings. So, say we wanted
+dark theme instead and we wanted to see
+those in dark theme, then we could see
+that very easy. Say we wanted the
+sketchy style versus clean style, I
+quite like this clean style. And say we
+wanted to remove notes entirely at first
+and then put the notes back on. Let's
+have a look at the individual screens.
+And one thing you can immediately see is
+that it's not quite nailed the iPhone
+screen here. So, we have A for the feed
+view. And if we go back and see the feed
+view, the feed view is where we
+effectively assign different tasks and
+goals. You can see everything's a bit
+cramped. We've got all of our categories
+up there, which we can probably remove.
+They look a bit nicer up here. Okay,
+this isn't categories up here. This is
+like redesigned. Yeah, I like this a bit
+more. This is redesigned for the mobile
+view, B, remember. We've got like five
+in review, eight done, six scheduled
+tasks. The notes are a bit all over the
+place, so we can get it to actually try
+and fix the formatting. I like that
+we've got like the new goal you could
+type in down here. You can select the
+model. It's taken some of the text from
+what it's seen in the screenshots. Like
+this feels like a mobile view and this
+this doesn't. But the cool thing is like
+it's giving us variations. You don't get
+this in many tools. Like has given us
+with 4% context usage like variation,
+two variations per screen. And we could
+ask for five variations per screen. And
+this really acts as the seed for us to
+start thinking, "Okay, actually I quite
+like that view, but here's what I'd
+change instead." And obviously the
+formatting's a bit off. We've got like
+the standard time and battery up there
+and then it it crosses over. But like
+when you look at the screens, they're
+not too far off. So, on the goal detail
+where we actually enter the goals,
+similar to what we do up here,
+we've got like enter your goals, then
+you've got the activity, you've got the
+files, everything that we've got inside
+there and some pre-written tasks, too,
+and the ability to reply, so like a chat
+interface, like we're used to, which is
+cool. We've then got these scheduled
+tasks, and again, when it's just
+replicated the dashboard, it looks
+pretty poor, but when it actually thinks
+about the design of a mobile app, it
+looks significantly better and
+significantly more optimized. Then
+browsing skills, that's great. You can
+toggle the skills on and on, but that's
+not really a thing, but
+yeah, I like the way it's it's it's able
+to search skills, add skills, etc. And
+then we've got the skill detail where
+you're able to actually go into raw or
+preview mode and see the skill detail.
+So, I really like this, um and there's
+no individual tweaks that I'd make, but
+let's see if it can clean up the
+formatting. The formatting is a bit all
+over the place. The notes aren't really
+showing. The header crosses over with
+all the iPhone functions, so can you
+just clean them up a bit? And also, I
+think, like, can we do a variation again
+on B? So, we do a C variation, but based
+on B, because B is like the best style
+for each of the different screens. So,
+we've asked it to do another variation,
+and let's just uh take a picture of the
+formatting as an example and paste that
+into the chat. Send that in. Let's see
+if it can clean up the formatting, and
+let's see if by talking to it we can
+actually get it to do
+uh a C variation, which is a variation
+on, you know, most of the these. And the
+power in doing something like this, as a
+non-technical person, as a non-designer,
+I could hand this off to a developer,
+and they've already got the code or like
+the startings of the code to actually
+develop these screens. But the other
+benefit is I don't need to be a designer
+to actually mock this up in an
+incredible speed. This took a couple of
+minutes to get to this stage. How many
+hours would this take even a designer to
+get to this stage, never mind a
+non-designer? So, it's a really powerful
+tool for that. Okay, so after that,
+we're at 54% used, but this is actually
+nailed it. It's added a section C or a
+variation C rather. So, we've got B and
+C now, and it's cleaned up all of the
+notes, so we can actually see and
+understand the different notes on here.
+We can obviously hide the notes too, if
+we wanted to. But, what we can see with
+this second variation is a change in
+style. So, you can see these are very
+rounded, but this is more of a drop
+style on there. It's filled in some more
+detail around Okay, these are done
+tasks. These are in progress tasks. So,
+that's great. This doesn't really make
+sense for the context. Like it's added,
+you know, a marker on which model
+it is, but it's got like the little send
+or approval buttons in there, which is
+quite nice. We've got like a backlog of
+runs on the YouTube newsletter scheduled
+task. Also great. And it's tried to be a
+bit more creative here. It's got like a
+featured skill of the week. Maybe that's
+one we've used most. I mean, I like it.
+It's It's a bit different. Recent
+activity strip. Jump back to skills in
+use. Okay, so maybe it's saying if you
+if you jump back a page, it'll go back
+to a skill in use. So, I'm not not
+exactly sure. Category pills at the
+bottom of each group. Again, I I feel
+like some of these are not
+related or like the notes are in the
+wrong place maybe. Like category pills
+at the bottom of each group, that makes
+sense down here. Um but, it's it's up
+here on the design. But, anyway, the
+point being like it's come up with a
+second variation when we've asked it to.
+So, it's not perfect, but like we said,
+we're aiming for like a 90% version that
+we can take forward. So, I think this
+one has shown us some really good
+features, and we can probably move ahead
+now, take the design system, and start
+working on some slides. So, let's go
+back to the design app. And what we can
+actually do is either go in and create a
+slide deck directly, and we can actually
+give it a project name, and move forward
+with some specific notes on these slides
+or we can take a tip that I saw from
+Peter Yang which is actually if you want
+to make really dynamic slides then start
+by asking Claude Design to actually
+generate a video and then work it back
+into slides. So if you ask it to create
+a slide deck it's going to create
+something quite boring and generic and
+quite static but videos are meant to be
+dynamic and motion full. So what we are
+actually going to do is ask it to
+generate a video first and then from
+that video we will duplicate the project
+and ask it to actually then generate the
+slides. So I don't personally do a lot
+of sales or pitch decks but one thing
+that I do do or enjoy doing is like
+posting LinkedIn carousels for example.
+So for me personally I'm going to go and
+take a LinkedIn carousel one that I've
+previously posted and ask to actually
+translate that content into a video and
+therefore hopefully we can extract the
+information into a really nice slide
+deck in this Agenty Academy slide
+system. So we're going to call it
+LinkedIn carousel and of course it's not
+going to be a good fit to post on
+LinkedIn because it's not going to be
+right format but what we can do is
+LinkedIn carousel slides and the concept
+still carries through. So it's all about
+conveying almost like a tutorial or a
+set of tips through some slides instead
+of a LinkedIn carousel. So actually
+instead of LinkedIn carousel I'm just
+going to call it carousel slides tips to
+use Claude code for example. And we're
+going to create that there. We're going
+to go to my LinkedIn post and it's all
+about tips to use Claude code and you
+can see that it's you are using Claude
+code wrong 10 config tips to go from
+chatbot to senior engineer. Firstly it
+talks about agent teams then it talks
+about built-in slash commands. It talks
+about actually keeping context in
+various files external to your Claude.md
+and not overloading it how to
+access blocked sites force it to verify
+and fact check and you can see these
+have all got like annotated diagrams on
+as well. And basically what we want to
+do is take this content and turn it and
+build it out into a slide deck. That has
+a little bit of information, but it kind
+of is a bit ambiguous. So what we're
+going to do is go and grab the YouTube
+transcript from the video that actually
+generated this post that I reviewed and
+edited in the first place. So I've now
+got the transcript. I'm going to go back
+to Claude Code and ask it to make a
+animated video explaining the seven
+levels that I explain in this video
+transcript. And it's going to follow the
+Agentyk Academy design system. I'm going
+to paste in the full transcript and you
+can see that's pasted text there. So
+what we're basically doing is just make
+me an animated video explaining this.
+And therefore it will make not just a
+slide deck, but effectively a full plan
+for seven scenes, intro outro structure,
+starter animations. So we're sat at 62%
+used after it's generated that video. So
+we've still got some capacity in here.
+Let's have a look at what it built out.
+So you can see it's following the
+standards. I quite like this how it's
+laid out the slides. It's very
+interactive. Shift plus tab to cycle
+through modes. I quite like that. On the
+right hand side it's got this coding
+platform. It's going quite quickly. I
+must say it's got a lot of information.
+Claude.md onboards your new teammates.
+This is the structure of Claude.md.
+Didn't get time to read it, but I like
+the way it's going. It's definitely
+following the colors and the design
+system, right? Three kinds of muscle
+memory. This is like command skills and
+hooks. Stop copying and pasting. Wire it
+up. Ooh, I like this. This is cool. So
+it's adding animations, which is great.
+It's taken the context of our actual
+video, which was seven levels of Claude
+Code. And this for example was all about
+planning at scale. So like splitting
+your plan into multiple phases. So it's
+definitely taken the essence of the text
+and turned this into a really cool
+video. But what we want is like slides
+that we can publish in different places.
+So teams of agents, it's showing
+multiple agents working. Like this is a
+lot better than
+I had expected it to be actually. I
+wonder what this is is using behind the
+hood. The route loop, so it's like
+autonomous loops as well. The seven
+levels and then it lays out the seven
+levels. Skip the trial and error, pick
+your next level, ship it. I like it. It
+It's on brand. It feels very
+appropriate. So, what we're going to do
+now is show you how to turn this into a
+slide deck. So, if we go share,
+duplicate project, then you can see you
+can duplicate things as templates, too.
+And what I'll just do now is actually
+say, "Can you turn this into a slide
+deck instead of a video that I can click
+through
+toggle through basically? I also want to
+include some screenshots of each level.
+Like it's a bit overwhelming with the
+information on each slide. So, I'm going
+to include three screenshots for levels
+1, 2, and 3 that you can put into the
+slide instead of like overloading
+information. Just keep the key points."
+So, I've taken three random screenshots
+there. I've asked it to turn it into a
+slide deck. Two of them are Boris
+Cherney tweets. One of them is just like
+a Claude code/commands file structure.
+So, let's see how well it does in
+actually converting that and whether it
+can actually contextualize the images
+that I've added and put them in the
+right place. Who knows? We'll see. So,
+it seems to have created it now. So,
+let's go full screen and have a look
+through. So, we've got the toggles down
+here that we can click through. So, this
+looks exactly the same as the video so
+far. So, we've got prompting with
+intent. Fan mode is read only. Claude
+researches and proposes a plan before
+touching a single file. Shift and tab,
+press twice to enter the plan mode. That
+is true. And then it's got a few tips
+there and it's got Boris Cherney's post
+as a tweet as well, which is cool. It's
+like reformatted that to be a tweet.
+Level two, teach it how you work. So,
+we've again got the tweet from Boris
+Cherney on the right-hand side, which is
+quite cool. So, it's understood that it
+belongs with that slide, maybe because I
+told it that it was going to be for, you
+know, sections 1, 2, 3. And then we've
+got a few key tips there. We've got a
+blurry image on the right, but you know,
+it can't help that I've uploaded a
+blurry image. Three kinds of muscle
+memory, stop retyping from the same
+prompts, commands you invoke, skills
+Claude invokes, hooks fires after. So,
+this is this is quite cool and I love
+how I do love the formatting, I must
+say. Stop copy and pasting, wire it up.
+So, this is like wiring up to MCP
+servers and we've got the Claude code
+MCP bridge and then all of our services
+there. Planning on steroids and we kind
+of like made this a bit more dynamic
+where this is done, this is done, this
+is running. Repeat per phase, plan,
+execute, verify. Very cool, I like that.
+And then multiple agents and I like how
+this one's actually changed the the
+format a little bit. So, one Claude
+Claude researches, another one writes, a
+third reviews in parallel. And I like
+how this is almost like a story. You've
+got researcher, writer, reviewer and
+writer number two. Set it up, walk away,
+come back to a week of work. And this is
+the Ralph loop, level seven, the seven
+levels and we kind of finish there. So,
+it's kind of lost a little bit of the
+dynamic nature of it, but to be honest,
+I'm actually pretty impressed with where
+we've got to in terms of just creating a
+slide deck from a video there. We could
+go back and actually ask it to add in
+some more animations and make sure the
+animations
+keep, but I'm pretty happy with the
+outputs. So, let's just have a quick
+recap on what we did because it was a
+lot. We built basically a full design
+system for the Agentech Academy and
+hopefully you were able to follow along
+at home and build your own, too. So, we
+built a community landing page based on
+our ads page that we currently got up
+and we built that using several
+different methods. So, the first is we
+actually used the skill UI to emulate an
+existing landing page and we saw how
+Claude code performed on that versus
+Claude design where we could iterate and
+manipulate individual elements on the
+page. We also went to ChatGPT's new
+image model and we generated a design
+system there and both of those design
+systems that we created, we fed into
+Claude design to actually do all of the
+planning up front before we confirmed a
+design system. And that's meant that
+even with everything we've done so far,
+we've still, when we've created all of
+that, only hit 70% of my max limit, even
+though everyone online is saying they're
+using all of their limits immediately.
+If you're on the max 20x plan, you can
+get a serious amount done as long as you
+do the planning up front. And we also
+ended up with pages that did not look
+like AI slop at all. They looked very
+professional, actually, and I was really
+pleased with the way that they turned
+out. And can actually go back and build
+on those. Like we said, this is a 90%
+version designed for you to then take
+away and actually improve that 10%
+whether that's handing it off to Claude
+code or handing it off to an actual
+designer or a developer, whatever you
+want to do. This gets us to a 90%
+version. We were then able to go and
+look at the command center that we
+built, the Kanban UI interface, and even
+create three variations of mock-up
+screens for various screens inside that
+app and how the user would interact with
+it. There were a few iterations we had
+to do back and forth, but we got there
+in the end and we would be able to take
+this design and actually start building
+out an actual high-fidelity prototype
+based as well. Finally, we talked about
+some tips in how to create more dynamic
+slides it using your design style. So,
+the most important tip was actually to
+create a video first and ask Claude
+design to do that and then rework it
+into a slide deck. And we ended up
+pretty happy with a slide deck that
+actually portrayed a subject topic and
+seven levels of Claude code, which was a
+repurposed video. So, if you followed
+along, you have done actually a huge
+amount here and congrats on getting this
+far. I'm just going to finish off on a
+few tips that we covered to
+reconsolidate
+your knowledge on them. So, firstly,
+always build your design system first
+before anything else. So, this is the
+most important tip that we shared
+throughout the course because it means
+that actually you are able to extract
+those elements that look more human
+beforehand up front, give those to
+Claude, not use a ton of tokens, and
+still end up with something that you're
+actually proud to present. Number two
+was banning certain things like the
+inter prompt, no Roboto prompts, no
+generic gradients, no teal in the
+design. And we helped to get to those
+decisions because we actually used the
+taste skill, which I'll link down below.
+And that had a bunch of stuff that's
+like generic AI Claude front-end design
+skill vibes that we wanted to extract
+and never have in our designs. Three was
+using inline comments for edits. So,
+don't fully re-prompt anything unless
+you want to change the whole thing. Like
+Claude design is designed to make it
+really simple to just go on, click an
+element, and actually comment and change
+those. But, we saw the limitations today
+of it not being able to create custom
+graphics, something that we might have
+to go to something like Figma or a
+designer to actually create. And then
+finally, when you're creating a deck, if
+you want it to be a dynamic deck,
+whether it's a sales deck or a carousel,
+then actually start with a video first
+and then convert it to slides
+afterwards. And we saw some really cool
+features as we went through, like the
+fact Claude does ask us loads of
+questions to gain more context for the
+brief, the fact we're able to use these
+tweaks, comment, edit, draw. All of
+these are really powerful use cases of
+Claude design, and I can only see it
+getting better and more useful. And
+hopefully, the token usage problem will
+start to reduce as they free up more
+resources to focus on things like Claude
+design, and it becomes more powerful.
+The one biggest limitation so far with
+Claude design, one that we've worked
+around today, is the fact that it does
+not allow you to import your own custom
+skills. So, we've had to do workarounds
+by using a bit of Claude code, a bit of
+Claude design in order to actually get a
+design that we're really happy with. So,
+if you found this video valuable, then
+make sure to check out the Agentic
+Academy community link down in the
+description below. This is just one of
+our design courses amongst many other
+guided builds as part of our Agentic
+Masterclass. If you're looking to master
+Agentic workflows and building with
+Claude code, then you'll definitely love
+all the valuable resources we've got
+there. Thanks for watching. See you in
+the next one.

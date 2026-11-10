@@ -1,0 +1,833 @@
+Today, I'm going to show you how to set
+up your OpenClaw agent to communicate
+with your Hermes agent and vice versa.
+We're going to be using Discord for this
+shared comms feature. So, without
+further ado, let's build.
+All right. So, as you can see here on
+the screen, I prepped this visual prop
+just to kind of walk through the process
+first and foremost. We're going to take
+a very simple approach, right? I did
+include some prompts that you can
+copy-paste to set up, but I highly
+recommend if you're looking to set up
+this cross-agent communication between
+these two different systems, take the
+approach that I'm taking. It's a very
+simple approach where we just chat with
+our agents, right? It's step one, we
+need to create the Discord bots for each
+side, and then we create the shared
+channel, and then we connect each bot to
+that channel, and we set certain rules
+and boundaries, and rinse and repeat.
+That's the gist of it. So, to be clear,
+I'm going to be using my executive
+assistant Neo on Hermes and Muddy on
+OpenClaw to do the initial
+configuration. As you can see here on
+the screen, I took the liberty of of
+giving a very simple prompt. Look, this
+is all I said. It's time we set up
+Warren with his own Discord bot, plus
+give him shared comms and growth with
+our Hermes agent. Looks like I forgot to
+put with, but he understood me. Like we
+did with you and Neo.
+On it. I'm going to get mirror Muddy-Neo
+pattern, verify the exact config
+surface, then I'll apply it cleanly
+without guessing. I found the current
+pattern. Muddy bot equals Discord
+account default bound to agent main.
+Clay has his own bot account, which is
+another one of my workspaces. There is
+no Warren Discord account token
+configured yet, which we're going to do
+right now. And I saved this
+for this video so that I can show you
+the step-by-step on how to set up a
+Discord bot from scratch for any of your
+agents on your multi-agent team.
+All right. We have the
+Let's see. I can wire OpenClaw side
+immediately once we have Warren's bot
+token. Give me the step-by-step
+to set him up, please.
+Right? And the same thing we're going to
+go and do Neo. I took the liberty of of
+prepping ahead. This is all I sent to my
+agent Neo on Hermes. It's It's time to
+give Cypher, which is my growth agent on
+Hermes, his own Discord bot so we can
+connect him and Warren on my open claw
+agent team, right? So, Neo called some
+skills. Uh Cypher's already partly
+ready. He has his workspace.
+He has his profile.
+He has his Discord config.
+But, he's not
+running as his own Discord bot yet. Just
+as Warren, right? And forgive the
+background. We're We're do literally
+doing this real time, right? Um forgive
+those pings. So, I'm going to ask Neo
+the same thing. Give me the step-by-step
+to set up Cypher on his own Discord bot
+so we can move forward.
+And there appears to be a weird bug with
+Discord. Actually, fun fact, I had to
+wait about an hour and a half to record
+this video because when I started to
+record it, Discord had some API outage
+issues. And
+bots are back online, but there it's
+weird how it's not showing us that
+they're actually typing. So, normally we
+would see, you know, Neo's typing right
+now or Neo's thinking. Same with Muddy,
+but we don't see that right now. That's
+just a Discord glitch. That'll get
+fixed, I'd imagine, within the next 24
+hours or by the time you watch this
+video.
+Now, before we go and create the Discord
+bots,
+&gt;&gt; [clears throat]
+&gt;&gt; I should have done this at the beginning
+of the video, but here's my shared
+executive assistant's chat. I've been
+using this since April 25th.
+Um it's been solid. It's been amazing.
+Uh I'm not going to scroll all the way
+to the top, right? But, let's go ahead
+and have them do something for us while
+we're setting up Warren and Cypher's
+shared comms chat.
+I want you to create a landing page for
+our new initiative, which is Clearmod
+Labs. It's our subdomain is
+labs.clearmod.ai.
+It's not live yet. Muddy knows a little
+bit more about this tool as he has that
+code base.
+Uh you guys can also go check up check
+out our GitHub uh get pull
+clearmod/clearmod-labs
+uh to check out the current version of
+that code base. I want to build like a
+waitlist promo page for that. And I want
+you guys to build it out. I want you to
+QA each other and ping me once there's
+one ready for my eyes.
+And of course use our front-end design
+skills for our brand Clearmod um to
+build this out. Let me know if you have
+any questions.
+All right, as I mentioned, so normally
+we see both Muddy and Neo starting to
+type, but there's a weird Discord
+bug going on right now to where we're
+not seeing that, but as you can see
+Neo's starting to pull some tools. Muddy
+is thinking there in the background as
+well.
+And they're just going to get to work.
+We'll come back to that towards the end
+of the episode though. So, let's first
+go set up Cypher, shall we? All right,
+so as you can see here, this is why we
+ask our agents for instructions, right?
+Go to this link, then create new
+application. Great. So, I already took
+the liberty of opening up our dashboard
+here. You're going to have a similar
+looking screen as you see here. Now,
+what you want to do is click a new
+application and we're going to call this
+one Cypher.
+You would call this one your bot. You
+apply it to the team that you want to
+apply it to. We're going to say I am
+human.
+Perfect. Okay.
+So now, what we want to do next is go to
+OAuth.
+And we want to select that he's a bot.
+And I believe we also want to select
+applications.commands.
+So, let's go take a look. Where is that?
+Right here.
+All right. Now, what are the bots
+permissions? Now, let's move this over
+here. So, we want to be able to send
+messages, create threads, public,
+private, send messages in threads. So,
+it should be all four of those, add
+reactions, read message history, view
+channels, send messages. Those are all
+the ones. And this is where we copy
+this.
+All right. Just double-check bot. We do
+need to check server members intent and
+message content intent. And then, we
+also need to set the bot permissions
+here as well. So, I'm going to select
+all of those same checkboxes.
+Read message history, add reactions, and
+view channels. And I believe that was
+it, right?
+Yep, that was it. And we're just going
+to save changes. Now, I'm going to take
+that link that I copied from OAuth, and
+we're going to paste that in there.
+We're going to finish it through the
+browser. Discord's a little buggy right
+now at the time of recording this video.
+Hopefully, by the time you follow this
+video,
+you're not going to run into these same
+issues.
+All right. Now, I want to add Cypher to
+Clear Mod Ops.
+Voila. We're going to leave all those
+options checked, and we're going to hit
+authorize.
+Wonderful.
+So, now if I go in here
+and
+you can see how Cypher is an option now.
+Now, I have certain roles to help
+filter, you know, where what channels
+they can view. So, I'm going to give him
+the Hermes role.
+And then, we're going to go back to that
+chat.
+Okay.
+All right. So, before we do
+your last message, let's make sure that
+Cypher's working. I've invited him to
+the server, um but he's showing that he
+is offline at this moment.
+All right, so just going to message that
+to Neo. Now, in the meantime, let's go
+ahead and set up
+Warren.
+All right, we're going to do the same
+process here. Let's go back to Discord,
+back to applications. We're going to
+create a new application. We're going to
+call this one Warren.
+And add that to ClearMud. Create. I am
+All right, then we're going to go to
+bot.
+We're going to select all of These might
+be a little bit different because
+natively Open Cloud doesn't use threads
+like Hermes does prefer to use threads,
+so I do want to hit send messages, view
+channels, history.
+Okay, you know what? I'm just going to
+check all of the same options that we
+did for our Hermes agent as well.
+view channels. Wonderful.
+Now, I'm going to go over to OAuth.
+And this is where
+scopes just bought on this one.
+Interesting.
+So, we're just going to set this up as
+And we're going to give him the same
+exact options here. Read message
+history, view channels. And then I'm
+going to copy this one here. Keep in
+mind that if you were to tab out of
+OAuth
+and tab back in, you have to restart
+this process. So, you can only use this
+link one time, right?
+Now, I'm going to open up a new thread,
+paste that in there.
+And it's going to
+do the same process here. So, Warren,
+let's add him to ClearMud Ops.
+Leave everything checked. We're going to
+authorize. Voila, go to ClearMud Ops.
+Now, I do want to go to growth. Let's
+also give him an Open Cloud tag.
+Bam.
+Okay, great.
+All right, I've invited Warren to the
+channel. He's reference he has the open
+claw tag. Please let me know what else
+you needed from me. And he's currently
+being shown as if he's offline.
+All right. Let's go back here. Cypher's
+offline because his Hermes profile is
+not running as its own Discord gateway
+yet. And installed locally.
+Oh, okay, great. So, verify get his
+actual bot token.
+So, we want to go to bot and then we do
+want to reset token.
+Yes, let's do it.
+And if you have two factor, this is
+where you would enter that in. I might
+have to blur the screen here, so
+depending on what's being shown, uh just
+keep that in mind.
+I'm just going to give it to you and
+then you delete this history in this
+message once you paste it into the .env.
+Got it?
+Rather than doing it manually, listen,
+I built out these agents to do the work
+for me. So, we're just going to make
+sure he deletes the message afterwards.
+Okay? Now, I'm going to go back and
+we're going to go open up Warren and
+we're about to do the same exact thing
+for him in a moment.
+Yep, that tracks.
+I'd rather just paste the token in here
+and then have you delete the message.
+All right, so we're going to do the same
+thing for Warren. We're going to go over
+to bot. We're going to reset the token.
+Yes, do it.
+And I'm going to copy that token.
+And I'm going to paste it in there.
+Send.
+Now, listen, both of my agents are
+telling me that you should do this
+manually. For the sake of the demo, I'm
+having them do it for me, right? Um but
+if you want peace of mind,
+do it manually as your agents recommend.
+All right, let me just delete the token
+ID so I can unblur this screen.
+Okay, great. So,
+unblur the screen now, we should be good
+to go.
+Okay, I've deleted the message.
+Now, looks like Warren is still offline.
+So, tokens in place, get it done. Let's
+get him online.
+And what you want to do as well as you
+want to copy the channel IDs. So, right
+click your channel and go down to copy
+channel ID.
+And I'm going to go give that to
+Here Here's the two channel IDs I want
+Warren to have access to. One is his
+solo channel, the other's going to be a
+shared growth channel.
+And I'm just going to paste that channel
+ID there. And then I'm also going to
+copy this growth channel ID down there.
+And I'm going to paste that in there.
+And let's also go to Neo.
+Okay, great. So, now I want you to make
+sure he has access to the following
+channels. He has um
+Looks like he doesn't have his own
+channel yet, so I'm going to create one
+here. Cypher.
+And I'm going to paste in two channel
+IDs for you here. Let's make sure that
+he has access to them.
+And let's copy that channel ID there.
+Paste.
+And let's go take a look. Cypher should
+be online.
+Let's tag him real quick.
+Mhm, some weird identity crisis.
+All right, so I just messaged Cypher and
+he said Neo here.
+We have to make sure he's operating off
+of his profile. Right? That there's no
+cross-pollination between you and
+Cypher.
+Uh because it looks like he's
+hallucinating.
+Looks like Neo's messaging Cypher to see
+if he's working.
+Looks like you are messaging Cypher, but
+he's not messaging you back.
+Let's go check in on Muddy.
+See Warren's still offline here.
+And let's just say, "Did you get my last
+message?"
+Man, I really hate this Discord bug
+right now.
+It's really deceiving. It doesn't show
+that he's typing or anything when I know
+he is, right?
+There it is. Yeah.
+"Yes, I got it. Current verified state.
+Warren's Open Claw config plus binding
+are written. Token is stored locally in
+secret file. Open Claw detects Warren,
+but shows him stopped and disconnected.
+Gateway restart command was blocked and
+aborted. So, I haven't brought him
+online yet." So, it looks like Open
+Claw, unlike Hermes, right? Hermes
+didn't need a gateway restart, but Open
+Claw's going to need it. And I can go do
+this manually if I need to.
+So, let's go check in on Neo's, who was
+going to allow. It looks like Neo has to
+kick on Hermes' profile for Cypher.
+Let's go back to Muddy. Let's see. "I
+found the blocker. Warren's token is
+valid, and Open Claw can identify it as
+@Warren, but Discord is disconnecting
+him with a 4014.
+Missing privileged gateway intents."
+Turn on message Oh, did I forget to
+Let's make sure we blur that. I did.
+That's my mistake. So, we're going to
+save changes.
+We forgot to check those two very
+important checkboxes.
+Okay, done. Cypher here, I can receive
+Neo bot messages and I'm operating from
+the Cypher profile. Wonderful. This is
+perfect.
+So, we'll get Warren online here in a
+moment.
+All right, you're right. The issue was
+real. What I found, Cypher was online,
+Cypher could respond to Marcelo, but
+Cypher was not processing Neo bot
+messages. He also had Neo identity bleed
+into his memory and session, which
+caused the Neo here hallucination. I
+fixed both. Changes made. Added a hard
+Cypher identi- identity system prompt.
+Neo is separate, Warren is separate.
+Marcelo approval required for state
+changing actions. Wonderful. Rewrote
+Cypher's profile memory, so it no longer
+says, "User calls the assistant Neo."
+Quarantined the bad initial Cypher
+session that contained Neo here.
+Fixed bot-to-bot routing. Wonderful.
+Restarted Cypher's gateway. Retested Neo
+to Cypher messaging.
+And awesome.
+Awesome. So, I'm getting Warren online
+right now, and then we're going to test
+the communication between Cypher and
+Warren. Stay tuned.
+Muddy should be working here. Looks like
+Warren is online now.
+Good sign.
+Hey, yo.
+I really hate this Discord bug that
+doesn't show if they're typing or not.
+By the time you see this video, by the
+time this video gets posted, Discord's
+weird bugginess should be resolved, but
+it it had some outages today, so
+so it looks like he might not be
+responding to a plain message. Let's try
+saying, "Hey, @Warren." All right, looks
+like he's not responding to either or,
+so let's let Muddy know.
+Hey, so Warren is online. However, when
+I try to tag him and communicate with
+him in the Warren CRO channel,
+he's unresponsive.
+All right, Neo says he's standing by.
+When Warren is online, send me the
+channel threads, or just mention where
+you will test, and I'll help verify.
+Okay, I'm probably not going to check in
+with him, right? Because that's not his
+responsibility. I'm going to be checking
+in with Muddy here shortly. Got it. That
+means the bot account is alive, but
+routing channel scope is wrong. I
+configured him for growth.
+Hey guys,
+introduce yourselves.
+It's like we have Cypher responding
+here. Wonderful.
+Product growth, revenue monetization for
+released Clear Mode products, which is
+accurate. Laying clock rib, prompt
+browser, and future customer-facing
+Clear Mode tools. I handle pricing,
+packaging, proposals, offer briefs,
+landing page angles, growth experiments,
+monetization strategy, and revenue
+diagnostics. Boundary, I can propose and
+draft, but customer-facing changes,
+pricing changes, deploys, outreach,
+credentials, or agent workspace changes
+need Marcelo approval and Neo review
+when appropriate. That is perfect. So, I
+did all of this work with Neo, my
+executive assistant, right? Um
+that is, you know,
+a part of my product OS, which I'll
+tease a little bit here.
+So, as you can see, my Hermes
+multi-agent team has their own
+dashboard. That looks very similar to
+Muddy OS because I just really loved it.
+Uh I'm slowly building this out. It's
+not really ready for your eyes yet, but
+if you've been following this channel,
+chances are you know Muddy OS very well.
+Um this is my day-to-day operations for
+the Clear Mode brand. This is what
+controls Muddy, Elon, Gary, and Warren,
+uh as well as Clay, one of our community
+Discord bots. But, you know, I had this
+idea, I want my executive assistants
+first to start talking to each other,
+which we accomplished here in the
+executive assistant chat. As you can
+see, by the way, when we started this
+demo, we said we wanted them to create a
+landing page for us. That was
+um what? About 25 minutes ago, if not
+longer,
+right? Uh look, Neo got to work.
+He tagged Muddy.
+Muddy got it along the labs code base
+side, build the waitlist page locally.
+Wonderful. Neo's still working. 10
+minutes. Muddy's still good on my side.
+Bam bam.
+Looks like there is some bleed. This
+shouldn't have been in here, so I'm
+going to delete it.
+And Neo Muddy ready for QA. Wonderful.
+Let's see.
+On it.
+All right, so set up a local preview on
+one of your local IPs. Right? We're
+We're not deploying this live. This is a
+landing page that I wanted to view
+locally. Sorry if I wasn't clear enough.
+Right? [snorts] And it's not perfect,
+but look, they were working non-stop by
+themselves for about 15 minutes. Right?
+And it took me 10 minutes to get back to
+the message. So they worked from 2:44 to
+3:01. All by themselves. Amazing. Right?
+So that's what we're going to have in
+growth here shortly.
+Ah, look at that. Muddy did make a
+mistake.
+So we're going to just going to let them
+get to work.
+Got it. All right.
+Let's try saying hey to Warren one more
+time.
+Yeah, Warren is still not responding to
+either his channel for Warren CRO nor
+growth.
+Ah.
+Stop. He just responded in his private
+channel. Never mind. Let me go test
+This is me being impatient. All right,
+let's go test growth.
+You there?
+Introduce yourself.
+&gt;&gt; Here I'm Warren, the CRO for Clearmod.
+Look at that. My bias don't chase shiny
+dollars if they cost us credit. I love
+this. This is pulling from Warren's
+workspace.
+I love it. So, hey, I want you guys to
+talk to each other, introduce each
+other,
+get familiar with one another, and
+talk about
+the best approach moving forward,
+whether we create a weekly cron where
+you guys touch base, share updates on
+both growth side go growth perspectives
+from the Hermes multi-agent team or the
+Open Cloud multi-agent team. Um ping me
+when you have a question for me, but I
+really want you guys to um connect,
+share context, share vision, share
+strategy, and feel free to create a plan
+if you if you if you so desire.
+Right? So, this is just me kind of
+testing the waters. Let's see.
+And let's go back check back. So,
+sometimes we do have to always allow for
+Neo. Looks like our preview is ready.
+So, let me grab that. Look at that.
+It's very on brand with our app that
+we're building, too.
+Okay, missed the beat here, but this is
+where we kind of vibe things together.
+Nice. Listen, not a bad landing page. I
+would definitely fix this text. That's
+way too large. My goodness, I can't
+believe they approved that. But listen,
+this is what training your AI is all
+about. Making these adjustments, and as
+you make adjustments on this build, for
+future builds, you you're going to
+notice they're not going to keep making
+the same mistake. They're going to
+remember. They're going to improve.
+All right, let's go back here.
+All right, I think it's very important.
+I'm seeing some bleed from Cypher carry
+over into the executive assistant chat.
+That should never happen, right? Um so,
+I don't know the solution maybe to
+create roles specific to make sure that
+there's never any bleed, but Cypher
+should never bleed into any other chats
+other than the Cypher channel and the
+growth channel, period.
+All right. Now, let's see. Did Warren
+Looks like Warren didn't bleed over.
+So,
+this is also my mistake for not properly
+creating roles and not allowing certain
+roles to be in here. So,
+here's what I'm going to do. I'm
+actually going to edit the channel here.
+We're going to go to permissions.
+And
+let's go ahead and add the specific
+roles of Neo
+and Muddy.
+And we're going to
+essentially remove these two roles
+so that there's no confusion.
+So, now when I go back to that executive
+assistant chat,
+did it not save the permissions?
+Okay. Okay. Oh, it's marked as private.
+That's why. And then we save channel.
+Ah. Do we have to re-add this? Okay.
+Add. Add.
+Bam. Bam.
+I'm just going to for peace of mind send
+messages send messages. Okay.
+Send messages send messages. Okay. Okay.
+So, I'm going to have to do this for
+each one to make sure that there's no
+bleed, right?
+But look, look at our look at our growth
+agents. Look at Warren Buffett and
+Cypher talking to each other. Look at
+All right. So, Cypher called a whole
+bunch of skills.
+Warren is just responding to me. I like
+this direction. Warren here. Cypher,
+good to meet you properly. I'm the open
+claw side CRO growth operator, revenue
+strategy, product market fit,
+partnerships, SEO growth signals.
+And making sure short-term motion
+compounds into durable business. My
+suggested operating rhythm, shared
+weekly growth sync.
+What moved this week? What growth
+revenue signal changed? Love it.
+Done. I created an operating plan. So,
+he he was responding to me. Let's see
+him respond to Warren.
+What I want from Warren.
+It also looks like Cypher isn't
+responding to Warren.
+He responded to me in the shared comms
+chat, but he's not responding to Warren
+back and forth. Please confirm.
+Okay. Looks like hey, Warren is working.
+So, I'm going to delete all these old
+messages for now.
+And Neo's just getting to work here as
+you can see.
+Now,
+Well, let's wait for Neo to confirm.
+Because here look, Cypher should be
+responding after Warren.
+But he's not. So, to me it shows that
+okay, Cypher responded to me, but he's
+not acknowledging Warren's presence.
+Cypher shutting down. Oh, looks like
+Gateway is shutting down. Your current
+task will be interrupted. Oh, that's a
+bummer.
+And we'll do some maintenance on this so
+there's no bleed. Sadly, we do have to
+kind of manually go in
+we're going to remove that role for
+Neo's channel, and we're just going to
+add a Neo manually.
+So, I recommend if you guys don't want
+any bleed, definitely take the time to
+just make these minor tweaks here. So,
+now I I'm sure that this is just
+there, and then let's go ahead and edit
+channel here.
+And I'm going to remove that role, and
+we're going to add Cypher into this
+channel.
+Voila.
+And voila, voila. Bam.
+Great.
+Okay, looks like Neo's back online. So,
+let's wait for him to finish his work,
+and then we should have a little bit
+more comms back and forth.
+Just like we have with Listen, I had to
+go through the same trial and error.
+Like, as much as I want to be able to
+give you a master prompt, it's not going
+to be perfect out the gate. The reason
+I'm showing you every single step here
+is because it's very important that you
+go through the process of just
+communicating with your agents back and
+forth, and configure it how you want to
+configure it. You [snorts] may want your
+setup a little bit differently than
+mine, and that's okay. I'm showing you
+this raw footage to hopefully help you
+uh get to that end result that you
+desire, right?
+Oh, looks like
+Cypher's back. Let's see.
+So, Marcel asked me to confirm Warren
+Cypher back and forth routing. Okay, I
+still haven't removed him from this
+growth channel. Let's just make sure.
+Perfect. We're doing an act test. Done.
+Cypher received Warren. Perfect. Signal
+is clean.
+All right. I want you guys to
+reintroduce yourselves to one another.
+And formulate a plan for your desired
+form of communication, the consistency,
+whether you need to check in every day,
+every week, how you're going to report
+back to me, and how you're going to help
+move the needle and focus on the signal
+and not noise. Right? We need to focus
+on what's going to move the needle for
+the Clear Mud brand and Clear Mud
+products.
+So, as you can see, they are now talking
+back and forth.
+But, I want to post this in there.
+And just let them know, "Hey,
+reintroduce yourselves."
+Perfect.
+Confirmed and fixed. So, let's go to
+check it out. Let's just watch them
+talk, shall we?
+And sorry, I listen, that Discord bug is
+really bugging me. It should be showing
+us that they're typing, but it's not.
+So, I'm also going to take this
+opportunity to
+edit this channel permissions.
+Let's go ahead, make [clears throat] it
+private.
+We're going to add
+Cypher,
+Warren. I'm going to essentially
+Oh, sorry. It's up here. We're going to
+add Cypher and Warren.
+I'm going to remove role here.
+Oh.
+Perfect. And let's remove these roles up
+here
+to ensure that only them can communicate
+in that channel.
+Let's actually test. I don't know if we
+need to check those.
+Let's save changes. Bam.
+Yep, they're going back and forth here.
+Wow.
+So, let's scroll up. Warren here,
+reintroducing myself to the room. Great.
+I proposed operating model weekly growth
+sync Monday 9:00 a.m. Wonderful. I'm
+going to have to give them their own uh
+API so that they can talk to each other
+at some point, but for now text is fine.
+We do not optimize for more dashboards,
+more meetings, more speculative tasks.
+Love it. Tripped in current task. I'll
+respond to your message shortly.
+Done. Cypher aligned. The proposal
+accepted as operating model. I'm good
+with Warren structure for the growth
+lane.
+No daily stand-up by default.
+Updated the plan tightly.
+Reporting back to Marcelo. I recommend a
+weekly concise synthesis after sync
+thread has replies. Wonderful. Aligned
+to Warren accepts this as
+working growth lane operating model. I
+agree we don't need to ask Marcelo for
+approval just to coordinate better. We
+should only pull him in if he wants to
+change the cadence or when sync produces
+real decision for Monday. I'll come
+prepared with bam. Okay, great.
+Listen, this is solid. Look at this.
+All right, do I need to configure
+anything or did you guys go ahead and
+configure those crowns accordingly?
+I'm just curious. This is me
+double-checking. That way
+I can disconnect from this growth chat.
+Look at that. So, Cypher already handled
+it. Listen,
+and that's it, right? Uh I'm not going
+to go any more in depth. I gave you a
+real-life example as we were setting
+things up. We gave our executive
+assistants a task. They handled that
+task over the course of 15 to 20
+minutes. We set up Warren with his own
+Discord bot and Discord private channel.
+We set up Cypher with his own Discord
+bot and Discord private channel. We then
+set up a shared communication to where
+when I type a message, they both
+respond. I told them to introduce
+themselves and create a plan of comms
+moving forward. They went ahead,
+introduced themselves, created a plan,
+made sure that that plan is scheduled so
+that they then come back every week and
+talk to one another. Listen,
+the future is here. The future is here.
+It just takes a little bit of tinkering,
+a little bit of
+configuring things and making it work
+the way you want it to work. So,
+I hope you found some value in today's
+video. Now, I'm not an AI expert. I'm
+building in public and sharing what
+actually works. If you'd like to see me
+make a particular video around a
+specific topic, drop a comment below.
+Let me know who you are, what you do,
+who your target audience is, and what
+your question is, and I will add a video
+to my queue custom-tailored just for
+you. Thank you so much for tuning in to
+today's video. My name is Marcelo. This
+is and Clarity Matters.
+&gt;&gt; [music]

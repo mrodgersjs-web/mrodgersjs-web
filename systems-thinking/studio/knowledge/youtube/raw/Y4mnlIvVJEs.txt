@@ -1,0 +1,1110 @@
+What do atomic nuclei, chaotic
+billiards, and a million dollar math
+question all have in common? Well,
+nothing really, at least at face value.
+Atomic nuclei are physical systems
+comprised of protons and neutrons that
+interact with each other. Meanwhile,
+billiards are a common example of a
+system studied in chaos theory, a field
+which deals with dynamical systems that
+are sensitive to small changes. And the
+milliondoll math question we are
+referring to is the reman hypothesis. A
+now 163y old conjecture about the
+properties of a particular complex
+function known as the zeta function.
+Aside from relating to technical
+subjects, these three examples appear to
+have very little in common. But looks
+can be deceiving. And it turns out these
+three examples all take part in a
+bizarre and remarkable coincidence. They
+are all surprisingly well described by
+random matrices. That is to say, these
+three very deterministic objects, atomic
+nuclei with a definite composition of
+particles, billiards that evolve under
+deterministic physical laws, and a
+well-defined mathematical function, all
+share a common thread of looking random.
+This video is the first installment in
+what will hopefully be a whole series on
+the subject of random matrix theory,
+otherwise known as RMT. In this video,
+we'll be assuming a basic familiarity
+with linear algebra and probability
+theory. But that being said, this video
+is meant to be introductory, and we
+encourage you to continue watching even
+if you're somewhat rusty on those
+subjects. We'll also be linking some
+great resources in the description box
+below so that you can reference them if
+need be. Before we begin, it's helpful
+to know what kinds of context random
+matrix theory shows up in. Shown here
+are some examples of the fields that RMT
+makes contact with. The topics are
+loosely color-coded according to their
+proximity to the four subjects listed in
+the corners. Really, this connectivity
+diagram only contains a fraction of the
+topics related to random matrix theory,
+mostly drawn from examples that are most
+familiar to the creators of this
+channel. But hopefully, it still conveys
+how RMT can play the role as the bridge
+between very different fields, sometimes
+even making surprising connections
+between topics. Throughout the
+minieries, we hope to highlight many
+more examples of connections between RMT
+and other fields such as physics,
+machine learning, and number theory.
+So what is a random matrix theory? In
+short, it's a model for matrices whose
+entries are random numbers. Usually,
+they're constructed by specifying the
+probability distribution each entry is
+drawn from. Some examples are the
+gausian distribution of mean mu and
+variance sigma square or the uniform
+distribution from a to b. The entries
+may be real, complex, quatronic, piic or
+whatever type of number you please.
+Throughout this series, we will usually
+be considering square matrices with real
+or complex entries. As an example,
+here's a 5x5 random matrix with real
+entries which are each drawn
+independently from identical uniform
+distributions between -10 to 10. We call
+the collection of all possible matrices
+that can be constructed from the random
+entries an ensemble. An analogy with the
+ensembles one encounters in statistical
+mechanics. As a quick aside, in
+probability theory, when we have
+multiple random variables drawn
+independently from identical
+distributions, we call them iid random
+variables.
+You may be wondering how this is any
+different from considering a collection
+of 25 random variables. What difference
+does it make if we organize the elements
+into a rectangular or square object and
+call it a matrix? Indeed, if all the
+entries of an n byn matrix are drawn
+independently, then there really is no
+difference between regarding them as
+matrix entries or a list of n squared
+independent random variables. However,
+most matrices one encounters in the real
+world have additional structure which
+places a constraint on the entries of
+the matrix. So, they are no longer all
+independent.
+For example, when working with real
+valued matrices, one often requires that
+the matrix be symmetric, meaning the
+entry in the i row and the j column
+matches the entry in the j row and the i
+column for any i and j you choose. The
+consequence of this is that when
+choosing a random symmetric matrix, you
+have less freedom in choosing the
+entries of your matrix or fewer free
+parameters. Once you've picked out a
+little over half of the entries,
+specifically n * n + 1 over two of them,
+you've determined the rest of your
+matrix entries. But why should you
+choose to impose such requirements? In
+short, it's because the problem you're
+working with dictates it. For example,
+symmetric matrices emerge naturally in
+statistics where they assume the avatar
+of coariance matrices. Such matrices
+tabulate the coariance between all
+possible pairs of variables from a list
+or vector. These variables may represent
+the prices of different stocks. the
+firing rates of different neurons or
+whatever else you choose to measure. In
+general, given a vector x of variables
+x1, x2 and so on, we can construct the
+coariance matrix for that vector by
+placing the coariance between x i and xj
+in the i j entry of the matrix. So the
+entry in say row 1 and column 3 would
+represent the covariance between x1 and
+x3. Since the coariance between a pair
+of variables doesn't care about the
+order of the arguments, the ji entry of
+the matrix is necessarily equal to the j
+entry which implies the coariance matrix
+is indeed symmetric.
+One encounters similarly structured
+matrices in physics. For example, in
+quantum mechanics, one is primarily
+interested in the Hamiltonian, which is
+a complex valued matrix that encodes the
+dynamics of the system, the possible
+energies it can have, and many other
+important features a physicist might
+care about. You can think of each entry
+of the Hamiltonian as encoding the
+probability that a system will
+transition from one state to another in
+a small time step with the J entry
+capturing the probability of
+transitioning from state J to state I.
+Since the Hamiltonian is complex, we
+can't directly think of the entries as
+transition probabilities since
+probabilities have to be real.
+Nevertheless, it's not too hard to find
+the actual transition probabilities from
+the entries. So, you can interpret each
+entry as containing the information
+needed to find the actual transition
+probabilities. Meanwhile, the igen
+values of the Hamiltonian represent the
+energies of the different states or
+configurations of your system.
+For physical reasons we won't detail in
+this video, the Hamiltonian matrix is
+required to be hermission which is
+essentially a generalization of the
+symmetry requirement for complex valued
+matrices. Essentially instead of the
+offdagonal entries being equal to each
+other, the offdagonal entries are
+complex conjugates of each other.
+Meaning each entry hij is the complex
+conjugate of hji.
+Meanwhile, the diagonal entries which
+have no partners so to speak are
+required to be real.
+The point of offering these two examples
+is to show that most matrices one
+encounters in the real world which we
+will henceforth refer to as physical
+matrices are required to have additional
+structure unlike a list of n squared
+random numbers. As we will show in this
+video and throughout the rest of the
+series, these constraints are precisely
+what defines the salient features of a
+chosen random matrix ensemble.
+So far we've defined the main players in
+a random matrix theory, namely matrices
+with random entries which we will assume
+to have an additional structure like
+symmetry. But what can we do with such
+objects? As with any other study of
+random variables, we will primarily be
+interested in computing ensemble average
+quantities. That is for any given m we
+can compute some quantity which is a
+function of m like the entry mig or some
+function of all its entries like the
+tracer determinant and then average that
+quantity over all possible random
+realizations of m. The process of
+computing this average can be written
+schematically as shown in this equation.
+The integral over dm refers to an
+integral over all possible realizations
+of m or alternatively all possible
+realizations of its independent entries.
+You can think of this as shorthand for a
+multi- integral over all independent
+entries mig. Meanwhile, f of m is the
+quantity we wish to average and p of m
+represents the probability density of
+encountering a particular matrix m.
+There is a huge number of possible
+functions of a matrix that we can
+compute the averages of. But which ones
+will be of the most interest or will
+come up the most frequently? It turns
+out in many real world applications, one
+is primarily interested in rotationally
+invariant quantities. That is functions
+of a matrix that don't change even if
+you rotate the coordinate axes used to
+express the matrix.
+Let's look at an example. Suppose you
+have a system where the matrix of
+interest M governs transformations on
+real vectors. For instance, M may act on
+the pair of vectors here and transform
+each of them into new vectors such that
+the parallelogram they define has a new
+area.
+This change in area represents an
+example of a physical transformation to
+objects in the vector space and in this
+case is governed by the determinant of
+n. However, if you were to say rotate
+your coordinate axes, the actual
+coordinate of the vectors will be
+different. And so, the matrix that
+performs the equivalent transformation
+on the rotated vectors should also have
+different entries. Set another way, the
+coordinates that the matrix M is written
+in should change in lock step with the
+coordinates used to express the vector
+space it acts on. And in fact, this is
+what it means to rotate a matrix.
+In this example, we denote by R the
+matrix that represents the change of
+coordinates on the vectors, which in
+this case is simply a rotation. It turns
+out the way we correspondingly transform
+the matrix M is to sandwich it between
+an R and an R transpose, which produces
+a transformed version of M, which we
+denote by M tilda. This process of
+multiplying m by r and r transpose on
+either side is called conjugation by r
+and is precisely the recipe we need to
+ensure that m tilda acts on the rotated
+vectors in an analogous fashion to m on
+the original ones. We can see this by
+rotating the transformed vectors and
+their corresponding parallelogram back
+to the original location.
+Note that throughout this process of
+transforming M, although the matrix
+entries of M changed, its determinant
+did not since the determinant of M tilda
+is the same as that of M. So the
+determinant is an example of a
+rotationally invariant quantity or more
+mathematically an orthogonally invariant
+quantity. Since a rotation is an example
+of an orthogonal transformation,
+the greater implication of this is that
+the determinant is a good candidate for
+a physical quantity we might want to
+take an average of. When dealing with
+complex vectors, as we often do in
+physics, we use the complex
+generalization of orthogonal
+transformations known as unitary
+transformations. Correspondingly, when
+we transform M, we conjugate it by a
+unitary matrix instead of an orthogonal
+one. In most of our examples, we will
+demand that we have this more general
+unitary invariance.
+By the way, there isn't anything very
+special about the determinant since
+there are many more unitarily invariant
+quantities available. The trace of M,
+the trace of M dagger M, and the trace
+of its powers.
+The underlying reason that these
+quantities are unitarily invariant is
+that they are all functions of the
+values. And using some basic machinery
+from algebra, it's not too hard to show
+that the values themselves are unitarily
+invariant.
+Physicists often refer to the collection
+of values as the spectrum of a matrix.
+So we'll be focusing on the so-called
+spectral data of a matrix, which are
+quantities related to the values. So to
+recap, in our investigation of RMT, we
+will primarily be interested in
+computing the average of unitarily
+invariant quantities and specifically
+quantities that are functions of the
+spectrum.
+Now that we've defined the quantities of
+interest, things like the values of a
+matrix or functions of the igen values,
+we can now use the quantities to compare
+different matrix ensembles. When we say
+ensemble A looks like ensemble B, what
+we mean is one or several rotationally
+invariant quantities computed by
+averaging over ensemble A looks the same
+as when you average over ensemble B.
+We would like to say that two matrices
+whose entries are drawn from the same
+ensemble indeed look the same. For
+example, if both M1 and M2 have gausian
+random entries, then we would expect
+them to have a similar value spectrum.
+But what if M1 and M2 were different
+sizes but with the entries still drawn
+from the same ensemble? If M1 is a 500x
+500 matrix and M2 is 1500 by500, then we
+would still get a similar spectral
+profile in both cases. They both look
+like semicircles, but one is simply
+bigger than the other. It turns out this
+is just an artifact of the fact that the
+magnitude of the igen values scales with
+the square root of the size of the
+matrix. We can actually compensate for
+this by cleverly scaling down the
+variance by a factor of n. So while the
+semicircles are different when we don't
+scale the variances appropriately when
+we have the variances scale like 1 / n,
+the two semicircles have the same width
+even though they came from matrices of
+different sizes. In general, scaling the
+variance of the entries in this manner
+will allow us to do comparisons like
+both of these spectra look like
+semicircles without having to worry
+about what size matrix they come from.
+So far we've discussed what a random
+matrix theory is. But now we want to
+study how it actually works. And to do
+this we first have to actually choose a
+random matrix theory. Remember that any
+random matrix theory essentially has two
+ingredients. Number one is a set of
+matrices. We've already specified those
+to be either real symmetric or complex
+hermission because those are the
+matrices that we work with in physics or
+care about in real life scenarios.
+Number two, and this is a more
+interesting point, is a probability
+distribution on those matrices which we
+denote by P of M. And the reason this is
+an interesting choice is that we're
+essentially asking the question, what is
+the probability distribution for these
+matrices that accurately captures the
+physics whilst maintaining sufficient
+simplicity to be amendable to
+calculation? Well, in physics, the
+canonical example is the harmonic
+oscillator, which is simple enough to be
+solved easily, but is also powerful
+enough to capture the physics of almost
+all systems near equilibrium. And this
+is actually the same for random matrix
+theory. What we call the hydrogen atom
+or harmonic oscillator of the subject is
+the Gaussian ensemble or really gausian
+ensembles we should say because there
+are several ones of them. And that
+choice actually depends on point one,
+which is whether we choose those
+matrices to be real symmetric or complex
+hermission. Now, we usually write the
+matrix distribution in the form of a
+partition function denoted by zed. If
+you've seen statistical physics before,
+you know that the motivation is that we
+can calculate essentially all physical
+quantities of interest once we know this
+partition function. But if you haven't
+seen it before, don't worry at all. You
+can really think of it as just a
+normalization factor for the probability
+distribution. Notice also how we have
+two things that we've seen before in
+this expression. Number one is this
+unitarily invariant or rotationally
+invariant trace of mm dagger. And number
+two is the scaling factor of n /2. The
+1/2 is essentially there to make the
+gausian look a little nicer. But the n
+is really important because it ensures
+that our igon values lie within some
+finite range. The new ingredient however
+in this expression is the measure dm.
+We've currently chosen it to be flat,
+meaning that each matrix entry mig is
+integrated with an equal and flat or
+uniform weight dmig. The reason this
+choice of random matrix theory is easy
+and amendable to calculations is
+twofold. Number one is that the entries
+are uncorrelated. And what that means is
+that the probability distribution P of M
+factorizes into a product of individual
+probability distributions for the matrix
+entries. Number two is that both the
+weight and the measure are unitarily
+invariant. So they depend only on the
+spectrum. We haven't actually shown that
+the measure is unitarily invariant and
+it's really not obvious why this should
+be true. For the waiting factor, it's
+pretty clear because the trace itself
+when you conjugate a matrix in there,
+you can bicyclicity of the trace cancel
+that effect out and so it's invariant.
+But the measure is a little bit more
+complicated to understand and the true
+reason is actually quite deep and it's
+difficult to show. But we can get a good
+sense of it by looking at a much simpler
+model which is just a two-dimensional
+gausian integral. We immediately see
+that the probability distribution can be
+factorized. So we can sample the random
+variables X and Y independently.
+Furthermore, both the waiting factor and
+the measure are invariant under
+rotations. The former is just because
+rotations have unit determinant and the
+latter because the waiting factor x^2 +
+y^2 is just a radius squared. Now to
+make the connection with our matrix
+partition function, let us write the
+trace and the exponent out. You can
+clearly see how this big matrix gausian
+is really just a product of gausian for
+the individual matrix entries. We've
+motivated the rotational invariance, but
+we haven't motivated the independent and
+identical entries so far. And it turns
+out that this is actually just a choice
+that allows us to do calculations
+analytically. If you think about it,
+it's actually very unphysical because if
+you visualize this matrix M as having
+matrix entries mig that denote some
+transition amplitude between input state
+J and output state I, it suggests that
+there are absolutely no correlations
+between any such processes. Finally, you
+may wonder if the gausian is really the
+only ensemble that satisfies both one
+and two. For instance, we've seen before
+that any higher trace moments or even
+the determinant are also unitarily
+invariant. So why would exponentiating
+those not give quote unquote good random
+matrix theories? Well, the reason is
+that precisely they would correlate the
+entries. And as we've said before, this
+would cause us some great trouble in
+computing analytical averages or
+carrying out the integrals. So the
+answer is yes. As shown rigorously in a
+theorem by two mathematicians P and
+Rosen, the gausian is the only ensemble
+that fulfills these two requirements.
+This section is going to be a little
+longer, so we'll give a quick breakdown.
+The kind of setup or teaser of the
+problem is to find the distribution of
+the spacings of the values. We've just
+now built a theory where the matrix
+entries are uncorrelated. So what do you
+think will happen to the IGEN values and
+especially their spacings? Will they
+also be uncorrelated?
+First thing, we're going to look at what
+the distribution of IGEN values would
+look like if they were all sampled
+independently.
+Next, we're going to give an intuitive
+argument on how this should be different
+for IGEN values that are correlated.
+After that, we'll get to the main meat.
+Namely, we'll look at the distribution
+for the random matrix theory we've just
+introduced above, the Gausian. We'll do
+this for the simplest or smallest
+possible matrix, a 2x2 matrix.
+The goal is to find the distribution of
+spacings between uncorrelated events or
+values. To do this, we'll actually look
+at the cumulative distribution function
+of the spacings. So, define Q of S,
+which is the probability that the
+spacing T is greater than S. You can
+also think of q of s as the probability
+that there is no igen value a distance s
+from any given one. We can write out a
+differential equation for this quantity
+by considering what happens in a small
+interval d s. What this equation means
+is just that the probability that there
+is no igen value in the interval s plus
+d s is the conditional probability that
+there is no igen value in the interval d
+s given that there was no igen value in
+the interval s. In the case of
+uncorrelated events, this factorizes and
+we can write Q of S plus DS is the
+product of Q of S times Q of DS. Next,
+we take advantage of the interval DS
+being small. So that we can expand Q of
+DS around zero. We know that Q of 0 is
+equal to P of T greater than or equal to
+0, which is equal to 1 simply because
+the probability density is normalized.
+Or another way to think about it, the
+probability that there is a spacing
+greater than zero has to be one. So
+tailor expanding this to first order we
+find that Q of DS is 1 minus C * DS
+where we've defined C to be the
+probability of having an igen value in
+the unit interval. And notice that this
+is a positive fraction because we have a
+finite number of events or values in a
+finite range. So our equation now looks
+as Q of S plus DS is equal to Q of S * 1
+- C * DS. We can just rearrange this to
+get a more familiar looking differential
+equation which in the limit of ds going
+to zero which in the limit of ds going
+to zero gives us an ordinary
+differential equation. We can solve it
+to find that q of s is a decaying
+exponential as a function of s. Now the
+last step to finding the pdf from the
+cdf is that we have to take the
+derivative.
+One minor detail is that there is a
+minus sign because we took the cdf to be
+the probability that there is a spacing
+greater than s. So we're integrating
+from a lower bound to infinity. All of
+this gives us that P of S is equal to C
+E minus CS. What this tells us is that
+for uncorrelated events or values, the
+distribution of spacings is exponential.
+Now what happens if the events or values
+are correlated? We can still set up the
+equation as before. Q of S plus DS is
+equal to the conditional probability of
+DS given S. However, now the conditional
+probability doesn't exactly factoriize
+anymore. And that's because Q of S is no
+longer translation invariant in S.
+Namely, if these values are correlated,
+then whether there is a spacing or not
+will depend on how large the spacing
+already is. So to account for this, we
+add a functional dependent on S to Q of
+DS, which we denote by a subscript. I
+know that this is not mathematically
+rigorous, but just bear with me. We're
+just trying to get an intuition at this
+point, and we'll get the rigorous
+derivation soon enough. So what should
+this functional dependence be? Since the
+igen values are correlated, we can guess
+that if the spacing s is already large,
+the probability of having an igen value
+in the interval ds should be large.
+Whereas if the interval s is small, it
+should be small. The simplest model for
+this is a linear behavior in s. As
+before, we can set this up as a regular
+differential equation. This time it has
+a solution of a gausian. Again, to find
+p of s, we need to take the derivative
+with a minus sign where we've absorbed
+the constants into a proportionality
+symbol. Granted, we made some rather
+rough assumptions along the way, but for
+now, we found that the distribution of
+spacings for correlated events or values
+is a gausian multiplied by a linear in S
+term.
+Now that we've built up some intuition,
+let's work out the simplest example
+explicitly. The simplest example is just
+a 2x2 matrix where each matrix entry is
+sampled from this simple harmonic
+oscillator potential or the gausian that
+we've introduced before. And it is very
+easy because in the case of a 2x2
+matrix, we only have two igen values and
+hence only one spacing. We're also going
+to be working with the matrix M being
+real symmetric just to make our life a
+little easier because then we only have
+one real value on the off diagonals
+instead of two real values if the
+entries were complex. Now we want to get
+the igen values of this matrix. So we
+have to solve the characteristic
+equation and in this case it's just the
+quadratic polomial and the igen values
+lambda. So it's not too hard to solve.
+We obtain two values lambda plus and
+lambda minus. And to get the spacing we
+just take their difference and we always
+sort them in an increasing order so that
+the spacing is always positive. Now
+let's look at this spacing and pause for
+a second. You can see that the spacing
+is a square root of two positive terms.
+So this is really begging to be
+interpreted as a distance. And you can
+actually really think of the difference
+between the two energy values as the
+distance of a point from the origin with
+coordinates h11us h22 and h12. And we
+see that this distance can only be zero
+when h11 equals h22 and h12 is zero.
+Furthermore, if you make this analogy
+with a distance from the origin, you can
+kind of figure out that for small values
+of s or small values of the radius in
+this case, the distribution itself
+should be proportional to s because the
+volume element in polar coordinates is
+proportional to the radius. We usually
+write it as r d r d theta. In our case,
+r is just s. But at the same time, we
+obviously know that P of S can't just be
+proportional to S for all S because that
+would suggest that the values are
+completely unconstrained. They can
+really just fly off from one another if
+their distance can be arbitrarily large.
+Okay, so that's just a little bit of
+intuition looking at S, but we can
+actually find it because we have all the
+ingredients. So we set up this integral
+here where we specify the spacing to be
+equal to what we found above. And now we
+have these three probability
+distribution of these matrix entries.
+and we've already specified those to be
+the gausian. The only subtlety here is
+that the variance of the diagonal matrix
+entries is twice that of the offdagonal
+entries. And that's just because we've
+sort of constrained the matrix to be
+real symmetric. So that is sort of you
+can think of it as a constraint on the
+off diagonal. So their variance is a
+little smaller.
+Okay, this is a good place to pause the
+video and try to figure out how to solve
+this integral. And if you're not in the
+mood for it, then don't worry. We'll do
+it together. Now, as a reminder, we're
+letting ourselves be guided by the
+interpretation of S as a distance from
+the origin. But before we can actually
+convert to polar coordinates, we need to
+do a small linear transformation to make
+our coordinates a little nicer or a
+little more symmetric.
+Since this is a linear transformation,
+again, we can just absorb it into the
+proportionality constant because the
+Jacobian is just going to be some
+constant. We immediately see that the V
+variable disappeared from the delta
+function. So we can integrate it out and
+again absorb it. Finally we can do the
+promised conversion to polar coordinates
+and again what happens is that we have
+an integral over theta that is just a
+volume element. So we can absorb it and
+again we get an integral over theta that
+factorizes. So we can just absorb it
+into the proportionality constant. And
+we're left with a simple delta function
+integral for the radial variable. From
+this we find that p of s is proportional
+to s eus s^ 2. And this is exactly what
+we sort of guessed based on our
+intuition of having correlated values.
+So it's really really nice to see that
+this intuition and the simplest example
+already match. And for those of you who
+figured it out, congrats. You've
+essentially derived the vignner surmise
+for the smallest possible random matrix.
+As a small comment, this distribution is
+not yet normalized, but you can easily
+do this by hand or in Mathematica.
+To conclude, we've derived two
+distributions. One for uncorrelated
+random variables and one for correlated
+random variables. We found that the
+distribution for the uncorrelated random
+variables is just a pson distribution
+which is an exponential decay in the
+spacing.
+On the other hand, for the igen values
+that are correlated that came from the
+random matrix ensemble we looked at, we
+found that the limiting distribution is
+a linear function of S multiplying a
+gausian. This distribution is referred
+to as the Vner Dyson distribution. And
+the important distinguishing factor
+between the psonian and the Vner Dyson
+is in the limit as the spacing S goes to
+zero. For the Vner Dyson distribution,
+the limit as S goes to zero is zero.
+which means that the probability of two
+igen values lying on top of one another
+is zero. On the other hand, the psonian
+distribution goes to one which means
+that there is actually a very high
+probability of the spacing being zero or
+the igen values lying on top of one
+another. This is the important
+distinguishing factor between correlated
+and uncorrelated values and why we have
+come to refer to the latter as
+experiencing repulsion. Note that this
+level of repulsion came out of doing a
+change of variables from matrix entries
+to igen values. Before we move on, let's
+do a little recap of what we've learned
+so far. We started by asking what is a
+random matrix? And we said, well, it's
+just a matrix with entries sampled from
+a probability distribution.
+Next, we asked what is a random matrix
+theory? And we said, well, it's when we
+start studying ensembles of such
+matrices. Specifically, we're looking at
+quantities that are averaged over the
+matrix distribution.
+Next, we asked what is the simplest
+random matrix theory we can think of and
+the answer was the gausian. It's the
+only random matrix theory that has both
+iid entries and is unitarily or
+rotationally invariant.
+Finally, we just answered the question
+of how are the spacings in this gausian
+random matrix theory distributed and we
+found that the answer is a probability
+distribution that goes to zero as the
+spacing goes to zero. What this means is
+that the agon values don't want to lie
+on top of one another or we just
+colloally say they repel.
+Remember how we said that the
+Hamiltonian encodes the dynamics of a
+system.
+But in order to predict those, we need
+to extract the spectrum of the
+Hamiltonian. And to find the spectrum in
+a quantum mechanical model, we need to
+solve the shinger equation. If you
+haven't seen quantum mechanics before,
+don't worry. You can really just think
+of this as an igen value problem. And
+since we're now talking about physical
+systems, we'll change notation from
+lambda to e because we think of the igen
+values as energies.
+So back to the equation, we want to
+solve it for h representing the
+hamiltonian of a uranium nuclei. At this
+point in time, we're doing this purely
+out of curiosity rather than trying to
+construct an atomic bomb. But despite
+our peaceful motives, it's not looking
+good for us. Uranium has over 200
+protons and neutrons in its nucleus. So
+that's going to be one very messy
+Hamiltonian to write down. And it's not
+only messy. There are truly interactions
+in there that we don't know how to
+model.
+However, very many things rushing around
+and impossible to keep track of should
+ring a bell. The ideal gas. Think of gas
+molecules in a box. In a room, there's
+order 10 to the 23 of them, and we can't
+possibly follow every particle's
+position and momentum. However, instead
+of mapping each particle out, we can
+course grain the model and talk about
+the probability of a particle occupying
+a patch in phase space. So, we associate
+one probability pi with each such
+microate.
+The distribution that maximizes entropy
+at fixed energy then tells us that this
+pi is proportional to the exponential
+weight of this energy. multiplied by a
+factor of inverse temperature. Note that
+in the equation above, I is the state of
+the system, not the energy. Otherwise,
+we would also have a degeneracy factor.
+So, what have we actually done? We've
+replaced the exact state of the system
+with a probability distribution
+associated to the energy of set state.
+So, we've washed out some microscopic
+details and are left with a microscopic
+variable that we can actually measure.
+Instead of face base coordinates, these
+could also be discrete spin
+configurations in a nizing model. But
+the point is the same. We can't possibly
+keep track of all the spin
+configurations. However, we can
+calculate the energy associated to them
+if we postulate the interactions between
+the particles. I'm not saying it's easy,
+but at least it's not impossible.
+Now, the lesson learned is that the
+large complexity of the system actually
+helps us. Perhaps ironically, it's much
+more difficult to say something about a
+six than a 10 to the 23 particle system.
+In the latter, we can justifiably
+replace the deterministic laws of the
+individual particles with probability
+distributions that accurately reproduce
+quantities we care about at the macro
+scale.
+Turning back to our nucleus hamiltonian,
+we can use a similar approach here, but
+at the level of the system itself, not
+just the state. Namely, instead of
+writing the exact deterministic matrix
+of the nucleus, we model it with a
+random matrix. And instead of obtaining
+the exact spectrum of H, we can say
+something about its statistical
+properties. For instance, we can answer
+questions like what is the likelihood to
+measure the value lambda is 0.310231
+or what is the likelihood that there's a
+spacing of S is 1.2
+for the atomic nuclei. It turned out
+that this approach worked remarkably
+well.
+The next example where random matrix
+theory shows up in the spectrum is the
+canonical example of chaos. A single
+billiard in a square arena with a
+circular barrier, kind of like a pin
+game. The Hamiltonian consists simply of
+a kinetic term plus a potential term
+that's infinity outside of the chosen
+region. Setting the potential term to
+infinity is just how we simulate those
+barriers. The differential operator in
+the kinetic term is known as a
+lelassian. And since we've imposed those
+boundary condition, it behaves in many
+ways like an ordinary matrix. Now if we
+numerically solve this lelassian in a
+simple program such as Mathematica, we
+find that the high energy part of the
+spectrum is distributed like the Vner
+Dyson distribution we've seen before.
+And it turns out that we actually
+understand the reason for this and it is
+related to the system being classically
+chaotic. But billiards are just one of
+many deterministic realworld physical
+systems that display random matrix
+theory statistics. There's a whole class
+of quantum systems which don't have a
+well- definfined semiclassical limit
+that exhibit random matrix theory
+statistics in their spectrum. One such
+class of models are one-dimensional spin
+chains. If you haven't encountered such
+models before, don't worry. You can just
+zone out for a minute and appreciate
+from afar that there is yet another
+seemingly unrelated system that displays
+random matrix theory statistics.
+In spin chains, the degrees of freedom
+are binary variables often referred to
+as cubits. The Hamiltonian associated
+with such systems assigns an energy to
+each spin configuration and these depend
+on the parameters that we put into the
+model by hand like how the spins
+interact with one another or how they
+react to external forces. The main
+reason we mention this model is that it
+lends itself even better to a
+face-to-face comparison with a random
+matrix.
+Look at the Hamiltonian written out
+explicitly for 2, three, and four cubits
+where the letters just refer to some of
+the interactions we've put into the
+model. Do you notice something? Two
+things should come to mind. First of
+all, there is no randomness at all. Each
+matrix entry is deterministic and models
+a well- definfined physical interaction
+in terms of the chosen parameters such
+as J1 and J2 that we've written into our
+model. Secondly, the matrices are
+extremely sparse. In fact, there are
+only order nonzero entries and yet
+somehow the spectra of these very sparse
+non-random matrices show similar
+statistics to those of a random matrix.
+There are a lot of subtleties and
+details we are skipping over here. For
+instance, there is a particular energy
+scale or energy window for which these
+deterministic systems look like random
+matrices. But the takeaway remains.
+There are many systems for which we've
+put no randomness in by hand and yet
+they show random matrix theory
+statistics.
+What these systems suggest is that the
+Vner Dyson distribution is truly a
+universal property for almost any system
+that is sufficiently complex.
+In fact, this empirical observation
+motivated the definition of quantum
+chaos as showing random matrix theory
+For our third and final example, we turn
+to a topic that is very different from
+the first two and that is complex
+analysis. Unlike the first two examples
+in which the deterministic matrices came
+from physical systems, here we're going
+to start off with a purely abstract
+mathematical function, the remon zeta
+function. Briefly, the remon zeta
+function is a particular complex
+function that maps complex numbers to
+complex numbers and is often denoted by
+this funny Greek symbol here for zeta.
+For an input with real part greater than
+one, it takes on the following form. So
+zeta of z is the sum of the reciprocals
+of the natural numbers raised to the
+power z.
+For inputs on the rest of the complex
+plane, the zeta function is defined in a
+different manner, which is slightly more
+complicated. This is because the
+expression above diverges for inputs
+whose real parts are less than one. Long
+story short, when the expression with
+the sum diverges, one uses a different
+expression that ensures that the zeta
+function in a sense has similar behavior
+on the rest of the complex plane as it
+does to the right of one. By the way,
+this process of extending the domain of
+the zeta function is called analytic
+continuation. And we'll link some
+sources about this in the description.
+So why do mathematicians care about the
+reon zeta function? For starters, it
+encodes information about the
+distribution of prime numbers. You can
+get an intuition for this by recalling
+that all natural numbers may be
+decomposed into their prime factors. So,
+in principle, you could write the above
+infinite sum over the natural numbers as
+a sum over all possible prime
+factorizations.
+As we've alluded to before, there's this
+long-standing open conjecture about the
+zeros of the remon zeta function.
+Mathematicians know that the function
+has a zero at every negative even
+number, which are called trivial zeros
+since they're more straightforward to
+find. The rest of the zeros, called
+non-trivial zeros, are known to lie
+somewhere within the strip between 0 and
+1, also called the critical strip. But
+mathematicians can't prove exactly where
+they are. Nevertheless, billions of the
+zeros that have been found all seem to
+lie on the line at 1/2. Reman's 163y old
+hypothesis with a million dollar bounty
+is that all of the zeros in the critical
+strip necessarily lie on this line.
+Admittedly, one could do a whole video
+on just the remon zeta function, its
+deep connection with prime number
+theory, how it provides a universal
+approximator for any complex analytic
+function, and all the beautiful
+connections it makes with quantum chaos
+theory. And we very well may make a
+video on this in the future. But for
+now, let's skip to the reason why we're
+mentioning it in the first place and ask
+how does the random matrix signature
+we've seen before make an appearance in
+the remon zeta function.
+Let's take a look at the non-trivial
+zeros that all seem to be on the line at
+1/2. It turns out even though there's no
+obvious pattern to where along the
+imaginary axis the zeros lie, if one
+makes a histogram of the spacings
+between the zeros, one sees the
+following distribution.
+And there it is, our now old friend, the
+Wner Dyson distribution. Even though
+these zeros are not random and have
+nothing to do with matrices, they're
+just some zeros of a function. They
+behave like values of a random matrix.
+Isn't that remarkable? This behavior was
+first noticed due to a chance meeting
+between mathematician Montgomery, who
+had been looking at the distribution of
+the non-trivial zeros, and physicist
+Dyson,
+who recognized the level spacing
+distribution of the Gausian ensemble.
+This is perhaps one notable example of
+the very real benefit of
+interdisciplinary mingling.
+Unsurprisingly, this remarkable
+coincidence has led to an explosion of
+work at the intersection of physics and
+math. One last thing we should mention
+is that the appearance of random matrix
+statistics in the spacing distribution
+of the zeros has led to a second
+conjecture called the Hilbert Pa
+conjecture. It surmises that the zeros
+are determined by some quantum chaotic
+Hamiltonian. Remember that we said that
+the igen values of the Hamiltonian are
+interpreted as energies and these are
+real numbers. So one posits that the
+imaginary parts are given by the
+energies of some quantum Hamiltonian.
+And we've established from before that
+there is a connection between quantum
+chaos and random matrix theory. So that
+if such a Hamiltonian exists, we also
+expect it to be quantum chaotic. Some
+candidates for Hamiltonians have been
+found, but there's still a lot of
+ongoing work in making the arguments
+rigorous and proving that the candidates
+can indeed be regarded as Hamiltonians
+of a quantum system.
+[Music]

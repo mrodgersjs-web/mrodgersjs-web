@@ -1,0 +1,85 @@
+{
+  "schema": "rig.systems_thinking.install_proof.v1",
+  "generated_at": "2026-08-29T12:05:00Z",
+  "mission": "Systems-Thinking process run: clone/install/audit flyrank-bih/harness-engineering-playbook and tt-a1i/archify; run archify for real; distill the playbook into a verify-and-build skill.",
+  "commands_and_results": [
+    {
+      "command": "npx -y skills add tt-a1i/archify --skill archify --agent claude-code --global --copy --yes",
+      "exit": 0,
+      "evidence": "Installed 1 skill → ~/.claude/skills/archify"
+    },
+    {
+      "command": "node bin/archify.mjs doctor",
+      "exit": 0,
+      "evidence": "15/15 ok — all renderers, schema validators, compare runtime"
+    },
+    {
+      "command": "bun install (playbook)",
+      "exit": 0,
+      "evidence": "6 packages installed"
+    },
+    {
+      "command": "bash scripts/agent-runner-selftest.sh (from realpath checkout ~/tmp-playbook-check)",
+      "exit": 0,
+      "evidence": "12 passed, 0 failed — /tmp symlink checkout gave 5/12 (main-guard realpath defect, documented)"
+    },
+    {
+      "command": "bash scripts/plan-selftest.sh",
+      "exit": 0,
+      "evidence": "12 passed, 0 failed"
+    },
+    {
+      "command": "bash scripts/ralph-selftest.sh",
+      "exit": 0,
+      "evidence": "13 passed, 0 failed"
+    },
+    {
+      "command": "bash scripts/migrate-selftest.sh",
+      "exit": 0,
+      "evidence": "pass"
+    },
+    {
+      "command": "GIT_CONFIG_GLOBAL=/dev/null bash scripts/follow-up-selftest.sh",
+      "exit": 0,
+      "evidence": "4 passed, 0 failed — host github-steward guard (core.hooksPath) blocks temp-repo fixtures otherwise; documented"
+    },
+    {
+      "command": "node bin/archify.mjs validate architecture harness-playbook.architecture.json --quality showcase --json",
+      "exit": 0,
+      "evidence": "ok: true (8 repair rounds: type enum, boundary kind, grid layout, labelAt, sublabel legibility, viewBox scale)"
+    },
+    {
+      "command": "node bin/archify.mjs deliver architecture harness-playbook.architecture.json harness-playbook.html --quality showcase --json",
+      "exit": 0,
+      "evidence": "ok: true; spec sha256 1d85fe2780dedd641863f5f6b29dc89bcaa236984941f9820bce5b28a525800f; artifact sha256 ffe882f933ff30c54139ccfab1a3dd9c613c4fbb11ad85c2e89f8474285d45dd"
+    },
+    {
+      "command": "browser DOM verification of delivered HTML",
+      "exit": 0,
+      "evidence": "svg viewBox 0 0 1160 708; 11/11 node labels present; edge labels render; boundary label present"
+    }
+  ],
+  "artifacts": {
+    "gap_report": "PLAYBOOK-ARCHIFY-GAP-REPORT-2026-08-29.md",
+    "archify_map": "docs/systems-thinking-2026-08-29/harness-playbook.html (sha256 ffe882f9…, matches deliver receipt)",
+    "archify_source": "docs/systems-thinking-2026-08-29/harness-playbook.architecture.json (sha256 1d85fe27…)",
+    "skill_mirrors": {
+      "sha256": "6773bf9779967aa2… (identical across all four)",
+      "paths": [
+        "~/.claude/skills/verify-and-build/SKILL.md",
+        "~/.codex/skills/verify-and-build/SKILL.md",
+        "~/.hermes/skills/verify-and-build/SKILL.md",
+        "~/.agents/skills/verify-and-build/SKILL.md"
+      ]
+    }
+  },
+  "host_findings": [
+    "agent-log.mjs main-guard is not realpath-safe: silently no-ops under symlinked checkouts (/tmp → /private/tmp); fix pattern in skill",
+    "RIG github-steward global git guard BLOCKs third-party selftest temp repos; selftests must pin core.hooksPath=/dev/null; guard should gain env-scoped selftest allowlist"
+  ],
+  "claims_not_made": [
+    "No live Shopify migration was run (no store credentials; ⚠️ doc-derived platform facts remain unverified)",
+    "demo control panel not exercised",
+    "No canonical ~/Developer/rig-intelligence writes (rig-repo-guard BLOCKs this workspace path; deliverables kept in workspace + skill dirs)"
+  ]
+}

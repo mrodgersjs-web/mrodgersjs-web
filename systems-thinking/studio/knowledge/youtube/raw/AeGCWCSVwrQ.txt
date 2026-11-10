@@ -1,0 +1,568 @@
+Open AI created something that people
+are really excited about. It's a way for
+you to create a ticket, a task in your
+project management software, and then
+have agents do the work, and then show
+you the receipts that they've done the
+work, presented by Zapier, the AI
+automation company. As you can see on my
+screen here, this is the tweet that
+people have
+uh have have loved and engaged with.
+This tweet though, I think has a better
+explanation of what it does. It says you
+open a task, it automatically spins up
+an independent isolated Codex agent. It
+writes its own code, runs its own tests,
+does its own cross reviews. Damn. Once
+everything is wrapped up, it hands you a
+complete evidence package. It is open
+source, so you can go directly to
+GitHub, and of course we'll have links
+to everything here in the show notes.
+Symphony monitors your linear board for
+work, spawns agents to handle tasks.
+Agents complete the task, provide proof
+of work. We just talked about it. I've
+been looking at what people have been
+saying about it on Twitter and all these
+different tweets. This person I think is
+kind of captured it. Been using it since
+you originally shared it with Linear,
+and it's been great. Token hungry, but
+thorough.
+Um Adam, you've installed it, you played
+with it. This is what it looks like when
+I'm seeing it on Open AI's screen, but I
+don't want that. I want your like
+experience with it. Show us how it
+works. Tell us about it. Tell us what's
+good. Tell us what's bad. Do you
+recommend it? All right. So, this is a
+pretty cool tool. It's not obvious if
+you just look at the read me in the
+repository here what exactly it does.
+So, let me tell you first.
+And actually a good comparison that has
+a nicer demo is this other tool we've
+talked about called Multica. Basically,
+there's all those people out there, and
+I'm one of them that's chatting
+constantly with AI. I've got all these
+chats. I'm talking to Claude. I'm
+talking to Codex. And in each project, I
+might have five or six tickets running
+at a time or or chats here. And it's
+really difficult to think of these and
+say, "Well, each one of these probably
+has its own pipeline of you've got to
+create the work, you've got to build it,
+you've got to test it, design it, QA it,
+and then deploy it." And chat is not a
+great interface for that. No one would
+do all of their work in Slack.
+Obviously, most teams are already using
+a tool like Linear or Jira to organize
+their tasks. And so, what Multica and
+now what Open AI has done with Symphony
+is they've said, "Well,
+hey, you're already defining these tasks
+in Linear. So, how about we allow the AI
+agent to monitor the tasks as they're
+created, and then to do the work for
+you?" And it only works in Linear? a
+Linear set up here. I've got this
+connected to a project I'm running
+locally. And I'm going to make a ticket.
+This is just Linear. This is not
+Symphony. Yeah, hit me.
+&gt;&gt; It does it it only works in Linear? It
+doesn't work in anything else? Only
+Linear?
+&gt;&gt; My understanding of Symphony is that it
+only works in Linear. The way that the
+install works, it really explicitly is
+asking for Linear credentials. Although,
+I can show you the the two ways they
+have to set it up. We'll we'll go
+through some of these in in just a
+minute. And I think especially with
+option one here, you could connect it to
+to pretty much any task management
+system that that you're already using. I
+used option two, which did seem to be
+more tied to to Linear. But I but I'll
+show you those in a minute.
+So, in Linear, I'm just going to kick
+one of these off so it can run while
+we're talking.
+Let's see. Let's test.
+Uh
+create.
+So, normally this would be a ticket.
+Say, I want to add a feature. I want to
+add the button. I want to fix a bug. You
+know, whatever ticket. Again, this is,
+you know, standard software engineering
+uh software engineering 101. So, but
+let's to make it like fast because as
+that tweet you pointed out, it's very
+token hungry, which means it's also very
+slow. Uh so, let's to make a faster
+task. I'm just going to say, you know,
+create for me a empty markdown file. Or
+not empty, but just like with one or two
+sample sentences.
+And I'm going to run that. And what
+you'll see is when I create the issue,
+things are going to start happening. So,
+I want you to I want you to follow
+along. I'm creating it in the in
+progress.
+Actually, I'll create it in in to do.
+I'm not going to assign anybody, but it
+is part of this project. And I'm just
+going to create the issue.
+So, what should happen
+&gt;&gt; behind the scenes, and I'm actually
+going to also show you this. All right,
+so here's the Symphony dashboard. This
+is running locally on my machine. Again,
+I'll show you how this works. But you
+can see it already picked up one running
+task.
+It's it's found the ticket, GAT6, which
+is this ticket right here.
+Inside this ticket, nothing has changed
+yet. But Symphony's starting to work,
+and you can already see Okay, here it's
+streaming a bunch of tokens. I don't
+really understand why they have the UI
+like this, but great. We've already
+burned We haven't done anything. We've
+burned 37,000 tokens. So, that's not a
+an amazing start, but it's been running.
+What we'll start to see as it works on
+it is it's figuring out what is the
+task, what's the context. It's looking
+at the code that's in this repository.
+This is a real application.
+Uh it's this application. We use it to
+manage TV screens. And then inside
+Linear, as as Symphony keeps working,
+you'll see Linear will pop into this
+ticket. It'll move it into the in
+progress status, and then it'll start to
+comment, and it'll make a plan, and and
+all of that.
+It does take a little bit of time. It's
+already running for a minute and 11
+seconds. So far, it hasn't done
+anything. For comparison, how many
+tokens should something like this take?
+Well, so so I actually did this as a
+test. The
+you saw there was already 300,000 tokens
+burned here. This was one test that I
+had run on a very similar ticket. And
+for that one ticket, it burned 300,000
+tokens. I which was just writing a
+sample markdown file. So, I ran in and
+just, you know, I want to talk to Codex
+directly. Here I'm using T3 code to wrap
+around Codex. And I ask it, "Make a
+simple markdown file just to test." You
+know, I wanted to see what would Codex
+alone do. And that used 14,000 tokens,
+which is again, we've already like long
+blown past 14,000 tokens. But here it
+created the file. In my case, I don't
+just care about burning tokens. Like
+this took 10 seconds to write this file,
+right? In regular Codex. And and now
+we're sitting over here watching
+Symphony. Oop, it moved it to in
+progress. So, you should be able to see
+Hey, hey, here we go. So, now in Linear,
+we're we're a minute and a half into
+we're 2 minutes into into this ticket.
+It's moved the task to in progress. It's
+Codex created this whole plan. So, this
+is like a comment on on the on the
+ticket. And then as it works through the
+plan, you'll actually sit here and see
+that it will check off these items
+individually.
+Which by the way, if this works, I would
+really like that. I like to see a plan.
+I like to see the plan get checked off
+as it's doing it. But obviously, you for
+a simple markdown file, this is way too
+involved and too slow. Yeah, I mean, I
+you know, that I think I agree with you,
+and it's maybe not that fair of a test
+there. I I wanted especially as I'm just
+like testing out a tool, I'll often do
+kind of a hello world example like this.
+Like what's the simplest thing I can do
+so I can see the tool run all of its
+motions. And what I would point out is
+like, "Hey, this task here, it just
+finished." And now we're up to 582,000
+tokens for two markdown files, two like
+simple markdown files.
+Um it finished. It checked off all the
+stuff. The the problem is it's it's
+really slow. Like it's it's hard to do
+work with a tool that works so slowly.
+Plus, if I'm going to run this on my
+subscription, dude, I'm I'm going to hit
+the rate limits so much faster. You
+know, if right now, I occasionally hit
+the Codex rate limit, and then it stops
+me from working for a couple hours using
+Codex. That's occasional, and I'm only
+burning 14,000 tokens for a tiny task
+like this. If you're constantly burning
+this much this many tokens, I don't know
+how you're going to be able to get real
+work done, honestly.
+Okay.
+&gt;&gt; It's done, and you can see it is cool.
+Like I think the the promise here is
+very interesting, and it moved the task
+over. This is the the one we just
+created. It moved the task over, and now
+it's in the human review column, which
+is awesome because Symphony Symphony
+isn't trying to just like deploy this
+really quickly. It's internal process is
+I'm supposed to do the work, I'm
+supposed to test the work, plan the work
+really well, and then when I'm pretty
+sure I'm done, move it into a space
+where where a human can review, and tell
+the human how to review it. So, that's
+all that's all being done here, and
+that's great. Uh but it was a little bit
+slow, couple minutes, and and burned a
+lot of tokens.
+But I think there's a lot that's that's
+actually pretty cool about Symphony, and
+part of it is how customizable it is.
+Can I show you how some of that works?
+&gt;&gt; Yeah.
+Give me the good, the bad, and the ugly.
+&gt;&gt; Yeah, so installing it is actually a
+pretty
+is a pretty cool
+process. Like often in a repository like
+this with a tool, you'll see here it's
+like, "Run this command, then run this
+command, then run this command." You're
+like, "I don't know, man. And I don't
+have that stuff installed." And you end
+up just pasting all that into an agent
+anyway. Well, they assume you're going
+to paste it into an agent. So, they give
+you two options. It's this, and it's
+this. For the bottom one, it's basically
+saying, "We've already built Symphony.
+We know Symphony works.
+You know, here's the interface that
+Symphony has." And there's a there's a
+command line interface that they'll give
+you that that you can run. This is the
+like the machine that's running, the
+server that's running on my computer. Um
+they have all of that already built. And
+so, instead of building that from
+scratch, like I want to put that in
+place. So, I started with this. But the
+other option to install Symphony is
+actually to build Symphony from scratch.
+And I'll show you in the file that they
+reference here, they're really just
+defining the architecture. There it's
+not code. There's no code in here.
+They're defining, "Here's how you should
+build. Here's how you should integrate
+with with Linear. Here's how you know,
+these are all like types of things where
+you would normally be instructing codex
+on how to build your application. So,
+they've built that into this markdown
+file that includes an orchestration
+layer that says, I know how to move
+tickets. I know when we would move
+tickets, how to build a plan. And and in
+this bottom one, you're just using the
+pre-built one. And that's what I did. I
+could show you.
+All I did was I pasted this in. I've got
+again my existing project that's running
+and I pasted that in and it started to
+work. Okay, so the first thing it did
+was it asked
+or looked at you know, I'm going to go
+pull that workflow from Symphony. Cool,
+it's still working. It's turning
+through. And then at the end, it
+actually asked me a couple questions
+here. I wish I could show you the
+questions. It doesn't look like I can.
+Nope. But at this point, it starts to
+ask me questions and and some of those
+are are actually baked into
+the the readme that are here. So, this
+is what if you paste this into your
+Claude code or codex, this is what codex
+is seeing. And so, it learns a little
+bit about Symphony. It learns how to use
+Symphony. It learns how you should
+deploy code and push things through
+linear. And then, instead of you copying
+and pasting all these commands,
+Claude just reads this directly and and
+runs these commands for you.
+And then as you're installing it, it'll
+start to ask you and it will say
+questions like,
+do you want all of these commands? Do
+you want just some of the commands? Hey,
+I need you to give me your linear API
+key. And then it gave a little
+instruction for here's here's how you
+would go and get that. And as it asked
+those questions, as I answered them all,
+it drops down and says, okay, well, I
+you know, in the questions, I didn't
+understand all of them cuz I've never
+used Symphony before. So, instead of
+answering, I said, tell me more. Like,
+tell me about it. And because it's all
+kind of this agentic flow, it's got the
+readme, it was able to to describe
+really well, here's why you would pick
+this option, here's why you would pick
+this option, you know, I want to run
+this. Honestly, I still wasn't sure. I
+was like, I I just want you to do it.
+Like, give it to me. And that's that's
+what I told it as I as I gave it the
+feedback. Like, just do whatever
+Symphony recommends, whatever OpenAI
+recommends.
+All right, it cloned down the
+repository. It built the tool for me. It
+did ask me to run a couple commands, but
+then that was it. Like, Symphony was set
+up. So, I haven't really had to open a
+terminal. I haven't had to like set
+anything up. I just answered some
+questions back and forth and it
+installed Symphony inside this
+repository.
+And it did give me a couple things at
+this point that I had to run in a
+terminal including providing my linear
+API key. And it told me how to get my
+API key. And once I pasted all of that
+in,
+that was it, man. I I had I had the
+terminal running. It's a little the UI
+here is a little bit broken, but I'm
+going to reset this key. So, don't even
+bother trying to trying to steal my
+linear access. Thanks for
+I'm glad that you're not making me go
+and wipe it out. I'll hide these things.
+&gt;&gt; cancel it just as soon as we get off
+this call. But that's all you do. You
+you literally just copy and paste those
+commands and then it started up that
+server. And the server that was there is
+is that little interface that I showed
+you before. And so now, it's a pretty
+simple system where it says, hey, I'm
+running. I'm waiting for a to-do item to
+appear in linear. And when a to-do item
+appears there, I'm going to tackle it.
+I'm going to go in. I'm going to move it
+to in progress. I'm going to do the
+work. I'm going to check out the code,
+build a plan, and push it through. And
+that's what you saw run already here.
+Super easy to set up compared to
+Multica, easier or harder? It was It was
+Multica's more seems to be more of like
+a cloud kind of thing. So, in some ways
+it was more mysterious. Like, they have
+their onboarding flow, but it wasn't it
+wasn't very clear or very good. It also
+wasn't nearly as connected to like, how
+do I set up the repository? So, I would
+give Multica maybe a five out of 10 on
+install and I give Symphony a nine out
+of 10.
+I would say so, I installed paperclip
+which I thought it was a real pleasure
+to install and that would be like an
+eight, nine out of 10. Very simple to
+install and it immediately takes you to
+what feels like a very SaaS-like
+onboarding process. Okay, so set up all
+three of these seems to be fairly
+Multica is a lot more mysterious and
+gives you less control.
+&gt;&gt; Yeah, Multica is more of a black box and
+and pretty clearly like they want you to
+sign up for their platform online. Like,
+sure, there's an open source version,
+you can run it locally, but they want
+you to be buying their their
+subscription. Like, something I really
+appreciate about about these open source
+tools like Symphony is that there's no
+subscription here. Like, there's
+nothing. Sure, I'm paying for linear
+separately. There's Symphony doesn't
+care. They're just trying to provide for
+me a tool. And I think the thing they do
+care about is they want me to burn
+tokens on
+on codex, but but I ultimately I really
+do think they want to be helpful.
+There's just a lot of boilerplate in
+their system that then runs a bunch of
+unnecessary work with when you do it.
+Okay, I also I like how it uses linear,
+uses project management that people are
+already using. The question that I have
+is, it's basically its own agent. Where
+do you give it the rules, the
+preferences, the way that you work?
+Where is the Where is the tools.md? So,
+I think that's where you would set up,
+let's say, you know, Adam, I'm using
+Jira. I also have like some internal
+processes here. I've got a team. We do
+work in a certain way. And then you'd
+want to you'd want to use this top
+option because the bottom one is very
+It's great to get started. It really
+worked quickly. It was very easy. You
+could test it out. And I'm excited about
+what's possible. But you know, one thing
+I'd point out that doesn't work for me
+is that great, this thing you saw it
+grab the task and and move it through.
+If we go and look at linear, one of the
+things I really don't like, okay, Adam
+Braken created this issue. That's true.
+You saw me do it. Adam Braken added this
+comment. No, he didn't. Adam Braken
+didn't write this. Adam Braken did not
+move this to in progress. The agent did
+it. But because it has my API key and
+because this is the way they set up
+Symphony by default, it it does it on my
+behalf. Well, that's not that's not
+accurate. Like, if I'm working in
+Multica actually does this well, in
+Multica, when you when you build a
+ticket, you can assign a ticket to a
+person or you can assign a ticket to an
+agent. So, what I'd actually like to see
+in Symphony is when I go into to linear
+and I grab a ticket, I would actually
+assign to a user that's called Symphony
+or Adam Symphony or something so that we
+could be really clear on the back end.
+Oh, yeah, I see what the agent did. I
+see what the humans are doing and how
+that conversation goes. Cuz right now, I
+could comment on this and the agent will
+see it, but it's going to be a very
+confusing conversation history cuz it
+looks like it's just I'm talking to
+myself. So, if you want to do weird
+custom stuff like that, which I would
+argue you should want to do, you would
+actually need to start instead of
+building you know, just downloading
+their existing elixir, which is a
+programming language, their elixir
+implementation, you'd actually build
+your own from scratch. Now, that sounds
+honestly like it's going to take a lot
+more time and effort. There's going to
+be bugs in it. Like, AI never quite gets
+it right the first time. But then you
+could ask it, hey, here's all the like
+custom features I want you to do. Also,
+I don't want to use linear. I want to
+use Jira. I want to use this instead.
+Here's how I want it to work. E- even
+here like something they pointed out is
+is in the install, it it stops you at
+some point and says, you have to
+actually add in extra ticket states like
+rework and like human review. Those
+aren't linear defaults, but but the
+built-in Symphony agent requires these
+to exist. Well, wait, like my team
+probably already has, you know, the
+states that we like. I don't want to
+invent new states. Or if I do, I want to
+be in charge. And again, then then I'd
+be using this top option. But now,
+instead of a 20-minute install, like
+you're probably looking at it at an
+afternoon.
+Okay, so bottom line,
+it works, not well, slow, burns tokens,
+good vision of what's possible, needs a
+lot more work. You'd recommend this, it
+seems like, for someone who's just
+looking to experiment and see what's
+possible, not anyone who's really
+looking to bank everything on Symphony
+yet.
+&gt;&gt; Yeah, I I think if you haven't tried a
+tool like this where you can assign an
+agent work from cards like from Jira,
+from Trello, from linear. If you haven't
+tried one of those, we're not there yet,
+but you got to try it because for me,
+this is like it's making me so hungry.
+Oh man, I really want this to work. I
+now I know how I want it to work because
+I've tried it and there's some things I
+like, there's some thing some things I
+don't like. You know, Andrew, it's back
+to like remember when touch screens came
+out? Like, there was a while where
+everyone didn't really know how to use a
+touch screen. It didn't know how to use
+the keyboard versus the physical one.
+And then we all got used to it really
+quickly. You've got to test this. You've
+got to feel what it's like to have the
+agent just show up proactively and do
+work. And you won't be all the way
+impressed, but it's going to change how
+you see the world and it's going to
+change how you see how AI can plug into
+your project management, for sure.
+All right, we
+we're going to keep doing these types of
+teardowns. Follow for more. I'd love to
+get more subscribers on this. And of
+course, we've got the GitHub show that
+Adam and I do where we do this type of
+teardown fast for the top GitHub repos
+of the week. See you in all those and
+look in the description for links.
+Bye-bye.
+All right.

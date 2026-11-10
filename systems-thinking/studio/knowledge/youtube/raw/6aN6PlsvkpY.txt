@@ -1,0 +1,1897 @@
+Okay, good afternoon everybody.
+On behalf of the Department
+of Operations and
+the Weatherhead School of Management I'd
+like to welcome you to our seminar today.
+And to introduce our speaker Dr.
+John Holland,
+from University of Michigan and Ann Arbor.
+Professor Holland is a jack of all trades.
+Well, maybe not all trades,
+but certainly a lot of trades.
+He did an undergraduate degree in
+physics at MIT, and worked for
+few years at IBM, before deciding he
+did want to go back and get a PhD.
+Started his PhD work at the University
+of Michigan in mathematics.
+And ultimately became very interested
+in computing and computer science.
+And so he finished with a Master's Degree
+in mathematics, and then he went on
+to get a PhD in communications science
+which later became computer science.
+As you are probably are aware,
+this is on top of our year celebration.
+Because a very specific reason why
+we were honored to have John here.
+And that's because some of
+the greatest work that he has done
+is in the development
+of genetic algorithms.
+These are algorithms which are designed
+to solve very difficult problems
+in which you have a large
+number of possible solutions.
+And you wanna find the best
+one according to some measure,
+whether it's profit or cost or whatever.
+And John developed an algorithm for,
+maybe not finding the best solution,
+but certainly finding a good solution,
+based on analogies with the way genomes
+divide, in particular, crossovers.
+So I'm sure he's gonna talk
+a little bit about that today, and
+then he wrote quite a well known book
+called Adaptation in Natural and
+Artificial Systems, I believe it was 1975,
+and it's still in print today.
+And that led him to an even broader
+field of complex adaptive systems,
+which is an area that's
+very close in my heart,
+I've been doing research in that area for
+the last six or seven years myself.
+John is a founding member of the Santa Fe
+Institute which is the premier research
+institute in the area of complex systems.
+He is also a McArthur fellow and has
+a number of other distinguished awards.
+So it's a great honor for
+us to have him here today.
+And he's going to give us a talk
+today about complex adaptive systems.
+So John, with that, it's all yours.
+&gt;&gt; Thank you, Danny.
+Let's see here.
+We getting, yeah.
+I looked very hard to see if I
+could find a Darwin mustache today,
+it being Halloween, but
+I wasn't successful.
+So unfortunately you
+just gotta see this face.
+So I'm going to talk today about
+complex adaptive systems and briefly.
+Complex adaptive system is a system
+that consists of many individuals which
+we'll call agents,
+just to have a neutral term.
+And I'll tell you more about this, but
+an agent could be anything from somebody
+playing the stock market to
+an antibody in the immune system.
+And so we are interested in agents that
+not only interact in large numbers,
+or at least many times in large numbers,
+but also learn as they interact.
+So in the case of the immune system,
+your antibodies actually get better and
+better at equaling out
+against the antigens.
+Or in the stock market,
+people play, they don't do
+it the same way every day, they, some of
+them at least, improve their performance.
+So that's the kind of thing
+that I wanna look at.
+Okay, now, no, wrong data.
+This should do it.
+No, there we go.
+So here is a broad outline
+of what I'd like to do.
+I'm going to first talk about
+complex adaptive systems.
+And then I'm gonna spend a little bit
+of time talking about the relation
+of theory and
+models to the study of systems.
+So often theory is treated,
+especially in these days, as speculation,
+and I wanna try, if I can, to distinguish
+between just raw speculation and
+something that counts as a theory.
+Then I want to talk about this
+notion of building blocks,
+and an easier quick way to say
+that is that in a certain sense,
+everything we understand in this
+world is in terms of building blocks.
+You never have the same exact
+sensory impression on your retina.
+As far as your retina and your eye is
+concerned, you have perpetual malady,
+there are several million rods and
+clones in there, and
+you never get the same exact
+light pattern on there.
+So somewhere you've got to find what
+repeats in these various patterns you see.
+And so
+that means in terms that I'll talk about,
+that you have to find the patterns
+I'm gonna talk about,
+are patterns that can be put together and
+not call them building blocks.
+Genetic algorithms is an attempt
+to do cross breeding,
+to get new objects or
+agents from the agents you already have.
+And then finally I'll spend a few
+moments telling you why it's difficult
+to do this cross-disciplinary research,
+especially as a young assistant professor.
+Okay, and
+I'm old enough now it's okay to say that.
+&gt;&gt; [LAUGH]
+&gt;&gt; So first,
+one thing we noticed early on when we
+looked at these various disciplines, and
+I just picked four here, control theory,
+economics, biological cells, and games,
+is that we can find similar things with
+different names in each of these systems.
+So control of theory, you have the
+variables, so-called process variables.
+Economics, you have the activities.
+Biological cells, you have the things
+that generate the phenotypic characters.
+And in board games,
+its the board configurations.
+Well you can go on and down the list and
+I won't do all that, but
+at the bottom of this, you have something
+that's important in all these things.
+And that is whether it's called a control
+policy, or whether it's called a plan, or
+whether it's called a reaction network,
+or whether it's called a strategy.
+These all from a formal viewpoint have
+very much the same formal characteristic.
+And I'm going to try while I'm
+talking to convince you of that.
+Okay, so here is a little more careful
+description of a Complex Adaptive System.
+We have a bunch of things that
+we're gonna call adaptive agents,
+we have a network of interactions, and
+generally these agents compete with
+each other, in one sense or another.
+They each have, so to speak, their own
+objectives, and they're trying to retain
+these objectives in among other agents
+that may have different objectives.
+We also have, in effect,
+a group of agents like this,
+we can talk about the aggregate.
+And if I'm talking stock market,
+the age of the buyers and
+the sellers is in the aggregate is
+something like the Dow Jones Average
+where I have some overall description
+of what's happening with the aggregate.
+They're often an average, but not always,
+and the thing that's important here,
+is this works both directions.
+The aggregate affects what
+the individual agent does and
+the individual agent of
+course affects the average.
+So this back and forth as top down and
+bottom up is a really critical
+aspect of systems like this.
+And the other thing is that in
+realistic systems, the rules, and
+I'll just call the rules for
+that by which these agents interact.
+Are conditional, they say if
+something is happening out there.
+For instance,
+if the Dow Jones is falling cell.
+So conditional interactions
+are very typical
+of the agents were talking about and this
+immediately means that these systems from
+a mathematical point of
+view are badly non-linear.
+That is that anytime you have and
+if then you have a sharp change.
+And so you can approximated, well,
+with linear kinds of approaches.
+That means that almost all of
+the statistics, almost all of differential
+equations and so the very favorites of the
+physicist just don't work very well for
+trying to build a theory of these
+complex of adaptive systems.
+And this I've already said.
+Let me point out some of the problems and
+the reason we're so
+interested in these systems.
+If you look at a question of
+how do I encourage innovation,
+or how do I control the Internet,
+in terms of things like viruses and so on?
+Or how do I predict
+changes in global trade?
+Or how do I understand
+the way markets work?
+You know, classical economics says
+that the market always clears,
+that the market, most of the time,
+is in equilibrium.
+Well, I think we only have
+to look at the last three or
+four weeks to see that
+that mostly doesn't apply.
+And why doesn't it apply?
+How do we provide for
+sustainable human growth?
+Again, lots of agents interacting in
+an adaptive way for their own ends.
+Preserving an ecosystem.
+There are a lot of gee whiz
+figures about ecosystems.
+In a tropical forest a single tree
+can have as many as 10,000 species,
+not individuals, species of insects
+co-surviving on that single tree.
+That's just incredible.
+We don't really know about things like
+that in the northern temperate zone.
+You can walk a hundred paces
+in a tropical forest and
+not see the same species of tree twice.
+Now, one real question there is,
+how does the system sustain
+such incredible diversity?
+What's going on that allows that system?
+Why isn't there some super animal or
+super tree?
+The immune system.
+This is something we'll come back to in a
+moment, but the immune system clearly with
+all the wide range of antibodies in
+that system is an incredible system.
+In fact,
+it's the best scientific definition
+you have of yourself as an individual.
+Your immune system is so
+individual that you can't even
+take a skin graft from a sibling.
+So your immune system truly identifies
+you as an individual, okay?
+Now, if you're going to do that, how do
+you control a system like that, that's so
+incredibly specialized to you?
+And a part of the answer and
+this is something we really want to know
+a lot more about complex adapting systems.
+Think about a vaccine, inexpensive and
+if it's a vaccination for
+measles it changes your system for life.
+This whole complex system.
+We call those lever points and
+every complex adaptive system that
+we've studied closely has lever points.
+What we don't know is how to find them.
+We wind up with trial and error and
+that's where you need theory.
+The whole purpose of theory
+is to tell you where to look.
+If we had a good theory of
+complex adaptive systems,
+we know where to look for lever points and
+you could see that they're important.
+Each of these problems that I talked here
+about has a lever point or a mideum.
+Okay, just so we get a little
+bit of better idea about agents.
+If I talk about an organism,
+that's an agent in an ecosystem.
+If I talk about a firm,
+that's an agent in an economy.
+Antibody, immune system, trader in the
+market, department, business and so on.
+Now, depending on what
+question you're asking
+you may pick different sets of
+agent even in the same system.
+I might pick a firm in economy,
+but I might pick a whole country.
+Or I might pick just
+a particular industry.
+That depends on what
+question I want to answer.
+And then this is the reason framing
+questions in the sciences is a good
+90% of your task, phrasing it well is
+the thing that lets you build theory,
+A word or two just about adaptation.
+I'm gonna use that as
+a very broad term and
+that's a term that if you do it rapidly,
+I'll calling it learning.
+It may be cultural in that case.
+More slowly, that's typically what
+a biologist calls adaptation in biology.
+But I'm gonna use it as a wide
+term that says that somehow,
+this agent is changing its strategy or its
+plan, its rules as it gains experience.
+And most people have either
+seen some discussion
+of the evolution of an economy or
+the evolution of a ecosystem.
+If you want to get good, solid examples,
+those are two areas where you can get
+a lot of both discussion and data.
+All right, what are some of
+the characteristics of these systems?
+And these are the characteristics that
+make them particularly difficult.
+One is as we were just talking
+about in the tropical rainforest,
+there is no universal competitor,
+there is no optimum.
+And in fact in most of these systems it's
+very difficult to define even what you
+mean by an optimum.
+What's an optical,
+an optimum tropical rainforest?
+I don't think anybody would
+attempt event a very good
+biologist to do something like that.
+The diversity we've already emphasized.
+The other thing in these systems,
+because they are learning is that
+innovation is a regular feature and
+that's something we want to talk about
+is this whole notion of innovation.
+But there're always new
+species arriving and
+if you look at some rapidly
+evolving group like the orchid.
+It's just incredibly how
+rapidly orchids are evolving.
+Darwin, by the way,
+wrote a whole book on orchids.
+So this was already of interest to him.
+It's a very nice book.
+The other thing and I will talk less
+about that today even though it's very
+important, is that these
+systems predict or anticipate.
+And even if the prediction or
+the anticipation does not come true,
+it still can cause
+the system to change course.
+Now we've seen plenty of
+that recently in the market.
+I think the market's gonna fall tomorrow,
+and so I do some selling.
+And then I find out, in fact,
+it doesn't fall tomorrow.
+Well, it still changed the market.
+Not me alone but some of those guys.
+All right, when it comes to
+innovation the critical thing, and
+this is something that's really often
+overlooked, is what I'll call risk taking.
+Now you hear often in government and
+other places, people talk and
+especially in football games
+about a game plan, and
+at a certain level, that makes sense.
+But if you look at say,
+a large corporation, a corporation isn't
+forced to move just in one direction.
+It can put probes out in several
+directions and it can try this and
+it can try this and it can try this
+Each with a certain kind of risk.
+Now, one of my former students,
+though, is John Seely Brown,
+who is the Chief Scientist at Xerox PARC.
+And John said, if 95% of their
+research projects did not fail.
+In other words, 95% should fail or
+they weren't pushing the envelope
+enough as a corporation.
+Now that's the kind of
+risk you're talking about.
+That only one project in 20,
+is going to succceed.
+Now notice though, that in these projects,
+you're investment is pretty much limited.
+You're not putting your corporation on
+the line, you're putting some of your
+bottom lining out, but you're not
+really risking the whole corporation.
+Now, just as an example, in the university
+setting, the University of Wisconsin,
+they got a patent for
+one of their risky projects for Warfarin.
+Which is, if I say it the crudest
+possible way to cause
+the rats to breed it to
+bleed to death internally.
+So it's very good.
+Roughly 20% of the buildings and
+the activities on
+the University of Wisconsin
+campus come from the income
+from that particular, oops,
+do I just hit it again?
+&gt;&gt; No.
+&gt;&gt; [INAUDIBLE] just touch the screen,
+it's up there you can
+&gt;&gt; Okay,
+we got to go forward, no, no no
+&gt;&gt; Okay.
+So the point here is that
+you do these risky things,
+they cost you a certain amount, but
+the home runs, the ones that really work,
+way more than pay back your
+initial risk costs that we see.
+Now the trouble with complex
+adaptive systems in general and
+certainly in, say,
+current economics is that almost always
+corporations are judged on
+their current bottom line.
+How much profit did we
+make in the last quarter?
+The question is, how to get credit for
+these risky projects that
+are costing money right now?
+But ten years from now,
+maybe the price of survival,
+for the corporation, and
+you only have to look to Michigan and
+then the automotive industry did get
+a great example of not looking ahead.
+The point is that, or the question, and
+this is a little bit like lever points.
+How do I find ways that I can
+do these risky things that don't
+pay off right away?
+And you all know if you play a game like
+chess or wedgy that, it's these moves,
+the early moves that don't seem obvious
+that enable you to become a good game.
+It's not the obvious moves
+where I can check the king or
+something like that, it's the early
+moves and that's the risk taking.
+Okay, so the point I'm trying to make
+is really the second point, too,
+that if I'm big enough as an individual,
+I may not be able to follow on many paths
+simultaneously, but
+as a corporation I certainly can.
+If I have the will.
+And the last point is the one I've
+talking about, how do I get credit
+assignment back to these poor
+researchers in their laboratories then
+made it possible five years later to
+get the windshield wiper on your car?
+These innovations make a difference.
+So let's talk about theory and
+models, this prologue.
+And I love this cartoon
+from The New Yorker.
+It says, please, Ms Sweeney,
+may I ask where we're going with all this?
+And it's not so
+obvious what is to read you.
+But if you think that happens,
+all you have to do is look around you and
+talk to anybody about theory and
+you'll see that they are the same thing.
+Well, what's this gonna do for us?
+I gonna distinguish three kinds of models,
+they are often confused in the literature,
+even by very good people.
+First there is a more familiar model
+which you all call data driven.
+And that's where we have a large amount
+of data as in weather forecasting or
+as in something like the human genome
+project or any of the [INAUDIBLE].
+We've got a lot of data that we are trying
+to build a model that will take in that
+data and tell us something
+about what's gonna happen.
+Well how do we control it?
+Those models are really pretty familiar.
+Less familiar is the so-called
+existence proof model.
+Back in the early 1950s, John von Neumann,
+who some people would say was the greatest
+mathematician in the 20th century.
+John von Neumann built a model that showed
+that a machine could reproduce itself.
+So it demonstrated that
+a machine can reproduce itself.
+Before he put that model out,
+it was common in both philosophy and
+biology to say that only living
+organisms could reproduce themselves,
+because those through
+the only examples we had.
+Right, as soon as he published that paper
+within two years, all those arguments were
+gone from the literature because
+here was a counter example.
+It really showed that you
+can build such a thing.
+Okay, and then finally, and this is
+perhaps the least understood of these
+models is what I would
+call an exploratory model.
+And an example is where I have mechanisms
+in mind, and it may be as simple as gears,
+wheels, and springs, but it could be as
+complicated as various structures for
+antibodies and antigens.
+I have some mechanisms or
+objects, or agents in mind, and
+I wanna see what will happen
+when I put them together.
+Now that doesn't prove the real
+system will work that way.
+All it does is let me
+explore interactions.
+And in many areas,
+especially in complex adaptive systems,
+it's so hard to understand what these
+systems are gonna do when you put
+these agents together that exploratory
+models become your major way.
+Especially since very few parts
+of mathematics will help you.
+And then there's this point, and
+I used this this morning but
+I'll ask the same question.
+You didn't know you're coming to an exam.
+How many of you know who Eddington is?
+How many do not?
+Okay, not surprising.
+He was the man that first demonstrated
+that Einstein's Theory of Relativity
+really worked in the real world, and
+he did this in a very clever way.
+What he did was, and he's a very practical
+man, he was an astronomer, he waited for
+an eclipse of the sun in South Africa.
+And then he watched to see whether
+the position of the star appeared to
+move as the light rays from that
+star got closer to the sun.
+And so Eddington was a very practical myth
+it'w very interesting that he would say
+something like this.
+The contemplation in actual science
+of a wider domain when the actual
+leads to a far better
+understanding of the actual, and
+I couldn't have said the purpose of
+exploratory models any better in any way.
+It really says to me what
+exploratory models are all about.
+So, I simply suggest that
+when you read a paper and
+you hear somebody talking about
+modelling or discussing modelling.
+The first thing to do is try to decide
+which of these three modelling techniques
+or ideas or tactics they're trying to use.
+Now, let me say some things we don't know.
+I said earlier all these complex
+adaptive systems exhibit lever points.
+We know this by just looking.
+And so we really do need
+some kind of theory there.
+It turns out that every complex adaptive
+system we know of has a kind of
+hierarchical organization.
+Again, think of a biological cell.
+You have the interior membranes,
+then you have the external membrane, and
+then you have the cells and
+organs and so on and so on and so on.
+You think of a government or
+you think, pick any
+one of those complex adapting systems, you
+see it has this hierarchical organization.
+Why, why is that so pervasive?
+What's the reason?
+There is no theory that tells us or
+even suggests the mechanisms that
+might yield these hierarchies.
+And something you'd think by
+now we should be able to do,
+especially since we've been fussing
+around with this for quite some time,
+is to find a model which really shows
+the kind of increasing diversity,
+the kind of open ended evolution,
+that we see in real biological systems.
+And again, there's not even a single
+good computer model that I know
+of that will exhibit this
+open ended evolution.
+Really surprising after
+this amount of time.
+Now, I'm gonna say some things that with
+my colleges say at the Santa Fe Institute,
+I can start with arguments with.
+One thing is I don't think
+in the study of complex
+adapting systems that we need
+a precise definition of complexity.
+And let me just give you an example.
+We have a perfectly good, actually several
+perfectly good sciences of biology.
+I don't know anybody right now who would
+attempt to define life in a precise way.
+So it's possible to study a subject
+without having a precise definition
+of the subject matter.
+And you could talk about
+several things like this and find that
+in very important topics that we study,
+we don't have a precise definition
+of the whole subject, but
+we have good definitions
+of parts of the subject.
+Now I tend to,
+depends how cruel I'm being that day,
+I either call this the pile of sand
+argument or the bald man argument.
+If I have a pile of sand and
+I take one grain off at a time, when
+does it cease to become a pile of sand?
+Well that's clearly
+an unanswerable question.
+I mean, there's clearly
+a time when it's a pile and
+there's clearly a time where there
+are only a few grains down there.
+Somewhere in between is when it ceases.
+The bald man version is take one
+hair out of my head at a time,
+when do I become bald?
+Anyhow, I would personally, and
+several of my colleagues personally,
+would not spend much time trying to get
+a precise definition of things like
+complexity or emergence or several of
+these terms that are vague in one way,
+but it's possible to
+study them nevertheless.
+I think that things like polls,
+trends, averages, and so on, stability,
+complex adaptive systems really
+are not well studied this way.
+They don't settle down.
+If I talk about a living organism, the
+only time it's stable is when it's dead.
+And so there's, these strong tools can
+give us some hints about what to do,
+but they're unlikely to solve these major
+problems for complex adaptive systems.
+There are some things that I
+think are of limited help, but
+as far as I'm concerned, and
+again you're getting my opinion,
+too much effort has been
+spent in terms of the return.
+We hear all the time about chaos.
+The more precise definition of chaos,
+at least from physics,
+is that you have two initial conditions
+that are within the epsilon of each other.
+And after a sum amount
+of time they divert so
+much that you might as well
+be doing things at random.
+The thing is in most complex adaptive
+systems, take weather prediction for
+instance, the data is being
+updated all the time.
+There's never enough time for
+this butterfly down in Argentina to
+cause the hurricane in the Caribbean.
+The data is being updated on a six
+hour basis at the very least.
+And so there are no time for chaotic
+effects to really have much influence.
+So my opinion in the study of complex
+adaptive systems is the formal
+theory of chaos is of limited used.
+Now again,
+I can get in a lot of arguments.
+The other thing is network theory
+is a very hot topic right now.
+And it has certainly helped us
+understand some difficult things.
+And at the University of Michigan, we have
+one of the best network theorists going,
+his name is Mark Newman.
+And he's published some really
+key papers in this area.
+But as yet, they are not studying
+how networks change overtime,
+except occasionally with random changes.
+And that,
+in a complex adaptive system where I'm
+trying to study interactions, is the key.
+How are these interactions between
+the network changing overtime?
+That's the whole name of the game there.
+Now it's interesting, and
+some of us are beginning to push on this,
+if I look at networks in, say,
+these agents, between these agents.
+And I say, these agents can only
+communicate by signals of some kind or
+other, which is reasonable, buy and
+sell orders, whatever it happens to be.
+Then I can think of the network is
+changing because the signals are changing.
+And so if I go back underneath
+the network, there are ways
+that I can begin to understand
+the dynamics of the changing network and
+not just how signals
+flow over the network.
+So that's a possible approach.
+Okay, and here are some things
+that I think are promising.
+Agent-based models,
+we've already talked about.
+One thing I should say there, and
+this is sometimes overlooked,
+take something like a flight simulator.
+Nobody builds a modern airplane without
+having a flight simulator that
+will simulate his flight.
+Who checks out whether the flight
+simulator is any good or not?
+It's not the programmer, it's a pilot.
+And an expert pilot flies that simulator
+just as if he were flying the plane.
+And then he starts out very simply and
+he does some banks and so on.
+And if it doesn't act
+right he goes back and
+says, this model's wrong,
+you gotta fix it.
+What makes that possible?
+And this is the thing, if you're looking
+for a job in the computer science area,
+one place where there's really high
+demand is what they call interface.
+And this is mostly for video games,
+but it's also for flight simulators.
+The thing that's displayed in front of
+you that lets you act as if you were
+flying the plane, so you see the field or
+you see the sky and so on.
+It's that interface that lets
+you use your expert responses,
+doing what you normally do,
+turning the plane, banking it, all that.
+That's what makes possible
+the flight simulator and
+the separation between the expert and
+the programmer.
+So interfaces are critical.
+And any of you who would have seen
+something like Second life, or
+spore, or something like that, you
+quickly realize how much the interface,
+what's displayed,
+makes that interesting and exciting.
+The same thing is true.
+Now, let me ask you, we've talked about
+corporations as a complex adapting system,
+do you know of any flight simulators for
+corporations?
+Anything where a CEO can go in there and
+make his decisions and
+see what it does to the corporation?
+I don't know of anything at that level.
+I know of some training tools along
+that way, but I don't know of anything
+where a serious executive like a,
+Like a pilot can really go in there and
+say, well, now if I do have this
+95% failure rate in my research,
+what effect is that gonna
+have on the corporation?
+I don't know of anything like that.
+It certainly, it seems to me, would be
+much more valuable than a spreadsheet as
+a way of making predictions.
+Models based on building blocks.
+I'm gonna say a little bit more
+about building blocks, but
+I think this is a critical way.
+Let me give you an example.
+And I won't say much about things
+like finitely generated groups, but
+consider some major invention of the 20th
+century, the internal combustion engine.
+Now, that really changed our
+whole lifestyle, incredibly so
+when you stop to think about it.
+What about that?
+What was new or innovating about
+the internal combustion engine?
+We knew about gears and
+wheels for literally millennia.
+We knew about pumps for a long time.
+The carburetor is Venturi's perfume spray,
+which was at least 100
+years old at that time.
+Volta's sparking device, you could go down
+all the list of parts of that engine,
+we knew all the building blocks for
+a long, long time.
+What was new,
+was combining them in a new way.
+So if we, again, talk about things like
+crossbreeding, crossbreeding is where I
+have various well known building blocks,
+like long legs in one horse and
+solid shoulders in another, and
+I crossbreed and I put the two together.
+That kind of thing is a way to
+produce innovation with well known
+building blocks.
+In biology this is known
+as recombination and
+it is perhaps the most important
+thing that goes on in genetics.
+Another thing that we see, and this
+goes back to this notion of hierarchy,
+is how do boundaries and
+signals form and co-evolve.
+Go back to one of the earliest
+examples in economics.
+Adam Smith talked about the transition
+from an individual craftsman who made
+the ordinary straight pin
+to a early production line,
+where one person drew the wire,
+another clipped it, another sharpened it,
+another put the head on it,
+a simple production line.
+That lowered the cost of the straight pin
+from an article that only the wealthy
+could have to a very common item.
+It was a factor of ten that
+initially lowered the cost.
+Now that`s really about boundaries, right?
+It`s about how does this step pass
+something on to the next step,
+pass it on to the next step,
+pass it on to the next step.
+How did those boundaries form where
+there weren't any boundaries originally?
+There was just an original craftsman,
+okay?
+And how do they signal each other?
+How do they pass things along?
+Well, we even after all this time,
+in Adam Smith's example,
+we don't have any good computer
+model of this transition.
+So I claim that study of things
+like signals and boundaries,
+how they form, how the co-evolve and so
+on is central to understanding
+an awful lot, especially about hiring.
+And that's a whole subject in itself.
+Complexity studies in computer science.
+One thing some of you who know something
+about computer science have heard about
+the so called NP hard problems.
+These are problems that grow exponentially
+in difficulty as the size of
+the problem grows.
+A common example is the so called math
+coloring or graph coloring problem.
+You have a graph with a bunch of nodes,
+you have a set of colors,
+let's say three colors, and
+you wanna color every node in the graph,
+in the network so that no two nodes
+that are connected have the same color.
+The early version of this was you
+could color any map of the world with
+four colors.
+And that took quite a while to prove.
+Okay, so there is this notion
+of these hard problems.
+The number of nodes, as it grows, this
+problem just gets exponentially harder.
+What they didn't study was the fact
+that people just recently,
+within the last five years started
+studying individual problems.
+And you find out the following thing,
+if I've got a graph with ten nodes and
+one color, what do I know right away?
+I can't solve it, right?
+If I've only got one color and ten nodes,
+there's no way that I can keep
+them in different colors.
+If I have ten nodes and
+a hundred colors, then the other way,
+I know it's easily solvable.
+Well, if you plot a graph from easily
+solvable to difficult to unsolvable,
+you find that it's a very narrow peak
+in the total set of such problems.
+And this is really surprising.
+So it says that most of
+them are pretty easy.
+There's just a very narrow peak, and
+with that peak decreases proportionally as
+the problem gets more and more difficult.
+So there are these sudden
+transitions from very easy,
+very narrow range of hard and
+then very difficult.
+And these sudden transitions seem to be
+very common in complex adapting systems.
+And again, if we study these transitions
+I think we'll know more about this.
+One kind of transition is in language.
+It's been held for Noam Chomsky and
+his notion of universal grammar completely
+transformed the study of the language
+in the middle of the 20th century.
+And he gave a form method,
+but it said nothing.
+In fact, they claimed that there was so
+little stimulus to a newborn child that
+the grammar that's used in
+language had to be wired in.
+Perhaps what we're seeing is one of
+these sudden transitions where some
+fairly simple abilities that primates
+have have just been turned enough
+together to make a subtransition to
+the ability to acquire a language.
+Now, we can actually back this partially.
+So this is not all conjuncture, but it's
+an interesting alternative explanation
+to the wired-in grammar notion.
+Okay, I'll just repeat this for
+the moment that we're talking about
+interactions that are conditional and
+nonlinear.
+And reduction still works, but
+I have to study not only the parts and
+then add them up because the whole really
+is more than the sum of the parts because
+of the interactions.
+I have to study both the parts and
+the way they interact.
+And so I still call that reductionism.
+But the classical notion of
+reductionism is you study the parts and
+you just add them together
+to get the whole.
+Okay, on the building blocks,
+and here's the business about
+the internal combustion engine.
+So I won't repeat that again.
+You'll notice that in the sciences,
+building blocks are the most common thing.
+We've seen this all our life.
+You start at very small particles,
+you put them together,
+you get particles at the next level,
+and so on.
+So if I look at something like the atom.
+It's made of protons, neutrons,
+electrons from the next level and
+when I put atoms together,
+I get molecules.
+That's just at the level of the atom,
+the big advance was the periodic table.
+Where I could see that how each
+of these things could interact,
+that's the interaction part, okay.
+Interesting thing I don't know most
+of you probably not been to Bergen,
+Norway but it's very easy to
+predict the weather in Bergen,
+Norway in every month except May,
+it will rain and rain a lot.
+A man who made a tremendous difference
+in weather forecasting came from Bergen,
+Norway.
+He was a scientist there, and
+he was the one that came up with
+the notion of weather fronts.
+Weather fronts became the building
+block for predicting weather.
+It's what you see on
+the weather map every night.
+These fronts that are moving across and it
+increased the weather prediction accuracy.
+Interestingly enough you'll be
+60% accurate, better than random,
+if you just say the weather tomorrow
+will be the same as the weather today.
+He went up from 60% to 75% by
+using this notion of fronts.
+So getting the right building blocks for
+the question you're trying to answer is,
+I claim, very important, and fronts were
+the right building blocks for weather.
+Now, here's another set of
+building blocks for faces.
+I'm gonna pick ten features, like hair
+style, forehead shape, eyebrow, and so on,
+for face.
+And I'm gonna have ten alternatives for
+each feature, and I'm going to call each
+of these alternatives a building block.
+Now, here's a question I ask my
+graduate students all the time, and
+only about one in two or
+three or four will answer.
+How many building blocks are there yet?
+Ten features, ten alternatives for
+each feature, how many building blocks?
+I hear 100.
+Anybody else go with that?
+Yeah.
+It shows you how phrasing can
+make a different.
+If I say you have ten sacks
+with ten blocks in each sack,
+how many building blocks do you have?
+It's easy to get to 100.
+Well these are the same thing.
+How many faces can you make?
+Ten times ten times ten.
+Ten to the tenth.
+Huge number of faces for
+a very limited number of building blocks.
+Claim, the reason we're very good
+at recognizing human faces is because
+we have the right building blocks.
+If I go to the zoo and
+try to recognize chimpanzee faces,
+I'm not gonna be very good at
+it unless I'm a keeper there.
+I just don't have
+the right building blocks.
+So one major claim is with building
+blocks, certain things become possible,
+that are not possible otherwise.
+The second thing you get is, here is
+a complex geometric figure represented
+by a string of numbers, by just numbering
+each building block that's present.
+So I've got, in that particular figure,
+I've got eyebrow shape one,
+I've got eye shape four, I've got
+nose shape two and mouth shape three.
+So I can represent a complex
+geometric object by a string,
+which is very handy when I'm
+trying to do stuff on a computer.
+Now just one more thing
+about building blocks.
+And here I've got seven of the ordinary
+children's building blocks.
+And you can see
+the combinatorics go up hugely.
+I've got 4,000 possibilities with three
+blocks, if I go up to about 20 blocks,
+it's astronomical.
+Now, interesting thing.
+I could ask a child to
+build a castle with blocks.
+And if I do that, a five year old or six
+year old, they'll do it pretty quickly.
+How can they do that with
+all those alternatives?
+Certainly not at random.
+Part of it is the child has a vision
+of what they want to get to, but
+they also have, notice,
+those three at the bottom.
+That's an arch weight.
+They learn to do that earlier and
+that becomes building block one level up.
+Notice that the one up
+at the top is a tower.
+So, if I learn some of those
+which are rather easier to learn
+then you'll notice that the castle is
+made just exactly of those things.
+It's not, and
+suddenly because I can do this hierarchy
+kind of thing as we did with atoms and so
+on, I can do things much more
+complicated than I can do it otherwise.
+This is nice.
+This is a lecture room with a clock.
+Usually they build lecture rooms so
+in lecture so you can't see the clock.
+Okay, here's cross breeding.
+I have two faces here genuinely
+made from those parts and
+cross over is literally what it says.
+You take two strings,
+you pick a point at random and
+exchange the left hand end of
+the two strings as we did here.
+What happened?
+Well, I really got two new faces,
+didn't I?
+Just using the standard building
+blocks because I crossed over.
+Now, let me tell you a fanciful experiment
+that you can try in a psychology class.
+I'm gonna give you ten faces made from
+these building blocks, made at random.
+So they're just random faces, but
+we see that any combination of building
+blocks yield some kind of face.
+So I give you ten faces.
+Now, the interesting thing is,
+I can ask one member of my class
+to rank those faces as to honesty.
+Now, none of us can write that down,
+but students will never complain,
+what do you mean?
+Trying to do that, they'll do it.
+Now this isn't just students, most
+people will say, that's an honest face,
+that's a dishonest face, and we're not
+talking about current political elections.
+We do that as a very ordinary
+kind of event, okay.
+What I'm gonna do is the following.
+I'm gonna give you these ten faces and
+ask you to rank them, one of you.
+And then I'm going to
+take those things and
+do cross over of the faces
+that are ranked highest.
+So I'm just going to do this crossover for
+the faces that were ranked highest.
+So this very Darwinian right?
+Natural selection for honesty of face.
+Okay, I get ten more faces,
+do crossover of the best.
+I can guarantee you that
+five generations of that and
+you will think every face, whatever your
+criterion was, in the fifth generation
+was more honest than any face
+you saw in the first generation.
+And that's the way right
+combination works in biology.
+It is just like that.
+And the nice thing is, if you actually
+do this experiment, now I can go back in
+there and see what building blocks
+do these faces hold in common.
+So I can even begin to analyze
+why you think the face is honest.
+So, that's part of the reason for
+doing these exploratory models as well.
+And there you've really,
+I'm not going to spend much time.
+You've really seen, what's really
+critical about genetic algorithms.
+In the case of genetic
+algorithms how are we,
+can prove theorems about this
+propagation of building blocks.
+And just to make this point solid.
+Take one generation of humans and
+then go to the next generation of units.
+There is no person in that next
+generation that is a copy of any person
+in the previous generation right.
+What information is being preserved
+from one generation to the next,
+if there is no copies?
+Well, by now you can possibly
+guess my answer, building blocks,
+is being propagated as a certain
+combinations of building blocks.
+The way to build a nose, the way to build
+an eye, certain combinations and so on.
+So what is passed from generation by,
+we only get one Einstein.
+We don't get a copy in
+the next generation.
+So unlike most optimization processes
+where you try to work from the most recent
+one, instead you work from
+these three combinations and
+what's being passed forward are certain
+combinations that work well.
+So, if you've got a set of genes that for
+instance give you resistance to
+the new highly invasive staph germ.
+That's gonna be passed on
+to the next generation,
+because that's an increasingly
+selective feature.
+Unfortunately, I don't know any way to
+do that about automobile accidents,
+it doesn't seem to be working.
+I'm gonna skip the details here,
+it's just about the theory.
+But genetic algorithms is
+part of the reason that for
+some people are popular, is that they
+are very easy to execute on a computer.
+You evaluate that is the business
+as ranking the faces as to honesty.
+You then duplicate and
+redo the combination, that's all there is.
+And these are all fast
+computer operations, so
+you can run genetic algorithms
+really pretty rapidly.
+And again, this is just showing
+the crossover operator.
+Okay, so, here's a summary of
+what I've been trying to say, and
+then I'll go on to say a bit about
+it across disciplinary research.
+I would say that the study of
+these complex adaptive systems,
+more than anything else,
+involves two steps.
+One step is carefully
+phrasing your question,
+getting the question a way
+that makes it susceptible to
+some kind of simulation or
+theoretical attempt.
+And then, spend time to
+discover the building blocks.
+What are the things
+that are at the center?
+Again, we can go back to
+the flight simulator.
+What are the building blocks for
+the flight simulator?
+Well, what you have,
+as in a car, is a control panel,
+that's the critical information.
+what generates that information?
+Those are the building
+blocks of the system.
+So, there are ways to do this,
+to discover these building blocks.
+They're as always in science, the only
+step is intuitive, it's not deductive.
+But you can gain some
+skills at doing this.
+And the claim is that
+innovation is primarily
+a matter of recombination
+of old building blocks,
+not a matter of finding
+new building blocks.
+Most of the innovations we know about
+are a matter of recombining building
+blocks that have been well known.
+And this is true in biology as well.
+And then simply for
+our attempts at this where we're
+looking at these agent-based models,
+we use genetic algorithms by crossing over
+the rules of the agent, to get new rules.
+And these rules act not as facts,
+but as hypothesis to be tested.
+And so recombination is a nice
+way to get new hypothesis.
+Okay, hazards of
+interdisciplinary research.
+The Santa Fe Institute which most
+people would say is the center,
+actually ruled center for
+the study of complex systems,
+has a very interesting method of working.
+First of all, the people that
+are there are invited there.
+This started off with being really
+the work of one men, George Cowan,
+not widely known, but
+what they call out there,
+a low batch number at which means he
+was there during the Manhattan project.
+George has a real talent for picking very
+talented people who are willing
+to listen as well as talk.
+And so,
+those early groups were an exchange.
+They weren't somebody like
+Ken Arrow getting up and
+holding forth on the Arrow–Debreu theory.
+Ken instead engaged in all
+sorts of discussion, and
+he's very good at that by the way.
+So, one thing if you're trying to do
+this kind of cross-disciplinary stuff,
+there may be people that are very
+prominent in the field, but
+they're only interested in
+giving you their ideas.
+They're not interested in hearing
+what other disciplines have to say.
+So it's critical that you form
+these rig working groups.
+And then at the Santa Fe Institute
+what goes on is if the working groups
+bumps into some need questions, or
+things that look like they can study,
+then you begin to form workshops.
+People come out and spend a month or
+two month, and so on, and
+you being to push on this problems.
+So, this is one way, but notice this is
+risk taking again of those working groups,
+a lot of them will come to nothing.
+The people who will get together
+will have a great time,
+but they won't come up with any questions
+that really could be pressed on.
+So, as far as the institute is concerned,
+that's something they tried and
+didn't work.
+That goes on to all the time out there.
+And the other thing that you have that's
+very Darwinian is because almost everybody
+at the Santa Fe Institute has a major
+appointment at some other university or
+some other institution.
+As they say out there,
+they vote with their feet.
+If the question isn't interesting to them,
+they don't show up.
+Now there are very few
+places where that's true.
+If you work for a think tank, you're
+unemployed, you can't just not show up.
+But at Santa Fe Institute, that's a very
+important part of the way they work.
+So, I would say again if you're going
+to do cross disciplinary stuff,
+this working groups are important,
+they mean having an easy place for
+the people to gather and talk.
+And it means that there should be
+some funds to make this possible,
+cuz they're not very expensive,
+but they're not free,
+you've got to pay transportation cost and
+so on.
+And I really don't have to
+say to much about this,
+this is what I've already said about
+how the home runs pay for the other.
+The hardest time to find funding, and
+this is true at Santa Fe Institute too,
+is to go from this point where you're just
+paying the price for people to travel in,
+to have them be there
+over a period of time.
+And sometimes this works out very
+well with respect to universities.
+If people have a sabbatical,
+they're happy to come.
+But other times,
+you may have to pay salary as well.
+Okay.
+The overall thing is difficult,
+especially for
+people who are young faculty,
+because, first of all, departments,
+with some reason, want you to
+publish in their major journals.
+They want to know that your paper
+can be referred and acceptable.
+If you're in physics,
+in the major journal in physics.
+If you're in economics,
+the major journals in economics.
+Unfortunately, if you're doing work,
+the more original it is,
+the less likely it is to be accepted
+in these standard journals.
+They have well established criteria, new
+work doesn't usually meet those criteria.
+And so, the typical thing and
+unfortunately, at least in my opinion,
+more and more in universities
+because time is short and for
+all sorts of reasons,
+I'll just use a majority of name.
+Being counting,
+the looking at the citation index
+can be the major thing in
+whether you get promoted or not.
+It's just sad but true.
+So, and the other thing is often if
+you publish something new, you're
+almost inevitably gonna step on the toes
+of somebody who's worked in the field.
+It's implicit that you're somehow saying
+their work is not as fundamental as
+they thought it was.
+So the thing that I would most recommend,
+which sounds very medieval,
+is to find someone that
+will be your patron.
+Find somebody that's well established
+in the area that will say, for
+your work, let them get on with it.
+Let her do this instead,
+and they'll stand up for
+you in departmental meetings and so on.
+It was critical for me and for most of
+the graduate students I know about,
+if you're doing cross disciplinary
+research, This business of having a patron
+and notice that even Leonardo da
+Vinci needed a patron is critical
+to getting on with it, to getting your
+promotion if you wanna stay in academia or
+to getting the necessary reputation
+to work in whenever place you want.
+So the other ultimate revenge, this only
+comes true when you're as old as I am,
+is to produce a lot of doctoral students.
+Eventually they begin to
+overwhelm the opposition.
+[LAUGH] So, I think that is it.
+I'd really like some questions,
+if you have the time and want to ask them.
+&gt;&gt; [APPLAUSE].
+[APPLAUSE]
+&gt;&gt; Can I ask a quick question?
+&gt;&gt; Sure.
+&gt;&gt; The combination is
+egrevious building blocks.
+The mutation is something bigger.
+&gt;&gt; True. [CROSSTALK] &gt;&gt; And
+possibly what you know as a combination.
+Most mutations are [INAUDIBLE] and
+every now and
+then they can actually
+generate a new building block.
+So you raised early on the absence
+of a truly open systems.
+I wonder whether these
+types of combinations and
+&gt;&gt; It's a nice point.
+The first thing I'll quote
+is just from biology.
+The probability, just the probability of
+a point mutation is one in a million.
+Recombination takes place in every
+one of us in every generation.
+So in terms just of influence,
+recombination certainly
+has a huge influence.
+Now nevertheless, occasionally
+a mutation will produce something.
+And in fact the very first book I read
+in this Fisher's Genetical Theory of
+Natural Selection concentrated
+totally on the mutation aspect and
+occasionally this is true in science.
+We'll come up with a new
+building block at some level.
+Now again, there's this levels business,
+the transistor was a new building
+block but in fact one level down we knew
+everything about semi conductors and
+all that kind of stuff well
+before the transistor.
+So, there's this business but
+mutations can have an effect.
+I think, let's see this open evolution
+ended evolution is difficult
+because I can get perpetual novelty
+with just a random number generator.
+What I have to do is get this kind
+of coherent kind of thing that I get
+a complex adaptive system.
+All right,
+we do use mutation in genetic algorithms,
+we just tune it down way beyond what
+you would normally think about, yeah.
+But it is,
+I think you don't wanna do without it.
+Because if you lose all the genes at one
+locus because for some reason they're not
+very good or something like that,
+then you've cut your search base in half.
+&gt;&gt; In your phase model where you
+recombine the different building blocks,
+it's worth noting in biology
+even though the building
+structurally remain
+constantly [INAUDIBLE].
+Their functions don't necessarily
+[INAUDIBLE] context of [INAUDIBLE].
+And so it isn't always as
+straightforward as your-
+&gt;&gt; No no no.
+&gt;&gt; [CROSSTALK] illustrates.
+&gt;&gt; That's really right,
+the face thing is simple to understand but
+not is far from what's
+actually going on in genetics.
+And again you can even just
+modify the transcription of
+the same gene and now more and more we
+know that that happens all the time
+can change the signals which
+changes the feedback loops.
+And so there are some things that are
+really standard building block s,the Krebs
+cycle is in every organism from carrots to
+elephants and is pretty much standardized.
+It's by the way not the optimum.
+You could go in there and design
+a better cycle for the Krebs cycle, but
+it's standardized.
+And that means I can connect it
+in to all these other systems.
+But the point here is the reason I'm
+spending an awful lot of my time trying to
+see this co-evolution of boundaries and
+signals,
+because that can change
+things just tremendously.
+Even from the simple idea,
+if I have a semi permeable membrane, and
+up the concentration of
+some particular protein,
+I've upped the reaction rate
+that involves that protein.
+Just, you know, something classic.
+&gt;&gt; Would you extend your model
+to the evolution of language?
+&gt;&gt; I can say a few words.
+[LAUGH] Actually,
+that's what I talked about this morning,
+but quickly, our model is the following.
+It's agent based.
+We assume that we have some competent
+agents that know some language.
+We assume that we have some agents
+that know nothing about language.
+Absolutely nothing.
+Grammar or anything.
+We put them in an environment.
+So they have to find, say, food patches
+and water and things like that.
+And language only survives if in fact it
+helps these agents work together to get
+more of this resource then they
+can get in a control group or
+we just don't let them have language.
+Now what we do is we start with three
+pre-primate characteristics wired in,
+build it to imitate,
+imprinting, that goes way down.
+The ability to distinguish object and
+action and that's this reflex that causes
+you to look off to one side, if there
+something fast moving in the periphery.
+And the other thing goes back
+to animals that hunt in packs.
+And that is for
+the two of them to be mutually aware
+that their looking at the same object.
+We think that from those
+wired in characteristics,
+and the exchanges that go on in
+a child and a mother saying,
+that we can get up to the stage of
+proto grammars where the child is
+uttering say, get milk in the right order.
+And part of what we expect to find here
+is that the child early on will just say
+milk, and that means maybe get milk, it
+may mean there's a milk bottle over there,
+it may mean that my sister
+is grabbing the milk bottle.
+To reduce the ambiguity,
+you add a second utterance and
+that helps the child
+clarify the situation.
+Our claim is this is pretty important.
+Now, one thing, and
+this is one of those gee whiz facts, but
+it really as my daughters
+would say blew me away.
+I have a colleague in Singapore in
+Nanyang Technological University
+who taught in mainland China,
+that got her degree at London Sweden and
+taught at the University of Toronto.
+So she's fluent in English,
+Chinese, and Swedish.
+And by the way, if you want to see,
+I kid her about this all the time.
+It's rather funny to see
+somebody that's Chinese speaking
+English with a Swedish accent.
+&gt;&gt; Anyhow, her work in data
+was the following, she looked at all three
+layer groups at young children, that were
+arquiring their first action words like
+beat or hit or something like that.
+Across the board,
+she found that these children did not
+acquire these words in a repeatable
+way until they can do the action.
+And that's just, that was really,
+now we all know that people
+talk with gestures, everybody.
+The Italians more than most.
+And the question is, what's the relation
+between gestures and utterances?
+How does language develop as
+a combination of these kind of things?
+Well, this begins to tie
+some of that together.
+It's very interesting to me.
+And so we're trying to build our
+models around some of this data.
+Danny.
+&gt;&gt; You noted that it's almost prevalent
+in complex systems is that they're built
+hierarchical structure.
+I wonder if you just have your
+own personal conjecture why you
+think this is the case.
+&gt;&gt; Yeah, here I can, how to say it,
+give a plug for a forthcoming book,
+which probably won't be done for
+five years.
+[LAUGH] Although I am on
+Chapter eight of 11 or 12.
+&gt;&gt; I think that this comes about
+because of the coevolution
+of what I'll call boundaries,
+which might be memories.
+And signals.
+And if I have a semipermeable membrane,
+only certain kinds of proteins
+can go through that membrane.
+If I change the signal,
+that may change whether it can go through.
+If I change the membrane,
+it can change whether it goes through.
+And so what I'm trying to do is use
+this complex adaptive system approach to
+watch the coevolution of boundaries and
+signals from very simple systems to,
+I would claim, systems that get more and
+more specialized.
+So this is a little bit like
+the transition from the craftsman
+to the production line in Adam Smith.
+I expect to see this
+kind of thing going from
+general purpose things that become
+more and more special purpose.
+Like in the tropical rain forest,
+they build their own niches,
+there are more interactions,
+all kinds of symbiosis and predator-prey
+relations going on, that's what I hope
+to be able to say something about.
+I think it's, for
+me right now obviously if I'm working on
+it is the most critical question, right?
+Yeah, Mike.
+&gt;&gt; Well just as a comment but
+obviously we live with some regressions.
+The theory of evolution by [INAUDIBLE],
+both he and you,
+is that the rate of variations and
+what is new phenotype,
+it came from the phenotype
+which existed through time.
+It is the theory value, it is not
+that the random variation is known.
+&gt;&gt; Rather it is facilitated by
+the phenotype which exists and
+that is what makes biology uncertain.
+Because everything has to be
+trained in terms of evolution.
+&gt;&gt; [INAUDIBLE] genome of the mice and
+the human are the same.
+Meaning going back and
+back and back and back.
+What is different is regulation,
+how they are organized.
+So in addition to building blocks,
+we do not think of just genes,
+but also how these genes
+they are organized.
+And this is why human and
+mice are different because,
+not that the genes are different, but
+rather the number of genes are different.
+But rather they're [INAUDIBLE].
+So what I'm saying is they should
+be building blocks, right?
+This procedure how to organize is what
+give us the complexity
+that you're talking about.
+&gt;&gt; An example that I could
+give along similar lines, for
+any of you who have ever
+done computer programming.
+You know that you have, especially if
+you get down to the machine level,
+you have a limited set of instructions.
+In some cases 32.
+But it's how those instructions
+are lined up and interact.
+Where your conditional feedback loops are,
+Your iterations and so on.
+Your sub routines.
+Those are the things that
+enable two programs that may
+only differ in a couple of instructions,
+do entirely different calculations.
+And what we know now is that we used to
+think of chromosomes as beads on a string.
+But chromosomes are more like
+instructions in a program.
+The genes get turned on and off.
+What proteins are already
+there in the phenotype so
+this is back to the boundaries and signals
+kind of thing as far as I'm concerned.
+And what makes possible
+some of the complexity
+is there are things like subroutines.
+So, the Krebs cycle is a kind of
+subroutine that I can depend on and
+use for certain kinds of purposes.
+And so, those are the building
+blocks one level up.
+But, how they interact,
+I control the interaction.
+It's very much a matter of boundaries,
+semi-permeable membranes, and
+what signals can go through them.
+And as you say,
+those things are determined by
+the phenotypes that are already there.
+So that's the reason we
+still study evolution today.
+&gt;&gt; Rather, how is the direction organized.
+&gt;&gt; Yeah, yeah, yeah.
+If I'm going to try to change programs,
+computer programs,
+by recombination, I better be pretty
+careful where I make the cuts.
+&gt;&gt; Yeah?
+&gt;&gt; Genetic algorithms have been
+applied in optimization for
+the last 20 years, and they are competing,
+so to speak, with some related.
+&gt;&gt; Yes.
+&gt;&gt; Do these kind of elements apply to
+the problems and how do you see results?
+Optimization, we find that sometimes
+genetic win, sometimes produces better.
+&gt;&gt; Yeah, you just have to take
+my biased comments into account.
+But first of all, and Danny modified
+this when he was introducing me.
+I think of genetic algorithms as
+more a way of finding improvements,
+not of optimization.
+Simulated annealing, however,
+is essentially an optimization algorithm.
+So if I look at a very difficult
+problem like designing a new kind of
+high-bypass jet engine, simulated
+annealing is only gonna work when I'm
+pretty close to what I
+say is the best I can do.
+Whereas we would use genetic
+algorithms early on to try to find,
+well, if I put these things together
+this way instead of this way.
+Now this was actually done at General
+Electric and so they didn't try to use
+simulated annealing, but
+they tried to use their expert system for
+assimilating engines and
+then they started recombining it.
+And they got a really weird design,
+it was 3% more efficient than
+the best engineer could design.
+Which is tremendous in an area like
+that which has been so heavily studied.
+So, I would simply say that if you
+have a problem where there are lots of
+possibilities and where you're trying to
+get an improvement rather than an optimum,
+then I would tend to lean
+towards the genetic algorithm.
+If I've got a problem where I have
+a pretty good idea of the location of
+the peaks or at least the valleys,
+depending which way you look at it,
+then simulator annealing
+can do pretty nicely.
+And as always there are areas in between.
+But for
+instance, I would never use a genetic
+algorithm to try to climb a single hill.
+Conjugate and gradient methods are double
+the accuracy on every iteration.
+On the other hand,
+if I've got a completely random problem,
+no algorithm's gonna do me any good.
+I might as well do a random search.
+In between are these
+various classes of problems
+where you've got things
+like genetic algorithms.
+Genetic programming now, simulated
+annealing, and various kinds of branch and
+bound techniques that in neural
+nets back propagation and so on.
+And there you have to,
+as always you have to use some judgment
+as to what you think is gonna happen.
+&gt;&gt; Thank you.
+&gt;&gt; [APPLAUSE]

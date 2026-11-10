@@ -1,0 +1,632 @@
+Most people are still building Claude
+code skills the old way. That way works
+fine until you try to chain a bunch of
+them together at scale. [music] In this
+video, I'll show you the best way to do
+skill chaining as well as three things
+to also save you a ridiculous amount of
+context. Let's get into it. So, the flow
+of this video, we're going to
+interchange between my environment and
+some slides back and forth, and then
+we're going to look at the results of
+testing version one with version two
+based on the things that I'm going to be
+telling you in here on how to make your
+skills not just more efficient, but also
+a lot better at chaining them together.
+So, chaining isn't entirely new. As this
+research lead skill that I've had, I've
+been talking about it for a while on my
+channel, and it's been chained together
+by pros chaining, which is literally
+just telling this thing step one, go do
+this, step two, step three, so on and so
+forth. You can see down here, it's
+literally just giving this thing a bulk
+of information
+for each single step, and it will go
+there and it will do this thing and will
+research all the leads that I needed to
+research. This is perfectly fine to do,
+it's just massively inefficient. Now
+that Anthropic has released a few new
+features, and one of the unofficial
+things that isn't really Anthropic
+native. So, if we switch over to the
+deck, we can deep dive into this a
+little bit more before we look at the
+correlation in my environment. Now, for
+every example in this video, I'm going
+to be tailoring it to this lead research
+skill that I have. Very high-level
+context here. It goes out there from a
+LinkedIn profile from a massive lead
+list, scrapes the profile, does research
+on the person, the company, then scores
+it, writes a report about them so I
+understand who they are, writes me a
+bunch of DMs, and then pushes it into a
+Google spreadsheet before it goes into
+Hay Reach to automate LinkedIn outreach.
+I have a whole video on how that thing
+works, I'll put it in the description
+below. For this video though, you just
+needed to know that little bit of
+context because you're going to see how
+this is problematic when you run it
+often enough, especially now that there
+are ways around doing this sort of
+thing. So, the first step is entirely
+non-problematic here. We have a lead
+that just gets researched. It goes
+through this pipeline like this chunk of
+information over here, but with one
+lead, that's absolutely fine. The
+problem starts when it starts to
+compound over a whole bunch of leads. By
+the time we've hit lead 25, we don't
+just have stuff from the run itself, we
+have it from every single run that took
+place with the 24 leads before this
+thing. So, you can see how that starts
+to bloat up not just our context window,
+but eat through our usage limits. And
+again, that obviously compounds much
+worse by the time we get to lead 50
+because every single tool, every single
+app, every single piece of information
+that we have gathered from this lead
+research has now compounded over the
+entire thing. And most of this bloat
+over here is nothing but bloat. It is
+raw data that we do not need for any of
+this to actually take place. It just
+hasn't been handled in a better way. So,
+one of the first things that we can do
+in order to be more efficient with much
+larger skills is to figure out how to
+deal with this bloat problem. And that
+leads us into the solution part over
+here, which is three layers of skill
+chaining. The first one being fork, the
+second one is to use files, and the
+third one is to use commands. So, we're
+going to take a look at each of these in
+slide format, and then we'll hop on over
+to the environment. So, the first one
+here is context fork, and this is just a
+setting that we enable in the YAML front
+matter of the skill. And you can see
+based on this image over here, what this
+thing is doing is it's running a
+sub-agent in its own isolated fork,
+meaning that whatever it runs in here is
+not going to bleed that context into our
+main window. So, it doesn't keep pushing
+all of that information that we don't
+need back up into the main window that
+loaded our skill. So, all of the lead
+scraping, the research, the scoring, and
+the writing, and all of the tasks that
+I've given this lives inside this fork.
+And all that we get back is the valuable
+information that we need to our main
+conversation because all of the tool
+responses have been discarded on exiting
+this fork over here. And this is really
+handy by itself, but it's still not
+enough to solve the problem at a much
+larger layer. That's where part two of
+this comes into play, and that is file
+handoff. Now, this is a thing that isn't
+Anthropic doctrine, it's more just from
+a community consensus about one of the
+really good ways to handle this type of
+problem. So, even if we are inside our
+own fork and we've now separated from
+the main conversation, we've isolated
+all of the information from that main
+conversation,
+we still have the problem of multiple
+steps running within side this fork. The
+issue with that is that instead of
+having the bloat in our main
+conversation, we can still have the
+bloat down in our fork. And so, what we
+can do for this to offset the problem is
+to create a temporary file directory.
+And as part of our workflow process, we
+dump the specific information that we
+need for each step within that skill
+into its own little file. So, say for
+instance, we were going out there and
+researching my profile on LinkedIn.
+Instead of storing the whole LinkedIn
+profile with all of the data that we
+scraped back from Firecrawl or Apify or
+whatever it is that we're using, we only
+stash the relevant information that is
+needed for the next step. So, you can
+see over here, we would call it
+something like profile.json, and it
+would have the exact things that this
+next step in the process needs. We've
+only used 200 tokens, we've cut all of
+the bloat that was surrounding my
+LinkedIn profile, and stored only the
+important stuff in here. So, when the
+next part of this process runs, it just
+takes that 200 to feed it into the next
+step, cutting out all that bloat. And we
+do that over and over again by stashing
+every single one of these things into a
+file that is then just used by the next
+part of this process within the fork.
+So, the next stage always only reads
+exactly what it needs to read and
+nothing more. Then finally on this, we
+can use exclamation command, and this is
+essentially just a placeholder that
+lives inside our skill. So, instead of
+Claude having to go out there and read
+specific files before it runs through a
+step, which would obviously cost tokens
+and judgment that we don't really need,
+we can use an exclamation mark with
+backticks,
+and then have a command inside there
+like cat signals.json. Now, in this
+case, this would be part of my LinkedIn
+profile, but the special thing here is
+that this does not cost any tokens
+because this is programmatic. So, what
+happens when we use this placeholder in
+our skill is that a shell command runs
+and captures the output from this file
+and dumps it into where the placeholder
+was. So, Claude doesn't need to use any
+effort or any tokens in order to go and
+read that file to then say, "Oh, hey, I
+just need to take this information from
+here after I've read it and put it
+inside this folder." We don't need to
+waste tokens on that because that can
+all just be done programmatically. And
+because this reads before Claude does
+anything, it just substitutes it using
+programming. So, that's a really easy
+way that we can save context and
+reasoning from Claude's perspective. And
+if you're asking yourself, "Why wouldn't
+you just put all this information in the
+skill in the first place?" And you could
+if it was the same static skill, but
+like I said, this is for a lead research
+pipeline. So, if we're going through
+that pipeline, obviously this signal or
+this profile is going to change every
+single time. So, that way we get to keep
+this dynamic without having to burn
+those tokens or rewire any kind of
+plumbing during the phase of us actually
+doing the lead gen. It's all about being
+token efficient. So, now we can flip
+back over to my environment over here,
+and we'll have a look at how version one
+worked versus version two that I've
+remade, and then I'll show you what
+happened during the test when I compared
+these things. So, we have our two skills
+over here. We have research lead, which
+was the first one from a few months ago,
+and then the new one that I just
+tailored now. So, you can see here in
+our front matter, this is where
+everything gets invoked for our skill.
+We don't have fork, we don't have model.
+They've been around for a couple of
+months now, those things, but this was
+made about three or four months ago,
+this skill. Point is, this is massively
+inefficient by today's standards. But it
+works perfectly. Like I said, there is
+nothing wrong with this sort of thing.
+It's calling out our skill step by step,
+but as you can see here how meaty this
+thing is because of that. It is one,
+quite long in itself, but two, it's very
+verbose in what this thing is actually
+doing. And that is filling up our
+context window because all of this is
+getting pulled into every step. So, when
+we come on over to research lead V2,
+you can see it's quite different. We
+have the name and description, but then
+we have the context fork. So, this goes
+into a sub-agent by itself.
+Then what you can do is you can specify
+the agent. So, over here, this is just
+general purpose, and what this will do
+is piggyback off of whatever the default
+is for your Claude environment. It's
+probably Opus for most people out there.
+But if you wanted to, you could create
+your own specific agent for this that
+would then live up in your agents folder
+over here.
+I didn't do that for this because for
+me, an agent should only be created if I
+need that repeatable behavior as part of
+different skill systems. So, the skill
+is like the task, the operating
+procedure of what we're going to be
+doing for this specific thing. An agent
+is the behavior that you want. So, one
+part where it might be useful in a lead
+research workflow or process would be to
+have an agent that knows my voice and
+how to contact people.
+Now, the problem with that is on
+LinkedIn and writing cold emails, those
+are two very different voices and
+different approaches. So, having an
+agent to do both of those things
+wouldn't make sense because the voice is
+different. So, it's much better for me
+to just stash examples of what good
+looks like in references or assets and
+things like that. But you can obviously
+play around with it, and you can have
+sub-agents that have nested sub-agents,
+so on and so forth. There are many
+different ways to handle this. I'm going
+to keep it light just for this video to
+focus on skills themselves. These two
+things don't really matter, you can
+ignore these two for now. But you can
+see just from me scrolling down here,
+this is already about 500 lines shorter
+than the previous one. And what we're
+actually doing over here is instead of
+having the step-by-step guide using pros
+to chain, go and research the profile,
+write a score, write me a profile,
+having all of that stuff inside here, we
+have created sub-skills that actually go
+and do that that we chain together. So,
+you can see here in the steps, scrape
+LinkedIn. The first thing that it's
+doing is saying invoke scrape LinkedIn
+lead, which is just over here. And then
+this in itself has its own skill.md for
+a very specific process. So, that's part
+one of the chain. And then everything
+that this thing outputs will go and live
+in a temporary folder, but we cut all of
+that noise out of there, and we only
+capture the information that we need for
+the next step into a little file that
+lives down over here.
+So, if we look over here, this is
+research lead V2, and every single step
+that runs in this chain from the skill
+gets stashed in this temporary directory
+over here. So, the first part that runs
+is going to be our profile.json,
+and you can see how minimal this
+information is. If you had to look at my
+profile as a whole or everything that
+comes back in JSON format, it's a total
+mess.
+We cut all of that out, and we only
+stash in the important information here
+that is going to be used in the next
+step of our chain. And that might be
+something like signals.json. So, the
+skill that builds the signals might look
+at just the specific information you see
+over here and then say, "Okay, cool. I'm
+going to look at these 32 lines and I'm
+now going to go and build something to
+display the signals." Then it will cut
+out all of the noise that we don't need
+and stash only what is needed inside
+signals.json. Again, very clear
+information, absolutely no bloat. And it
+does that over and over again for every
+single chain inside our skill. And so,
+if we come on back to our main skill,
+here are those steps that I just
+mentioned. So, scrape the LinkedIn
+profile, enrich the company context,
+each dumping its little file down into
+this folder. And when it gets to the end
+of this process over here, it pushes all
+of that information up to Google Sheets,
+again, using programming, not getting
+Claude to do something. It's just
+running bash and then Python. And
+everything that is inside there gets
+dumped into my Google Sheets file, which
+is exactly what I want. So, I would have
+the name, the signal, the profile,
+anything that I've written about who
+this person is, what I need to know when
+I'm reaching out to them. More
+importantly, I'll also have DMs one,
+two, and three all written to me and
+perfectly pushed into my Google Sheets
+before we go into HeyReach. So, that's
+the overall working process. But then,
+if we dive deeper into one of these
+sub-skills that we have created, I can
+show you how the whole process kind of
+fits together to do this.
+So, we tell it what the profile.json
+must contain. Again, this is the
+LinkedIn profile over here. And we give
+it a very clear instruction of the
+information that I would probably want
+from this thing. Just this little block
+over here and that's pretty much what
+you saw in the files down there in the
+temporary file. So then, after we've
+given it a definition of good, we need
+to give this thing some kind of
+instruction on what we want it to do.
+So, we give it very specific steps on
+how to parse the information, distill
+it, whatever we want to do with it, and
+then to stash it in that little file
+down there that you see over there. And
+that's pretty much the process. We also
+need to include some form of error. So,
+if it scrapes something and it cannot do
+that, we need to make sure that we get a
+reason sent back up to the orchestrator.
+Otherwise, it would just kind of yolo
+its way and try to figure out why this
+thing didn't work. And then, if we take
+a look at the second skill as a part of
+this chain, it would obviously be
+slightly different because this thing
+needs to do exactly what the first step
+did. But, it would also need to read the
+information from the first step. So
+again, we tell it what we want the
+definition of good to look like and
+things like that. But then, you'll see
+over here in the context, this is
+injected at parse time. So, we tell it
+that it needs to go and look at the
+profile over here, which was the
+previous step, the company brief, and
+the scoring rubric. And this is the
+command thing that I was talking about
+earlier. You can see we've got our
+exclamation mark and we've got our
+backticks. And what this thing is doing
+is it will go and cat this exact file
+over here, which is from the previous
+step. And instead of having this in here
+during the actual run, it will have the
+output from this file dumped directly
+into it, again, at zero token cost
+because it is programmatic. And I
+realize this might be getting into the
+weeds too much for a lot of you guys,
+but don't worry about it. You don't need
+to know about this in the sense that
+you're going to sit down here and
+program all of this yourself. All you
+need to do is make sure that Claude
+understands this. You can grab all of
+the stuff I'm talking about in a guide
+in the description below and then feed
+it to Claude so it has the context that
+it needs to make these intelligent
+decisions for your skills. Now, before
+we get into the comparison, there is
+something you need to know when you're
+writing your skills. Even if you have
+the skill creator from Anthropic and all
+the best skills out there in the world,
+Claude is only as smart as its training
+data. So, if you have asked Claude for
+some kind of architecture decision
+before,
+it's probably going to tell you a bunch
+of trash because it's not making sure
+that it's checking the latest
+information out there. So, something I
+like to do whenever I'm researching
+something or trying to build something
+is I always add the clause of find out
+as of today or in 2026 as of today. So
+that when it's doing its research, it
+goes out there and finds the information
+from today.
+I've seen so many channels where people
+have blatantly written AI scripts
+because they're talking about concepts
+that have been solved months ago, like
+MCP bloating everything, which it can
+do, but it has lazy loading now. Claude
+doesn't know that it has lazy loading
+yet. So, unless you told it that this
+thing has happened or it did research
+about that when it's trying to make
+architectural decisions for you,
+it's not necessarily going to figure
+that stuff out for itself.
+That was just a sidebar. Let's jump into
+the comparison between what V1 and V2
+look like when I actually ran them.
+Okay, so this is hopefully the part now
+where I gel it all together for you guys
+and show you what happened in run one
+versus run two. We can break it down
+layer by layer so you can see what
+Claude did each time it actually ran
+something. But as I'm sure you've seen
+from the screen now, there was an 85%
+difference in context burn, which is
+absolutely insane. Just by being a
+little bit more efficient. So, V1 over
+here used 51K tokens added to the main
+conversation after the run. For V2, we
+had five to 8K, obviously depending on
+the profile that we pulled out of there.
+But it is drastically different between
+the first run. With those main
+differences being because we didn't fork
+in V1, we didn't have the conversations
+that were being dumped into the files
+and that's pretty much all that we did
+in V2, the three things that I've spoken
+about in this video. So, on the left
+here, we have the monolith skill, which
+is just doing everything inside the one
+skill. It executes in the main
+conversation window. We don't have any
+forking. We're not dumping anything to
+files and we're not using commands.
+So, the skill loads the full skill.md
+with pros, if you remember. That was
+just literally telling it step one, two,
+three, but then going and doing every
+single one of the steps in the various
+systems inside this giant skill. So,
+that was all inside our main context
+window. Nothing wrong if it's only
+running once, but it was that
+compounding problem that we were trying
+to solve over here.
+So, at the scrape stage, the script
+output printed to standard out and it's
+visible in the main conversation. So,
+everything that gets pulled out of that.
+Then the context pulls the reference
+files read into the main context windows
+as well because, of course, they are
+reference files that go along with our
+skill. Then there's the research stage
+where we had web search results, the
+summaries, all of the things that form
+part of the lead research, they pollute
+that window over and over again on every
+single run. Then there's the reasoning
+stage. So, the synthesis happens in its
+own text, but it's still visible in the
+main window. And again, just adds the
+bloat. And then finally, everything gets
+written into Google Sheets.
+But you can already see like if this had
+to happen even 20 times, it's going to
+start bloating things.
+Wasn't problematic for me because I was
+only running this thing once a week. But
+if you're running something like this
+every day or even every other day, it's
+massively inefficient. And to be honest,
+even if you're scheduling this once a
+week now, there's a better way to do it.
+You should be doing that. So, version
+two over here, we have a forked
+orchestrator and each sub-skill also
+runs in its own forked context window.
+The orchestrator loads as the first
+step, spawns its forked sub-agents via
+the skill tool.
+Sub-skill one runs in its own fork. All
+it does is write profile.json and it
+returns the one-line summary that we
+saw.
+Same thing for sub-skill two, writes
+company.md and it returns the one-line
+summary.
+Same for skill three, writes signals,
+the score, and it returns our summary.
+Then we have a gate where the
+orchestrator decides, based on the score
+that we have, whether this lead is
+actually worth pursuing or not. And then
+it pushes it into sheets over here. But
+again, none of that stuff has bloated
+our context window because everything
+has been in its own isolated fork in the
+most efficient way possible and returned
+the information to us without any
+reasoning needed from the model itself.
+And that's pretty much it in a nutshell.
+If you think about this, you could think
+about it from an end-to-end perspective.
+Every single one of those little nodes
+in there does a very specific task and
+that's all that we're doing here. We're
+essentially creating the end-to-end
+nodes on disk inside these files over
+here. And these little things over here
+are hyper-efficient at storing the exact
+context that we need so that each step
+that needs to run just piggybacks off of
+the next with precise information before
+pushing it back up to the LLM to then go
+into whatever the hell it is that you
+want to send it on to. There's obviously
+a little bit of housekeeping that comes
+alongside this. So, you wouldn't want to
+constantly pump up your temp directory.
+You'd want to make sure that you have
+some kind of cron schedule running to
+clear out this folder, depending on how
+many things you have running.
+In terms of what skills to use this on,
+you absolutely don't need to use this
+for every single thing out there. That
+would be ridiculous. I would look at my
+skills that were probably the ones not
+just the biggest ones, but ones that I
+was running frequently because those two
+things combined are going to be very
+problematic for you.
+But even so, even if you were running
+this thing once a week like I was with
+research lead, it makes far more sense
+for me to have made this efficient
+because there are so many moving parts
+in it and so many moving parts where you
+can have tokens and context compounding
+over time. If you haven't set up
+observability in your environment yet,
+you can check out the video in the
+description that I have on a Claude
+Command Center. That will show you how
+to get all of this information broken
+down skill by skill so you can see how
+much tokens are costing you, how often
+they run, all sorts of things like that.
+But if you wanted the easy way out right
+now just to have a look, you could run a
+skill and you could just do a context
+before and after. That's pretty much
+what I did here. I did bake in some
+logging when I was running the test
+between V1 and V2 so that I could
+capture everything that I needed. But at
+a high level, you could just run a
+context before and after and get Claude
+to help you figure that out. Though, I
+would recommend that you actually set up
+some form of observability cuz it's
+easier than it's ever been thanks to
+OTEL. Other than that, I hope this video
+was helpful and not
+If you have any questions, please leave
+them down below and I'll get back to you
+as soon as possible. Otherwise, check
+out the videos on the screen now.
+They'll definitely help you on your
+journey. Thanks for watching and I'll
+see you guys in the next one.

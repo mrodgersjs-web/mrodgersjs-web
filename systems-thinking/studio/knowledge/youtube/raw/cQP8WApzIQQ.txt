@@ -1,0 +1,2113 @@
+All right.
+Let's get started.
+This is 6824 distributed systems.
+Um
+So, I'd like to start with just a brief
+explanation of what I think a
+distributed system is. Um
+You know, the core of it is a set of
+cooperating computers that are
+communicating with each other over
+network to um to get some coherent task
+done. And so, the kinds of examples um
+that we'll be focusing on in this class
+are things like storage for big websites
+or um big data computation such as
+MapReduce.
+And also somewhat more exotic things
+like peer-to-peer file sharing. So,
+these are all just examples of kinds of
+case studies we'll look at. Um
+And the reason why all this is important
+is that a lot of critical infrastructure
+out there is built out of distributed
+systems.
+Um the infrastructure that requires more
+than one computer to get its job done or
+it sort of inherently needs to be spread
+out physically.
+So, the reasons why people build this
+stuff the First of all, before I even
+talk about distributed systems, just
+want to remind you that, you know, if
+you're designing a system or you're
+designing, you need to solve some
+problem. If you can possibly solve it on
+a single computer,
+you know, without building a distributed
+system, you should do it that way.
+Um and and there's many, many jobs you
+can get done on a single computer. And
+it's always easier.
+Um so, distributed systems, you know,
+you should try everything else before
+you try building distributed systems cuz
+they're not they're not simpler.
+Um so, the reason why people are driven
+to use lots of cooperating computers are
+um they need to get high performance.
+And the way to think about that is they
+want to get achieve some sort of
+parallelism.
+Um lots of CPUs, lots of memories, lots
+of disk arms moving in parallel.
+Another reason why people build this
+stuff is to be able to tolerate faults.
+Have two computers do the exact same
+thing. If one of them fails, you can cut
+over to the other one.
+Um another is that some problems are
+just naturally spread out in space. Like
+um
+you know, you want to do interbank
+transfers of money or something. Well,
+you know, bank A has this computer in
+New York City and bank B has this
+computer in London. You know, you just
+have to have some way for them to talk
+to each other and cooperate um in order
+to carry that out. So, there's some
+natural sort of physical reasons.
+So, systems that are inherently
+physically distributed.
+And the final reason that people build
+this stuff is um in order to achieve
+some sort of security goal. So, often by
+if there's some code you don't trust or
+you know, you need to interact with
+somebody, but you know, they may not be
+they may be malicious or maybe their
+code has bugs in it. Um so, you don't
+want to have to trust it. You may want
+to split up the computation. So, you
+know,
+your stuff runs over there on that
+computer and my stuff runs here on this
+computer and they only talk to each
+other through some sort of narrow
+narrowly defined network protocol.
+So, I mean, we we may be worried about,
+you know, security. Um
+and that's achieved by splitting things
+up into multiple computers so that they
+can be isolated.
+The most of this course is going to be
+about uh performance and fault
+tolerance, although the other two often
+work themselves in by way of the sort of
+constraints on the case studies that
+we're going to look at.
+you know, all the distributed systems of
+these problems are um because they have
+many parts and the parts execute
+concurrently.
+Um because they're multiple computers,
+you get all the problems that come up
+with concurrent programming. All the
+sort of complex interactions and weird
+timing dependent stuff. Um and that's
+part of what makes distributed systems
+hard.
+Another thing that makes distributed
+systems hard is that because again you
+have multiple pieces plus a network you
+can have
+very unexpected failure patterns. That
+is if if you have a single computer it's
+usually the case that either your
+computer works or maybe it crashes or
+suffers a power failure or something.
+But it pretty much either works or
+doesn't work. Distributed systems made
+up of lots of computers you can have
+partial failures. That is some pieces
+stop working other people other pieces
+continue working. Or maybe the computers
+are working but some part of the network
+is broken or unreliable.
+So partial failures is another reason
+why
+distributed systems are hard.
+These are sort of basic challenges.
+And final reason why it's hard is that
+you know then the original reason to
+build a distributed system is often to
+get
+higher performance. To get you know a
+thousand computers worth of performance
+or a thousand disk arms worth of
+performance.
+But it's actually very tricky to obtain
+that thousand x speed up with a thousand
+computers.
+often a lot of roadblocks thrown in your
+way. So the
+often takes a bit of careful design to
+make the system actually give you the
+performance you feel you deserve.
+So solving these problems of course can
+be all about you know addressing these
+issues.
+The reason to take the course is because
+often the problems and the solutions are
+quite just technically interesting.
+Um they're hard problems. For some of
+these problems there's pretty good
+solutions known for other problems there
+not such great solutions known.
+distributed systems are used by a lot of
+real world um systems out there. Like
+big websites often involve, you know,
+vast numbers of computers that are, you
+put together as distributed systems.
+When I first started teaching this
+course, um
+it was distributed systems were
+something of an academic curiosity. You
+know, people thought, oh, you know, at a
+small scale they were used sometimes and
+people felt that oh, someday they'd be
+might be important. Um,
+but now particularly driven by the rise
+of giant websites that have, you know,
+vast amounts of data and entire
+warehouses full of computers, um
+distributed systems in the last 20 years
+have gotten to be very seriously
+important part of um
+computing infrastructure.
+Um, this means that there's been a lot
+of attention paid to them, a lot of
+problems have been solved, but there's
+still quite a few unsolved problems. So,
+if you're
+a graduate student or you're interested
+in research, um there's a lot to let a
+lot of problems yet to be solved in
+distributed systems that um you could
+look into as research.
+And finally, if you like building stuff,
+this is a good class because it has a
+lab sequence in which you'll construct
+some um fairly realistic distributed
+systems focused on performance and fault
+tolerance. Um, so you get a lot of
+practice
+uh building distri- just
+building distributed systems and making
+them work.
+All right. Let me talk about course
+structure a bit um
+before I
+uh get started on real technical
+content.
+Um, you should be able to find the
+course website using Google.
+Um, and on the course website is the lab
+assignments and the
+course schedule.
+Um, and also a link to a Piazza
+page where you can post questions and
+get answers. Um
+the course staff, I'm Robert Morris will
+be giving the lectures. I'll also have
+four TAs. You guys want to stand up and
+show your faces.
+the TAs are experts at
+in particular at doing the solving the
+labs. They'll be holding office hours.
+So, if you have questions about the
+labs, you can come you should go to
+office hours
+or you could post questions to Piazza.
+The course has a couple of important
+components.
+One is this lectures.
+There's a paper for almost every
+lecture.
+There's two exams.
+There's the labs,
+programming labs, and
+there's an optional final project that
+you can do instead of one of the labs.
+Um the lectures will be about sort of
+big ideas in
+uh distributed systems. There will also
+be a couple of lectures that are more
+about sort of lab programming stuff.
+A lot of the lectures will be taken up
+by case studies. A lot of the way that I
+sort of try to bring out the
+content of distributed systems is by
+looking at papers, some academic, some
+written by people in industry describing
+real solutions to real problems.
+uh these lectures actually be videotaped
+and I'm hoping to post them online so
+that you can sort of you're not here
+or you want to review the lectures.
+Um you'll be able to look at the
+videotaped lectures.
+The papers again there's one to read per
+week. Um most of them are research
+papers. Some of them are classic papers
+like today's paper which I hope some of
+you have read on MapReduce. It's an old
+paper, but it was the beginning of it
+spurred an enormous amount of
+interesting work
+both academic and in in real world. So,
+some are classic and some are more
+recent papers sort of talking about um
+more up-to-date research, what people
+are currently worried about.
+Um and from the papers I'll be hoping to
+tease out what the basic problems are,
+what ideas people have had that might or
+might not be useful in solving
+distributed system problems. Um
+we'll be looking at sometimes at
+implementation details in some of these
+papers um because a lot of this has to
+do with actual construction of
+um of software-based systems. Um and
+we're also going to spend a certain
+amount of time looking at evaluations.
+People evaluating how fault-tolerant
+their systems by measuring them or
+people measuring how much performance or
+whether they got performance improvement
+at all.
+So, I'm hoping that you'll all read the
+papers before coming to class. The
+lectures are
+um maybe not going to make as much sense
+if you haven't already read the lecture
+um cuz there's not enough time to to
+both explain all the content of the
+paper and have a sort of interesting
+reflection on what the paper means
+online class. So, you really got to read
+the papers um before coming to class.
+And hopefully one of the things you'll
+learn in this class is how to read a
+paper rapidly and efficiently um and
+skip over the parts that maybe aren't
+that important and sort of focus on
+teasing out um the important ideas.
+Um on the website there's for every link
+to by the schedule there's a question um
+that you should submit an answer for
+uh for every paper. I think the answers
+are due at midnight. And we also ask
+that you submit a question you have
+about the paper um
+to the website in order both to give me
+something to think about as I'm
+preparing the lecture and if I have time
+I'll try to answer um at least a few of
+the questions uh by email.
+Uh the question and the answer for each
+paper are due midnight the night before.
+There's two exams. There's a midterm
+exam in class I think on the last class
+meeting before
+uh
+spring break.
+Um and there's a
+final exam
+during final exam week at the end of the
+semester. The exams are going to focus
+mostly on papers and the labs. Um, and
+probably the best way to prepare for
+them as as well as attending lecture and
+reading the papers. Um,
+a good way to prepare for the exams is
+to look at old exams. And we have links
+to
+um, 20 years of old exams and solutions.
+And so, you look at those and sort of
+get a feel for what kind of questions
+that I like to ask. And indeed, because
+we read many of the same papers,
+inevitably I ask questions each year
+that
+um, can't help but resemble questions
+asked in previous years.
+The labs, um,
+there's four programming labs. The first
+one of them is due
+uh, Friday next week.
+Um,
+they're
+Lab one is a
+um,
+a simple MapReduce lab
+to implement your own version of the
+paper that we read today and which I'll
+be discussing in a few minutes.
+Um, Lab two
+uh, involves using a technique called
+RAFT
+in order to get fault tol- in order to
+sort of allow, in theory, allow any
+system to be made fault tolerant by
+replicating it and having this RAFT
+technique um, manage the replication and
+manage sort of automatic cutover if
+there's a failed if one of the
+replicated servers fails. So, this is
+RAFT for fault tolerance.
+in Lab three, you'll use your RAFT
+implementation in order to build a fault
+tolerant key-value server.
+it'll be replicated and fault tolerant.
+And in Lab four,
+uh,
+you'll take your
+replicated key-value server and clone it
+into a number of independent groups and
+you'll split the data um in your key
+value storage system across all these
+individual replicated groups to get
+parallel speed up by running multiple
+replicated groups in parallel
+um and you'll also be responsible for
+uh moving
+the various chunks of data between
+different servers as they come and go um
+without dropping any balls. So, this is
+a what's often called a sharded
+key value service.
+And sharding refers to splitting up the
+data, partitioning the data
+among multiple servers in order to get
+uh parallel speed up.
+if you want, instead of doing lab four,
+um you can do a project of your own
+choice. And the idea here is if you have
+some idea for a distributed system, you
+know, in the style of some of the
+distributed systems we talked about in
+the class, if you have your own idea
+that you want to pursue and you'd like
+to build something and measure whether
+it worked in order to explore your idea,
+um you can do a project. Um
+and so, for a project, you'll pick some
+teammates cuz we require that uh
+projects are done in
+teams of two or three people. Um
+select some teammates and send your
+project idea to us and we'll think about
+it and say yes or no and maybe give you
+some advice. Um
+and then if if you go ahead and do if we
+say yes and you want to do a project,
+you'd do that in instead of lab four and
+it's due
+at the end of the semester and, you
+know, you'll
+you should do some
+design work and build a real system and
+then in the last day of class, you'll
+demonstrate your system as well as
+handing in a short uh sort of written
+report to us about what you built.
+and I posted on the website some
+some ideas which might or might not be
+useful for you to sort of spur thoughts
+about what projects um
+you might build. But really the the best
+projects are one where sort of you have
+a good idea um for the project. And the
+idea is if you want to do a project, the
+um you should choose an idea that's sort
+of in the same vein as the systems that
+we're um talk about in this class.
+Um okay, back to labs. Um the lab grades
+that we give you, uh you hand in your
+lab code and we run some tests against
+it and
+your grade will be based on how many
+tests you pass. We give you all the
+tests that we use, so there's no hidden
+tests. Um so, if you implement the lab
+and it reliably passes all the tests,
+then chances are good um unless there's
+something funny going on, which there
+sometimes is, chances are good that if
+you if your code passes all the tests
+when you run it, it'll pass all the
+tests when we run it and you'll get a
+full score full score. Um so, hopefully
+there'll be no mystery about what score
+you're likely to get on the labs.
+let me warn you that
+uh debugging these labs can be
+time-consuming um because they're
+distributed systems and there's a lot of
+concurrency and communication um
+sort of strange, difficult to to debug
+errors can crop up. Um so, you really
+ought to start the labs early. Don't
+don't leave them You'll have
+a lot of trouble if you leave the labs
+to the last moment. You got to start
+early. Um if you have problems, please
+come to the TAs' office hours and please
+feel free to ask questions about the
+labs on Piazza. Um and indeed I hope if
+you know the answer that you'll answer
+people's questions on Piazza as well.
+Any questions about the mechanics of the
+course?
+Yes.
+The grade distribution and
+uh labs
+and the exams maybe like
+The So, the question is what is uh how
+does how do the different factor these
+things factor in the grade? I forget,
+but it's all on the uh it's on the
+website under something.
+I think the is the labs are
+the single most important component.
+Okay.
+All right. So, this is a course about
+about infrastructure for applications.
+And so, all through this course, there's
+going to be a sort of split in the way I
+talk about things between applications
+which are sort of other people, the
+customer, somebody else writes, but the
+applications are going to use the
+infrastructure that we're thinking about
+in this course.
+And so, the kinds of infrastructure that
+tend to come up a lot
+are
+storage,
+uh communication,
+and computation.
+And we'll talk about systems that
+provide all three of these kinds of
+infrastructure.
+The the storage it
+turns out that storage is going to be
+the one we focus most on because it's
+a very well-defined and useful
+abstraction and
+usually fairly straightforward
+abstraction. So, people know a lot about
+how to build how to use and build
+storage systems and how to build
+sort of replicated fault-tolerant
+high-performance distributed
+implementations of storage.
+We'll also talk about some some about
+computation systems like MapReduce for
+today is a computation system.
+And we will talk about communication
+some,
+but mostly from the point as a tool that
+we need to use to build distributed
+systems. Like computers have to talk to
+each other over a network, you know,
+maybe you need reliability or something.
+And so, we'll talk a bit about
+we're actually mostly consumers of
+communication.
+If you want to learn about communication
+systems as sort of how they work,
+um, that's more the topic of 6829.
+so for storage and computation, um, a
+lot of our goal is to be able to
+discover abstractions,
+ways of simplifying the interface to
+these to storage and computation
+distributed storage and computation
+infrastructure so that it's easy to
+build applications on top of it. And
+what that really means is that we need
+to we'd like to be able to build
+abstractions that hide the distributed
+nature of these,
+um, of these systems. So, the dream,
+which is rarely fully achieved, but the
+dream would be to be able to build an
+interface that looks to an application
+as if it's a non-distributed storage
+system, just like a file system or
+something that everybody already knows
+how to program and has a pretty simple
+model semantics. We'd love to be able to
+build interfaces that look and act just
+like non-distributed, uh, storage and
+computation systems, um, but are
+actually,
+you know, vast, extremely
+high-performance, fault-tolerant,
+distributed systems underneath. Um,
+so we'd love to have abstractions.
+Um, and you know, as you'll see as the
+course goes on, we sort of,
+you know, only part of the way there.
+It's rare that you find an abstraction
+for a distributed version of storage or
+computation that has simple behavior,
+behaves just like, um,
+the non-dis- non-distributed version of
+storage that everybody understands. But,
+people are getting better at this and,
+we're we're going to try to study the
+ways and the what people have learned
+about building such abstractions.
+Okay, so,
+what kind of what kind of,
+topics show up as we're considering
+these abstractions?
+Uh
+the first one that first topic general
+topic that we'll see a lot
+and a lot of the systems we look at have
+to do with implementation.
+So for example um
+the kind of tools that you see a lot for
+for ways people learn how to build these
+systems are things like remote procedure
+call whose goal is to mask the fact that
+we're communicating over an unreliable
+network.
+Another
+kind of implementation
+um topic that we'll see a lot is
+threads.
+Which are a programming technique that
+allows us to harness um what allows us
+to harness multi-core computers, but
+maybe more important for this class,
+threads are a way of structuring
+concurrent operations um in a way that's
+hopefully simplifies the the programmer
+view of those concurrent operations. Um
+and because we're going to use threads a
+lot it turns out we're going to need to
+also
+you know just as it from the
+implementation level spend a certain
+amount of time thinking about
+concurrency control things like locks.
+And the main place that these
+implementation ideas will come up in the
+class that they'll be touched on in many
+of the papers, but you're going to come
+face to face with all of this in a big
+way in the labs. You need to build
+distributed you know do the programming
+for distributed system and these are
+like a lot of the sort of important
+tools you know beyond the sort of
+ordinary programming um these are some
+of the critical tools that you'll need
+to use um
+to build distributed systems.
+Another big topic that
+um comes up in all the papers we're
+going to talk about is performance.
+usually the high-level goal of building
+a distributed system is to get what
+people call scalable
+uh speedup.
+Um so, we're going to looking for
+scalability.
+And what I mean by scalability or
+scalable speedup is that if I have some
+problem that I'm solving with one
+computer and I buy a second computer
+um to help me execute my problem. If I
+can now solve the problem in half the
+time or maybe solve twice as many
+problem instances,
+you know, per minute on two computers as
+I did had on one, then
+that's an example of scalability. So,
+sort of two times the, you know,
+computers or resources
+it gets me, you know, two times the
+performance or throughput.
+And this is a huge hammer. If you can
+build a system that actually has this
+behavior, namely that
+if you increase the number of computers
+you throw at the problem by some factor,
+you get in that factor more throughput,
+more performance out of the system.
+That's a huge win because you can buy
+computers with just money.
+Right? Whereas if in order to get the
+alternative to this um
+is that in order to get more more
+performance, you have to pay programmers
+to restructure your software um to get
+better performance, to make it more
+efficient or to apply some sort of
+specialized techniques, better
+algorithms or something. Um if you have
+to pay programmers
+to fix your code to be faster, that's an
+expensive way to go. We'd love to be
+able to just, oh, buy a thousand
+computers instead of 10 computers and
+get you know, 100 times more throughput.
+That's fantastic. And so, this sort of
+scalability idea is a huge
+idea in the backs of people's heads when
+they're like building things like big
+websites that run on a
+you know, building full of computers.
+Um if the building full of computers is
+there to get a sort of corresponding
+amount of
+um performance, but
+you have to be careful about the design
+in order to actually get that
+So,
+uh often the way this looks when we're
+looking at diagrams or I'm writing
+diagrams in this course is that um let's
+suppose that we're building a website.
+You know, ordinarily you might have a
+website that uh
+um you know, has a HTTP server or let's
+say it has some has some users
+running web browsers
+and they talk to uh
+you know, web server running Python or
+PHP or whatever sort of web server.
+And the web server talks to some kind of
+database.
+You know, when you have one or two
+users, you can just have one computer
+running both or maybe a computer for the
+web server and a computer for the
+database, but maybe all of a sudden you
+get really proper popular and you and
+you uh
+um you know, 100 million people sign up
+for your service. Right? How do you
+you know,
+how do you fix your certainly can't
+support a millions of people on a single
+computer um
+except by extremely careful
+labor-intensive optimization
+um which you don't have time for.
+So, typically the way you're going to
+speed things up, the first thing you do
+is buy more web servers and just split
+the users so that, you know, half your
+users or some fraction of the user go to
+web server one and the other half uh you
+send them to web server two.
+And um because, you know, maybe you're
+building I don't know what, Reddit or
+something where all the users need to
+see the same data ultimately, you have
+all the web servers talk to the back
+end. And maybe you can keep on adding
+web servers for a long time here.
+And so, this is a way of getting
+parallel speed up on the web server
+code. You know, if you're running PHP or
+Python, maybe it's not too efficient. Um
+as long as each individual web server
+doesn't put too much load on the
+database, you can add a lot of web
+servers
+um before you run into problems.
+Um but this kind of scalability
+is rarely infinite, unfortunately. Um
+certainly not without serious thought.
+And so, what tends to happen with these
+systems is that at some point, after you
+have 10 or 20 or 100 web servers all
+talking to the same database,
+now all of a sudden the database starts
+to be a bottleneck. And adding more web
+servers no longer helps. So, it's rare
+that you get full scalability through
+sort of infinite numbers of
+um adding infinite numbers of computers.
+Some point you run out of gas because
+the place at which you were adding more
+computers is no longer the bottleneck.
+By having lots and lots of web servers,
+we basically move the bottleneck
+um the thing that's limiting performance
+from the web servers to the database.
+And at this point, actually, you almost
+certainly have to do a bit of design
+work because it's rare that you can take
+that there's any straightforward way to
+take a single database and um sort of
+refactor things with or
+you can take uh data stored in a single
+database and refactor it so it's split
+over multiple databases. Um
+Uh but it's often a fair amount of work.
+And
+um because it's awkward, but people many
+people actually need to do this. Um
+we're going to see a lot of examples in
+this course in which the distributed
+system people are talking about is a
+storage system because the authors were
+running, you know, something like a big
+website that ran out of gas on a single
+database or storage servers. Um
+Anyway, so the
+scalability story is we love to build
+systems that scale this way, but
+it's hard to make it or takes work often
+design work to uh
+push this idea infinitely far.
+Okay, so
+um another big topic that comes up a lot
+is fault tolerance.
+If you're building a system with a
+single computer in it, well,
+a single computer often can stay up for
+years. Like I have servers in my office
+that have been up for years without
+crashing. Um you know, the computer's
+pretty reliable, the operating system's
+pretty reliable, apparently the power in
+my building is pretty reliable. So, it's
+not uncommon to have single computers
+that just stay up for amazing amounts of
+time. However,
+if you're building systems out of
+thousands of computers, then even if
+each computer can be expected to stay up
+for a year,
+um with a thousand computers, that means
+you're going to have like about three
+computer failures per day
+in your set of a thousand computers. So,
+solving big problems with big
+distributed systems turns sort of very
+rare fault tolerance, very real failure,
+very rare failure problems into failure
+problems that happen just all the time.
+In a system with a thousand computers,
+there's almost certainly always
+something broken. There's always some
+computer that's either crashed or
+mysteriously, you know, running
+incorrectly or slowly or doing the wrong
+thing. Or maybe there's some piece of
+the network. Like with a thousand
+computers, we got a lot of network
+cables
+and a lot of network switches. And so,
+you know, there's always some network
+cable that somebody stepped on and has
+unreliability or network cable that fell
+out or some network switch whose fan is
+broken and the switch overheated and
+failed. Like there's always some little
+problem somewhere in your building sized
+distributed system.
+big scale turns problems from very rare
+events you really don't have to worry
+about that much into just constant
+problems. That means the failure has to
+be really or the response, the masking
+of failures, the ability to proceed
+without failures just has to be built
+into the design
+cuz there's always failures.
+and you know, as part of building, you
+know, convenient abstractions for
+application programmers, we really need
+that to be able to build infrastructure
+that as much as possible hides the
+failures from application programmers or
+masks them or something
+so that every application programmer
+doesn't have to have a complete
+complicated story for all the different
+kinds of failures that can occur.
+there's
+a bunch of different notions that you
+can have about um what it means to be
+fault tolerant. You know, about a little
+more about, you know, exactly what we
+mean by that. Um and we'll see a lot of
+a lot of different flavors, but um among
+the more common ideas you see, one is
+availability.
+So, you know, some systems are are
+designed so that under some kind certain
+kinds of failures, not all failures, but
+certain kinds of failures, the system
+will keep operating
+um despite the failure while providing
+you know, undamaged service.
+Uh the same kind of service it would
+have provided even if there had been no
+failure. So, some systems are available
+in that sense that um up in up a you
+know, so if you build a replicated
+service that maybe has two copies,
+you know, if one of the replicas
+replica service fail fails, maybe the
+other server can continue operating. If
+both fail, Well, you can't
+you know, you can't promise
+availability in that case. So, available
+systems usually say, "Well,
+under a certain set of failures, we're
+going to continue providing service.
+We're going to be available." If more
+failures than that occur, um it won't be
+available anymore.
+Another kind of fault tolerance you
+might um
+you might have or in addition to
+availability or by itself is
+recoverability.
+And what this means is that if something
+goes wrong, maybe the service will stop
+working.
+That is, it'll simply stop responding to
+requests, um
+and it'll wait for someone to come along
+and repair whatever went wrong, but
+after the repair occurs, the system will
+be able to continue as if nothing bad
+had gone wrong.
+All right. So, this is a sort of a
+weaker requirement than availability,
+cuz here we're, you know, not going to
+do anything while while the failed until
+the failed component has been repaired.
+But, um the fact that we can get up get
+going again
+without, you know, with without any loss
+of correctness, um is still a
+significant requirement. It means, you
+know, recoverable systems typically need
+to do things like save their latest data
+on disk or something where they can get
+it back, you know, after the power comes
+back up.
+and even among available systems,
+in order for a system to be useful in
+real life, um
+usually what the way available systems
+are spec'd is that um they're they're
+available until
+some number of failures have happened.
+If too many failures have happened, um
+an available system will stop working.
+Or, but you know, will stop responding
+at all, um but when
+uh enough things have been repaired,
+it'll continue operating. So, a good
+available system will sort of be
+recoverable as well in the sense that if
+too many failures occur, um it'll stop
+answering, but then will continue
+correctly after that.
+So, this is what we'd love to
+This is what we'd love to obtain.
+The biggest hammer Well, we'll see a
+number of approaches to solving these
+problems. There's really sort of
+two things that are the most important
+tools we have in this department. Um one
+is non-volatile storage. Um so that, you
+know, if something crashes, power fails,
+or whatever,
+uh maybe there's a building-wide power
+failure, um we can use non-volatile
+storage like hard drives or flash or
+solid-state drives or something to sort
+of store a checkpoint or a log
+um of the
+state of the system. And then when the
+power comes back up or somebody repairs
+our power supply, who knows what, we'll
+be able to read our latest state off the
+hard drive and um continue from there.
+um so one tool is sort of non-volatile
+storage.
+And the management of non-volatile
+storage is something that comes up a lot
+because non-volatile storage tends to be
+expensive to update. And so, a huge
+amount of the sort of nitty-gritty of
+building sort of high-performance
+fault-tolerant systems is in, you know,
+clever ways to avoid having to write the
+non-volatile storage too much. In the
+old days, and even today, um you know,
+what writing non-volatile storage meant
+was moving a disk arm and waiting for a
+disk platter to rotate, right? Both of
+which are agonizingly slow on the scale
+of, you know,
+3 GHz microprocessors.
+With things like flash,
+life's quite a bit better, but still
+requires a lot of thought to get good
+performance out of.
+Um and the other big tool we have for
+fault tolerance is replication.
+Um and the management of replicated
+copies is sort of tricky. You know,
+that's sort of
+key problem lurking in any replicated
+system where we have two servers each
+with a supposedly identical copy of the
+system state. Um,
+the key problem that comes up is always
+that the two replicas will accidentally
+drift out of sync and will stop being
+replicas. Right? And this is just
+you know, with the back of the every
+design that we're going to see for using
+replication to get fault tolerance. Um,
+and lab two is and lab two are all about
+management management of replicated
+copies for fault tolerance.
+as you'll see it's pretty complex.
+a final topic that
+final just
+cross-cutting topic um, is consistency.
+Um, so, as an example of what I mean by
+consistency, supposing we're uh building
+a distributed storage system and it's a
+key-value service. So, it just supports
+two operations. Maybe there's a put
+operation and you give it a key
+and a value and it the storage system
+sort of stashes away the value under
+as the value for this key. So, it
+maintains it as just a big table of keys
+and values. And then there's a get
+operation.
+You The client sends it a key and
+the storage service is supposed to
+you know, respond with a value, the
+value that it stored for that key.
+Right? And this is kind of a
+when I can't think of anything else as
+an example of the distributed system,
+I'll I'll whip out uh
+key-value services. Um, and they're very
+useful, right? They're just sort of the
+kind of fundamental um,
+simple version of a storage system.
+of course, if you're an application
+programmer,
+it's helpful if these two operations
+kind of have meanings attached to them,
+that you can go look in the manual and
+the manual says, you know, what it what
+it means, what you'll get back if you
+call get.
+Right then sort of what it means for you
+to call put.
+Right so it'd be great if there's some
+sort of a spec for what they meant
+otherwise like who knows. How can you
+possibly write an application without a
+description of what
+put and get are supposed to do.
+and this is the topic of consistency.
+And the reason why it's interesting in
+distributed systems is that um
+both for performance and for fault
+tolerant reasons fault tolerance reason
+we often have more than one copy of the
+data floating around.
+So you know in a non-distributed system
+where you just have
+a single server with a single table
+there's often although
+not always but there's often like
+relatively no ambiguity about what put
+and get could possibly mean right
+intuitively you know what put means is
+update the table and what get means is
+just get me the version that's stored in
+the table which um
+but in a distributed system where
+there's more than one copy of the data
+due to replication or caching or
+um who knows what
+there may be lots of different
+versions um
+of this key value pair floating around.
+Like if one of the replicas you know if
+supposing some client issues a put and
+you know there's two copies of the
+of the server
+so they both have a key value table.
+Right and maybe key one has value 20 on
+both of them.
+And then some client issues a put.
+Right so we have a client over here and
+it's going to send a put it wants to
+update the value of one to be 21. Right
+maybe it's counting stuff in this key
+value server. So it sends a put
+with key one
+and value 21.
+It sends it to the first server and it's
+about to send
+the same put you know it wants to update
+both copies, right? To keep them in
+sync. It's about to send this put, but
+just before it sends the put to the
+second server, it crashes.
+All right, power failure, bug in
+operating system, or something. So, now
+the state we're left in, sadly, is that
+we sent this put, and so we've updated
+one of the two replicas to have value
+21, but the other one's still with 20.
+Now, somebody comes along and reads with
+a get. Now, they might get they want to
+read the value associated with key one,
+they might get 21, or get 20, depending
+on who they talk to. And even if the
+rule is you always talk to the top
+server first,
+if you're building a fault-tolerant
+system, the actual rule has to be, "Oh,
+you talk to the top server first, unless
+it's failed, in which case you talk to
+the bottom server."
+So, either way, someday you risk
+exposing this stale copy of the data to
+some future get. And it could be that
+many gets get the updated 21, and then,
+like next week, all of a sudden, some
+get yields, you know, a week-old copy of
+the data.
+Um so, that's not very consistent.
+Right? So, um in order but, you know,
+it's
+the kind of thing that could happen,
+right?
+When we're not careful. So,
+you know, we need to have we need to
+actually write down um
+what the rules are going to be about
+puts and gets, given this danger of uh
+due to replication. Um and it turns out
+there's many different
+the definitions you can have of
+consistency.
+you know, many of them are relatively
+straightforward. Many of them sound
+like, "Well, a get yields the
+um you know, value put by the most
+recently completed put."
+All right? Um
+And so, that's usually called strong
+It turns out also, it's very useful to
+build systems that have much weaker
+consistency, that, for example, do not
+guarantee anything like a get sees the
+value written by the most recent put.
+and the reason so there's um the
+strongly consistent systems
+they usually have some version of get
+seeing most recent puts. Although you
+have to there's a lot of details to work
+out. There's also weekly consistent many
+sort of
+flavors of weekly consistent systems
+that do not make any such guarantee. Um
+that you know may guarantee well you're
+you know if someone does a put then you
+may not see the put. You may see old
+values that weren't updated by the put
+for an unbounded amount of time maybe.
+and the reason for people being very
+interested in weak consistency schemes
+is that
+strong consistency that is
+having reads actually see be guaranteed
+to see um the most recent write that's a
+very expensive spec to implement. Um be
+because what it means is almost
+certainly that you have to somebody has
+to do a lot of communication in order to
+actually implement some notion of strong
+consistency. If you have multiple copies
+um it means
+that either the writer or the reader or
+maybe both has to consult every copy.
+Like in this case
+um where you know maybe a client crashed
+left one updated but not the other. If
+we wanted to implement strong
+consistency in the maybe the simple way
+in this system we'd have readers read
+both of the copies or if there's more
+than one copy all the copies
+and use the most recently written value
+that they find.
+Um but that's expensive. That's a lot of
+chitchat um to read one value.
+So in order to avoid communication as
+much as possible um
+particularly if replicas are far away
+people build weak systems that might
+actually allow the stale read of an old
+value in this case. Um
+although there's often more semantics
+attached to that to try to make these
+weak schemes more useful.
+Um and where this communication problem,
+you know, strong consistency
+requiring expensive communication,
+where this really runs you into trouble
+is that if we're using replication for
+fault tolerance, then
+we really want the replicas to have
+independent failure probability, to have
+uncorrelated failure. So, for example,
+putting both of the replicas of our data
+in the same rack and in the same machine
+room is probably a really bad idea
+because if someone trips over the power
+cable to that rack, both of our copies
+of our data are going to die because
+they're both attached to the same power
+cable in the same rack. Um
+so in the search for making
+replicas as independent in failure as
+possible in order to get decent fault
+tolerance,
+people would love to put different
+replicas as far apart as possible, like
+in different cities or maybe on opposite
+sides of the continent. So, an
+earthquake that destroys one data center
+will be extremely unlikely to also
+destroy
+um the other data center that is the
+other copy.
+you know, so we'd love to be able to do
+that. If you do that, then the other
+copy is thousands of miles away um and
+the rate at which light travels
+means that it may take on the order of
+milliseconds or tens of milliseconds to
+communicate
+to a data center across the continent in
+order to update the other copy of the
+data.
+And so, that makes this the
+communication required for strong
+consistency, for good consistency,
+potentially extremely expensive. Like
+every time you want to do one of these
+put operations or maybe a get, depending
+on how you implement it, you might have
+to sit there waiting for like 10 or 20
+or 30 milliseconds in order to talk to
+both copies of the data to ensure that
+they're both updated or or both checked
+to find the latest copy.
+and
+that tremendous expense, right? This is
+10 or 20 or 30 milliseconds on machines
+that after all will execute like a
+billion instructions per second. So,
+we're wasting a lot of potential
+instructions while we wait. Um people
+often on much weaker systems, you're
+allowed to only update the nearest copy,
+you're only consult the nearest copy.
+Now, I mean there's a huge sort of
+amount of academic and real world uh
+research on how to how to structure weak
+consistency guarantees so they're
+actually useful to applications um and
+how to take advantage of them in order
+actually get high performance.
+All right. So, that's a lightning
+uh preview of the
+technical ideas in the course. Um
+Any questions about this
+before I start talking about MapReduce?
+All right. I want to switch to MapReduce
+as a sort of detailed case study that's
+actually going to illustrate um most of
+the ideas that we've been talking about
+here.
+MapReduce is a system that was
+uh originally designed and built and
+used by Google.
+Um I think the paper dates back to 2004.
+The problem they were faced with was
+that they were running huge computations
+um on terabytes and terabytes of data
+like creating an index of all of the um
+content of the web or analyzing the link
+structure of the entire web in order to
+um identify the most important pages or
+the most authoritative pages. As you
+know, the whole web is well, it's even
+in those days tens of terabytes of data.
+uh building a index of the web is
+basically equivalent to a sort
+running sort of the entire data. Sort,
+you know, it's like reasonably
+expensive. Um
+and to run a sort on the entire content
+of the web on a single computer, I don't
+know how long it would have taken, but
+you know, it was weeks or months or
+years or something. Um so, Google at the
+time was desperate to be able to run
+giant computations on giant data on
+thousands of computers um in order that
+the the computations could finish
+rapidly. It was worth it to them to buy
+lots of computers so that their
+engineers wouldn't have to spend a lot
+of time reading the newspaper or
+something waiting for their uh big
+compute jobs to finish.
+And so, for a while, they had their
+clever engineers sort of hand write, you
+know, if you needed to write a web
+indexer or some sort of link and out web
+link analysis tool, you know, Google
+bought the computers and they said,
+"Here, engineers, you know, do write
+whatever run whatever software you like
+on these computers." And you know, they
+would laboriously uh write the sort of
+one-off manually written software to
+take whatever problem they were working
+on and sort of somehow farm it out to a
+lot of computers and organize that
+computation and get the data back. Um
+If you only hire engineers who are
+skilled distributed systems experts,
+maybe that's okay, although even then
+probably very wasteful of engineering
+effort. Um but they wanted to hire
+people who were skilled at something
+else.
+and not necessarily uh
+engineers who wanted to spend all their
+time writing distributed systems
+software. So, they really needed some
+kind of framework that would make it
+easy to just have their engineers write
+the kind of guts of whatever analysis
+they wanted to do, like sort algorithm
+or web indexer or link analyzer or
+whatever, just write the guts of that
+application and not be able to run it on
+a thousands of computers um without
+worrying about the details of how to
+spread the work over the thousands of
+computers, how to organize whatever data
+movement was required, how to cope with
+the inevitable failures. Um so, they
+were looking for a framework that would
+make it easy for non-specialists to be
+able to write and run giant distributed
+computations.
+Um, and so that's what MapReduce is all
+about.
+and the idea is that the programmer just
+write
+the you know, application designer,
+consumer of this distributed
+computation, um, just be able to write a
+simple map function and a simple reduce
+function that don't know anything about
+distribution, um, and the MapReduce
+framework would take care of everything
+so an abstract view of how
+um, what MapReduce is up to is it starts
+by assuming that there's some input and
+the input is split up into some a whole
+bunch of different files or chunks in
+some way. So, we're imagining that um,
+we have, you know, input file one, input
+file two,
+etc.
+You know, and these inputs are maybe,
+web pages crawled from the web or more
+likely sort of big files that contain
+many web each of which contains many web
+files
+crawled from the web.
+All right. And the way MapReduce starts
+is that um,
+you know, you define a map function and
+the MapReduce framework is going to run
+uh, your map function
+on each of
+uh, the input files.
+Um, and of course you can see here
+there's some obvious parallelism
+available. Can run
+the maps in parallel. So, that each of
+these map functions only looks at its
+input and produces output.
+The output that a map function is
+required to produce is a list, you know,
+it
+takes a file as input, the file is
+some fraction of the input data, and it
+produces a list of key-value pairs as
+output, the map function.
+and so for example, let's suppose we're
+writing the simplest possible MapReduce
+example, a word count MapReduce job,
+whose whose uh goal is to count the
+number of occurrences of each word. So,
+your map function might emit key-value
+pairs, where the key is the word and the
+value is just one.
+So, for every word it sees, so the this
+map function will split the input up
+into words. For every word it sees, it
+emits that word as the key and one as
+the value. And then later on, we'll
+count up all those ones in order to get
+the final output. So, you know, maybe uh
+input one has the word um A in it and
+the word B in it. And so, the output map
+is going to produce is key A, value one,
+key B, value one.
+Maybe the second map invocation um sees
+a file that has a a B in it and nothing
+else. So, it's going to implement output
+B1. Maybe this third input has a A in it
+and a C in it.
+All right. So, we run all these maps on
+all the input files um and we get this
+intermediate, what the paper calls
+intermediate output, which is, for every
+map,
+a set of key-value pairs is output.
+Then the second stage of the computation
+is to run the reducers.
+Um and the idea is that the MapReduce
+framework collects together all
+instances from all maps of each keyword.
+So, the MapReduce framework is going to
+collect together all of the A's,
+you know, from every map,
+every key-value pair whose key was A,
+it's going to take
+collect them all and hand them to um
+uh one call of the programmer-defined
+reduce function. Then it's going to take
+all the B's and collect them together.
+Of course, you know, requires real
+collection because
+they were different instances of key B
+were produced by different
+invocations of map on different
+computers. So, we're now talking about
+data movement.
+Um so, we're going to collect all the B
+keys and hand them to a
+a different call to reduce that's has
+all of the B keys
+as its arguments. And same with C, all
+the C's.
+So, this going to be the MapReduce
+framework will arrange for one call to
+reduce for every key that occurred in um
+any of the map output.
+and you know, for our sort of silly word
+count
+example, all these reducers have to do
+or any one of them have to do is just
+count the number of items passed to it.
+Doesn't even have to look at the items
+cuz it knows that each of them is the
+word it's responsible for plus one is
+the value. You don't have to look at
+those ones, we'll just count them. Um
+so, this reducer is going to produce
+A and then the count of its inputs. This
+reduce
+is going to produce you know, the the
+key associated with it and then
+count of its values, which is also two.
+So, this is what a typical
+MapReduce job looks like at a high
+level.
+Just for completeness, the uh
+Well, some a little bit of terminology.
+The whole computation is called a job.
+Any one um invocation of map or reduce
+is called a task. So, we have the entire
+job and it's made up of a bunch of map
+tasks and then a bunch of reduce tasks.
+So, so an example for this word count,
+you know, the what the map and reduce
+functions would look like.
+The map function
+takes a key and a value as arguments.
+And And now we're talking about
+functions like written in an ordinary
+programming language like C++ or Java or
+who knows what. Um
+So, this is just code people ordinary
+people can write. What What a map
+function for word count would do is
+split the the key
+um is the file name, which would
+typically is ignored when we write code
+what the file name was. And um the V is
+the content of this map's input file.
+So, V is, you know, just contains all
+this text. Um we're going to split V
+into words.
+And then for each word
+uh we're just going to emit.
+And emit takes two arguments. Emit's you
+know, call only map can make. Emit is
+provided by the MapReduce framework. Um
+we get to produce we hand emit a a key,
+which is the word, and a value,
+um which is
+string one.
+So, that's it for the map function. And
+a word count map function in MapReduce
+literally could be this simple. Um
+so, they're sort of promised to make the
+um and you know, this map function
+doesn't know anything about distribution
+or multiple computers or the fact we
+need may need to move data across the
+network or who knows what.
+Right? This is extremely
+straightforward.
+Um and the reduce function for
+uh word count
+the reduce is called with you know,
+remember each reduce is called with sort
+of all the instances of a given key. Um
+the MapReduce framework calls reduce
+with the key that it's responsible for
+and a vector of all the values that the
+maps produced Um um
+associated with that key.
+Um the key is the word, the values are
+all ones, we don't really care about
+them, we only care about how many there
+were um
+and so reduce has its own emit function
+that uh just takes a a value to be
+emitted as the final output as the value
+for the this key. So we're going to emit
+the length
+of this array.
+And so this is also about as simple as
+reduce functions are in in MapReduce,
+namely extremely simple.
+Um and requiring no knowledge about
+fault tolerance or
+anything else.
+All right, any questions about
+the basic framework? Yes.
+Is it not necessary that
+reduce might return something of the
+same format it received? Like for for
+instance
+using the MapReduce paradigm like that,
+the problem is maybe then we reduce
+those reductions and we do that step
+some number of times.
+You You mean can you feed the output of
+the reducers sort of
+could not reduce that
+again after different sets of
+Oh, yes.
+Oh, yes. In in in in in real life, all
+right, in real life uh it is is routine
+among MapReduce users to you know,
+define a MapReduce job that took some
+inputs and produced some outputs and
+then have a second MapReduce job, you
+know, if you're doing some very
+complicated multi-stage analysis
+um or iterative algorithm. Like PageRank
+for example, which is the algorithm
+Google uses to sort of
+um estimate how important or influential
+different web pages are. That's an
+iterative algorithm that sort of
+gradually converges on an answer and if
+if you implement in MapReduce, which I
+think they originally did, you have to
+run the MapReduce job multiple times and
+the output of each one is sort of, you
+know, a list of web pages with an
+updated sort of value or weight or
+importance for each web page. So, it's
+routine to take this output and then use
+it as the input to another MapReduce
+job.
+So, you can do
+that in that MapReduce. I got it. In
+other words, you're going to send that
+your reduce is going to
+all the keys.
+Well,
+yeah, you need to sort of set things up
+the the output of you need to
+write the reduce function sort of in the
+knowledge that, oh, I need to produce
+data that's in the format or has the
+information required for the next
+MapReduce job. I mean, this actually
+brings up a little bit of a shortcoming
+in the MapReduce
+framework, which is it's great if you
+if the algorithm you need to run is
+easily expressible as a map followed by
+this sort of
+shuffling of the data by key followed by
+a reduce and that's it. Right, MapReduce
+is fantastic for algorithms that can be
+cast in that form. And furthermore, each
+of the maps has to be completely
+independent. The maps are required to be
+functional, pure functional
+functions that just look at their
+arguments and nothing else. And it's,
+you know, it's like it's a restriction.
+Um and it turns out that many people
+want to run much longer pipelines that
+involve lots and lots of different kinds
+of processing. And with MapReduce, you
+have to sort of cobble that together
+from multiple
+MapReduce
+you know, distinct MapReduce jobs. And
+more advanced systems, which we'll talk
+about later in the course, are much
+better at allowing you to specify the
+complete pipeline of computations and
+they'll do optimization.
+You know, the framework realizes all the
+stuff you have to do and organize much
+more complicated efficiently optimize
+much more complicated computations.
+Do you have a question?
+Okay. So, in the paper, they distinguish
+between mappers and map functions,
+reducers and reduce functions.
+Uh I guess that's just like the
+processes that are running the map
+functions.
+What are the
+things that you would consider more
+important to distinguish between
+like the processes that are running
+these functions?
+Um from the programmer's point of view,
+it's just about map and reduce. From our
+point of view, it's going to be about
+the worker processes and the worker
+that are they're part of the MapReduce
+framework that, among many other things,
+call the map and reduce functions.
+Yeah, from our point of view, we care a
+lot about how this is organized by the
+surrounding framework. This is sort of
+the programmer's view with all the
+distributed stuff stripped out.
+Sorry, I got to
+Say it again.
+Sorry, do you emit locally or
+Oh, you mean where does the emit get
+data go?
+And also, where does the reduce function
+where does it run? Like external or
+Okay, so there's two questions. One is
+when you call emit, what happens to
+data? And the other is where are the
+functions run? So, um
+The the actual answer is that uh first,
+where does the stuff run? There there's
+a number of say a thousand servers. Um
+actually, the right thing to look at
+here is figure one in the paper. Um
+The sitting underneath this in the real
+world, there's some big collection of
+servers.
+we'll call them maybe worker servers or
+workers. And um there's a also a a
+single master server that's organizing
+the whole computation. And what's going
+on here is the master server for no
+knows that there's some number of input
+files, you know, 5,000 input files. And
+it farms out invocations of map to the
+different workers. So, it'll send a
+message to worker seven saying, "Please
+run, you know,
+this map function on such and such an
+input file."
+Um and then the worker function, which
+is, you know, part of MapReduce and
+knows all about MapReduce, will then,
+read the file, read the input, whatever
+whichever input file,
+and call this map function with the file
+name value as its arguments.
+Then that worker process will
+implement what implements emit. And
+every time the map calls emit, uh the
+worker process
+will write this data um to files on the
+local disk. So, what happens to map
+emits?
+Th- and is they produce files on the map
+workers local disk that are accumulating
+all the keys and values produced by the
+maps run on that worker.
+So, at the end of the map phase,
+um what we're left with is all those
+worker machines, each of which has the
+output of some of whatever maps were run
+on that worker machine.
+Then the MapReduce
+workers arrange to move the data to
+where it's going to be needed for the
+reducers. So, and since
+in a you know, in a typical big
+computation,
+you know, this this reduce invocation is
+going to need
+all map output that
+mentioned the key A. But, it's going to
+turn out, you know, this is a
+sort of simple example, but probably
+in general, every single map invocation
+will produce lots of keys including some
+instances of key A. So, typically, in
+order before we can even run this reduce
+function, the MapReduce framework, that
+is the
+MapReduce worker running on one of our
+thousand servers, is going to have to go
+talk to every single other of the
+thousand servers and say, "Look,
+you know, I'm going to run the reduce
+for key A. Please, look at the
+intermediate map output stored on your
+disk and fish out all of the instances
+of key A and send them over the network
+to me."
+So, the reduce worker is going to do
+that. It's going to fetch
+from every worker all of the instances
+of a key that it's responsible for, that
+the master has told it to be responsible
+for. And once it's collected all of that
+data, then it can call reduce.
+And the reduce
+function itself calls reduce emit, which
+is different from the map emit. And
+what reduce emit does is writes the
+output to
+a file
+in a cluster file service that Google
+uses.
+So, here's something I haven't
+mentioned. Um
+I haven't mentioned where the input
+lives
+and where the output lives. They're both
+files. Um
+because any piece of input
+we want the flexibility to be able to
+read any piece of input on any worker
+server,
+that means we need some kind of network
+file system
+to store the input data.
+and so, indeed, the paper talks about
+this thing called GFS for
+Google file system.
+Um and GFS is a cluster file system. And
+GFS actually runs on exactly the same
+set of workers that worker servers that
+run MapReduce.
+And the input GFS just automatically,
+when you, you know, it's a file system,
+you can read and write files, it just
+automatically splits up any big file you
+store on it across lots of servers in 64
+megabyte chunks.
+So, if you write, you know, if you have
+10 TB of crawled web page contents,
+and you just write them to GFS, even as
+a single big file, GFS will
+automatically split that vast amount of
+data up into 64 kilobyte chunks
+distributed evenly over all of the GFS
+servers, which is to say
+all the servers that Google has
+available. And that's fantastic. That's
+just what we need.
+If we then want to run a MapReduce job
+that takes the entire crawled web as
+input,
+the data's already stored in a way
+that's split up evenly across all the
+servers. And so, that means that um
+the map workers, you know, we're going
+to launch you know, if we have a
+thousand servers, we're going to launch
+a thousand map workers, each reading
+1/1000 of the input data, and they're
+going to be able to read the data in
+parallel
+um from a thousand GFS file servers,
+thus getting, you know, tremendous total
+read throughput, you know, the read
+throughput of a thousand servers.
+Yeah.
+And they're not necessarily the same
+servers that would
+be running the map tasks.
+The ones that are storing the
+the input data for GFS on GFS.
+So, so are you thinking maybe that
+Google has one set of physical machines
+that run GFS and a separate set of
+physical machines that run MapReduce
+jobs?
+I was just saying that the
+the
+map workers like might have to read from
+a different machine.
+They're not necessarily on the same ones
+on the
+Right. So, the question is
+what does this arrow here actually
+involve? Um
+and the answer to that actually it sort
+of changed over the years as Google's
+evolved the system, but
+um you know, what what this
+in the most general case, if we have big
+files stored in some big network file
+system like, you know, it's GFS is a bit
+like AFS you might have used on Athena.
+Where you go talk to some collection and
+your data split over big collection of
+servers, you have to go talk to those
+servers over the network to retrieve
+your data. Um in that case, what this
+arrow might represent is
+the map the MapReduce worker process has
+to go off and talk across the network to
+the correct GFS server or maybe servers
+that store its part of the input and
+fetch it over the network to the
+MapReduce worker machine in order to
+pass the map. And that that's certainly
+the most general case.
+Um and that was eventually how MapReduce
+actually worked.
+In the world of this paper though,
+um and and if you did that, that's a lot
+of network communication.
+Right, you're talking about 10 terabytes
+of data and then we have to move 10
+terabytes across their data center
+network, which
+data center networks run at gigabits per
+second, but it's still a lot of time to
+move tens of terabytes of data.
+In order to try to and indeed in the
+world of this paper in 2004, the most
+constraining bottleneck in their
+MapReduce system was network throughput.
+Um because they were running on a
+network, if you sort of read as far as
+evaluation section,
+their network
+um their network is was uh
+you know, they had thousands of
+machines.
+whatever um
+and they would collect machines, they
+would plug machines into you know, each
+rack of machines into you know, an
+Ethernet switch for that rack or
+something. But then, you know, they all
+need to talk to each other.
+And but there was a root Ethernet switch
+that all of the rack Ethernet switches
+talked to. And this and you know, so if
+you just pick
+some MapReduce worker and some GFS
+server, you know, chances are these half
+the time the communication between them
+has to pass through this one root
+switch. The root switch had
+um only some amount of total throughput,
+which I forget. Uh, you know,
+some number of gigabits per second.
+anyway, forget the number. Well,
+but when I did the division, um,
+that is divided up the
+total throughput available in the root
+switch by the roughly 2,000 servers that
+they used in the paper's experiments,
+what I got was that each machine's share
+of the root switch or of the total
+network capacity was only 50 megabits
+per second per second
+um, in their setup.
+So, 50 megabits per second per machine.
+Um, and that might seem like a lot, 50
+megabits, gosh, millions and millions,
+um, but it's actually quite small
+compared to how fast the disks run or
+uh, CPUs run. And so, this with their
+network, this 50 megabits per second was
+like a tremendous limit. And so, they
+really stood on their heads in the
+design described in the paper to avoid
+using the network.
+Um, and they played a bunch of tricks to
+avoid sending,
+um, stuff over the network when they
+possibly could avoid it. One of them
+was,
+um, they would they ran the GFS servers
+and the MapReduce workers on the same
+set of machines. So, they have 1,000
+machines,
+they'd
+run GFS, they'd implement their GFS
+service on that 1,000 machines and run
+MapReduce on the same 1,000 machines.
+And then when the master was splitting
+up the map work, um, and sort of farming
+it out to different workers, it would
+cleverly,
+when it was, um,
+about to run the map that was going to
+read from input file one, it would
+figure out from GFS which server
+actually holds input file one on its
+local disk. And it would send the map
+for that input file to to the MapReduce
+software on the same machine. So that by
+default, this arrow was actually local
+local read from the local disk and did
+not involve the network. And you know,
+depending on failures or load or
+whatever, that it couldn't always do
+that. But almost all of the maps would
+be run in the very same machine that
+stored the data, thus saving them
+vast amount of time that they would
+otherwise had to wait to move the input
+data across the network. Um
+The next trick they played is that
+uh map, as I mentioned before, stores
+its output on the local disk of the
+machine that you run the map on. So
+again, storing the output of the map
+does not require network communication,
+at least not immediately, um because the
+output's stored on the disk.
+However,
+we know for sure that one way or
+another, in order to group together all
+of you know, by the way the MapReduce is
+defined,
+in order to group together all of the
+values associated with a given key and
+pass them to a single um invocation of
+reduce on some machine, this is going to
+require network communication. We're
+going to you know, we want to need to
+fetch all the A's and give them a single
+machine, they have to be moved across
+the network.
+And so this shuffle, this movement of
+the keys from it's kind of um you know,
+originally stored by row in the on the
+same machine that ran the map, we need
+them essentially to be stored on by
+column on the machine that's going to be
+responsible for reduce. Um this
+transformation of row storage to
+essentially column storage is called the
+paper calls it shuffle. Um and it really
+that required moving every piece of data
+across the network from the map that
+produced it to the reduce that would
+need it. And that was like the expensive
+part of the um of the MapReduce. Yeah.
+Why didn't they
+make the reduce something that would run
+sort of like you would have you you
+would keep your output as you have it
+already and you just take one at a time,
+and then you wouldn't have to wait until
+all the maps are done.
+Yeah,
+you're right. You you you could imagine
+a different definition in which you have
+a more kind of streaming reduce. Um I I
+don't know
+I haven't thought this through. I I
+don't know why whether that would be
+feasible or not. Um certainly as far as
+programmer interface, like if the goal
+their number one goal really was
+to be able to make it easy to program by
+people who just had no idea what was
+going on in the system. So, it may be
+that you know, this spec this is really
+the way reduce functions look um in you
+know, in C++ or something. Like a
+streaming version of this is now
+starting to look
+I don't know how it would look.
+Probably not this simple. Um
+but you know,
+maybe it could be done that way. And
+indeed, many modern systems
+and people have gotten a lot more
+sophisticated
+um with modern things that are the
+successors to MapReduce, and they do
+indeed involve processing streams of
+data often rather than this very batch
+approach. That is a batch approach in
+the sense that we wait until we get all
+the data, and then we process it. Um so,
+first of all, that you then have to have
+a notion of finite inputs, right? Um and
+modern systems often do indeed use
+streams, and
+and are able to take advantage of some
+efficiencies due to that.
+Um but not MapReduce.
+Okay, so uh
+this is the point at which the shuffle
+is where all the network uh traffic
+happens. This can actually be a vast
+amount of data. So, if you think about
+sort,
+um if you're sorting, the um the output
+of the sort has the same size as the
+input to the sort. So, that means that
+if you're you know, if your input is 10
+TB of data, and you're running a sort,
+you're moving 10 TB of data across the
+network at this point. Um and your
+output will also be 10 TB. And so, this
+is quite a lot of data. And then indeed,
+it is for many MapReduce jobs. Although,
+not all. There's some that say
+significantly reduce the amount of data
+at these stages.
+somebody mentioned, "Oh, what if you
+want to feed the output of reduce into
+another MapReduce job?" And indeed, that
+was often what people wanted to do. And
+in any case, the output of the reduce
+might be enormous, like for sort or web
+indexing. The output of the reduce is uh
+on 10 TB of input, the output of the
+reduce is again going to be 10 TB. So,
+the output of the reduce was also stored
+on GFS. Um and the system would, you
+know, reduce would just produce these
+key-value pairs, but the um
+MapReduce framework would gather them up
+and write them into giant files on GFS.
+Um and so, there was another
+round of network communication required
+to um get the output of each reduce to
+the GFS server that needed to store that
+reduce. And because you might think that
+they could have um
+played the same trick with the output of
+storing the output on the GFS server
+that happened to run um
+the MapReduce worker that ran the
+reduce. Um and maybe they did do that,
+but because GFS as well as splitting
+data up for performance, also keeps two
+or three copies for fault tolerance,
+that means no matter what, you need to
+write one copy of the data across the
+network to a different server.
+So, there's a lot of network
+communication here, um and a bunch here
+also.
+Um and it was this network communication
+that really limited the throughput of
+MapReduce in 2004.
+in 2020,
+because this network arrangement was
+such a limiting factor for so many
+things people wanted to do in data
+centers, modern data center networks are
+a lot faster at the root than this was.
+And so, um
+you know, one typical data center
+network you might see today actually has
+many root. Instead of a single root
+switch that everything has to go
+through, you might have
+you know many root switches and each
+rack switch has a connection to each of
+these sort of replicated root switches
+and the traffic is split up among the
+root switches. So modern data center
+networks
+have far more network throughput
+and because of that actually modern I
+think Google sort of stopped using
+MapReduce a few years ago but um
+before they stopped using it the modern
+MapReduce actually no longer try to run
+the maps on the same machine as the data
+was stored on. They were happy to load
+the data from anywhere because they just
+assumed the network
+was extremely fast.
+Okay um
+We're out of time for MapReduce um
+We we have a lab
+due at the end of next week in which
+you'll write your own
+somewhat simplified MapReduce
+so have fun with that
+and see you on Thursday.

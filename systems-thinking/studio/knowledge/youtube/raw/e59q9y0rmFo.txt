@@ -1,0 +1,236 @@
+What if your AI agents had a real
+dashboard, not a chat box? A full
+command center, chat, terminal, memory,
+skills, swarm orchestration, all open
+source.
+Welcome to Hermes Workspace. Hermes
+Workspace is the native web interface
+for Hermes Agent, the open source agent
+framework from Nous Research. Think of
+it as the cockpit your agent never had.
+The site lays out exactly what you get.
+Multi-model chat with mid-thread
+switching across Claude, GPT, Gemini,
+Codex, and local models like Ollama and
+vLLM.
+A persistent memory browser with a
+markdown editor. A skills marketplace
+with over 2,000 entries. A real PTY
+terminal in your browser. Full color
+support, no compromises. Real-time tool
+cards stream every agent action and let
+you approve or abort mid-flight. A
+conductor mode dispatches parallel
+sub-agents on missions, and the whole
+thing ships as a progressive web app.
+Feature parity from desktop to phone.
+Offline capable, install it from your
+browser, and run it from your home
+screen.
+MIT licensed, 3.1k GitHub stars, latest
+release v2.1.3 from May 1st. What makes
+this different from yet another chat UI?
+Three things. First, it's not just a
+front end. It's a multi-pane control
+plane. Chat lives next to the terminal.
+The terminal lives next to a file
+browser with Monaco editor. The file
+browser lives next to a memory
+inspector. You can watch the agent type
+into a shell, then jump to its
+scratchpad and edit what it's storing,
+then check what skill it just loaded.
+All without changing windows.
+Second, the model layer is genuinely
+provider agnostic. Anthropic, OpenAI,
+OpenRouter, Google, Ollama, LM Studio,
+vLLM, Atomic Chat, and any OpenAI
+compatible endpoint. You can be
+mid-conversation on Claude Sonnet,
+switch to a local Llama running through
+Ollama, and the context comes with you.
+Third, and this is the part that
+justifies the name workspace. It has
+conductor and operations panels.
+Conductor dispatches missions to
+parallel sub-agents. Operations is your
+dashboard for everything in flight. If
+you've ever wanted mission control for a
+fleet of agents, that's the metaphor
+here. The architecture splits cleanly.
+Hermes Agent Gateway runs on port 8642,
+the workspace UI runs on port 3000, and
+an optional dashboard API runs on 9119.
+Three processes, one cockpit.
+Installation is one curl command. The
+official installer pulls down Hermes
+Agent from Nous, clones the workspace
+repo, sets up the .env file, and runs
+pnpm install for you. Two terminals to
+start, one for the gateway, one for the
+UI. Open localhost:3000
+and you're in. The gateway listens on
+port 8642 by default. That's the API
+surface for chat, sessions, memory,
+skills, and MCP integrations. The
+workspace UI proxies to it. If you want
+to expose the workspace beyond
+localhost, the startup checks force you
+to set Hermes password. Fail closed by
+design. No accidental open dashboards on
+the internet. You can also drop a
+Tailscale endpoint in front for mobile
+access. The PWA install button shows up
+in Chrome and Edge automatically once
+the workspace is loaded. On iOS, share
+sheet, add to home screen, you're done.
+Configuration is a single .env. Point
+Hermes app URL at your gateway, usually
+loopback, sometimes a Tailscale node.
+Drop in whichever provider keys you
+actually use. You're not forced to
+commit to one. Anthropic API key for
+Claude, OpenAI API key for GPT,
+OpenRouter API key for the routing
+layer, Google API key for Gemini, or no
+key at all if you're running everything
+against Ollama and LM Studio locally.
+Hermes password enables UI auth and is
+mandatory for non-loopback deployments.
+Hermes dashboard URL points at the
+optional operations API on port 9119,
+which is where the multi-agent dashboard
+sources its data for fleet style
+installations.
+The env-driven approach means the same
+workspace binary handles a single laptop
+setup with a local Ollama and a many
+agent fleet on a Tailscale mesh. No code
+change, just config.
+That's the part that makes it practical
+to actually run in production rather
+than just demo on a laptop. Some numbers
+that frame the project. 3.1k GitHub
+stars in the month since launch, and
+this thing came out of the Nous
+hackathon in 2026, so it had no
+marketing budget, just word of mouth.
+Latest release v2.1.3 shipped May 1st,
+which means active weekly cadence.
+The code base is 78% JavaScript, written
+in TypeScript and React. Three default
+ports. 8642 for the agent gateway, 3000
+for the workspace UI, 9119 for the
+dashboard API.
+The skills marketplace ships with over
+2,000 community contributed skills you
+can drop into an agent. Eight built-in
+themes. Hermes, Nous, bronze, slate,
+mono, and friends. Because if you're
+going to live in a tool, it should look
+like you want it to look. Compatible
+with Anthropic, OpenAI, OpenRouter,
+Google, Ollama, LM Studio, vLLM, Atomic
+Chat, and llama.cpp. That's the entire
+series deployment matrix in one front
+end. MIT licensed, no telemetry, no
+cloud dependency, no account to create.
+You install it, you own it. That's
+increasingly rare in the AI tooling
+space and worth calling out. Swarm mode
+is where this gets interesting. The
+pitch from the project itself reads,
+"Unlimited Hermes agents, one
+orchestrator, zero humans manually
+dispatching." The mechanism is a Kanban
+task board backed by persistent tmux
+workers. Each one a long-lived shell
+session that holds the agent's context
+across tasks.
+You drag a task into in progress and the
+orchestrator picks an agent based on
+role. Builders for code, reviewers for
+diffs, docs for writing, research, ops,
+QA. Each role roots to a worker pool.
+The TYV shows all of them at once, like
+a tmux grid for the whole fleet. Tasks
+complete, move to done. The worker stays
+warm waiting for the next dispatch. This
+is the difference between an agent UI
+and an agent operating system.
+Persistent state means you don't pay
+context rebuild cost on every task.
+Role-based routing means you don't
+accidentally hand a refactor to the docs
+writer. And because everything's tmux
+backed, you can SSH in and inspect any
+worker's session by hand. Full
+transparency, no black box. Pair this
+with the multi-provider model layer and
+you can have your reviewer agents on
+Claude Opus, your docs agents on GPT,
+your QA agents on a local Llama for
+cost. Same workspace, same dashboard. On
+security and deployment posture, this
+isn't a weekend hackathon project that
+ships open ports. Every API route sits
+behind auth middleware. Sessions ride
+HTTP only, same site strict, secure
+cookies. There's a content security
+policy, path traversal prevention on
+file routes, rate limiting, and what the
+readme calls fail closed startup guards.
+If you bind the workspace to anything
+other than 127.0.0.1,
+you must set Hermes password or it
+refuses to start. That's the right
+default. Headless deployment is
+straightforward. Bring up the gateway as
+a systemd service, the workspace UI
+behind nginx or Caddy with a real TLS
+cert. Point Tailscale at your machine,
+install the PWA on your phone. You now
+have a private agent dashboard that
+follows you around. For team setups, the
+operations panel and the dashboard API
+on port 9119 give you fleet level
+visibility. Which agent is doing what,
+on which task, with which model? Pair it
+with audit logging from your reverse
+proxy and you have something approaching
+production grade. None of this is bolted
+on after the fact. It's in the v2.1.x
+release line by design. The result is a
+tool that scales from solo dev laptop to
+small team agent fleet without rewriting
+how you use it. There's a line that
+captures the philosophy here. The
+project describes itself as a live
+control plane, and that's the right
+framing. Most agent UIs treat agents
+like chatbots. Send a message, wait for
+a response, repeat. Hermes Workspace
+treats them like long-lived processes
+you supervise. The terminal pane is
+real, the memory is editable, the skills
+are inspectable, the tool calls stream
+in real time, and you can abort them.
+That's a fundamentally different mental
+model, closer to how you'd run a
+Kubernetes cluster than how you'd use
+ChatGPT. And it's the model that holds
+up when agents start doing work that
+lasts hours, spawn sub-agents, reads
+files, runs code. You need a control
+plane, not a chat window. The fact that
+this exists as MIT licensed open source
+with the operational discipline you'd
+expect from production tooling makes it
+one of the more important pieces of
+agent infrastructure shipping right now.
+It's not the loudest project, it might
+end up being one of the most useful.
+That's Hermes Workspace, chat, terminal,
+memory, skills, and a swarm dispatcher,
+all in one MIT licensed dashboard. Star
+the repo, install it, build something.

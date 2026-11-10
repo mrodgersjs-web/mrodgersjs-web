@@ -1,0 +1,2179 @@
+[Music]
+all right should we start
+yes
+okay then
+well good afternoon everyone today the
+adams seminar has the great pleasure to
+welcome professor david kofke
+professor kofki holds a bachelor's from
+carnegie mellon university and a phd
+degree in chemical engineering from the
+university of pennsylvania
+currently he's a sony distinguished
+professor in at the state university of
+new york the university at buffalo and
+is the director of undergraduate studies
+in the chemical and biological
+engineering department
+his research focuses on statistical
+physics molecular modeling and
+simulation and software engineering his
+group is focused on the development of
+molecular simulation methods
+particularly as they pertain to free
+energy calculations and configurational
+integrals
+currently has activities examining the
+development and application of very
+efficient map averaging methods and
+synthesis of integral equation methods
+and molecular simulation for the purpose
+of calculating variable coefficients and
+other properties
+more efficiently professor kofke is
+author of over 140
+referred refereed publications and he
+has been an associate editor of journal
+of chemical engineering data since 2016.
+so once again welcome professor david
+kofke thank you so much for being here
+with us and please feel free to start
+your presentation
+well thank you for that kind
+introduction um
+let me get my screen shared here
+okay and then on the
+presentation mode
+so everyone i hope you can see that um
+so it's it's great to to be here is
+clearly a long line of distinguished
+speakers who have participated in this
+seminar series it's really been very
+interesting uh to to see the ones that
+i've seen and i'm hoping that i can make
+a contribution to that as well
+so um so let me start i'm going to be
+talking about um
+bridging molecular modeling and
+thermodynamic properties and the
+approach that i'm particularly
+interested in are methods that are based
+on what we call or what are called
+cluster integrals
+so here's a brief outline of my talk
+i'll be talking uh generally about the
+ways to go from molecular models to
+thermodynamics i'll then spend a bit of
+time talking about how virial
+coefficients are computed so those are
+the sort of the most widely known of the
+cluster integrals that are used i'll
+then go through a variety of
+applications
+and then uh if time permits i will uh
+talk a bit about convergence which i
+think is a particularly interesting
+topic
+so this is uh the general picture of
+sort of the the holy grail of what we
+would like to be able to do
+as
+people who do molecular thermodynamics
+we'd like to be able in principle to
+start
+from
+uh quantum mechanics which is
+represented over here and then you know
+solve the schrodinger equation or some
+you know equivalent representation of it
+to be able to compute configurational
+energies and then we know from
+statistical mechanics how we can do
+ensemble averages or molecular dynamics
+calculations in order to to
+bridge the gap from
+uh the molecules to the thermodynamic
+properties which we are uh generally
+interested in and then you know if
+you're into chemical engineering or
+other types of applications you might
+use those for for actual practical
+purposes
+so
+um the
+methods for doing this have advanced
+quite a bit uh particularly in the past
+couple of decades and uh we believe that
+molecular modeling is is really reaching
+a mainstream uh capabilities for
+providing physical property data and i
+think a a strong recognition of this is
+the journal of chemical and engineering
+data which has a long history of
+providing high quality data from
+experimental sources
+in 2016
+started encouraging uh the submission of
+papers that contain data and the present
+data that are obtained from molecular
+modeling
+so uh this is further represented by the
+fact that you know i'm an associate
+editor one of the associate editors for
+the journal and i do molecular modeling
+primarily and uh ilya sietman has
+somewhat recently been appointed as
+editor-in-chief of the journal and he is
+a molecular modeler for sure and he was
+one of the speakers
+in this series previously
+so i i think this shows that that
+molecular modeling is really coming of
+age as a tool for doing um
+quantitative uh practical calculations
+for properties
+so going back to this picture so we
+realized of course we don't go from
+directly uh from quantum mechanics to
+the intermolecular or configurational
+energies uh we have a bridge that that
+helps us uh uh you know get across this
+gap and this bridge
+traditionally has been in the form of
+force fields uh which are
+uh
+formulas that describe the energy or the
+various contributions to the energy as
+we understand them from various types of
+interactions and motions and interact
+intramolecular motions of the molecules
+these um approaches are
+not rigorous they aren't an exact
+representation or an exact bridge from
+the hydrogen sorry the the quantum
+mechanics uh to the configurational
+energies
+they can be informed from uh quantum
+mechanical calculations but they also
+take a lot of their input from
+experimental data and that's what i'm
+trying to represent by this arrow that's
+sort of going back so they are at least
+semi-empirical typically
+in their calculations although people
+are trying to develop molecular models
+that are
+informed more and more
+primarily from quantum mechanics
+there are emerging i think an exciting
+new
+set of approaches for for bridging this
+gap and these are methods based on
+machine learning and these approaches i
+i think we've all heard about them but
+they are um attempting to take a
+um
+a rich set of data from uh quantum
+mechanics for intermolecular energies
+for repairs and triples and various
+numbers of molecules and basically
+fitting them in a very sophisticated way
+using um you know these techniques that
+have given us the ability to
+recognize pictures and and all the other
+things that we know machine learning is
+doing
+so these have been you know an important
+advance and i think there's a lot of
+uh potential for the
+more developments in this direction in
+the future
+so the other side of this uh of course
+is a big part of it as well and the
+the general method for for bridging this
+gap has been molecular simulation and uh
+at least for for trying to develop a
+rigorous way and that's that's really
+one of the appealing features of
+molecular stimulation is if you uh input
+a molecular model or even a machine
+learning model for the configurational
+energies and run that through a
+molecular simulation you will get a
+rigorous exact representation of the
+properties and this contrasts with
+the long used approach for
+for trying to develop uh means for
+predicting properties which are uh based
+on what you might call engineering or
+you know molecular thermodynamic models
+which have some degree of approximation
+in them although they are of course very
+powerful and very useful um
+but um you know they don't have the same
+rigor that molecular stimulation would
+give you
+so the the thrust of this talk though is
+to point out that microsimulation is not
+the only way of giving us a rigorous
+bridge from uh the molecular scale to
+the thermodynamic scale
+and uh the idea here is that cluster
+integrals are another approach that
+allows us to bridge this gap and these
+have certain advantages and
+disadvantages that i would like to spend
+most of this talk uh discussing
+so what are cluster intervals well they
+go back um to the the work of mayor and
+mayor in in the 40s and the most widely
+known approach for cluster intervals or
+the application of cluster integrals is
+through the virile equation of state and
+that's what i'll be focusing on pretty
+much exclusively in this talk
+so the viral equation of state is a
+formula for it gives you the pressure as
+a function of density which is given by
+rho here the temperature and
+the coefficients in this
+equation of state which is written as a
+series expansion of the density are the
+virial coefficients
+and these are dependent only on
+temperature they can also depend on uh
+mole fraction or composition if you have
+a mixture um but we'll focus for the
+moment on on pure substances but we'll
+be talking a little bit later about
+mixtures
+uh the way these um coefficients are
+evaluated and their connection to the
+molecular scale is given through this
+example which i give the formula for the
+fourth variable coefficient b4
+and this is for a pairwise additive
+molecular model and it's just given as
+an integral in which you move
+molecules 2 3 and 4 around keeping
+molecule 1 fixed to define an origin
+and uh the thing that we are integrating
+in this are these products of so-called
+mayor functions
+and um
+you'll see that these uh
+functional forms of these products are
+represented most conveniently in terms
+of these graphs
+so the graph with you know is written as
+a square here you can see if you label
+the points
+for the purpose of identifying them
+you would have a bond between one and
+two that's the f1 2 bond you have an f2
+3 bond an f3 4 bond and an f1 4 bond so
+that's this term and then we take the
+same thing and add a 1 3 bond and we get
+you know a line here and then we take
+that and also add an f 2 4 bond and we
+get that so
+again it's not easy to to derive but
+this is the correct uh
+exact formula at least for pairwise
+potentials for the fourth variable
+coefficient which appears in this
+equation of state
+um i'll be representing these um
+later on with with more of these graphs
+so i just want to make sure you
+understand what these graphs represent
+uh they're these products of mayor
+functions so the mayor function is is
+written uh for simple spherical
+potential in the form shown here uh it's
+given as a boltzmann factor of the the
+potential uh minus one there's your
+temperature dependence in beta that's
+one over kt
+and the mayor function looks like this
+um qualitatively it goes to zero large
+separations and it's negative uh for
+overlapping configurations
+this is the the
+the way that it's done then this is the
+bridge or the the route for going from
+quantum mechanics represented over here
+through the inner micro potential
+however you get that and then from there
+you can get the virial coefficient which
+goes into here which then gives you the
+thermodynamic properties i should add i
+talked about variable coefficients but
+there's other types of cluster integrals
+if you want dielectric constants or
+interfacial properties or other things
+that that can be defined for for those
+properties as well
+so why would we interested in doing this
+well it's really a completely unique
+approach to uh making this bridge from
+molecular to thermodynamics
+it's got a lot of things in common with
+simulation it does give you again a
+rigorous bridge it's an exact
+thermodynamic description for the given
+molecular model it's got the
+theoretically correct dependence on all
+the state variables particularly the
+mole fraction so if you're interested in
+mixtures you've got the exact form for
+the dependence on mole fractions it
+really can accommodate any level of
+complexity you can
+again i said you can do mixtures if you
+have flexibility there's ways of
+handling that you've got multi-body
+potentials i talked about pairwise but
+multi-body is is easily handled
+you can do inhomogeneous systems you can
+handle nuclear quantum effects uh and
+all of these things and it really can
+give you a broad range of thermodynamic
+properties
+when i say thermodynamic i mean
+equilibrium thermodynamics it doesn't
+give you transport properties there's
+other approaches for doing that but
+that's not something that i've been
+working on
+similar to a thermodynamic model and
+unlike simulation it gives you an
+equation it gives you
+that rather than a discrete set of data
+the
+coefficients that you compute they're
+reusable and transferable to other types
+of mixtures and so on and it's useful
+for many practical applications just
+like a thermodynamic model
+and unique to cluster methods is that
+although it starts from a molecular
+model it does describe the thermodynamic
+limit and this is again something that's
+not quite obvious but unlike simulation
+uh the the data you get the results you
+get the properties you get are the
+values in the thermodynamic limit as
+long as the series is converged
+it is applicable only to non-condensed
+phases and that's obviously not a
+feature it's an unfortunate um
+fact about the the model is that you
+can't apply it to liquids as far as we
+know now
+and it also has limits to convergence so
+if you go to very high densities
+whatever that means
+is going to fail
+but on the other hand the failure is
+detectable and if the model is not
+describing or not making an appropriate
+bridge
+you can detect it by looking at
+you know different orders in the series
+and it's systematically improvable in
+that sense and that's really nice
+feature to have in any type of a model
+you're working on
+it can be interfaced to try to overcome
+these limits uh with other known
+behavior to form approximants um i think
+um richard elliott uh spoke um a while
+back about some
+um viral coefficient work and um
+um give a very interesting talk and he
+refers to this i believe is
+renormalization
+so if i have time at the end of my talk
+i'll be discussing that a bit um it does
+have links with thermodynamic
+perturbation theory to develop
+temperature and density series and again
+uh richard elliott talked about that and
+frankly we're still trying to understand
+how it works although it's been around
+for quite a while
+so let me talk a little bit about how
+these
+configurational integrals or variable
+coefficients are computed
+so we we've got our general
+configurational integral as shown here
+uh this is for the nth arbitrary
+variable coefficient we've got some
+integrand here and you saw it for b4
+it's the sum of three terms but you know
+in general you've got a bunch of terms
+there
+um so the first thing you have to do is
+generate configurations of uh the
+molecules that you are doing this
+calculation so it's like a simulation or
+a
+molecular simulation in that sense
+um so we developed a method a number of
+years back that we call mayor sampling
+monte carlo it's important sampling
+based on this integrand it's it's made a
+little bit complicated because the
+integrand can be negative as well as
+positive so we have to take some
+measures to handle that
+so um yeah that's the the first bit that
+i'll be talking about we also
+well i just uh reviewed this this was a
+paper where we introduced this uh with a
+graduate student on singh um and the
+idea is we you know been working in free
+energies for a while those are
+configurational integrals and we realize
+that you know these ideas that are used
+for free energies can be applied to the
+calculation of these cluster integrals
+so we have to figure out what about
+average we need to evaluate and uh we
+have a method i like to call overlap
+sampling it's a form of what's more
+broadly known as venice method or mbar
+but apply to this it's a little tricky
+again because you have the negative
+integrand but you know it's it's pretty
+straightforward to do i won't give any
+details about that the other thing you
+have to deal with is the evaluation oops
+i do have a little simulation here to
+remind us
+to show you what this looks like so
+everyone likes a little animation so
+this is actually a um a mayor sampling
+monte carlo simulation we're computing
+the fourth burial coefficient of uh
+water
+and um so this is showing you as i
+started this um
+these are the configurations that are
+going to be sampled so we've just
+started doing that
+so we're we're sampling we're doing the
+important sampling or the mayor sampling
+in this calculation and we've got uh two
+systems that we're simulating here and
+this is the element of the the so-called
+overlap sampling you're simulating a
+target system the one that you want to
+get the real coefficient for and you're
+also simulating a reference system which
+in this case is hard spheres so you'll
+see that these configurations are
+somewhat unlike what you would expect to
+see in a
+traditional molecular simulation
+the molecules overlap each other and
+perhaps
+most interestingly there's no volume you
+you don't define a finite volume that
+you put these in
+the important sampling keeps them
+together because the integrand goes to
+zero as any of them
+get far away from any of the others
+you collect averages for these and as it
+proceeds you can see this is a system of
+hard spheres so these will actually
+never not be overlapping although
+they're drawn as water molecules and in
+this simulation this half of the
+simulation they're actually working as
+hard spheres
+anyway so that gives you a flavor of
+what uh the calculations or how the
+calculations work
+uh the other aspect of this is you need
+to evaluate uh that integrand this fb uh
+for each configuration that you just saw
+generated here and in principle this is
+straightforward you you evaluate these
+graphs
+the graphs are defined as all of the
+graphs that you can write that are
+they're called doubly connected uh they
+have no articulation points there's no
+single point that you can remove and
+break it into two pieces and they're
+also connected
+so how many graphs do we have to sum
+well
+this gives you a feel for it this is all
+of the graphs that you could have for
+two
+uh points so you've got the connected
+graph and you've got the disconnected
+graph so there's two of them and half of
+them are bi-connected one of the two is
+is contributing
+so as you go to b3 well in principle use
+many as eight graphs uh but all of these
+are singly connected or not biconnected
+uh the only one that contributes is this
+one so 13 of them contribute there as
+you go to b4 i can't draw them all here
+but there's 64 of them they go as
+you know
+in this form two to the
+n times n minus 1 over 2 that's the
+value that's shown here
+and again
+16 of these i believe i know eight of
+these are
+biconnected so that's 16
+if you go to b5 there's a thousand of
+them where 23 of them are by connected
+six there's 32 000 whereas about a third
+of them are bi-connected that you have
+to add up
+uh as you get up to eight there's um
+what's that 200 million uh almost 300
+million and uh two-thirds of them are
+are relevant so you would have to add
+those up
+uh as you get up to 10
+it's uh this many i don't know how many
+billions or quantillions we have here
+but 83 percent of them so you can see a
+larger number of them become biconnected
+and obviously it's really exploding
+in terms of the number of of graphs that
+you need to deal with so if you were to
+try to do b12 you would have to sum
+basically 93 of this number of graphs
+for each configuration that you generate
+and finally i like to point out when you
+get to 13 you've got half a mole of
+graphs um
+of which are biconnected and you would
+have to add up so clearly you know
+that's not going to happen you're going
+to add 10 to the 23rd graphs um
+and uh expect to to finish in any
+reasonable time
+so um
+this was broken through though by uh
+richard wheatley who came up with an
+extremely clever algorithm in 2013
+the algorithm generally goes as shown
+here he basically starts with the sum of
+all of the diagrams all of those 10 to
+the 23rd diagrams can be evaluated in
+one go
+believe it or not just by evaluating the
+single diagram where you replace each
+bond with that bond plus one and if you
+work out all the products you see that
+all of these are basically contained in
+that and then you go about
+systematically removing the parts that
+you don't want which are all the
+non-bi-connected diagrams and he has a
+nice
+recursive algorithm for doing that he
+first removes disconnected algorithms
+that leaves just the connected ones and
+then he subtracts the articulated ones
+again through this recursive approach
+and that leaves you with what you want
+or just the bi-connected diagrams
+so this recursive scheme that he came up
+with is makes this extremely efficient
+the cpu increases still exponentially
+but it's only 3 to the n as opposed to 2
+to the n squared
+later a very nice work again a beautiful
+derivation by richard showed that this
+was applicable not only for pairwise
+potentials but for non-pairwise so we
+can apply this to realistic models where
+non-pairwise interactions
+really are relevant if you want to get
+quantitative
+property calculations
+so uh it's also turns out to be very
+easy to extend this calculation to
+compute derivatives of uh these these
+cluster integrals and those are needed
+for example the temperature derivatives
+are needed for the heat capacity and
+thermal expansion coefficient and other
+things as i'll show in a moment
+so just give you an idea of how much you
+save by going from 3 to the n from you
+know this rate of increase to 3 to the n
+this gives you basically 3 to the n you
+can see by the time you get to 13
+instead of having half a mole you've got
+roughly a million diagrams
+that you're trying to sum
+or a million operations or you know time
+wise that this takes
+okay so um
+so with that in place uh we were able to
+to really break through
+there's still limits you know we can't
+do b100 by any means but uh we we do
+have some heroic you know calculations
+we sort of did this to see how far we
+could take it
+so hard spheres have been computed up to
+b12
+we computed the b16 believe it or not
+for the leonard jones model uh at one
+temperature lower temperature turns out
+to be easier to get good results in
+higher temperatures so we just did that
+um temperature dependent square well
+model we've gotten values for the
+coefficients there up to b9 and square
+well has a nice um analytic temperature
+dependence so i just have to break that
+into parts
+um so for simple models it's it's
+feasible to get b7 or maybe b8
+without unusual effort uh again depends
+on your quality of your computers and
+how much time you're really willing to
+invest in it but you know these are not
+out of reach i think for
+typical calculation um
+things that will limit your ability to
+compute to higher order or of course
+will be a more computationally expensive
+molecular model so of course hard
+spheres or leonard jones are as easy as
+it gets
+if you have intramolecular flexibility
+there's actually other terms you have to
+add to
+the coefficients to
+account for for for that effect and you
+know those do complicate things quite a
+bit and we don't have a really great
+handle on that we know how to do it but
+we don't have super efficient methods uh
+for getting that like we do uh for the
+other cases nuclear quantum effects can
+be relevant and again those can be
+handled with semi classical or path
+integral methods uh both of which are
+going to add a bit more complication to
+the calculation
+so i'd like to go on and talk a bit
+about
+some applications
+so this was a study we did a while back
+looking at
+carbon dioxide and methane mixtures and
+we chose this because it was a really
+nice um uh paper by this group um uh
+charles abroad and ed mcginn
+and cassiona amoli and uh they did
+molecular simulation calculations uh for
+this mixture and it was very very
+thorough and it was in the region of of
+of states that the viral equation stay
+can be applied so they they reported
+seven properties at four supercritical
+temperatures they did eleven
+compositions from the pure you know one
+component to the other pure component
+and 14 pressures so it was a very
+comprehensive set of data and the nice
+thing about this is we can um
+take the same molecular model and try to
+compute uh properties as well
+we did this we went up to seventh order
+uh for each of the four temperatures and
+we computed all of the mixture
+coefficients that are needed to get up
+to there these are the
+the various mixture coefficients so
+here's a mayor sampling calculation for
+uh this looks like yeah maybe b7 yes
+there's four co2 co sorry four methanes
+and and three co2s
+we also um we didn't have our methods
+for computing derivatives at this time
+so we had to compute these by fitting uh
+to the four temperatures and that is not
+really the best way to do it but um
+it's what we had
+so here are some of the results so this
+is showing the variable coefficient you
+know scaled by um
+a density that um puts them all sort of
+on the same scale
+this is showing the various mixtures so
+there's three coefficients for b2
+there's four for b3 and five for b4 and
+so on
+and
+you'll this is for one particular
+temperature again for pure ch4 to pure
+co2
+and i'll just point out that there you
+know if you compare this this is based i
+should say on the trap model which is
+what um you know the you know the micro
+simulations uh used and you can note
+that there is a deviation and it's sort
+of compensating deviations uh b2 is sort
+of underestimated
+compared to experiment which is what's
+given by this other point and b3 is
+sorry b2 was overestimated b2 3 was
+underestimated compared to experiments
+so you sort out this cancellation of
+errors and this is not a huge surprise
+um you know the the trap model is um
+um you know relatively simple model and
+it's fit to experimental data and it's
+it's not meant to to describe the exact
+uh interactions but uh it's supposed to
+do it well enough to give you good
+properties so this is sort of a you know
+a characteristic of of the compromise
+that it makes it doesn't get these
+coefficients exactly right but it does
+in a way that sort of compensates the
+errors
+so uh i'll present a bunch of plots now
+that show um results for the
+compressibility factor in this case the
+pressure as a function of density right
+now i have this for one temperature one
+composition
+and you can see the various orders of
+the viral equation of state that are
+shown uh by the different colored lines
+culminating with b7 or vos7 as we call
+it which
+agrees quite nicely with the molecular
+simulation data for the same model
+that was reported in in the earlier
+paper
+so i i put a star on that diagram to
+help you identify the ones that are are
+going to be showing up so this just
+shows you what happens as you vary the
+temperature
+again at the same composition there's a
+mole fraction of 0.6 of co2 i believe
+and you can see you get very good uh
+agreement particularly when you get up
+to seventh order
+except down here where we get to the
+lowest temperature i'll talk about that
+more in a moment but you can see the
+virule equation is not agreeing uh super
+well with uh the simulations um
+and then uh as we go in varying uh mole
+fraction as we go up and down here's
+again our
+home diagram um
+you can see that uh for for this
+temperature we have rather poor
+agreement for pure co2 but it doesn't do
+so bad for
+uh pure methane
+okay and um
+and then this is uh the whole grid of uh
+sort of compositions going up and down
+and temperatures going left and right
+and you know as you move down in this
+direction we're getting very good
+agreement as we move up in here you can
+see it's not working so well
+and the reason this doesn't work so well
+or
+is because we are close to the critical
+point uh up here the critical point of
+co2 i'm not sure what it is for this
+model it's about 300 uh 300 and some
+kelvin uh and this is pure co2 over here
+so you know this shows you one of the
+the ways in which the viral equation of
+state can fail it's an analytic equation
+we know the critical point has
+difficulties um
+being captured analytically and you know
+we have approaches we're trying to to
+take to to get around that but you know
+this is sort of the
+the direct thing that happens whenever
+you you do these calculations these
+so this is you know another property is
+a variety of properties we can look at
+the joule thompson coefficient is
+particularly challenging to get well
+you can see the micro simulations uh in
+particular have trouble getting it with
+high precision whereas the molecule
+sorry the the virile equation of state
+does a good job of matching the
+simulations and has much greater
+precision as well again breaking down up
+here
+but you know this is uh you know a very
+rigorous test of an equation of state is
+to look at how well it describes the
+joule thompson coefficient you can see
+the variable equation at least up to
+seventh order uh does a pretty good job
+over a lot of the state space here
+this
+is a graph that tries to get across the
+the computational effort that is needed
+to get properties by simulation and
+comparing it to the virule equation of
+state
+and the colors here are representing the
+cpu time that's needed to get the
+property with one percent precision so
+it goes from a millisecond which is
+white up to a cpu century uh which is
+given in black and again um
+so i've got three properties here the
+compressibility factor the dual tonsil
+coefficient and the coefficient of
+thermal expansion uh the points are
+what uh
+we're given from
+the microsimulation again the paper only
+gave properties but they gave cpu times
+um it's a very difficult thing to
+compare apples to apples because we're
+comparing the effort to takes to get one
+point with the effort it takes to get
+this whole
+set of um
+uh conditions uh that's given by the
+virile equation of state but uh it does
+get a bit of the idea across and you can
+see that you know
+you you certainly would rather be in the
+white or the blue compared to the red so
+in the condition here you can see that
+you know doing the viral equation of
+state is really much much more efficient
+way of getting the properties compared
+to molecular simulation uh where the
+real equation has difficulty difficulty
+converging or where are you going
+through the the zero uh the the the
+percentage um you know becomes difficult
+to get small of course if the the thing
+you're
+normalizing with respect to is going
+through zero so that's what's happening
+in in here
+so again it gives you a sense of why you
+might prefer to do the virule equation
+of state over simulation uh just from
+the standpoint of
+efficiency
+okay so that was uh again a um
+a um you know the leonard jones model or
+a simple
+uh empirical model or semi-empirical
+model for for properties i'd like to
+move on now to helium and
+uh calculations that are based on
+abenitio uh data
+we have two papers that we published in
+jced
+one is computing the viral coefficients
+for the
+equation of state the pressure and the
+other is speed of sound
+so i'll be talking about that here
+why are we interested in helium well
+it's a good starting point of course for
+any type of difficult thing that you
+want to do but it's also as practical
+people at nist were very interested in
+in trying to get a really good model for
+helium because it's important for
+um metrology applications that they do
+so you know that's what motivated us to
+move in this direction
+there's also um you know helium of
+course is just a single spherical atom
+so there are uh good very good high
+quality two and three body potentials
+that have been published
+for this and these continue to be
+refined but this just summarizes the
+um the ab initio calculations that were
+fit and published by these groups um
+over the past couple of you know 10
+years or so and they provide an estimate
+of the accuracy of their calculations as
+so uh this gives sort of a history of uh
+the calculation of v real coefficients
+for helium based on ab initio
+calculations goes back to 2000 uh this
+just lists the order of the coefficient
+that was computed you know we did up the
+seventh order in our calculations uh
+which molecular model the various
+methods based on just solution of the
+schrodinger equation or path integrals
+or semi classical methods um
+uh some classical calculations that we
+did uh the temperature range um in which
+it's looked at whether
+people try to quantify the systematic
+error which is important for
+gauging you know how good your your
+results are of course
+helium is interesting uh also because uh
+helium-3 helium-4 isotopes have
+qualitatively different behavior um some
+of these also gave acoustic derivatives
+which is one of the things we looked at
+with temperature derivatives and others
+did transport properties
+so um it's been well studied
+uh so this summarizes um sort of the
+performance that we're able to get
+compared to experiment so what i'm
+plotting here are the various uh errors
+in the compressibility factor as a
+function of pressure going up to rather
+high pressures
+this is at one specific temperature
+rather low temperature and what i'm
+showing here with the numerals is this
+is the contribution to
+z
+um you know that coefficient so if you
+were to neglect this coefficient you
+would have an error that's of this order
+so this is what you get when you add in
+b3 this is how much b4 contributes this
+is b5 how much b6 you can see it's
+clearly converging as we add more terms
+they're they're contributing less and
+less
+so you can get an idea of how
+how much error you have by convergence
+by looking at this you can see that you
+know if we include b7 well truncation of
+the series is not the limiting error uh
+anymore okay and that's over the whole
+range of conditions
+uh the other thing we have here are the
+systematic error this is based on the
+systematic errors in the potentials that
+were published with them and we tried to
+propagate that to the coefficients and
+how much that contributes to the error
+in z so that's really the limiting error
+that we have
+and then we have stochastic error in our
+coefficients because they're computed
+via monte carlo and that's given my way
+down here and that's not significant
+the experimentalists
+who presented data for them or of course
+did a very good thorough job and they
+tried to quantify their error as well
+experiments are not absolute
+absolutely perfect they have sources of
+error too and good experimentalists will
+try to quantify that so we're able to
+present that here as well
+and you can see that um
+you know they have stochastic error if
+they reproduce it you know do the
+experiment over how much does it change
+and that's given by these squares here
+and um they also estimate systematic
+errors due to compressibility of a a
+sinker that they use to to do the
+measurements and other things where they
+they try to estimate the errors in their
+um you know in these features so you can
+see that um
+you know you want to compare sort of the
+the largest error in the experiments to
+the largest error in the the equation of
+state you can see that we are you know
+below the experimental error over all of
+these conditions so you know this is a
+way of allows us to to
+you know um
+cautiously assert that we're we're able
+to measure or i should say compute um
+the properties over these conditions you
+know more precisely and more accurately
+uh than they can be measured
+experimentally so this is the type of
+thing we would like to be able to do
+more broadly for other types of
+materials
+the other thing we looked at was the
+speed of sound
+so these are
+again
+computable from the variable equation of
+state you need the temperature
+derivatives it's given in terms of the
+heat capacities uh the compressibility
+um the heat capacity is given in terms
+of you know these terms and and these
+all are based on the viral coefficients
+and their derivatives which are given by
+the primes
+so we can compute this as well and this
+is property is interesting because it's
+it's a great way to measure uh
+properties experimentally um
+you know everything is sort of a
+mechanical
+quantity that you that you're you're
+using to do the measurement so it's it's
+preferred by experimentalists for for
+certain types of
+um equation of state measurements
+anyway so these are our data that were
+published by gammon in 76 and this is
+showing
+the speed of sound versus
+pressure
+along this axis for a whole bunch of
+different temperatures so that's what
+the data look like
+if we take this and subtract the
+values given by the virile equation you
+can see that you know this should be
+zero and to the extent that it's not
+zero we can attribute that to
+inaccuracies in the estimates of the
+temperatures that the experimental um
+the experimentalist uh you know
+estimated for it or reported uh for it
+so we can use the viral equation of
+state to correct uh the temperatures
+then for for these and uh from that we
+can generate plots like this that allow
+us to
+do an estimate of uh the viral
+coefficient say omega k we do the same
+term here but we omit one of the terms
+in this sum
+and we get a plot like this and then by
+fitting this we can get an estimate for
+for this term so you can see you know we
+have a good description over a lot of
+these conditions but you know in some
+places um
+we we still don't have a um a great
+characterization and that you know could
+be due to
+uh errors in the experiments or in the
+simulations
+you know from that we can get results
+like this that allow us to compute uh
+the difference in the third acoustic
+viral coefficient relative to experiment
+you can see those are plotted by the
+points here
+with error bars
+that's plotted on the left on the right
+we're plotting the difference divided by
+the uncertainty so
+to the extent that this is less than one
+we can sort of have confidence that we
+are in agreement uh with the experiment
+on the other hand you know there seems
+to be a systematic deviation you know
+all the points seem to be below um
+in both of these so
+uh there is some systematic deviation
+but it's
+at least within the uncertainties of the
+calculations and the experiments
+so there have been other first principle
+calculations which are summarized here
+you can see the various types of
+molecules that have been looked at
+there's two that i want to call out in
+particular
+um robert hellman has done some really
+nice work
+doing ab initio surfaces and computing
+viral coefficients from it he's gone up
+to the eighth bureau coefficient for co2
+based on an ab initio potential and then
+just last week i i saw this paper i
+think maybe even this week
+by graham and wheatley um that came out
+where they
+went further and looked at co2 argon
+mixtures going up to the fifth vera
+coefficient so i just like to present
+some of their results here
+this is uh showing the joule thompson
+coefficient this is for pure co2 so this
+is based on
+uh viral coefficients and
+we also have values based on the trap
+model we only have trap values up to a
+thousand kelvin so the the lines end
+here um
+but uh you can see that the various
+orders of the equation of state going
+from third to fourth to fifth you can
+see there's a convergence and it's going
+through this this peak and that seems to
+be in pretty decent agreement with the
+experiment which are rather old data
+this is really a very difficult thing to
+measure experimentally the um
+the the inversion point uh the joule
+thompson inversion
+and uh over here just to give a scale
+this is the coexistence line ending with
+the critical point so you can see the
+critical point obviously is right around
+and uh as i said before the viral
+equation state isn't going to describe
+behavior there that well but you can see
+it's doing a pretty good job again all
+from first principles uh calculations
+so again graham and wheatley again in
+this paper that just came out
+they looked at co2 argon mixtures
+they went up to b5
+again they did first principles ab
+initio for two and three body
+interactions as did um hellmann um
+interestingly they used a machine
+learning method for interpolation and
+again i think this could be the wave of
+the future for
+uh these types of calculations so um
+graham and wheatley were able to get so
+this is showing the compressibility
+factor um
+versus density for uh different numbers
+uh different compositions amounts of
+argon versus co2 and um they're they're
+showing sort of the effect of the
+truncation of the series so you've got a
+fourth order series it's dotted points
+and fifth order is the solid line
+and the importance of the three body
+effects are also shown here you can see
+you you really can't neglect them if you
+want to try to get you know good
+quantitative results that are
+competitive uh with experiment which of
+course are shown by the um
+uh the squares
+so they also uh among other things
+reported the joule thompson coefficient
+for a specific uh composition variety of
+temperatures here
+and again do a pretty nice job relative
+to experiment this is subcritical so
+it's only going to be able to go up to a
+certain
+level of pressure before the real
+equation is going to fail
+so i really like this this paper as much
+as i've seen of it and
+i think it shows the type of thing that
+i'd really like for us to be able to do
+with the varial equation state
+so um just in the last little bit of
+time if i do have time to
+talk a little bit about convergence of
+the viral equation this is uh one of the
+um limitations that we worry about so
+um you know when when doing applications
+with the viral equation so this is just
+showing two pictures of convergence so
+we have co2
+and what's shown here is um the estimate
+of convergence based on
+the contribution made by the next order
+term to the series
+the virial series so in this region you
+know this is um uh high temperature low
+pressure this is the quality is clapper
+on plot again you can see where the
+coexistence ending the critical point is
+so here the the ideal gas law is fine
+here you're okay with second order third
+fourth fifth here you need six order
+variable equation to get within i think
+uh one percent of um convergence and
+then up here you don't have convergence
+by sixth or seventh order i should say
+um so i i find this rather interesting
+that there seems to be a wall here and
+and you know there's a thing known as
+the widdham line that was discussed at
+uh one of the previous seminars uh which
+you know may have something to do with
+the limitations on convergence of the
+virile equations you get up to here
+this is another picture this is showing
+our speed of sound calculation similar
+type of deal where we've got ideal gas
+here the colors aren't the same but
+here's second third fourth fifth sixth
+order um
+and what we show on here are the
+you we compare it to to experiment and
+we say well where
+uh do i have to truncate or can i
+truncate the virile equation of state
+and get the a one percent agreement with
+experiment and you can see that you know
+those are shown by the the numbers here
+the order of the virial and what's
+really gratifying is that
+the same point where the virile equation
+just by itself tells you you need you
+know this order to get within one
+percent of the correct value comparing
+to experiment gives us results that are
+completely consistent with that the you
+know the where the virule equation said
+third order is converged here
+uh comparison to experiment says yeah
+third order is com is converged there as
+well so it's a real nice feature the
+equation of state is that it got has
+this uh diagnostic or self-assessment
+capability
+so ways to improve the convergence um
+one way that we've looked at are our
+methods you know we call approximates
+because we started using bidet
+approximants and i think this is similar
+to what
+richard elliott was saying is as
+so this just shows you an application to
+soft spheres uh the saw sphere model is
+shown here uh if you do the virile
+series directly for n equals four it's
+really very soft sphere model uh you can
+see convergence is just horrible you
+know this is uh the second order series
+third order uh fourth fifth sixth you
+know and so on you can see as you add
+more terms it converges more and more
+poorly and this is compared to the the
+the true data that are shown here
+so we're able to develop an approximant
+which is basically a ratio of
+polynomials that's um if you do a series
+expansion of this ratio of polynomials
+you match the coefficients of that
+expansion with the viral series and that
+tells you what coefficients to put in
+the numerator and denominator of each of
+these series
+what's interesting with this is that not
+just any old approximate will work you
+have to have an approximate that is
+consistent with the physical behavior of
+the model and you can argue that the
+compressibility factor will vary with
+density at high density you know you
+know precluding any you know freezing or
+anything like that with this this
+behavior and density so we need to to
+choose
+an approximate that's going to also have
+that limiting behavior at high density
+and that's what's shown with basically
+all of these which are going right
+through the points now and that's
+compared with these other today
+approximants which don't have that
+correct limiting behavior particularly
+down here um
+you can see that you you can develop
+approximants that really correct uh this
+convergence or enhance the convergence
+but you have to be careful on how you
+you set them up
+so you know another way of of extending
+this was you know i mentioned the
+critical point is particularly difficult
+uh so we've done a couple things to try
+to address that using this approximate
+or resumation idea
+so we developed an approximate that is
+based on what we know as universal's
+universal behavior
+of uh the equation of state as it
+approaches the critical point on the
+critical isotherm uh so we formed an
+approximate like this where a is just a
+simple polynomial and we choose the
+coefficients of this polynomial to match
+the varial series at low density and
+we're able to go from something where we
+have i believe this is leonard jones uh
+the virile series are given again ideal
+gas we've got uh second order in here
+somewhere third you can see the
+convergence as you get to the critical
+point is not so good uh but we use this
+approximant um a one two three
+sorry five and seven as shown here which
+have this form and you can see we're
+able to get that pretty well
+um the square well model so this was for
+the critical isotherm if you go off the
+critical isotherm it needs a bit more
+sophistication uh so we use these
+parametric approximants that are due to
+show field from the 60s uh came up with
+a way of of you know
+describing approach to criticality from
+all different directions and we develop
+an approximant based on that
+and you can see for the square well
+model that we get really good extension
+of the
+uh the performance you know going pretty
+much right through the critical point
+and agreeing with experimental data
+basically each of these lines is adding
+more turns to
+uh to this um this approximant so it's
+extending the order of the series so you
+know as you go from here to here to here
+it's sort of converging towards
+something that goes through these points
+so this was very gratifying in the
+interest of you know full disclosure
+though it doesn't work super well in all
+cases so this is the same thing applied
+to water the only thing different
+between these two graphs is this one
+these two slides is this graph so we did
+the same thing for water these are
+simulation data for water
+just look at the teal line you can see
+that
+you know this is is not going through
+you know these sets of data the way we
+would like it to but still you know
+there is some improvement there and you
+know this is uh certainly a direction
+for for additional development
+okay so um i'll just very quickly point
+out something here with the um
+convergence of the variables um i just
+want a
+very interesting result that um you know
+if you apply the viral equation to the
+van der waals equation of state um you
+know it's given by this um you know this
+van der waals loop and the burial series
+just goes straight to it as you add more
+and more terms it goes right through it
+shows the van der waals loop exactly as
+it's drawn here
+but it was proved by mayor in the 40s
+and it was resurrected by michael
+ushkatz who is in ukraine um i think
+still okay
+i had an email from him after the
+issue started there so i hope he's still
+all right but he's carried this a lot
+further and has been really pushing for
+uh looking at ways of expanding or
+extending the convergence of the virule
+equation beyond
+condensation so he presented an exact
+recursive formulation of the series
+which i'm just plopping down here i'm
+just showing you that it depends on the
+number of molecules it's an independent
+series it depends on the temperature
+shown here um and sorry the viral
+coefficients are entering in the disease
+beta so
+obviously it's not as as clean as the
+virile equation of state but you know
+it's a recursive series and you can
+implement on a computer and do
+calculations
+so if you do that for the van der waals
+equation you end up getting
+interestingly and he showed this
+rigorously that you know beyond the the
+spinodal you get a very flat line and it
+becomes flatter and flatter as you
+increase n
+that appeared in that equation that i
+just showed you
+so that's you know i think a rather
+remarkable feature of this more rigorous
+viral equation of state is that it
+you know it does have the
+behavior that looks something like
+condensation but it appears at the
+spinodal
+so something that we did trying to
+understand this better we took our
+leonard jones model we went to high
+order we computed those high order
+coefficients
+we tried extrapolating them to even
+higher orders and what you find unlike
+the leonard jones model you don't get
+convergence to a van der waals loop um
+basically the spinodal doesn't exist as
+you add more and more coefficients the
+system knows more and more that the
+liquid is there and it's not going to
+um you know
+you know go to a spinodal it's going to
+go to something that's trying to
+condense so we're able through this
+extrapolation to get to
+um an estimate for the condensation
+point which unfortunately is very far
+off from the true binodal um
+but it gives an idea of the type of
+thing that we would like to be able to
+do
+all right so um that's the end of my my
+presentation i just want to point out
+that despite 80 years of history uh
+there's a lot that we still don't
+understand about the behavior of the
+bureau coefficients and the virule
+equation of state uh there's a pretty
+small community that's working on this
+in this direction
+i it appeals to me because it's a
+rigorous route a feasible route i think
+from ab initio to
+supercritical fluid properties
+convergence certainly is the primary
+limitation and this is exacerbated by
+association such as you have in water
+like to be able to work around that
+but as i said i think this is a viable
+route to first principles properties
+certainly is complementary to molecular
+stimulation particularly for small
+molecules
+so i just want to acknowledge uh various
+people who have worked on this
+particular aspect of the project andrew
+schultz uh is just an amazing amazing
+person very lucky to be able to work
+with him he contributes enormously to
+everything that i do and everything i've
+talked about here
+i have
+value colleagues at the rochester
+institute of technology who worked on
+the convergence issues with me
+the phd students of mine have worked on
+this particular project uh going back to
+jaen singh
+are listed here uh people in this that
+have encouraged this work
+alan harvey and mike moldover and i've
+also worked with richard wheatley who
+spent a bit of time here in buffalo
+working on the extension of his method
+to
+multi-body
+potentials
+okay so that's all i have to say i thank
+you for your attention and i'd certainly
+be glad to take any questions if there
+are any
+professor kopfke thank you so much for
+the presentation we are now open to
+questions if you want to participate
+please enable your microphone or write
+it down in the chat and we will read it
+also our youtube viewers can write it
+down too of course
+can i start
+yeah for sure professor
+uh uh
+dave uh as far as understood uh
+you can
+handle electrostatic interactions
+i'm sorry i didn't you can what
+as far as i understood you can handle
+electrostatic interaction yeah yeah
+long-range interactions right you don't
+need um
+yeah we don't do any e-walled or or any
+you know there's no long-range
+correction it's basically you you sample
+um you know there are complications you
+have dipoles it's sort of average to
+zero and uh we have to do special moves
+like we'll flip
+um molecules to try to to sort of
+you know capture both arrangements so
+that you sort of get that
+you know that decay and the interactions
+um you know more explicitly uh but you
+know there's it's um
+no special measures that are needed to
+handle
+electrostatics you know other than that
+i think
+interesting
+even for uh
+b
+eight or b seven is the same
+what you're doing
+yeah um
+you know the molecules will drift away
+you know they they can go far apart and
+sample configurations that are distant
+from each other uh and eventually they
+come back and this is all part of the
+the overall you know sampling uh that's
+done by you know the mayor sampling it's
+just and you know it's an important you
+know to the average it will we'll you
+know go and sample it
+okay uh carol wants you to
+to ask
+dave when you you were talking about uh
+how much error you get from neglecting
+this term and that term and this term
+and that time and you also talked about
+errors and experiment
+i didn't know how you knew what was
+absolutely right
+what were you measuring everything
+against in that part yeah uh well that's
+of course the problem with you know any
+type of you know physical inquiry is you
+know you you take your your evidence as
+best you can and you try to
+estimate you know how wrong you could be
+you know the the the people who develop
+the ab initio potentials they say you
+know we believe the energy is within you
+know some amount of the value that we
+are reporting you know and they have
+various terms that they realize they
+neglected or they didn't fully account
+for or or whatever and they think that
+they contribute you know no more than
+this amount
+and they include that with the energies
+uh that they report and in the models
+that they report they say the error is
+you know within two percent uh of this
+and we try to propagate
+to the properties um
+yeah you know it's not a it's not a
+rigorous straightforward way to do it
+because you know the errors are
+correlated the error the systematic
+error in b2 is going to correlate with
+the systematic error in b3
+um yeah
+you know but we do the best that we can
+to try to
+uh account for that um
+so that's how we get our errors and
+again the experimental people you know
+they're of course very astute and they
+understand you know where they're making
+compromises and
+again they don't get data to infinite
+number of digits you know they get to so
+many and they understand that
+you know they're things that are
+neglecting that contribute
+that they're leaving out or not
+accounting for as well as it could
+and they try to present you know
+uncertainties that are
+of course the stochastic uncertainties
+are pretty easy you might say to do you
+just repeat the the measurement or the
+experiment over and over and see how
+much it changes
+but of course systematic errors are more
+insidious
+you know as you point out you don't have
+the true value to compare to so you try
+to identify where you could be going
+wrong
+and you know you either decide to fix it
+or you decide that okay well that's
+there and it's going to cause this much
+error in my my measurement and they
+report that with with their data
+okay okay
+thanks
+no professor richard elliott please
+hi dave good to see you richard good to
+see you
+so you you
+went through
+description of how myers sampling works
+and i thought i heard you say there's
+some relationship between the way that
+works and the way mbar works and i was
+wondering oh uh well yeah yeah
+how can you elaborate i shouldn't call
+it m bar but it's bar i if i said n bar
+i misspoke but it's just bar
+you know ben it's acceptance ratio
+so could you elaborate on that some more
+and help me understand better sure um
+so you know we we always compute the
+variable coefficients relative to some
+reference so typically we'll use hard
+sphere variable coefficients or some
+cluster integral for hard spheres
+as a known and just like with free
+energy calculations you're computing an
+integral
+relative to some other integral or so
+free energy relative to some other free
+energy so you can get ratios of free
+energies uh but you know you have to be
+careful because these are subject to
+systematic uncertainties so the idea is
+you know with this a and b so the idea
+is you you sample in b
+and you say well how often am i in a
+you would find that it's sort of this
+fraction that's given by w and if you
+just took that as your your your
+you know ratio well you you never sample
+over here so you know this part won't
+you know be contributing and you'll get
+an error
+your fraction will be off
+we call it overlap sampling but again
+it's more generally known as is
+bennett's method or venice overlap than
+its acceptance ratio but the idea is you
+you don't just sample b but you also
+sample a and you look at how often that
+overlaps would be
+you know it's easy to look at sort of
+geometrically sort of the ratio of w to
+a and the ratio you can get you know
+correctly and you can get the ratio of w
+to b by sampling b because none of w is
+outside of b by definition
+uh so those two ratios uh together will
+give you the ratio of b to a
+and you know that's
+basically the idea of venice method
+and we use that uh we sample do a
+simulation of hard spheres but we also
+do the simulation of the target system
+and we you know measure the fraction of
+the time that we're inside of w for both
+simulations and you know that's how we
+get um
+you know the the the true ratio of the
+integral we want to the integral that we
+know
+and it's just made a little bit more
+complicated by the fact that we've got
+an integrand that can be negative
+but you know it's kind of
+straightforward to to handle that
+just one point of clarification uh
+you say you're doing two simulations but
+they're actually concurrent right you're
+using um yeah i think typically we do
+them concurrently you know certainly in
+the example that i showed you
+they were concurrent you know the idea
+the the reason part of the reason is
+that you know there there's some tuning
+that needs to be done
+so i'm just drawing this w but obviously
+you know there's a factor
+that that enters into defining w and
+that w depends on the ratio of b to a
+itself the the thing you're trying to
+compute so as you improve your estimate
+of it
+at least you do some preliminary
+calculations and um
+you you basically get your estimate of
+the free energy and that helps you
+define you know what w is and again
+that's how you know you do mbar or
+whatever you know your
+mbar typically you just generate all the
+values and do it afterwards but
+here we we will um
+you know we only have two systems and
+you know we can run them both and you
+know do the tuning and then once you've
+decided okay this is it you you
+then start collecting your data
+well you know we there's actually an
+optimization as well um you know the
+hard sphere calculation typically will
+converge or give you results to a given
+precision very quickly
+so um you know you might spend you know
+99 of the time simulating b and just a
+little bit of a and again andrew as you
+know you know works out all the details
+masterfully uh to find the best way to
+implement that and um you know so he's
+getting the errors from you know both
+sources of simulations and says okay
+well we have enough of this we're going
+to spend more time on that and you know
+we'll optimize the allocation of the
+resource between the two
+so when i when i said concurrent what i
+had in mind was
+you use the same exact positions over
+again in is as part of the calculation
+as you're doing it on the fly but it
+sounds like you're saying yeah we do two
+simulations concurrent they're on
+totally different processors
+which way of concurrent are you saying
+i'm saying you've got two independent
+simulations running at the same time
+whether you have two processors or one
+or however you you know do it on
+hardware that's you know a detail but um
+you know they're both running at the
+same time okay so you're not using the
+same coordinates no no they're both you
+know sampling a and sampling b you know
+as you you saw in this um
+you know cartoon here
+um you know this is a reference
+configuration and
+i remember um
+get confused over which one is the um
+yeah this one
+right so you know this is a target
+configuration and you know that's hard
+sears and they always overlap whereas
+no sorry that's the water and they don't
+always overlap if i could find there's
+one
+there so
+you know this is water and they don't
+have to overlap but if these were hard
+spheres you know like say the red were
+hard spheres and again they're drawn as
+water but they're hard spheres
+um you would never see this in the hard
+sphere calculation because the hard
+spheres
+basically have a major function of zero
+if they aren't overlapping so they
+always have to overlap whereas you know
+the water they can go farther away and
+the mayor function decays to zero as you
+go far away but it's not straight zero
+just as soon as you they fail to overlap
+okay i think i understand a little
+better thank you okay good i'm glad you
+asked
+so does anyone want to ask another
+question
+can i ask a
+classification
+for sure professor
+can you hear me
+yes i can
+thank you for the great talk process
+coffee carefully calculating variant
+especially as an applications map
+your calculations on methane and co2
+you
+went up to
+35 megapascal
+is that right
+uh sounds right yeah uh we basically
+were
+chose conditions that were based on what
+was reported in that molecular
+simulation paper
+uh of course you
+did not worry about we already said
+about condensation
+right yes
+these are all super critical
+temperatures
+but even at that temperature say
+some temperatures like
+350 kelvin
+if you go to
+70 megapascals
+multiple phases may form it's
+experimentally we see this very often
+yeah i i i don't know again i think
+they're both co2 and methane are both
+super critical i believe at these
+you know unless they're forming a solid
+something i i wouldn't expect them to
+condense you know because that's what
+supercritical means um
+you know temperature wise uh the
+temperatures are super critical
+so yeah definitely as you go higher it's
+going to break down um you know the
+you'll need either more turns in the
+series or or the series won't converge
+um you know this is you know part of
+what we
+want to get more understanding of but
+yeah i will not believe it is because of
+the method
+they do not place the molecules close
+enough
+oh no no what would that be
+no no it it's nothing wrong with the
+viral coefficients or
+you know it is just
+you know as you go to higher pressures
+you know the
+the unique interactions that eight
+molecules have that are not given by
+seven molecules and one
+somehow become relevant to the
+properties so you need to get b8 in
+order to get high pressure
+uh properties uh high density properties
+more to the point uh but you know each
+coefficient is is good you know it
+samples everything that it should and
+you know we are in fact overlapping
+completely you know in some cases
+because you know those are acceptable
+configurations where they're right on
+top of each other
+so it's not like they they're they're
+missing that
+the other thing is
+the theoretical mixing rules for which
+burial coefficients are exact right
+right
+can this be valid again
+even if you have a
+three body potentials like you are
+saying or
+yeah so um
+again the nice thing about at least the
+thermodynamic level the mixing rules are
+exact you the the zero coefficient for
+b4 is given in terms of a bunch of other
+coefficients with mole fractions that
+are have the exact correct dependence
+um the thing that becomes more
+complicated though is you know each of
+those coefficients you know as as we see
+and get to the picture to draw you know
+this this configuration here so you've
+got um
+interactions between co2 and methane and
+you know in principle you need um
+uh an interaction you could have a pair
+or maybe three body interaction that
+covers you know two two methanes and a
+co2 or a methane and one methane and one
+co2 and these are sort of the the mixing
+rules and often you'll use you know
+laurence bertholo or something like that
+but i'll just point out that in
+principle you can compute those abenitio
+as well and that's in fact what
+um uh richard wheatley did and the the
+study that i just pointed to that was
+came out this week uh he actually
+computed
+three body interacts pair and three body
+potentials for the various you know two
+co2s and an argon and and two argons in
+the co2
+those are the the other three body
+interactions that are needed other than
+three co2s and three argons
+in order to you know to get all the the
+multi-body interactions but you you can
+say okay i'm going to truncate the the
+potential at
+three body and you can still get a fifth
+viral coefficient from that
+you're going to be neglecting four and
+five body interactions and that's
+probably quite reasonable because he
+actually showed how much the three body
+interactions contributed you know the
+difference between just doing two and
+three body interactions he showed it
+wherever you choose to stop your
+multi-body potentials and probably three
+bodies as far as we'll typically want to
+go but three body does matter
+for the level of accuracy that we'd like
+to get to
+but he did that you know he did the um
+the calculations for
+you know the the various sets of
+you know ident molecules and and you
+know got potentials for for them that
+were not
+just based on lorentz bertholo or other
+types of mixing rules like that they
+were ab initio as well
+the last clarification
+put out a history of three body
+potentials up to two thousand
+a long time ago in the 40s there was
+color
+ets
+or the three body potential for
+hydrogen gtm things like that that type
+of potential seems to be
+is it very different from
+what you have your
+mould over the potential or it's very
+similar
+they're very only in angles
+yeah honestly i i'm not that steeped in
+the various molecular models you know
+these are the ones these were the
+state-of-the-art uh they are the state
+of the art right now for helium
+and again this is all helium
+uh and uh these uh calculations actually
+i don't remember which
+you know the hurley and moldova you know
+i guess had a potential um
+from uh 2000 and you know they computed
+b2 for it
+and you know this is something i guess
+part of the big message from this is you
+know people are developing potentials
+particularly ab initio potentials i
+really want to encourage them to compute
+viral coefficients because that's a
+really you know
+great way to validate or invalidate your
+potential because you can compare it to
+experiment and if you get the
+temperature dependence uh virile
+coefficients right you know b2 and
+particularly b3
+you know that says a lot about the
+correctness of your model and i've
+looked at one or two
+sort of abenitio based models
+things that aren't based on very much on
+fitting to experiment and their zero
+coefficients are awful uh we're quite
+disappointed i i just plan to compute
+all these variable coefficients from
+these models that were out there and we
+did the first one and just didn't agree
+with experiment at all
+so um you know we're realizing we we've
+got to do this um
+ourselves perhaps or find people to work
+with to do that
+the last comment we keep using starting
+equation
+where probably our first real
+coefficient is sufficient
+for our natural gas calculations we are
+happy with it
+what do you think of that why starting
+equation with only five real coefficient
+seems to work very well for a complex
+mixture like natural depth uh
+you said the starling equation for
+natural gas stopping stopping yes i
+you know it's 15
+yeah i i'm
+i don't know i'm not familiar with it so
+i i really can't comment but you know if
+it's fit to experiment um
+solid i think
+yeah
+i i mean you're not talking about
+carnahan styling for heart sphere you're
+talking about methane uh uh yeah i'm i'm
+not familiar with it well enough to be
+able to give you an intelligent answer
+about that
+thank you very much yeah thank you for
+your questions
+now professor peter cummings please
+hey dave
+great talk dave as always really enjoyed
+it
+uh i had a couple of
+questions or comments i guess one of the
+one of the comments and and i know you
+know this is that um the summation of
+was a really big deal in the latter
+statistical mechanics field for a long
+time you know people like tony gookman
+and so on
+where they would sum up these
+diagrammatic expansions to
+very high levels to try and
+calculate then the
+things like the
+critical exponents of the icing model
+and various other uh lattice models uh
+that whole game kind of got killed by
+the renormalization group
+because their interest was only in the
+critical point uh whereas obviously
+you're interested in much
+much more than just the critical point
+um but i just want to mention that
+the other thing i was going to say is
+there's a there's a cluster integral
+and maybe somebody asked this already i
+don't know i i couldn't hear everything
+because i was outside for part of the
+presentation but
+there's also obviously a cluster
+integral expansion for the pair
+distribution function
+that you could perhaps calculate through
+your money carlo technique have you
+thought about doing that and
+yeah early on we haven't done anything
+with it recently but
+we actually looked at trying to get the
+bridge function um
+calculations to compute the bridge
+function and trying to develop some
+um you know integral equation approach
+that sort of took the bridge function
+and input that and you know had some
+sort of um self-consistent way of of
+computing it but
+didn't get too far with it but it you
+know we did publish a paper i think on
+it but um you hadn't looked at it since
+you know if we were to you know instead
+of computing gr g of r of course you
+know i think you know the bridge
+function is more
+concise you know
+it contains the same information and you
+know that was the thing we had focused
+on
+but um yeah i haven't done it that was
+saint quack was the student of mine who
+worked on that so many years ago
+okay
+okay thanks dave great to see you oh let
+me just put a plug in this gaussian
+charged polarizable model
+due to peter and his collaborators which
+you know we did this calculations for um
+you know as i said it you know it's
+great to be able to compute viral
+coefficients to validate these models so
+uh this model was developed by peter and
+his colleagues and they didn't use any
+viral coefficients to uh to fit it and
+we went ahead and computed the bureau
+coefficients and they matched experiment
+beautifully so it was a nice validation
+of that model i know peter was excited
+when we were able to report that
+yeah i was very excited dave because it
+gave me a chance to it gave me a lot of
+credibility with uh annika sangers i
+talked about this at a boulder meeting
+and uh talked about how you know we use
+the gcpm model you then calculate the
+viral coefficients reconstructed
+equations of state
+and uh she was extremely impressed with
+that uh
+she gave you actually not she's never
+been particularly impressed i think with
+simulation but she was impressed with
+this model uh
+when when it was put within the burial
+coefficient hi carol i see you there
+i see adam behind you too
+[Laughter]
+but anyhow thanks dave thanks for i i
+put i i put a thumbs up when you were
+showing the gcpm model because i
+appreciate you uh
+uh pointing out that work thanks a lot
+bye dave okay
+i just noticed andrew masters was in the
+chat but he had to leave um
+anyway he was another person who's done
+a lot of work with burial coefficients i
+said it's a small community um and
+andrew masters is one of the ones who's
+you know definitely integral to that so
+i i didn't notice him in the audience
+obviously but i was happy to see you
+it's here again sorry i was able to
+communicate it's a small community of
+two three four five yeah right
+our time is almost over i want to thank
+you everyone for the discussion and once
+again thank you professor david kofke
+for the presentation
+yeah thank you for the invitation i was
+really pleased to be able to present
+this work
+um our seminars are being recorded and
+posted on youtube of course after the
+invited lecturers agreement please check
+them out on our youtube channel
+and this is our organization committee
+we are responsible for inviting and
+communicating with the lecturers we also
+handle social media video editing
+certificate writings and hosting
+thank you all for being here today and
+see you next thursday

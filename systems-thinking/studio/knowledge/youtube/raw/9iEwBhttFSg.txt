@@ -1,0 +1,345 @@
+Open Claw 4.26 just dropped, and this
+one fixes something that's been
+frustrating people for months, which is
+local AI models. And now they finally
+work the way they should. So, Ollama
+just got a massive overhaul. Google live
+voice sessions are in the browser now,
+and there's a brand new migration tool
+that lets you bring your entire Claude
+code or Hermes agent setup straight into
+Open Claw with one command. This release
+has 198
+contributors. Let me show you what
+matters. Let's start with the thing most
+people are going to care about. If
+you've been running local AI models
+through Ollama on your own computer, no
+cloud, no API, etc., Open Claw 4.26 is
+the update you've been waiting for.
+Before this update, Ollama inside Open
+Claw was messy. Model names would break
+if they had a provider prefix attached.
+Discovery would scan your whole network
+even when you only wanted local models.
+Custom remote Ollama setups wouldn't
+connect properly. Timeouts were wrong.
+Thinking controls didn't work. Tools
+would fail.
+Context windows would default to the
+maximum size even when you didn't need
+it.
+And that would eat up all your RAM. And
+the memory embedding system used the
+wrong endpoint entirely. All of that
+should now be fixed. Let me run through
+what actually changed. Ollama now strips
+custom prefixes before sending requests.
+So, your model names work clean.
+Discovery only runs when you actually
+opt in. No more random scanning custom
+remote Ollama setups work properly,
+including cloud-hosted ones. Timeouts
+follow your config instead of hitting
+defaults. Thinking controls map
+correctly to Ollama's native format.
+Tools get registered based on what your
+model actually supports. Context windows
+respect your model settings instead of
+forcing maximum VRAM usage. And memory
+embeddings now use Ollama's proper
+API embed endpoint with batched input.
+So, if you're running a local setup on
+your laptop or a small server, this
+changes everything. Your local models
+use less memory. They respond faster.
+Tools actually work and you stopped and
+you stop hitting random errors that made
+no sense before. And it's not just
+Ollama's, all local OpenAI compatible
+providers got better. That means LM
+Studio, vLLM, SG Lang, they all benefit.
+Custom providers with just a base URL
+now default to the right adapter
+automatically. Loopback connections are
+trusted without extra config. Timeouts
+flow through one setting instead of
+hitting five different defaults. And
+there's a new diagnostic that tells you
+when your local model runs out of RAM
+instead of a mysterious failure. So, you
+get a clear message about what actually
+happened. For anyone running LM Studio
+specifically, loopback, LAN, and
+Tailscale endpoints are trusted by
+default now. You can leave the API key
+blank during setup for unauthorized
+servers. And quant suffixes, like for
+example @IQ3_XXS,
+stay intact instead of getting stripped
+from your model names. Now, let me tell
+you about the migration tool because
+this is big, too. If you've been using
+Claude Code or Hermes Agent and you want
+to move to Open Claude,
+there's now a single command that
+handles it. Type open Claude migrate and
+it does the work for you. It brings over
+your configuration, your memory
+settings, your model providers, your MCP
+server connections, your skills, your
+commands, even your credentials where
+supported. It shows you a plan first so
+you can do a dry run to see what would
+change without changing anything. It
+makes a backup, too, before it touches
+anything and it works for both Claude
+code and Hermes agent setups. This is
+huge because one of the biggest reasons
+most people don't switch tools is the
+setup. Nobody wants to rebuild
+everything from scratch. Now you don't
+have to. Your existing setup transfers
+over. Your workflows keep working. You
+just get all the extra stuff OpenClaude
+gives you, which is multi-channel
+messaging, voice agents, browser
+automation, all of it on top of what you
+already had. Now the voice story in
+OpenClaude 4.26 keeps getting better,
+too. So Google live voice sessions now
+work in the browser through talk mode.
+That means you can have a real-time
+voice conversation with your agent right
+from your web browser. It's powered by
+Gemini live, two-way audio, tool access
+mid-conversation, and the agent console
+feature from last update works here,
+too. So your voice agent can now pause,
+ask a full OpenClaude agent a question,
+and come back with a real answer.
+There's also a new back-end relay for
+voice plugins. So if you're building
+voice experiences that need server-side
+processing, for example like a business
+phone line, the gateway can relay audio
+between the browser and your voice
+provider without the browser needing
+direct access. If you want help setting
+all of this up, local alarm models
+migration, etc., come check out the AI
+Profit Boardroom. We run four coaching
+calls every week where members bring
+their exact setup and we walk through
+how to make it work. Right now a lot of
+members are migrating between AI agents
+using stuff like Hermes, Claude code,
+OpenClaude, etc. We've got step-by-step
+guides for all of them. We've got 30-day
+roadmaps for OpenClaude, Hermes, and
+we've got full courses, too. Daily
+tutorials of new features and 2,900
+business owners in there right now
+building with OpenClaude, Hermes, and
+other AI agents. And remember maps so
+you can connect with people locally.
+Link in the comments and description or
+just go to the aiprofitbot.com
+to get access. So, let's come up with
+the rest of the features now and look
+through the others one by one. So, we've
+got Matrix which got a one command
+encryption. So, if you're using Matrix
+for secure messaging which a lot of
+privacy focused people do, you can now
+set up end-to-end encryption with one
+command which is open claw Matrix
+encryption setup. And that handles
+basically the whole thing for you. A
+wolf as well key bootstrap recovery,
+verification status all from one flow.
+Before this was a multi-step manual
+process. Now it's simple. QQ bot got a
+full group chat support. So, if you're
+doing business in China or serving
+Chinese customers, this is relevant to
+you. Your open claw agents can now join
+QQ group chats with history tracking,
+mention detection, per group settings
+and file uploads. That's a whole new
+channel for reaching customers. And
+Tencent's Yanbao platform is now in the
+official channel catalog. So, you can
+connect your open claw agent to Yanbao
+for both DMs and group chats. Cerebras
+joined as a new bundle provider, too.
+They make custom AI chips that run
+models extremely quickly.
+If you've got a Cerebras account, you
+can now use their models through open
+claw natively. Memory search got a nice
+improvement for anyone running a llama
+embeddings locally. Specific models like
+Nomic embed text, Quinn 3 embedding, and
+MX by embed large now get proper query
+prefixes. That means when your agent
+searches its memory, the search query is
+formatted in a way that matches how
+those models were trained. Better
+formatting means better search results.
+Small change, but it's a big impact on
+accuracy. And there's a new option for
+asymmetric embeddings. Some embedding
+models use different formats for queries
+versus documents. OpenGo 4.26 lets you
+configure that properly. So, if your
+embedding provider expects queries
+formatted differently from the documents
+it indexed, you can set that up. This
+was a limitation that made some
+embedding setups produce bad results.
+That is now fixed. And the compaction
+system, which compresses long
+conversations so your agent stays within
+its context window, got a new safety
+trigger. So, you can now set up a
+maximum file size for your conversation
+transcript. When it gets too big,
+compaction kicks in automatically.
+Before, compaction was based on token
+count, which meant that your actual
+files could grow huge before anything
+happened. Now, you can set a byte limit
+and keep things under control. And
+there's a fix with anyone with
+long-running agents. Compaction
+summaries were building on top of old
+summaries, like a photocopy of a
+photocopy getting blurrier every time.
+The new system recreates summaries from
+the actual conversation, and it checks
+the quality of those summaries by
+default. So, your agent's compressed
+memory stays accurate many rounds of
+compaction. Log reduction got extended.
+In the last update, they added
+pattern-based reduction for log files.
+OpenGo 4.26 extends that to session
+transcripts, too. So, if you've got
+sensitive data in there,
+you can actually configure this to hide
+it and keep it more private. For any
+business handling customer data, this is
+probably essential. Session resets
+actually work properly now. This has
+been a long-standing issue. Background
+tasks, heartbeat checks, cron jobs,
+exact completions were accidentally
+keeping sessions alive past every set
+time. A session that should have rolled
+over at midnight would stay alive
+because a background check at 3:00 a.m.
+counted as activity. That is now fixed.
+Background tasks are now tracked
+separately from real user activity.
+Daily and idle resets happen when a
+session does reset, stale notifications
+from the old session get cleared. So,
+your fresh session conversation starts
+clean. Chrome jobs got a bunch of
+reliability fixes, too. So, interrupted
+jobs are now properly recorded as failed
+instead of silently disappearing.
+One-shot jobs that get interrupted by a
+restart are disabled so they don't
+accidentally run twice. And there's a
+better classification of job outcomes.
+Successes, quiet replies, model
+failures, and delivery results
+are all tracked more accurately now. The
+install and update process keeps getting
+smoother. There's a new approach for NPM
+updates that installs into a temporary
+location, then swaps it into place. So,
+if something goes wrong during the
+update, your existing install stays
+intact. Before, a failed update could
+leave you with a mix of old and new
+files that broke everything. Docker got
+a fix that a lot of people were hitting.
+It's basically fresh Docker Compose
+setups would fail because the home
+directory didn't have the right
+permissions. Open Core 4.26
+pre-creates the directory with the right
+ownership, so your first Docker run
+should actually work. And there's a fix
+for a sneaky problem on macOS. If your
+launch agent, the thing that keeps Open
+Core running in the background, gets
+into a split brain state where it's
+installed but not loaded, Open Core now
+detects that and fixes it. Before, you'd
+have Open Core installed, but it
+wouldn't start and the status check
+would say everything was fine. The
+browser automation also got smarter
+about stability. So, if Chrome keeps
+crashing when your agent tries to launch
+it, Open Core now stops trying after a
+few failures instead of spawning Chrome
+over and over in infinite loop. And
+still, browser tabs from old sessions
+get cleaned up when the session
+restarts. So, you don't end up with
+dozens of orphaned browser tabs from
+previous agent runs. 198 people shipped
+code for Open Claw 4.26. That's nearly
+200 developers working on one single
+tool. The open-source agent behind this
+is one of the most active projects in AI
+right now. And the direction is clear.
+Local models are becoming the
+first-class citizens. Voice is getting
+more natural, more capable. Migration
+from other tools is getting easier. The
+rough edges that used to make Open Claw
+frustrating for non-technical users,
+they're still there sometimes. So, just
+be aware of that, all right? Always
+create a backup. Always be prepared to
+restore that backup. If you don't feel
+like you need to update to the latest
+one,
+I In some cases, you don't need to,
+right? Just be aware of that as well. AI
+models through something like Open Claw
+before were pretty hard to configure.
+Now, it's getting a lot easier,
+especially with local stuff. And if
+you're coming from Claude code, one
+command can bring your whole setup over,
+which is pretty nice, as well. So,
+that's the shift. The barrier to entry
+drops with every release. And the people
+who start building now with local
+models, with voice agents that sound
+human, with workflows that handle leads
+and content and customer messages,
+they're the ones who won't be scrambling
+to catch up later. Come join us in the
+AI Profit Boardroom. We're covering all
+of this sort of stuff. We've got courses
+on AI agents, Hermes, Open Claw. We've
+got new daily tutorials on all this
+stuff. We're walking through the new
+setups inside the AI Profit Boardroom
+weekly coaching calls. You can jump on
+those calls, ask questions. You can meet
+people from the map inside your local
+city, and you can connect with me
+personally inside there, as well. Link
+in the comments and description, or go
+to the AI profitboardroom.com. Thanks
+for watching. I'll see you in the next
+one. Cheers. Bye-bye.

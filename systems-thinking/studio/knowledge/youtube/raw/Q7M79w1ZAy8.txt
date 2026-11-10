@@ -1,0 +1,1613 @@
+So, let's get started, guys.
+So, the topic for today's lecture is
+power law and scale-free networks.
+We touched upon this topic last time.
+And now we're going to have a deep dive
+and try to understand what it actually
+means, what this power law is about, and
+why it is so special.
+So, you know, the story of power law
+goes back actually just you know, 20
+years ago.
+And it started with the discovery of the
+distribution of node degrees on the web.
+In fact, there were there were two
+groups that analyzed that. The one was
+by Andre Broder, and he worked for IBM
+back in that time. And the other one was
+the group by Barabasi Albert and and and
+his students.
+And Andre Broder, he was actually
+studying
+well, internet
+as it appeared back then.
+And when I was in Silicon Valley, a lot
+of companies were building web crawlers
+to do web search.
+At the same time, guys, in Notre Dame
+University, Notre Dame, which is
+um
+Albert Barabasi and his students, they
+were actually just doing research on
+this.
+And
+you know, the the initial concept, the
+initial idea was that well,
+because the World Wide Web, it's sort of
+being organized by random people, you
+know, putting certain connections to
+pages.
+So, the expectation was that
+it would be quite random.
+And so, it can be modeled by a random
+graph.
+And we're going to talk next time about,
+you know, how the fact that you know,
+there is a random graph,
+how that fact
+creates
+a Poisson distribution.
+But again, you know, Poisson or
+Gaussian, those distributions are
+usually associated with
+you know, all kind of random processes.
+And so the expectation was that the node
+degrees will be also distributed
+as a following Poisson distribution.
+With some sort of average node degree,
+sort of average degree of a web page.
+And then some, you know, pages with a
+higher or lower degrees.
+And I think one of the goals was
+actually to find the sort of this
+average node degree
+you know, for the web page.
+And then to the big surprise
+of the researchers, they found out that
+if you look you know, if if you if you
+plot the out degrees as a function of in
+degree I'm sorry, if you put the number
+of pages as a function of in degree or
+as a function of out degree,
+you all of a sudden
+you know, instead of having
+that
+that that Poisson type of distribution,
+you'll be having this kind of pictures.
+Now, this is a log-log scale and we'll
+discuss in a minute why that scale is
+preferred, but if you see here on the
+horizontal axis, this is logarithm of of
+a node degree and this is how many
+pages. That's sort of the overall, you
+know, the the very beginning. And people
+previously, I mean, obviously networks
+with this type of distribution existed
+before, but you know, people never sort
+of paid a lot of attention to it and on
+one hand, on the other hand, um
+you know, people never had such big big
+networks at their hands to actually
+notice
+such a you know, difference in behavior.
+And we're going to learn in a few in a
+few minutes sort of what make those
+networks this network so special and why
+we call them scale-free.
+So, just a quick reminder, we talked
+about it last time
+and I hope you remember it.
+Um, that
+um, you know, when we talk about
+networks
+and we talk about nodes and there is a
+node degree, which is just a number of
+nearest neighbors and the degree
+distribution is calculated as a ratio of
+the number of nodes of that particular
+degree divided by the total number of
+nodes. Right? And, uh, sort of that's
+what it is. Um, it's a discrete
+distribution because obviously nodes,
+you know, have discrete values.
+Um, node degree is a discrete number,
+right? And so, um, that's why it's a
+discrete distribution.
+Now, you know, you you you pick up, uh,
+a network and you will actually see a
+lot of this network. This is called, uh,
+karate club, Zachary karate club, um,
+network and this is a degree
+distribution for this network and it
+just, you know, by looking at this,
+actually this one is plotted, um, on on
+the, um,
+y-axis, I I put I don't put the
+distribution. It's actually just a
+number of node, nodes. Um, you can, you
+know, do it that way or you can
+actually, um, put, you know, if you want
+you can run your normalize and put
+probabilities. But right now this is
+just, number of nodes. So, there is one
+node with with degree one, there are um,
+you know, 10, actually 11 nodes with
+degree two and so on. That's how you
+read. And then there is, here, um, there
+is one node with degree 16 and one node
+with degree seven, degree 17.
+So, it's quite obvious.
+Okay.
+Um
+So, moving ahead, um
+Doesn't let me do it.
+So, if I take a bigger network,
+for example, network like this, and it
+doesn't have to be connected. I and it
+looks like a mess, so it's actually
+pretty hard to analyze it this way. But,
+if you look at it, um you know, we can
+plot the degree distribution, and again,
+um you will have a
+you know, here it's on on the on the Y
+axis, this is a probability, on the X
+axis, these are um node degrees, and in
+that network, we actually have some
+nodes with degree 118.
+A majority of the nodes are low degree
+nodes. And you notice, um you know,
+very, very pronounced shape with a quick
+drop, um it's sort of exponential type
+of a drop.
+Now,
+keep looking um at this at this types of
+distribution, um
+you know, going for even bigger, even
+larger network, you realize that this
+type of distribution, um you you can
+only see it
+uh the the very, very steep drop, and
+you will not see anything, literally,
+right? It's a sort of elbow bent here
+on the left hand side, and you don't see
+anything. But, then for this type of
+distributions,
+what you do,
+um you take logarithm. And when you take
+logarithm, um you know, if if it is a
+pure power law, and as we discussed
+previously, power law means um here it's
+node degree to some power, and the power
+here is minus gamma.
+Uh then if you take logarithm of that,
+well, um you know, it's it's going to be
+a a straight line if it is plotted
+against logarithm of the degree
+um of the node.
+Now, there is one thing that um you
+know, that that that can look slightly
+strange on this picture.
+And um you know, if you guys look at
+this,
+that is picture on the on the on the
+right, does it make sense overall?
+Does something look strange?
+Does anything look strange?
+So, this part, right? You actually hear
+You see those steps, which kind of
+bizarre, right? On one hand. On the
+other hand, if you actually think about
+what this means,
+um that's the way it actually should be
+because on the Y axis, we're plotting
+probability of a particular node degree.
+And since node degrees are integers,
+right? And this probability is really
+just the number of nodes.
+The probability is the number of nodes
+of the degree, right? Divided by the
+total number of nodes. So, this is
+really um you know, it
+it's normalized integers. And they start
+with if there is an um
+only one node with a degree one, and
+then there is a node with and then there
+are two nodes with some other degree and
+three nodes of another degree. Well,
+then you will have here 1 2 3, etc.,
+right? And then it is normalized to be a
+probability. And so, what this means is
+that we have literally one node with
+degree probably, I don't know, 100 or 20
+and um another node with degree 140 and
+then one node with degree, well,
+somewhere close to 200, probably 170.
+And then we have two nodes um with
+degree, whatever the degree is in here,
+and also two nodes with a little bit
+higher degree, etc., etc. So, um
+so, when you plot this that that this
+type of data, that's what it looks like.
+Okay?
+if if um
+this was a perfect world and if it was
+really pure power law distribution that
+is that you can describe by by the log,
+well,
+you know, it would be a straight line.
+Though we realize though but you know,
+if you try to draw a straight line,
+well, there are multiple ways of doing
+this in here.
+And later on in a lecture, we'll find
+out which one is better, right?
+Uh but if I just plotted this way, it's
+actually very hard to
+map and match some straight line and so
+it's not obvious
+what gamma coefficient is going to be
+for this picture. But that's something
+we're going to learn how to deal with.
+So.
+Um and here I just zoom in into that and
+into the same distribution that I just
+show you show you showed you in the
+previous slide so you can see that every
+node every point here every point
+corresponds to
+you know, the number of of nodes um
+with with certain node degree.
+So, let's see um
+how we can actually represent this
+distribution.
+Again,
+you know, in in real life, K here is um
+K here is a node degree.
+And so, um it it's it's a natural
+number. Um gamma is a real number and so
+PK
+um it's just you know, C where C is a
+some normalizing constant because P
+we want P to be a distribution, right?
+So, there's some normalizing cons
+some normalizing constant. Um and K to
+the power minus gamma. And yes, if I
+take logarithm, it's going to be a
+of P of K minus gamma log K plus log of
+this constant.
+So,
+in order for P of K to be distribution,
+we need to normalize it. So,
+normalization means that the sum of
+probab- of of P of K's or probabilities
+of nodes to be of certain degree has to
+be equal to one. Well, then we do this
+summation and um this sum K from one to
+infinity K to the power minus gamma has
+a name. It's called uh Riemann zeta
+zeta function, right? And so, um that's
+just sort of the way it is defined.
+And then we can just write a concise
+form P of K as K to the power minus
+gamma divided by Riemann zeta function
+for that K for that gamma.
+All right. Now, this is sort of you
+know, very straightforward and um with a
+discrete distribution, that's what you
+get.
+Now, the problem um of working with this
+as is is that
+when you have summation,
+it's actually very hard to, you know, do
+you know, actually calculate those
+things, right? It's much actually easier
+to work with integrals instead of
+working with sums. And we're going to
+explore the properties of the net- of of
+of uh
+um the the power law networks actually
+through the what's called continuous uh
+representation. So, the idea is that and
+and and this is not sort of unique for
+the for for power laws. It's quite
+common way to deal with with the
+problems where you have sums is
+um instead of talking about a discrete
+distribution,
+we for a second going to assume that K,
+the node degree, can actually take
+continuous values,
+right?
+Can be a real number instead of
+instead of discrete number, instead of
+integer.
+And so, that's going to help us to
+understand better properties of this
+All right. So now look, if I
+if if we
+do this
+um then
+So that's a distribution, right? It's
+it's sort of the same. But then for
+normalization, instead of using
+summation, we put an integral, right?
+Because now K can take um any real
+value.
+Um and then something you need to also
+we need to um
+pay attention to is that we actually
+going to start with some minimum value
+K. Well, why minimum value K? Well,
+because again in you know, sort of if if
+it is
+you know, real network, well, you start
+from K most likely equal to one, right?
+If you have nodes with a degree one. Um
+and we're not taking into account
+disconnected nodes, or whatever the
+minimum
+uh node degree present in the network.
+We also need to have this from the
+mathematical point of view that because
+um you know, we have here K to the power
+gamma, you know, K equal to zero which
+just doesn't work here, right? It
+diverges.
+So then we can actually normalize, we
+can calculate normalization factor,
+right? And this um normalization
+constant uh will be gamma gamma minus
+one, and will depend on this minimum
+value that we have in the network. And
+so then we can represent um this power
+law
+um through this normalized probability
+distribution function.
+All right. So you might actually ask, so
+why bother? Why
+why we even looking at this? Um how is
+it helpful?
+Let's take a look at uh you know, in a
+few following slides.
+So what I what I have on the left hand
+side
+um and I showed this picture before.
+Um on the left hand side we have an
+example of this Poisson network or the
+network that has been created by just
+randomly connecting nodes with edges. On
+the right hand side we have this power
+law degree distribution. Right?
+And um
+if I look um
+at at the at the drawings um then uh you
+know, the dark dark color purple color
+in the power law degree distribution and
+green this is Poisson.
+And what you can easily notice of course
+that you know, on on those left hand
+side and um this is sort of obvious, you
+know, on this side
+you know, we clearly
+have many more nodes with low degrees
+than Poisson distribution. Right?
+Um but this is not the most striking
+feature. The most striking striking
+feature is actually hidden in here in
+this tail
+which we don't hear on this picture, but
+if we look at the logarithmic scale, we
+clearly see it
+for uh you know, power law
+we do have
+for large degree nodes
+we have much higher probability of the
+existence of this those nodes compared
+to Poisson.
+Now, why is this important? Well, um
+because
+when we have larger graphs, this becomes
+extremely obvious. Let's say if we look
+at um the graph of the size of the
+internet and which is at this moment is
+probably like around trillion nodes,
+which is 10 to the 12th.
+So, if we look at that size
+um then within the
+with Poisson distribution
+um the probability for example of having
+of node um of size
+100, right? So, which is not that large,
+right? It's just 100 connections. It's
+actually like around 10 to the minus
+four.
+Now, if I kind of continue
+this down, the probability to have node
+of size of 100 with Poisson distribution
+is in the fact 10 to the minus 94.
+So, it's
+it's just not going to exist with that
+Um and, you know, if you want to
+estimate how many of those nodes, yeah.
+Well, there is their average number of
+nodes with the that degree
+or above, uh you know, multiply the
+probability by the size of of the
+internet, which is, you know, 10 to the
+12th. And if you get 10 to the minus
+four times 10 to the 12th, it's going to
+be 10 to the eighth number of
+um you know, web pages with a size of,
+you know, at least 100 links and more.
+Uh but in in Poisson distribution, they
+will just not exist.
+Sorry.
+And we do know Please repeat uh this
+thing with Poisson distribution. Why we
+use Poisson? Because
+uh
+as as I remember, it's we needed to say
+like the probability of
+happening something
+m times out of n. So, why we compare to
+Poisson?
+So, next time we're going to go into
+this in in depth in next on the next
+lecture, but the reason we're comparing
+to Poisson that because if um the
+network
+if the network is formed randomly,
+randomly means you have bunch of nodes,
+and then with some fixed probability,
+any two nodes are connected or not. So,
+pretty much the edges distributed
+randomly.
+Then, we're going to show next time that
+the degree distribution in that network
+will be Poisson.
+And that's why we're comparing it
+Poisson, and that's why people were
+expecting it to be Poisson.
+And the whole point here as it is not,
+it is very far from Poisson, and uh um
+there are, you know, in within with this
+power law,
+there is a pretty high probability
+of having very large nodes, while in
+Poisson, it is very, very small
+probability. And that's what this, you
+know, that's why I'm paying attention to
+this tail, right? That Poisson here
+decreases really, really fast,
+and just does not allow existence of the
+large nodes.
+Right?
+And uh again, you cannot see it on the
+on the on the regular scale, but it's
+very obvious
+um on logarithmic scale, right? So,
+Poisson drops much faster than power
+law.
+And again, we're looking at the Poisson
+because if you have
+nodes connected at random, then the node
+degree will be distributed by Poisson
+Make sense?
+Yeah, kind of.
+Okay. Well, next time uh we'll we'll
+talk about Poisson distribution, and so
+you will see yourself that uh you know,
+random networks, they gener- they are
+distributed at at the with a Poisson
+you know, can we actually, since now we
+know the distribution, the form of the
+distribution, and we know the numbers,
+right? Can we actually calculate some
+properties?
+So, one property we can actually
+calculate easily
+is um the size of the largest node,
+right? So, if nodes are distributed by
+Poisson I'm sorry, by
+power law. Well, actually well, by
+Poisson, too, but we're interested in
+power law. Um we can actually try to
+compute what would be the largest node
+degree in the network, depending, of
+course, on the size of the network,
+right? So, the bigger the size of the
+network, well, the larger nodes can be
+present in this network. And so, we want
+to estimate what can be the largest
+size. Well, the way to do this, uh you
+know, so, the simple way, the easy way
+to do it is to think about um again, the
+probability. And so, you know,
+probability of having a node um of
+degree greater than some maximum node
+degree, this probability is actually
+equal to the integral from the
+probability distribution from that node
+degree to infinity.
+Now, if I want to calculate the expected
+number, well, that's what it's going to
+be. If I want to calculate the expected
+number of nodes um having the degree
+more than than maximum.
+Um just by multiplying by the number of
+nodes.
+And let's say I want to, you know, I'm
+just saying, okay, I got I I want to
+have like the largest node possible,
+right? So, you know, it's enough for me
+to have one node of degree more than
+some maximum degree, right?
+then I equate it to one.
+And from this, and knowing having the
+the equation for the distribution, we
+can actually calculate um what would
+that maximum node degree be.
+And for example, for exponential
+network, or exponential, you know, like
+Poisson network,
+you we realize that maximum node degree
+can be estimated as what whatever the
+smallest is, plus logarithm of the size
+of the network.
+But, if we look at the power law
+network, the largest node degree will be
+connected with the number of nodes by
+this function.
+So, it is
+growing really fast with the size of the
+network, right?
+which is again very, very different
+compared to, you know, what you would
+expect um in the in the random network.
+Um if I look closer at this,
+you know, for the random network,
+the size of the network affects the size
+of the largest node degree, but very
+slowly.
+So, it's growing,
+you know, yes, the largest node degree
+will increase with the size of the
+network, but not very large.
+why would I put here n minus 1 as their
+reference of the maximum node degree
+versus the size of the network? What
+kind of network
+will have the node the largest node
+degree
+n minus 1?
+Complete.
+Uh I'm sorry, say it again. Uh complete
+network.
+Uh
+So, if we have like, say, uh
+you know, three,
+then
+you know, if you have three nodes,
+um then the largest node degree in this
+complete network will be
+you know, you connect it to everybody
+except for one, right?
+So, it can be complete network or it can
+be star network.
+but that's sort of what's maximum
+possible.
+the point here is a scale-free network,
+though being
+quite sparse, and we'll see that,
+have a still has the maximum degree
+growing very fast.
+Again, there is a difference here. In if
+you have a complete network,
+then, you know, every node degree will
+grow that fast, right?
+Uh but we don't have a complete network,
+And and so, this is a maximum node
+that's possible. And so, which means
+there are some special nodes whose node
+degree is growing very fast.
+I think good mental picture here is the
+celebrities, right? Think about, you
+know, Facebook or any other word like
+Twitter or whatever. Um there are a lot
+of people there. Most of the node
+degrees are small. Not many many people
+following just sort of random every Joe.
+But a lot of people following the
+celebrities. And so, in in with this
+type of structure, um some nodes have a
+chance to grow very, very large.
+If the connectivity is random, that's
+not going to happen.
+We're going to talk about the model that
+actually creates this phenomenon, uh you
+know, one of the models called
+preferential attachments.
+Um why those nodes actually accumulate
+um a lot of uh links
+and very high degrees. But we're going
+to do it in in in a couple of the
+lectures. Here the point is sort of from
+from observing the graph, you realize
+that in a power law networks,
+um the
+the degree of the largest nodes growing
+very fast and can be very large compared
+to um
+random network.
+Now, but that's not all. Um there are
+actually
+other very, very sort of specific
+properties, I would even say strange
+properties, that power law um
+possesses.
+So, um let's take a look at this.
+Well, this is our distribution.
+And well, we, you know,
+that sort of we have this restriction
+and that's normalization.
+Let's try with this distribution to
+calculate
+average node degree.
+I mean, you know, when you have a finite
+network, finite number of nodes,
+how do you compute average node degree?
+Well, you just take node degrees of
+every node, add them up, you know,
+divide by the number of nodes, that's
+Now, let's assume for a second that we
+have an infinite network, right? The
+network of the infinite size.
+Let's try to see if we can calculate
+average node degree here.
+And um what's going to be happening is
+um as we notice, for example, on on a
+random network, the maximum node degree
+grows very, very slowly with the size of
+the network.
+At the same time, in the power law
+network, it grows pretty fast.
+So, that leads to very strange behavior.
+It's It leads to the following
+situation. We take We can calculate
+average node degree, mean value, which
+is this integral.
+Right? Now, we take this distribution,
+plug it in.
+But now, you have this
+this integral.
+Um when will this integral converge?
+Uh when gamma is less than zero.
+Mm.
+Actually,
+if gamma is less than zero, right? This
+is negative, so it is becoming
+yeah. gamma squared and infinity it will
+diverge.
+So, what we need for this to converge is
+for gamma
+for this
+to be at least one.
+Because
+if it is So, if you take
+if you have
+say one over K,
+Then, what's the integral from one over
+K?
+Oh, come on. What What do you need to
+do? What function do you need to
+differentiate to get one over K?
+Okay, don't embarrass me.
+A logarithm. Don't embarrass me, people.
+Logarithm. Logarithm, right?
+It's logarithm K.
+Now, if I go to infinity,
+what's logarithm of of infinity?
+Infinity. It's diverging. So, if I take
+one over K,
+that integral diverges. But if I take
+one over K, for example, squared,
+then the integral will be equal to one
+over K and at infinity it is zero, so it
+converges.
+So, we need to make sure that whatever
+is here, right?
+Is greater than one.
+Um otherwise, it diverges. And so, gamma
+minus one to be greater than one, well,
+gamma has to be greater than two.
+Um that is sort of a little bit strange,
+right? Why would, you know, why would we
+care what happens when
+um the graph is infinitely large. It
+looks like a sort of math that, you
+know, we shouldn't care about. Well, in
+fact, you know, we we care about it. Um
+it leads to very to few very interesting
+properties. We're going to see them in a
+second. But before going there, um,
+let's look at the second moment. And the
+second moment, why do we need second
+moment? Well, because if I want to have
+a
+um,
+you know, look for the standard
+deviation, right? Um, then it is um, you
+know, difference between the the the
+squared first moment and second moment,
+And uh, well, you know, if you actually
+just follow the same logic as we just
+did before and we look at this integral,
+for this integral to converge, gamma
+actually has to be greater than three.
+Now, remember what gamma is. Gamma is
+this coefficient in the power law. So,
+pretty much what I'm saying, if if gamma
+less than two,
+well, the the the average really doesn't
+exist for large networks, which is
+bizarre,
+uh, but that's what it says, right? And
+if gamma is, you know, greater than
+three, then um, you know, fluctuation
+exists, but if less, they do not. So,
+there is something strange happens
+some strange some strange things
+happening
+you know, in in between gamma
+two, right? And gamma three,
+because in interval gamma from two to
+three,
+you know, this exists, but this does not
+exist, right? This diverges.
+Uh,
+it all diverges. Greater than three, it
+all converges, right?
+Um,
+we're going to explore this in a second.
+But just keep this in mind right now.
+So, what does it actually mean, right?
+on the previous slide, we looked at uh,
+you know,
+at the size of the graph going to
+infinity.
+Um, you know, in in real world, well,
+the size doesn't go to infinity,
+but you can take graphs with a with sort
+of increasing number of nodes, right?
+The graph can grow.
+Or you can take large and larger
+samples.
+And so, what this shows is the
+following.
+That, uh, for
+graphs, and here, you know, I I I copied
+this this, uh, figures from some other
+paper, and so this is gamma. This is our
+gamma.
+This is our gamma in the equation.
+So, when, um, gamma is three For
+example, here it's 3.1, which is, you
+know, gamma above
+three.
+What you have here is average,
+this thing, and variance,
+they both
+pretty much
+don't change.
+When gamma is in between two and three,
+which is here, it's 2.5,
+the average
+stays stable with the size of the sam of
+of the graph, but the variance
+increases.
+And if you look at the below, they're
+both increasing.
+Now, why is this important, right? What
+are the What What the hell does this
+mean?
+And why do we care that, uh, you know,
+this does not increase with with the
+number of nodes, and this increases?
+Well, the reason is, uh, is is the
+If, um,
+if we take
+And again, I'm coming back to this
+random network. If we look at the random
+network,
+and we look at the Poisson degree
+distribution, right?
+This is what it looks like. Sort of this
+nice
+you know, bell shape
+which really tells me tells us that
+there is a you know, the highest
+probability of a node to have a certain
+degrees here, right? This is average
+node degree.
+And all other
+all other nodes have degrees
+that you take this average, you know,
+plus minus
+sigma.
+You know, and that's what you usually
+get used to in in in pretty much in our
+everyday life, right?
+Um, you know, there is this average
+value and then there is this
+um, you know, standard deviation from
+it. You know, it is the left to the
+right, little bit larger, little bit
+smaller, but that's where all the data
+points are
+um, allocated, right?
+That's what you would expect from, you
+know, random graph.
+And so, which actually means there is a
+scale
+that exist there. The scale is that peak
+in the distribution.
+So, the scale can be, you know, 10 nodes
+and that means, you know, majority of
+the nodes have degree 10. There are some
+nodes that have degree maybe, you know,
+11, 12. Some nodes has degrees 6, 7, uh,
+but there are fewer of those. And so,
+there is this characteristic size which
+is, you know, 10.
+If you have a grid right, a lattice,
+perfect lattice, every node has a
+degree, for example, four, right? Every
+node is connected to you know, four
+neighbors. Well, the characteristic size
+is four, characteristic size there for
+the node degree.
+Uh, you know, we talk about the height
+of the of somebody in in um, you know,
+in in the class, well, the
+characteristic height, characteristic
+height will be, I don't know, 1 m 70 cm
+and everything else will be around it.
+So, there will be a scale. So, this 170
+will be a scale and then you can compare
+everything to it.
+Um, and that's what happens with
+Poisson.
+Now, with a random graph with a with a
+power law graph,
+that's not the case.
+Uh, with power law graph we just saw
+that, for example, when gamma is in
+between two and three, and I just that's
+why I pointed your attention to that,
+um, the average, you know, does exist,
+but then
+the fluctuation is is infinite. So, what
+it means is,
+you know, in plain English, well,
+there is no particular
+size with respect to which we can anchor
+everything else.
+And so, that's why it's called
+scale-free. So, there is no this peak in
+the distribution, there is no particular
+size which is common to all the nodes in
+the graph.
+There are nodes with low degrees, there
+are nodes with high degrees,
+um, but there is no this particular
+size, and that's why it's scale-free.
+There is no scale.
+And that happens,
+uh, because yes, you do have an average,
+but
+you know, node nodes with within a graph
+can be much much larger than that
+average, much much smaller, and that's
+okay according to the distribution.
+And so, the scale-free property comes
+exactly from this,
+uh, from from from from this fact.
+That's what it's called, right? That's
+why it's scale-free. So, it is
+scale-free because there is no scale,
+there is no, um,
+sort of
+every there So, there is an average, but
+degree with with respect to which most
+of the nodes have their degrees, right?
+So, the node degrees are distributed,
+there are nodes with large degrees,
+small degrees, but there is no
+characteristic degree,
+um, like you would have with Poisson
+Does this make some sense?
+So, that's what scale-free is.
+Now, what's interesting to observe
+um is sort of, you know, what happens in
+the real world, in the real
+um networks. Um there are a bunch of
+networks shown here, number of nodes,
+number of edges, you know, average
+degrees.
+And for some of them, you can calculate
+the you know, the the fluctuations,
+right? K out, gammas, and you realize
+that um
+you you're going to have, you know,
+pretty large
+K squared.
+it probably worth looking at this
+on on this on this picture.
+So, what I have here is on the x-axis
+is
+um node degree,
+K.
+Um average node degree.
+And on the y-axis, because it's a graph,
+right? And you know, we actually have
+these experimental graphs, they do
+exist. We can actually just take
+um and and calculate
+uh sigmas, right? Because, you know,
+sigma is defined as average K squared
+minus minus um
+uh K average squared. So, we can
+actually calculate it.
+Um excuse me, can you please
+let in one person? He's just He's just
+for fallen.
+He tries to get in. Yes, yes, sure.
+Guys, you wanted to ask a question?
+Okay, I'm sorry. I'm lost. Did you guys
+Did you guys want to ask a question?
+Mhm.
+All right.
+there was no question
+one someone was asking to
+let people here Ah, to let people in.
+Yes, we should waiting waiting room. We
+are we are in. Thank you.
+Okay. All right. Okay.
+Sure. All right. So, what I was
+stressing what I was saying then is that
+look
+here we
+you know, we we we can calculate the
+average. We can calculate sigmas because
+sigmas is just defined as average k
+squared minus k average squared. And for
+any real graph, we can actually just
+take and compute it, right?
+Uh just sort of by adding things up.
+Now, when we do this
+that's what we get.
+So, on the x-axis here
+we have average node degree.
+And on the y-axis, there is a sigmas,
+right? The fluctuations.
+In if the graph is um
+you know, regular graph or if the graph
+is um
+random like Poisson graph
+you will have this distribution um
+this you'll have sigmas of course much
+smaller than average k, right? And
+that's typically the case. So, you have
+um you know, the height um and then the
+height and and and within the within the
+class, the height will fluctuate. But,
+if the average height of an average
+person is, you know, 170, well, you have
+fluctuation plus minus 10 cm, right? Or
+maybe plus minus 20, but that's about
+it.
+What we observe in the real world
+networks is that, you know, you get, for
+example, you know, average node degree
+in the network is six,
+but um the fluctuation is 15, which is
+much larger than six, right? Which is
+bizarre. Because you will get uh then it
+means, you know, you might if if
+distribution was Gaussian, you would you
+would get like negative node degrees. Or
+you can have an average node degree like
+four, and then um in the worldwide web,
+you get, you know, up to 40
+fluctuations, if you just calculate the
+fluctuations. So, again, this is this
+this sort of strange pictures they
+happen because um the distribution is
+not Gaussian, and you cannot, you know,
+the the the sigmas here, they really do
+not make any sense. And that's again uh
+this notion of scale-free. So,
+um K is usually scale,
+uh because you have those sigmas, and
+all the node degrees are around this K
+average. And what this shows that in the
+real world network, it's not so, and
+that's why there is no scale there.
+Um you know, we we saw those pictures
+before. Now, um this is quite also
+interesting discussion. Um you know, 20
+years ago,
+and when you know, Barabási was was
+making, you know, his first papers, and
+people were studying this,
+um there was a lot of discussion about,
+okay, here is our scale-free network,
+right? This is a straight line, you
+know, this is a straight line. So,
+people were discovering, it was a hype
+in some sense, you know, people were
+discovering more and more and more and
+more of those scale-free networks.
+And pretty much we were saying, okay,
+look, you know, it may be not completely
+scale-free, right? But, you know,
+maybe there is a part here which is a
+scale-free.
+now there is, you know, 20 years
+later, now there is some pushback on
+this saying like, yeah, the scale the
+scale-free networks
+they're universal, but not as universal
+that, you know,
+that scientists wanted to think about
+them 20 years ago.
+And yes, they might be quite universal,
+but um they might most likely what we
+have is that um it's it's there are
+certain regions
+where you get this the the scale-free
+behavior, but then there are some other
+regions um that deviates and there is no
+pure scale-free behavior there.
+And so, in some sense, there is a, you
+know, feeling right now among the
+community research community that the
+scale-free property is a little bit
+overrated.
+and so, um you know, in the real world,
+you know, there are there are some
+networks that do possess this property,
+but not
+all of them have it.
+At the same time, from theoretical point
+of view, you know, this is a really
+beautiful math showing that yes, um
+there is this sort of interval of
+parameters where there is this sort of
+unique properties
+uh of the system.
+to sum up with the scale-free networks,
+what we have is we literally have three
+regions, right?
+We have a region, uh now this is gamma,
+right? Um this is this
+P
+K minus gamma, right? So, this is this
+gamma, this is this power law
+coefficient.
+Um and this is two, this is three, those
+magic numbers.
+And remember that uh we we we saw in our
+computations that you need to have gamma
+at least equal to to two for
+average
+K to be finite.
+But then
+um K squared diverges.
+And uh
+when gamma exceeds three and we are in
+this part, you know, both of them are
+finite.
+And so this part, this region from two
+to three, that's what's called the
+scale-free regime, right?
+Uh or this is our where most of our
+scale-free networks live, in between,
+you know, with this gamma coefficient in
+between two and three.
+The most weird, the most bizarre part is
+here
+um when gamma is
+less than two, right?
+Um because here you will get
+average K diverging and average K
+squared diverges. So this is very
+strange.
+Um in fact, that really means, if you
+try to go back through our calculations,
+that the maximum node degree, remember
+it is one, we estimated it was it was N
+one divided by gamma minus one.
+Well, if gamma is less than two
+that means
+you know, maximum node degree grows
+faster than the number of nodes.
+Which, you know, impossible.
+And there were some other reasons
+exce- not only this, but there are some
+other reasons and, you know, pure
+networks power law networks do not exist
+in this regime. So
+it just you just don't have it.
+Now, you can still get a network and you
+can still calculate those, you know, the
+coefficient and you will get gamma less
+than two. But that means it's not a pure
+power law network, it means, you know,
+there is probably part of the network
+that has a distribution and the rest do
+not. But you cannot have a pure network,
+pure power law network with gamma
+less than two. So, this is sort of
+anomalous regime, you know,
+it physically impossible
+to exist. Now, this part is called
+scale-free regime.
+Um and the right on the right-hand side,
+this is more called random regime. Um
+there is sort of, you know, it's more
+again more standard story.
+And so, that's This is the most this
+fascinating part, the scale-free
+property.
+Um so, as I mentioned, um
+you know, today there is some skepticism
+about um the fact that there are a lot
+of networks that like all networks in
+the in in the world are this power law
+networks.
+In you know, and again back in 2000 when
+this has been discovered, um
+you know, people thought that
+most of the networks are power law and
+that's why, you know, they wanted to,
+you know, pretty much quote every
+network as a power law network, right?
+So, now it's not exactly the case and um
+there is this paper by Aaron Clauset. Um
+he is a scientist from Denver um who
+looked actually at the pretty big
+collection of power law of of networks.
+And in fact, those networks are all
+available on his website, so you can
+download it and try it yourself. And um
+so, he characterized um the networks by
+this degree of scale-free property. And
+in fact, this in his characterization,
+you know, strong scale-free and
+strongest scale-free, these are two sort
+of uh characteri- the the you know,
+those two things that's where for the
+network um the gamma is between two and
+And so, um, you know, he went through
+all the networks he had, which is, you
+know,
+more than 1,000 different networks, and
+he realized that, uh, you know, only
+handful of them have the node degrees
+distribute have the gamma in between two
+and three.
+And there are quite a few networks with
+a smart larger gamma, or, you know,
+almost no network with a smaller gamma.
+And so, he pretty much claims that,
+look, um, the scale-free networks, yes,
+they do exist, but there is not that
+many of them um,
+out there, right? It's not all the
+networks out there that scale-free. If
+you're interested, I recommend you to
+sort of Google him and the scale-free
+networks in the real world, and you'll
+see what you the guys were arguing on
+Twitter is crazy. So, um, and and uh,
+you know, the amazing part of internet
+that it all,
+now for posterity, right? So, you can
+actually search and see all the
+arguments people
+present for and against the fact that
+all the network in the world are
+scale-free. So,
+bottom line, um, today, uh, we think
+that, you know, there exist scale-free
+networks. Not all the networks in the
+world are scale-free, but there are
+quite a few of them. And those networks
+have this power law degree distribution,
+and for those networks, this gamma lies
+within this region regime between two
+and three. Um, and um,
+uh, you know, then the question is,
+okay, if they exist,
+um, and if they possess the scale-free
+property, can we find gamma? How can we
+actually calculate this gamma parameter?
+And how to do it the right way.
+we're going to touch upon this a little
+bit, and and then you're going to, uh,
+work on this during the lab session.
+Um, there are several ideas. So, one
+idea
+is to actually plot the things correct
+the right way.
+Uh you know, we saw at the very
+beginning that it is not very easy to
+draw the line because, you know, if you
+do look look at the log-log scale, um
+you think like, "Okay, well, I'll draw a
+line and then the angle for that line,
+that's your gamma coefficient, and I'm
+done." Well, the question is, you know,
+the the the this nuances of how to draw
+the line the right way, um it is not
+very easy. And so, but there are ways to
+to make this work really easily and
+really nicely.
+And um it also lays in the fact that we
+have this power law distribution
+because, look,
+this is a power law distribution, right?
+P of K, and this is a gamma that we want
+to find.
+Let's look at the cumulative
+Well, cumulative distribution function
+is just an integral of this, right? From
+zero to K.
+There is also what's called
+complementary cumulative distribution
+function, which is a probability that
+your node is greater than given degree
+K, okay?
+And you can calculate it as an integral
+from K to infinity P of K dK.
+to estimate this, you know, we calculate
+And again, it's a cumulative, which
+means, you know, you look for all the
+nodes, you add up all the node degrees
+that are greater than K, right?
+And in fact, you you you you want to do
+you can you you can use these tricks all
+the time when you have this type of
+noisy data.
+why why would this work? Why would this
+work nicely? Well, look, if I take this
+distribution and plug it in here
+and take the integral,
+you realize
+that you get
+the same shape of distribution, right?
+Uh well, the constant, who cares?
+But here you get K to the power minus
+gamma minus one, and here it's K to the
+power minus gamma.
+And so,
+if I take log,
+well, I again get a straight line.
+Log of of instead of taking log from a
+power law, I take a log from um
+cumulative distribution function,
+and build draw it as a function of
+logarithm of node degree,
+you know, it's going to be again a
+straight line,
+but the angle
+the coefficient is gamma minus one
+instead of gamma.
+Now, why would I want to do this, right?
+Why would I Why would I bother? Well,
+here's the answer.
+Let's take a look at this.
+Uh well, this is a distribution when I
+do it,
+you know, I just plot it as is, right? I
+take it um on the left-hand side this on
+I'm sorry, on the Y axis um there is a
+probability on, you know, X axis that's
+your node degree, right?
+Okay, I can be smarter, and I can take
+this and plot this
+uh in a logarithmic scale, right? So,
+this is a logarithmic scale.
+I plot it as a logarithmic scale
+on both axis X and Y,
+um and then well, then I get this
+distribution, and I need to draw a line.
+Now, now we understand why there's a
+sort of staircases there, right? That's
+the the right thing is they should be
+there. But now, when I have this
+picture,
+how do I draw a line? I can draw it this
+way, I can draw it this way, I can draw
+it well, probably this way. Which Which
+one is the right line?
+It's hard to say.
+But then, what happens is
+if instead of
+doing it here,
+you can actually calculate
+cumulative distribution function. And
+cumulative means you just calculate
+number of nodes with not with that node
+degree, but number of nodes with that
+node degree and above. Right? This is
+called again complementary
+cumulative distribution function. So,
+you calculate the number of nodes not at
+that degree, but number of nodes at that
+degree and above.
+And which means, you know, for for for
+one, for the node of degree one, it's
+all the nodes.
+And then
+uh you plot it, well, you get very, very
+nice and smooth picture here.
+And there is much better chance that you
+will draw the right line. Now, when you
+got this line, the slope of this line
+will be gamma minus one. The slope of
+this line is gamma.
+And so, when you get this,
+and you just correct it by one, and
+that's your um slope.
+So, that's one way of doing things,
+doing it quickly and dirty. Now, there
+is still a question, even if we have
+this nice and and and smooth line,
+there's still a question, okay, maybe I
+should draw a line this way, or maybe,
+you know, this way.
+where will the distribution, the actual
+distribution, the actual power law
+starts, right? I I mean, by looking at
+this, it feels like it starts there.
+But maybe not. So, the question is how
+do I find this point from which um I
+draw my line. Okay?
+And here is yet another trick how to do
+it,
+how to do it the right way, right?
+Mathematically way. Correct way. So,
+we can think about, you know, data
+points about the graph as being
+generated
+um you know, from from the distribution,
+from power law distribution in this
+independently by independently sampling
+the distribution, right? So, we're
+talking right now about the graph
+node nodes with degrees, and so we have
+the distribution, and we randomly sample
+the distribution, you know, that's our
+node and and and get a node with certain
+degree.
+And then, you know, since it's a power
+law, well, here is our probability
+distribution. I you know, I put here x's
+Ouch.
+Well, you you you we can use node
+degree. I mean, this is the same as k's,
+right? k i's.
+So, probability of of of degree k i,
+well, this is given
+by our power law.
+Now, if we have a sample, a graph is a
+sample of nodes, so we have, you know,
+some number of nodes, each of them
+sampled independently, then the
+probability
+uh of of this, you know, node degrees
+within the sample
+with a given gamma is given to us by the
+product of probability of node of each
+of each node, right? And since they are
+sampled independently, well, we just
+multiply those probabilities.
+And now, if I want to calculate, because
+remember, my goal is to calculate gamma,
+calculate the coefficient for the power
+law, I can actually write down that
+probability of coefficient given those
+data points, well, this is how it is
+connected through um the
+uh Bayes' theorem. And so, what we're
+going to do, actually, we're using this
+what's called maximum likelihood
+estimation for the parameter, right? If
+you actually did some data science
+courses, that's the way you do it.
+I have this. Um my next step will be
+very simple.
+I'll just go
+um and do log likelihood, right? I take
+logarithm of this.
+And then, I will differentiate it with
+respect to the parameter gamma.
+And if I differentiate it with the
+parameter of gamma, well, I get the
+formula for it.
+And I can also, you know, estimate the
+error here.
+Now, everything is nice except one one
+little fact, which is
+uh I need still put here in this
+estimate, I need to put minimum node
+degree, minimum value, right?
+and obviously this estimation will
+depend on this X min.
+So so far what I literally done, if I go
+back um
+here, I done a nice way to
+uh you know, map
+to map a line here,
+but I haven't figured out
+where to start yet, right? Because if
+you start here, that's going to be the
+picture. If I start here, you know,
+maybe this is going to be the picture.
+And if I start from this point, you
+know, this is the right line. So I
+calculated the way through maximum
+likelihood, how by having those data
+points to estimate, you know, the slope,
+but I haven't figured out yet how to
+select this, you know, K or X min from
+which to start my computations, right?
+And so here is yet another technique how
+to do this.
+So here we are. Um
+the goal is to determine this.
+Um and that's how we're going to Here's
+how we're going to do this.
+Um we're going to use what's called
+Kolmogorov-Smirnov test
+to compare
+uh cumulative distribution function
+that our model generates and cumulative
+distribution function that we have from
+um the data.
+And so um the idea is the following.
+we have, you know, cumulative
+distribution functions, and here is Let
+me change the color.
+Let's say here is experimental one, you
+know, from the data. This is the
+And this distribution function is
+cumulative distribution function, that's
+why it's smooth, right? That comes from
+our model.
+So, what we're going to do is for every
+step of the distribution function, for
+every node degree, we'll compare the
+distance, the difference.
+To calculate the difference.
+And Kolmogorov-Smirnov test
+tells us to pick up the point where the
+difference in between distributions the
+largest.
+we look for the differences in between
+distributions at the different node
+degrees, and this is
+node degree,
+at the different node degrees,
+and pick up
+the one that is
+largest. Okay?
+And that what we're going to do is we're
+going to go through all possible minimal
+starting points
+and try to find the one that minimizes
+this difference.
+And so, here it shows, you know, you you
+you you go through all these guys, and
+you find the the minimum starting point
+that minimizes and here it is, this one,
+that minimizes difference. And so, by
+doing through our starting points, we're
+actually selecting the point from which
+you start
+mapping
+the line.
+And so, this example shows you that this
+is a point
+from which the distribution looks
+um which is the where the distribution
+fits the best for the power law.
+So, it's not from here, it's not from
+here, but it is from this point.
+And the way to find it
+is by using this Kolmogorov-Smirnov
+test.
+And on the on the on the discussion on
+the on the lec- on the lab session after
+the lecture, you'll have a chance to
+practice this.
+So, that's actually it for today.
+what we learned is that there is this
+very special power law distribution
+and that distribution, you know, so
+strange that it does not have
+particular scale and that means there is
+no particular characteristic size,
+characteristic um you know, no degree
+around which every other nodes is kind
+of clustered in the sense of, you know,
+there there are no degrees close to it,
+but no degrees are spread all over the
+place. Um there are quite a few nodes
+with large node degrees, quite a few
+nodes with small node degrees. If you
+look at the power law distribution, um
+it the function P equal minus K I'm
+sorry, K to the power minus gamma, this
+gamma parameter
+usually, you know, for large for
+scale-free regime takes values in
+between two to three and in that regime
+um in this strange regime
+um the average converges, but um the
+uh fluctuations diverge, right? And
+that's what's why it's called scale-free
+network. And then we also learned the
+way to actually calculate that gamma for
+the real net world network using maximum
+likelihood estimation and this
+Kolmogorov-Smirnov test.
+And finally, it's missing on on on this
+reference uh slide, but I going to add
+it um the reference to um Aaron Clauset
+paper um on this discussion, okay? Uh
+you know, how much of the real world
+networks are actually scale-free.
+Um they're out there, uh but maybe not
+all of the networks that we have there
+are scale-free, but there are plenty of
+those.
+And with that, we're done. Um any
+questions?
+Uh one small question. Could you please
+share with us
+uh with the presentation?
+Yeah, absolutely. So, the presentation
+uh you know, the website is up
+and I'm posting uh presentation on that
+website.
+So, I going to do it, you know, late
+tonight.
+Uh you know, the presentation and the
+link to the video. That's hopefully
+recorded. Yeah. You mean that website on
+network science the S D D N S net? That
+one?
+Well, the network yeah, that that I
+showed on the very first presentation.
+Yeah, it's
+um networks. I I forgot the the precise
+link, but
+uh you can ask. Yeah, so it's we post it
+there and I also share it uh on the
+Telegram.
+Cuz I thought that you uh shared with us
+uh the video from the lecture, not the
+uh not the presentation. So, there yeah.
+Yeah, I'll I'll put the link there for
+the for the slides.
+Okay. Thank you.
+Anything else, guys?
+Okay. All right. And again, sorry for
+this interruption, but technical chall-
+difficulties.
+All right, we're done for today. Thank
+you very much.
+Thank you.

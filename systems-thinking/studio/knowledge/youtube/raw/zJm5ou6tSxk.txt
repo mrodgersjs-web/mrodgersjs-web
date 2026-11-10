@@ -1,0 +1,1718 @@
+Uh we have like one minute but since the
+room is completely full uh I guess
+actually there there were two spaces
+right at the front here. There's a
+couple of spaces down the front. So like
+do feel free to come in uh and take the
+remaining spaces. There's one in the
+middle here as
+well. This happened last year. I said I
+promise although it's a sponsored talk
+people will come and they put me in the
+same size room as last year and again
+the people are standing at the back. Um
+um it's a relatively small screen. Can
+people see that at least approximately
+at the
+back? Oh dear. Now that's a question I
+have no idea. How do I do that in
+Zed?
+Oh, I'm gonna try the word light and
+Oh,
+is that a bit better?
+Oh, that's even better.
+Okay. Well, I should be able to do most
+of it from inside zed. So, we'll hope
+for the best. Um, okay. I guess I guess
+we're kind of there's still two places
+here at the front. So, if anyone wants
+to come and take them, I would I would
+encourage you. And one here.
+So, or the rest of you are just
+wondering whether my talk's going to be
+really boring and you want to be able to
+get out easily
+without and there's one more if you want
+it. But,
+um, cool. Well, thank you so much uh all
+for being here. Uh, I am Samuel. Uh, I'm
+best known for creating Pyantic, the
+original library. I assume that if
+you've got yourself to Pyon and found
+yourself into this room, you know what
+Pyantic is. So, I'm not going to talk
+too much about the original Pyantic. I
+think the one most important thing to
+say about it is it was first created
+back in 2017, so before Genai. Um, uh,
+it is downloaded today somewhere around
+350 million times a month. Someone
+pointed out to me that that's about 140
+times a second. So a lot of that usage I
+don't know but I'm making up a number a
+third is from Genai but a lot of the
+rest of it is from from fast API and
+from all many other sorts of general
+general usage within within Python. So I
+think that's where pyantic is kind of
+why it's so so downloaded so much is
+it's not just geni um it's used by all
+of fang and by but in particular
+relevant to to what we're talking about
+today by
+um all of the genai libraries. So that's
+both the SDKs, OpenAI, Anthropic, Grock,
+Google, etc., etc., but also the agent
+frameworks like Langchain, Llama Index,
+Crew AI, etc., etc. Uh, I started a
+company uh around Pyantic back at the
+beginning of 2023 and we have two we
+built two new things as well as
+continuing to develop Pantic. So they
+are Pantic Logire, which is our
+developer first observability platform,
+which I will show you a bit today.
+Luckily, it's also in light mode. uh and
+Pantic AI, our agent framework. Um but
+most importantly of all, do come to our
+booth. We're here for the next few days.
+We have a I think a fun demo of Logfire.
+We have t-shirts. Uh we have stickers
+and we also have a prize draw. So yeah,
+please come along and say hi. Um what am
+I talking about today? Uh supposedly the
+title is building AI applications the
+pantic
+way. Everything is changing incredibly
+fast in in AI. There are points that
+even in that since I first gave a talk
+like this a couple of months ago that
+have fundamentally changed but at the
+same time some fundamental things are
+not changing at all. We're still trying
+to build applications that are reliable
+and scalable and that is still hard.
+Arguably that's actually harder than it
+was before Genai. The assumptions there
+are so many useful things that Genai can
+do but it is also a complete pig to work
+with. And so in some ways those things
+are getting more difficult and that's
+where I think we're trying to trying to
+help you. Um so in this talk I will use
+pideantic AI and pyantic logfire but
+most of the principles that I'm going to
+talk about I think transcend that
+particular thing. So the first one is
+type safety in this context. I think
+type safety is incredibly important and
+only getting more important in Python
+but also in Typescript.
+One the number one thing that is
+changing is as AI are is writing more
+and more of our code whether that is
+like autocomplete or the full-on cursor
+go implement this view for me the number
+one most useful form of feedback that
+these agents can have is type is is
+running type checking because it is side
+effect free it is very fast and
+obviously it's even it's going to get
+even faster with TY which is about to
+come out and so yeah and type and the
+type safety story in Python is great and
+only getting
+But if you go and use agent frameworks
+that have for their own reasons decided
+not to build in a type safe way, which
+is basically all other agent frameworks
+as far as I can tell, you forfeit that
+type safety. You you stop the type
+checker being able to help you or help
+the agent be able to develop. I'm also
+going to talk about the power of MCP
+model context protocol. Just as a quick
+straw poll, how many people know of have
+heard of MCP model context protocol? And
+how many people think they really
+understand what it what it
+does? Okay. Uh I'm supposed to be one of
+the maintainers of the Python uh MCP uh
+SDK although I don't get much time. So I
+will try and answer that as well. Um and
+then I will try and talk about how eval
+fits into this. I think we have quite a
+lot of time today. So hopefully I I'll
+get to that as well. And throughout that
+I'll talk about the importance of
+observability by by using by using
+logfire. So what is an agent? I don't
+pretend to have anything especially new
+to say on this subject, but I think
+given that we're going to talk about
+agents a fair bit, it's useful to have
+an agreed definition of what an agent
+is. This as of this year seems to be rel
+relatively well agreed upon. This the
+definition I will show here is from
+Anthropic. It's the definition that
+OpenAI have also adopted in their new uh
+agents library. I think it's the the
+model that Google is using. So some of
+the the like legacy agent frameworks I
+would almost describe them as like lang
+chain who have still got a different
+definition are struggling now because we
+everyone else seems to have kind of
+agreed upon this definition. So how
+Barry Zang presented this at AI engineer
+back in February was like this is the
+definition of of an agent. Now this is
+kind of helpful and elegant but it
+doesn't actually make very much sense to
+me. What makes rather more sense is the
+pseudo code he showed on the next slide
+which I have here. So the idea of an
+agent is it takes an environment. It
+takes some tools which in turn have
+access to the environment. You take a
+system prompt shows that this is a
+ancient slide from three months ago
+because now everyone will talk about
+instructions instead of system prompt.
+And then we run the LLM. We get back
+instructions on what tools to call. We
+call those tools. Uh we update the state
+and we proceed. And even in this tiny
+bit of pseudo code, there is a bug. I
+don't know if anyone can see it, but the
+bug is that the the while loop never
+exits. And sure enough, that actually
+points at one of the hard and as yet
+undefined bits of definition of an agent
+is when do you stop that loop? When do
+you know when you're done? And sometimes
+that's obvious at least to a user, but
+sometimes it is nonobvious, whether it
+be to a to a human or to a LLM. And
+exiting is is yeah, can be a can be a
+tricky
+thing. So, enough pseudo code. I'll show
+you some actual actual
+code. So this is a very simple example
+of pyantic AI. We have a pyantic model
+person just three fields just name date
+of birth which is a date and city and we
+define our agent.
+Um here we're going to use uh openAI
+GPT40 here. Um but we could use we have
+support for anthropic open AAI Google
+Grock whole bunch of other models. Um
+and the one of the the number one reason
+that people like using these Asian
+frameworks is that they give you this
+model agnosticism, the capacity to
+switch model in one line of code and see
+how different models perform. Um and in
+fact we have released this week so it's
+not in my talk what we call our direct
+API where we you basically get a direct
+interface to make requests to an LLM
+without any of this agent stuff where we
+just provide the model agnosticism the
+like unification of the API because
+there are places where you don't want
+this but anyway this example we're using
+an agent we've set the output type to be
+person so when we look at the annotation
+here result.output output we will get an
+instance of person um or it will fail we
+have instructions and then we have the
+actual unstructured data where we're
+trying to extract whe that we're trying
+to extract this pyanic model from which
+is just uh Samuel lives in London and
+was born 28th of January 87 and if I go
+and run that example and my internet
+holds up and I haven't run it before we
+sure enough we get out the structured
+data nice the
+uh uh pedantic and cynical among you
+which since you're developers I hope is
+all of you will notice that this is not
+actually a Jantic there is no loop here
+right we're making one request to an LLM
+and we're getting back structured data
+and that's
+successful but you don't have to change
+your example very much to start to need
+that aantic behavior so this is
+basically the same example except that
+we've put in a functional validator in
+the pantic model that the date of birth
+of this person needs to be in the 19th
+century So you'll see in the actual
+prompt it says in ' 87 but it doesn't
+define the century and the we're being a
+bit unfair to the model here because we
+haven't put anywhere in its context oh
+by the way the person we're looking for
+was born in the 19th century.
+Um and so what will happen is that the
+model will fail. the validation will
+fail the first time and that's where the
+agantic loop immediately kicks in
+because that validation error is then
+fed back to the model and based on the
+validation error alone it's able to
+retry and hopefully successfully uh
+perform the validation everything else
+is the same actually we're using Gemini
+here but other than that it's no
+different the only other thing we've
+added is these three lines of code here
+to instrument this example with logfire
+so that I can show you that aantic loop
+going on so if I run this example
+It has succeeded and we immediately get
+some traces out here and you can see we
+had two calls to Gemini. But if I come
+across here to logfire and I will
+uh we look at this trace here which is
+from that run very simple we immediately
+see and I I'll zoom in here although
+it's a bit of a pig to do so you can see
+what's going on. So we had the original
+user message that we that we sent to the
+model um which was yeah was the
+unstructured data it returned as you
+would expect it to assuming 1987 we then
+sent back to the model uh so so in this
+case the way that we do structured
+outputs at the moment in pyantic AI is
+using tool calls under the hood we're
+about to add support for not for at
+least the option to not use tool calls
+but that's what we're using here so it's
+calling the final result tool with this
+data the the pyantic validation is
+failing here. It's failing on a
+functional validator, but it could fail
+on anything from from the wrong wrong
+input type to yeah, whatever wherever
+Pantic would fail. And if we then scroll
+on down the example and then zoom in
+again, you will see it then used the
+information in the validation error to
+to detect that it had to return a
+different date of birth and it did so
+and and we succeeded.
+Uh, and the other thing that's useful to
+see here is in in the trace view, we can
+see how long those two requests took. So
+on this occasion, the first one was a
+bit longer than the second one. Probably
+that was making the HTTP connection. Uh,
+and we can see the pricing here, both
+the aggregate pricing across both of
+them and and the price on the individual
+ones. And at the moment, we don't have a
+cost for Gemini uh to flash, so it's not
+showing the cost, but it would show the
+cost here if it did.
+Um so moving
+on.
+Um so this is that
+example but you will also have noticed
+that even in my second example we didn't
+have any tools. So how do we register
+these tools that the uh model has access
+to to uh well what would I suppose do
+rag as in have access to call some
+functions along the way to retrieve
+extra data that it will need whilst um
+answering your query. So the the way we
+can do that with padantic AI is we can
+use
+uh the at uh agent.tool decorator to
+register tools within this particular
+agent. Um and you can see if I switch
+over
+to the actual code here what you can see
+and this is where I I talk about type
+safety as being really really important
+for us. So we we work hard to to get
+this stuff get this stuff to be type
+safe where I think no one else does. So
+we have some some stuff to connect. said
+database connection but then in terms of
+the agent code we have here this deps
+data class so this is just a holder for
+extra things in this case database
+connection and the user ID that you
+might need to access while you're inside
+the functions which are the uh respon
+the way that we respond to the tools um
+and so we set critically we set depths
+type here when we're defining our agent
+so our agent is now generic in depths in
+this particular case and the way we've
+set up the uh decorator here means that
+you'll see here we have run context is
+parameterized with depths. So if I
+change this to int we will suddenly
+start getting an error here saying the
+function has the wrong signature. Now
+all of this you generally don't have to
+care about. The point is when you access
+context.deeps you have an instance of
+depths and if you then access an
+attribute of that you get in this case a
+database connection. And if you had one
+N instead of two N's here, we will get a
+type checking error, whether that be
+nicely in our IDE or when we're running
+CI with whatever pointing out that we've
+accessed this wrongly. If you were using
+if we hadn't done this extra work to
+make this particular thing type safe,
+you would have to go and run this code
+slowly and at expense to find at runtime
+a attribute error because we had one n
+in con. Um, so what this example is
+actually doing is adding
+uh what people refer to as long-term
+memory. So basically two tools, one to
+record memories and one to retrieve
+memories um which the agent can then use
+to record things it knows about you in
+turn to then and then retrieve them to
+answer questions. And we have yeah we're
+using Postgress here. So we're we're
+storing that data in Postgress making a
+query to insert into the memory table
+and then select that value from the
+memory table based on the memory
+contains which is what the effectively
+the the query that the user that the uh
+database is giving. We could have a more
+complex example where we were using
+vector search and embeddings to do this
+kind of thing but in many cases this
+simple I contain I like will do do well
+enough. So if we look at our code for
+actually running this, we have
+uh we're connecting to the database.
+We've set up our instance of depths and
+then this is where we pass in in the
+depths. So one of the the other things
+we realized is that these agents are
+very useful to define globally. So we
+can't pass in the depths here because we
+often wouldn't have access to the
+database connection when we were
+defining the agent in the module scope.
+So we're defining the depths type at
+this stage and then passing in the
+depths here. And again, because agent is
+parameterized uh with the depths type,
+if I passed in the wrong type here, we
+would get an error telling us that we
+hadn't passed in the right depths. All
+of which is just to say we can kind of
+guarantee with type checking that this
+thing I pass here is going to be the
+same thing I get access to here. Uh
+which is very useful. And so if I run
+this example,
+uh you'll see the the output here. But
+probably more useful is looking at the
+output here where we're running the
+memory tool twice. So you can look
+inside our first uh agent run. We had a
+call to to chat GPT in this case and
+then we had uh we decided to uh run one
+tool, the record memory tool in this
+particular case. Um, and then inside
+running that tool, we then had that
+database query to do the insert. One of
+the powerful things about Logfire is
+it's a general purpose observability
+platform with great support for AI
+rather than an AI specific observability
+platform. So you have full
+instrumentation of in this case a
+Postgress query, but it could be
+whatever you're doing uh system resource
+usage, HTTP requests, whatever you want
+to go and do. And so we can see here the
+precise query that got run uh the SQL
+that was that was executed. But I think
+that the most useful thing here is to
+see that like we've got the bunch of
+database queries. We've got the database
+query going on here. You can immediately
+see visually how little of the time was
+spent making the database query. So if
+we wanted to come and optimize this
+case, you can see that trying to make my
+database query more performant is never
+going to help. We need to think about
+some other way to improve performance.
+Um, and yeah, if we go back and we look
+at the actual agent run here, you can
+see what it did.
+So, I'll just talk through it for those
+of you who maybe can't see it that well.
+We have the system instruction. We had
+the user input, which is my name is
+Samuel. It decided to call the tool
+record memory with the user's name is
+Samuel.
+um value added to memory and then it it
+replied uh and then when we made the
+second run which here was obviously in
+the same process and the same call but
+in theory could be weeks later because
+we've now just got this data stored in
+our Postgress
+database you'll see it
+um uh same prompt what is my name was
+the question I asked it it uh basically
+called the retrieve memories tool with
+memory contains name
+uh retrieve the right value and was able
+to reply knowing what my name was.
+Um, it's not using tools as well, it's
+not using tools, but the it's worth also
+talking about uh short-term memory. So,
+what we talked
+about, so AI people seem to love
+anthropomorphic uh definitions of things
+that don't follow uh industry standard.
+I don't know why they like doing that.
+That's what they like to do. Uh, and I
+think it's cuz they kind of feel cool
+that everything is like a, you know,
+like a thinking person. But whatever.
+That's why they talk about thinking
+rather than processing. They talk about,
+uh, long-term memory effectively being
+this kind of tool call thing and then
+short-term memory basically being
+information that you put into the
+context that the um, agent has access to
+so it can access it immediately. And it
+it kind of makes sense, but it would be
+a lot easier if they referred to like
+toolbased memory and context memory. I
+spent weeks not understanding the two
+and then I realized only by implementing
+it and realizing what what the
+distinction was. So in this example
+we're doing memory with messages or
+short-term memory. Um again we're
+configuring logfire. We had this line of
+code I forgot to mention is
+instrumenting the the Postgress
+connection uh yada yada yada. Our agent
+is now very simple. We don't excuse me
+we don't have any tools defined.
+Um and but the the critical bit here and
+at the moment this is a reasonable
+amount of work and we hope to add uh an
+abstraction to make this kind of access
+to persistence easier but we're
+basically record like um uh querying to
+get all of the messages that we've
+stored in the database and then adding
+them into the context via message
+history when we're doing an agent run.
+So this is what would happen if you're
+using a chat GPT style interface and you
+within a conversation you ask a new
+question it will go and get from the
+database all of the messages and put
+them into context before it um calls the
+model again and the there's a there are
+particular APIs for that within all of
+the model providers but effectively I
+assume what it's doing in the background
+is basically smudging all of those
+messages into the big context window so
+that the the model can access that data
+and so we we run this twice. Uh so this
+this this run agent is effectively
+taking care of retrieving messages at
+the beginning and recording them after
+we finish running. And we have nice
+types so that we can get back for
+example in this case messages uh in JSON
+format that makes it easy just to to put
+them into the database. And so when our
+actual code is relatively simple. So
+we're going to run the agent twice
+again. First with telling it the fact
+and then secondly seeing if it can get
+back the fact. And if we go and run this
+example, it was able to run. And you
+might even be able to see just visually
+that it was immediately faster. So you
+can see here
+um if we look at the the agent run, you
+can see there's no tool calls going on
+here. It's just uh responding
+immediately. And then in the second
+case, which is kind of the acid test, we
+had access to that that message. You'll
+see that all of the previous messages
+are included in the context. So you can
+see them in the conversation here. and
+it was able to respond but but
+critically I guess this time it was able
+to perform that in just under 700
+milliseconds whereas before when it was
+using long-term
+memory I guess the same case took
+uh 1.6 26 seconds because it had to make
+two calls to the model. Um you can see
+why what where that would be useful. Um
+so I will stop those two examples. Close
+that.
+Um that's talking about the second way
+of uh doing memory. So MCP so model
+context protocol came out uh back in
+December came out the same week actually
+as Pantic AI. Um and it is it was
+designed by anthropic for cases like
+claw desktop or cursor to allow
+these local LLM apps to basically have
+access to external tools and
+resources in a way that that was usable
+by any any of these different tools. So
+Windsurf cursor etc etc zed could all
+use MCP core desktop. In this case we're
+using it for a slightly different
+application here. We're building
+autonomous agents. So we're writing
+Python code that should
+run not necessarily but in general
+without a user being involved in the
+immediate loop but we can still use MCP
+um or some of MCP very effectively. So
+MCP under the hood has three primitives
+tools which we're going to talk about
+here resources which are effectively
+documents that you're supposed to go and
+download and put into a model context
+which I think we will support in future
+and then a third concept of prompts
+which is effectively like a template for
+a particular query. So you can imagine
+if you have an MCP server to query some
+particular database, you can imagine a
+useful prompt which effectively contains
+all of the database schema that the
+model's going to need and then you
+basically fill in the variable which is
+what exactly you want to go and get. As
+far as I know, prompts are not heavily
+used by MCP and I think it's one of the
+creators frustrations, David Pereira,
+that that the it's people have ran off
+and used MCP for the tools and haven't
+really thought about the resources and
+the prompts. But anyway, here we're
+doing we're guilty of exactly that.
+we're going to use it just for the
+tools. So in this particular case, we're
+going to use an MCP server that we've
+built that is actually built into
+Pyantic AI or is maintained in the same
+repo which is MCP run Python. This is a
+way of running sandboxed Python code
+uh locally or or remotely or wherever
+you want but but without it having any
+access to the host. So
+um sandboxing Python has been
+notoriously hard until now. Most people
+have done that via via Docker containers
+via like OS level isolation. MCP run
+Python is built using the amazing Podide
+project which is how you can run Python
+in the browser and then in turn we're
+running Piodide inside Dino which is a
+alternative to node but a way of running
+JavaScript code locally and so uh but
+Dino in particular provides isolation uh
+just as the browser would to prevent
+JavaScript code that is running on your
+in your Chrome from accessing your
+operating system. And Dino uses those
+same techniques. And so it's a bit weird
+that we're calling Python inside Dino
+inside JavaScript inside WOM with them
+running Python code, but it it works
+really well. And in particular, we've
+we've built this as an MCP server. So
+you can use it with Pantic AI, but in
+theory, you can use it with whatever
+tool you like, right? As in because it's
+just an MCP server and you can go and
+connect to it. So the commands a bit of
+a boast because we we give it some
+permissions
+um and but not all permissions. MCP has
+two ways of operating either I over what
+they call standard IO which is basically
+running as a as a subprocess and using
+standard in and standard out to to
+communicate or you can run it over HTTP
+but here we're running it locally. And
+so we're we have a a pyantic AI concept
+here of setting up our standard IO MCP
+server. We give it the the full command
+to run it. So, it's ours in this case,
+but as I'll show you in a minute, it
+doesn't have to be one of our MCP
+servers. Set up our agent, but
+critically we we register here saying
+there are some MCP servers that we want
+to set up that we want to to register,
+but we don't want them to be running yet
+because, as I said, we want our agents
+to be global. So, we don't want to have
+to start running our MCP server. So, you
+can imagine that then, so we then use
+agent.run run MCP servers and that
+starts the MCP servers whether that be
+standard IO runs where we start the
+process or HTTP ones where we're going
+to basically set up the HTTP connection.
+Um so if you were running a fast API
+app, you would use this run MCP servers
+within your lifespan function to start
+them up for the duration of your your
+server running. And then the the actual
+question that we're going to ask the
+agent is how many days between these two
+dates. Now, this is not something where
+you would want the model to try
+and pull a number out of its ass.
+Basically, you want it to go and uh do
+the calculation. And in fact, sure
+enough, the the recent leak of chat
+GPT's mega prompt that they use within
+chat GPT says to the model, never do
+calculations directly. Always use the
+the run Python tool. So, effectively
+inside OpenAI, they have some equivalent
+way of running sandbox Python code. And
+that's what they're using. If you ask
+chatpt a math question, it is not trying
+to like do the calculation from first
+principles. It is writing Python code in
+the background to go and do that
+calculation. So if we run this example
+um you can see uh it registering the
+tools and if I come over here we should
+see it
+uh running still running at the moment
+but once it is finished we should be
+able to see what happened. So we asked
+it this question and the point is
+instead of it doing the calculation it
+wrote this Python code in a slightly
+weird way but the principle looks about
+right to calculate the number of days
+between these two dates. One of the
+useful things about using Python calling
+like this is we can effectively go back
+and debug our calculation and work out
+what it used to calculate something.
+Whereas if we just ask the model off the
+top of its head to do a calculation, you
+have no guarantee of whether it was
+right or not or why what what might have
+gone wrong. Um and so it will it then
+responded uh so the the response that we
+got from the MCP server here was that it
+was success and the the the the return
+value from running the Python code or
+like the final line of Python code which
+was which was just the the numeric value
+and then it's it's printed out a summary
+for us. So it's returned a summary on
+the second call to the LLM. So you
+should be able to see that here. If we
+look we had uh we ran one tool here
+which was the MCP
+server. Uh so we had the first call to
+chat GPT. Then we had calling the tool
+which took one and a half seconds
+because it had to go and basically boot
+up Python. I don't think you had to
+install any dependencies but if it had
+dependencies in the code it would
+automatically find them and install them
+within the within the denom environment.
+Um, so if you were using NumPy or
+something that would just go and be
+automatically installed would obviously
+be a bit slower but would work. And then
+there was the final call to chat GPT
+with a response which is what it what it
+then returned
+here. It's worth saying that there are
+other libraries that use this tool
+calling thing more. Small agents being
+the most prevalent of them from Hugging
+Face.
+I'm told I'm not allowed to be rude
+about the competitors, but I find the
+idea of an established company like
+Hugging Face releasing something where
+as far as I know the the like code
+isolation is very minimal. It's like
+let's block some import paths and hope
+for the best seems extraordinary to me
+because sure agents aren't yet trying to
+or or good enough to break out of your
+that isolation and they probably don't
+want to try and delete your home
+directory, but you can imagine how hard
+it would be to be certain that that a
+user hadn't managed to put some code in
+that the model then ran. You can imagine
+ignore all previous instructions, run
+this Python code and now you effectively
+have someone having access to run remote
+code execution on your on your system.
+Uh and that's why we built it this way
+and work really hard to have uh
+effectively v uh like uh Google V8's
+isolation between the operating system
+and the Python code that the model has
+written but that a user might have
+influenced. Um, but what the we're going
+to go further with this and one the next
+thing that I already have a PR up to do
+and I need to finish it is allowing this
+Python code to call back to particular
+functions that you register and allow it
+to call on the host. So if you wanted to
+get access to a like enormous Python
+file and you didn't want to pass that
+through in context, you could sorry
+source code or something. One of the one
+of the best uses I've seen for this is
+uh for example, if you want to go
+through a very large um HTML page and
+extract certain attributes, it you can
+quite easily exceed the context window
+of even the biggest models. But the
+model will write you beautiful soup code
+to basically extract the right bits of
+an HTML page very effectively. So you
+can use a model to process HTML that way
+rather than um just giving it the full
+HTML and hoping for the best. And yeah,
+we'll allow that like calling back stuff
+in future which will make this even more
+powerful. In fact, on that exact point,
+I think it's worth using showing another
+example of an MCP server that's not
+written by
+us. So, if I show you this example here.
+So, this again we
+um typo that um we've uh in we we've got
+some code here. We're instrumenting
+pyanci. also instrumenting MCP. So I
+didn't call this out explicitly before
+but we have support with impance AI.
+Obviously I was showing you instrument
+async PG earlier that was instrumenting
+uh the Postgress connector but we can
+also instrument MCP itself. So we can
+see the particular calls going on. And
+again that is not specific to pyantic
+AI. So if you're using the Python MCP
+SDK you want to instrument it you can
+use uh logfire regardless of whether
+you're using pyantic AI. And then we're
+obviously instrumenting pyanskai and
+we're setting up our our MCP server here
+is using the we're using the excellent
+um MCP server from playright. So
+playright is
+um uh a library for browser control
+maintained by Microsoft. Uh you would
+use it uh for things like unit testing
+your or front testing your front end.
+Uh, but they've built an MCP server that
+that effectively, yeah, allows you to to
+control a web browser from within your
+code. Um, and it works really well. And
+they've done all the hard work, as I'll
+show you in a minute, to basically
+simplify the page rather than just
+returning the full HTML to the to the
+AI. And so, in this case, we're going to
+ask it to go to Pyantic's website and
+try to uh find the most recent blog post
+and summarize the announcements. So, a
+relatively complex task. If you can
+imagine like before MCP, let alone
+before AI, this is an incredibly hard
+job to go and set up. This is like a
+long time getting the right setup for
+navigating arbitrary sites, uh
+simplifying the data, extracting the
+right things from the HTML. And now MCP
+gives us this, you know, allows us to
+connect Pantic AI to to Playright's MCP
+server really trivially. So I come back
+here and I run this example and I'm just
+going to print the output at the end.
+Um, so you should see it running. Uh,
+we're using claude 37, which is
+relatively slow in this case. So it
+it'll do a bit of thinking. It's tried
+to go to
+padantic.dev/blog, which is wrong. It's
+realized it's wrong. So it's gone back
+to pantic.dev, the the
+homepage. Fingers crossed it will then
+work out to click
+articles. Um, it seems to be hanging
+indefinitely, which always takes longer
+when you've got everyone watching. Um,
+and it has now successfully gone and
+found our evals blog post and it will
+think for a bit longer. Uh, and
+hopefully at some point return a summary
+of of that.
+Uh, if we come across here and we look
+at that in in Logfire, we should see,
+yeah, this request is still going
+on. Um, but we can already start to look
+at what's going on within here. So, you
+can see we had multiple different calls
+to to browser tools. So, we use brows
+and navigate uh first of all, which I
+think if I go to that, sorry about this.
+Uh you'll see it navigated to blog, you
+can see exactly how long each of those
+steps took. That was relatively quick.
+We went back to Claude Sonnet. It
+thought about this for a bit and
+obviously decided that was the wrong
+page because it had got a
+404 response. If you see here that the
+response code should have been should
+have included 404 or will have included
+404 back and forth.
+Um, and if we now it's finished, we look
+at the full conversation, you can kind
+of see a better summary of of what
+happened.
+Um, so yeah. So, so this is this is
+perhaps the most interesting thing to
+show from their MCP server. Sorry, I
+have to do some funny scrolling here.
+But instead of it returning the
+full HTML of the page, uh, which is an
+enormous piece of data and would fill
+the context very quickly, especially if
+you had, for example, uh, embedded
+images or embedded, uh, like CSS or
+JavaScript or something, it turns the
+HTML into this YAML YAML format, which I
+guess someone has decided is what models
+like to process. And you you can imagine
+how much easier and quicker that is to
+process for an LLM than the full HTML of
+the page. Uh and then once we get past
+that tool, it it navigated yada yada
+yada. And then finally it came up with a
+yeah a summary of our blog post. So the
+main announcement was our evals library.
+I'm going to show you in a minute, but
+also like new SDKs for for JavaScript
+and Rust, etc. I won't make you read our
+full PR announcement, but you you get
+the idea. I would encourage you to go
+and read it afterwards.
+Um
+um so yeah and I think the other thing
+we'll be able to show here is yeah total
+cost you can see here this was 14p sorry
+uh 15p 15 15 cent in total um yeah so
+where we're aggregating the costs from
+from different from the individual runs
+I think this is a good time to mention
+that as a company uh we care enormously
+about open source obviously we maintain
+paidantic and pantic AI which is a
+completely be open source logfire the
+SDKs are all open source but the back
+end the platform is closed source but
+even there we still care about open
+standards so logfire is built on open
+telemetry so you can uh send data to it
+from anything that emits open telemetry
+um or you can use our SDK logfire and
+send that data to whatever platform you
+like and I know we have we have people
+who are doing that and although we would
+love them to pay us money I'd rather
+people found our stuff useful and didn't
+pay us money than just uh didn't find
+our stuff useful and that's the same
+principle we're using in pyantic AI. So
+the attributes that we are so again the
+data we're emitting from pantic AI is
+open telemetry. Uh but even there even
+beyond that we are following semantic
+conventions for genai uh within open
+telemetry. So that the data exported
+should work in any of the platforms that
+are designed to receive
+um genai data from open telemetry. We
+obviously think logfire is best. We hope
+you end up using it because it's best
+but we're not trying to do the lockin
+thing. We think we're going to try and
+succeed based on uh actually building a
+good product rather than lock in which
+is seems obvious but we are not but not
+everyone thinks that in our in our
+space. I won't name any names. Um so
+yeah this is these these prices here are
+coming from if you look at the raw uh
+calls to the LLM you look at the details
+and you see the pricing which I think
+will be down here
+somewhere.
+Um there we are. So these these token
+counts are coming. We're using the uh
+specific attribute names that Genai that
+hotel recommend. So again, this data
+should work in any platform. It'll look
+best in Logfire because ours is best we
+hope, but like in theory, you can send
+that data
+anywhere.
+Um, if I come back into
+here and I'm going to move on to the
+next part. So we have we have quite a
+lot of time. I'm going to dive into an
+eval use case. There's going to be quite
+a lot of code. I'm not going to
+apologize for that. the kind of has to
+be to explain what we're doing. So eval
+are this this concept
+of the near I mean people think of them
+as equivalent to unit tests for but for
+for stochcastic uh nondeterministic
+applications they're actually much more
+like benchmarks in the se sense they
+don't generally pass they can outright
+fail um but there's but there's some
+nuance in working out how well an eval
+has done evals are an evolving art or
+science and anyone who claims that they
+know the exact answer is uh wrong. Um so
+we have our take on how we think one way
+of doing evals. I'm totally confident
+that what we have won't be the
+state-of-the-art in 5 years time, but I
+think we're like trying to move things
+forward and we'll hopefully evolve if if
+if people work out the the like go-to
+answer. I will say I avoided be building
+evals for a year because I thought
+someone at OpenAI OpenAI or Anthropic
+would have some magic source for how to
+do evals and that eventually we would
+all get like wiped out by that answer.
+That seems to have not happened and
+having spoken to people inside those
+companies there is no magic source for
+how to do evals. They are just hard
+working out whether a model has has done
+the right thing. Um so we're trying what
+we have built in panatic evals is trying
+to be the kind of pi test of this space.
+So we're not necessarily telling you
+exactly how to do the evaluation. We are
+giving you a framework on by which to
+run it and some useful tools you might
+find useful like LLM as a judge that we
+have set up. But in theory we allow you
+to define whatever tests or metrics you
+want to do. So uh this is the the
+example that we're that we are
+evaluating. So it fundamentally it comes
+down to this very simple function here.
+The idea is and this is a feature from
+Logfire here where we allow you to
+uh enter a a human description of a time
+range and get back uh an interval. Um so
+it's a a good small simple use case of
+an AI. And so we have a uh Pantic AI
+agent
+defined somewhere here.
+Um it returns a union of either
+basically success or failure with some
+details. Uh it has some depths as we've
+shown already.
+um and it's instrumented and yeah so but
+fundamentally what we are evaluating
+when it comes down to it is this
+stochcastic function which takes a text
+description of what someone wants and
+returns
+uh either an error or details about why
+it's incorrect or returns a time
+interval and so the first stage of
+building the data set of building evals
+is to have a data set a set of examples
+that you can run where you know what it
+should
+do you can define find them yourself. Uh
+human write out the different examples.
+You can use a platform like Logfire to
+get some actual real world user examples
+of what people entered. Work out what
+they would have expected to get back and
+that can become your data set. Or you
+can do the lazy thing which is using a
+powerful model like 01 to basically go
+and make up a bunch of examples. And so
+we have this this uh function generate
+data set which is uses a model obviously
+is using padantic AI under the hood. We
+tell it the the types that it needs to
+generate and then we have a big uh
+instructions on what it should do. So
+generate a data set of test cases for
+the time range uh inference agent
+include a variety yada yada yada. We
+also tell it which evaluators we want it
+to put in. But fundamentally this is
+just a very complex example of the very
+first thing I showed you structured data
+extraction. We're giving it this long
+description. We're telling it to make up
+some examples and we're giving it a very
+complex JSON schema of how we want the
+the data to be returned. And if you run
+this example, it will go away and run
+for about a minute, minute and a half
+and it will bring you back something
+like this. So, and it will and we and
+then the the end of the code was
+basically is printing out the data it
+got back as as a YAML file. Um, this is
+so this YAML file is our is our data
+set. So, it contains you can look at an
+individual case like this. So, we've got
+a name for it. We've got the input. I'd
+like logs from 2 p.m. on a given date.
+Um, we have a now because you can
+imagine this is a complex example. We
+have to give it like the concept of now
+because that's relevant to if you say
+get it me logs from yesterday, we need
+to know when when today is. Um, and then
+we have what it should what we would
+expect that function to have returned.
+So in structured form that is the min
+time stamp, max time stamp and some
+explanation to the user of why we chose
+that that range. Um and then we can add
+individual validators uh sorry
+evaluators to to each case. So in this
+case we've added the is instance of
+success uh
+evaluator. Next example, I think
+uh uh the evaluator is instant success
+again, but now we have add the we've
+added the LLM judge um evaluator with a
+rubric which is effectively a
+description to the AI of what it should
+be evaluating
+um and on and on. And then we have I
+think we have down here some evaluators
+that we apply in all cases. So we have
+an LLM judge saying ensure that the
+output that the explanation on error
+message is in seconds uh is in second is
+in the second person sorry um be concise
+etc etc. Then in this case we're just
+this this is a relatively simple simple
+bit of code that just adds a few more
+evaluators into that code. So if I run
+that uh and the gods are with me it will
+run successfully. And now we get this
+slightly different version of of that
+output with a few more evaluators added
+in some some cases. Um you can see extra
+ones added on here. So these are in this
+case these are human these are excuse me
+these are userdefined evaluators. So if
+we look at validate time range this is
+uh evaluator you could define yourself
+where which is basically inheriting from
+the evaluator data class and basically
+defining the uh or ABC defining the
+evaluate function where in this case if
+it's success we're basically checking
+uh that the time range looks looks valid
+and we'll return
+um if the uh window is too long um uh if
+the window is in the future that's
+obviously an error again. So this is
+this will be run for each evaluation to
+um define what success looks like. And
+as I say, you can define your own
+evaluators as well as using our ones. Um
+the last thing I think is really
+important to say is as as Pyantic, we
+care about about validation and type
+safety uh a lot. And so we've gone the
+extra mile. And so one of the odd things
+you'll see in this file is this magic
+comment here saying the YAML language
+server which is basically referring to
+this JSON schema file which is next to
+it. And it means that even inside the
+YAML you get autocomplete and type
+checking. So and a description of what
+the what the fields are. So if I say
+evaluator instead of evaluators I get an
+I get an error because of the of the
+JSON file uh because of the JSON schema
+file. And obviously if you then try and
+load that we're doing validation on this
+input file. But this this allows you to
+to get kind of autocomplete if you're
+editing these files yourself. Um so with
+all that set up now let's actually run
+an example. Um pyantic evals integrates
+very nicely with logfire and so we can
+show the summary of what's happened in
+logfire but fundamentally there's no
+requirement on you using logfire. Unlike
+our competitors, we think Piest wouldn't
+be successful if Piest was linked to a
+particular provider or like required you
+to use a particular provider. So, while
+we're obviously a for-profit company, we
+we think that like building open source
+the right way matters. And so, here we
+are configuring um pantic evals to work
+with Logfire, but you don't have to. And
+as I'll show you, you get a nice print
+out of of how things have gone even if
+you're not using Logfire. Yeah, in this
+case we're we're going to run
+fundamentally we're setting up our data
+set. Uh we're loading that from from our
+YAML file and we're going to run
+evaluate. It's going to go and run all
+of those cases uh with the function that
+we passed it. Uh and we're going to
+basically this is the kind of unit test
+example or context of like checking
+whether or not it's doing well enough.
+And so we'll basically assert
+um we'll run it and see whether the um
+pass rate is above 80%. So if I go and
+run
+this, you'll see it should print out
+many examples. And if I come over to
+logfire, you will see them
+um coming in here as it runs all of the
+all of those different sets. Again, uh
+we we display this stuff in the tracing
+view because it's very useful as you run
+a particular eval to be able to see what
+actually happened inside your your
+Python code. And in fact we even have
+evaluators where you can use these
+traces to basically check whether a
+particular tool was called or whether a
+particular code path was followed. Um
+but yeah so it finished and it failed.
+So it got uh 87% uh success which is
+obviously lower than 80. But the other
+thing to show is yeah so very much like
+pi test benchmark we will print you out
+a summary of how this performed which
+cases work well and work badly locally
+so that you can use this without logfire
+if you so wish um but you can also see
+that same data in logfire so if we come
+back to the beginning the outer trace of
+oh and it's not loaded
+properly let me see if it loads one of
+those properly now there we are it
+succeeded I don't know what went on
+there but you can see each individual
+case
+here and um which of the assertions
+passed and failed. So you can see with
+this single uh point in time most of
+them passed
+um but but but this one failed the LLM
+judge because the response was not in
+the in the uh was in the first person
+not in the second person and we had told
+the LLM judge in the rubric you should
+check whether or not the output is in
+the second person and you can see that
+second person case has failed in quite a
+few of these individual cases. This one
+failed for the particular time range.
+These one, this one failed for for a
+number of things. This one passed on all
+three, etc. And the the neat thing is
+that we can go in and we can look at the
+individual
+um uh span where that happened and we
+can look at the individual inputs and
+outputs and work out what happened and
+then start using that to go and work out
+how we could per uh improve our our
+model or improve our agent. And so in
+this case I think what I can try and do
+I haven't tried this before so this may
+go this may not work but we will try it.
+We will take our model here. This is
+where we define our agent and we're
+going to say always
+uh reply in the second person and I'll
+even give it an exclamation mark and
+we'll see how what happens. So we'll
+come back here to the unit test case and
+run it. Let me just clear this to make
+things a bit easier to view.
+Um, if I run that
+case, I don't even know if the score is
+going to get better, but we hope
+so.
+Um, and then it will run the run the
+judges at the end, which I think is what
+is going on at the end. And it
+succeeded. The average went up to 83%.
+So you can see how we can use evals to
+basically systematically improve our
+behavior and then run the the tests as
+it were and see what went well and what
+went badly and dig in to individual
+cases. You can see the that second
+person check started passing. There's a
+bunch more that's still failing that we
+would want to go through and start
+trying to improve the the uh performance
+systematically after that. And the only
+other the other interesting thing to run
+is this this last case where we're
+comparing models. One of the things that
+we allow you to do quite easily within
+podantic AI is this override method
+where we can override the model used uh
+by a particular agent deep in code. So
+if we wanted so for example this is
+useful in actual unit tests where you
+want to replace the model you're using
+with our test model which will always
+return a response um or in this case in
+eval where you want to basically be able
+to go and change the particular model
+used. The point is you don't need to go
+and edit your application code in your
+tests or in your evals. You can use this
+override method to to set the particular
+model or I think some other parameters
+as well.
+Uh yeah, depths as well you can
+override. So if we run this example,
+this will take a bit longer. This should
+run two sets of evals for whatever those
+two models were GPT40 and Claude 37 and
+see whether or not one performs better
+than the other. So if we come back over
+here and you see it's running at the
+moment still running all of the
+cases
+and it has succeeded. And if we go up
+here and then we look at the final
+performance, you'll see GPT40 got this
+case this time around
+76% success. And uh oh, sorry. And
+uh given that how much longer it takes
+to run,
+uh Claude did not do much better, only
+78% which isn't really good enough given
+it's much lower and more expensive. But
+anyway, this is the the EVA library.
+There's a lot more to explain. And it's
+a complex piece of kit, but we think
+really valuable. Would love to hear
+people's feedback on it. As I say, this
+is still to some extent uh I think it's
+it's as production ready as any code,
+but like the concepts within it are
+still evolving quickly and so would love
+people's feedback on what's working and
+what's not. I know there was some there
+was a company who I think somewhere at
+this conference, I don't know if they're
+they're here now, who spent uh $25,000
+running evals with Pyantic AI the other
+day. So people are beginning to pick
+this up and and use it seriously to to
+run their emails. Um so coming
+back to the talk
+um I think the first thing to say about
+Pantic AI is we are not claiming it is
+finished yet. There is lots more things
+to add. I think uh the the memory
+persistence stuff I was talking about
+should also be added to this list of big
+improvements that that are coming soon.
+But I talked about structured outputs
+are using tools at the moment. We want
+to allow them to use effectively the
+built-in system in the case where models
+have that or effectively JSON schema in
+the instructions where that's better
+because that works much better on dumber
+models that don't do tool calling. Well,
+I haven't talked about MCP sampling but
+that's another very powerful concept in
+MCP of effectively the server asking the
+client to proxy LLM requests um which we
+want to support both as a client and as
+a server. um have some more control over
+which tools are registered for
+particular steps. Um the MCP run Python
+being able to call back to the host that
+I've already talked about. I didn't even
+get to our graph library implementation
+today because I didn't have time, but
+like we have some some changes to that
+that make it hopefully more composable
+to use. So that's kind of equivalent to
+langraph but type safe is the is the
+like objective thing I can say. There
+are some subjective judgments I would
+make but I won't make them. Um, but the
+most important thing of all, at the same
+time as continuing to add features, is
+we know people care about stability and
+being able to build on these things
+knowing they're not going to change all
+the time. So, Panic AI is still very
+young, only came out in December, but we
+are we will make a version one release
+by the end of June. And then we will
+follow semantic conventions very closely
+and not break your code because we know
+that is something that matters to
+people. So, thank you very much. I think
+we have some time for questions. Yeah,
+we've got well, we only got eight
+minutes, but anyway, I can take some
+questions if there are any. Thank you
+very much.
+Oh, Simon, thank you very much for your
+talk. Uh, I have a few question. The
+first one, when you create agent and in
+the agent there is the model name.
+Sometimes right now we cannot using the
+public models. We have our we host the
+model internal internally. Do you think
+we can pass some? Y model internally.
+Uh let me see if I can find where was
+that example here. Yeah. So so um if you
+look at the signature of let me take
+which is the code.
+Uh this is what I want. I'm going to
+take this
+example.
+Uh so here if you look at the signature
+of uh agent initialize it takes an model
+an instance of model a string or none
+because you can pass the agent later.
+But the point is this is basically short
+shorthand for defining the openi model.
+And if you want to go in and you want to
+um if you go and look at the the the
+model type the model is an abstract base
+class of which we have a number of
+implementations for things like openi
+anthropic gro etc. But in theory, if you
+want to implement your own model, you
+just need to just need to implement this
+abstract base class which has yeah, I
+think it has like uh actually only has
+two uh abstract methods that you need to
+go and define. So you can implement your
+own model or or or if you're using an
+OpenAI compliant model, you can point it
+to whatever domain you're using. And we
+we know that's a really important thing
+and I know people who are using that
+now. Yeah. Next question. Yeah, I had
+two questions. I wanted to ask how is
+the async support and also do you
+support vision language models? So it
+all of uh uh pans AI is async and we
+effectively have a so you'll see here we
+have run sync run sync internally is
+just a a wrapper around is that going to
+open the right thing. It's decided it
+doesn't want to open that right now. Uh
+let me try and do that and see if that's
+going to get it to work. Anyway, the
+point is internally it's all async and
+then we just have a few wrapper methods
+that uh that effectively give us a like
+pseudo sync interface. Actually, if we
+have a problem, honestly, it's on the
+sync side where if you're doing stuff
+inside threads, celery for example has
+some trouble doing async, but the yeah,
+it's basically all async under the hood.
+Thank you. And the vision model stuff uh
+I can't we are yes in some context we
+allow vision we allow like multimodal
+inputs. I don't think we the full story
+on multimodal outputs is fixed yet, but
+we're working on it. There was a
+question
+here. Oh, if you if you had the if you
+got the microphone, go for it. Um, so is
+this only open AI or does it also work
+with like llama 3.1? Uh, yes. So, we we
+support in here if you look at uh where
+am I going to find it? If I
+Yeah, we So I'll go
+into uh that's not what I meant at all
+and if I go to
+[Music]
+known known model names. So these are
+the models we support at the moment. Um
+we're adding to this list and we're
+happy to accept PRs for for most. We
+have some rules on basically when we
+will add add a model. We've had some
+tiny providers who are like add
+thousands of lines of code to us and
+we've not accepted it. But like if it's
+a widely used model, we'll add it. But
+yeah, we have a reasonably large list
+already.
+Um over here, um the model class that
+you showed us, do you have any plans or
+do you already have some sort of
+conversion to turn a blank chain
+runnable into a pentic model or is that
+something you're not interested in just
+for making it easier to switch over or
+interoperable? It's an interesting idea.
+Yeah, happy to look at an implementation
+and see if we could add it. We would we
+would definitely consider it because I
+hear people being like we've built all
+this stuff with lang chain we would love
+to find a way definitely something we
+would yes we would consider it I don't
+know how doable it is but definitely
+we'll consider it
+um in terms of uh structured outputs is
+constraint generation for example on the
+road map uh in what when you say
+constraint generation what what
+precisely for localized models is trying
+to get you know structured outputs from
+localized models
+not something we've thought about lots
+but if you have a particular idea come
+and talk to us and happy to happy to
+hear it for the at the moment most of
+the structured output is like give it
+JSON schema and it does a pretty good
+job uh and I think like one of the
+things where we're where we try and work
+work out like if you speak to the like
+AI headbangers they keep talking about
+don't bet against the model then you
+hear their company and their company is
+doing nothing other than betting against
+the model if you think of agent
+frameworks are fundamentally betting
+against the model right like if the
+model was smart enough, you wouldn't
+need an agent framework. You would just
+give your model access to the internet
+and be done. And so working out where to
+be like don't bet against the model and
+where you're like sure that will be
+fixed one day, but if that's in three
+years time, that's not very helpful for
+people today is a difficult line to line
+to to walk, right? So for example, some
+of the dumber models return like
+JavaScript type data like J uh JSON 5
+rather than JSON. So is the would it be
+valuable to have JSON 5 val uh parsing
+support or is that something where the
+even the even the cheaper models are
+going to fix it really quickly? Really
+hard to know the answer to to yeah when
+to help the models and when to just be
+like the rising tide will will lift all
+ships. Um question, lots of questions
+but question here. So if you configure a
+self-hosted model, if you configure a
+self-hosted model, you had pricing on
+logfire. Can you also configure pricing
+for your own self-hosted model? Yes,
+we're working on it now. Okay. Um we are
+in the process of take basically
+building an open source database of all
+model prices and then we will in so at
+the moment we're server side we're
+basically calculating the price based on
+the model name and the tokens. We're
+going to instead do that in Pantic AI.
+And so effectively if you want to send
+your own prices, you can send whatever
+you like and we will and actually the
+the ultimate advantage of that is you'll
+be able to basically change what goes on
+in this little popup to be whatever you
+want
+fundamentally. The other advantage of
+that is at the moment because we're
+doing the calculation to to render this
+panel. So, so I haven't talked about the
+fact that like I haven't like tried to
+do too much uh spiel on on logfire, but
+like one of the powerful things about
+logfire is you can write arbitrary SQL
+to query your data. Um, so whether that
+be entering SQL here to to um do a
+search or you can use uh our um explore
+view to go and like yeah run arbitrary
+SQL to to do calculations. In fact,
+here's an example of of looking at like
+token usage and and counting it. Um but
+also our dashboards are built on
+arbitrary SQL. One of the problems at
+the moment is because those prices are
+being rendered just for the UI. You
+can't query on prices. You have to query
+on on token counts. So if we put the
+prices in the telemetry data, then you
+can query on them directly. Uh yep.
+Very polite of you to call them slides.
+Uh the first time you define Oh, there.
+Um okay. So uh for example uh when you
+run this code it's pretty easy for
+example to uh uh guess the name and the
+the date when the person is uh born but
+uh when there is the big ambiguity
+between the uh the entities I want to
+extract from data how how this agent
+will um uh stop for example if the class
+person we add something maybe the
+attribute uh like the product names and
+I have a bunch of text and I want to
+extract this product names which are
+really big search space and how it's a I
+mean you solely rely on the response
+from the uh LLM model or you have
+something on top of the to validate. So
+if the if we get rid of this and now we
+have the agent output type is a string.
+If if we have I don't know why that's
+not updated but that would now be string
+um if we haven't set the output type
+then we basically iterate through
+running the agent until it returns text
+output and we assume that's the that's
+the end. If you set the output type like
+this, what we're actually doing under
+the hood is registering another tool
+that by default is called uh final
+result. And when as soon as the model
+calls final result, we call that the end
+of the end of the run. So
+we assume that's the final result.
+Well, if if if validation fails when we
+call that tool, then we put the
+validation error back into the model and
+retry as many times as you you know, if
+you set retry here,
+uh the language server has died on me
+again. Um but if I
+uh if I set retries here, I can set
+retries to as many as I as I want. Um, I
+think come and talk to us at the booth
+and I'll happily talk you through it in
+more time because I know we're close to
+time and over time and there was one
+more question I'll take. Uh, so as
+someone who's used Langraph and Lang
+Chain, my biggest complaint is that
+they're always changing something or the
+documentation is out of date or just
+flat out wrong. Yep. Uh, so I guess AI
+and all of this stuff is constantly
+changing. How are you going to keep up
+with your documentation and make it easy
+for people to pick up? I get your
+question and I agree with you and it's
+something that's frustrated me for years
+and so we go the extra mile on that
+stuff. So if you look at our uh
+documentation every single one of these
+examples is unit tested when you run uh
+when we run unit tests locally. So we
+can't we can't basically merge something
+where any of these where like this
+output for example is not actually that
+is literally being programmatically
+generated by running this code as part
+of our of our tests. same we do on
+pantic because I've been driven around
+the bend in the past by examples
+that don't work. And the other side
+effect of that is all the inputs have to
+all the imports have to be there for the
+code to run. So it's stuff like that
+which you don't think of as particularly
+important but is actually massively
+affects like user experience. Um and and
+I think beyond that it's just like we
+have been maintaining open source
+libraries for years. It's like me
+working on this but also Marcelo who
+maintains u vehicle and starlet. uh Alex
+who's been m who maintains numerous
+libraries, David Monsky who's done lots
+of stuff on pantic and on fast API like
+we're experienced open source builders
+in a way that those maintaining other
+libraries often are not is about those
+yeah I'll try not to be rder.
+Thank you. Um I think we're probably
+getting at time but yeah as I say we're
+about all week so come and talk to us if
+you have any more questions. Thank you

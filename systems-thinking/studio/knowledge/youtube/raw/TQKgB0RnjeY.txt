@@ -1,0 +1,1653 @@
+So hello, everyone, my name is Renaud&nbsp;
+Lambiotte, and I'm here for this first
+video of C five point four, the course on&nbsp;
+networks from the Mathematical Institute.
+So so in this video, this first video,
+what I'm going to do is just to give you&nbsp;
+an overview of the content of this course.
+I'm going to try to give you some motivation
+on why networks are important as&nbsp;
+a model in many, many situations.
+And also try to give you an overview&nbsp;
+of all of the different types of
+programmes that you're going to be&nbsp;
+considering in the next few weeks.
+But let's start with the motivation.&nbsp;
+So so personally, as a researcher,
+I'm interested in complex systems
+and what I mean to be a complex system,&nbsp;
+well, actually there is no unique definition
+of what a complex system is.&nbsp;
+Here is one definition today
+that I took from the Encyclopaedia of Complexity,
+which basically says that complex systems&nbsp;
+consist of a large number of interacting
+components and the interactions give&nbsp;
+rise to emerging hierarchical structures.
+The components of the systems and properties&nbsp;
+at systems level typically change with time.
+So here you have a number of keywords that&nbsp;
+are quite important. You have interactions,
+you have changing in time.
+You have large number.
+So here you need to think of all sort&nbsp;
+of situations where you would have
+a large number of entities that&nbsp;
+are interacting with each other.
+And the combination of all of these interaction&nbsp;
+leads to some interesting behaviour.
+So it could look a bit vague for the time being.&nbsp;
+So let's take a very, very concrete example.
+So unfortunately, we are a video here. So we&nbsp;
+are not around in the street looking at the sky.
+But if if you are walking around the countryside
+and you are looking in the sky and&nbsp;
+looking at birds flocking together,
+this is a very good example of a complex system&nbsp;
+where you would have a large number of birds,
+each of them interacting&nbsp;
+with their direct neighbours,
+adapting their direction&nbsp;
+depending on the direction of the,
+of their neighbours in the flock and through the&nbsp;
+combination of all of these local interactions
+you have the emergence of these beautiful&nbsp;
+patterns that are at the same time geometric,
+nice geometrical features in the sky,
+but also dynamic because these&nbsp;
+geometrical features are evolving in time.
+And while this is just one&nbsp;
+example where the combination
+of local interaction leads to&nbsp;
+interesting emerging phenomena.
+But there are many other situations where
+this happens and a very good&nbsp;
+example might be in social systems.
+Elections! In elections you have people debating&nbsp;
+with each other, discussing with each other.
+And the combination of all of these interactions&nbsp;
+leads to the formation of collective opinions.
+And in this case, to the election of one person&nbsp;
+to be the president of the United States.
+Now, when you're confronted&nbsp;
+to complex systems that are
+a [certain number of tools] that&nbsp;
+can be used. So for instance,
+people use agent-based models,
+people are also using [angular] systems and&nbsp;
+especially chaos theory and non-linear dynamics.
+People are also using&nbsp;
+stochastic processes because,
+and this is something that&nbsp;
+we're going to be discussing
+in detail, noise and randomness is&nbsp;
+a key element of many systems. Also,
+Well, even more nowadays people are using tools&nbsp;
+from data mining and optimisation, which, again,
+is motivated by the fact&nbsp;
+that more and more often now,
+the models tend to be motivated&nbsp;
+by real-life datasets.
+And then there are networks,&nbsp;
+which is the topic of this course.
+Now, ok, so so actually networks&nbsp;
+are an extremely powerful
+language and framework to describe&nbsp;
+systems because of their generality.
+And indeed, many systems that can&nbsp;
+be very different in nature can be
+represented by exactly the same&nbsp;
+language and the same tools.
+And here you have two examples. On the left side,
+you have an example of a social&nbsp;
+network on the right hand side
+you have the example of a biological&nbsp;
+network. Both are extremely different.
+The nodes represent different entities. The&nbsp;
+interactions represent different entities.
+But yet you can use the same language and the&nbsp;
+same tools to represent and analyse these systems.
+And even within social networks, you may&nbsp;
+have extremely different types of networks.
+You can think of collaboration networks, the&nbsp;
+way scientists collaborate with each other.
+I can think of communication networks to each&nbsp;
+of us, communicate by e-mail or by phone.
+I can think of online social networks, Facebook,&nbsp;
+Twitter and same for biological networks.
+In this example,
+it was an example of a protein-protein&nbsp;
+interaction network where
+the nodes are proteins and the links&nbsp;
+represent interactions between them.
+You can think of neural networks where&nbsp;
+you have a good example with the brain,
+or you could also think of food webs where&nbsp;
+you have species interacting with each other.
+For instance, eating each other&nbsp;
+and forming complex food webs.
+Now, as I said, networks are very&nbsp;
+general, but it's something that needs,
+something that needs to be understood
+is that networks are just an&nbsp;
+abstraction of reality. And indeed,
+well, this is an example from the famous example,
+from the famous work of Euler on the&nbsp;
+Koenigsberg Bridges, where in this case,
+Euler was interested in the notion of&nbsp;
+connectivity on a map where you would
+have different regions of the city and&nbsp;
+bridges that connect these regions.
+And clearly, well, you could have a very&nbsp;
+detailed representation of this on the left,
+where you would have a proper map&nbsp;
+with, actually there are many details,
+many aspects of this map that&nbsp;
+are completely irrelevant
+if you're just interested in&nbsp;
+connectivity. For instance,
+you could remove the buildings,&nbsp;
+the where the buildings are set up,
+but also you can remove the exact location the way
+physically, geographically the regions&nbsp;
+are set up on the map. And if you do
+so you go from something that is more more&nbsp;
+detailed to something that is more abstract.
+And you have at the end this&nbsp;
+network representation that really
+focuses on the key ingredient for connectivity,
+and that would be the presence of nodes and&nbsp;
+links that are basically connecting these nodes.
+This very same tool of - this very same&nbsp;
+exercise of abstraction can be done in
+very different situations,
+as I said. On the top left,
+you would have representation&nbsp;
+of the Internet with nodes being
+routers and links being physical&nbsp;
+connections between them. On the top
+right you have a very famous example,
+actually it's an example that made the&nbsp;
+cover of The New York Times in the 1930s.
+That's an example where you would have&nbsp;
+nodes represent kids in a primary school,
+and the links represent the fact&nbsp;
+that they play with each other.
+And as can be seen here from the symbols, so&nbsp;
+the symbols represent the gender of the kids,
+And you can see that clearly&nbsp;
+there is a clear divide.
+And the fact that the boys play with the boys and&nbsp;
+the girls play with the girls. On the bottom left,
+you have a functional network of the brain&nbsp;
+and at bottom right you have a Food web,
+where, as I say, species are interacting with&nbsp;
+each other, typically in a very hierarchical way.
+Now, once you have a network there are many&nbsp;
+different types of questions that you can get,
+that you can ask, and one of the fundamental&nbsp;
+questions of network science is to
+understand the relation between the&nbsp;
+structure of the system and its dynamics,
+its linear dynamics. And, well, typically,&nbsp;
+especially if you have a linear dynamical system,
+well, the kind of programme that you&nbsp;
+have looks initially very simple.
+You have this system of linear&nbsp;
+equations where X would be a vector,
+where each component described the&nbsp;
+variable that is defined on each node.
+And then you have a coupling matrix&nbsp;
+L and this coupling matrix encodes
+basically the interaction&nbsp;
+between neighbours on the graph.
+So it encodes the topology and the&nbsp;
+impact of the topology on the dynamics.
+And as a result of this,
+you have this system of n equations&nbsp;
+with a big coupling matrix L that
+basically tells you how the nodes&nbsp;
+And this is something that you're seeing in&nbsp;
+the first year how to solve these systems.
+It's not difficult in principle, but what&nbsp;
+is more interesting is really to understand
+how the structure of the graph translates
+into the properties of this coupling matrix&nbsp;
+and in particular in its spectral properties.
+Now, when you have a problem like that, you&nbsp;
+can look at it from two different angles.
+On the one hand, you can try to understand&nbsp;
+what is the impact of the structure
+on how the spreading dynamics takes place.
+So you can think of random walks,
+which would then be considering&nbsp;
+detailed consensus dynamics
+and ask - or a bidding spreading&nbsp;
+- and ask how does the topology
+affect, speeds up, slows down&nbsp;
+the way the dynamics takes place.
+Then there's another angle, that is something&nbsp;
+that we're going to be covering as well, is
+well, what is, is it possible to use dynamics&nbsp;
+- dynamical systems - to explore the graph
+and to extract some interesting features -
+Interesting properties - that the graph has.
+And these two angles are two aspects that we're&nbsp;
+going to be considering during this course.
+Now, something that is also quite important&nbsp;
+to keep in mind is that real-world networks
+they tend to present a balance&nbsp;
+between order and randomness.
+Clearly, if you think of your social&nbsp;
+network, well, it's not completely random.
+There are some social forces that shape the&nbsp;
+way your social network is organised as it is.
+But at the same time, on top of&nbsp;
+these social forces, you also have
+randomness, people you meet randomly in the bus.
+Well, for some reason, for some reason, you start&nbsp;
+to talk and you start to befriend each other.
+You see that you have this combination of forces&nbsp;
+that organise your social network and randomness,
+random connections, random meetings, that&nbsp;
+may lead to links in your social network.
+And this combination of order&nbsp;
+and randomness, actually,
+it's a question that was at the&nbsp;
+core of what is very often seen as
+the significant paper of network science.
+It's a paper from Watts and Strogatz of&nbsp;
+1998 where actually they were trying to
+understand "What is the impact&nbsp;
+of the order and randomness in
+topologies on dynamics?" and the way&nbsp;
+they did it was to propose a very
+simple crude toy model of the way social&nbsp;
+network or networks would be organised,
+where, what you can see that on the left you&nbsp;
+would have something that is completely regular -
+It's basically a one dimensional lattice. On the
+right you have something&nbsp;
+that is completely random.
+All of the links are&nbsp;
+organised completely randomly.
+But then they have a parameter that&nbsp;
+allows them to interpolate between
+these two extremes and to define&nbsp;
+what they call small-world networks,
+networks that would have a&nbsp;
+balance between local order
+and randomness and this randomness&nbsp;
+creating shortcuts in the system.
+And as you will see, this combination is
+extremely important to under- well, to shape&nbsp;
+the way that dynamics takes place in systems.
+OK, so so actually, so this course is going to&nbsp;
+be following quite closely my lecture notes.
+We have lecture notes that are
+available for you where I try basically&nbsp;
+to be as complete as possible.
+And actually, many of the parts, well,
+some of the parts of the lecture&nbsp;
+notes will not be covered here.
+There's a bit more. And this is for your&nbsp;
+own interest if you want to read about it.
+Now, so basically each, for each week, we're&nbsp;
+going to be looking at specific sections,
+so here's a table. I'm going to be talking&nbsp;
+about motivation, which I'm doing now,
+And then what I'm going to&nbsp;
+do is, I'm going to just be
+doing some refreshers on some mathematical&nbsp;
+concepts that are important for this course.
+And, as I said, well, because&nbsp;
+of the importance of randomness
+well, we have to use stochastic models.&nbsp;
+And so I'm going to be doing just a bit of
+refreshing on Poisson processes, random walks,
+We'll talk about power-law distributions.&nbsp;
+We don't have the time to cover everything.
+but there is also like a small reminder on&nbsp;
+the Matrix Algebra, Markov Chains and so on.
+So you're very welcome to have a look at those.
+And they are just written&nbsp;
+so that you can use them as
+a reference point if you have any kind&nbsp;
+of trouble after watching the course.
+Now, next week, then we're going to&nbsp;
+be starting to look at networks and
+actually we will be going to first have a short,
+very short introduction on graph&nbsp;
+theory - only the concept that we need.
+And then we're gonna be looking at&nbsp;
+simple basic methods that help you to
+characterise the structure of networks&nbsp;
+and in particular the centrality of nodes.
+And we will also talk about spectral&nbsp;
+properties of graphs and networks.
+The week after we were going to be talking&nbsp;
+about random models and phone networks
+because, indeed, very often
+when you have an [unbroken] network, well
+you you have a graph, the one&nbsp;
+that you measure in real life,
+and you want to construct&nbsp;
+a randomised version of it
+in order to test some hypotheses&nbsp;
+about the graph structure.
+There are all sorts of models
+that can be built that makes certain&nbsp;
+assumptions about the underlying topology
+and we're going to be looking at some of these&nbsp;
+models that allow some [analytical] calculations.
+Then the week after, we're&nbsp;
+going to be looking at a very
+key programme that people look at&nbsp;
+usually when they look at networks,
+which is the problem of community detection.
+So what is community detection?&nbsp;
+It's basically a clustering problem.
+You have a graph and you try to cluster the notes&nbsp;
+together by looking for dense groups of nodes,
+nodes that are very cohesively&nbsp;
+connected with each other.
+And basically what you try to do&nbsp;
+is to have a graph and to extract
+these groups in an algorithmic way.
+And we're going to be looking&nbsp;
+at some of these algorithms.
+Then for week five, we'll start to look&nbsp;
+at dynamics and we try to understand
+the impact that this community,&nbsp;
+this cluster have on dynamics.
+And we see that with the presence&nbsp;
+of clusters, of communities,
+tends to affect dynamics very&nbsp;
+much because they induce the
+presence of bottlenecks for the dynamics.
+It slows down extremely much the&nbsp;
+way information can flow from one
+part of the graph to another part of the graph.
+Then we look more specifically&nbsp;
+at one type of dynamic that
+would be the one of random walks with&nbsp;
+different running walks on networks.
+And then we will go to the&nbsp;
+second aspect of the question.
+After understanding how the structure&nbsp;
+affects the dynamics we focus exclusively on
+how can we use dynamics, and here
+random walks in order to reveal something&nbsp;
+interesting from the underlying dynamics.
+And then we're going to be finishing with a topic&nbsp;
+that is something that is very topical nowadays,
+trying to see how can we&nbsp;
+incorporate network knowledge,
+network information in the way to do&nbsp;
+epidemic modelling and how can we enrich
+epidemic models that are usually done&nbsp;
+in a mean-field fashion by incorporating
+networks about the way the people are&nbsp;
+interacting or about the way different
+regions of the world are physically&nbsp;
+connected by means of communication,
+of- of mobility patterns? That's a lot.
+So what are the key objectives of this course?&nbsp;
+Well, the key objectives will be, first of all,
+we wanted to try to propose ways to&nbsp;
+quantify the structural properties of nodes
+in a graph and to estimate&nbsp;
+which ones are important.
+We also want to quantify the&nbsp;
+structure of the network itself,
+And we have measures that tell you something about&nbsp;
+the graph. What are their important properties?
+We'll then build some random&nbsp;
+models that are critical
+to test importance of certain factors&nbsp;
+in the way a network is organised.
+We'll look at the problem of community detection,
+finding groups of nodes&nbsp;
+that are densely connected.
+And finally, we try to identify certain structural&nbsp;
+properties that are associated to an impact on- on
+the dynamics and in particular, well, for&nbsp;
+the spreading of information and of a virus,
+for instance, on the graph. So those&nbsp;
+people will those will be the kind of
+questions that we'll have in&nbsp;
+mind in the next eight weeks.
+Well, as you know, there are some&nbsp;
+problem sheets associated to this
+cause and all of them try to find the right&nbsp;
+combination between numerics and analytics.
+This is just an example where you see that, for&nbsp;
+instance, question three is more about analytics,
+about the maths, where
+you have to show some understanding&nbsp;
+about some graph theoretical concepts.
+But then you can also have,&nbsp;
+for instance, question five,
+that would be some more numerical
+question where you are asked to write a code to&nbsp;
+generate some graphs according to certain rules.
+And so the whole course is going to be this:&nbsp;
+some sort of combination of these two aspects.
+Now, for the numerics, well, you&nbsp;
+can use any language of your choice.
+I encourage you to use Python, because I know&nbsp;
+that most of you like Python, first of all,
+but also because many libraries&nbsp;
+exist in Python that facilitate
+any kind of modelling and&nbsp;
+manipulation of networks.
+And so, for instance, Network X&nbsp;
+is a very good example of that.
+But you're very free to use&nbsp;
+any language that you choose.
+Now, another point that is quite&nbsp;
+important, I suppose, is that,
+well, you're always very curious&nbsp;
+usually about the examination.
+Well, for the examination it's going&nbsp;
+to be done with a mini project,
+as it's been done in the last few years.
+This is an example from 2019, so two years&nbsp;
+ago, where the mini project is typically,
+well, what needs to be handed in is a&nbsp;
+project in the form of a research paper.
+And so you are basically asked to explore&nbsp;
+the literature for a very specific problem.
+Well, it still allows you&nbsp;
+to have some flexibility.
+So here I asked the students to look at
+the concept of non-backtracking random walks&nbsp;
+- something that we hadn't seen in the course,
+but was a natural extension of what&nbsp;
+we'd seen in the class. So basically,
+I always try to find a topic&nbsp;
+that naturally extends on what
+we've seen and allows the students&nbsp;
+to to explore the literature and
+to find a question within this umbrella of
+non-backtracking random walks that year&nbsp;
+that, basically, that they find interesting.
+So this is a creative work,&nbsp;
+a small research project.
+And each year we have a different topic. Two&nbsp;
+years ago, it was non-backtracking random walks.
+Well, this year, obviously, I can&nbsp;
+tell you what it's going to be.
+Now, okay, so this is the end of this first video&nbsp;
+that was about the motivation of the course.
+So now what we we're going to do is we're&nbsp;
+going to be looking at some, just a bit of
+maths, about some some mathematical&nbsp;
+concept that are particularly relevant.
+And basically, what I'm going to be doing&nbsp;
+is to focus on the parts B, C and D.
+So we have some new videos coming in a second
+where are you going to be looking at the basics&nbsp;
+of renewal processes, including Poisson processes,
+also random walks and diffusion.
+And then we're gonna be talking about&nbsp;
+power-law distributions because as we'll see,
+they tend to play a very important role
+in graphs and networks.
+So thank you for listening to this first video&nbsp;
+and you're welcome to look at the next one.
+So welcome, everyone for the second video&nbsp;
+of the first week of the course of networks.
+So as you discovered in the first video,
+randomness and stochastic&nbsp;
+processes are key elements
+if you want to model networks,&nbsp;
+and that's because most empirical
+networks tend to have a combination of&nbsp;
+order and randomness. In this video and
+in the next video as well, we'll be&nbsp;
+looking at very simple stochastic
+processes in order to introduce this very&nbsp;
+important notion of master equations.
+So in this video, we'll be looking at Poisson
+processes that are a typical&nbsp;
+example of a renewal process.
+So what is a Poisson process? Well,&nbsp;
+typically Poisson processes are
+used as a very simple first&nbsp;
+order model. To represent systems
+we would have a sequence, a random&nbsp;
+sequence of events that take place in time.
+So here what you would have is,&nbsp;
+that would be here the time axis
+and you would have what appears to be a random,
+random appearance of events in the&nbsp;
+course of time. So you can think of,
+for instance, emails arriving in your mailbox
+or the times at which atoms&nbsp;
+would be colliding in a gas.
+Well, these would be situations where&nbsp;
+clearly it doesn't seem to be predictable.
+There seems to be some randomness&nbsp;
+in the way these events take place.
+Now a Poisson process is based on&nbsp;
+two extremely important assumptions.
+The first assumption is that the rate at&nbsp;
+which the events take place is constant.
+So you have constant rate that each time,&nbsp;
+basically, the rate of events is the same.
+And you also have a second&nbsp;
+very important assumption,
+which is the fact that the events&nbsp;
+are independent of each other.
+Now, as we see using these two&nbsp;
+assumptions, we'll be able to
+derive very important mathematical&nbsp;
+properties of Poisson processes.
+But of course, well, when you think about&nbsp;
+it, these are very strong assumptions
+and it's very unlikely that they're&nbsp;
+going to be verified in many situations.
+So let's take emails, for instance.
+Well, clearly, the rate at which&nbsp;
+I receive emails is not constant.
+I tend to receive more emails in the day&nbsp;
+and many less emails during the night.
+And so clearly, there should&nbsp;
+be some sort of modulation
+in the way the rate of&nbsp;
+receiving emails is defined.
+For emails as well. Can we assume that&nbsp;
+receiving emails are independent processes?
+Well again, that's very unlikely&nbsp;
+because very often emails
+are part of conversations, of threads,
+and well, if I receive an email,&nbsp;
+I reply, I receive another one.
+This, basically, this is going to be leading&nbsp;
+to a cascade of emails and all of those
+will not be independent from&nbsp;
+each other by definition.
+So clearly for emails. Well, that&nbsp;
+doesn't seem to be a very good model.
+But the most important is that this is a&nbsp;
+model that can be used as a baseline and
+that you can then generalise in&nbsp;
+order to make it more realistic.
+And as we see when we'll be looking&nbsp;
+at the modelling of networks,
+we'll be proceeding in the same way.
+We will also build a very simple&nbsp;
+stochastic model of networks
+based on simple yet unrealistic assumptions.
+And then we'll be building more and more complex&nbsp;
+models. That would be much closer to the truth,
+well, to the reality. So what what&nbsp;
+can we say about Poisson processes?
+Well, typically, well, let's first define&nbsp;
+a Poisson process. Poisson process.
+Well, the way it's defined is the following. So
+we assume that we're going to be taking&nbsp;
+a certain time window of length delta_t.
+And we say that is a certain probability, q,
+that an event takes place inside, that -
+probability q that an event takes&nbsp;
+place inside the time window.
+And clearly, well, this is going to be defining&nbsp;
+a rate, lambda, which is q divided by delta_t
+and this is the rate at which events take place&nbsp;
+given this probability and this time window.
+Now, as is often the case, we're going to be&nbsp;
+taking the limit when delta_t goes to zero.
+And in order to make the rate non-trivial,
+we'll take at the same time&nbsp;
+the limit when q goes to zero,
+So that lambda is non-zero and non-infinite.
+And we will take these two limits.&nbsp;
+And this is going to be defining
+a rate at which events are going to be&nbsp;
+taking place in very small time window.
+Now, clearly, because we take the q going&nbsp;
+to zero and the delta_t going to zero,
+well, in a very, very small delta_t&nbsp;
+we will either have one or zero events
+that are possible. Yes.
+Because the q goes to zero, it's&nbsp;
+impossible in a very time of-
+very small time window to have more than one&nbsp;
+event taking place, just in one tiny time window,
+which is something that we're going&nbsp;
+to be using in just a moment. Now,
+when you look at Poisson processes,&nbsp;
+there are many things that you can derive
+but one of the most important properties&nbsp;
+is P(n,t), which is the probability
+of observing n events
+in a certain time window [0.t].&nbsp;
+Now, by definition, what do we know?
+Well, by definition, we already know some&nbsp;
+of these values because what we know is that
+the q is equal to P(1,delta_t),
+yes? q is the probability of having one event in
+a very tiny window delta_t&nbsp;
+when the delta_t is small,
+which is equal then to lambda&nbsp;
+delta_t when delta_t is small.
+And we also know that one minus&nbsp;
+q is equal to P(0,delta_t)
+so it's the probability of having zero events&nbsp;
+in a very small time window of lengthy delta_t,
+which is equalt to one minus lambda delta_t.
+And so here we exploited the fact&nbsp;
+that in very small time window,
+you can either have zero or one event&nbsp;
+that takes place. Now using this,
+well, actually, we're gonna be able to construct&nbsp;
+an equation that is gonna be relating the P(n,t)
+With its expression for smaller values of t.
+And this is the essence of what is&nbsp;
+a master equation. A master equation
+tells you how probabilities evolve in time.
+And even if you have a stochastic&nbsp;
+process, well you are going to be
+having equations that tell you how the&nbsp;
+probabilities are evolving in time.
+And so here what we have, and so I'm&nbsp;
+going to first write it down for you,
+we have the probability of&nbsp;
+there being an events in a time
+window of t plus Delta t. So it's going to&nbsp;
+be equal to a combination of two things.
+So let me write it down.
+Okay.
+So it's a combination. So here basically,
+you look at all the possibilities&nbsp;
+that will lead your stochastic process
+to have an observation of n events&nbsp;
+in a time window of t plus delta_t.
+And when you think about it, you have&nbsp;
+two ways. One way would be to have
+n events in a time window of length&nbsp;
+t and then zero event afterwards.
+And that would be what we have here.&nbsp;
+n initially, and then zero afterwards.
+And another possibility&nbsp;
+would be to have n minus one
+in the first time window and&nbsp;
+one event in the next one.
+And then, these are the two new possibilities&nbsp;
+to relate the P(n,t) to the P(n, t + delta_t)
+So here actually, well, I've&nbsp;
+been making implicitly on that -
+well, I've been exploiting actually one&nbsp;
+of the assumptions of the Poisson process,
+because, as we said the Poisson process&nbsp;
+relies on this notion of independence
+and here indeed I have been factorising
+The probability of having n events&nbsp;
+in time t and and zero events in
+delta_t. I've been factorising that as&nbsp;
+the product of the two probabilities.
+That's why we have a product here and you&nbsp;
+have a product there. And so clearly here,
+well, by using this independence,
+I can write down an equation that&nbsp;
+allows me to relate the P(n,t+delta_t)
+to the probabilities taking&nbsp;
+place the previous time.
+Now, what we're gonna do now is&nbsp;
+we're gonna be taking the limit when
+delta_t goes to zero.
+And this is going to lead us to a differential&nbsp;
+equation, a system of differential equations.
+It could be the following one.&nbsp;
+Lambda P(n-1,t) minus lambda P(n,t)
+which is an equation that would be satisfied for
+n that is larger than or equal to one. And&nbsp;
+so we have a system of equations for all
+of the values of n larger than one.
+And we also have another one here, for&nbsp;
+zero. Simply equal to minus lambda P(0,t).
+And so it means here that we have a system
+of differential equations to solve in order&nbsp;
+to estimate what would be this P(n,t).
+But this is not so difficult to solve&nbsp;
+because you can solve the one for zero.
+And then we have what's needed&nbsp;
+for solving the one for one.
+And then for two and so on and&nbsp;
+so one. So we can solve this
+recursively to get the general&nbsp;
+expression for the P(n,t).
+So, well, when you look at the first one&nbsp;
+for P of zero, well what you have is P(0,t).
+It's going to be equal to a certain constant&nbsp;
+times exponential of minus lambda t.
+Now we need to estimate what is the c,&nbsp;
+what is this constant of integration.
+What we know is that: what is the&nbsp;
+probability of having zero event
+in a time window zero? Well,&nbsp;
+it is going to be equal to one.
+Yeah. In the time window zero the probability&nbsp;
+of having zero events is equal to one.
+So it means that from this we have the constant&nbsp;
+equal to one. And we have that the P(0,t)
+is equal to exponential of minus lambda t.
+So this is a first property of the Poisson process&nbsp;
+that we just derived from this master equation.
+Now, actually, before we go and solve&nbsp;
+the P(n,t) for general values of n,
+well, actually, let's focus for a&nbsp;
+second on this P(0,t) because we can
+derive something else that&nbsp;
+is very interesting from it.
+So when you think about it. So when you have -
+If this is length t and this is&nbsp;
+here a certain length, delta_t
+then you ask the question: What would&nbsp;
+be the P(0,t) minus P(0,t+delta_t)?
+And these two quantities would be different, yes?
+So the probability of having&nbsp;
+zero events in a time window t
+minus the probability of having zero&nbsp;
+events in a time window t plus delta_t.
+Well, this difference is actually&nbsp;
+the probability that for the first
+time you had an event taking place&nbsp;
+within the small time window, delta_t.
+So it means that this quantity&nbsp;
+here is gonna be equal to a certain
+P of - let's write it down differently, sorry.
+Let's call it Psi. Psi(t) delta_t.
+So basically, it tells us the&nbsp;
+probability that for the first
+time you have an event taking place after time t.
+And well, again, you take the limit when&nbsp;
+delta_t goes to zero. What you get is that
+this Psi and let's write it down with tau.
+Tau would be the first time when an event&nbsp;
+happens. It's going to be equal to minus dP(0,tau)
+divided by d tau, which is&nbsp;
+equal - from what we obtained
+earlier here - is going to be equal to&nbsp;
+lambda exponential of minus lambda tau.
+And so what this tells us is something else&nbsp;
+now. What we just got is that the probability
+of waiting a certain time tau
+before the event happens is distributed in&nbsp;
+an exponential way for Poisson processes.
+Now, the thing is, that's so&nbsp;
+clearly because of the fact that
+all of the events are independent of each other
+we basically have that, we have a certain time,&nbsp;
+tau_1, for instance, after the first event,
+before the first event, and then a certain&nbsp;
+tau_2 and so on and then tau_n and so on.
+And because we have that events&nbsp;
+are independent of each other
+each realisation of this random variable&nbsp;
+will be independent of the previous ones.
+And this is something that is&nbsp;
+usually called the renewal property.
+The renewal property. So the inter-event times
+are independent of each other and the Poisson&nbsp;
+process presents the renewal property.
+Actually, the Poisson process also&nbsp;
+presents another very strong property.
+And it's the fact that the P&nbsp;
+of tau larger than t_1 + t_2
+Given that tau is larger than t_2, it's equal&nbsp;
+to the probability that tau is larger than t_1.
+So what does it mean? It means that if I&nbsp;
+have someone waiting for a bus, for instance,
+and the buses are arriving&nbsp;
+in a Poisson-fashioned way,
+and you ask, how much time does he have to wait?
+What is the probability that the bus&nbsp;
+arrives after a certain time t_1?
+Well, it's going to be the same as a person&nbsp;
+would have been for a certain time t_2.
+Yes. No bus arrived, he's still there.
+And you ask, how much time should the&nbsp;
+person wait for the bus to arrive?
+Well, actually, the probability&nbsp;
+to arrive after a certain time t_1
+after the t_2 would be the same for&nbsp;
+this person and for that person.
+So basically, it means that, well,&nbsp;
+because, and this is because of
+the inherent nature of the Poisson process&nbsp;
+of independence and the constant rate,
+when you wait, when you're at a certain&nbsp;
+point in time all of the past is irrelevant.
+And hence the probability of waiting for a&nbsp;
+certain time will be exactly the same, initially,
+Than it is after a certain time&nbsp;
+that you've been waiting. Now,
+So what about now the general solution of&nbsp;
+the Poisson process? So as we discussed,
+so we obtained an expression for the P(0,t)
+and then you can solve recursively&nbsp;
+and get an expression for any value.
+And what you get is, what you're&nbsp;
+going to be having is that
+the distribution of the number&nbsp;
+of events in a certain time
+window of length t is going to be equal to
+lambda T to the power n divided by n&nbsp;
+factorial exponential of minus lambda t.
+Which basically tells us that the probability of&nbsp;
+waiting for, of observing n events in time window
+t is going to be, is going to be&nbsp;
+given by a Poisson distribution.
+And this Poisson distribution has a mean&nbsp;
+and a variance that are equal to lambda t.
+Now, this is beautiful because, well, it means&nbsp;
+that from the Poisson process very easily
+we can obtain key quantities that describe&nbsp;
+the stochastic properties of that process.
+But obviously, as we say, this&nbsp;
+is a very simplistic model.
+And so what you would like&nbsp;
+to do then is to use it as
+a ground on which to build&nbsp;
+more complicated models.
+And, well, actually, there are&nbsp;
+ways to do so. And for instance,
+one way to generalise the Poisson process&nbsp;
+is to characterise inhomogeneous Poisson
+processes where you have the possibility now&nbsp;
+to have a rate that is not constant anymore,
+but a rate that can be modulated in time. And&nbsp;
+for these inhomogeneous Poisson processes -
+And that's shortly described in the lecture notes,
+actually - you can also derive certain properties&nbsp;
+of it. It's a bit less easy, but you can do that.
+Another thing that can be done is to&nbsp;
+try to get rid of this independence
+between successive events.
+And one way to do it is to introduce, well,
+you want to introduce certain correlations&nbsp;
+between events taking place in time.
+One way to do it is to go to more general renewal&nbsp;
+processes where you have that the inter-event
+time distribution will not be an exponential,
+but a certain distribution that&nbsp;
+might be fitted from empirical data
+or to even go to more complicated&nbsp;
+models like self-exciting models,
+where events trigger the&nbsp;
+realisations of future events.
+But this is certainly something that&nbsp;
+is beyond what we need for this course.
+I have some some references in the lecture&nbsp;
+notes. You're very welcome to read them.
+And so this small video concludes our&nbsp;
+short introduction of the Poisson process.
+And in the next one we'll&nbsp;
+be looking at random walks.
+So. Well, hello again. So this is the third video&nbsp;
+of this first week of the course of networks,
+and what we do now is look at&nbsp;
+the concept of random walks,
+which is a very simple model and&nbsp;
+very generic model for diffusion.
+So as we will see, random walks play a&nbsp;
+very important role in network science.
+We will be using random walks on networks&nbsp;
+very often, in order to measure the diffusion,
+for instance, of IDs or information in networks.
+We will also be using random&nbsp;
+walks as a way to explore a graph
+and to extract some information from that graph.
+But random walks have not been defined initially
+on graphs and networks. They&nbsp;
+have a much longer history,
+and they tend to have a very important&nbsp;
+place in almost any field of science
+where you have a motion that has some&nbsp;
+random - that has a certain random nature.
+And this happens in biology, in&nbsp;
+physics, in finance. So in many,
+many domains of science, you&nbsp;
+will see random walks appearing.
+So if you remember in the previous video,
+we looked at the Poisson process&nbsp;
+and the Poisson process is
+the simplest model for the way&nbsp;
+random events take place in time.
+Here we will be looking at&nbsp;
+random walks, which is arguably
+the simplest model to generate&nbsp;
+random trajectories in space.
+So we try to model some random motion in space.
+And for the sake of simplicity, we'll be&nbsp;
+looking mostly at one dimensional space.
+So the one dimensional line.
+So just before we start, I just wanted&nbsp;
+to point to this very nice website.
+There is a website called Complexity&nbsp;
+Explorables where you can explore
+a whole range of models that people&nbsp;
+used to model complex systems.
+And this is very nice because&nbsp;
+you also have some mathematical
+explanation of the behaviour of the model.
+So you can play with the parameters and&nbsp;
+observe how the dynamics take place and evolve.
+And one of those small examples that is on&nbsp;
+this website is precisely about random walks.
+And here it here is an example where you have&nbsp;
+different random walks where you would have
+slightly different rules for the way the random&nbsp;
+walker is behaving in two dimensions here.
+And what's quite important, too, is that&nbsp;
+actually these tiny details in which
+the random walk moves are basically washed&nbsp;
+away after a certain amount of time.
+And what's going to happen, as we see&nbsp;
+analytically in a few minutes, is that's
+where you run the mock process:
+You have a sequence
+of random traps. And this sequence can be&nbsp;
+understood as a sum of random variables.
+And you know from statistics that when you&nbsp;
+have a sum of independent variables, well,
+asymptotically by the Central Limit Theorem&nbsp;
+it's going to be converging to a nice
+Gaussian distribution, independently&nbsp;
+of the details of all of the -
+of all of the variables.
+And actually, this is also something that's&nbsp;
+going to happen here. Independent of the
+details of the way the random walker is moving,
+if you look at things after a sufficiently&nbsp;
+long amount of time, you will see a nice
+bell-shaped Gaussian
+distribution emerge as the probability for a&nbsp;
+walker to be at a certain place at a certain time.
+So please, go on this website. It&nbsp;
+is very nice to play with and to
+explore visually the properties&nbsp;
+of these random walk processes.
+But here, we will not be looking at two&nbsp;
+dimensions just for the sake of simplicity.
+But we'll be looking at one dimensional systems.
+So what we have here is one dimension,
+which is our position, and what we'll&nbsp;
+be considering is, well, actually,
+a certain situation where you would&nbsp;
+have a certain random walker. Initially,
+for instance, he would be located at zero, and&nbsp;
+then he is going to be moving at discrete times,
+it is going to be a discrete time process.
+And at discrete times he is gonna be make&nbsp;
+jumps and these jumps are random variables.
+So he is going to be making a jump to a certain r.
+And basically what we have is that&nbsp;
+we define a certain probability
+density, f(r),
+Of doing a jump to r from zero in one step.
+So clearly, it means that if I had a walker&nbsp;
+that started at X, he is going to jump
+to the location [X + r, X + r + delta_r],
+so he is going to move to this interval&nbsp;
+in one jump with a probability:
+It is given by f(r) times delta_r.
+Well, this f(r) is actually&nbsp;
+just a parameter of the model,
+so this is something that we need to impose.&nbsp;
+This is the rule by which a walker makes a jump
+and where he goes in one single jump.
+Now, as we see, we will not need&nbsp;
+much information of this f(r) to
+understand the behaviour of the walker&nbsp;
+for long times and actually what will be,
+well, there are just two important parameters&nbsp;
+that we need: the V, which is the average of r.
+So, for instance, if the walker is unbiased&nbsp;
+and goes as much to the left as to the right,
+this quantity would be equal to zero.
+Otherwise, as we see it's is going to lead&nbsp;
+to a drift in one direction or the other.
+And you also have a certain D that&nbsp;
+measures the variance of this f(r),
+defined as this quantity here.
+And as we see, these two quantities&nbsp;
+are going to be sufficient to describe
+the asymptotic dynamics of&nbsp;
+the walker over long times.
+So, just of course, because&nbsp;
+f is a probability density
+we need to verify that the integration&nbsp;
+from minus infinity to infinity of f(r) dr
+is equal to one. Now. Okay.
+So, how can we describe the motion of the walker?
+What we need to do is to try to write equations&nbsp;
+that the probability to at a certain place X
+at time t is going to be satisfying.&nbsp;
+What can we say about the
+time evolution of the probability&nbsp;
+to be at a certain time X at time t?
+Well, clearly what we need is an equation that&nbsp;
+shows the evolution of this quantity by jumps.
+And we need to complement this equation by a&nbsp;
+certain knowledge of the initial condition.
+So, for instance, we need to think&nbsp;
+that probabilistically, for instance,
+the probability that the walker was&nbsp;
+at zero initially is going to be one.
+And then you will have an ensemble of walkers&nbsp;
+behaving randomly, leading to a distribution
+that's going to be evolving in&nbsp;
+time. So so this P(X) at time t,
+which is then, as we say it, the&nbsp;
+probability of visiting X at time t -
+Probability of visiting X at time t -&nbsp;
+it's going to be satisfying this equation
+here: so it's going to be the integration&nbsp;
+from minus infinity to infinity of f(X-X')
+and then we have the P(X', t-1) dX'.
+So where does this come from? Actually,
+it looks very much like the one&nbsp;
+that we got for the Poisson process.
+What we say here is that if you wanted to&nbsp;
+know what is the probability that you are
+on a certain X
+at time t, well you have to look&nbsp;
+at the positions of the walker
+at the previous time, at t minus one.
+So, for instance, it was on on a certain&nbsp;
+X'. And you say, OK, it's going to be
+the probability that I was on a certain X'
+times the probability that I jump&nbsp;
+exactly towards X in one single step.
+So actually, this is the&nbsp;
+probability that I was on X'
+and that I make the jump&nbsp;
+that I need to arrive on X.
+And as before we can&nbsp;
+factorise these probabilities,
+because we will be assuming that the&nbsp;
+probability to do a certain jump is
+independent of where you are at a certain time.
+And what we do here is that we have this&nbsp;
+quantity for one specific value of X'.
+And then we need to integrate&nbsp;
+over all possibilities
+in order to look at all of&nbsp;
+the possible trajectories
+that would start from a certain&nbsp;
+X' and arrive on a certain X.
+Now this equation is a convolution.
+And when you need to deal with convolution, it's&nbsp;
+very practical to go into the Fourier domain.
+So I'll just remind you rapidly,&nbsp;
+what is the Fourier transform.
+So we say that P(k,t) is equal to the integration
+of minus infinity to infinity&nbsp;
+of P(x, t) exp(-ikX) dX.
+So P(k,t) is a Fourier transform,
+with a small hat, of this probability where&nbsp;
+the k would be understood as frequencies,
+where X would be understood as positions.
+And from this Fourier transform you can recover
+the P of X by the inverse&nbsp;
+Fourier transform and P(X,t)
+is going to be equal to one over two pi times&nbsp;
+the integration from minus infinity to infinity.
+of the P_hat(k,t) times exp(ikX) dk.
+Now, well, when you need to think about&nbsp;
+the Fourier transform, what do you do?
+Well, actually, what you&nbsp;
+do is you decompose P(X,t)
+in a basis of functions. And this basis&nbsp;
+would be these exponentials of ikX
+instead of giving a sum giving integration.
+So basically you decompose P(X,t) in a
+basis of exponential of ikX, where these here&nbsp;
+would be actually the coefficients in this
+decomposition and these coefficients can&nbsp;
+be obtained by doing some sort of like
+a dot product of your vector.
+Yes. With the vectors of your basis.
+This is a very much like what&nbsp;
+you do in linear algebra.
+Now something that is important to know is that&nbsp;
+the P_hat(k,t), the Fourier transform of P(X,t),
+which by definition is the average&nbsp;
+of exponential of minus ikX,
+actually provides information about&nbsp;
+the moments of the distribution
+by looking at its behaviour for&nbsp;
+small values of k. So we have that if
+we do a Taylor expansion for small values of k
+we have one minus ik average of X plus one&nbsp;
+over two k-squared average of X-squared
+plus and so on, higher order terms.
+So all of the information about the moments
+is basically captured by the analytical&nbsp;
+behaviour of P(k,t) for small values of k.
+So why did we do a Fourier transform?
+Because, well, as you know, when&nbsp;
+you have a convolution and you
+take a Fourier transform of that, it's&nbsp;
+going to be translating into products.
+And so it means now that
+the equation we're going to be having now, is that&nbsp;
+P_hat(k,t) is going to be equal to the f_hat(k)
+times the P_h(k,t-1).
+And here what we can do now is iterate.&nbsp;
+And if we assume that initially
+we had that the P(X,0) is equal to delta_X -
+So initially all of the probability
+is concentrated on X equal to zero, so&nbsp;
+all of the walkers are at the origin -
+Well then we will have that P_hat(k,0),
+our initial condition, will be equal to one. Now,&nbsp;
+starting from this equation here, we iterate.
+And what you obtain is that the P_hat(k,t)
+is going to be equal to this
+f_hat(k), the Fourier transform of this
+quantity here, right? The behaviour&nbsp;
+of one single jump to the power t.
+And now what's happening is that, so, if&nbsp;
+we want to find back what is the P(X,t)?
+We only need to do an inverse Fourier&nbsp;
+transform on this quantity and we get one
+oover two pi of the integration&nbsp;
+from minus infinity to infinity of
+f_hat(k) to the power t
+exponential of ikX dX.
+So it means that formally we found a solution of
+the probability of being&nbsp;
+at a certain X attime t by
+doing this Fourier transform&nbsp;
+and inverse Fourier transform.
+And we see that, well, we basically have&nbsp;
+just products, that takes place, of this
+f_hat(k) that determines the&nbsp;
+probabilities of jumps, of single jumps.
+Now, what is very important and, well,&nbsp;
+I will not have the time to go into
+the technical details or how to do it here,
+but what's quite important is that&nbsp;
+actually when t is sufficiently large,
+what's going to happen is that many of the details&nbsp;
+of this expression are going to be disappearing.
+And actually, the dominating terms
+are gonna lead us to the emergence of a,&nbsp;
+well, nice-behaved Gaussian distribution.
+So what we'll have is that when&nbsp;
+the time is sufficiently large,
+we'll have this goes to one over
+two pi Dt one-half times exponential of&nbsp;
+minus X minus vt squared divided by four Dt
+where the V was this quantity telling&nbsp;
+us about the symmetry of the walker,
+while the D here will be&nbsp;
+telling us about it's variance,
+basically. And what we have&nbsp;
+here is that for a long tims,
+we have the emergence of this Gaussian, where
+we have a drift term that tells us that&nbsp;
+if there was a drift in single jumps
+we had that this Gaussian is going to the left&nbsp;
+or to the right, depending on the value of t.
+But at the same time, we also have the&nbsp;
+variance for the Gaussian is widening.
+And this is diffusion. And so we have this nice
+Gaussian that is going to be&nbsp;
+drifting one way or the other
+and at the same time becoming flatter and flatter.
+And well, actually, well, the&nbsp;
+technical derivation from here to there
+It looks very much like what you do when&nbsp;
+you try to show to Central Limit Theorem,
+because when you think about&nbsp;
+it, a random walk process
+is just a sum of random variables where each&nbsp;
+random variable is what's happening in one jump.
+So this is a very short introduction&nbsp;
+to random walks. And as we'll see,
+we'll be using random walks very&nbsp;
+much in the rest of this course.
+We do them on
+graphs in a discrete space instead of doing it&nbsp;
+in one dimensional lines as we've done here.
+But you see that actually certain of these&nbsp;
+aspects that we've been discussing today
+are going to be coming back. For instance,&nbsp;
+instead of doing Fourier transforms
+we also do some sort of like a spectral
+decomposition that's going to&nbsp;
+be looking like it very much.
+But this is going to be for later. And well,&nbsp;
+thank you very much for your attention.
+And I invite you to look at the next video.
+So hello, everyone. This is the last video
+for this first week where we're going to&nbsp;
+be talking about power-law distributions.
+So in the last two videos we've seen the emergence&nbsp;
+of two very important families of distributions.
+We've seen that for Poisson processes
+we have naturally the emergence&nbsp;
+of exponential distributions,
+while random walks, through the central limit&nbsp;
+theorem we have the emergence of these very nice
+Gaussian distributions.
+Now, the thing is, that very, very often in real&nbsp;
+life when you are confronted to real life data,
+well, you may be confronted with&nbsp;
+distributions that would be very,
+very different in nature&nbsp;
+from those two distributions.
+And this is very specifically the&nbsp;
+case of power-law distributions,
+which as we'll see play a very&nbsp;
+important role in networks as well.
+So what are power-law distributions?
+So here this is a very classical&nbsp;
+example where we have been considering
+like a population of 10000 cities and&nbsp;
+we've been constructing a histogram
+That tells us about the frequency&nbsp;
+of cities having a certain size.
+You can see that this histogram&nbsp;
+is given by this shape here,
+right, that when you plot&nbsp;
+it in the log-log scale -
+so this log here and this is&nbsp;
+log there - takes the form of
+something that looks very&nbsp;
+much like a straight line.
+So we'll see when when you have such&nbsp;
+a straight line in a log-log scale
+This is basically a sign that&nbsp;
+you may be confronted with
+a distribution that is power-law distributed.
+Now, power-law distributions have been&nbsp;
+observed for decades, for at least a century.
+There are very important figures, they&nbsp;
+would be Barretto and Zipp, for instance.
+And it's been observed in a variety of context,&nbsp;
+like distribution of the size of cities,
+also like the distribution of the frequency&nbsp;
+of words in text, for instance, where
+'the' would be appearing very, very often,
+while my last name, 'Lambiotte',&nbsp;
+might maybe appear once
+and be amongst all of these words&nbsp;
+that appear very, very infrequently.
+But even within networks power-law&nbsp;
+distributions are being observed very often.
+And so here are six examples&nbsp;
+of degree distributions.
+What is a degree distribution?&nbsp;
+When you have a graph
+you have elements that are&nbsp;
+connected to each other.
+And a very simple measure of the importance&nbsp;
+of a node is the degree and the degree counts
+how many edges are connected to a node. So, for&nbsp;
+instance, this nodes here has the degree three,
+this one: one, this one: one, this one: one.
+So for this specific graph if I was to plot
+the degree distribution I would&nbsp;
+have, so this is one, two, three,
+this is my k, and then I&nbsp;
+have one, two, three, four -
+I have four nodes. And I will have that&nbsp;
+three fourth of my nodes have a degree one
+and one fourth of my nodes has a degree three.
+That would be my degree distribution.&nbsp;
+Of course, in such a small example
+it is difficult to characterise the&nbsp;
+shape associated with that distribution.
+But when you are confronted with networks&nbsp;
+made of thousands or millions of nodes,
+then you can properly calculate an histogram&nbsp;
+and try to understand, to model the distribution
+that is associated to that histogram.&nbsp;
+And so here you have six examples, where
+here what you have is a distribution of a
+collaboration network where you would have&nbsp;
+mathematicians connected with each other
+when they write together.
+Here you would have a citation network&nbsp;
+where now the nodes are articles
+and the links represent citations&nbsp;
+from one paper to another one.
+Here you would have - here you would&nbsp;
+basically be having the World Wide Web.
+So the nodes this time, the nodes are pages and&nbsp;
+the links correspond to hyperlinks in this graph.
+Here you would have the Internet&nbsp;
+where the nodes are routers and
+your physical connections between the&nbsp;
+routers. Here you have power grids.
+Well, I think that it speaks for&nbsp;
+itself. And here you would have
+protein interactions with you would&nbsp;
+have proteins and links represents
+interaction between these proteins. What you&nbsp;
+can see is that in each of these situations,
+when you plot the distribution in the&nbsp;
+log-log way, you have something that,
+well, sometimes vaguely and&nbsp;
+sometimes more precisely,
+looks like a power-law.&nbsp;
+For instance, here, clearly
+this is very much like a&nbsp;
+straight line. While this one,
+well, clearly this would be much more debateable.
+But still you have some distributions&nbsp;
+that tend to be very, very broad.
+And to have what is usually&nbsp;
+said to have a fat tail.
+I'm going to be explaining to you&nbsp;
+in a moment what I mean by that.
+So let's define what is a
+power-law distribution and let's do it&nbsp;
+in a continuous way. For the discrete way
+it would be very much the same. So we have&nbsp;
+a certain distribution that is given by
+this. And X, it needs to be larger&nbsp;
+than a certain minimal value.
+So typically the distributions with a&nbsp;
+power-law are defined only for positive values,
+but strictly positive values,
+because otherwise this distribution here&nbsp;
+would be diverging for X going to zero.
+And what you have here is typically a
+minimum value extreme after which&nbsp;
+you have this power-law decrease.
+Now, well, the C is there just&nbsp;
+for the normalisation and so the C
+is equal to Alpha minus one times X Alpha
+minus one min, in order to ensure&nbsp;
+that integration from X_min
+to infinity of C X to the minus alpha dX
+is equal to one. Okay.
+Now we have now this distribution.&nbsp;
+And now what can we say about it?
+Well you know that, well, this is something&nbsp;
+that we've seen in the first year,
+that exponentials go very fast to zero when X&nbsp;
+is large. Much, much faster than any power of X.
+So it means now that, well, if you plot&nbsp;
+the distribution and it is a power-law,
+and as I said, we'll show&nbsp;
+why this is a straight line,
+but let's assume now that we&nbsp;
+know this is a straight line.
+How would an exponential or Gaussian or any kind&nbsp;
+of exponential function look like, you know,
+in a power- in a log-log way?
+Well, you get something that would probably behave&nbsp;
+like this and then go extremely fast to zero.
+So it means here that the kind of&nbsp;
+distribution you have would basically be -
+Oh, excuse me, I have a tiny problem here -
+So you basically have
+a distribution for the exponential that goes very&nbsp;
+fast to zero, which basically means that actually
+the large values of the power-law are much,
+much more frequent than you would have in&nbsp;
+an exponential or Gaussian distribution.
+So, this is exactly what you mean&nbsp;
+by the tail of the distribution.
+You would have
+an overrepresentation of extreme events&nbsp;
+when you have such a power-law distribution.
+But when you have a power-law
+you also have an overrepresentation&nbsp;
+of the smaller values. And typically
+power-law distributions are associated&nbsp;
+to a very large level of heterogeneity.
+You have a very broad spectrum&nbsp;
+of values with, actually, a huge,
+basically, viability, heterogeneity&nbsp;
+that would be present in your system.
+Much, much more - much, much&nbsp;
+more than you would have for
+a Gaussian or an exponential, for instance.
+Now, what can you say about this distribution?
+Well, actually, related to this&nbsp;
+overrepresentation of extreme events
+and to these very broad heterogeneity.
+Well, this translates into the behaviour&nbsp;
+of the moments of the distribution.
+So if I calculate the moment&nbsp;
+of a power-law distribution,
+what I would get is, so this is X_min to&nbsp;
+infinity of X to the power beta P(X) dX.
+This would be equal to Alpha minus one&nbsp;
+divided by Alpha minus one minus beta
+X_min to the beta, but only if beta&nbsp;
+is smaller than alpha minus one.
+And it diverges, otherwise.
+So it basically means that when&nbsp;
+you have a power-law distribution,
+certain moments are ill-defined and you will&nbsp;
+have that some moments are well defined.
+but others will basically be diverging, at least&nbsp;
+if you are to have like an infinite number of
+samples for your distribution.
+So it's quite important to observe&nbsp;
+that even something as simple as
+the moon would diverge for values of&nbsp;
+alpha that are between one and two.
+And the variance itself
+would actually not exist
+for values of alpha that&nbsp;
+are between two and three.
+So it means here, what you need to think,
+is that if you have a power-law with a value&nbsp;
+of 2.5, for instance, alpha goes to 2.5.
+It means that your averages will be high,&nbsp;
+but your variance is infinitely now.
+And by what you understand, by what the&nbsp;
+intuition of the variance tells us about
+what are the fluctuations around the average,
+yes, it basically means that you have&nbsp;
+infinitely large fluctuations. And
+actually that the average itself&nbsp;
+doesn't have any kind of meaning.
+The average in a power-law distribution,
+such that the variance diverges, well, you can&nbsp;
+calculate it, but it's not representative of much.
+Now, just a tiny technical discussion. Well,
+clearly, if you were to&nbsp;
+calculate a certain moments
+and you do it by measuring&nbsp;
+samples of your distributions,
+well, if your - so you calculate&nbsp;
+a certain moment X beta -
+and if your moment is converging, well, what you&nbsp;
+would expect is that you would have fluctuations
+and then after some time
+you're going to be converging to the&nbsp;
+value that is the actual value. After
+taking sufficiently many samples to&nbsp;
+converge towards the finite value,
+the expected value of off your moments.
+But in situations from the moment diverges,
+of course, for any finite number of&nbsp;
+samples, you have a finite value.
+But what's happening instead is that you get a&nbsp;
+value that basically fluctuates but continues to
+grow and to asymptotically diverge when the&nbsp;
+number of samples becomes sufficiently large.
+Now, something else that's quite important&nbsp;
+to keep in mind is that very often in
+real life situations, you&nbsp;
+never have a pure power-law.
+This means that, okay, let's do it in a&nbsp;
+log-log way. Well, it means that very often
+you have distributions that may look&nbsp;
+like some sort of a straight line,
+but actually tend to show deviations, and&nbsp;
+typically deviations like those for small
+and for large values. For the large values
+this is something that
+can be understood relatively easily. When you&nbsp;
+have a finite system, you have finite resources
+and so clearly, you will need to have a&nbsp;
+cut-off at some point for your distribution.
+And very often these cut-offs take the&nbsp;
+form of some sort of an exponential
+curve that would basically be corresponding&nbsp;
+to the kind of shape we have here.
+So it means that even if power-laws&nbsp;
+can be well defined mathematically,
+typically in real life they tend to be&nbsp;
+observed only for certain regions of the values
+and to show deviations clearly for the&nbsp;
+small and also for the large values.
+Now, actually, power-laws have played a very&nbsp;
+important role in economics, in order to describe
+the inequalities that may&nbsp;
+be present in populations.
+Can I just go back to...&nbsp;
+So you probably know that,
+well, the world is clearly&nbsp;
+unequal. You have certain people
+who are clearly more wealthy than others. Yes.
+And some some question that has attracted&nbsp;
+a lot of attention - even more this year -
+is what is the level of inequalities&nbsp;
+that are happening in the population?
+And typically, what the people&nbsp;
+are interested in is to try to
+understand what is the fraction of the&nbsp;
+wealth that the richest people have?
+So if you take the 10 percent most wealthy people,&nbsp;
+what is the fraction of the wealth that they have?
+And of course, the larger this value,&nbsp;
+the more unequal would be the society,
+while the smaller this value,&nbsp;
+the more equal the society.
+Well, I think that when you're&nbsp;
+confronted to power-laws,
+this question can be done relatively easily.
+So, for instance, you can calculate what is
+the fraction of people whose&nbsp;
+wealth is large, larger than -
+whose wealth is larger than a certain value.
+Well, that would be equal to the&nbsp;
+integration from X_zero to infinity of C
+X minus Alpha dX which is equal to
+X_zero divided by X_min to the&nbsp;
+power of minus alpha plus one.
+So this is a fraction of people with&nbsp;
+at least X_zero in their bank account.
+But then you can also calculate&nbsp;
+how much money these people have.
+And what it will give you is
+W(X_0). And you can ask, what is the&nbsp;
+fraction of the total money that they have?
+And so this is equal to integration&nbsp;
+from X_zero to infinity of
+X C X minus alpha dX, divided by the integration&nbsp;
+from X_min to infinity of X C X minus alpha dX.
+And if you do the maths, you can&nbsp;
+see that this is exactly equal to
+P(X_zero) to the power Alpha minus&nbsp;
+two divided by alpha minus one.
+So we have a relation between&nbsp;
+the fraction of the wealth with
+what is the fraction of the&nbsp;
+richest people that we consider.
+And we see that the whole&nbsp;
+dependency takes place as
+the ratio of Alpha minus two by Alpha minus one.
+So clearly when Alpha is very large&nbsp;
+this whole thing disappears, right?
+And so we have a total fraction of the wealth is&nbsp;
+proportional to the fraction of the population.
+It would be extremely equal. But when alpha&nbsp;
+becomes very small and goes to two, actually,
+we basically have instead, that&nbsp;
+a tiny fraction of the population
+will possess a huge majority of the wealth.
+And typically, the kind of curve that you&nbsp;
+expect is that when the alpha is very large,
+we have something that here,
+well, that would be the wealth, that&nbsp;
+would be the fraction of the population.
+While, if we have instead something with&nbsp;
+something with a small value of alpha,
+which means that a very flat&nbsp;
+power-law distribution, and hence
+we have a distribution with&nbsp;
+a lot of heterogeneity.
+Well, basically we'd have that&nbsp;
+small fractions of the populations
+possess a huge fraction of&nbsp;
+the wealth. Okay, so now,
+what else should be said?
+Well, as I said, well there are two&nbsp;
+important properties of power-laws.
+So one very important property that&nbsp;
+they tend to be scale-invariant.
+So it means that they have&nbsp;
+this scale-invariant property.
+And this is something that is very much important&nbsp;
+in situations where you have similarity.
+For instance, in statistical physics, it&nbsp;
+would be a property that is very critical
+to describe what's happening&nbsp;
+at transitions, for instance.
+And what it means is that if you do&nbsp;
+P(C_1 X), this is the same as C_2 P(X).
+So P(C_1 X) means that I change the way I measure&nbsp;
+my position X, I change my unit, for instance.
+So the distribution, if I change&nbsp;
+my unit, it remains the same
+up to a constant. So if I change&nbsp;
+the way I measure things -
+I zoom in, I zoom out, I take centimetres instead
+of metres - and we basically get the&nbsp;
+same distribution just up to a constant.
+Now, another very important property of&nbsp;
+power-law distributions is the fact that
+they take the form of a straight&nbsp;
+line in the log-log plot.
+And how do we see that? We know that P(X)&nbsp;
+is equal to C times X to the minus Alpha.
+If I take the log of this,&nbsp;
+I have that the log of P(X)
+is equal to the log of C minus&nbsp;
+Alpha Times the log of X.
+And so we see here indeed that if I do a&nbsp;
+log log, well, that would be my y axis.
+This would be my x axis. This is the&nbsp;
+equation for line and as is to be expected
+the alpha that is appearing,&nbsp;
+well, when Alpha is small
+I have something that is very flat. When the alpha&nbsp;
+is large, I will have something that goes very,
+very fast to zero
+and I will basically have that the tail of my&nbsp;
+distribution will not be that large anymore.
+So as I said, power-law distributions&nbsp;
+are very, very important
+when you are dealing with a real life data set,
+because very often you have a lot of&nbsp;
+heterogeneity that is present in data
+and power-laws are a simple way to&nbsp;
+model this kind of heterogeneity.
+And as we'll see in networks specifically,
+certain number of models are making&nbsp;
+the assumption that the underlying
+graph tends to have certain properties&nbsp;
+that are distributed in a power-law way.
+But that would be for next week. So,
+this was the last video for this&nbsp;
+week's course on networks where we've
+been looking at certain mathematical&nbsp;
+concepts that we'll be needing next week and
+in your next weeks in order to model&nbsp;
+and to study the behaviour of networks.

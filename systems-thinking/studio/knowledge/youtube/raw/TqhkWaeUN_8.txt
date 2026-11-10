@@ -1,0 +1,154 @@
+Not many things in software&nbsp;
+design get called a ‘law’.&nbsp;&nbsp;
+For most programming decisions&nbsp;
+we infamously say, “it depends”.
+But not Conway’s Law. This applies&nbsp;
+to every architecture. It says that
+"Any organisation that designs a system&nbsp;
+will produce a design whose structure is&nbsp;&nbsp;
+a copy of the organisation's&nbsp;
+communication structure."
+You can draw the best boxes and arrows that&nbsp;
+slice up your problem domain brilliantly,&nbsp;
+but if that doesn’t reflect how the&nbsp;
+developers communicate with each other,&nbsp;&nbsp;
+you’re going to have problems.
+Let’s take look at some examples…
+Let’s say that all the front-end developers&nbsp;
+in a company work in the same team&nbsp;&nbsp;
+and talk to each other daily.
+They concentrate on enhancing&nbsp;&nbsp;
+the user experience and grow their&nbsp;
+understanding of their users together.
+They agree on the frameworks and&nbsp;
+styles that work best for them,&nbsp;&nbsp;
+and when they read each other’s code,&nbsp;
+they can just talk to each other,&nbsp;&nbsp;
+which makes it easier to understand&nbsp;
+the code and interact with it.&nbsp;
+The code becomes coupled by function calls&nbsp;
+and also by implicit shared assumptions.&nbsp;
+You can see how the team most likely creates&nbsp;
+one cohesive and unified user interface system.
+Other teams might have requirements too, but won’t&nbsp;
+find it as easy to communicate with the frontend&nbsp;&nbsp;
+developers as they do with each other.
+Maybe they have to schedule a meeting,&nbsp;&nbsp;
+go through the team’s manager, or put written&nbsp;
+requirements straight into the backlog.
+Now, imagine the rest of the organisation&nbsp;
+is sliced by layers in the tech stack,&nbsp;&nbsp;
+with a back-end team specialising&nbsp;
+in building server-side logic,&nbsp;&nbsp;
+and a separate team managing the database.
+Each team naturally builds their own system,&nbsp;&nbsp;
+and we end up with a layered architecture;&nbsp;
+a mirror image of the team structure.
+Each team excels in their respective areas,&nbsp;
+but have to collaborate to build features.&nbsp;
+So when the front-end team want to display some&nbsp;
+new information, they request that the backend&nbsp;&nbsp;
+team make it available via some API endpoint.
+The backend team design something that returns&nbsp;&nbsp;
+the information in the way&nbsp;
+they think makes most sense.&nbsp;
+The same thing happens when the backend&nbsp;
+team has requirements for the database team.
+A layered architecture naturally forms, and&nbsp;
+the interfaces between the layers has been&nbsp;&nbsp;
+designed based on the communication&nbsp;
+that has happened between the teams.
+Let’s take another example where the organisation&nbsp;
+is split by stages in the product lifecycle:&nbsp;
+a team of developers, a team of&nbsp;
+testers, and a team of operations.
+As a product passes through its lifecycle,&nbsp;
+it passes between different teams.
+Developers write the source code.
+Then the communication is through&nbsp;&nbsp;
+a well-defined handoff process where they&nbsp;
+document the expected behaviour and hand&nbsp;&nbsp;
+over to the testing team, who write&nbsp;
+an automated test suite based on that.
+The testing team would tend to build a&nbsp;
+unified test suite with a set of standard&nbsp;&nbsp;
+testing practices across all tests.
+They’ll refactor tests according to&nbsp;&nbsp;
+their knowledge of the whole suite,&nbsp;
+extracting common test arrangement&nbsp;&nbsp;
+or assertions into shared functions.
+The test suite becomes its own system,&nbsp;&nbsp;
+with tests having more knowledge of each&nbsp;
+other than of the code they’re testing.
+And then later, the operations&nbsp;
+team manages the release.&nbsp;
+They’ll provision the infrastructure, deploy&nbsp;
+the software, build dashboards and alerts&nbsp;&nbsp;
+based off their understanding&nbsp;
+of what the software does.&nbsp;
+Again, this all becomes almost its own subsystem,&nbsp;
+and our architecture mirrors the team structure.
+But what if you organise into cross-functional&nbsp;
+teams containing designers, developers,&nbsp;&nbsp;
+testers, SREs, everyone needed to&nbsp;
+solve a specific business problem,&nbsp;&nbsp;
+with each team centred around a business domain.
+Now the architecture will end&nbsp;
+up more vertically sliced,&nbsp;&nbsp;
+with the front-end and back-end concerns&nbsp;
+of a feature more closely related to each&nbsp;&nbsp;
+other than to their counterparts&nbsp;
+in another part of the business.
+Each slice is owned by one team, who&nbsp;
+make the decisions on how it’s built,&nbsp;&nbsp;
+what the public interface&nbsp;
+looks like, and crucially,&nbsp;&nbsp;
+the model of its domain and even the&nbsp;
+words used to describe the objects.
+This starts to look like the kind of&nbsp;
+architecture promoted by Domain-Driven Design:&nbsp;
+splitting the software into subsystems aligned&nbsp;&nbsp;
+to problem domains, each with&nbsp;
+their own model and language.
+When there’s a dependency between two&nbsp;
+domains, the teams need to communicate.&nbsp;
+Each team only has expertise in their domain, so&nbsp;
+they’ll have to simplify things in conversations&nbsp;&nbsp;
+with each other by abstracting away&nbsp;
+some of their domain’s complexity.&nbsp;
+Then the teams design the interface between&nbsp;
+the systems based on that conversation.
+And because teams are cross-functional, the&nbsp;
+integration could happen in the frontend,&nbsp;&nbsp;
+backend, wherever the teams agree makes most&nbsp;&nbsp;
+sense. It’s the discussion between&nbsp;
+the teams that will decide that.
+So once we recognise that Conway’s law is a thing,&nbsp;&nbsp;
+and our architecture will eventually resemble&nbsp;
+the communication structures of our organisation,&nbsp;&nbsp;
+then when we have a desired architecture we&nbsp;
+want to get to, we can intentionally shape&nbsp;&nbsp;
+the organisation in a way that will produce it.
+This is called the Inverse Conway Manoeuvre.&nbsp;
+Now it’s the architecture we intend to build&nbsp;
+that influences how we shape the teams.
+And if you’re practicing Domain-Driven&nbsp;
+Design and you’ve identified separate&nbsp;&nbsp;
+problem domains and designed&nbsp;
+Bounded Contexts for your system,&nbsp;
+this can be a great way to&nbsp;
+build that architecture.&nbsp;
+Each team can work in their own Bounded Contexts&nbsp;
+and develop their own models and language.
+You could also see how this works well with a&nbsp;
+microservices architecture, where each team is&nbsp;&nbsp;
+responsible for building and running their&nbsp;
+own services and defining their own APIs.
+You can watch my videos on both of&nbsp;
+those concepts on my channel here.
+You can combine all these&nbsp;
+ideas together if you like,&nbsp;&nbsp;
+but remember that Conway’s law exists whether&nbsp;
+you’re doing these other things or not.&nbsp;
+Keep it in mind when designing your&nbsp;
+architecture and organising your teams.

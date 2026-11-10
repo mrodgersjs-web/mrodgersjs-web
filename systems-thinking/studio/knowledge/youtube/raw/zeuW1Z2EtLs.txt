@@ -1,0 +1,298 @@
+all right so with that let's get into
+our motivating example simpson's paradox
+say that in a purely hypothetical
+scenario there is a new disease covid27
+and there are two treatments for the
+disease a and b which will code as 0
+and 1. and it's your job
+to decide which treatment to choose for
+your country
+and the only thing you care about is
+minimizing death
+so which treatment will cause the
+smallest number of people to die or
+will help the largest number of people
+live
+and an important thing about these two
+treatments that we will use
+in this example is that treatment b is
+much more scarce than treatment a
+another thing that you have data on so
+you're getting data just from your
+doctors in your country they're
+administering treatments
+and then they're collecting data on what
+happens when they give those treatments
+another thing that you have data on is
+the condition of each patient
+whether they come in with a mild
+condition or a severe condition which
+will also code as zero or one
+and then finally there's the outcome why
+your patients will either be alive or
+dead
+and in all of these cases we're only
+looking at binary variables but
+in general there's a theme causal
+inference where you can extend
+analysis from binary variables to say
+continuous variables or
+multiple outcomes say so here is what
+your
+data looks like at the
+treatment level among people who were
+given treatment a
+16 of them died so that's 240
+people out of 1500
+1500 people got treatment a and 240 of
+them died
+and then among people who got treatment
+b 19
+of them died so just just looking at
+this it seems like treatment a
+is doing a bit better than treatment b
+you know three percent fewer people
+die but then something interesting
+happens when you
+subgroup the data by condition
+so if you look at patients who have mild
+condition
+15 of those who are given treatment a
+die compared to only 10
+of those who are given treatment b so
+treatment b
+actually looks better among the patients
+who had mild condition
+and it's the same thing with patients
+who have the severe condition actually
+you have only twenty percent mortality
+rate only twenty percent of people died
+when they um of people who had severe
+and received treatment b whereas a
+larger
+thirty percent of people had severe
+condition and received treatment a
+died so how is um
+how are these numbers flipped in some
+sense
+there's a paradox in that if you look at
+the total population you ignore the
+subgroups
+treatment a has a lower number treatment
+a looks better
+but then when you look at each of the
+subgroups treatment b looks better
+in both subgroups this is uh this is
+simpson's paradox
+and it turns out that the numbers work
+out just fine you know the way that you
+get
+these numbers say the 16 percent the 240
+is just
+summing up the numerators of the
+treatment a
+mild group and the treatment a severe
+group
+and then the 1500 is just summing up the
+denominators 1400 plus 100
+a maybe more interesting way of writing
+these calculations
+is to so here i've massaged the
+calculation a bit so that
+i've written in terms of weightings of
+the big numbers in the boxes so this
+0.15 here is the 15 percent same with
+the 0.3 and so on
+and so i've rewritten this as weightings
+the 0.15 is weighted
+much larger than the 0.3 for the
+calculation and this is just because
+most of the people
+who received treatment a had mild
+1400 out of 1500
+so the 16 number that you see in the
+total population for treatment a
+is largely coming from the big weight
+that was put on the 15 percent
+among the mild conditioned people in
+contrast for treatment b
+there was a much bigger weight placed on
+the
+severe group and that's just because
+500 out of 550 people who received
+had severe condition and so the
+the 19 that you see for the
+treatment b in the total population is
+largely coming from the 20 percent that
+you see in the
+severe group for treatment b simpson's
+paradox largely comes from
+this unequal weighting okay from
+the fact that the treatment a people
+mostly had mild condition and the
+treatment b people have mostly had
+severe condition
+and people with severe condition are
+just more likely to die than people with
+mild condition
+so that's why we see these flipping of
+the numbers
+but you know i've kind of explained
+why we have the flipping of the numbers
+but the question still remains
+which treatment should you choose so
+hold that question in your head a bit
+see if you can come up with your answer
+to it
+the spoiler is that as i'll show you in
+the next few slides
+the answer to this question largely
+depends on the causal structure of the
+problem
+so in scenario one
+where the causal graph is that the
+is a cause of the treatment and also the
+treatment
+and the condition are causes of the
+outcome but importantly the condition as
+a cause of the treatment
+in this scenario generally treatment b
+is the better choice and i'll give you a
+specific example to help
+illustrate the intuition for why this is
+the case
+so the important thing to remember is
+that condition is a cause of the
+the example is that say a doctor sees
+someone come in who has a mild condition
+the doctor might then decide for most of
+those people
+to assign them treatment a because they
+want to save the more scarce treatment
+treatment be for people with more severe
+condition people are more likely to die
+say
+and this is why we see that among people
+1400 out of 1450 of them
+were assigned treatment a similarly
+if someone comes in with severe
+condition the doctor might be more
+likely to prescribe that person
+treatment be
+thinking okay this person has severe
+condition it's worth it
+to give them the more scarce treatment
+who have severe condition
+500 out of 600 of them were assigned
+treatment b so most of them got
+okay so in this scenario why is
+preferred treatment b is preferred
+because the reason
+that we are getting these this large um
+19 mortality rate among treatment b
+people is mainly because treatment b
+is disproportionately being assigned to
+people with severe condition who have
+higher chance of dying
+similarly treatment a is
+disproportionately being assigned to
+people
+with mild condition who have a lower
+chance of dying
+so the correct numbers to look at are
+the subgroup numbers
+the ones in the mild and severe column
+and so that's why treatment b
+should be preferred in this scenario
+when you have
+condition as a cause of treatment
+now in scenario two the main
+conceptual difference is that treatment
+is now
+a cause of condition everything else in
+the causal graph is the same treatment
+and condition are still causes of the
+outcome why
+okay and in this causal graph
+treatment a is actually preferred
+so i'll give you an example again to
+kind of illustrate the
+intuition of this so the example is that
+say you're a
+prescribed treatment b you might have to
+wait a long time to
+actually take treatment b because it's
+rather scarce
+and in that time while you are waiting
+your condition could worsen so say you
+come in with
+a mild condition your condition could
+worsen to a severe one
+that's why we see that among people who
+were
+prescribed treatment be 500 out of 550
+of them
+had severe condition you know it could
+have been that many of them
+transitioned from the treatment group
+or sorry from the mild condition to
+in this example that i'm giving it's
+different from the example in the
+previous slide
+all right so you know that's how
+treatment b could cause
+could be a cause of your condition but
+say you're assigned treatment a
+similarly because treatment a is
+abundant
+unlike treatment b you don't have to
+wait at all and so if you come in with
+a mild condition you will have a mild
+condition probably
+at the time that you actually take the
+treatment and that's why we see
+out of the 1500 people who were assigned
+a 1400 of them had mild condition
+of the 100 that severe condition
+probably none
+transitioned from the mild condition
+while they were waiting
+it's probably mostly just that those
+ones came in with severe condition
+okay so the reason that we prefer
+treatment a in this setting is that
+the treatment is actually causing people
+to have a worse condition if you're
+given treatment b
+if you're given treatment a it's causing
+people that you know the same condition
+but so the treatment has an effect on
+your condition
+which then has an effect on your
+probability of dying so
+there's this effect that's going through
+your condition that we have to take into
+account
+and the uh the way to take that in
+account is to look at these total
+numbers
+so the thing to keep in mind is that
+treatment b is kind of bad
+in this example because it causes you to
+have a worse condition
+so in this scenario we would prefer
+all right and that concludes the
+motivating example so that's
+simpson's paradox a quick recap is that
+we prefer treatment b
+when the condition is a cause of
+in that graph and we prefer treatment a
+when the treatment is a cause of
+so you have to decide
+which treatment to give your whole
+country it's an important issue
+it will
+it will decide the lives of many people
+and
+the decision hinges crucially on the
+causal structure of the problem

@@ -1,0 +1,128 @@
+[Music]
+what's the difference between high
+valuability and fault tolerance
+this is a question that gets asked a lot
+i hear it from people who have had years
+of experience within the it industry
+and those who are new in just starting
+out either way there is clearly some
+confusion between the two
+and understandably so they both
+ultimately have the same goal
+to keep your systems up and running
+should something fail within your
+architecture
+but there is a difference high
+availability can be defined by
+maintaining a percentage of uptime which
+maintains operational performance
+and so this can closely be aligned to an
+sla
+in fact aws has many slas for its
+services
+where they implement their own level of
+resilience and management to maintain
+that level of high availability
+you may also have your own slas for
+services you provide for your customers
+but let's look at a scenario to help
+explain the difference
+let's assume that you have an
+application which has to run across a
+minimum of two ec2 instances
+to me let's say an sla of 99.9
+which allows for a downtime of 43.83
+minutes per month
+then we could architect our
+infrastructure like this
+within a region we could use two
+different availability zones
+and in each availability zone we could
+have two ec2 instances
+which are all associated with an elastic
+load balancer
+so in this example we have different
+elements contributing to a highly
+available solution
+we have the use of two availability
+zones and additional ec2 instances
+so if an instance fails we still have
+plenty of compute resources
+or if an entire availability zone fails
+then we still have the minimum of two
+instances to maintain the required sla
+now let's look at fault tolerance which
+expands on high availability
+to offer a greater level of protection
+should components begin to fail in your
+infrastructure
+however there are usually additional
+cost implications
+due to the greater level of resiliency
+offered but the upside is
+that your uptime percentage increases
+and there is no interruption of service
+should one or more components fail with
+that in mind we could argue that having
+two availability zones with two ec2
+instances
+in each is fault tolerant at the az
+level as operations would be maintained
+at the loss of an az and would still
+have the minimum number of instances
+still running
+but should another failure occur then
+the sla would be impacted
+so let's look at how we can take our
+high availability scenario that we just
+sketched out
+and adopt it with an increased fault
+tolerant design approach
+so previously we had our single region
+approach and so to increase the uptime
+of this solution
+we could deploy the app across an
+additional aws region
+so we could literally mirror the
+environment from single region to a
+second region
+so this means should an ec2 instance
+fail we still have compute
+shouldn't a z fail again we still have
+enough compute capacity
+but now we can also maintain operation
+should an entire region fail
+if it does we can still suffer further
+ec2 outages
+and availability zone outages of that
+secondary region
+and still maintain the minimum
+requirements of having two ec2 instances
+at all times
+this of course offers a far greater
+uptime availability compared to the
+previous
+highly available solution we had with a
+single region but it comes at an
+increased cost
+of running two active environments which
+can tolerate any component to fail
+remember we'll need to have this
+secondary region running to take
+advantage of avoiding any downtime
+should the primary region fail so from
+this we can surmise that the fault
+tolerance systems are intrinsically
+highly available
+but as we have seen a highly available
+solution is not necessarily completely
+fault tolerant
+it's down to you as to the level of high
+availability or fault tolerance you want
+to implement
+and this really depends on the business
+impact it could have
+when components begin to fail and do
+bear in mind it's not if a failure
+occurs
+it's when a failure occurs

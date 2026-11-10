@@ -1,0 +1,1238 @@
+[Music]
+you brought your laptop here uh feel
+free to grab that already because uh
+this is actually a hands-on session an
+overview in agent-based modeling
+uh i'm sure fighting is a a known uh a
+language for you guys and uh we're very
+glad to have thomas here he's gonna take
+us in this uh tutorial there is also a
+an online colleague we're really going
+to be as interactive as as possible
+possible
+but for now we want to
+welcome to the stage from mesa thomas
+pike please give him a warm welcome
+thank you
+[Applause]
+all right uh so good morning hopefully
+uh my colleague jackie uh kaysel is
+online to answer chat questions since
+this is a tutorial so if you got a
+laptop you can feel free to bring it out
+um but i'm uh i'm on the open source
+development team for mesa which is uh
+agent-based modeling and python right
+all volunteers it started at george
+mason uh where i did my phd work hence
+the hensa t-shirt um
+as did uh as did jackie uh so real quick
+just a a quick background what is
+agent-based model right so it's a
+theoretical approach you know very much
+uh you know from the work of uh herbs
+herbert simon and sciences of the
+artificial right where now that we have
+these computation we have these
+computers we could do science and
+explore areas that just previously uh
+nonlinear dynamics are just previously
+too hard to do uh kind of manually with
+closed form equations right um and so
+it's you know generative science it's a
+from a full philosophical standpoint
+it's a adductive uh reasoning right
+instead of analysis where you break
+things down it's synthesis right so uh
+you're kind of the catchphrase uh of
+complex adaptive systems uh is where the
+whole is more than the sum of its parts
+right so you can't break it down uh by
+bringing things together you create
+novel behavior that you couldn't by
+examining each of the pieces uh and
+parts right so human beings are a great
+example of that if i took you apart i
+would not be able to put you back
+together all right
+um uh this here uh
+second order logic is another kind of
+catchphrase in it where uh the idea in
+this is if if i didn't grow this system
+if i didn't inside a computer uh you
+know simulation grow the system of
+interest then i failed to explain it now
+the real challenge with this is that if
+i did grow it right if i create the
+statistics
+on my laptop that i see in the real
+world it doesn't mean i actually
+understand the system as there could be
+numerous different types of interactions
+that produce that same outcome
+right so just because i grew it uh
+doesn't mean i understood it uh and this
+map here over on the right the anasazi
+model from uh axtel at all uh 2002 uh
+was kind of one of the first
+breakthrough models that that showed uh
+you know the limitations of closed form
+equations and how simulations like this
+can be useful as they try to replicate
+the archaeological record
+of an indigenous group in northern
+arizona called the anasazi
+and the the kind of poetic way to say
+the result
+is that
+every individual life does matter
+because that that diversity that
+heterogeneity within the population does
+have an outcome on the uh on the overall
+impact of the system right as shown
+through the modeling and kind of
+replicating the um
+archaeological record so what is an
+agent-based model
+all right uh it it's interactions and
+emergence right so you have a diverse
+population hydro hedge genus uh
+heterogeneity right that are each acting
+independently
+um trying to you know achieve their
+local goals uh or you know locally
+optimize their particular situation and
+they have these local interactions that
+produce emergent behaviors uh if you
+work in ecological modeling they have to
+call these individual base models right
+so they've done this for fisheries
+and numerous ecological systems in order
+to try and uh understand the dynamics
+that's keeping that complex system uh
+thriving uh or to try and come up with
+interventions uh to help it thrive if
+it's
+suffering right
+uh so why did you wanna use mesa
+right uh so we uh we've incorporated
+lots of lessons learned the biggest
+thing so there's a couple big libraries
+if you're not familiar with agent-based
+modeling so
+and just to i guess put in the context
+of the other previous presentation we
+talked about multi-agent reinforcement
+learning right they're not mutually
+exclusive
+just a lot of the work that uh that we
+do in agent-based modeling is try to
+create simulations of complex systems as
+like a virtual sandbox uh or virtual
+laboratory if you will to explore our
+understanding of that system right in
+order to you know as a way to kind of
+test those key dynamics that are
+producing the emergent behavior that
+we're seeing right so there's a lot of
+incredible overlap and actually tomorrow
+i'm going down to delft because there's
+a user community uh at delft that uses
+mesa so
+since i'm here figured to go and stop
+and see some of the professors right
+but with mesa there's a couple big
+libraries you have mason which is also
+out of george mason java based
+repast which is at a oregon national lab
+in chicago and then netlogo and that
+logo is probably the easiest to use if
+you're coming from a non-technical
+background
+but with python which is also pretty
+easy to use
+you you get the connection to all these
+other libraries right so like um you
+know like the various deep learning
+libraries machine learning library
+scikit uh you know tensorflow pi torch
+uh open ai et cetera et cetera so you're
+able to connect to all these other
+libraries bring in lots of data to help
+set up your models and things of that
+nature right um and and we're growing we
+are now uh as of this past spring uh the
+only for what i could tell num uh num
+focus affiliated agent-based modeling
+platform right and we're trying to
+expand out as a
+as a volunteer organization uh in in
+order to make it so it's more
+you know it's a sustainable kind of
+community uh just like python
+is right um so why wouldn't you use mesa
+well it isn't fast if you start getting
+into really big models right so python
+mostly because of the global interpreter
+lock uh
+you can't do multi-threading and stuff
+so it's if you want a really fast model
+with billions and billions of agents
+doing very complex behavior you got to
+go to lower level languages like c c
+plus plus
+java et cetera all right it's i don't
+know if it's ever going to be done right
+we keep building it we just reached 1.0
+this past summer
+but we're getting better and we're
+working aggressively to kind of expand
+the community all right but right
+python
+the language is working to improve
+itself so it can do things like
+multi-threading all right have
+extensions into hpcs in the cloud
+actually jackie's working on that for a
+dissertation right and we want to make
+it more stable so we have this resilient
+ecosystem
+that's
+that will sustain beyond the people uh
+that are currently involved in it
+all right so if you have a laptop uh and
+you'd like to uh build a model or you
+know kind of see how it works otherwise
+i'll walk through it so i'll try and
+adjust
+as i can throughout this
+um all you have to do is uh go to these
+things got a couple options for you
+right so what we're gonna follow
+right is if you just search whoops
+if you just search mesa read the docs
+right then you'll come up um this should
+come up right away
+all right uh and this is our
+documentation for it uh this is our uh
+introductory and then we're just gonna
+follow the introductory tutorial which
+is the beltsman
+boltzmann wealth model
+right
+there's a couple other options if you
+want so they also have the tutorial
+in
+in jupiter notebook
+all right uh as well as so this is a
+github repository of mine edge of chaos
+so uh hitchhiker's guide to the galaxy
+mentioned once before right the answer
+is 42 all right and then you could go to
+mesa tutorial all right
+all right and there's a google co-lab so
+you gotta make a tutorial here
+all right
+in just a second but if you click this
+open and collab link then you get kind
+of like a slightly cleaner version that
+doesn't have all the
+all the explanation uh that you could
+just follow along with or
+right since thanks to the marvels of uh
+in this case google collab what i'll be
+using
+um is just this uh you know just a colab
+instance
+um
+where we'll be building the model all
+so uh it is not one of the standard
+builds for for colab right so you just
+have to install mesa
+okay
+and then it's pretty easy you're just
+going to copy and paste here
+so if you go down to setting up your
+model right so really what is
+agent-based model at the at a more
+granular level
+right is if you just and
+install this is you use the typically
+object oriented programming makes it
+easier very easy to understand
+excuse me all right and then you build a
+class of a money agent so what's first
+off what's the boltzmann wealth model
+right so here i as an agent i'm just
+going to see other agents and give them
+money right so i got x number of uh some
+unit of of money right and i'm going to
+give them that money
+and then go to the next person and
+they'll uh you know the next agent will
+give me money et cetera et cetera and
+we'll kind of see how this plays out
+right and i think you know very similar
+to the aggregator we saw in the earlier
+presentation you have a
+you know n number of agents right but
+then you have a manager uh which creates
+lots of interesting dynamics all right
+that's uh integrating these agents
+uh and and kind of monitoring them and
+deciding who goes first sorry about
+that um and so that's really you know
+and it's basic that's really all we're
+doing right it's just using the power of
+object oriented programming to cause
+these interactions and after that it is
+really the sky is the limit right
+whether you want to use deterministic
+functions and how these agents behave
+or you want to use you know kind of more
+randomized behavior
+reinforcement learning et cetera et
+cetera to integrate it and what mesa
+provides
+is a uh
+is is just you know like all things in
+kind of open source libraries you're
+just trying to reduce the amount of cost
+that it takes you in order to uh in
+order to build one of these models right
+and towards the end
+um i'll show you how we're trying to
+build out the ecosystem so the the the
+vision if you will right uh is that to
+make these types of simulations as easy
+to use uh as you'd use any kind of like
+machine learning thing like a
+scikit-learn uh or a tensorflow all
+right so as a as a for instance right
+since there's a lot of covid modeling
+going on right now uh if i was like say
+an elementary school principal right
+um i could uh rapidly build a simulation
+right of my particular elementary school
+with a you know right geography
+behaviors of a kindergartner versus a
+six year old et cetera et cetera
+all right i'll need to know all that uh
+you know be able to know how to code all
+that out i can reach out to the rich
+echo system uh that is the open source
+community
+bring in all those pieces and parts and
+then sit there in my local area and kind
+of play around with what you know based
+off the resources that i would have
+based off the policies uh uh and
+resources that i have whether it's masks
+you know antibacterial soap etc etc
+right in order to try and come up with
+what's the best intervention for this
+current pandemic to try and still
+educate my students while mitigating the
+spread of covid right and also make a
+more informed decision right on whether
+or not
+uh whether or not they should you know
+go to virtual learning if you have that
+option uh or keep everybody in school so
+i think uh you know very much in line
+with the previous talk is what does this
+ecosystem look like to so more people
+can leverage these computational tools
+in order to make better decisions right
+from the you know day to day keeping
+elementary school running uh you know
+transportation infrastructure uh up to
+you know kind of international relations
+and economics all right so now part two
+of that is all we're going to do so this
+is really the base right it's just uh
+in this case we're only going to really
+have two
+class objects so a money agent all right
+and a money model
+all right and then we just expand off of
+that and start adding behavior right so
+so
+just because it's faster i'm just going
+to copy this section here
+all right so now that we've uploaded
+this oh uh all that we have now is one
+behavior so if you're not familiar with
+agent-based modeling you have what's
+called step functions right
+um where uh
+this is and it's you know just cultural
+that's what they call it right uh where
+the uh manager right so you have uh a
+scheduler uh ran in this case we use
+random activation right you've uh oh now
+that keeps coming back up all right um
+uh
+and these like little details become
+really important right because they
+found uh
+uh actually our colleagues have mason
+found that
+you know it's uh that the order of
+agents actually does matter right so
+this becomes a great problem you know
+kind of going back to physics and form
+neural networks uh in these large
+complex systems where you have a massive
+search space of what can actually happen
+right is things as
+seemingly mundane as if you have the
+same agent going first every time it all
+has an impact on your results right uh
+and so in this case the typical way to
+deal with that is like well i would just
+randomize it right or pseudo randomize
+it right uh and so you uh so you
+randomize it there's other waste and
+mesa provides other functions like
+staged activation where every agent will
+go through kind of make their decision
+and then they all go at once right but
+all these little details which the
+butterfly effect right the lorenz
+attractor do have an impact on it so
+excuse me all right so you have so we
+provide the scheduler so you don't have
+to code that out
+you know
+load up each of these agent objects
+right into your scheduler right and then
+run a
+and then you just kind of run steps
+through that right in this case just to
+start out with these agents are just
+going to say hi right i'm so and so
+and then you just instantiate
+that
+that model object
+all right and run it you know run it for
+one step right so each agent just has a
+very simple behavior where they say hey
+and who they are right well that's not
+very interesting uh nor does it provide
+anything overly insightful so i'll
+replace the money agent object right
+where we're going to start um
+where we're going to start giving them
+behaviors to see what kind of results
+can occur
+actually it works
+all right so in this case now right
+boltzmann wealth model very simple model
+all right uh where you say i'm going to
+look at the other uh agent so if i have
+a essentially a list of 10 agents i'm
+going to randomly select another agent
+and give them one bit of wealth and
+detract my wealth right
+then
+all right and then we're going to run
+that for 10 steps
+ah don't forget to do a print statement
+all right so we've run that model
+right now i want to see the results
+all right all right and you can see
+right not very exciting but right some
+agents have nothing uh you know many uh
+so of the ten agents right three have
+nothing uh four have you know uh one
+unit of of money right and then three
+have two units of money right
+um uh and then we could just now we just
+do it a lot right so uh very similar to
+the earlier talk today
+all right we can run it 20 000 times uh
+and and interestingly
+you know this is not you know the
+ability of computation
+is not necessarily well respected a lot
+of or understood in a lot of the social
+science magazines where they'll ask you
+for like oh we need your p values for
+this be like well i can just run my
+simulation more and ensure i get a
+significant p-value all right so it is
+interesting to do a lot of computational
+social science so you kind of get this
+clash of cultures all right as you can
+see here uh so now we've run the uh so
+we got one model right we've run it a
+hundred times right um
+uh and then uh
+each model has a step right and then we
+just want to get a histogram uh of or we
+run each one of those models
+um 10 times and then we want to get a
+histogram of all the agents that are in
+there or a histogram of the wealth of
+all the agents when you uh see at the
+end right you see with just this random
+model uh which is why i guess we used it
+you start to get some maybe novel
+results right we might expect hey if you
+just have angels randomly uh
+transitioning money right what's gonna
+happen is they're all still gonna end up
+with one at the end more or less right
+but instead you start to get this uh uh
+you know just where one agent actually
+has you know is way richer than uh most
+of the agents right that don't have
+anything
+right just through these random
+interactions
+all right uh and then mesa also has the
+ability uh that you can add space to it
+um so again it's all you know how do we
+provide a rich echo system
+let's see where this one goes uh how do
+we provide a rich ecosystem uh for uh
+for researchers scientists and
+practitioners so they can rapidly build
+simulations about their area of interest
+to make more informed decisions right to
+kind of create that collaboration
+between the human
+and computational tools
+so we can you know make better more
+informed decisions all right
+so in this case i'll explain just once i
+copy it in actually
+let me just do all this
+um so again if you go to the tutorial
+all these things are there and you can
+copy and paste or kind of get into the
+details
+as much as you see fit
+one second
+okay so what have we done right uh so
+again you have uh you know so typical
+parts of agent-based models you have
+some kind of schedule that is some kind
+of time activated sequence uh because
+computers are sequential particularly
+python right and so it goes just step by
+step right next up in this case we have
+a multi-grid right what that means in uh
+in mesa
+right uh is the fact that you can have
+more than one agent uh in that grid
+right so you can particularly if you're
+using ecological models like wolf sheep
+predation or something like that you can
+have a grass agent and then a wolf or
+sheep agent also on that particular spot
+right and the good thing about mesa is
+all this stuff
+is you know it's kind of easily
+understood right all the code uh is as
+easily available inside
+uh inside a github repo right so if you
+actually wanna see okay what's inside
+the multi-grid right you could go in
+there right
+and you could go in there and uh and
+identify how it's actually functioning
+it's just a dictionary where the uh i
+did or the key right is a is it cell
+location right and then a list of agent
+objects that would be in there right
+so you add a grid right we throw them uh
+you know it's lots of randomness in here
+but we throw each of those agents
+somewhere onto that grid right and then
+we place them on there
+um then for the agent we've got to add
+some more complex behaviors right and
+again these are all pretty simplistic
+for the sake of the tutorial right but
+really the sky's the limit right whether
+you want that to be some kind of uh you
+know trained machine learning uh uh
+processor or whether you want to be some
+kind of deterministic algorithm based
+off your particular field of study right
+um and so
+in this they you know
+what mesa provides is a bunch of uh you
+know functions again to make it easier
+so we can build uh simulations more
+rapidly right so they got you could get
+the neighborhood which is how do i see
+the eight neighbors around me or you
+could do four neighbors if you so uh are
+so inclined um
+uh in uh in order to rein you know so
+how do i get that neighborhood all right
+and then select an agent so now instead
+of being on a one-dimensional line you
+know think of a list i'm now in
+two-dimensional space i could look at
+all my neighbors and say who do i feel
+generous enough to uh to give this money
+to right
+um and then if you have some money left
+right then you hand that money off
+yes
+well yeah so it depends on on the model
+that you build you can absolutely make
+these very deterministic uh if you want
+all right but a lot of times because
+you're dealing with uh stochastic
+systems uh uh
+that's that's how you're doing in this
+case it's a very simple model
+uh no so that's how you kind of confirm
+or deny your uh
+your simulation so the wealth
+model was confirmed through other uh
+other um mechanisms
+right uh you know through kind of
+standard closed form equations uh
+economics and things of that nature
+right and then by doing it through this
+uh you know through these kind of
+bottom-up simulations you're able to get
+those similar results right
+yeah i mean i think
+my understanding is yeah mars is new and
+i'm not a computer scientist by training
+but my stance is really no truly random
+number operators right and this is yeah
+oh yeah i mean that and that's so you
+can bring in any aspect of it that you
+want right and and kind of to elaborate
+on your question if you look at um
+uh like the wolf wolf sheep predation
+right which is just a very simple model
+of you know wolves eating sheep they ate
+too many sheep they die off some more
+sheep produce et cetera et cetera you
+can look at like the um the logistics
+maps of those curves right and they're
+very smooth right you can then generate
+an agent-based model of that right and
+it's not you get a lot more uh flack of
+description noise but it's also
+technically kind of more accurate noise
+right because those are the dynamics
+that are actually occurring right um and
+you know we know from um
+deterministic non-periodic flow right
+edward lorenz that those that noise
+actually has a large you know can have
+an impact on the overall behavior of the
+system over time
+right so that's where these can really
+become beneficial where the things they
+have to kind of simplify away we can now
+use computers to say well will this
+actually have an impact on the overall
+behavior of the systems
+so in this example the agents are
+accessing each other's state and
+modifying each other's state
+are they always
+seeing the state of the other agents in
+the previous step or other or there are
+intrinsic race conditions here in the
+order in which these updates occur yeah
+so in in this case right since we're
+doing random activation uh they will see
+uh every agent will go once and then
+that in essence updates to find the uh
+updates their state and then everybody
+sees uh sees it from that perspective
+right now this is where you can select
+different activation regimes like staged
+activation
+uh where the agent would say okay this
+is a situation right now right they they
+all go through uh they all go through
+their decision based off of you know
+that particular situation right and then
+they update this they all update their
+state at once so to speak because
+they're making that informed decision
+now can you get race conditions from
+that or like collisions of behavior
+absolutely uh and the the trick then
+becomes what you know you know hands of
+the users so to speak what are you
+trying to do with your simulation right
+how are you going to deal with those
+collisions right
+an easy kind of agent-based model would
+be you have two people at a stop sign or
+two agents at a stop sign uh they're
+deciding they both decide to go at the
+right time or at the same time and then
+there's a collision
+right uh and and so in this case
+and this is one of the critiques of
+agent-based modeling right is that you
+can kind of bake in any behavior that
+you want into it
+and because you could say wow this is
+how we're going to deal with that you
+know because you could say well this is
+how we're going to deal with that
+collision all right and then just like
+all good science you know how did you
+add that rigor
+into your simulation right how did you
+deal with that that you're not
+pre-baking in
+behaviors just to see what you expect to
+see
+right um and that becomes uh very much
+the the kind of
+some art and the science uh where where
+they combine does that make sense
+i'm still not sure i quite understand
+maybe it's because you're working within
+python that's uh sort of fundamentally
+sequential and you're not there's no
+multi-threading here there's no
+multi-core execution and so this is just
+a sequential execution model and the
+order in which you invoke these things
+is what determines the behavior
+that seems a little bit at odds with the
+principles of agent-based modeling which
+are usually about huge amounts of
+concurrency yeah well no and that's the
+i go so we'll kind of do the technical
+and we'll do the what the simulation
+does right so yes because of the way
+python works you know with the gill with
+the lack of multi-threading and stuff
+like that right is is that it will
+always be executing sequentially now you
+can kind of cheat that with like a
+staged activation right where every
+agent will make their decision right
+based off how they perceive the state uh
+their particular you know a
+state at one period of time and they'll
+make a decision right and then from that
+you could have like you know so go back
+to the stop sign model right if they're
+both at a stop sign right and they both
+decide to go then you is the kind of
+model designer have to you know well how
+do i deal with this quite literal in the
+collision all right in my simulation
+that so yes it's happening sequentially
+but how you specifically code out your
+simulation right is is kind of how you
+deal with the the fact that python you
+know that in real life people are making
+uh decisions concurrently right and can
+absolutely have uh collisions
+okay any other questions clarifications
+otherwise the people online have no clue
+what's been said yeah i'm just a little
+confused about whether this is just an
+artifact of the modeling
+or is it the artifact of the system
+that's that you're the physics of the
+system that is underlying your model so
+the uh um on why you get uh
+uh why you get this it's not really a
+heavy tail distribution that means for
+example you talk about the stop sign i
+mean you know there are conscious you
+know like coding decisions you can make
+and it seems like the behavior is
+predicated upon the decisions you make
+in how you code the the you know the
+proceeding from the stop sign yes
+function right
+so what is that really trying to prove i
+mean you're just showing that this is
+the the the outcome of that function
+being used in that situation right yeah
+well so more than that yeah well yeah
+and that's that's where you get uh
+emergent behaviors right so if you have
+a bunch
+of local interactions you say hey this
+is how people will behave in uh in this
+kind of situation so to speak right uh
+then you start to get novel emergence uh
+or you can get a novel emergence that
+you didn't expect to happen right based
+off the sequential program right so i i
+posit that if you have a truly random
+variable that you can you can read then
+you will be able to mimic through
+concurrency i hope professor lee agrees
+with that
+something to discuss over lunch between
+you two
+okay um
+are so
+any clarification questions
+okay so
+well
+i'll just talk uh pseudo concurrency uh
+later but um
+so now you know it's another feature
+right you can add to the grid uh so that
+agents um
+can now can now move in uh in
+two-dimensional space right um in order
+to
+uh you know kind of add some more
+features uh to the simulation all right
+again this is just a like very much a
+toy model for demonstration purposes
+make sure oh and then i forgot to copy
+something over
+oh i forgot to run it
+yeah that's right let's go over here
+all right so i'm gonna i'm gonna switch
+over right live coding always always
+somewhat hairy all right um
+so we have
+uh you know so each agent gets placed on
+uh onto a point of the grid
+after a lot of i'll give you one second
+just to fix this real quick
+ah there we go back on track all right
+so we've added them to the grid
+all right um
+actually i don't think i put it on there
+so now they're uh switching
+um they're they're moving from place to
+place on this grid
+um if you run this particular uh and uh
+and so already like with the simple um
+kind of behaviors you start to get um
+uh some pretty
+lots of lots of activity occurring right
+now the next thing i do then uh is add
+is what's called a data collector right
+so now these agents acting autonomously
+if you will making decisions about how
+to give
+how to spread money
+or giving money to somebody randomly
+receiving money from somebody else
+if they're in that same position all
+right so use something called the ginny
+coefficient which is just a if
+with economics this is just a
+measurement of wealth where zero means
+if everybody has one unit of money right
+then it's perfectly distributed so
+that's zero uh if one person or one
+agent in this case has all the money
+right uh then uh then you have uh then
+your distribution is one right and you
+can see you kind of randomly spread this
+money right the gini coefficient here uh
+you know goes up uh goes up pretty high
+but the significance of it all right
+it's kind of talking mesa right uh is
+that you have a data collector right and
+orders as the model's proceeding right
+they're starting to collect all that
+money i want to chat or you're starting
+to collect specific data that you're
+interested in based off the statistics
+that you want to see out in the real
+world right so as of for instance a
+couple years ago
+um george george basic princeton oxford
+ran a housing model of the greater dc
+area so roughly two million houses right
+and they said well we want to see you
+know if uh what policies may have
+impacted the housing bubble that
+occurred in 2008 right and so the way
+they did this is you know uh every agent
+made decisions about whether or not to
+buy or sell whether or not they could uh
+based off the banking regulations right
+um is that a collect out
+what they use is something called
+pattern-oriented modeling where we say
+hey we have these nine statistics right
+of the larger dc metro area housing of
+the larger
+dc area
+kind of housing market right can we
+build a simulation that matches up
+against those right and so to the point
+you're trying to you know how did you
+mess with these or how did you
+understand these complex systems where
+it's like what were they each
+individuals making a decision right the
+fed uh federal reserve bank was making
+policy decisions on whether or not to
+raise or lower the interest rate right
+can we recreate what happened and so the
+first step was that they you know built
+out the simulation based off a lot of
+real world data which is always
+always one of the hardest parts they
+brought in that money
+are they they uh use that data
+fed it into the agent-based simulation
+right had the agents make decisions uh
+and of the nine-ish statistics that they
+were looking at they successfully were
+you know recreated eight of the nine
+right so from that they you can then
+start to take kind of policy
+intervention decisions to say well we
+think we got a a pretty good
+understanding of why we saw the housing
+bubble and what it did right and this is
+where you know particularly social
+systems other complex adaptive systems
+uh this becomes a the kind of right now
+currently accepted methodology to try
+and understand uh understand them right
+and develop interventions
+right we would say okay this is a system
+we have or we can we recreate it right
+and then the the flip side of that is
+once you get it right can you create uh
+interventions or conduct actions that
+will influence the behavior of that
+system right and so this is where you
+start to get some additional benefits
+from the traditional machine learning
+right where uh you know covid happened
+right a lot of google amazon et cetera's
+machine learning model started to break
+right because they they were seeing
+behaviors that they had never seen
+before right because of you know the uh
+that because of the pandemic right now
+the the benefits with simulations like
+this right is that once you kind of say
+okay we think we got a pretty good idea
+of those dynamics that are producing
+this behavior right it becomes uh that
+goal is it becomes a policy or action
+tool the right that you can use
+and and shape the behavior of the system
+all right based off those tools right
+but the caution i always give to quote
+kind of the statistician name george box
+right is some all models are wrong right
+some are useful uh and uh and i think to
+the earlier uh discussion today right
+the the real benefit of this doesn't
+become necessarily the output of that
+model right where somebody's sitting
+there going oh okay let me build this
+model for you and tell you what policy
+decisions to make right it's that
+challenge of sitting there trying to
+identify what dynamics are influencing
+the behavior of the system where you can
+because you're the one kind of uh
+building and putting all that stuff
+together your team right and saying and
+learning from that experience on trying
+to recreate the emergent behavior of
+that system right so every uh
+agent-based model i've known that's
+worked very large real problems for the
+us government uh you know down to local
+you know policy dynamics of you know
+parks and delaware and stuff like that
+uh to covid modeling right the real
+benefit they typically get from their
+simulations is the the process of
+building it right of having to think
+through what are those interactions that
+are causing this emergent behavior to
+occur all right
+um uh and so
+you know the the features if you will
+that uh mesa provides then is just the
+you're kind of the
+the managers
+grid random activation you know so you
+got your space random activation
+um and and uh and agent behaviors all
+right so you don't have to build those
+all from scratch right then you can uh
+if you have uh statistics that you want
+to match right like this ginny plot so i
+think to the uh well the earlier
+questions right this reproduces behavior
+that's been known as seen out in the
+real world uh and is understood by
+economists uh as as well-known behavior
+right but then based off what you're
+collecting you can collect all this
+information or you can collect
+information uh at every step on the way
+so you can kind of explore uh the
+behavior of your uh of your this this
+virtual laboratory
+more extensively right
+so in this case you could kind of
+look at this one we're looking at you
+know how much
+at a particular step
+how many how much wealth an agent has
+right uh or track the individual uh kind
+of wealth of each agent right so you
+might think like oh if you were rich at
+one point you're always staying rich all
+right but through you know through these
+types of explorations uh you can also
+find somewhat maybe counterintuitive
+results where in this case uh you know
+this purse was this particular agent was
+going through a lot of peaks and lows
+and how much wealth they had at a given
+time right as the agents were just
+randomly uh exchanging wealth right and
+then from that you can start to say well
+hey this is not matching what reality is
+uh maybe i should uh you know
+maybe there's a fundamental flaw in how
+i'm understanding this system right
+that's uh what this does is just saves
+it
+uh so you can save this uh this money
+out
+right um now this is if you want to see
+what it looks like on the grid
+all right this is just an example uh
+just you know just a heat mat map of the
+different amount of money uh uh on each
+grid right and since you have multiple
+agents in one spot this could be three
+agents with uh one unit each uh or it
+could be uh one agent with with three
+units uh now to the problems right with
+these types of systems right is that
+they're highly parameterized and they
+can have a lot of different options
+right so you have to do uh we call
+parameter sweeps right to see you know
+as much as of the search space as you
+can alright um and so we have a
+another function called batch run
+right uh which then takes it and so now
+you got you know 10 agents to 500 agents
+on a 10 by 10 grid but you could also do
+you know from a you know one
+i guess a five by five to a thousand by
+a thousand right and then explore that
+whole search space right
+although uh python at this time doesn't
+do multi-threading they do do multi-core
+operations all right so if you have a
+lot of processors uh it's embarrassingly
+parallel and you can split them off uh
+across a lot of those
+across every core that you have
+all right they could get a kind of get
+around the guild to an extent that way
+um and then like anything the when you
+really get these large models all right
+then the challenge becomes how did you
+analyze the data that you have in there
+all right so it's still running so
+running f1 core kind of get limited on
+that all right and then you can explore
+your results to understand you know what
+are those possible results of the uh of
+the search space that are out there
+right um
+and so uh the other bits that uh we're
+not gonna show you today just in the
+sake of time
+they have uh
+we have visualizations right so open up
+a browser a server a browser-based app
+uh if you uh
+just open up a a server right so you can
+see it occurring dynamically right
+um as well uh and then you can just do
+different stuff with that and that's
+currently uh in uh in javascript all
+right so let me go here real quick so
+now the question becomes
+right uh as this is oops
+uh as this is still uh running
+right the the trick then becomes how do
+we make it more
+easily available so if we look at coding
+as the next revolution you know from the
+printing press and stored knowledge
+right uh how can the the large the
+long-term long-range challenge we're
+working on it's like a test probably
+orders of magnitude harder uh than
+standard machine learning libraries as
+you deal with these dynamic systems
+um is how is there a way to build out an
+ecosystem right to make it so you can
+rapidly build these simulations to aid
+human decision making right um
+uh and so
+one project that i'm uh i'm working
+which i'll go to in just a second uh
+it's called mesa data
+all right and then there's also mesa
+behaviors right where these try and you
+know to that point of how did you get to
+a valid model right uh
+right and these all have a binder which
+just
+spits up a google instance for you all
+right of data pipelines is say i'm
+looking at uh you know
+country x and i want to understand why
+that you know the behaviors of that
+population
+so to speak
+and i need a valid model this one will
+use uh the worldpop.org data set right
+and download uh essentially a population
+of that uh and kind of smooth that
+population because in this case right
+there's always some kind of data
+cleaning uh you'll get a population
+where it has like 6.5 people
+in a 11 meter square area right there's
+no such thing as point half of a people
+you're either alive or you're not right
+and so this smooths that out in order
+that you can have a valid synthetic
+population right because it matters if
+you take the country of niger for
+example that has a massive
+youth bulge that's about to hit right
+that has impacts on how that country
+will behave uh if you have more like a
+more normally distributed uh you know
+age population right that will
+fundamentally change the behavior of
+that population uh we also currently
+have
+or and these are these are all very uh
+very nascent if you will right as we try
+and deal with this problem like crop
+yields right so using
+famine land data assimilation set right
+how'd you pull in that data right to
+have your starter population or to have
+your starter potential crop yield and
+then deal with different types of uh
+you know rain and things like that and
+simulate forward in time to anticipate
+you know uh what's going to happen if
+this country that's already kind of uh
+starving
+what might happen and what are some ways
+that we could deal with it to prevent
+some kind of massive humanitarian
+disaster all right to that end we also
+are doing
+what's the easiest way to get here
+you know collecting a library of
+behaviors
+a second let me go back here
+all right and this one's called um
+all right uh where he has so sir if
+you're not familiar with sir models
+right susceptible infected recovered
+right that's pretty critical for
+pandemic modeling all right the
+bilateral shapley value for coalition
+game theory right how's you form groups
+and breakup groups all right but all
+this kind of leads to the larger idea of
+uh you're very much in line with a lot
+of the talks we had here is how do we
+integrate tools all right to make better
+decisions
+all right in this case is how we
+integrate the tool of simulations to
+make better decisions
+or understand the complex dynamics of
+in my case how your society is occurring
+or how an ecological uh an ecological
+system is occurring right
+um and so the thought is well can we
+build out this rich ecosystem where
+critical knowledge is stored in code
+right and then take that knowledge and
+integrate it together in these complex
+uh uh in these in these simulations so
+we can uh understand the world a bit
+better right so as a for instance uh on
+the crop yield uh i'm using a library
+from called the python crop
+simulator right out of england right in
+order to simulate the growth of crops
+for that particular data pipeline all
+right uh and so the the larger kind of
+vision in all this particular the python
+ecosystem which is pretty rich uh has a
+low
+somewhat a lower obstacle to bear a
+lower
+lower barrier to entry than a lot of
+other computing
+languages right is can we leverage that
+ecosystem to allow people to build these
+simulations more effectively and then as
+we kind of fast forward in time what
+does that echo system look like right so
+again going back to the
+elementary school principle they could
+take that expert knowledge from across
+the world throw it together right and
+now make better decisions that when you
+multiply that across you know tens of
+thousands hundreds of thousands
+elementary schools right we now are able
+to deal with things like pandemics more
+effectively and efficiently right
+because we're kind of putting that power
+into the hands of the people
+if you will
+i think that's uh again if you want to
+play with any of these things
+i won't say
+all right uh oh yeah so one final bit
+this is an open source project uh so if
+you want to get involved all you have to
+do is is go to our github page right
+join the discussions uh we have a
+link on element all right uh or matrix
+uh if you will just you know it's like
+slack or something like that i i mean
+it's all voluntary um all all just you
+know a bunch of agent-based modelers
+trying to understand understand the
+world better and because it's such a
+boutique field you don't even have to be
+an agent-based modeler to join all right
+we use all the all the help we could get
+so with that are there any questions

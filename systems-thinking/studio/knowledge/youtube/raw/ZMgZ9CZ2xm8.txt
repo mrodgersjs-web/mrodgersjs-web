@@ -1,0 +1,789 @@
+Hey, welcome to this presentation on
+fault tree analysis. As I said, my name
+is John Kzich. I founded the business
+eunctional
+safety and poultry analysis is part of
+the consulting services that we
+offer and in doing that we also build
+some online training
+courses. We're partway through
+developing a fault tree analysis course.
+So many companies will be already
+familiar with
+using risk assessment techniques such as
+layer of protection or layers of
+protection analysis.
+Loper loper is as the slide suggests
+here suitable for scenarios where the
+independent protection layers are
+clearly independent of each other and of
+the initiating event.
+When that is the case, then loper is a
+simpler technique to apply than fault
+tree analysis. So it works well for many
+cases. Not forgetting, of course,
+whether it's loper or fault trees that
+you use when you start to quantify these
+things, we mustn't forget that they are
+risk assessment techniques that
+estimate risk. Just because they use
+numbers or eventually use numbers, that
+doesn't mean to say they're necessarily
+accurate. As it says there, local works
+well when you have cases where there's
+no
+dependencies. But when it becomes
+problematic to use loper is when you
+have dependencies between systems. So
+it's a commonplace thing clearly in the
+process sector
+to separate out the protection
+layers such that they don't have
+dependencies. But often times there's
+cases where there's a mixture
+of a process control layer and a safety
+instrumented system layer having some
+common
+equipment. Now, of course, if you're
+still at the design stage, you can
+choose to redesign so that they don't
+have common equipment, but that's not
+always an option, especially if you're
+in a plant that's already running
+without doing any modifications.
+So you can use the fault tree technique
+when you have more complex
+structures as it suggests here on the
+slide for cascading events or complex or
+even sequenced events. Although be it
+sequence events is quite complicated. We
+won't be covering that today. But it
+excels at modeling systems where there's
+shared elements where there's dependent
+failure modes. So failure modes are not
+truly independent of each other and
+ultimately it provides more precision.
+Whereas if in a loper for instance if
+you say okay these events aren't truly
+independent we won't take any credit for
+a protection layer because it has some
+dependency with another one. The
+difference between loper and fault tree
+is in fault tree you can model the
+dependency. you can show the dependency
+within the tree structure and that means
+you should get a more accurate or a more
+precise
+result. There's some symbology in fault
+trees to understand. So I'm diving
+straight in here because I'm assuming
+everybody knows to some extent what
+fault trees get used for. We can pretty
+much model any kind of system. We're
+going to look at a process example
+shortly. Now, all fault trees start with
+what we call a top
+event. So, the top event
+here is an event that we're looking to
+try and model. We usually have that as
+some kind of either um some hazard or or
+consequence that we're trying to
+avoid or we could be modeling a safety
+function, a SIF.
+Usually we would use simpler methods to
+model sifs. But sometimes if you want to
+model a sif in a tree structure with
+other things with other events going on
+then you may need to model a sif within
+the volt tree itself. We usually start
+with a process of some sort. We'll look
+at an example in a moment. Focus on the
+symbols for now. So the first symbol is
+really the rectangle which is some kind
+of event. In this case the top one is
+the top event. These ones here these
+rectangles here are intermediate events.
+And you can see between the
+events here's an or
+symbol in two places there on the fault
+tree.
+What the or symbol means is very
+straightforwardly in the top case there
+either the event on the left or the
+event on the right have to be true for
+the top event to be true. And in the
+case of an AND gate basically event two
+and three must be true or the event
+above it be true. So we tend to focus
+mostly on those and andor gate symbols.
+There there are other symbols. There are
+things like inhibit gates and nor gates.
+We're not going to get into those in
+this presentation. And in fact, most
+tries I've ever been involved with.
+Don't have to use those other kinds of
+gates which tend to get much more
+complicated to understand.
+So usually we can do most of the
+modeling we need with the events and
+with an and and or
+gates. However, there are a couple of
+other types of events at the bottom of
+the
+tree. We work this way to build the
+tree. So we work from the top
+downwards and
+then this the software in this case this
+is a picture from a piece of software.
+The software will usually solve the
+fault tree from the bottom
+upwards. To do that, it needs
+these basic events to have some
+probability or
+frequency associated with them. Now,
+we'll get into quantification in a
+moment. Let me remember to focus on the
+symbols. So a basic event will be an
+event like a failure of a piece of
+equipment and we can assign that a
+probability of failure. It could be a
+probability of failure on demand or it
+could be a failure frequency. We'll see
+an example shortly. The basic events get
+probabilities or frequencies assigned to
+them and then the tree structure will
+take those probabilities upwards in the
+tree to solve what the probability or
+frequency of the intermediate and top
+events are. So basic events the ones
+with the circle here you'll see are
+things that we would always see in a
+fault tree.
+There are other types of event which you
+may see but are not that common. There's
+a thing called a house event. Looks a
+bit like a house. That's an event that
+you can either say is always false or is
+always
+true. False wouldn't have much impact
+typically, but if you say that event is
+always true, then that's a way to
+represent that in a fault tree. Another
+one is the diamond symbol where you've
+essentially got an undeveloped
+event. So if we want
+to assign a probability to some kind of
+event without actually having to model
+it, an example might be some kind of
+external or weather related event which
+you're not going to go and look at all
+the possibilities. It might be windy or
+sunny on a particular day of the week,
+but you might want to assign a frequency
+to that occurrence. Then you just say
+that's a frequency that's not developed,
+but we're going to account for it in the
+tree. Then there's one more
+symbol you'll notice here, this triangle
+symbol, which is a transfer
+symbol. This one's a transfer in. You
+can get transfer out as well. In this
+particular piece of software, it's a way
+of representing different pages in the
+fault tree. So rather than trying to
+build a tree and then understand it from
+top to bottom on a single page, you can
+put fault trees over multiple pages and
+have events transferred in from other
+pages in the tree structure. So that's
+the symbols. Just a quick recap, the
+majority of the symbols we see are or
+gates. So any of the events below an all
+gate and or gates can have more than two
+entries as you see here. Uh what that
+means is every single one of these is
+possible. If any one of those occurs,
+the event above it will occur. Whereas
+in this case, it's an and. Again, ands
+can have more than two inputs as well.
+So, here's an example where the top
+event is a high temperature in a
+reactor and it's given a label. You can
+see the label there is
+TE1. You could be labeled anything. The
+default tree labels in a piece of
+software like isograph have to be
+unique.
+The descriptions can be any text you
+like, but the symbols have to be unique,
+and there's a reason for that, which
+I'll come back to shortly. So, we've
+labeled this CW for cooling water,
+reaction for reaction. So, there's two
+possible causes of high temperature in
+the reactor. One is loss of cooling and
+the other way is a runaway reaction.
+And then in each case there are multiple
+potential
+causes of for instance loss of cooling.
+You don't need to
+know any mathematics to follow the tree
+structure. So we can see that in this
+case loss of cooling can happen because
+either there's no water
+supply, there's a
+blockage or there's a failure of booster
+pumps.
+So all three of those are possible
+causes of loss of cooling which in
+itself is a possible cause of high
+temperature. The beauty of fault trees
+is it doesn't require a lot of knowledge
+to read it. It's more about the
+interpretation and building it a bit
+more complicated than reading it.
+building it. There are various things
+and rules you have to follow. But
+qualitatively, so without quantifying
+this this particular example fault
+tree, we can see the way that faults
+interact with each other. So we can see
+for instance there is a possibility of
+of blockage and that's directly itself
+without anything else happening a
+potential loss of cooling water.
+flow that is cooling water flow. The one
+case where there's an ANDgate in this
+tree structure are the pumps and we get
+a failure of cooling water booster pumps
+only if we get the primary booster pump
+fails while running. So that'll have a
+frequency assigned with it and we get
+the standby booster fails on demand. So
+that the concept there would be
+standby pump
+arrangement and we can include that in
+the model and we can look at a frequency
+of this occurring and a probability of
+failure of the standby pump occurring.
+What is it you look for when you look at
+a fault tree that someone else has
+developed? Because that's actually a
+skill in itself. I'll give you an
+example where I have to do that
+relatively regularly is during
+functional safety assessments. If I'm
+the assessor looking at a project where
+somebody else has developed a fault
+tree, it's clearly important that I can
+understand and follow the fault tree
+myself and ask questions if necessary.
+So I have a checklist which I use to go
+through these steps if you like verify
+structure look at what it's trying to
+represent in terms of the events on the
+tree compare that with the process then
+use that to determine whether the
+failures and the events are propagating
+correctly through the system. I would
+also check the and or gates are
+appropriately applied.
+Sometimes people just use the wrong gate
+and that might be
+a purely a human error but the software
+doesn't know. It still requires people
+to look at them and to say does it make
+sense? The second one there validating
+completeness. Look for missing failure
+sources. Overlook
+dependencies. So we're looking for all
+credible paths to the top event via im
+intermediate
+events and then down to the bottom of
+the fault tree looking for both
+equipment failure and human error.
+Completeness of course is tricky because
+how do you how can you verify if
+everything's been included? Check for
+repeated events. So repeated events can
+occur when you get fault trees which are
+much larger. You can have events in
+multiple places. It doesn't seem to make
+sense. In a small fault tree, you would
+see it fairly straight
+away. But the reason for repeated events
+being an issue is if you take the same
+event in two or more places, you'll get
+optimistic results if they're solved
+through an
+ANDgate. I'll show you an example of
+that in a
+moment. It partly depends on whether
+you're using a modeling software. The
+modeling software should account for
+repeated events if it's used properly.
+There are other checks to do. This is
+the first set of checks about how the
+tree is structured, whether it's
+complete and whether there's any kind of
+repeated events. There's nothing
+quantitative in any of those first three
+steps. It's purely looking at and
+comparing the tree structure from a
+perspective of the actual process. If
+you quantify a fault tree, I've on
+purpose I haven't named these events
+because this is not this would be even
+worse if you were using something like
+solving it by hand gate by gate which is
+doable but you have to be
+careful and really because of the
+relative cost of software if you've got
+any sort of complex bolt tree you
+definitely don't want to be doing it by
+hand. But even if you did it by, I don't
+know, putting it into an Excel
+spreadsheet. I have done that in the
+past, it's again possible. But then
+you've got to be very careful how you
+solve the
+gates. So this particular piece of
+software manages all that for you. It
+uses things called minimal cut sets,
+which I won't talk about now because
+it's not really the topic to go into
+depth here in an introduction. The fault
+tree software, the isograph software is
+very good and does look for problems
+like we're going to discuss here.
+Firstly, when you're quantifying
+something, you'll see typically on a
+fault tree
+values inside the labeling when the
+fault trees had a calculation, the
+calculation at the top event there is
+coming from the sources of event below
+it. So these are the three sources at
+bottom and then there's an intermediate
+event which actually in this case is the
+same frequency
+uh as the top event sorry unavailability
+as the top event
+and it's solved from the bottom upwards.
+Now in this case we can see if
+approximately if we summed up the
+numbers so the Q or the unavailability
+numbers you can think of that as
+probability of failure. There's no
+frequency assigned with that. We would
+go through this on our online course in
+a lot more depth. But very briefly, a
+probability is like a percentage.
+Essentially, a probability of failure of
+0.1 means it's going to fail 10% of the
+time. 0.1 plus 0.1 you might think is
+0.2, but actually from a probability
+perspective, if they're independent
+events,
+is.19. And I'm not going to describe why
+now, but you'll have to believe me.
+That's correct. Approximately it's 02
+but not when you do it
+accurately. So the 0.19 gets anded or
+multiplied with the 0.1 here to become
+019. So I know it's not very clear
+necessarily on your screen but that top
+number says 019. So the tree is solved
+correctly based upon that information.
+The two items I've highlighted in yellow
+and green here are important just
+because when we look at the next tree,
+it'll look very similar. In fact, it's
+the same except one minor difference. So
+that result 019, remember that that's a
+quite a small number.
+Now if I quantify that tree again except
+I've colored these two
+red just to show that they are the same
+event. So instead of on the previous
+one, just go back on the previous one,
+event five and event seven were
+different
+events on this one. Event two, you'll
+notice the labels the same for both of
+those events because they're the same
+event. I saw this recently on a
+functional safety assessment I was
+leading. They labeled these
+events differently here.
+So event five and seven were looked at
+by the software as completely separate
+events when in actual fact the
+descriptions inside suggested they were
+the same
+event. So they had come up with an
+answer a solution equivalent to 0.019
+019 incorrectly because actually when
+you've got the same event here and
+here taking them through an ANDgate
+because they get solved through this
+direction. Taking them through an
+ANDgate does not give you event one
+multiplied by itself. It gives you the
+same probability in this case or
+unavailability. It gives you the same
+result. So
+0.1. So in this case, the modeler had
+incorrectly used two different events
+but described them the same and they
+were the same event coming through the
+tree in different places and that had a
+big impact on the the result
+above. So that's just an example of
+repeated events and how things could go
+wrong. A third example here just shows
+you that it doesn't have to be
+unavailability you're modeling. In this
+case, the high reactor temperature that
+we saw in the earlier example has now
+got some frequencies associated with it.
+Anything with F is a frequency. So the W
+parameter and anything with
+a
+PFD is a probability of failure on
+demand or a nonavailability number. In
+this case, what the tree will do is it
+will model for the failure frequency
+because actually the although this
+unavailability issue is present here
+from a frequency perspective, it doesn't
+impact that W result. So we're either
+using a fault tree to model for
+unavailability or we're using it to
+model for frequency. And quite often
+we're looking at modeling frequency to
+try and compare that with a target
+frequency of an
+event to make sure that we
+don't go over a certain frequency. I'm
+not going to try and show you a live
+tool. Well, although if you come on our
+self-paced course, we will be showing
+examples of live building a fault tree,
+how to build it inside the tool and how
+to enter the
+data. There's a couple of other things
+to be aware of in fault trees. When
+you're quantifying them, you need to
+have quality data. So the garbage in
+garbage out principle applies like all
+reliability modeling
+methods
+and you want to make sure that data is
+both entered
+correctly. You've got all types of
+failure models, failure
+rates, test
+intervals, detected and undetected
+failures, etc. So there's a lot of
+information to model and it's really
+easy to muck that up in a fault tree
+software. If you were just going to do
+something like a calculation for a
+safety function like the example on the
+right here to calculate the probability
+of failure of a CIF, I would typically
+tell you not to use a fault tree. use
+use a reliable tool like like the AE
+shield tool which is very good for
+modeling straightforward structures
+including relatively complex voting as
+well and you can enter the data much
+easier into a tool like that than you
+can into a fault
+tree. So it's horses for courses. I
+wouldn't suggest you use a fault tree um
+or just doing regular sill
+calculations unless you've got something
+particularly strange or complex or
+something with dependencies between
+systems and I know my face is covering
+the part of the text here and I
+apologize for that. Check for common
+cause is what it says. So there's an
+example here on the screen of two
+sensors and you'll see there's a very
+small symbol next to them called a beta
+symbol and that just tells me that
+behind that common cause factor that's
+been applied. So that although that's a
+redundant sensor from a point of view of
+a one out of two
+arrangement from a safety perspective
+the common cause would have to be
+included. So I can see that common cause
+symbol on the diagram and then I'd have
+to go and check the data tables to make
+sure that there's an appropriate factor
+been applied. So there's issues around
+quality of data, there's issues around
+entry of data
+and you will
+get bad results if you use bad data.
+Just before
+I open up for questions, I wanted to
+give you an example of what's coming
+with this self-paced online course. So,
+you've just seen a little bit of the
+introduction. What we're planning to go
+into is probability of frequency, give
+you all the background about
+understanding the probability of
+frequency numbers because if you don't
+have that, then you can't really develop
+a fault tree or use a software very
+well. Because we've had significant
+experience of using the Isograph
+software, we're going to build that
+software into our online course. It
+would be better, of course, if you had
+the that type of software available to
+to follow along, but you'll be able to
+see exactly how we would set up the
+software because there's many parameters
+inside these softwares and they're not
+this particular one gets used across
+different sectors. So, it gets used in
+aerospace, in rail, in all sorts of
+different industries. So, it's not
+designed specifically for process
+applications.
+which means you have to configure it
+properly. The text there says example
+process and voltry analysis building on
+FTA structure in the software. So we'll
+go through worked examples rather than
+the examples I just showed you in a
+slide there. We'll actually build them
+on the screen in a video in this online
+course. And then in addition to that
+quantification. So how to once you
+understand all the failure data and how
+it works entering data in frequencies
+common cause factor models using all
+that doing all that properly and then
+showing the results and how you can do
+sensitivity
+analysis. Finally modeling failure
+examples. So using the model you built
+to do whatif failures. So you can show
+what if something fails. So how does
+that propagate within the in the fault
+tree and affect the numbers above it
+such as redundant elements. So for
+instance if you had a two out of three
+voting arrangement you can fail one
+element and see what impact that has on
+the probability numbers above it. And
+then finally using the fult tree
+analysis in event tree.
+So event trees not something I've
+introduced here because it's just wasn't
+enough time to do that. Part of our
+online course we will link bault trees
+and event trees together as event trees
+are very good for showing multiple
+different consequence outcomes and they
+can be combined very well in a software
+like isograph to to show you
+consequences from the top events. So
+there's the first question here. It says
+we're using FMEA for machine
+safety. What I'm struggling with is that
+dependency are not clear as faulty
+analysis. FMEA becomes a big fat Excel
+file. Yeah. And reading understanding is
+not really easy. The ones not involved
+in creating in the first place. Yeah.
+Okay. Yeah. This is about using the
+correct technique. So I didn't look at
+FMEA because that's more a technique
+often used in kind of design of systems.
+I know it gets used. It does get used as
+well occasionally in process
+applications. So you're talking about
+machine
+safety. Yeah, dependencies aren't clear
+in an FMEA. You you do get just big
+tables of data. Um fault trees are much
+easier to follow and that's ultimately
+sadly just down to the use of the
+technique. So an FMEA will show you
+certain aspects but things like
+dependencies are definitely not going to
+be clear like they are in fault tree
+analysis. It's a completely opposite
+approach actually. So fry analysis is a
+top down approach and FMEA is bottom
+up. Can you give me an example of
+undeveloped event? Is this something we
+do not
+know a new development we do not data we
+think new part system can fail. So your
+example or your suggested example in new
+develop we don't know we've got how much
+data over how much system how something
+is going to fail. You could use you
+could use an undeveloped event to at
+least include it in the system. But my
+example of an undeveloped event would be
+I think I gave the example of a weather
+weather being a factor. So let's say you
+had potential for increase in
+temperature being caused by a weather
+system. You can get basic data from the
+local area that you're dealing with
+wherever the plant is located.
+Obviously, it's never going to be 100%
+accurate, but you can get an idea of
+temperature in a certain
+season. And then you're not going to
+develop that event in the fault tree. So
+rather than building all the events
+below it that might lead to there being
+high temperature or high ambient
+temperature, you just say this is an
+undeveloped event we're going to include
+for this in the fault tree. We're not
+going to develop we're not going to
+develop the tree structure to show how
+it help happens. That's my example of an
+undeveloped event. It could be all sorts
+of others. I'm looking at the first
+question. Is unavailability Q in
+quantified one slide a probability
+number? Yes, it is. Yeah, Q I I don't
+know the origin of why Q gets used, but
+it does. Q gets used in fault trees, at
+least in the fault tree tool that we use
+in the isograph tool. and W gets used
+for frequency. So the Q number doesn't
+have any time base associated with it.
+It's purely a probability number. Do two
+similar identical devices both of which
+have to fail must if we must always have
+to include common
+cause? Yes, they always have to include
+cause. You could say the common cause
+number might be lower if they are non
+identical. But even if they're non
+identical, there should always there may
+be some common elements, common causes.
+But the common cause number would be
+different. But yes, you always have to
+include common cause if they're
+identical device. You sorry, you did say
+identical devices. Yes. So whether it's
+two valves, two sensors, two redundant
+IO cards, it doesn't matter what they
+are. If they're identical devices and
+the failure above is with an ANDgate,
+common cause must be accounted for in
+the tree and you'll actually find that
+the common cause dominates the
+calculation and without it the it's not
+a correct fault tree. Just looking
+across vet lana. Would you say that
+fault
+tree analysis used for process safety
+assessment or for machinery operation
+safety as well? Okay. My personal use of
+it is mostly has been in process
+although I did come across it in a
+machinery safety application fairly
+recently in the mining
+sector. We were not building the fault
+tree in that case. somebody else was,
+but they were looking at quite a complex
+braking
+system. The best way of showing how the
+system worked to demonstrate really to
+the end user that
+the braking system was adequate. The
+company doing that
+demonstration used a fault tree to
+demonstrate it. And it's the it's the
+best way by the way of communicating.
+You can also do FMEA and I think they
+had done FMEA but unfortunately FMEA
+doesn't allow you
+to communicate that structure anywhere
+near as well as a fault tree does. The
+fault tree really is partly about
+communication as in communicating
+between one company and another about
+how the system works and it's partly
+about then obviously
+quantification. You could just build a
+fault tree just to communicate how it
+works.
+or how it fails I should say to lead to
+a hazard is unavailency Q the same term
+from the simplified equations from
+6508 I don't know to be honest I don't
+know if that uses Q in the 6508 I don't
+think 61511 has any equations but 6508
+does
+part six from memory I've never actually
+cross- checked what the source is does
+low and FTA give different results for
+simple straightforward forward
+scenarios. There can be minor
+differences depending on whatever tool
+you're using. If the lower is built into
+something like an Excel spreadsheet, if
+someone has used simplified equations
+to, for instance, sum up the
+frequencies, then you'll find some
+differences. part of our online course
+is to show cases of loper that can be
+transferred over to fault tree and you
+get the same results. What you might not
+be able to do is get the same results by
+transferring fault tree back to loper
+because by definition fault trees can
+model more things like
+dependencies. So it doesn't usually go
+the other way. Where do we factor in
+conditional modifiers in a fault
+tree? You can factor them in either at
+the top of the tree. So for instance,
+the trees we saw
+earlier. If you're modeling for
+frequency, then you can factor the
+things like probability of ignition etc.
+at the top of the fault
+tree or lower down in the structure. It
+really depends on where it's relevant.
+The other thing you can do is you can
+take and we don't have time to do that
+on this call but our training course
+will cover this. You can take the bolt
+tree into an event tree and model all
+the consequences by applying from the
+top event applying the appropriate
+factors
+uh for the conditional modifiers
+essentially that you would often see in
+a loper. You can put those into an event
+tree. So you take the outcome of the
+fault tree and then instead of just
+applying those modifiers at the top of
+the tree, you would take the result that
+result into an event tree and then show
+the other factors such as ignition
+probability. Okay, I think I've covered
+all the questions. Thank you for
+attending. I'll come off the screen and
+say goodbye
+and speak to you all again soon.

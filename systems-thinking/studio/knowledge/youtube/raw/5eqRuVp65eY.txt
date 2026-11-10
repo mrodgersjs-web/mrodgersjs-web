@@ -1,0 +1,652 @@
+AI models can't cross this boundary and
+we don't know why as we train an AI
+model its error rate generally drops off
+quickly and then levels off if we train
+a larger model it will achieve a lower
+error rate but requires more compute
+scaling to larger and larger models we
+end up with a family of Curves like this
+switching our axis to logarithmic scales
+a clear Trend emerges where no model can
+cross this line known as the compute
+optimal or compute efficient Frontier
+this trend is one of three three neural
+scaling laws that have been broadly
+observed error rate scales in a very
+similar way with compute model size and
+data set size and remarkably doesn't
+depend much on model architecture or
+other algorithmic details as long as
+reasonably good choices are made the
+interesting question from here is have
+we discovered some fundamental law of
+nature like an ideal gas law for
+building intelligent systems or is this
+transist result of the specific neural
+network driven approach to AI that we're
+taking right now now how powerful can
+these models become if we continue
+increasing the amount of data model
+sizing compute can we drive errors to
+zero or will performance level off why
+are data model size and compute the
+fundamental limits of the systems we're
+building and why are they connected to
+model performance in such a simple
+way 2020 was a watershed year for open
+AI in January the team released this
+paper where they showed very clear
+performance Trends across a broad range
+of scales for language models the team
+fit a power law equation to each set of
+results giving a precise estimate for
+how performance scales with compute data
+set size and model size on logarithmic
+plots these power law equations show up
+as straight lines and the slope of each
+line is equal to the exponent of the fit
+equation larger exponents make for
+steeper lines and more rapid performance
+improvements the team observed no signs
+of deviation from these Trends on the
+upper end foreshadowing open AI strategy
+for the year the largest model the team
+tested at the time had 1.5 billion
+learnable parameters and required around
+10 petaflop days of compute to train a
+pedop flop day is the number of
+computations a system capable of one
+quadrillion floating Point operations a
+second can perform in a day the
+top-of-the-line gpus at the time the
+Nvidia V100 is capable of around 30 Tera
+flops so a system with 33 of these
+$10,000 gpus would deliver around a
+pedop flop of compute that summer the
+team's empirically predicted game would
+be realized with the release of GPT 3
+the open AI team had placed a massive
+beted on scale partnering with Microsoft
+on a huge supercomputer equipped with
+not 33 but 10,000 V100 gpus and training
+the absolutely massive 175 billion
+parameter gpt3 model using 3,640 pedop
+flop days of compute gpt3 performance
+followed the trend line predicted in
+January remarkably well but also didn't
+flatten out indicating that even larger
+models would further improve performance
+if the massive gpt3 hadn't reached the
+limits of neural scaling where were they
+is it possible to drive error rates to
+zero given sufficient compute data and
+model size in an October publication the
+open AI team took a deeper look at
+scaling the team found the same Clear
+scaling laws across a range of problems
+including image and video modeling they
+also found that on a number of these
+other problems the scaling Trends did
+eventually flatten out before reaching
+zero error this makes sense if we
+consider exactly what these error rates
+are measuring large language models like
+gpt3 are Auto regressive they are
+trained to predict the next word or word
+fragment in sequences of text as a
+function of the words that come before
+these predictions generally take the
+form of vectors of probabilities so for
+a given sequence of input words a
+language model will output a vector of
+values between 0o and one where each
+entry corresponds to the probability of
+a specific word in its
+vocabulary these vectors are typically
+normalized using a soft Max operation
+which ensures that all the probabilities
+add up to one gpt3 has vocabulary size
+at
+50257 so if we input a sequence of text
+like Einstein's first name is the model
+will return a vector of length
+50257 and we expect this Vector to be
+close to zero everywhere except at the
+index that corresponds to the word
+Albert this is index
+42590 in case you're wondering during
+training we know what the next word is
+in the text that we're training on so we
+can compute an error or loss value that
+measures how well our model is doing
+relative to what we know the word it
+should be this loss value is incredibly
+important because it guides optimization
+or learning of the model's parameters
+all those pedoph flops of training are
+performed to bring this loss number down
+there's a bunch of different ways we
+could measure the loss in our Ein sign
+example we know that the correct output
+Vector should have a one at the index of
+so we could Define our loss value as 1
+minus the probability returned by the
+model at this index if our model was
+100% confident the answer was Albert and
+returned a one our loss would be zero
+which makes sense if our model returned
+a value of 0.9 our loss would be 0.1 for
+this example if the model returned a
+value of 0.8 our loss would be 0.2 and
+so on this formulation is equivalent to
+what's called an L1 loss which works
+well in a number of machine learning
+problems however in practice we found
+that models often perform better when
+using a different loss function
+formulation called the cross entropy the
+theoretical motivation of cross entropy
+is a bit complicated but the
+implementation is simple all we have to
+do is take the negative natural
+logarithm of the probability output of
+the model at the index of the correct
+answer so to compute our loss in the
+Einstein example we just take the
+negative log of the probability output
+by the model at index
+42590 so if our model is 100% confident
+then our cross entropy loss equals the
+minus natural logarithm of one or zero
+which makes sense and matches our L1
+loss if our model is 90% confident of
+the correct answer our cross entropy
+loss equals the negative natural log of
+0.9 or about 0.1 again close to our L1
+loss plotting our cross entropy loss as
+a function of the model's output
+probability we see that loss grows
+slowly and then shoots up as the model's
+probability of the correct word
+approaches zero this means that if the
+model's confidence in the correct answer
+is very low the cross entropy loss will
+be very high the model performance shown
+on the Y AIS and all the scaling figures
+we've looked at so far is this cross
+entropy loss averaged over the examples
+in the model's test set the more
+confident the model is about the correct
+next word in the test set the closer to
+zero the average cross entropy becomes
+now the reason it makes sense that the
+open AI team s some of their loss curves
+level off instead of reaching zero is
+because predicting the next element in
+sequences like this generally does not
+have a single correct answer the
+sequence Einstein's first name is has a
+very unambiguous next word but this is
+not the case for most text a large part
+of gpt3 is training data comes from text
+scraped from the internet if we search
+for a phrase like a neural network is a
+we'll find many different next words
+from various sources none of these words
+are wrong there's just many different
+ways to explain what a neural network is
+this fundamental uncertainty is called
+the entropy of natural language
+the best we can hope for our language
+models is that they give High
+probabilities to a realistic set of next
+word choices and remarkably this is what
+large language models do for example
+here's the top five choices for meta's
+llama
+model so we can never drive the cross
+entropy loss to zero but how close can
+we get can we compute or estimate the
+value of the entropy of natural language
+by fitting power law models to their
+loss curves that include a constant
+irreducible error term the the opening I
+team was able to estimate the natural
+entropy and low resolution images videos
+and other data sources for each problem
+they estimated the natural entropy of
+the data in two ways once by looking at
+where the model size scaling curve
+levels off and again by looking at where
+the compute curve levels off and they
+found that these separate estiment
+agreed very well know that the scaling
+power laws still work in these cases but
+by adding this constant term our trend
+line or Frontier on a log log plot is no
+longer a straight line interestingly the
+team was not able to detect any
+flattening out of performance on
+language data however noting that
+unfortunately even with data from the
+largest language models we cannot yet
+obtain a meaningful estimate for the
+entropy of natural language 18 months
+later the Google deepmind team published
+a set of massive neural scaling
+experiments where they did observe some
+curvature in the compute efficient
+Frontier on natural language data they
+used their results to fit a neural
+scaling law that broke the overall loss
+into into three terms one that scales
+with model size one with data set size
+and finally an irreducible term that
+represents the entropy of natural text
+these empirical results imply that even
+an infinitely large model with infinite
+data cannot have an average crossentropy
+loss on the massive Text data set of
+less than
+1.69 a year later on Pi Day 2023 the
+open AI team released GPT
+4 despite running for a 100 Pages the
+gp4 technical report contains almost no
+technical information about the model
+itself the open aai team did not share
+this information citing the competitive
+landscape and safety
+implications however the paper does
+include two scaling plots the cost of
+training GPT 4 is enormous reportedly
+well over $100
+million before making this massive
+investment the team predicted how
+performance would scale using the same
+simple power laws fitting this curve to
+the results of much smaller experiments
+note that this uses a linear and not
+logarithmic y-axis scale exaggerating
+the curvature of the scaling if we map
+this curve to a logarithmic scale we see
+some curvature but overall a close match
+to the other scaling plots we've seen
+what's incredible here is how accurately
+the open a team was able to predict the
+performance of GPT 4 even at this
+massive scale while gpt3 training
+required an already enormous 3,640 peda
+flop days some leaked information on GPT
+4 training puts the training compute at
+over 200,000 peda flop days reportedly
+requiring 25,000 Nvidia a100 gpus
+running for over 3 months all of this
+means that neural scaling laws appear to
+hold across an incredible range of
+scales something like 13 orders of
+magnitude from 10 to the minus8 pedop
+Flop days reported in open ai's first
+2020 publication to the leaked value of
+over 200,000 pedop flop days for
+training GPT 4 this brings us back to
+the question why does AI model
+performance follow such simple laws in
+the first place why are data model
+sizing compute the fundamental limits of
+the systems we building and why are they
+connected to model performance in such a
+simple way the Deep learning theory we
+need to answer questions like this is
+generally far behind deep learning
+practice but some recent work does make
+a compelling case for why model
+performance scales following a power law
+by arguing that deep learning models
+effectively use data to resolve a
+high-dimensional data manifold
+really getting your head around these
+theories can be tricky it's often best
+to build up intuition step by step to
+build up your intuition on llms and a
+huge range of other topics check out
+this video sponsor brilliant when trying
+to get my own head around theories like
+neural scaling I start with the papers
+but this only gets me so far I almost
+always code something up so I can
+experiment and see what's really going
+on brilliant does this for you in an
+amazing way allowing you to jump right
+to the powerful learning by doing part
+they have thousands of interactive
+lessons covering math programming data
+analysis and AI brilliant helps you
+build up your intuition through solving
+real problems this is such a critical
+piece of learning for me a few minutes
+from now you'll see an animation of a
+neural network learning a
+low-dimensional representation of the
+Imus data set solving small versions of
+big problems like this is an amazing
+intuition builder for me brilliant
+packages up this style of learning into
+a format you can make progress on in
+just minutes a day you'll be amazed at
+the progress you can stack up with
+consistent effort brilliant has an
+entire course on large language models
+including lessons that take you deeper
+into topics we covered earlier
+predicting the next word and calculating
+word probabilities to try the brilliant
+llm course and everything else they have
+to offer for free for 30 days visit
+brilliant.org Welch laabs or click the
+link in this video's description using
+this link you'll also get 20% off an
+annual premium subscription to brilliant
+big thank you to brilliant for
+sponsoring this video now back to neural
+scaling there's this idea in machine
+learning that the data sets our models
+learn from exist on manifolds in
+high-dimensional space we can think of
+natural data like images or text as
+points in this High dimensional space in
+the Imus data set of hand written images
+for example each image is composed of a
+grid of 28x 28 pixels and the intensity
+of each pixel is stored as a number
+between zero and one if we imagine that
+our images only have two pixels for a
+moment we can visualize these two pixel
+images as points in 2D space where the
+intensity value of the first pixel is
+the x coordinate and the intensity value
+of the second pixel is the y coordinate
+an image made of two white pixels would
+fall at 0 0 in our 2D space an image
+with a black pixel in the first position
+and a white pixel in the second position
+would fall at one Z and an image with a
+gray value of 0.4 for both pixels would
+fall at 0.4 comma 0.4 and so on if our
+images had three pixels instead of two
+the same approach still works just in
+three dimensions scaling up to our 28x
+28 mnist images our images become points
+in 784 dimensional space the vast
+majority of points in this High
+dimensional space are not handwritten
+digits we can see this by randomly
+choosing points in the space and
+displaying them as images these almost
+always just look like random noise you
+would have to get really really really
+lucky to randomly sample a handwritten
+digit this sparsity suggests that there
+may be some lower dimensional shape
+embedded in this 784 dimensional space
+where every point in or on this shape is
+a valid handwritten digit going back to
+our toy three pixel images for a moment
+if we learned that our third pixel
+intensity value let's call it X3 was
+always just equal to 1 plus the cosine
+of our second pixel value X2 all of our
+three pixel images would lie on the
+curved surface in our 3D space defined
+by X3 = 1 + the cosine of X2 this
+surface is two-dimensional we can
+capture the location of our images in 3D
+space just using X1 and X2 we no longer
+need X3 we can think of a neural network
+that learns to classify imist as working
+in a similar way in this network
+architecture for example our second to
+last layer has 16 neurons meaning that
+the network has mapped the 784
+dimensional input space to a much lower
+16-dimensional
+space very much like our 1 plus cosine
+function mapped our three-dimensional
+space to a lower two-dimensional space
+where the manifold hypothesis gets
+really interesting is that the manifold
+is not just a lower dimensional
+representation of the data the geometry
+of the manifold often encodes
+information about the data if we take
+the 16-dimensional representation of the
+Imus data set learned by our neural
+network we can get a sense for its
+geometry by projecting from 16
+Dimensions down to two using a technique
+like umap which attempts to preserve the
+structure of the higher dimensional
+space coloring each point using the
+number that the image corresponds to we
+can see that as the network trains
+effectively learning the shape of the
+manifold instances of the same digit are
+grouped together into little
+neighborhoods on the manifold this is a
+common phenomena across many machine
+learning problems images showing similar
+objects or text referring to similar
+Concepts end up close to each other on
+the Learned manifold one way to make
+sense of what deep learning models are
+doing is mapping high-dimensional input
+spaces to lower dimensional manifolds
+where the position of data on the
+manifold is Meaningful
+now what does the manifold hypothesis
+have to do with neural scaling laws
+let's consider the neural scaling law
+that links the size of the training data
+set with the performance of the model
+measured as the cross entropy loss on
+the test set if the manifold hypothesis
+is true then our trading data are points
+on some manifold in higher dimensional
+space and our model attempts to learn
+the shape of this manifold the density
+of our training points on our manifold
+depends on how much data we have but
+also on the dimension of the manifold in
+onedimensional space if we have D
+training data points and the overall
+length of our manifold is L we can
+compute the average distance between our
+training points s by dividing L by D
+note that instead of thinking about the
+distance between our training points
+directly it's easier when we get to
+higher Dimensions to think about a
+little neighborhood around each point of
+size as and since these little
+neighborhoods bump up against each other
+the distance between our data points is
+still just s moving to two Dimensions
+we're now effectively filling up an L by
+L square with small squares of side
+length s centered around each training
+point the total area of our large Square
+l^ s must equal our number of data
+points D * the area of each little
+square so D * s^ 2 rearranging and
+solving we can show that s is equal to l
+* D Theus 12 moving to three dimensions
+we're now packing an L by L by L cube
+with d cubes of side length s equating
+the volumes of our D small cubes and our
+large Cube we can show that s is equ Al
+to L * D Theus 1/3 so as we move to
+higher Dimensions the average distance
+between points scales as the amount of
+data we have to the power of minus1 over
+the dimension of the
+manifold now the reason we care about
+the density of the training points on
+our manifold is because when a testing
+Point comes along its error will be
+bounded by a function of its distance to
+the nearest Training point if we assume
+that our model is powerful enough to
+perfectly fit the training data then our
+learned man manold will match the true
+data manifold exactly at our training
+points a deep naral network using Ru
+activation functions is able to linearly
+interpolate between these training
+points to make predictions if we assume
+that our manifolds are smooth then we
+can use a tailor expansion to show that
+our error will scale as the distance
+between our nearest Training and testing
+points squared we establish that our
+average distance between training points
+scales as the size of our data set D to
+the power of minus1 over the dimension
+of our manifold so we can Square this
+term to get an estimate for how our
+error scales with data set size and
+compute D the^ of minus 2 over the
+manifold Dimension finally remember that
+our models are using a cross entropy
+loss function but thus far in our
+manifold analysis we've only considered
+the distance between the predicted and
+True Value this is equivalent to the L1
+loss value we considered earlier
+applying a similar tailor expansion to
+the Cross entropy function we can show
+that the cross entropy loss Will scale
+as the distance between the predicted
+and true value squared so for our final
+theoretical result we expect the cross
+entropy loss to scal as the data set
+size d to the power of Min -2 over the
+manifold Dimension squared so D ^ of-4
+over Little D this represents the worst
+case error making this an upper bound so
+we expect cross entropy loss to scale
+proportionally or better than this term
+the team that developed this Theory
+calls this resolution limited scaling
+because more data is allowing the model
+to better resolve the data manifold
+interestingly when considering the
+relationship between model size and lost
+the theory predicts the same fourth
+power relationship in this case the idea
+is that the additional model parameters
+are allowing the model to fit the data
+manifold at higher
+resolution so how does this theoretical
+result stack up against observation both
+the open aai and Google deepmind teams
+published their fit scaling values do
+these match what theory predicts in the
+January 2020 open AI paper the team
+observed the cross entropy loss scaling
+as the size of the data set to the power
+of minus
+0.095 they refer to this value as Alpha
+subd if the theory is correct then Alpha
+subd should be greater than or equal to
+4 over the intrinsic dimension of the
+data this final step is tricky since it
+requires estimating the dimension of the
+data manifold also known as the
+intrinsic dimension of natural language
+the team started with smaller problems
+where the intrinsic Dimension is known
+or can be estimated well they found
+quite good agreement between theoretical
+and experimental scaling parameters in
+cases where synthetic training data of
+known intrinsic Dimension is created by
+a teacher model and learned by a student
+model they were also able to show that
+the minus 4 overd prediction holds up
+well with smaller scale image data sets
+including
+imist finally turning to language if we
+plug in the observed scaling exponent of
+minus
+0.095 we can compute that the intrinsic
+dimension of natural language should be
+something like 42 the team tested this
+result by estimating the intrinsic
+dimension of the manifolds learned by a
+language model and found the intrinsic
+Dimension to be significantly higher on
+the order of 100 note that the
+inequality from Theory still holds but
+we don't see nearly the same agreement
+that was observed in synthetic and
+smaller data sets what we're left with
+then is a compelling Theory with some
+real predictive power but definitely no
+unified theory of AI just yet we've seen
+some astounding AI progress in The Last
+5 Years From open ai's first scaling
+paper in early 2020 to the release of
+GPT 4 in 2023 neural scaling laws showed
+us a path to better and better
+performance it's important to note here
+that while scaling laws have been
+incredibly predictive of next word
+prediction performance predicting the
+presence of specific model behaviors has
+remained more elusive abilities on tasks
+like word unscrambling arithmetic and
+multi-step reasoning seem to just pop
+into existence at various scales it's
+incredible to see how far our neural
+network powered approach has taken us
+and we of course don't know how far it
+can go many of the authors of the papers
+we've covered here have backgrounds in
+physics and you can feel in their
+approaches in language that they're on
+the hunt for unifying principles it's
+exciting to see this mindset applied to
+AI neural scaling laws are a powerful
+example of unification in AI delivering
+astoundingly accurate and useful
+empirical results and tantalizing Clues
+to a unified theory of scaling for
+intelligent systems it will be
+fascinating to see where scaling laws
+and other theories can take us in the
+next 5 years and to see if we can figure
+out if AI really can't cross this
+line if you enjoy Welch lab's videos I
+really think you'll like my book on
+imaginary numbers it's coming out later
+this year way back in 2016 I made a
+massive 13-part YouTube series on
+imaginary numbers it's such an
+incredible topic I released an early
+version of this book back then and I'm
+now in the process of revising
+correcting and significantly expanding
+it my goal is to create the best book
+out there on imaginary numbers
+highquality hardcover printed books will
+start shipping later this year you can
+pre-order a copy today at the link in
+the description below and your order
+includes a free PDF copy of the 2016
+version that you can download today I've
+also been working on some new poster
+designs I now have a dark mode version
+of my activation Atlas poster
+these are an incredible way to visualize
+the data manifolds learned by Vision
+models you'll find all of this and more
+at the Welch Labs store

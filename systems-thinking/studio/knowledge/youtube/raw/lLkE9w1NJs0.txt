@@ -1,0 +1,474 @@
+If you grew up watching cool bullets
+just like me, then we most likely at one
+point thought the AI in the future is
+probably going to be trained based on
+some sort of genetic algorithms or even
+evolution strategies. Because most of
+the game related AIs back in the days
+were made through this simple yet
+powerful idea that it feels like
+anything can be trained with evolution.
+Not to mention we humans became this
+intelligent thanks to this natural
+phenomenon. So, I guess it's not too
+crazy betting on evolution strategies
+being the one that will bring us to AGI
+10 years ago. However, as you can see
+now, none of the current AI methods
+incorporate any evolution strategies at
+all. And it might as well be a dead
+optimization method that we should frame
+up in the museum. Or not. Because
+recently evolution strategies have
+emerged again in the LM literature. But
+how is this abandoned method suddenly
+making a comeback? Well, the bottleneck
+it has apparently has been solved and it
+came along with even more upsides than
+we initially expect. But before we dive
+into it, SDAI competition is constantly
+changing. Bouncing around five different
+chatbots with five different
+subscriptions is just not it. Because
+why even bother to pay 100 bucks in
+subscription fee and not using the full
+value of it when you can just pay 10
+bucks on Map Muse. And you don't just
+get five other models, but even more.
+Ranging from Claude, GPT, Gemini, Llama,
+Mistral, Grok, Deep Sea, Perplexity,
+Flux, Nano, Banana, Recraft. And instead
+of betting everything in one
+subscription, this platform also lets
+you re-prompt, compare answers, and have
+models challenge each other so you get
+higher quality outputs without vendor
+lock-in while not needing to switch
+between 10 tabs to check manually which
+one is the best. This multi-model
+loadout would also be capable of
+analyzing documents and images, use deep
+research through Perplexity, and even do
+voice chat and dictation when you want
+to move faster. And if your task is
+repetitive, you can just use the project
+function where you can create custom Map
+Muses with your own instructions, set a
+default model that matches your habits,
+and keep everything organized instead of
+starting from scratch every time. So, if
+you want one clean place to use the best
+models without investing in so much
+subscription money, check them out now
+using the link down in the description,
+and thank you Map Muse for sponsoring
+this video. Anyways, the main idea
+behind evolution strategies is actually
+very simple. You start with one version
+of your model, then you create several
+slightly different versions of it by
+adding small random changes. Let's take
+a genetic algorithm as an example. You
+basically copy a group of the same DNA
+and slightly mutate them, then you test
+each of these copies and measure how
+well they perform. This performance
+score is called their fitness. Some
+copies will do better and some will do
+worse. Once you see which copies perform
+better, you then use that information to
+guide the next step. And the copies that
+have high fitness score will influence
+the next version a lot more strongly.
+The ones that did poorly influence less
+or is completely discarded. Then, you
+repeat the whole process. So, you
+basically create new variations, test
+them, and move toward the variations
+that worked best. And over time, the
+model improves because it keeps shifting
+towards changes that increase its
+fitness. And it can run infinitely until
+you decide to stop. So, this seemingly
+bulletproof idea sounds like it should
+work everywhere. But in practice, is
+actually not as linear as it seems. In
+the early days of deep learning,
+researchers trained neural networks to
+do things like play Atari games. Those
+networks usually had around 2 million
+parameters. That may not sound huge
+today, but at the time, especially for
+evolutionary methods, it was already
+extremely large. And optimizing it using
+evolution strategies is like trying to
+randomly tweak 2 million knobs at the
+same time and hoping you would randomly
+get improvements out of that, which
+seems worse than gambling. Most random
+changes will also completely scramble
+the model's behavior, so the model might
+go from playing somewhat reasonably to
+acting almost randomly. [music] And when
+nearly all mutations destroy
+performance, it becomes very hard to
+find the rare ones that actually improve
+it, resulting in the good signal getting
+buried under noise. On top of that, deep
+neural network parameters are not
+independent knobs like genes in genetic
+algorithms, which are simple and
+unrelated DNA string. The parameters in
+neural networks are highly
+interconnected with each other. So,
+changing one weight slightly can change
+how many other weights behave
+downstream. So, usually it'll probably
+bring more destruction than
+improvements. Some methods did try to
+model how parameters interact with each
+other by learning a large covariance
+matrix. But for a network with 2 million
+parameters, that matrix would contain
+trillions of entries. And if you store
+and update something that large, it is
+pretty much impossible to train and even
+use. So, older evolution strategies
+simply could not scale to deep neural
+networks. But in OpenAI's 2017 paper
+called Evolution Strategies as a
+scalable alternative to reinforcement
+learning, they changed the way of
+implementing it for neural networks. So,
+instead of trying to learn a huge and
+complicated structure that models how
+all the parameters interact with each
+other, for example, the covariance
+matrix, they used basic Gaussian noise.
+This slightly nudges all the parameters
+in random directions and then measures
+how the performances are changed. For
+example, let's say you have a population
+of nine models in one iteration where
+every model will get a full parameter
+update in all nine random directions.
+You then evaluate all nine updated
+models and see who has the best
+performance given a task. And there
+would be a scalar reward to indicate the
+random direction's performance. After
+you evaluate every random direction's
+effectiveness, everything will be
+weighted corresponds to its performance.
+And a proper update for all nine models
+of the weighted average will be shared
+across all models. Then, you basically
+repeat this process. If you scale the
+population by running hundreds or even
+more than a thousand at once, they could
+average over many random perturbations
+and eventually the noise will start to
+cancel out and the useful direction
+would naturally emerge. That's why
+evolution strategies were revived. Not
+because the core idea changed, but
+because the engineering made the method
+viable for deep neural networks,
+especially in deep reinforcement
+learning for Atari games. This OpenAI
+research was the first time that
+evolution strategies worked on deep
+neural networks, which is a pivotal
+paper. So, as we now know that evolution
+strategies could be a good optimizer,
+then what if we use it to optimize LLMs?
+Well, the practical truth is, due to how
+the learning is set up, next token
+prediction is easy for gradients, but
+hard for evolution strategies. Because
+with next token prediction, you have a
+clear teacher signal at every token. So,
+the correct next word will always
+provide good loss that is both smooth
+and differentiable. But in evolution
+strategies' case, we are basically
+throwing away most of that information
+and replacing it with a single scalar
+reward, which is kind of like an average
+loss of everything. And this is a lot
+less meaningful than what next token
+prediction can provide. On top of that,
+evolution strategies takes a huge amount
+of compute while giving very fuzzy
+signal. But one gradient step in next
+token prediction tells you exactly how
+wrong you are. However, all hope is not
+lost. Reinforcement learning in LLM
+fine-tuning is the opposite situation
+compared to next token prediction used
+during pre-training. In LLM RL
+fine-tuning, you often only get a single
+score for the whole generated answer.
+You do not get a clean signal. For
+example, which token makes the most
+difference in this sentence. So, we
+often see in RLVR research that the
+learning signal is way too sparse due to
+how for a piece of training data, you
+sometimes only get a binary feedback
+that is then used to update a billion or
+even a trillion parameter model. So,
+with a lot of new research trying to
+figure out how to provide more learning
+signals in RLVR processing, for
+instance, token level credit assignment,
+which I talked about before. This
+situation, however, is exactly the kind
+of setting where evolution strategies
+would actually make sense. Since
+evolution strategies only needs a reward
+for the whole outcome, and it doesn't
+need to backpropagate through a long
+sequence or decide which token deserves
+the credit. The way that it treats the
+model as a black box consequently
+provides larger parameter updates, which
+theoretically should be able to give
+stronger feedback than RLVR like GRPO.
+And this is exactly what the paper
+Evolution Strategies at Scale published
+back in September 2025 has found out. In
+their setup, evolution strategies does
+not need token level rewards and only
+needs a response level reward for each
+batch of perturbations, which kind of
+makes it a perfect match for long
+horizon outcome only tasks where credit
+assignment is a lot harder to attribute.
+On top of that, this paper is the first
+paper that tested evolution strategies
+on a model with billions of parameters.
+It replaced the idea of action space
+exploration to parameter space
+exploration. Because in action space
+exploration, each sampled sequence is a
+small variation of what the same model
+would normally say. The model's internal
+reasoning structure is unchanged. You're
+just basically sampling from what the
+model already knows. But in parameter
+space exploration, each perturbation
+slightly changes the model's reasoning
+behavior itself. One perturbation might
+make the model more concise, another
+might make it more verbose, maybe even
+discovering a new reasoning approach.
+Because what evolution strategies does
+is provide structural behavior changes,
+not just token level randomness.
+Especially when it is restricted to its
+own knowledge base and just be
+reinforcing a pre-existing sampling
+distribution. This blew away all
+previous expectations of evolution
+strategies, especially the assumption of
+it cannot scale beyond million
+parameters. And the reason why it's so
+surprising is that ever since that
+OpenAI paper, it was widely assumed
+evolution strategies would not be able
+to scale up to LLM sized models. This
+simply because exploring in parameter
+space gets harder as the number of
+parameters grows, and modern LLMs have
+billions of them. Especially how the
+relationships would be in much higher
+dimensions to map them all out. So,
+doing evolution strategy optimization
+directly looked infeasible
+computationally, and most prior work
+tried to avoid the problem by shrinking
+the search space or reducing the
+dimensions. What's even more
+jaw-dropping is that all prior works are
+perturbing from a population with tens
+of thousands of models. But this paper
+only used a population size of just 30
+models achieve competitive performance.
+This is like a 300 times compute
+reduction. But the reason why this works
+with only a population of 30 is that
+even though the model has billions of
+parameters, the useful directions for
+improvement are in much lower
+dimensions. Think of it like this.
+Imagine you are standing on a huge
+mountain with billions of possible
+directions you could step in. But in
+reality, only a small number of
+directions actually lead uphill as most
+directions are either flat or clearly
+downhill. So, if you randomly try 30
+small steps in different directions, a
+few of them will likely tilt slightly
+uphill. And when you average those, the
+downhill noise cancels out and the
+uphill signals reinforces. And this is
+thanks to the special attributes of
+extremely large neural networks because
+one, they behave more smoothly than
+people expect. So, when you are only
+adding a very small Gaussian noise,
+you're actually not jumping around, but
+are basically sampling in a local region
+defined by the Gaussian noise, which
+maps out the surroundings. Therefore,
+you can find the uphill directions very
+easily. And second, the reward signal in
+RL-style fine-tuning is very coarse. You
+are not trying to fine-tune every token
+perfectly. What you are doing instead is
+trying to move the model in a direction
+that increases overall outcome quality.
+So, that global signal is often aligned
+across many parameters, which means when
+a perturbation improves performance, it
+tends to do so in a coordinated way. So,
+the signal shows up clearly even with a
+small population. To sum that up, the
+key idea is you don't need to explore
+the entire billion-dimensional space.
+You only need enough random directions
+to estimate the local uphill direction,
+which makes evolution strategies a lot
+more feasible as it is now
+memory-efficient and can be parallelized
+across GPUs while still only require
+inference as it does not require
+back-propagation. Crazy, right? But,
+even though this makes evolution
+strategies statistically feasible with a
+population of 30, there is still
+practical problem. The method so far
+still requires you to run 30 full
+forward passes of a billion parameter
+model for every update. And not just
+once, you need to do this over and over
+again for however many iterations you
+set. At the LM scale, doing this much
+forward passes is extremely expensive
+because compared to standard gradient
+training, which does one forward and one
+backward pass, this can be slower or
+more costly depending on the setup. So,
+this is where the next paper, Agro,
+short for evolution strategies at
+hyperscale, published in November 2025
+comes in. Agro addresses the systems
+bottleneck of evolution strategies. The
+core idea is simple. Instead of
+perturbing the entire weight matrix in a
+full random way, they structure the
+perturbations as LoRa updates. So, by
+making perturbations low rank, you can
+bash them like LoRa adapters. You
+basically reuse most of the original
+computation and only swap the LoRa to
+evaluate the perturbations, which means
+instead of paying the full cost of 30
+completely separate forward passes, you
+can compute just one forward pass and
+swap in different LoRas. So, Agro makes
+evolution strategies a lot more
+hardware-friendly. Another important
+thing to note that even though each
+perturbation is low rank, when you
+average many of them together, the final
+update is not actually restricted to low
+rank. So, you still get a rich and
+high-dimensional update, but you compute
+it in a much cheaper way. And the
+performance is broadly similar to
+standard evolution strategies, but the
+compute cost is reduced by so much. So,
+with how Agro is making models only need
+to run with inference mode while keeping
+performance roughly on par with the best
+evolution strategies baselines, when you
+compare them on raw training speed, Agro
+is at around 91, PPO is at 34, and
+OpenES is at 0.41. PPO is not slow in
+general, but it's that evolution
+strategy training can be extremely fast
+once you structure perturbations to
+match GPU MatMul hardware. In some LM
+settings, it also beats popular
+reinforcement learning fine-tuning
+methods. For instance, on LM reasoning
+fine-tuning comparisons against GRPO,
+they fine-tuned RWKV-7 models on
+countdown and GSM8K and report that
+under the same hardware and wall clock
+time, Agro reaches 35% validation
+accuracy versus 23% for GRPO on the
+countdown benchmark. For the benchmark
+GSM8K with RWKV-7 7B on eight GPUs, they
+show that Agro can run 8,192
+parallel generations while GRPO runs
+only 256. So, Agro can run far more
+parallel generations than GRPO under the
+same hardware, which means Agro is more
+efficient in wall clock throughput and
+memory. Another example is like this
+RWKV-7 14B trained for 12 hours with
+Agro on 32 GPUs. They were able to get
+improvements such as plus 17% on AM 24
+and plus 26 on AM 25. They also reported
+that Agro outperforms GRPO on GSM8K
+fine-tuning. While I know I just
+bombarded you with a lot of great
+performance reports, it does not
+necessarily mean Agro is just better
+than GRPO. It's just that Agro's
+advantage so far can be compensated by
+being much faster per unit wall clock
+and lighter on memory, so it can afford
+more exploration than GRPO. I personally
+think more experiments are needed to
+draw a better comparison to GRPO or even
+existing RL methods, but I do think
+evolution strategies is really promising
+from reading these few papers. So, I'm
+really excited to see how it develop
+over time. What do you think? Let me
+know down in comments. So, yeah, that's
+it for this video. And if you like how I
+explained the AI concepts today, you
+should definitely check out my latest
+project, intuitiveai.academy,
+where it contains an intuitive
+explanation of all modern LMs from the
+ground up, ranging from LM
+architectures, LoRa, to how MoEs work. A
+total of 24 chapters are currently
+available and will be updated monthly.
+This is the start of a series where I'll
+break down AI topics intuitively because
+I genuinely think anyone could
+understand them no matter how difficult
+it may seem. So, for those who want to
+get into AI or LMs, this should be the
+perfect place for you to dive into the
+technical parts without being afraid of
+crazy-looking maths. And right now, I am
+also putting out a new launch discount
+for 2026, so you can use the code early
+for 40% off a yearly plan. And thank you
+guys for watching. A big shout-out to
+Spam Maj, Chris Ladue, Deegan, Robert
+Zaviassa, Marcelo Ferreria, Proof and
+Inu, DX Research Group, Alex, Midwest
+Maker, and many others that support me
+through Patreon or YouTube. Follow me on
+Twitter if you haven't, and I'll see you
+in the next one.

@@ -1,0 +1,1657 @@
+Maxy.
+He's a [clears throat] professor of
+economics at the University of Oxford.
+Received his PhD at UC Berkeley and
+joined Oxford after an appointment
+appointments at UCLA and Harvard
+University. His research interests focus
+on social foundations for statistics and
+machine learning going beyond
+traditional single agent theory. He also
+works on economic inequality, job
+guarantee programs, and basic income. He
+teaches a course on foundations of
+machine learning at the economics
+department at Oxford.
+In fall 2025, his book, The Means of
+Prediction, How AI really works and who
+benefits published by the University of
+Cont. So, Max, you look forward to
+hearing from you. Thank you.
+Right. Good morning everyone. Thanks for
+coming out despite the rain. So I'm
+going to try and continue um in the
+spirit of of the talks we saw yesterday
+morning. Um going to going to discuss
+some kind of more big picture thoughts
+or arguments around like the
+intersection of machine learning, causal
+inference and economics. And I guess the
+the main idea is to think about possible
+new research agendas or things that that
+we could be working on in addition to
+the ones that have received a lot of
+attention already.
+And so I mean there's there's some
+intersections I think that that a lot of
+people including a lot of people in the
+room like Whitney and others have spent
+a lot of time on which is thinking about
+machine learning as a way of of
+producing first stage estimators in
+semiaric estimation problems and more
+specifically in in settings like double
+robust estimation of treatment effects
+um under assumptions like conditional
+exogenity of treatment. And I think
+that's that's interesting and useful and
+it's it's um very useful to have kind of
+a plug-and-play approach where where you
+can kind of take take estimators like
+double robust estimators and plug in
+first stage um estimators coming from
+machine learning procedures especially
+for kind of non-traditional data formats
+or kind of very high dimensional data.
+But what I'm going to try and argue in
+this talk is that there's also a lot
+more out there that we could be working
+on at this intersection between causal
+inference, machine learning, and
+economics.
+And what I'm going to do is I'm going to
+make six six highle arguments, right?
+Many of those are kind of based on on
+old ideas, old points. And then I'm
+going to elaborate these arguments um
+again in in some more detail and some
+more formality in the context of binary
+choice which is one of the classic
+workhorse models for for econometrics
+and economics.
+Um all right so argument number one um
+something you would often hear
+[clears throat] is machine learning is
+purely correlational. It's just about uh
+predictive patterns. It's about
+estimating things like conditional
+expectation functions or conditional
+probability distributions.
+And so that's kind of conceptually
+distinct from causality. And so
+therefore we need to introduce causality
+as a new concept into machine learning.
+Um and I think that's kind of half true.
+It's that applies um to supervised
+[cough] learning [clears throat] which
+is a lot of machine learning but it's
+not true for kind of the other half of
+machine learning which are things like
+reinforcement learning and multi-armed
+bandits. And so what I mean by
+reinforcement learning here is um the
+term is used differently by different
+people but it's kind of in a general
+sense of
+&gt;&gt; [snorts]
+&gt;&gt; um having algorithms that make
+decisions. Those decisions are
+implemented in the world or some
+environment and then the algorithm
+observes the consequences of these
+decisions. Right? So there's there's
+kind of a different information flow
+here. Like in supervised learning the
+information flow is one directional. The
+data are just being produced and they're
+coming in and then the algorithm
+analyzes them. Whereas in reinforcement
+learning in this sense there's kind of a
+two-way flow information comes into the
+algorithm it's processed in some way
+then the algorithm makes decisions acts
+in the world or in the environment in
+some way and that produces new
+information right and every time that
+happens that kind of immediately leads
+us to causal inference in some sense.
+Um now that that's true and in some
+sense it's a very well well established
+and well understood branch of machine
+learning but at the same time kind of
+the cause inference part of it usually
+remains implicit right so um when when
+you read textbooks on reinforcement
+learning or bandits or related uh
+related subfields typically don't use
+the language of causal inference even
+though what they're doing is exactly
+causal inference and I think the there's
+a reason for that and the reason is that
+the cause causality that's of interest
+there is always the causal effect of
+actions chosen by the algorithm on some
+observed rewards or loss functions
+depending on how you choose the sign
+right and because the the actions are
+always chosen by the algorithm they're
+construction exogenous they only depend
+on information that the algorithm has
+and so because of that in some sense
+causal inference is trivial right
+because uh the you're interested in the
+causal effect of the actions that you
+choose but those actions are by by
+definition exhaustionous or by
+construction and so you don't have to
+deal with the things that that
+econometricians spend the time with like
+I instrumental variables or regression
+discontinuities or you name it all these
+different approaches to to um try and
+find uh find variation for codal
+inference
+um and I think that the there's kind of
+again more general reason for that which
+is if you look at how we define
+causality right there's there's
+different traditions annotations in
+different sub fields of of statistics
+like econom econometric traditionally
+talks about structural functions
+bioatistics and more more recent applied
+econometric talks about potential
+outcomes computer science with Judia
+Pearl and others talks about the do
+calculus and there's been kind of a lot
+of heated debate over the years like
+which of these is the better notation
+for my purpose they are all kind of the
+same thing um and in particular they're
+all based on this idea of an
+exhaustionist intervention right the way
+causality is defined in all these
+different formalisms is always there's
+something coming from outside the system
+often by by by by
+based on decision of a human or an
+algorithm or maybe based on some kind of
+natural experiment and that allows us to
+identify causality or that or even
+define causality that there's something
+coming from outside. Um but that's a
+kind of exactly the same thing that we
+also talk about when we talk about
+decision making, right? And so again
+like decisions theory and decision-m is
+often discussed separately from causal
+inference and experimental design. But
+there there's a lot of overlap again
+between the two that they're both based
+um on this idea of intervening and then
+observing the consequences of the
+intervention. And in reinforcement
+learning and bandits, that's kind of
+baked in that you're simultaneously
+intervening um because you care about
+the consequences of your action, but um
+you also use that to to learn about
+these consequences about the causal
+effects.
+Now,
+um kind of the this the next three
+arguments are kind of more about the
+economics uh of this in a way that
+complicates this perspective a little
+bit and um in some sense makes it harder
+in some sense makes it easier to do
+causal inference
+where the next point here is um the type
+of outcomes we care about as economists
+um and especially if you think about
+like policy like public policy for for
+some notion of social welfare
+then um those outcomes are not directly
+observable for fundamental reasons.
+Right? So the way economists typically
+define social welfare is some kind of
+weighted sum of utilities of of
+different people and we don't observe
+utilities. Um utilities are indirectly
+defined based on what people would
+choose but we observe are actions and so
+we can infer um utilities from actions
+indirectly but we never observe the
+utilities themselves.
+Um and kind of so simplest classical
+example which might you might have seen
+in in variety of intro econ is uh we can
+infer consumer surplus by integrating
+demand functions or similarly for labor
+supply functions and other settings
+right and so um we can use observation
+to infer our objective but don't observe
+the objective directly but when we think
+back now to to settings like bandits and
+reinforcement learning that changes the
+exploration exploitation problems you
+face in these settings um because you
+you need to experiment in a different
+way in like a standard multi-armed
+bandit, right? So bandits are settings
+where you choose actions, you observe
+the rewards and you kind of face a
+tension between on the one hand um
+choosing actions that allow you to learn
+a lot to to make better choices in the
+future versus making choices that have
+good reward now. Um that's the
+exploration exploitation trade-off and
+that changes if uh if your goal is to to
+maximize some notion of social welfare
+because the in that case you need to
+also explore away from potentially
+optimal policies because you care about
+these integrals rather than just about
+say the value of the demand function at
+the point right and so that's a solvable
+problem but it changes how we should
+think about adaptive experimentation or
+reinforcement learning um if we care
+about these types of welfare objectives.
+Um,
+next and so here I'm going to contradict
+[clears throat] slightly a point that
+was made yesterday morning. Um, in in
+what's was often described as the
+fundamental problem of codly inference
+is when you when you choose an action so
+you assign a treatment you observe the
+potential outcome corresponding to the
+treatment but you never observe the
+counterfactual potential outcome. Um and
+so because of that you never get
+individual level treatment effects.
+Right? So the counterfactuals always
+remain missing data in a in a world with
+heterogeneity in the social sciences,
+life sciences where there's a lot going
+on that we never observe. Um we can only
+ever hope to get something like average
+causal effects but never the individual
+level causal effects. And so that's true
+in many settings, but there's also many
+settings in economics especially where
+it's not true I think which in a way is
+like a very old insight but but took me
+a while to appreciate at least there's a
+lot of settings where we can use ideas
+from mechanism design and then I'll
+explain later in detail what I mean by
+that um to to elicit preferences
+um and to recover response functions. So
+the example I'll talk about will be say
+demand functions right um if you if you
+think in terms of these potential
+outcomes you can randomly assign prices
+and then observe how people respond tax
+rates or other things. Um, and if that's
+what you do, then this is true. But
+alternatively, you can design a
+mechanism where you ask people how much
+they're willing to pay for something.
+And if you do that in the right way, the
+um the best thing for them is to respond
+truthfully. And um if you know how how
+much everybody's willing to pay, you can
+can kind of get the entire demand
+function. So kind of in one shot, you
+get all their counterfactual decisions,
+right? And that makes in some sense
+causal inference a lot lot easier. So
+that goes in the opposite direction of
+this point. This is a reason why it's
+it's harder to do um counterfactual
+inference on welfare. Um but if you're
+able to use mechanisms like this, it's a
+lot easier to do counterfactual
+inference because for every individual
+in your data, you don't get just one
+potential outcome. You get all their
+counterfactual responses to to say like
+prices, taxes, and and other
+interventions like that.
+And um lastly um
+this this argument here is about kind of
+getting your willingness to pay um or
+preferences over things that you make
+choices over. Um and that's very
+important. But then there's also um
+you're also impacted by your own choices
+often impacted by the choices of others.
+So for instance, pollution would be one
+classic example. Data sharing is another
+one with data externalities. So that's
+what econ economists call externalities
+is that our actions impact others in a
+way that they have no say over. Um and
+that makes again inf causal inference or
+identification difficult because my
+behavior only ever tells anything about
+uh my preferences over my own actions
+but not over the actions of others. But
+turns out if you tweak these these
+mechanisms that I will talk about here a
+little um there are things you can do in
+order to also elicit preferences over
+over the behavior of others. And so this
+is something I'm currently um working on
+trying to figure out ways of
+incorporating that into adaptive
+decision making which is important if
+you think about settings like congestion
+pricing or or say the the governance of
+data collection where we care about the
+impact of people's actions on other
+people and we want to to get to optimal
+levels say of of traffic or other
+things.
+[clears throat]
+All right.
+So, by the way, this the second half of
+this is going to get kind of equally.
+So, please interrupt me anytime if if
+you have questions. Um, but basically
+what I'm going to do for the rest of the
+talk is again going through these six
+arguments more slowly and more formally
+um to to elaborate them and and play
+kind of [snorts] spell out how how that
+works in the context of binary choice.
+So, what's binary choice? Um, again,
+kind of a a canonical workhorse example
+for economists.
+And the idea is there's individuals I
+these individuals are exposed to some
+price just for convenience I normalize
+that to be in 0 to one. So I'm going to
+denote the price here X I and then every
+individual has their own willingness to
+pay for something right. Uh you could
+think about this, say if it's congestion
+pricing, it's it's your willingness to
+to pay for for driving your car or
+something like that. Or it could be um
+your reservation wage, the minimum wage
+at which you're willing to accept a job
+or all kinds of other things like that.
+Um and so if individuals are exposed to
+a price XI and their underlying
+willingness to pay, their preferences
+are VI, then they are going to make a
+binary choice. Y I 01 drive your car or
+not drive your car um accept the job or
+don't accept the job and then the
+observable choice is Yi which is equal
+to one if the price is less than the
+building has to pay and it's zero
+otherwise
+right so um that's that's kind of a
+cononical binary binary choice model and
+so with that setup we can talk about
+potential outcomes potential outcomes is
+just a choice that individual I would
+make if they're exposed to the price
+little X here. Um,
+and then we might also have other
+coariantss. They're just kind of
+exogenous here for my purposes, but they
+might be correlated or statistically
+dependent with this underlying
+willingness to pay. Okay.
+So, this is the setup I'm going to talk
+about for for the rest of the talk.
+all right.
+Now, what can we do in this setup? So
+the first thing we can do is just do our
+standard causal inference, right? We can
+think about settings where we
+exogenously or randomly assign prices to
+people um indep independent
+statistically independently of people's
+willingness to pay. Right? That's what
+it means to be exogenous.
+And then we can just identify demand
+functions by basically regressing um
+choices on prices, right? So we can
+identify the average potential outcome
+or average structural function the
+expectation of y of little x right so
+here this is a fixed exogenous x and
+that's just given the statistical
+independence of prices and willingness
+to pay the same thing as the conditional
+expectation of choices given given
+prices right so if you have exogenous
+assignment of prices you identify
+structural functions or treatment
+effects or average potential outcomes
+just by a simple regression
+Now in this setting what what you often
+hear people saying is um canonical
+machine learning is not about causality
+right it's about predictions it's about
+conditional expectation functions
+conditional probability distributions it
+can be used to estimate things like for
+instance run a regression um
+run a regression for instance of choices
+on prices and coariantss and then you
+get this function gxw but that's not a
+causal object It's just a purely
+predictive or correlational object. Or
+similarly, you might um estimate the
+conditional distribution of prices given
+coariantss. Um and again, that's that's
+kind of a purely correlation object. And
+that's a conceptually distinct from from
+causality. Correlation is not causation.
+Um because causation is about objects
+like average treatment effects for
+instance for going from a price X0 to a
+price X1, right? And those are not the
+same. Now, how do you bring them
+together? and something that we've seen
+quite a bit of work on and I guess half
+the speakers today on are on this paper
+here
+Thomas
+&gt;&gt; I just had a question so in your the
+setup the two slides back so just just
+so I understand and maybe you're going
+to get into this but I mean if I know
+that you're being offered a lower price
+even if the price that I'm offered is
+what I'm willing to pay I might feel
+No, I'm going to wait until I get
+randomly assigned the price a lower
+price than you were being paid.
+&gt;&gt; Yeah. So, here I guess the assumption is
+you you can't do that. It's not like
+it's happening over time and you're just
+waiting for one unified price or just I
+decide your price. Me as the experiment
+or decision maker and you have to live
+with that.
+&gt;&gt; But but I mean practically information
+flows. So if you're randomly assigning
+prices are you assuming that there's no
+that I that you know there's no
+communication I'm unaware of prices
+being offered. not in this setting. In
+the real world, of course, this happens
+many times, but um and there's secondary
+markets and all kinds of things. Here
+I'm trying to to talk about the most
+stylized simple economic setting
+possible, which is you make one binary
+choice, you face a price for the choice
+and that's it, right? And um yeah, and
+we can talk about how how many settings
+there are where this applies, but I'm
+trying to make some conceptual
+conceptual points in this setting. Um
+which I mean I'll get to online pricing
+in a little bit. I think it's it's not
+that unrealistic many settings. So
+different people face different prices
+online.
+Say you buy a plane ticket online or
+something like that, right? It it's hard
+to do like a secondary market on plane
+tickets because it's in your name. So it
+depends. But um
+&gt;&gt; but there are websites that track it for
+example.
+&gt;&gt; For sure. Yeah. Again, I'm not saying
+this is the realistic description of of
+all the real world. I'm saying this is
+like a canonical minimal example that
+allows me to make a lot of these
+conceptual points.
+All right. [snorts] Um so
+now if if [clears throat] you take this
+perspective right machine learning is
+about estimating correlational
+predictive objects of this sort.
+Causality is about average treatment
+effects or similar objects of this sort.
+How do we bring them together? Well, one
+natural way to do so is that there are
+various settings where where it's
+sensible to use like a two-stage or
+multi-stage estimation procedure where
+in the first stage you need high
+dimensional objects like regression
+functions or prediction functions of
+this form, right? Like the this
+regression of say choices on prices and
+coariantss or the regression or
+prediction of prices given coariantss.
+And so we can use machine learning as
+first stage uh to to generate first
+stage estimators of these objects and
+then plug them into into second stage
+estimators of the causal objects that
+you care care about. And that works
+under some assumptions like for instance
+conditional exogenity if prices are
+random or independent of of willingness
+to pay conditional coariantss. Right? So
+you could think about simple plug-in
+estimators where you just take your your
+regression function g of xw and and
+average it out over w's or you could use
+um slightly more involved procedures
+like these type of double robust
+influence functions
+um
+and and again plug in first stage
+machine learning estimators and under
+under some conditions this is going to
+to yield good procedures that are in in
+some sense robust to whatever is
+happening in these first stage
+estimators. is and machine learning
+might allow you to deal kind of with
+non-standard data formats or very high
+dimensional first stage problems and so
+on.
+Um
+all right
+now that's that's all in kind of this
+this uh setting where the data are just
+given to us right that and then the
+algorithm or estimation procedure uses
+the data and produces estimators based
+on that but um there's this this whole
+part [cough] of machine learning and I
+guess statistics more broadly where data
+are not just given to us instead we do
+things like survey design experimental
+design and the machine learning
+counterpart is reinforcement learning
+bandits and so on where the information
+flows in two directions that information
+flowing into the algorithm um which is
+being processed in some way and then the
+algorithm acts upon the world in some
+way and observes the consequences of
+these actions and so I mean that's the
+that's basically what leads to
+experimentation
+now the way machine learning folks would
+typically think about that is that you
+kind of simultaneously care about
+learning and about the outcomes that
+you're doing right [cough] so
+[clears throat] So for scientists or
+life scientists traditionally kind of
+separate the two a bit more you run
+experiments that are just for causal
+inference and then separately you choose
+policies say in a clinical setting or
+something like that that are implemented
+in a large scale whereas in the ML
+settings it's typically kind of folded
+into one and that gives you settings
+like bandits or reinforcement learning
+and so right typically would
+[cough and clears throat] happen
+iteratively you every time period say um
+you get a a new unit of observation
+coming in a new individual. In my
+setting, we choose an action like the
+price X and then you observe the rewards
+for the chosen action and then you
+iterate and so this kind of folds the
+decision problem and [clears throat] the
+experimentation problem.
+Um yeah and so your your actions are
+also about um generating the data that
+you get.
+So in the binary choice problem, one
+example that has received a fair amount
+of attention is is adaptive pricing,
+right? That's kind of a lot of what what
+the big tech companies [snorts] might be
+doing is choosing prices to maximize the
+profits. And so a simple version here
+like assuming say that their production
+cost is zero, then their profits are
+just equal to the price they charge XI
+times the binary action of the customer
+that they face. Um so it's yi times x i
+is the profits ra i the reward function
+correspondingly they have potential
+profits
+um and [clears throat] kind of in a
+slightly stylist manner of a lot of what
+might happen online is something like
+they they observe some coariantss right
+whatever data they collected about you
+with their cookies and user profiles and
+whatnot um then they choose the price
+that you face and then they observe the
+the corresponding reward function which
+is kind of one to one with the binary
+choice here and the goal is to maximize
+the sum of rewards over time. So this is
+in some sense a special case of the
+bandit problem or contextual bandit
+problem given the coariantss where the
+the experimentation is used to learn the
+mapping from prices coariantss
+[cough and clears throat]
+to expected profits as a function of
+prices conditional coariantss right so
+this is a causal object kind of like a
+conditional average treatment effect
+conditional average potential outcome
+um and then they want to use this
+knowledge to to generate high profits
+and kind of the tension these algorithms
+between exploration and exploitation.
+Um, choosing actions that that generate
+new information that's useful for the
+future [clears throat] versus choosing
+um actions that yield high profits. Now,
+um, and but one thing to note here and
+it will be important in a minute is the
+type of exploration you need to do here
+is really only for for potentially uh
+optimal actions or optimal price levels.
+But if I know that say if I set the
+price to the maximum of one here then
+nobody is going to buy anything that's
+not a useless useful price to ever
+consider. There's no point to ever
+experiment there. Um and instead I I
+want to focus my attention on prices
+that are potentially optimal
+um because those are generating
+information uh that might be useful for
+my future actions.
+Now again this is a causal inference
+setting. It's almost never discussed as
+causal inference or not [clears throat]
+explicitly. And again, there's there's
+kind of I think a reason here and just
+to spell out something we've already
+talked a bit about um yesterday morning
+how how we think about causality here
+that is a little bit different from how
+say at least a stylist version of
+physics would think about it where in
+the stylist version of physics what we
+do is we prepare a system right an
+experimental setting um ideally with
+with perfect control. We we we control
+everything that matters for for the
+system at hand and then we observe the
+outcome and every time we prepare the
+system in the same way the same thing
+should happen and then we if you prepare
+it in different way observe different
+outcomes and then that's kind of the
+causal effect and that gets at something
+like an individual level causal effect
+here because um at least in this
+idealized form we have eliminated all
+heterogeneity that's never possible in
+the life sciences and social sciences
+unobserved hetrogenity is pervasive
+And so a controlled preparation is
+impossible. But in a way that's
+this kind of recognition of unobserved
+hetroenity is is I think a lot of what
+has driven applied causal inference,
+applied econometrics over the last few
+decades. We're talking about things like
+local average treatment effects. That's
+that's something that becomes visible
+once you're kind of serious about
+recognizing this heterogeneity.
+um and which basically means that causal
+effects vary across units and therefore
+you don't get this individual level
+causal effects and so
+um with this effectionated and it
+matters um in some for whom you get
+variation with your
+&gt;&gt; I'm a little bit confused about the
+distinction you're drawing between the
+top and the bottom because you know
+quantum quantum experimentalist do the
+above setting all the time and quantum
+is inherently stochastic uh So but you
+but you talk about contractual outcomes
+nevertheless in the top not average
+contractual outcomes
+&gt;&gt; is the difference that like where the
+uncertainty lives if you're averaging
+over uh
+&gt;&gt; I mean again yeah I don't want to push
+this too hard to saying that this is
+really what's what happens in physics um
+especially [clears throat] in in like
+whether it's thermodynamic systems or
+quantum systems and so on. I mean some
+some cases it averages out right but um
+absolutely there's there is
+uncontrollable heterogeneity even if in
+in classical [clears throat] settings
+right we we never have perfect control
+um but just as a kind of a conceptual
+idea I guess um I think there's there's
+a different order of magnitude of
+heterogeneity that we cannot control in
+the life sciences
+you might might well argue
+[clears throat] that this matter matters
+in the physics settings too the point is
+that we do in the life and social
+sciences we certainly do have this
+heterogeneity
+which I guess is part of the point of of
+what we talked about yesterday. Um yeah
+I mean I not to get too philosophical
+here about physics but I guess in
+quantum mechanics at the level of the
+underlying state it's it is
+deterministic right it's at the
+measurement stage that's somehow
+stocasticity comes in
+&gt;&gt; I think people will strongly disagree
+with you
+&gt;&gt; fair enough [laughter] let's not get
+into that discussion but
+&gt;&gt; but you have um you have like a
+Hamiltonian that gives you the evolution
+of wave wave equations that's
+deterministic but anyway Okay.
+couldn't Yeah.
+All right. Um but what what is kind of
+baked into this here which is in
+incidentally different from what my
+understanding is people in in philosophy
+or metaphysics talk about this causality
+is that the notion of causality is in
+&gt;&gt; yeah [clears throat]
+on your point about repeated
+interventions in virtual systems
+&gt;&gt; which I guess is quite crucial for the
+RL stuff
+I guess that only works if there's that
+you can assume some sort independences
+in the system, right? So like I I
+&gt;&gt; exogenity I guess. Yeah, that's general
+&gt;&gt; view. Yeah, but but like like
+we can often not have repeated
+interventions as well, right? So
+&gt;&gt; how would you say how important that is?
+Uh
+&gt;&gt; I think it's quite important, right? I
+think that's a big difference in in
+economics say between like micro and
+macro settings like in in in applied
+microeconomics typically you think about
+think about interventions at the level
+of individuals or maybe at the level of
+firms or villages or things like that
+where you have a lot of comparable
+observations if you care about the
+macroeconomy there's only one Great
+Britain of um I don't know 2026 and so
+there there isn't really a count of
+observation often for what you care
+about um so that makes it a lot harder
+to to think about causality there.
+&gt;&gt; But even in the micro world, your
+assumption is some level of independence
+across those units, right?
+&gt;&gt; Uh when you're saying you can't do these
+repeated things,
+&gt;&gt; you mean causal independence or
+statistical independence.
+&gt;&gt; Um
+causal.
+&gt;&gt; Yeah. So no spillovers, right?
+&gt;&gt; Yeah. Absolutely. Yeah. Which might or
+might not be true across different
+settings, right? But
+um but yeah the I mean to talk about
+something like an average treatment
+effect or maybe a sample average
+treatment effect or things like that we
+we have to talk about um multiple units
+that we're averaging over and for whom
+we can identify this average as opposed
+to the individual level treatment
+effect. But again I'm going to kind of
+contradict this in a few minutes by
+talking about mechanism design and
+talking about how we actually can get at
+the individual level treatment effects
+in some settings.
+Um but again what I want to want to
+emphasize here is
+um that that really what's what this
+notion does which is what philosophers
+call an interventionist notion of
+causality. It's really about this idea
+of you have a system whether it's the
+system of physical experiment or the
+system of um I don't what's happening
+with an individual or or a firm or
+something and there something is coming
+from outside the system that's the
+exogenous variation
+um and that's kind of what allows us to
+define causality causality is kind of
+the answer to what happens with
+exogenous variation right which is
+different again from how how people in
+philosophy or metaphysics talk about
+causality often which is more about um
+relying on things being contiguous in
+time and space in a way and being
+connected to some some chain of direct
+relationship
+um and where there there is no outside
+in some sense right to talk about this
+you have to talk about an outside of the
+system because there something has to be
+exogenous generated outside
+um and where it's where it's generated
+often right which is not necessary but
+typically the case it's generated by an
+int intentional actor whether it's a
+human experimentalist or an algorithm
+that's choosing um choosing actions and
+so that's how this notion of causality
+again is intimately tied to the to
+decision making I think where um
+again decision- making is about somehow
+given whatever information you have and
+then then you make a choice with the
+goal of maximizing some reward or some
+utility or minimizing some loss which is
+is similarly about this exhaustionist
+intervention and so in machine learning
+in fields like reinforcement learning
+and uh bandits and so on um this is kind
+of folded in. It's simultaneously about
+uh decision making and experimentation
+in a way. Yeah, that kind of equates the
+two.
+&gt;&gt; Um I just have a little bit of trouble
+trying to understand a reinforcement
+learning algorithm as exogenous because
+its actions are an algorithmic function
+of previous observations.
+&gt;&gt; It's exogenous conditional on the
+information that the algorithm has,
+&gt;&gt; right? Because I mean it's almost
+logical because the algorithm chooses
+the action. I I don't know what choice
+means here because the algorithm is
+running a deterministic procedure to
+decide what to do next. So a sanction is
+a deterministic function. A bit
+&gt;&gt; depends. I mean some algorithms are
+randomized and often it is what you
+might want to do. But either
+[clears throat] way um even without
+randomization you can have a
+deterministic algorithm. Right? So the
+typical examples are things like um
+algorithms like alpha go or alpha zero
+for for game play or like you run a
+clinical trial where you're kind of
+choosing for every patient what
+treatment they get. Um might be online
+price setting or ad targeting the
+selection of feeds on social media.
+Those are typical like reinforcement
+learning or bandit settings where
+algorithms choose based on the history
+of information they have based on the
+information they have from the unit
+under consideration. They choose an
+action and when they do that then they
+can immediately use that to do causal
+inference because they the action is
+again um only depends on information
+that the algorithm has and maybe a
+randomization device. So is this
+basically a statement about conditional
+independence between the past on which
+it's basing its decision versus the
+thing it's going to
+&gt;&gt; it's independence of the action and
+unobserved heterogeneity conditional on
+the past and whatever the information
+the algorithm has but it's just um
+it's
+yeah I mean it's really having the type
+of conditional independence you need for
+this kind of canonical um treatment
+effect estim meter, right? That that
+holds kind of by construction in these
+settings. So, you don't really have to
+talk about in any more sophisticated way
+about causal identification in the sense
+of like thinking about instruments or
+regression discontinuities or difference
+designs or any of those things.
+&gt;&gt; And just as a comment, I think it for
+some people thinks that it's a little
+strange to have something that's
+exogenous but comes after treatment
+decisions that were made earlier. So
+some I mean might say the statistics
+have been distinguishing randomization
+and sequential randomization and I think
+you're when you're saying exogenous
+you're saying there are decisions that
+are exogenous but they're taking place
+after earlier decisions that I made.
+&gt;&gt; How about conditional exogenous?
+Yeah, I call it conditionally
+independent, conditional, I know,
+conditionally random and pick your
+favorite term. But um what I mean by it
+is just it does not depend on on
+unobserved heterogeneity for the for the
+unit at hand.
+Um so there's no like self selection or
+things like that.
+So again the typical settings where this
+might be used in machine learning right
+or in in clinical settings say um are
+settings like this like gameplay or like
+running um adaptive clinical trial where
+you observe patient mortality or
+mobility or it might be the kind of
+online profit maximizing settings for um
+pricing um or reserve price setting in
+auctions or or like selection of of
+search engine results or social media
+feeds and so on recommener systems um
+and all those settings. The key point is
+that um that the reward isn't
+observable. I mean sometimes there's
+complications because the reward might
+be observed with delay and then you
+might care about things like surrogates
+to get there. But by and large the point
+is you're maximizing something that you
+can directly measure and you measure
+exactly the reward for the actions you
+have chosen but not for actions you know
+have not chosen. Right? So that's kind
+of a version of the fundamental problem
+of causal inference. you get the exactly
+the potential outcome for for the chosen
+action but not for counterfactual
+actions. But now um
+that that gets more complicated when we
+start thinking about this type of
+economic settings or social welfare in
+the way that economists would define it
+where kind of a typical way um say
+public finance economists or micro
+theorists might write down social
+welfare is as a weighted sum of
+utilities. So here the omega I is in
+some how much I care about increasing
+the welfare of person I relative to
+other people and the UI is how well
+they're doing right so the welfare
+weights there are normative choice
+that's kind of not really an empirical
+object that's just something you have to
+take a stance on how much do [cough] you
+care about inequality or how much do you
+care about helping say people with
+sickness or something like that but then
+you have the utility of individual eye
+and that's that's kind of has this this
+double role in econ between um both
+determining what people choose but also
+determining how we think or what we
+think is good for them, right? And it's
+kind of equating the two. Um, but the
+point is we don't observe the utility,
+we observe the choices, right? And so
+that means when you when you face the
+type of setting you care about
+maximizing some notion of welfare, you
+never observe the reward for your chosen
+action. You just observe behaviors that
+allow you to make indirect inferences
+about welfare.
+and so to to go back to my binary choice
+example, right? Um and again put on
+economist please please interrupt me if
+this doesn't make sense but the the
+basic idea here is we observe the choice
+the choice is one if the price is less
+than the willingness to pay right so if
+if xi the price is less than the
+willingness to pay vi then the
+individual is say buying the object and
+otherwise is not and the corresponding
+utility that they get is the difference
+between the willingness to pay and what
+they actually pay [clears throat] right?
+So um and when the price is higher than
+the willingness to pay then nothing
+happens. We get no utility out of the
+interaction. But if the price is lower
+than what they are willing to pay then
+the difference is is the their utility
+gain
+or equivalent variation or compensating
+variation. There's various names for
+that. Um in this case they're all the
+same just for economists because there's
+no no income effects.
+And there's a useful way to to rewrite
+this um which is as follows. We can
+rewrite this difference here between vi
+and xi as the integral of the response
+function. Right? So this takes a second
+of staring maybe but here this response
+function is going to be one until x hits
+the willingness to pay and then it's
+zero afterwards. So it's exactly a
+difference between vi and x i if vi if
+vi is bigger than x i. Right? And so
+another way of saying that is it's
+integrating the response function and
+the potential outcomes. And if you
+average across individuals, we get that
+the expected utility for a given price
+is the integral of this demand function
+which if if you've taken like an intra
+econ course, you would often see
+something like um consumer surplus is
+the area under the demand curve. That's
+what's kind of uh being reflected here.
+&gt;&gt; Makes make sense.
+Is there expectation missing in the
+second equation? Because that's a would
+be a function of x i.
+&gt;&gt; Sorry, which equation?
+&gt;&gt; Yeah, the second equation. Yeah, the
+right hand side is a
+&gt;&gt; Oh, sorry. This um this should be a
+little x here. It shouldn't be x i.
+&gt;&gt; A little x.
+&gt;&gt; Yeah.
+&gt;&gt; Right. So, this is the expected utility
+across people or the average utility
+across people. If I set the price to
+little x, right? So [clears throat] this
+should be the inter
+okay so by uh why does it matter for
+like the topic at hand the things like
+reinforcement learning and bandits?
+Well, now kind of a slightly more
+complicated version of the same thing is
+is a type of social welfare function
+that public finance economists write
+might write down which is some
+combination of the tax revenue you get
+from say selling a tax rate XI and the
+utilities that people experience.
+And the tax revenue looks just like what
+we had before in the monopoly pricing
+case, right? In a setting where where
+seller sets prices online to maximize
+the profits. But then um if you're like
+a tax authority, you don't just care
+about maximizing your re revenue, you
+also care about the the welfare of
+people. And so we have the second term
+with some weight lambda here.
+Uh [clears throat] don't worry about the
+details necessarily. But the the key
+point here again is to know the social
+welfare at the point. It's not
+sufficient to observe behavior at that
+point. You need to observe behavior at
+counterfactual price prices or the
+counterfactual tax rates here. And if we
+think about that in an adaptive
+decision-m context like a multi-armed
+bandit,
+um that changes how we need to explore,
+right? As I was talking before about the
+exploration exploitation tradeoff in
+multi-armed bandits, but you only ever
+need to explore um kind of actions that
+are potentially optimal in bandits.
+That's different here. Um in order to
+compare two policies, I need to know the
+behavior between those policies to get
+the entire integral here. And so that
+makes it systematically harder to do the
+exploration exploitation trade-off, but
+it's still feasible. Um, but you need to
+modify um modify your typical bandit
+algorithms to to address these economic
+settings again because of course the
+inference is harder here because you
+don't directly observe the outcome you
+care about. You only indirectly infer it
+from counterfactual actions.
+So this is something we we discuss in
+this paper which came out last fall. Um
+now so this is a a sense in which caring
+about these economic settings makes
+causal inference harder right if you
+care about social welfare but there's
+another sense in which it can also be a
+lot easier um and that's where this
+ideas of mechanism design come in um
+where actually you can get individual um
+level treatment effects or indiv
+individual level counterfactuals and so
+here is a actually fairly old idea so I
+think it was introduced in 1964 before
+is published. Um
+here's a simple mechanism that they
+described in that paper. Um imagine I'm
+an experimentter
+[snorts] and again this binary choice
+setting but rather than just assigning a
+price to you and telling you what the
+price is, I just write the price down
+but keep it secret without telling you
+but I commit to it but it's just written
+on a piece of paper that I don't show to
+you. [clears throat]
+And then I ask you what your willingness
+to pay is. How much are you willing to
+pay for the good? And um you tell me
+some number vi. And then after you do
+that, I'm going to do the following. If
+the the willingness to pay uh you told
+me is higher than my price, I'm going to
+sell it sell it to you at the price that
+I wrote down. And otherwise, nothing
+happens.
+Okay?
+And so
+um now what's in that setting what's
+optimal for you to do? Basically the the
+best thing you can do regardless what
+you believe about how I write down my
+price is to truthfully tell your
+willingness to pay. Right? You you never
+want to um report it lower than what it
+is because then there's some chance that
+I I actually wrote down a price between
+what you tell me and what it actually is
+and then you would be losing out some
+chance of getting the thing that you
+want. You also never want to sell
+something higher because then there's
+some chance that you get to buy it um at
+a price that's more than you're actually
+willing to pay. So you don't want to do
+that either. So the the what what
+economists call a dominant strategy here
+is to just truthfully report your
+willingness to pay. But by doing that
+um you don't just tell me um what your
+response is to the price I wrote down. I
+indirectly get the response to any
+possible price I could have written
+down. Right? So I get all your
+counterfactual demand
+um all your counterfactual response
+functions
+um and that's extremely useful if I
+think about causal inference and it's
+useful if I think about this this bandit
+type settings right better for like the
+profit maximizing context or the welfare
+maximizing context because um
+because [clears throat] it's uh it
+basically eliminates the incentive to
+explore for for the experimentter it
+allows me to completely separate the
+experimental design from the decision
+making here um because I get the full
+information for everybody regardless and
+I can choose prices that are just um
+targeting my uh my objective whatever it
+is right so another way of saying that
+is I've reduced the bandit problem to an
+online learning setting right where
+online learning is a setting where the
+data are given independently of my
+actions right so um and in for every
+unit of observation here I get a lot
+more observation a [clears throat] lot
+more information than just the the
+response to at a given price we get the
+response to any counterfactual price. Um
+so that obviously doesn't doesn't apply
+to all settings of codly inference. Uh
+you might think this is kind of
+specific. It is a fairly common economic
+setting. Um but it it is a setting where
+where kind of we do get individual level
+counterfactuals if you're willing to
+assume that people are are playing
+dominant strategies here.
+all right. Questions about this before I
+move on.
+So,
+uh, there's
+Oh, yeah. So, I mean this is
+incidentally also something that tech
+companies might understanding is do
+actually a fair amount of for instance
+when they when they sell ads online
+right the way like Google and Facebook
+and these companies make money is by
+selling ads. How do they sell the ads?
+they they run auctions basically for for
+ad space that are kind of run in an
+automated way and these auctions one one
+feature that they often have is a
+reserve price but it's a minimum price
+at which they are willing to kind of
+sell that that space on their website um
+and that set exactly um use using a
+version of of this idea um with it's
+called second price uh auctions with
+reserve prices or mechanisms like that
+but again those are mechanisms where
+it's optim for for the biders for this
+these ads to truthfully reveal their
+willingness to pay and then the
+companies can use that to learn um learn
+the distribution of willingness to pay
+to set profit maximizing reserve prices
+extracting all the surplus from the
+biders
+um which and so
+right that's that's a version of of this
+idea where where I separate the the
+learning of causal effects or
+counterfactuals from the using this
+information at the same time using a
+mechanism isn't like the the the hidden
+price. Um,
+and it turns again the the bandit
+problem into an online learning problem
+in this case for the profit maximization
+of of Google and co.
+So
+the the last thing I wanted to talk
+about here is how do we elicit
+externalities? This going to get a
+little bit messier. This this is
+something I've started recently working
+on. So very much work in progress. But
+the the key idea here is to care about
+settings like in environ environmental
+economics or in the regulation of data
+collection and so on where there are
+externalities and again externalities
+are cases where my behavior impacts your
+well-being and vice versa where to think
+about settings like congestion, pricing,
+my driving causes pollution and noise
+and traffic jams for you um and climate
+change. Um and so key question there is
+then how large are these externalities?
+How how could you possibly learn how how
+much you're bothered by my driving? Um
+and that's something that my sense is
+like the literature environmental
+economics mostly just asks people or um
+or makes some assumptions about but it's
+based on say like the science of of how
+these things impact others. Um but we
+might might be interested in actually
+eliciting um
+kind of in the in the mechanism the
+science sense eliciting what people say
+would be willing willing to pay to avoid
+being exposed to others actions. And so
+that's that's what this is about. But
+that's that again makes kind of the
+causal inference or inference and
+preference kind of one level harder
+because um my choices tell you something
+about my utility about my own actions
+but they don't tell you anything about
+my utility about your actions right
+because your actions are chosen by you
+not by me kind of by construction. Um
+and so how could we do that? And so yeah
+just bear with me for for a couple
+minutes here. It's getting a little mess
+here. Um
+here here's a set kind of simple model
+for that that kind of generalizes this
+binary choice setting of before. So
+[clears throat] here I've replaced the x
+by t. You will see why in a minute. But
+the first part here is just like before,
+right? With the binary choice yi. Do I
+drive or not? For instance, I'm exposed
+to a price or tax rate ting
+vi. So that's just like the same as
+before. But on top of that, now I'm
+exposed to this externality, right?
+where the actions of others um impact
+me. Here I have the B bar. It's just the
+sum of everybody else's choice. How much
+everybody else in my town is driving say
+and I'm impacted that by a factor BI.
+How much I'm I'm bothered by the noise
+and pollution and traffic jams. Um
+and then what we what we got to design
+to do that is is some
+uh some mechanism some some
+cost that you have to pay based on your
+action and based on um what you tell me
+that this this tax rate for others
+should be. Um
+and
+all right [snorts] so yeah not going to
+going to go through all the details here
+but the basic idea is I I can pick a way
+of setting this cost where I'm asking
+you both
+um what's [snorts] your act do you want
+to drive or not say what's your
+willingness for to pay for that but I
+also ask you how much are you uh
+impacted negatively by the driving of
+others
+um now if you don't have to pay a cost
+for the second thing, you have an
+incentive to just give me a very high
+number because then um yeah, you just
+get everybody else to stop driving even
+if you only care a little. And so to
+make it incentive compatible to tell me
+truthfully, I I have to be smart about
+um what you get to pay by by setting a
+tax rate for others. And turns out one
+way to do that is is using this this
+kind of quadratic scheme. And again I'm
+going to in the interest of time I'm
+going to skip the details here but the
+the high level point here is I can
+design a scheme here um
+where I'm asking you to tell me what you
+want to do in terms of your own driving
+but I also ask you how much you bothered
+by other people's driving. If I set this
+pricing scheme smart in a smart way it's
+again
+dominant strategy. So it's again makes
+sense for you no matter what to tell me
+tell me the truth here and I can
+incorporate that in an similar adaptive
+scheme to to say learn optimal rates for
+congestion pricing or something like
+that. Um sorry if this last part was a
+little bit in the weeds but the the
+point is kind of um this is kind of yet
+another dimension of how the causal
+inference problem can get more
+complicated here because it's inference
+about the impact of your actions on my
+wellbeing and the other way around. But
+we can can deise solutions to that to
+build this kind of bel maximizing
+adaptive algorithms.
+And just to wrap things up, um just some
+shameless self-promotion. Whitney
+[clears throat] briefly mentioned it,
+but I this book which came out last
+fall, the means of prediction, which is
+more about the the social and economic
+impact of AI and the regulation of AI,
+which builds on some of the ideas I
+discussed today more broadly kind of
+thinks about um AI's automated decision
+making using optimization
+where a lot of the the existing
+discussion is about optimization
+failures, right? in in various forms uh
+and shapes. But the point of the
+argument of the book is instead it's
+about what do we choose to to optimize
+here like like in this reinforcement
+learning embedded settings and so on. Um
+and then about who gets to actually
+choose that which relates a lot to to
+thinking about the the relevant inputs
+of AI. Um relates to things like scaling
+laws, the production function of AI and
+then finally makes a case for for
+closing the gap between what we do
+optimize and what should be optimized
+from a social perspective. Um building
+institutions of democratic control for
+AI decision- making. Happy to talk more
+about it offline. And other than that,
+thanks for your attention and
+&gt;&gt; [applause]
+&gt;&gt; me.
+&gt;&gt; Sure. Um, as a non-economist, I'm
+curious um why you framed social welfare
+as a problem of moving away from
+optimality as opposed to just having
+like global externalities added or I
+don't know if that's the right term, but
+having having a social welfare component
+added to each individual utility and
+still looking for an optimal solution.
+&gt;&gt; You mean for the last thing I talked
+about? No, the social welfare slides.
+You said you're no longer looking for um
+you now have to explore suboptimal
+actions. And I think that's because you
+just didn't change the definition of
+utility. But you could also change the
+definition of utility to include a
+social welfare term in everybody's
+individual utility and look for an
+optimal solution.
+&gt;&gt; Not that that would be feasible.
+&gt;&gt; So there's kind of two two sides of
+people acting here, right? There's the
+people who are being expo exposed to the
+tax rates say or prices and then there
+is like say the social planner or the
+algorithm that who picks the tax rates.
+Um the individuals here by by assumption
+kind of care about their own welfare
+here right they are going to pick their
+actions to to maximize say um this
+utility here and there but as a social
+planner I care about their utility and
+my tax revenue. I guess the question is
+why that why the assumption is that the
+utility is only the individual's utility
+and not a utility that includes a social
+welfare component like a global
+&gt;&gt; so that that is what the algorithm is
+trying to maximize it's a global thing
+right but what this point here is about
+is um to say I don't observe social
+welfare me as the algorithm or me as the
+planner I observe people's behavior
+&gt;&gt; okay
+&gt;&gt; and I can learn from behavior about the
+social welfare
+And that involves expressions like this
+one. Um but because this expression um
+doesn't depend just on the behavior for
+the chosen policy, it depends on the
+behavior for counterfactual policies
+that makes it kind of a systematically
+harder learning problem where basically
+I have to do experimentation away from
+the optimum which kind of slows down the
+algorithm relative to a standard bandit
+case.
+&gt;&gt; Susan,
+&gt;&gt; um yeah, I have two comments. Um, and I
+know you're kind of aware of these, but
+to sort of for the broader audience, I
+guess going back to the first one is
+going back to the original discussion
+about like exogenity and why, you know,
+maybe it's not so interesting to study
+imprints in in bandits. I guess there's
+like two questions. One is
+identification and you were really
+talking about identification but like
+there's also estimation and we would
+have been like done with you know a
+bunch of causal imperence in the 1980s
+if we weren't interested in estimation
+and so the estimation problem in
+contextual bandits and reinforcement
+learning is quite interesting and there
+are several groups my lab at at Stanford
+although these we have haven't done as
+in the last year or two on this. John
+Langford's group at Microsoft Research
+and a few others have really gotten into
+the estimation details and shown that it
+does in fact affect the performance of
+reinforcement learning y
+&gt;&gt; to bring in the ideas of estimation from
+the causal inference literature to
+reinforcement learning. So those of you
+who haven't there's a big part of the
+reinforcement literature who learning
+literature who hasn't noticed this but
+there's a subset that has and it's a
+very interesting place for future
+research. I think it just lost a little
+steam because everybody got interested
+in generative AI. Um but it's still very
+interesting from an estimation
+perspective. And then the second smaller
+comment is on the on this like I I also
+have done a bunch of these surveys where
+you try to learn about people's
+preferences using surveys but there's
+there's like a big gap between that and
+in actual practice in the sense that
+like whatever people tell you even if
+you've incentivized it is often still
+not what they do and so you still
+&gt;&gt; like the PDM type stuff for
+&gt;&gt; sorry
+&gt;&gt; you mean like this type of the PDM
+mechanism type stuff for Yeah. Yeah. I
+mean, just that people's decisions are
+impulsive or like when they're, you
+know, that that there's there's a big
+lack of external validity from what you
+get out of these things. I mean, I've
+been studying I studied misinformation
+and people's willingness to share. And
+so, I'm I'm using these methods, too.
+So, I'm not criticizing using them. It's
+just that it's not a panacea because
+people's decisions in the real world can
+differ.
+I mean fully fully agree with with
+everything there. I mean on the
+estimation reinforcement learning part
+there's a bunch of aspects to that right
+I mean one is part part of like powered
+alpha z alpha go and so on was like the
+whole deep reinforcement learning
+bringing in the neural networks to
+actually think about estimating these
+value functions
+um as because you have like a very high
+dimensional context space and so on.
+There's
+&gt;&gt; no I'm sorry my my point is not that
+like neural networks can do it and
+that's what's interesting. My point is
+that those people get things wrong when
+they don't take advantage of what we've
+done in statistics.
+&gt;&gt; Yeah. And I mean like stuff that you've
+worked on also, right? Like the
+surrogates and things like that or
+reinforcement learning just more
+generally. It takes a long time for the
+actual outcome you care about to be
+realized and so you can use various
+things to to learn more quickly along
+the way to use intermediate information
+in some way or other. So I think yeah
+absolutely there's a lot to be done
+there. That's interesting.
+We had just Why don't we go with the
+hands that were up? Um I think you two
+and there was maybe somebody
+I'm retracting the question.
+&gt;&gt; I was just following up on Bets's
+comment. I was just wondering I mean I
+don't know is there room for a situation
+where I get utility if I think other
+people are getting utility.
+&gt;&gt; Um absolutely. Yeah. I mean that would
+be a form of an externality in some
+sense.
+&gt;&gt; yeah.
+&gt;&gt; Yeah. I was just wondering what is the
+role of the coariates here because in
+biological systems there's something
+uh the observed coariants are playing
+some role but here I would think the
+behavior aspect comes into play than
+just um
+for like this contextual bandit type
+setting right like the the role is to do
+targeted treatment assignment basically
+right different people have a different
+willingness to pay for things here and
+the more information you have the more
+of the heterogeneity you capture and and
+the higher the rewards are that that you
+can get out of an algorithm like this.
+But in principle could can be anything
+in this type of setting it's assumed to
+be exogenous and in like a proper
+enforcement learning setting it might be
+endogenously involving state of the
+environment.
+Um I don't know if that answers your
+question but yeah
+never mind let's stop.
+Happy to check offline.

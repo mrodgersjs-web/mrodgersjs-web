@@ -1,0 +1,163 @@
+This is Light Panda, a headless browser
+designed for AI agents written from the
+ground up in Zig, so no WebKit or
+Chromium, which makes it up to nine
+times faster and uses 16 times less
+memory than headless Chrome. It even
+exposes the Chrome developer protocol,
+so it can be used with Puppeteer or
+Playwright, but it doesn't render any
+pixels or support common web APIs like
+service workers, IndexedDB, and CORS.
+So, why is it even used in Open Claw and
+Vercel's agent browser? Hit subscribe
+and let's find out.
+Light Panda was released around 2024 by
+Pierre, Francis, and Kate, long before
+Claude's code was even a thing and
+around the time ChatGPT started to get
+popular. It started out as a web
+scraping and automation tool, but soon
+after agents blew up in popularity, they
+focused to AI agents and managed to get
+a round of funding out of it. But was
+this just a quick rebrand because of the
+popularity of AI or is it actually good
+for agents? We're going to test this out
+by building our own agent using the
+Claude SDK with a custom web fetch tool.
+And we're going to use Chrome and Light
+Panda as the web browsing engines and
+compare the differences to see which one
+is better and why. Although Light Panda
+does have an MCP server and has its own
+cloud service, we'll try and do things
+as locally as possible. And we'll go
+through a basic example of how to use
+Light Panda first before expanding into
+making the web fetch tool. So, here is a
+script I have that essentially fetches a
+bunch of links from Wikipedia. And the
+way that works is it will first create a
+Light Panda server, then connect to that
+server using Puppeteer. We have some
+code here to check how long the process
+will take and it will go to Wikipedia
+and go through all the links in the
+references section and print them out.
+If you want to picture that, the
+references section is down here for the
+web browser page. And as you can see,
+the first reference link is this Device
+Atlas one, which matches the one down
+here. So, Light Panda found all the
+links in 344 milliseconds. And if we try
+the same thing with Chrome, it takes 392
+milliseconds. So, there's not that much
+of a difference, but things change
+dramatically when you have multiple
+pages you want to scrape. So, here's a
+similar script with one major
+difference. Instead of getting links
+from one Wikipedia page, we're doing
+100. So, if we go to definition, we can
+see all the pages it's going to fetch
+from the web browser to HTTPS,
+JavaScript, Python, and so much
+more. So, if we try that with Light
+Panda, the whole thing is done in 18
+seconds. And if you try it the same
+thing for Chrome, it takes about 30 and
+in some cases when I ran this, it took
+60 seconds. But, let's see how the
+performance differs if it's running
+through an agent. So, here I have a very
+basic agent using the Claude SDK. I just
+have a web fetch tool over here that
+runs this prompt. So, it summarizes the
+difference between array, map, filter,
+and reduce in JavaScript and goes to
+these specific links in MDN to find
+information about them. Below, we have
+our agentic loop. And here, because
+there's only one tool, there's no if
+statement to check if that specific tool
+is being used. But, if we had more
+tools, that would be the case. And here
+is the web fetch function being used
+whenever there's a tool call. Now, below
+that, we have some metrics and a
+function here to calculate the browser
+memory. This project is going to use
+Light Panda and Chrome using the Chrome
+DevTools protocol. So, we're going to
+run it on a port and Puppeteer will
+connect to that port before running the
+agent. We can start the server using
+Light Panda serve and then we can run
+our agent, which fetches the three URLs
+from MDN, gives the information to
+Claude, and here it gives us a response
+telling us the difference between map,
+filter, and reduce, as well as returning
+the metrics. Now, let's try that with
+Chrome, making sure to get rid of any
+default caching it has, since Light
+Panda isn't a full-on browser and
+doesn't have the same level of caching
+that Chrome does. So, it's only fair to
+remove it from Chrome. And then, we'll
+run the same thing in Chrome, which also
+fetches the URLs from MDN and also gives
+us an answer from Claude. But, here are
+where things are drastically different.
+So, if we put the results side by side,
+Light Panda here and Chrome on here.
+Both of them do three fetches, but we
+can see the fetch time for Light Panda
+was way faster, almost twice as fast as
+Chrome. The wall time is the same, but
+look at here, the browser memory for
+Light Panda is only 66 megabytes,
+whereas for Chrome, it's 829. So, way
+more than 10 times Light Panda, and also
+the agent memory is a bit smaller for
+Light Panda, but the browser engine
+wouldn't really change this value too
+much. Honestly, you should never use
+Chrome ever again for headless browsing.
+I mean, why would you? Light Panda is up
+to 21 times smaller than Chrome, is
+faster, and uses way less memory. But,
+there is one scenario where you might
+want to use Chrome instead of Light
+Panda. So, if we change the prompt from
+the JavaScript question to fetch me five
+properties from Airbnb in Tokyo, running
+that with Chrome gives us the expected
+results, but if you try the same with
+Light Panda, we see it isn't able to get
+the listings from Airbnb. And this is
+because Airbnb is a single-page
+application, whereas Light Panda does
+have a V8 engine to execute JavaScript,
+this is just for language level
+execution, so async await, closures,
+promises, and things like that. But, for
+something more complex like this
+single-page application for Airbnb,
+Light Panda does struggle to render this
+and get all the relevant information.
+So, apart from not being able to render
+SPAs correctly, which they might change
+in the future, I don't know, Light Panda
+is a great tool or addition to add to a
+custom agent that needs to do any web
+search or any web fetching. And while
+we're on the topic of web browsing with
+an agent, if you've ever wanted closed
+codes to control your actual running
+Chrome session safely, so with your
+logged in details and everything, then
+check out this video on remote debugging
+using the Chrome MCP server.

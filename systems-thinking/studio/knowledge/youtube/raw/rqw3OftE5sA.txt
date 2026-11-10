@@ -1,0 +1,3003 @@
+without exaggerating this is by far the
+best
+video i've ever posted on this youtube
+channel and the best project i've ever
+created
+this project is extremely unique and i
+give you full permission to code along
+with this video
+and showcase it on your portfolio or
+show it to your potential employers
+everyone is going to be amazed okay so
+where does all this hype come from
+let me show you we are going to build a
+conversational
+voice controlled react news application
+using alan ai allen ai
+is a revolutionary software that allows
+you to add
+voice capabilities to your applications
+it allows you to control
+absolutely everything in the app using
+your voice
+another huge benefit is that it's
+extremely easy to integrate it
+we'll do it together in this video and
+afterwards you'll be able to create your
+own
+voice controlled apps so what does this
+app do
+well we can ask alan himself we can
+click this allen button
+on the bottom right corner and let's try
+it out
+what does this app do this is a news
+project
+it can provide the most recent headlines
+in mainstream media
+you can ask for the latest news by
+saying give me the latest news
+you can also get news about certain
+topics categories and more
+okay that sounds amazing right now
+you're hearing
+alan from the speakers of my pc but
+usually it sounds even better
+now that we know what the app does let's
+go through it
+give me the latest news
+for the latest news would you like me to
+read the headlines
+yes oppose where os
+apple watch clone is officially
+launching globally this fall
+android police newly unsealed documents
+describe
+gillane maxwell's abuse of one of
+epstein's alleged victims
+cnn nokia raises profit guidance with 5g
+comeback plan on track
+yahoo finance lebron james
+first hope we made colin kaepernick
+proud by kneeling during anthem
+bleacher report would you like me to
+read all the news
+yes continuing
+you can stop me by pressing the allen
+button critics slam hong kong's move to
+disqualify
+pro-democracy candidates from september
+election
+cnbc okay we're not gonna go through all
+of them
+but as you can see alan reads all the
+news
+for you he even asks you if you want him
+to read it
+alan also scrolls on the website for you
+as soon as he started reading
+you saw that he scrolled up to this
+point and then
+once he moved to the second roll he kept
+scrolling
+you can also see that he was
+highlighting the card of the news that
+he was currently reading
+by this little blue line below that's
+amazing
+we have all the cards here so what can
+we do with this news
+we can read the short summary here we
+can click on them to open the actual
+article in the news which is amazing
+because we are getting the news from all
+the sources in the world
+but also we can navigate through voice
+right now we can say
+open article and then we can choose any
+article in here
+by the number right here
+open article number three
+opening
+and as you can see alan immediately
+opened the article number three which is
+you can open any article in here but we
+can keep on searching for different
+topics these are just the latest news
+so let's say go back go back
+sure going back now let's search for
+something else
+searching by terms and searching by
+sources is so amazing you can search for
+any term that you want to know something
+about
+or you can get the news from any source
+you want let's try searching by the
+terms
+in here let's try smartphones for
+example
+what's up with smartphones
+the reason on smartphones would you like
+me to read the headlines
+no sure
+sounds good to me okay as you can see
+right here we get all the news on the
+newest smartphones
+and finally let's try the possibility to
+search by sources
+give me the news from the cnn
+here are the recent cnn would you like
+sounds good to me once again
+amazing application in here you can see
+it opened all the news from the cnn
+source
+and you can search from any source in
+the world one more thing that's worth
+mentioning
+is that the app is fully responsive as
+you can see right there
+you can scroll or if we go back to the
+home page
+you can see it's also fully responsive
+once again that's it we can dive right
+in
+into creating this app and exploring all
+of the voice capabilities that alan
+ai offers
+[Music]
+to start we are going to create a new
+empty folder
+you can call it alan ai news application
+something like that once you do that
+you're going to open your visual studio
+code
+and then drag and drop that folder in
+this is going to open the folder in
+visual studio code
+you can use any code editor that you
+prefer but visual studio code is great
+because it has a built
+in terminal so you can go under view and
+then open the terminal
+in there we'll be able to run our
+commands amazing
+okay so what do we need to do to start
+well this is a react application so
+we're going to run
+mpx create react app
+just like that this process is going to
+take some time
+but for you in this video it's going to
+be instantaneous
+okay so the first thing that we're going
+to do is install
+all the necessary dependencies mpmi
+and then the first thing is of course
+allen ai
+forward slash allen sdk web
+this is going to allow us to use all the
+voice capabilities
+then we're going to use material ui
+that's the ui kit we're going to use for
+styling
+then class names because we're going to
+have multiple components that have
+multiple class names
+and finally a neat little library called
+words to
+numbers when we use the command open
+article number 15
+we need to parse the words 15 to actual
+numbers
+so that's what we needed we press enter
+and then that's going to be it
+while that is installing you know how
+you usually have a lot of files in the
+src folder
+and what i like to do is delete the
+whole src folder
+and create a new one ourselves so in
+here
+we can create a new folder called src
+and what are some of the files that we
+absolutely need in there
+of course the index.js
+we also need an app.js so app.js
+and we'll just have some general styling
+so we're going to create a file called
+index dot css
+now let's start as usual with the
+index.js file the most
+basic and the most important file in the
+whole react
+in here we do the classic things as
+import react
+from react import
+react dom from react
+dash dom then we
+import that index dot
+css file so that's going to be dot slash
+index.css import that
+app from dot slash app
+like this and then finally react
+dom dot render the first parameter is
+the
+component that we want to render in this
+case the whole application
+as a self-closing tag and then finally
+we target the element we want to put our
+whole react application to
+get document by id or get element by id
+and in there we specify the root just
+like that
+great now let's add those minor stylings
+in the index.css it's going to be really
+general
+so in here we're going to target the
+root html
+and the body in there we're just going
+to say height
+100 we age this basically means that we
+want the height of our application
+to take the full height of the screen
+then
+we'll do the body tag body margin is
+going to be equal to zero
+and let's do a background color of
+white smoke just a basic whitish color
+then we have all elements and all
+elements are going to have a
+box sizing of border box you'll see a
+lot of developers do that
+it makes things so much easier with
+styling later on
+this makes sure that when you count the
+width and the height of the elements
+it also takes into consideration the
+padding and the margins and borders and
+so on
+the last thing is that we'll do html and
+we'll set the scroll behavior
+to be smooth once we scroll the
+application or once alan scrolls through
+the application
+we want to have that little smooth
+animation of the scroll
+with that we are ready to save the file
+and move to the app.js file
+in here for now we're going to have a
+basic
+react functional component so import
+react
+from react then we're going to have
+const app is equal to a functional
+component
+in there we're going to do a return
+where we have a div
+and then inside of that div we're going
+to have an h1 which is going to say
+allen ai news application
+just like that finally we have to
+export default that app
+this should be the minimal necessary
+configuration for us to be able to run
+so now let's run the npm start and let's
+hope we're going to see something
+in the browser okay application is
+running on localhost 3000
+and if we go there you can see the
+application
+is there alan ai news application
+now we are ready to start implementing
+into our application adding alan to our
+react application
+is fairly simple all that we have to do
+is say import
+alan btn from and then
+we target the dependency that we just
+installed
+allen-ai forward slash allen sdk web
+we can now initialize the allen button
+once our application opens
+and how are we going to do that well of
+course using the use effect
+so i'm going to import the use effect
+hook from react
+and if you don't know what use effect is
+it's basically a function
+that happens once our code starts it's
+similar to component that mount
+in the class-based components it also
+has extended functionalities
+like the component that update in the
+class-based components but in this case
+we'll just use it as a component that
+mount so something that's going to
+happen
+once our app mounts so in here i'm going
+to say
+use effect use effect takes two
+parameters
+the first one is a callback function and
+the second one
+is a dependency array based on the
+things that we have in this array
+use effect is going to be called
+multiple or maybe just one time
+if we leave this array empty that means
+that it's going to run
+only one time and that time is going to
+be once our component mounts
+so what are we going to do in this
+function well we have to call our allen
+btn
+as a function and then we have to
+provide them
+with some important information the
+first information
+is the api key or the key that allows us
+to use
+allen so we have to say key and then
+we have to get that key let's say allen
+key
+for now that allen key is going to be a
+variable that we're going to store
+right there like this but now
+we have to make sure that we actually do
+retrieve it so let me show you the
+process
+you can google alan ai or you can just
+type
+alan that app in your search bar that's
+going to lead you
+to their home page and there you can see
+the most advanced conversational voice
+ai platform unlimited functionality for
+your app
+once you get here you can click get
+started now and that should lead you to
+the register page
+in here you can sign up using google or
+github or you can just enter your email
+it's super easy i'm just going to sign
+in using my google account
+make sure that you're also signed in
+once you sign in
+you should see a page that looks like
+this their software is free to use
+you have 500 free interactions to speak
+with alan that's already enough
+to build this application but since i
+partnered with allen
+we're going to give you 2500 more free
+interactions using the code js mastery
+so if you go to developer in there you
+should be able to apply
+a promo code there you can just type js
+mastery to retrieve 2500 more free
+interactions
+let's see if it works the code has been
+applied and
+now you can click go to projects you
+should be able to see
+that now you have 3 000 free
+which is more than enough to build this
+application and 10 more
+okay so in here i created the alan
+studio backend version for the
+newsreader application
+let's see how the code looks like they
+have an amazing interface
+for creating all the commands that you
+saw previously
+on the front-end side of the news
+application this is their allen studio
+this is what makes the magic happen you
+can see in here
+we have all the intents all the queries
+that we can ask alan
+for example give me the news from a
+source and then based on that
+we do some logic and interact with our
+we can put anything we want in here and
+alan will respond to that
+of course i don't want you to just copy
+and paste this we are going to create
+a new project on the allen studio for
+our application so you can go ahead
+click create voice assistant
+and click empty project and i'm going to
+name it
+news reader app youtube you can just say
+news reader app
+once you create it you'll be able to use
+a lot of scripts here
+both in scripts but we are going to
+build our own
+immediately in here they provided you
+with a sample to create your own voice
+commands
+so how can we test it out well alan uses
+something known as intense
+or queries that we want to ask alan and
+then he can say something back
+for example we don't even have to
+connect this to our own application
+we can test it out immediately in the
+allen studio which is quite convenient
+so in here i can click this button hello
+world
+hello and as you can see he answered
+right there that's great so in here
+we'll be building
+the allen studio part of the news
+great so how do we actually connect it
+and get the key
+well you go to integrations part right
+here at the top
+and then in here you get the allen sdk
+you just copy it go back to our
+and simply paste it there that's it
+really straightforward now we can make
+alan
+listen for certain commands so in here
+we're going to do
+on command and then that's going to be
+equal to
+an arrow function just like that in here
+we can do as many commands as we want so
+in here we can do either a switch
+statement or an if statement so let's
+start with an if statement
+and that's how we're going to recognize
+and act
+upon certain commands so if command
+and that command is coming in here as a
+parameter to our function
+so we're going to this structure the
+command parameter
+and if command is triple equal to let's
+say
+test command then we want this block of
+code to be
+executed right here and let's just do
+alert
+saying this
+code was executed
+okay great so now you'll see that back
+and forth action
+between react application and alan
+studio
+now we have to write the command to
+actually trigger
+the test command so let's do that if we
+go back in the browser
+and go back to our news newsreader
+application i'm going to
+make this code a bit bigger just so you
+can see everything really well
+and then in here we have to activate
+that voice command
+in here most of the work is done as you
+already seen
+with intense let's do a quick example to
+practice intense
+intent and then in here we want to put
+what does alan listen for so that's
+going to be
+what does this app do question
+we can add multiple queries so we can
+say what
+can i do here that's also another great
+question that people may ask
+and then once you're done with queries
+you put comma
+and then you say reply reply
+call it as a function and then this in
+here is what alan is going to respond
+okay so in here we can say this
+is a news project just like that
+and now let's see if it works so save
+the file
+and let's test it in here in the allen
+what does this app do
+this is a news project and amazing you
+can see
+that it works that's great okay
+so now we know how to do that here but
+how can we play that
+in react application we connected it and
+let's see what do we have right now
+in our react application and would you
+look at that
+just by doing that simple use effect
+right here
+initiating the allen button actually
+the allen button right there at the
+bottom of our application
+so right now let's try clicking it and
+saying what we said right there
+this is a news project and as you just
+saw
+i'm still amazed by this it just
+immediately got that intent
+and responded to us in our react
+like i'm seriously amazed by this okay
+but how do we trigger this test command
+right there
+well for that we'll have to make an
+intent
+in here right there but instead of
+replying something
+we have to trigger a command on the
+response
+so to do that let's make another intent
+and
+let's just say start a command just like
+that
+and then in there we can also trigger a
+callback function
+on our command so this is a callback
+function that is going to happen
+after alan listens for start a command
+in here we get access to the p instance
+so that's basically playing anything you
+want and then
+in there we can call that p and we can
+say p
+dot play this is going to be the same as
+response so we can say p dot play
+hello i understood
+your command just like that let's save
+the file and let's test it from our
+start a command
+hello i understood your command okay
+that's amazing so you know now that you
+can run the speed at play to respond
+with anything that you like
+great but how do we run a command
+well instead of putting a string in here
+we can do an object
+and then say command is equal to
+and then in here you can specify the
+command in a string
+and we said that we want our command to
+be
+let's see test command so we're going to
+copy this
+and simply say test command that's it
+let's save it
+go back to our application and say start
+a command
+one more time
+and there we go we just received our
+alert right there
+what was the point of this i just wanted
+to show you how
+simple it is to connect our react
+to alan studio and immediately bring
+in your application they can be as small
+as just greeting your user once he comes
+or making a fully fledged voice
+controlled application as we are going
+to do right now
+now that we know the basics let's do
+something more serious
+for all the data in the application
+we're going to use the news api
+so that's newsapi.org it's the best api
+for news that there is
+as you can see we can get the news by
+search term we can also get the news
+in here by category and by source as we
+so that's great make sure to log in in
+here it's completely free
+you can get your own api key because
+that's what we're gonna be using
+for calling or making our requests so
+basically you have to register
+it's completely free get your api key
+and then we'll be ready for our next
+step
+okay if you have it then we are simply
+going to paste it down below
+so const api key right there and now we
+can do something with it we are going to
+be making
+actual api calls in here in the allen
+let's delete this sample command or just
+comment it out because later we'll be
+doing something similar to this
+okay so the first thing that we'll be
+doing is creating an api
+endpoint for news by source
+in here we'll be getting news by certain
+source like cnn
+abc news and so on and in here of course
+we are again going to start with an
+intent because we want to make this
+voice powered
+in here you can say anything you want
+i'll say
+give me the news from and now your
+question might be
+okay but how do i make this dynamic of
+course i can do give me the news
+from cnn and that's going to give you
+the news from the cnn
+not css of course uh but how do we
+actually make this dynamic so that we
+can put anything
+in here and not only the word that we
+inserted previously
+for that the syntax is as follows dollar
+sign
+parentheses and then in there you
+specify the name
+of the variable that's going to go in
+there so that's going to be
+source and then you put an asterisk
+there next to it
+and then you specify what can a user say
+to put that data here
+so that's going to be parentheses that
+and then asterisk one more time
+the syntax may be a bit weird for the
+first time but you're immediately going
+to get it once you start using
+alan studio more if you have any
+problems with the app
+all the allen studio code and all other
+codes are going to be in the description
+so feel free to reference that from
+there there might be some changes
+if the app actually gets new features
+from the time you're seeing this
+but generally you should be seeing the
+same code so that you can copy
+something if something breaks for you
+okay so that's it
+and then the second parameter is again
+the callback function where we get that
+p
+argument in and now we can do something
+with it
+well first we are going to form our api
+url so we are going to do let news
+api url and then that's going to be
+equal to the api that we get
+from their site in here let's see if we
+can get something
+we are now doing by sources so let's see
+if we can find the documentation for
+specific source and then in here let's
+search for top headlines
+and then let's try sources so top
+headlines and then
+sources right there so we can copy this
+api
+url here and then paste it in
+here but we're going to make some
+changes so let's make this as a template
+string
+first of all we have the top headlines
+and then
+this is not going to be included here
+because we'll be adding that dynamically
+using voice so for now we'll leave that
+empty make sure to keep the question
+mark
+and the only thing that we're going to
+have in here is going to be the api
+key and we're just going to dollar sign
+curly braces
+and then use our own api key that we
+defined right above here great
+so this is our url right now and then
+we need to retrieve the value from the
+actual voice so that's going to be this
+source here
+how do we do that well you say if
+b that source source because that's how
+we called it here
+that value is existent
+basically if it exists if it's boolean
+true then
+we're going to do news api
+url is going to be a template string
+of again the same news api
+url but then we're going to append
+something to it
+and the thing that we're going to append
+is going to be end
+sources is going to be equal to and now
+this is a bit tricky
+but stay with me it's going to be p
+dot source dot value
+we need to make sure to lower case it so
+two lower
+case then we have to split it
+into multiple words so split like this
+using a space in between
+and then we have to join it so we do dot
+join
+to join it by a dash just like that
+why are we doing that well because if we
+give me the latest abc news so if you
+say abc news
+it's gonna read it like this and if you
+look at the api
+they have bbc news here okay that's
+that's also a good example so they have
+bbc news let's do the same thing
+bbc news so this is what alan would
+understand
+and this is what the api needs so to do
+we first have to lowercase it as you saw
+there that's not hard so we do bbc
+and then we do news then we split it
+split the words because maybe sometimes
+it's gonna get it as
+as this but now it's already split and
+we join it using a dash so that our app
+can make a proper
+api call okay now that we have that
+our api url is set up and we can make
+the actual call
+using allen you already have built-in
+functionalities of creating api calls
+we also have axios built in but for now
+let's just use their
+api dot request for that we can make a
+request
+the first thing that it accepts is going
+to be of course the news
+api url and then we have a callback
+function
+the callback function receives three
+parameters first one is the error
+then we have the response and then we
+have the body just like that
+and now in there we can get the actual
+data
+using this body parameter or argument so
+that's going to be const
+the structure the articles
+from json.parse
+body this is just a way to get the data
+from the api call
+using their api that request now what i
+want to tell you
+is that with lnai studio or with any
+other software always resort to using
+and reading the documentation so if you
+don't understand something
+there's not always going to be a video
+explaining it of course if you don't
+know something
+feel free to ask me i'm gladly going to
+create a video but i want to enforce you
+to actually read products documentation
+or generally just googling things so
+feel free to google
+allen ai documentation and click on
+getting started on the docs right there
+in here you have the docs for the server
+which is the thing that we are using in
+the allen studio
+you can see we have everything that you
+need to know on how to make
+different patterns how to make commands
+intense
+if you want to create something more
+advanced using allen
+you definitely need to go through their
+documentation it's really well written
+and then you have the client api which
+is the one we'll be using
+in our react you can see they have the
+documentation on how to install it
+and how to use it great now we can keep
+finishing our api
+call now we have the articles we're
+going to do
+one simple if check if maybe articles
+were not fetched because someone gave us
+a wrong source so we're going to do if
+no articles that length if that's the
+case then we're going to do p dot play
+we can do sorry
+please try searching
+for news from a different
+source just like that okay great so we
+can save it
+and then if it if it breaks it's gonna
+read that
+and then we're gonna just throw it out
+of the function just so we have it out
+so it doesn't keep doing the things that
+we have just below
+great then if we do get articles we are
+going to save them
+in our new global variable in allen
+studio just so we know that they exist
+everywhere in our app we're going to put
+that variable just below the api key
+that's going to be let and that's going
+to be saved
+articles equal to
+an empty array at the start and then
+we're going to
+actually populate those articles by
+doing
+saved articles is equal to articles that
+we just received
+there okay and finally the time came for
+us to use
+this p dot play command so let's do that
+i'm going to remove it from here
+put this a bit up and then let's do it
+once we have the articles
+now we can do p dot play do the same
+thing that we just did
+which is open curly braces and then say
+command
+is equal to and let's call it new
+headlines or new news whatever we want
+to do
+we can do new headlines and then with
+the command we can also pass some data
+and in this case the data we'll be
+passing are of course
+the articles that's it once we call that
+now we can do another p dot play
+which is going to just say something to
+us and it's going to say
+here are the and this is one thing that
+i wanted to show you
+if you put something in parentheses and
+then you can say
+latest or or sign just the vertical line
+recent with this sometimes alan is going
+to read
+here the latest and sometimes hear the
+reason
+just so he doesn't sound boring he's
+actually going to
+change words and sound more human and
+then on that
+we can open uh the door sign curly
+braces
+and say p dot source
+dot value and then in there
+we can say uh news so here are the
+latest
+um cnn news for example now that we are
+sending the data in
+and that we are triggering the command
+now is the time for us
+to go into our react application and try
+to react
+to this new headlines command so let's
+go back
+and then in here instead of the test
+command we are going to run
+the new headlines command
+and then you know how we send the
+articles as the second parameter
+while those articles are coming in here
+we are also going to destructure them
+from here really handy right so if we
+get the articles
+now let's do something like console log
+and let's try to console log them
+if this works that would be amazing
+let's go back to our application
+open the console okay so what do we need
+we need to say give me the news from and
+then we need to specify a source
+i'll keep testing with cnn just for
+example so if you go here
+i'll say give me the news from cnn
+here are the recent cnn news as you can
+see
+alan read the line here are the recent
+cnn news
+and also he gave us the articles
+right there as you can see we do get
+full articles
+coming from an api using only
+voice that's amazing we get the content
+we get a description
+source title url url to image
+basically everything we need to start
+placing this content we just received
+on our webpage so now we need to create
+cards to display the content
+we got right there now let's do this in
+reacts fashion
+of course we are not simply going to
+console log the articles
+we are going to import use state from
+and then set the articles to the state
+so in here just below we are going to
+create a new state field which is going
+to be const
+with hooks we have to do array
+destructuring and let's call them
+news articles and set
+news articles at the beginning they are
+simply use state and
+an empty array great and with hooks it's
+so easy to set
+something to the state we just call set
+news articles
+and pass in the articles that's great
+now we have access to the news articles
+variable
+which we can now send to the components
+that are going to display it
+so let's see down below we are currently
+not doing anything
+so let's create a components folder
+and inside of there a folder called
+news cards
+in there we are going to create a new
+file called
+and also styles.js
+file this may seem weird we have a
+styles.js file
+not styles.css but i'm going to show you
+in a minute why we are doing that that's
+because we'll be using
+material ui's way of styling so now
+let's save this file
+and let's try to add something in the
+news cards component
+there's a great plugin which i often use
+i just have to type
+react arrow function component with
+exports and then
+click that and i immediately get the
+component so that's something that i
+just wanted to show you
+but we're going to write it out together
+this time
+and i think if we look at the extensions
+here that's going to be cold let's take
+a look
+because i know you'll be wondering um
+that thing
+is called react snippet great so now you
+can install it
+and use it okay so in here we do
+import react from react
+also const news cards is equal to an
+arrow function component
+we do a return let's do a dip for now
+h1 news cards
+and then in there below we're going to
+export default
+news cards just like that great
+so now we have the newest cards and the
+only thing we have to do is
+import it in the app.js file in here
+we're going to do an import at the top
+import news cards
+from dot slash components slash
+news cards and we have to go one more
+time inside because we have it in a
+folder
+that's a nice folder structure because
+if we have multiple components
+it's going to be so much easier to have
+every component in a separate folder
+great and now we can render out that um
+newscard component just like this and we
+can also pass
+in as you may think articles because we
+have them
+not under articles but rather under news
+articles so we can pass that as a prop
+to our news cards now in the news cards
+as a prop right here we can destructure
+the props
+and get the articles and what do we want
+well we don't want to just show the
+articles because they are an array
+in the news cards we are going to map
+over
+the articles like this articles that map
+and then for each article and let's also
+use
+index here because we're going to need
+it later for each article
+we're going to use parentheses here
+because of an instant return
+we're going to return a card component
+so let's say
+card or news card here
+as you may assume this news card
+currently doesn't exist but we're going
+to create it
+in a moment so in components create a
+new folder
+called news card and inside of there
+we're going to create a news
+card dot js and also
+styles dot js file great
+i'm going to close all of these files
+for now because we don't need them
+and let's do an import so import and
+in there we're going to simply do import
+news card from
+dot slash that's going to be dot dot
+slash
+news card slash news card don't forget
+that double import right there
+okay if we do this now of course we have
+to add something to the news card itself
+that's again going to be a simple
+functional component
+so import react from react cons
+newscards as a functional component
+and in there we are simply going to have
+a div which is going to say
+news card and of course we have to
+export it
+at the end now with this setup let's see
+if we are actually going to see
+something in our application
+okay we do see alan ai news application
+which is good now let's try running the
+command as we said
+give me the news from
+give me the news from bbc news
+here are the latest bbc news news that's
+great
+and as you can see in here we get one
+two three four
+five six seven eight nine ten of the
+bbc news of course right now they are
+all just static text of news card
+but this is where all of our actual
+components are going to go
+it's not going to be that big of a deal
+to create the actual user interface
+because we'll be using material ui
+and i just want to let you know that
+this is the process of creating real
+apps in real world so we'll be using a
+lot of external tools we use material ui
+we use allen ai software to actually
+make this
+all happen so we are actually building a
+commercial level application
+okay and there's a small thing that i
+noticed if we do the search again
+here are the recent bbc news news he
+said here are the recent
+bbc news news that's why we have the
+news here
+we don't have to include that okay with
+that our first query would be done
+and we can start with creating our user
+interface
+for creating our user interface material
+ui is going to play a huge role
+so in this file we are going to import
+grid
+grow and something known as a typography
+from add material ui core
+just like that these components will
+allow us to make everything
+mobile friendly and also provide nice
+text
+and animations for when the cards first
+appear that's what grow does
+first instead of wrapping this with a
+div we are going to wrap it
+with a grow property and specify
+property in as you can see in here if
+true show the component triggers the
+enter and exit
+animation great inside of there i'm
+going to put some spaces
+in here we are going to create a grid
+so just grid and then it's going to have
+a property of container so this is going
+to be
+a grid that wraps all of our grid items
+we are also going to specify align items
+stretch it's so easy doing this with
+material ui
+and if you don't know what material ui
+is let me show you
+so material ui we just go there
+a popular react ui framework
+it's so simple to use if you want me to
+do a full video material ui i'll
+definitely do that
+but let's take a look at some of the
+components that they offer
+in here you can also read the
+documentation for all the components
+that we're going to use so this is how
+grid works you can see we can have
+multiple
+cards there spacing it it's also
+responsive
+and so on they have built-in radio
+buttons
+normal buttons anything to make your app
+look really really nice
+in a short period of time you can see
+they have calendars
+uh buttons text cards let me show you
+this card component we'll be using
+so see how easily you can create
+something nice looking
+just by using their code right here
+great so with that out of the way let's
+go back to our application
+and let's start implementing our grid
+okay
+in the grid the last thing that we'll
+add is gonna be the spacing
+of three that's just the spacing between
+the cards
+and now inside of that grid we're going
+to map over these
+cards for each article we are going to
+show
+or render out a news card but we have to
+make sure
+to wrap that as well into a grid but
+that grid is going to be of a type item
+so that's a singular
+item grid inside of our application
+just like that and then in there we are
+going to use
+the material ui mobile friendly plugins
+of just
+xs which is on small screens we want to
+show one card
+on small screens we want to show two
+cards and
+why did they say one and 2 when i
+written 12
+and 6 that's because the grid has 12
+spaces in total
+so if one card takes 12 spaces it's only
+one card in a row
+but if one card or one grid item here
+takes six spaces
+then two of them will be in the same row
+we can also do the md
+four and then finally large three
+okay and then i'll do just one single
+inline style here
+which is going to be a display of
+flex okay great and then in there
+we have our news card that's it
+and of course in the news card we'll
+send our article
+so in here we're going to send article
+to be equal to the article
+and we are also going to send that i
+which is the index
+you're going to see why shortly great so
+now we are rendering different news
+cards
+based on the articles that we are
+getting let's see if something changed
+in our application
+let's ask for the news give me the news
+from cnn
+here are the recent cnn as you can see
+in here we have four cards in a row but
+if we keep
+lowering the horizontal width here you
+can see now we have three
+two and finally one card in a row that's
+the ease of
+creating mobile responsive interfaces
+using material ui
+now let me show you how we are going to
+do
+styling using material ui in here we are
+going to provide a
+class name to our grid component
+and then we are going to say classes
+that container
+so what is this classes thing and what
+is our container
+well to see how that works let's
+navigate to
+styles.js and then in there we can
+create our stylesheet
+to do that we have to import make
+styles as a named import
+from add material ui
+slash core and then slash styles or
+forward slash
+okay then we can do const
+styles is equal to make styles
+call it as a function and there we have
+object for all of our classes in here
+we can say container and now
+i definitely agree and i don't like it i
+don't like writing styles in javascript
+css is meant for writing styles and
+that's how we should write
+it but when using material ui using
+their own way of styling components
+makes it
+so much easier because of that we'll use
+this way of styling
+in here we can do export default styles
+and then in here we can provide that so
+what styles do we want to do
+for the container let's add a padding of
+zero and then five percent if you never
+used css in js
+this might look a bit weird because we
+have to define everything as a string
+and we are using key value pairs then we
+are going to set the width
+to be a hundred percent so width
+and then that's going to be a string of
+hundred percent and then finally
+we'll use a margin of zero just like
+you can see we are defining styles here
+and immediately exporting them
+so there's no way to even create a
+variable we can
+immediately just write export default
+make styles like that in use cards
+we are going to import use styles
+you'll see why use styles in a second
+from
+dot slash styles dot js
+we named it use styles because this
+thing here
+makes styles actually creates a hook
+that we can then call right there at the
+top of our component
+we'll do const classes is equal to
+use styles and then we call that
+as a hook great that gives us access
+to this classes object and then we can
+call
+each one of our classes like this and
+the styles
+should be applied let's save the file
+and see
+if it made any difference give me the
+news from cnn
+here are the latest cnn okay i'm not
+sure if it made any difference now but
+now that we style these
+separate news cards we are going to
+definitely see the difference
+great now let's make our news card
+actually show the data it should be
+showing the data for a specific
+article how are we going to do that in
+we're going to use a lot of things
+coming from material ui
+that are going to help us build that
+specific article card
+you saw at the start so we're going to
+import all of these things right now
+card card actions
+card action area
+card content card
+media button
+typography and that's gonna be it
+core that's it we have a lot of imports
+we'll use all of these components
+but with that we'll easily be able to
+create our article card
+great now we're going to create the
+structure of our card
+i'm going to help you with that because
+you maybe never use material ui
+so just follow along i'll try to explain
+as much as i can
+anyways so let's go in here
+we're going to have a card element
+inside of the card we're going to have a
+card
+action area this is going to be the
+clickable
+part of the card inside of there we're
+going to have a
+card media card media is going to
+contain
+the image and it's going to be a
+self-closing tag so we don't need the
+closing tag
+we just need to close it right there
+immediately
+then below that we need to have a div
+that div is going to have two typography
+components
+so typography and it's going to have
+a variant variant
+of body two that just small text
+then we have a color of text secondary
+so we can do color text secondary
+and then component h2 just like that
+and then in there we can put some text
+but for now let's just copy it into a
+new line
+so we have two of those then below that
+we are going to have yet another
+typography
+that typography is going to have a
+gutter bottom
+which means that it's going to have some
+padding or margin at the bottom
+it's going to have a variant of h5
+just like that and we're going to close
+it
+right there below that we're going to
+have
+card content we had card media
+now we have um card content below card
+content is going to have
+yet another typography component
+everything
+in material ui that is text is indeed a
+it just helps with styling and choosing
+the sizes
+and also choosing the font so this one
+is going to have a variant of body
+2 and also a color of
+text secondary and the component
+is going to be just a simple p tag so
+just p
+great now below the card
+content and the card action area we're
+going to have
+card actions so this is going to be the
+area for the actual buttons
+in there we're going to have one button
+make sure to
+use the button material ui component
+that button is going to have a size
+of small and also a color
+of primary okay
+and then below that as you can guess yet
+another typography
+this one is going to have a variant
+of h5 and a color
+of text secondary
+just like that great so now we have the
+of course we don't have any text right
+now we don't have the images
+so where are we going to get that from
+well if you remember correctly
+if you go to news cards in here we're
+getting the articles
+and then we are passing a specific
+article
+in here as props that's great
+so in here let's do that we're going to
+immediately the structure props
+we are passing the article and we are
+also passing this index here
+you're going to see why in a moment so
+what data
+do we get from the article well of
+course we could go here
+and we could say for example in the
+i don't know article that description
+and so on we could always be referencing
+article that something
+article that something else and so on
+but what we are going to do
+is we are going to immediately the
+structure
+all the properties coming from this
+by using this syntax column and then
+another pair of
+curly braces we're going to get the
+description
+the published ad
+source title url
+url to image and do we need
+anything else let's take a look i don't
+think we do
+so for now that's all that we need from
+the image and now we just need to find a
+place
+for all of these variables let's let's
+take a look
+first of all card media has to have its
+own url
+so inside of there we're going to say
+image
+is equal to url to
+image and if there is no image
+we need to put some sort of a
+placeholder there so i'm going to put a
+of a placeholder image so it's just
+news thumbnail image that's it you can
+find your own and then paste your own
+png image link right there just so we
+don't get an error
+or no image if there is no image great
+okay we did the image now we have to
+worry about
+um these two typographies you can see
+they're empty
+right there what can we put into them
+well
+in here we're going to put date so
+that's going to be looking like this
+in here we open the syntax for the logic
+and you put open parentheses and close
+parentheses
+and inside of there we're going to have
+new
+date where we are going to pass the
+published
+ad so we basically want to create a date
+javascript object
+from the published ad thing that we are
+getting and then
+we want to do to date string
+this is going to give us only the date
+that's it that's what we need we don't
+want to show the time the seconds and so
+on we only need
+the date and make sure to call that
+on the outer pair of parentheses not
+these inner ones here
+i see a lot of people could be making
+that error i did that myself before
+so just so you know then in the
+typography below
+we are going to have source dot name
+and then below in this typography we're
+title and then in one more below
+we are going to have description
+and i think we have two places to fill
+in this button we can simply say learn
+more
+and in here we put the index of
+our article but we're going to say i
+plus one because we don't want to start
+from zero we're gonna start from one
+that's it now if we save that we should
+already see
+something in our browser once we ask
+alan to give us some data
+let's go back and check it out give me
+the news from cnn
+okay this already looks so much better
+you can see we have the articles here
+and it looks great
+looks like it's not picking up the
+images right
+material ui card media needs to have
+a constant height for us to be able to
+see the image
+so let's do that let's implement our
+right there i'm going to give it a class
+name
+of classes dot media just like that
+and don't forget we have to set up our
+classes
+so we're going to go into the styles.js
+of the news card and then in there we
+have to import
+that named import make styles
+forward slash core forward slash styles
+and then we do export default
+make styles call it
+and then put in an object where all of
+our styles
+lie and if you remember correctly this
+creates
+a hook that we call later on in our news
+so for now let's do just the media media
+and that's going to be an object that's
+going to have a height
+of 250. when you just want to set a
+height or width in pixels
+you can just use numbers you don't have
+to put it in strings
+okay so once we save that we can go back
+to news card
+and then back in here we can import use
+styles from dot slash
+styles dot js
+okay and we call it as a hook
+right at the top cons classes is equal
+to
+use styles we call it
+great now we should actually be able to
+our images let's test it out oh yeah and
+make sure to spell the hype properly so
+we're going to go back in here
+and just spell it properly and now we
+can go back and see how it looks like
+here are the latest bbc news
+amazing this already looks so much
+better
+as you can see we do get our news here
+with the images and they're also
+clickable you can see we can click them
+but right now they don't lead anywhere
+that's great
+now let's implement all the other
+styling you can see
+although with material ui you almost
+don't need none
+uh we just need some in here to make
+this um appear on the left side add some
+padding
+make the bbc news appear on the right
+side put some padding right there
+and also make this go on the right
+bottom corner great so let's do that
+since i know that most of you don't feel
+like typing out the styles i'm going to
+paste them right there
+and give you a link in the description
+to get this file so you can just copy
+and paste them
+there's nothing complicated happening
+here you can see just some display
+flexes
+setting the height setting the flex
+paddings and so on
+and the only thing we have to do right
+now after you of course space these
+styles
+is go back to news card and then add all
+styles and the necessary thing right
+there as class names
+so let's start from the top in here
+we're going to have
+a card in here we're going to have a
+class name
+of classes.card i'm going to copy the
+whole thing and just keep pasting it
+then in the card action area we won't
+have class
+names but we need an href so where
+is our action area going to lead us once
+we click on the card
+and that's going to be url as we have it
+and the target is going to be underscore
+blank
+this means that the image or the article
+is going to open
+in a new website rather than opening on
+top of our page
+great then we have this div it's going
+to have a class name of classes that
+details
+then we have a typography below this
+typography is going to have a class name
+of classes.title
+then we have card actions which is going
+to have a class name
+of classes.card actions
+let's save it and see how does it look
+give me the news from cnn
+here are the recent cnn
+and as you can see this already looks so
+much better
+we have the date right there and the
+source right there
+the button is now on the right side we
+have a lot of padding
+there and everything seems to be looking
+amazing at this point we can get the
+news without any trouble
+us who created the application we can
+just ask alan
+but if we now deploy this application
+and you gave it to your friend
+he or she wouldn't have any idea what to
+with this application because of that if
+you remember what we had at the start of
+video we are going to implement this
+and these four cards here and based on
+these cards
+user will know what he can ask alan and
+what this app offers okay if that sounds
+good
+let's start doing it right now we are
+going to implement those cards
+in the news cards uh file we don't need
+to create a new one
+the only thing that we do need is going
+to be a simple if
+check so if there are no
+articles dot length or basically that's
+the same as
+checking if articles that length are
+equal to zero
+but because of the truth and falsies
+values we can also use this
+if there are no articles then we want to
+show those cards right
+because once we search for something
+then we will have articles
+so what do we want to show or return if
+there are no articles
+we are again going to use the same thing
+almost the same thing
+we're going to use this grow in and the
+as well once we paste that we of course
+need to close
+both of these but then inside of there
+we won't have the articles mapping or
+the grid
+news card we are going to have those
+singular cards
+okay so let's see what are we missing
+this looks good to me looks like we are
+only missing something inside of it
+okay looks like our editor immediately
+added the closing tag for this thing
+we don't need that here so now let's say
+test inside of there
+let's see if if it even works looks like
+something is
+breaking right now okay
+expected a corresponding closing tag for
+grow
+but it is right there so there we go it
+was just a bit slow
+okay so now if we save this and go back
+we see that test here but what we want
+to see
+are those colorful cards i'm going to
+paste you right there
+information for all of these info cards
+it's an array of four info cards
+we have a color a title and a
+text i think some of them have info as
+well as you can see right there
+and we are going to loop over that map
+over them and then display them there
+again this code right there is going to
+be below in the description
+great so how can we map over them
+well in a similar fashion on how we
+mapped over the actual
+articles infocards dot map
+we get one info card and then
+again with only parentheses that's
+immediate return
+in there we can specify our grid
+in the grid we need to close it
+in the grid we are going to have the
+properties
+of item also
+excess is equal to 12 small is equal to
+that means two cards on small devices
+per row
+this means three devices per row on
+medium devices
+and four four cards on larger
+devices like this we are also going to
+provide it with a class name
+of classes that info card
+just like that inside of there we're
+going to have a div
+div is going to have a class name of
+classes dot card
+and also we're going to provide it with
+a style
+of background color
+is going to be equal to info card dot
+color
+i had a hard time bringing these values
+right there in the styles
+so that's why i just did it in line here
+usually it's not a good practice to put
+inline styles
+but this seems like a good scenario
+where it could be useful
+great then inside of there we are going
+to have a typography
+typography and it's going to have a
+variant
+of h5 and in there
+we're going to say info card
+and inside of there we're going to say
+info card
+dot title we're going to have
+yet another typography there which is
+going to be for info
+but we are not always going to have it
+so what we can do
+is we can say infocard that info
+so if it has info then show
+this typography
+the typography is going to have a
+variant of
+h6 and then inside of there we're going
+to have a
+strong tag and then inside of that
+strong tag
+we will put our info card that info
+and then inside of there now this is
+getting lengthy so let's extend that
+into a new row so we can see better so
+we have
+info cards that info then we have a
+then we have a strong tag and then
+inside of there
+what we're going to do it may seem a bit
+scary but
+it's going to make sense once i show you
+in there we're going to say
+infocard
+that title that's split with a space
+in between and then we get the
+second element so what are we doing here
+what is th
+what does this stand for if you look at
+the infocard
+title which is right there we want to
+get the second
+or actually the third word in the array
+so
+this one is the first the second and the
+third
+and see how all of these have info so we
+have info info info
+for these that have info we are only
+grabbing that word so we are dynamically
+grabbing
+what info are we getting something for
+categories
+terms and sources one more time
+info.title.split
+split them into an array grab the last
+element
+write this which means categories four
+and then we get that
+so so just after that we're going to add
+a column sign right there and then we
+can do it in a new line we'll put a br
+right there e break and then below that
+we're going to show
+info card that info
+the strong is only going to be in here
+for the title
+and with that we're going to close our
+and if we do it like this we also need
+to wrap these in parentheses
+and then if we don't have an info
+then it's going to be null okay so
+that's it if we don't have any larger
+issues
+this should be correct let's take a look
+if we are missing something
+uh that seems fine now since we created
+this we can actually bring it into one
+line
+so let's do that although it may not be
+the nicest looking one-liner ever it
+does its job
+it's right there it's typography for the
+information
+and then the last thing that we're going
+to have is going to be the typography
+so typography which is going to have a
+of h6 and in there we're going to say
+try saying and put a vr
+which is a break tag and then in there
+we're going to italicize
+and that's going to be info card
+dot and what else did we have we had
+text so we're going to put info card dot
+amazing now if we save this let's go
+back
+and see how does it look like
+okay okay it already looks just a bit
+we didn't add the styles in the css yet
+so let's do that right now
+we added this class as that card we also
+added
+um class name that container and class
+is that info but
+but we didn't add any styles for that so
+let's go to styles
+and then in here we'll add those styles
+what we need to do is add a card
+card is going to be the toughest in
+there we're going to have a display of
+flex
+flex direction of column
+and i know i know that this may look
+confusing
+we don't have flex and then minus
+direction
+we have flex direction in camel case but
+that's just how it is when writing css
+in javascript
+then we have justify content center
+again in a string align items
+center with a hundred percent
+needs to be in a string height
+is going to be 45 vertical height
+again needs to be in a string
+then we have a padding of 10 percent
+border radius let's do
+10 and then finally that color
+white okay let's see if we are missing
+something
+that seems to be it and then
+with the card we are also going to add
+the info
+card so info card in there we're going
+to say display
+flex direction column
+and also text align
+center just like that i think that
+should be it for the styles
+we can now go back and see how it looks
+that's so much better now we actually
+know what we want to say
+uh before we actually start searching
+for the news
+amazing and looks like it
+it is not justified uh with space
+between so maybe i mistyped something
+and yeah i did justify content center
+and that's what you do in 90
+of the cases so i apply that here but it
+should be
+space between great let's see how it
+looks
+even better amazing with that
+the only thing that we have right now if
+we are honest
+is we have the styling we have the
+structure but
+we only have this thing used by sources
+that works but now if we go back if we
+try searching for anything else
+this is just a card right it doesn't
+actually work
+so now it's time to make all of these
+other cards
+work so we need to add the functionality
+before we do that
+instead of this ugly title right there
+let's put that nice
+allen ai image to do that we are going
+to remove
+this h1 in the app.js and we are going
+to replace it
+with a div which is going to have a
+of classes that image
+container or let's do logo container
+inside of there we're going to have an
+which is a self-closing tag and then
+that image is going to have
+an src of
+this path to this image that's the allen
+ai image
+it's also going to have a class name of
+classes that alan logo just like that
+and let's do an l tag allen logo
+okay so now we have the image you can
+see classes are not yet defined
+we are yet to do that and that's going
+to be it for now
+i'm going to create our style sheet
+so inside of the src styles.js
+and one more time i know you guys don't
+like typing out the styles so i'm gonna
+leave all the styles here
+feel free to copy them copy the whole
+file from the description down below
+great now we have that sorted out the
+only thing we have to make
+is import the styles right there so
+import
+use styles from dot slash
+styles.js and if we now save this
+we should be able to go back now we can
+call this
+use styles as a hook so cons
+classes is equal to use styles
+call it save the file and if we go back
+let's see how does our app look like
+that's it this looks so much better now
+we have the visual look and feel of the
+the only thing we have to do is
+implement the latest news
+news by categories and news by search
+we only have news by sources for now
+let's once again just try
+going for the sources give me the news
+from wired
+here are the latest wired okay
+this works extremely well that's it
+now let's start implementing other
+functionalities
+for that we're going to go back to allen
+we're going to copy this news by source
+and just below it we are going to add
+news by term so these are going to be
+news by specific
+search term just like this
+and we are only going to have to change
+a few things
+in here instead of the top headlines
+we'll search for
+everything api key stays the same
+we have to change the intent so instead
+of give me the news
+we're going to say what and then we have
+to escape
+the quotation mark
+what's up with
+and then in here instead of the source
+the term so what's up with and then the
+specific term
+we're going to leave it like this and
+then let's see what do we have
+api key that stays the same this is
+p dot term that value instead of p
+that source that value and the api says
+that we don't have to search for sources
+we have to search for q q basically
+stands for query
+we don't have to do any of this stuff
+now the query is simply going to be
+p dot term that
+value just like that
+then we make the api call we get the
+articles
+if there are no articles of course we
+have to say sorry
+please try searching for
+something else because the search term
+wasn't correct
+so something else and
+if there are articles we're going to
+save them and then play the command
+new headlines where we show the articles
+and we say
+here are the recent here are the recent
+articles on and then we say p
+dot term that value just like that
+if we now save this go back to our
+application on localhost 3000
+let's try searching for a search term
+what's up with playstation 5 earth
+articles on playstation 5
+and you just saw that worked wonderfully
+we can search for
+any search term you'd like for example
+the covet situation right now is
+happening
+so let's search for coronavirus
+what's up with coronavirus
+latest articles on coronavirus as you
+we do get all the latest articles on
+coronavirus
+now we have to implement the news by
+categories as well as the latest news
+and then we have to make alan read all
+the news that we can see
+here to do that we are again going to
+news by term and paste it below
+in here let's see what do we need to
+change
+to search for categories we need to go
+to news api
+org version 2 and then we're going to
+search for
+top headlines and then we're going to
+input our api key
+great and down below instead of q
+we are going to have category in here
+let's do p dot c for category for
+and then above i'm going to paste
+all the categories that we have because
+we do have many of them
+in this case it's one two three four
+five six seven
+seven categories and in here this is the
+way we map
+over them for the intents to work this
+time
+we don't want to choose anything for
+example from any source
+and this time we are choosing uh one of
+these that are mentioned
+right here great so this is how we join
+them so your category
+put this sign the tilde sign and then
+the category
+and then we join them with the or or
+thing you're gonna see what i mean
+once i copy all the things right there
+this one is a bit lengthier so i'm just
+gonna copy and paste it
+right here and let's go over it
+so this is a really nice way for you to
+learn how we can have different queries
+correspond to the same final intent
+and you can see with this or sign so
+this is the or the straight vertical
+you can make alan listen for some words
+that they're gonna have the same meaning
+for example when you're entering
+something by a keyboard
+and you type the enter key that's it you
+just submitted something
+or when you're using a interface a
+visual ui
+interface you have buttons you have
+inputs you can easily just click this
+button right
+but with voice you can get to the same
+things saying a lot of different things
+so alan needs to account for that for
+example if this thing here was using a
+voice integration it wouldn't be as easy
+as clicking the button
+you could say open development or just
+development
+or maybe go to development page so you
+have to account for all of these user
+inputs
+that's exactly what we are doing here
+user can say
+show the recent
+news in and then he can give the
+category
+the user can also say tell me the
+latest news so you can see we can use
+any of these combinations
+to get the same intent again i'm gonna
+copy and paste this thing below so you
+don't have to write it yourself
+just you don't have any errors great now
+we can finish
+with creating this intent by categories
+in there we have to do this we just did
+great and you can see the category he's
+picking it up from here
+so that's the c here and then he's
+choosing the category
+intent that we mentioned great we are
+making an api request
+we are getting the articles if there are
+no articles we can say
+sorry please try searching for a
+different
+category um
+and then if there are articles we're
+going to save them and then we're going
+to play the command
+new headlines articles and here the
+latest articles on
+and this is going to be p dot c that
+value
+the c being category for example here
+the latest articles
+on technology and that's it great
+so if we save that let's see if it does
+work
+okay and looks like we left the term
+here this should be
+b dot c that value okay so if we save
+we can now go back to our application
+and let's test it out let's see if it
+works
+so we can search for tell me the latest
+technology news
+or something like that
+give me the latest technology news
+latest articles on technology okay
+that worked perfectly let's search for
+give me the latest entertainment news
+the latest articles on entertainment
+that worked as well looks like this is
+global right now
+so we can make it us only by adding the
+end and then we can say country equal to
+us let's try doing that
+us definitely has the best entertainment
+life so
+let's test it out give me the latest
+entertainment news
+here are the latest articles on
+entertainment okay there
+there we go it works you can choose your
+own country i think api.org has a lot of
+uh different countries you can choose
+from so that's great
+okay and now you might think okay we
+have to do yet another one
+for for latest news but that's not going
+to be the case
+if there is no category then we're
+simply going to have the news api url
+be the same thing here but without the
+category things and once we do that it's
+only going to get the top headlines so
+that's going to work perfectly
+we can only add the else thing here so
+just below where we say here the latest
+articles on
+in here we can copy this if statement
+and we can say if the category exists
+right that's the then we want to play
+this here are the latest articles on so
+i'm going to paste that here
+okay great but if there is no category
+provided
+we can just do an else and then we can
+something like here are the latest news
+and that's it
+here are the latest news okay
+if we properly structure that here and
+let's
+save it let's see if it works so now we
+should be able to search only for the
+latest news as well
+okay there we go as you can see it found
+all the most popular recent news great
+we have functionality for all the cards
+now we need to make alan read the
+headlines
+to make alan read the headlines we are
+going to implement
+something known as a context in alan
+okay so let's start doing that just
+below right there
+context is a dialogue between you and
+alan where you enter that specific
+conversation about something
+and then you can exit it out based on
+your answer
+for example we're going to open a
+context or a dialogue
+asking if you would like the news to be
+read and then you can answer either yes
+or no
+to give alan further permissions to read
+or not
+so right now let's create a new context
+and that works like this
+we're going to call it confirmation so
+cons confirmation
+is equal to context and it accepts a
+now we're going to be writing our code
+in this callback function
+and then inside of here we're going to
+have two
+intents first intent is going to be yes
+and if you may guess it we're going to
+have a p
+in there and then the second intent is
+um no so we're just going to copy this
+and paste that below
+yes is going to be asynchronous so
+that's also something that we can do
+we can make an intent asynchronous async
+now we're going to map over them and
+read them one by one
+we're going to use a normal for loop
+because we cannot do for reach
+and map when we are doing asynchronous
+code that's a great thing to know
+i stumbled on that problem a lot of the
+times so whenever you have something
+async use the four off or just the
+normal four
+so this is how it's gonna look like
+we're gonna have i is equal to zero
+i is less that saved articles
+that length and then i plus plus
+in there we're of course going to read
+something so we can say p
+dot play and first of all before reading
+we're going to issue a command a command
+is going to be called
+highlight that's going to move
+at the highlight thing you saw the
+beginning of the video
+from one article to the next one so that
+alan knows
+which article he is currently reading
+and then we're going to provide that
+article in here so that's gonna be
+article is gonna be saved
+and if we spell that properly r t equals
+and then i so that we know which article
+is he currently reading
+and then after we know that we can
+simply do p dot play
+and finally in here we can read that so
+i'm gonna save that
+do a template string and then in here
+we're gonna do
+saved articles
+and then i and we're just gonna read the
+title we don't need to read anything
+else of course you can modify it but the
+title is usually long enough
+for alan to read and this would be it so
+now alan is going to ask us
+if we want to read the news and then
+he's going to read all of them
+one by one while keeping the
+highlighting on the one he's currently
+reading
+okay and if the intent is no we're
+simply gonna say
+p dot play let's do something like sure
+and let's do sounds good to me
+just like that great
+okay so right now you can see we have
+the new headlines here
+and we now have to call this context but
+first let's see if we have some errors
+so looks like there's some warnings
+or errors syntax logs i is not defined
+okay my bad there i'm used to the
+visual studio code automatic for loops
+and using the four eaches so i didn't
+define the i there so let
+i and now we have to um call for this
+context
+somewhere in our code and we're gonna do
+that right here
+below the uh below once he says here the
+latest news
+in here we'll do p dot play
+and we're going to ask user would you
+like me to read the headlines
+something like that if i do this
+now we can call that context and we do
+that by doing
+p dot then and then we can put the name
+of the context
+the name is gonna be confirmation
+so now what's gonna happen is we're
+gonna go in here
+he's gonna ask would you like me to read
+the headlines
+and then he's gonna enter this little
+dialogue with us
+and he can expect an answer of yes in in
+in which case he's gonna read all of it
+or he can expect no
+and then he's not gonna do anything and
+that's it
+and then of course we can copy these two
+lines and then we can put them on the
+same
+ending of each of these api calls right
+there
+this is for four terms and then we can
+put them at a start as well
+and this would be for sources right here
+great and if we don't have any problems
+now the reading should work the
+highlighting yet is not going to work
+because we are not handling the
+highlight command you saw here we need
+to handle that
+but before we check that let's see if we
+if we made anything work or is this
+gonna show us an error
+let's see give me the latest technology
+the latest articles on technology would
+you like me to read the headlines
+yes soul calibur v
+dlc character satsuka launches august
+4th jumatsu
+halo infinite multiplayer will be free
+to play ign daily fix
+ign apple buys startup to turn iphones
+into payment terminals
+yahoo finance galaxy
+okay so looks like this works
+wonderfully the last thing we have to
+add is the scroll
+which i had some trouble implementing
+but now i'm going to show you how to do
+and then we have to implement that
+little thing that little
+line here that goes through the article
+we're currently reading
+great now let's do that that can be done
+in our app.js because this is where we
+are handling
+uh actual commands so in here we can add
+a new command so we can do else if
+command is equal equal equal to
+highlight and then we can of course
+manage what we want to do when the
+command is equal to highlight
+and when it is we are basically going to
+set the active article
+so we need to manage a new state field
+const and we're gonna do active article
+and set active article
+and that's gonna be equal to uh zero so
+this is just gonna be the
+index of the article he's currently
+reading uh that's it
+and then in there we can specify that we
+wanna do
+set active article
+and that's going to be a callback
+function because we'll be using a
+previous function to change the state or
+previous
+state to change the current state so
+prev
+active article and the new one is gonna
+prev active article
+plus one this is recommended by react
+once you're changing the state based on
+the previous state
+you call it as a callback function and
+then simply increment it
+so now we are incrementing this one and
+this should be
+use case and this should be use state
+now we are incrementing the active
+article number
+each time that we call the highlight
+and if you go back here you should know
+that the highlight command
+is happening for each article as soon as
+he starts reading it
+great so that should work now we have to
+make use of this active article
+and we're going to do that by passing it
+right here active article
+is equal to the active article now we
+can go
+to components newscards and then in here
+we can destructure the active article
+from the props and then we can simply
+pass it
+in here along with the article
+we are passing it to the news card
+because we need to know for each
+specific card
+is it active or is it not i'm going to
+destructure it
+so it's gonna be right here next to the
+i
+active article and then here's an
+interesting thing
+what we're gonna do now that we have it
+here in our app
+we have to make use of that active
+article and
+it's going to be interesting how are we
+going to do that we're going to import
+that thing from the start if you
+remember import class
+names from class names just like that
+and then we can now use that here on the
+card to do dynamic
+logic if the article should be
+highlighted or not
+and how we're going to do that well in
+here we can call class names
+as a function and then in there we can
+provide
+multiple things as parameters first one
+is going to be classes.card
+that one is going to always be showing
+and then we can choose another class
+this one is going to be
+if active article is equal
+to the index then we want to highlight
+it so then we apply the class
+classes that active card and if that's
+not the case
+then we simply do null we don't add that
+class
+okay let's see we need to close our
+function here
+now let's see if we added the active
+card class in the styles i think we did
+uh active card you can see it's simply a
+board and bottom of 10 pixel solid
+blue so we can go there and that should
+right now we can save this and
+let's go back to our application and see
+how does it behave
+would you like me to read the headlines
+yes
+new trump financial disclosure gives
+glimpse into pre-pandemic business
+income
+politico hong kong issues arrest
+warrants for exiled democracy activists
+okay as you might have saw it reads one
+up front
+so we need to go back to our app in here
+and what i found to be working is to set
+it to minus one right there
+and we also have to reset it each time
+we call new articles
+so we are also going to call set active
+article to minus one here as well
+because once we search for the new news
+we want to reset
+that active article number okay so now
+we are back
+one article or the index of one article
+and let's see if this is gonna work
+give me the latest business news for the
+recent articles on business
+trader joe's says no to changing ethnic
+sounding label names
+nbc news red onions culprit in
+salmonella cases
+that have sickened nearly 400 in us
+another 114 in canada
+usa today elon musk
+tesla is seeing strong demand through
+pandemic
+electric.co okay great
+um this means that it works and as you
+can see it just looks so much better
+that we know which one is it currently
+reading uh
+when he's reading it that's great and
+now the last thing to make
+it's really a quality of life change to
+to apply a scroll
+because we want to make this fully voice
+navigated we have to apply the scroll
+we can add the back back command and so
+on
+and for that we don't want to scroll
+here once he goes to the second row for
+example if you're here
+and if he now starts reading the second
+row well then we have to scroll right
+but let's say that we want to make this
+uh app
+be able to navigate without using your
+mouse or keyboard at
+all right in that case that automatic
+scroll would definitely be necessary
+so let's do that to make the scroll work
+it's gonna be a bit complicated
+i was also having some troubles
+implementing that but let me show you
+how it's gonna work
+in here we're going to import the use
+state
+use effect and create
+ref usually it's easy if you want to
+scroll just to the navigation bar or
+just to the top
+or just to a certain section of the page
+using refs
+but in this case we have to create a ref
+for
+each specific card or article
+and we also have to store all the refs
+in some sort of an array
+so we're gonna do that const and we're
+going to say element or
+l refs and set
+l refs and we're going to make that
+equal to use
+state and at the start they're going to
+be empty
+so empty array of references now we're
+going to use that use effect
+to actually create our references at the
+start of our application so once
+the newscard component mounts and it's
+only a component that mount again as
+soon as it mounts
+what we want to do is we want to call
+the set
+lrefs and now we're going to call this
+as a callback function where we have
+refs in there
+let's wrap this in parentheses and now
+this may look extremely weird uh this
+was the solution i found on the internet
+i'm sure
+the better approach could have been made
+so we take the array 20
+which basically creates an array with 20
+empty elements
+and we can fill it fill it with nothing
+then we map
+over the array of 20. why is it 20
+because we're always going to have 20
+and then what we can do is we can
+map over them where we have the first
+parameter being nothing because we are
+only concerned with
+index people usually when they don't use
+the first parameter
+of some function then they just leave it
+as underscore
+because it's not going to be used and
+then we're going to have
+refs j if it already exists we're going
+to keep it but if it doesn't exist we're
+going to create
+a ref for that specific card i know this
+is a bit complicated but
+it is what it is but now we have those
+references
+now that we have references we can
+actually scroll to them
+and we are going to do that in a
+separate use effect
+because the second use effect has to be
+ran each time
+that he starts reading a new article so
+we're going to listen to changes here
+for i
+for active article and also for changes
+in the l
+refs i think if we didn't add this react
+would let us know that we need to add it
+so this use effect gets called only at
+the start
+to set up all of our references and then
+this one
+gets called each time that i active
+or lrefs changes in here we're going to
+have the
+if statement and we're going to say
+if i is equal to
+active article so if active article
+exists
+like that and also and
+l refs for that active article so
+l refs and then we enter that specific
+so if this is the case and we definitely
+know that i
+is equal to some active article and that
+we do have reference
+to that specific article and then we can
+scroll to top
+so how is that going to look like scroll
+to ref
+and then we call lrefs
+with active article just like that
+now this scroll to ref is undefined so
+we're going to create that right here
+const scroll to ref
+and then in there we're going to call
+the ref we're going to get the ref
+through a param right there
+and then what we're going to do is going
+to be window
+dot scroll and then 0 on the x
+axis and then ref that current
+that offset top minus 50.
+this is going to make sure to get
+exactly to the top of the card
+and then also bring it a bit above so
+we're not exactly on top of it
+and then that's it the last thing to do
+is we have to provide a ref to each card
+that's going to be ref is equal to l
+refs and then i that's it
+with this we've successfully set up our
+and that should be it let's see if we
+have an error here or if that's just
+loading slowly i know it's a bit hard
+but uh it is what it is when you're
+using multiple references
+and we have to manage them dynamically
+and also scroll to them each time it's
+getting harder but
+i hope you can follow or if you have
+some errors the code is going to be
+below so again you can just copy and
+paste this part
+if it's maybe too hard for you okay
+let's save it and go back for example
+let's do
+buzzfeed give me the news from buzzfeed
+here are the latest buzzfeed would you
+yes and only
+looks like i have a small typo i type
+current instead of current there
+so if you fix that we should be good to
+go
+give me the news from buzzfeed
+here are the recent buzzfeed would you
+as you saw he just crawled there trump
+says he plans to
+i'm not gonna touch my mouse let's see
+if he's gonna scroll to the next row
+scissors which romantic movie trope
+describes your love life
+sixteen times team drama there we go as
+you just saw
+he scrolled the article number five
+which was in the second row
+that's amazing we just made our scroll
+now we have to implement the logic for
+opening the articles
+that's gonna look like this in here
+an intent so let me try if i can scroll
+here and then
+you can see it at the bottom of the page
+there we are going to say something like
+open the article number and then we need
+to have that syntax for a specific
+um variable that we want to enter that
+looks like this
+you can see it here we use it for the
+term so that's the dollar sign
+and then the name of the variable we
+want to call it
+scroll below and we are going to put
+that open the article number
+and then in here we do get that number
+that is great
+the second parameter to the intent is
+the callback function where we have the
+access to that p variable
+and then in there we can say something
+like if
+p dot number
+that value if it exists
+then we can do something and that
+something is going to be
+issuing a command command is going to be
+equal
+to open and we can also pass
+the number we just got from the uh user
+input so that's going to be number
+is going to be equal to p dot number
+that value
+and also let's send the articles to be
+equal to saved articles
+just so we keep all of them so we know
+what are we opening
+great now we have that we have to head
+back to our application
+and see how it works like for all the
+previous commands we created here
+we need to handle that command so we are
+going to create another elsif
+where the command is going to be equal
+to open
+as we specified in the alan studio you
+can see that we are kind of starting to
+repeat ourselves we have the command
+equal to command equal to command equal
+to this would be a great use case
+to make this into a switch statement it
+would be just a bit easier
+but now let's implement the logic for
+our open command
+well once we open something we want to
+window dot open this is going to open a
+new website
+and we want to do something like article
+dot open or you want to get that url of
+the article
+and then we want to open it on the blank
+page on a new page
+but how do we get the article we don't
+have article we only have articles
+well we do have access to that newly
+created number property
+so we can do articles and then number
+get the specific article using that
+number which we are going to say
+by doing that let's try also doing a
+console log number
+and then see if this is gonna work go
+back to allen studio
+or rather our application and then in
+let's try issuing a certain command
+give me the news from ign for example
+give me the news from ign
+the latest ign would you like me to read
+no sure sounds good to me
+as you can see that worked it opened the
+let's try with something else open
+article number four
+okay you can see it didn't open that one
+it understood it as
+four instead of four let's try with a
+few more
+i noticed that sometimes i do have
+problems with these numbers
+so let's try give me the latest business
+here latest articles on business
+okay three seems to be working open
+article number two
+okay you can see it understood two as a
+string of two
+instead of a number of two and that way
+it couldn't get the articles two of url
+it needs to be a number
+so let's go back to our application and
+let's fix that problem
+i found that a dependency called words
+two numbers so that's going to be import
+words to numbers
+from words to numbers to work best we
+install that at the start if you
+remember
+we're going to use that dependency to
+parse our numbers
+so you saw that sometimes it gets the
+numbers right right so we're going to
+create
+a variable const parsed number
+and only if the number dot length
+is larger than 2 then we want to parse
+so in here we're going to call that
+uh words to numbers like this
+but if the number that length is lower
+than 2 we're just going to show the
+number that we got
+why why is it like that well sometimes
+we got three
+right it understood three as three
+and then the length of the three is
+lower than two so we just returned the
+number that's good
+but once we get something like um four
+or let's say 20 or 30.
+these are definitely larger than two and
+these are strings so we need to parse
+those
+so that's what we call words to numbers
+and we pass
+in a number and the second thing that we
+can pass
+are options for example he understood me
+as 4
+he is still going to try to find the
+closest thing that matches 4
+which would be 4 and then we would get
+the number 4.
+it's really handy to use it words to
+numbers great
+that we import that words to numbers
+just like that and that has to be
+a question mark because we'll be using a
+ternary operator
+great so now we have a parse number
+based on the parse number we can get
+const article is equal to articles
+and then we have to do parsed number
+minus
+one just like that and now as you can
+we can use that right there but we're
+going to do some more checks
+if parsed number is larger than 20
+then we can say allen btn
+and this is new alan btn we call it as a
+and then we say play text in here we can
+issue voice commands
+from the client side of the application
+we're gonna do please
+try that again because something went
+wrong
+we only have 20 articles so we cannot
+get more than 20.
+and the else if if the article exists
+then we can call article or then we can
+call this thing basically
+window.open article
+and it's gonna be article instead of
+articles.number because we store that in
+a variable
+and we can also do a allen btn
+dot play text
+like opening
+great now let's try that out
+what's up with playstation are the
+latest five
+on playstation 5 would you like me to
+sounds good to me open article number
+four
+opening as you saw this is amazing
+allen just opened a new page a c net
+article from their website and we can
+read the news here
+in greater detail we can see where we
+can buy the playstation 5
+and so on this works great and if you go
+back to the react app
+you cannot see it here but he understood
+me as 4 as in
+for and not 4 but he still got it right
+because we use that fuzzy search that's
+implementing a back button should be
+pretty straightforward
+basically the only thing that we have to
+do is
+create an intent in here
+intent and we can say go back
+that's great once we say go back in here
+we can provide
+a p element as always and then we can
+issue
+a command so the command is going to be
+p dot play
+that's rather what we're going to say so
+we can say
+for example sure going back
+and then we can issue a command and the
+command is going to be
+p dot play we put options
+command and we can say new headlines
+now you might be confused why are we
+calling the new headlines command
+if we are actually going back well
+that's because with new headlines we are
+also going to provide
+an articles of empty array with this
+we're going to reset the articles
+and it's immediately going to go back
+let's see if this is going to work
+now we can go back in here you can see
+when we call the new headlines and
+specify an empty array
+then we should be seeing in the news
+right here we should be seeing this and
+these
+this seems like a home page so basically
+it's going to initialize
+going back let's see
+go back sure
+going back and as you saw
+that's it it was easier than you maybe
+thought
+the last thing that we are going to do
+is just going to be some things to make
+sure the app
+runs smoothly for example right now if
+we
+go here and if we try saying open
+number five for example let's try doing
+that only open number five
+because for some users that may feel
+natural open number five maybe not open
+the article number five
+so let's go to the search
+freeze articles on technology
+and now we can try open article number
+let's do three
+open article three
+it beyond my abilities right now as you
+alan cannot do it right now because we
+are not initializing the full command so
+the intent is not being
+filled what we need to do to make sure
+that alan understands
+even if we skip some words is to do the
+following
+we can say open and then if we put this
+in parentheses
+the the we can specify the or sign
+so we can say or and then do nothing
+afterwards
+this allows alan to understand this
+intent with open
+the article number something or open
+and skip the open article number
+and then we can do the same thing for
+each one of these so we're going to wrap
+and also provide the or and we are even
+the number now user
+can say open the article number
+or user can say open 5 that's it
+that makes sense right can we do this
+somewhere else
+well user can say go back or just back
+should be fine
+so we just did some error handling let's
+say so that more users get to use this
+app the right way
+let's try issuing some of these queries
+right there without being so explicit
+give me the news from cnn here are the
+cnn would you like me to read the
+headlines no
+sure sounds good to me open article 3
+that worked open number three
+opening that works well and
+going back that works
+as well amazing we just made this app
+so much better with this
+we are closely coming to an end of this
+i just wanted to show you a great thing
+you can do in allen studio
+you can click this plus icon to create a
+new script
+and you can do many more commands or
+intents you'd like
+but there are some pre-built scripts
+right there you can already
+just import a script that is already
+done and immediately provide
+voice capabilities to your application
+for example there are examples
+the prices about bitcoin uh calculator
+calendar coffee directions
+food ordering app news request
+api small talk so much more
+the one that i wanted to show you is the
+small talk
+it gives responses to casual
+conversation so if we click this
+with one click we can add one predefined
+script
+and now we're going to have the app with
+all of the things that we have and also
+a newly created script for small talk
+it already has answers to the predefined
+questions like how are you
+the things that people like asking ai
+bots
+so it's he's not gonna seem stupid he's
+gonna know how to answer
+all the predefined questions right there
+let's try asking alan some of the
+questions
+that we didn't set up in our original
+how are you i'm doing well
+how old are you i'm only a few months
+old
+but i have timeless wisdom are you a
+chatbot
+i'm not a chatbot i'm alan you're funny
+glad you think so okay see
+with with small talk integrated we can
+basically ask him or make some small
+talk with him
+okay great so now we have a fully
+functional
+chatbot that has news api capabilities
+we can get all the news from different
+sources terms categories
+this is an amazing app i've built to
+showcase all the possibilities that alan
+can do
+but alan can do so much more so if you
+like this video
+and if you'd like me maybe to create a
+series on all of the different
+voice functionalities that alan does
+maybe a full-fledged allen tutorial
+or even some more complex or maybe
+simpler apps with alan
+just feel free to let me know in the
+comments i'm going to respond to all of
+them
+and we are going to choose a topic for
+our next video
+thank you so much for watching and see
+you in the next one
+you

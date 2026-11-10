@@ -1,0 +1,492 @@
+In a previous video,
+we saw how the Transformer architecture
+took over language modeling.
+This time we'll see how it expanded into
+vision, where it became the backbone for
+tasks like image classification, image
+generation, and even video generation.
+At first, it wasn't obvious at all
+how to move from language to vision.
+Researchers had to answer
+two main questions.
+One, tokenization.
+How do you take something continuous like
+an image   and turn it into a discrete
+sequence of tokens that resembles text?
+And second, conditioning.
+How do you get an image or a video
+generation model to listen to a
+text prompt, which is inherently
+such a different form of expression?
+We'll look at three architectural
+adaptations to the original Transformer,
+which answer these questions.
+The Vision transformer or ViT, the
+Diffusion Transformer or DiT and the
+Multimodal Diffusion Transformer or MMDiT.
+My goal is to build them incrementally  so
+that they feel less like a bag of tricks
+and more like  inevitable design choices.
+But first we'll start with a quick
+recap of the Transformer architecture.
+The Transformer was initially designed
+for machine translation, converting
+text from one language to another.
+Its origin story explains why
+the Transformer has two main
+components, an encoder and a decoder.
+The encoder was meant to process the
+source text with bi-directional attention.
+For each input token, it outputs a
+contextual embedding, a real valued
+vector that captures the token's meaning
+in the context of the entire sequence.
+The decoder uses this processed
+representation to generate the translation
+one token at a time, auto-regressively.
+Its attention is causal.
+Each output token can only depend
+on the ones that came before
+and cannot peak into the future.
+While left to right processing is
+intuitive for language since it mirrors
+how we read and process text, the same
+framing doesn't translate well to vision.
+As humans, we process images
+holistically where every part
+can inform every other part.
+So bi-directional attention
+is a more natural choice.
+That's why most modern Vision Transformers
+only borrow the encoder component.
+Let's start with the simplest
+vision task: image classification.
+Given an image like this, the
+model needs to pick a label from a
+predetermined list that best describes it.
+Image classification was dominated
+by Convolutional Neural Networks,
+or CNNs, for the longest time
+before Transformers took over.
+In a previous video, we discussed
+how self-attention, the building
+block of Transformers, is a much more
+general operation than convolution,
+the building block of CNNs.
+While convolution restricts a pixel's
+receptive field to a small neighborhood
+around it, self-attention allows
+it to look at the entire image.
+This generally enables scale
+and translates to model quality.
+But when applied naively to pixel level,
+self-attention becomes intractable.
+When every pixel attends to all
+the other pixels in the image, the
+computational complexity is quadratic.
+A small image of size 256 by 256
+leads to billions of computations.
+And it gets much worse for
+high resolution images.
+So using Transformers in vision is
+predicated on reducing the number of
+elements that attend to each other.
+The Vision Transformer or ViT proposes
+a simple yet effective solution.
+Instead of operating on raw
+pixels, it splits the image into
+patches of 16 by 16 pixels each.
+This gives us a grid with 16 by 16
+patches, all attending to each other.
+As the ViT authors put it, an
+image is worth 16 by 16 words.
+Operating on patches instead of pixels
+brings self-attention down from a few
+billion computations to about 65,000.
+Much more tractable.
+Now that we split the image into 256
+patches, which act like tokens, we're one
+step closer to the discrete sequence input
+that the Transformer encoder expects.
+We just need some extra processing to
+flatten the 3D patches into 1D embeddings.
+Then a final linear layer with
+learned parameters changes the
+embedding size to match the hidden
+dimension of the Transformer encoder.
+In this case, 1024.
+And finally, since the Transformer
+is position agnostic, we'll
+have to add position embeddings.
+For simplicity in my diagrams, I'll
+hide the input processing pipeline
+behind the generic image embeddings box.
+With this input processing in
+place, the Vision Transformer
+can simply reuse the Transformer
+encoder block to process the image.
+The ViT stacks multiple such blocks
+before producing a probability
+distribution over classes.
+To support image classification,
+the ViT borrows an idea from BERT,
+the well-known text classifier.
+It appends a special classification
+token named CLS to the input sequence.
+Because of the bidirectional attention
+in the encoder, the CLS gets to see
+all the image patches and becomes
+a sort of summary of the image.
+A final learned classification
+head converts the contextual
+output embedding of the CLS token
+into a probability distribution.
+And that is how the Vision Transformer
+performs image classification.
+The next natural milestone
+is image generation.
+The backbone of the initial
+image diffusion models
+was the U-Net, primarily
+built from convolutions.
+But as the Transformer gained popularity,
+the U-Net was replaced by the
+Diffusion Transformer or DiT.
+If you're not familiar with
+the diffusion paradigm,
+I suggest that you watch
+this previous video.
+Here, I will very briefly
+go through the fundamentals
+.
+You're probably familiar with this
+sequence of progressively noisier images.
+It starts with a clean image from the
+training corpus, which is gradually
+corrupted with Gaussian noise.
+Each time step is associated with a
+noise level from 0 for the clean image,
+all the way to 1 for maximum corruption.
+This is forward diffusion, a way of
+producing chains of training data.
+The model learns to walk this
+chain in reverse from pure
+noise to a meaningful image.
+In practice, running diffusion
+in raw pixel space is expensive.
+That's why modern diffusion models
+operate in a more compact, latent space.
+With the help of an off the shelf external
+model called the VAE or Variational Auto
+Encoder, the raw image is compressed
+into a smaller three dimensional tensor.
+Here, the spatial dimensions were
+reduced to 32 to save space, while
+the number of channels was increased
+from 3 to 4 to make room for
+richer features beyond just colors.
+So now we can encode the
+image with just 4,000 values.
+In this setup, diffusion happens
+entirely in latent space.
+Both the forward and reverse paths.
+After reverse diffusion is complete,
+the final de-noised latent is
+mapped back to pixel space using
+the decoder component from the same
+external off-the-shelf VAE model.
+During reverse diffusion, the trained
+model is invoked repeatedly once per step
+to partially clean an intermediate latent.
+One meaningful consequence is that the
+model doesn't have a holistic view of
+the entire chain and operates locally.
+That's why the time step itself
+needs to be an explicit input.
+Otherwise, the model wouldn't know how
+far in the de-noising process it is.
+And of course, the final missing
+piece is a description of the
+desired content to generate.
+The original Diffusion
+Transformer was class-conditional.
+It was trained on a fixed set
+of things like dogs and cats.
+So the user was only able to prompt
+it with one of these classes.
+We'll talk about fully fledged
+text prompting a bit later.
+So compared to the ViT, the
+Diffusion Transformer has a
+slightly different interface.
+To start with, the image input
+is no longer a raw image, but
+rather a compressed latent.
+The DiT borrows the patching
+idea we saw earlier in the ViT.
+The 3D latent is split
+into multiple 3D patches.
+In this case, there's 64 of them.
+These are then flattened into 1D patches.
+And now we're very close to
+what the Transformer expects.
+We just need an additional learned
+linear layer to match the Transformer's
+hidden dimension size 1024.
+Again, I'll hide this complexity
+behind a generic image embedding box.
+The ultimate output is a slightly
+less noisy latent, though some
+models might not predict it directly.
+Instead, they might predict an auxiliary
+quantity from which the latent is derived.
+For instance, the original DiT predicted
+how much noise there is in the input
+latent compared to the clean one.
+But the specific semantics of the
+output are not extremely relevant here.
+What matters is that the output
+has the same shape as the input.
+To achieve this, each output embedding
+is passed through a regression head, so
+each input patch eventually translates
+to an output patch with real values.
+And a final deterministic unpatch
+operation stitches them all together.
+To encode the time value, the DiT
+uses a fixed sinusoidal embedding,
+just like older diffusion models.
+And to encode the class, it uses a
+learned embedding, similar to token
+embeddings from an LLM vocabulary.
+Now that we sorted out the interface,
+the remaining question is: how does the
+model condition the image generation
+process on the time and class inputs?
+Well, the Diffusion Transformer
+paper looked at four different ways.
+They're shown in Figure 3 here,
+but we'll build them progressively.
+Today models use one of these options
+or a combination of them so it's
+worth understanding all of them.
+Option one treats time and class as
+extra tokens and simply concatenates
+them to the input patches.
+We'll call them conditioning
+tokens from now on.
+This technically works.
+Self-attention allows the conditioning
+tokens to influence all image tokens.
+But time and class are now competing with
+image tokens for attention bandwidth,
+and might end up being ignored.
+This calls for a conditioning mechanism
+that gives time and class special
+treatment compared to the other tokens.
+Option two adds a new
+cross attention block.
+Notice that this is not self-attention.
+It's cross attention between image
+tokens, which are the queries and
+conditioning tokens, which are the keys.
+In other words, each image patch
+attends to time and class, so the
+attention bandwidth is distributed
+only between the two labels.
+This setup removes the risk that
+conditioning tokens are ignored.
+But it's quite expensive computationally.
+The most expensive out
+of all four options.
+The additional attention
+adds 15% more giga flops.
+Option three is more cost effective
+and also a lot more interesting.
+It takes inspiration from an
+older paper called FiLM that
+was published back in 2017.
+At the time, they were working on
+visual reasoning, automatically
+answering questions about an image.
+Back then, Convolutional Neural
+Networks were the dominating
+paradigm for image processing.
+CNNs internally operate on feature maps,
+sometimes called channels, which are
+transformations of an image focused on
+a particular aspect, be it high level
+contours, fine-grained edges, or shapes.
+When answering questions, some feature
+maps are more relevant than others.
+For instance, when interested in this
+specific dog breed, it's helpful to look
+at the fine-grained details in the fur.
+When figuring out the rough position
+of the dog in the scene, the high level
+contours are a less distracting signal.
+FiLM is a strategy to automatically
+amplify or suppress feature maps
+through a linear transformation.
+The scale gamma and shift beta are
+derived from the question embedding.
+Each feature map gets its own set of
+parameters, which are uniformly applied
+to every feature in the channel.
+Generally, this strategy is
+called feature modulation.
+The Diffusion Transformer borrows
+this idea in a creative way.
+Say each patch translates to a flat
+embedding of size 1024, equal to
+the Transformer's hidden dimension.
+In the DiT, the equivalent of a
+feature map is a slice of features
+that spans across all patches.
+So the first embedding dimension
+corresponds to feature map one.
+The second embedding dimension
+corresponds to feature map two and so on.
+Basically we'll end up with 1,024
+feature maps, each requiring its
+own scale and shift parameters.
+For image generation, the conditioning
+signal is no longer a question, but
+rather the class and time inputs.
+And it's particularly intuitive
+why we would want to modulate
+features based on time.
+Early on at t equals one, when the
+noise is so high, the model needs
+to focus on high level structure.
+And as it gets closer to t equal
+zero, it could focus on finer details.
+The implementation is
+quite straightforward.
+The time and class embeddings
+are mixed together.
+One option is addition, followed by a
+multi-layer perceptron that produces the
+modulation parameters, gamma and beta.
+The DiT authors are injecting
+modulation in two separate places
+before the multi-head attention
+and the feedforward block.
+Note that 1 and 2 are
+now indices of the group.
+In both of these groups, gamma and
+beta are vectors of 1024 values.
+This option is also called
+adaptive layer norm or adaLN.
+That's because of its similarity
+to layer normalization, which also
+applies a scale gamma and a shift beta.
+The difference is these parameters
+are dynamically determined
+by the conditioning signal.
+And we've almost reconstructed
+the full Diffusion Transformer.
+Option four brings the
+final missing piece.
+It's something that is known to
+stabilize training, not just for the
+DiT, but also for older architectures
+like the ResNet or the diffusion U-Net.
+It has to do with the residual block, the
+one that combines the current activations
+with the ones from the previous layer.
+It was empirically observed that at the
+beginning of training, when the model
+weights are random, it's helpful to ignore
+upper layers and focus on the lower ones.
+Effectively reducing the depth
+of the network in early stages.
+It's quite intuitive that this
+simplifies the learning problem.
+To achieve such an effect, it's
+common to add a simple scaling layer
+right before the residual block.
+This  simply multiplies the current
+activation by a parameter alpha.
+If we initialize the parameters in such
+a way that alpha is zero at the beginning
+of training, it'll basically silence
+the current activation and implicitly
+reduce the depth of the network.
+The DiT defines alpha as a
+learned function that takes
+in the conditioning signal.
+So the time and class now influence
+the strength of the current activation.
+Conditioning on time is
+particularly helpful.
+Time is correlated with the amount
+of noise in the image, and therefore
+with the difficulty of the task.
+It allows us to softly control
+the depth of the network based
+on how noisy the input image is.
+And that is a Diffusion Transformer.
+Its biggest limitation is that it's
+class conditional instead of allowing
+prompting through freeform text.
+Now there is subsequent work that
+extended the DiT to text prompts.
+In particular, the Pixart-alpha
+model built on top of option two,
+the one with cross attention.
+They simply replace the single
+class embedding with a sequence
+of token embeddings produced by an
+off-the-shelf language model named T5.
+While this technically
+works, it's a bit suboptimal.
+The text tokens are static.
+They're not influenced by the image.
+But in certain cases, like image
+editing tasks, this is very restrictive.
+A prompt like move the bat to the right
+means different things when referring
+to this image versus this image.
+The Multimodal Diffusion Transformer or
+MMDiT proposes a more principled approach.
+It treats images and text
+inputs symmetrically.
+They both get their own
+separate encoder parameters.
+The two modalities communicate
+through a joint attention mechanism.
+Basically the image patches and
+text tokens are concatenated
+into one big, flat sequence.
+The sequence attends to itself.
+Image patches get to see all
+the other image patches, as
+well as the prompt tokens.
+And vice versa for the
+prompt, in a symmetric way.
+This dual conditioning makes sure
+that neither modality is processed in
+isolation, which removes ambiguity.
+Note that the joint attention module
+doesn't come with its own parameters.
+The queries, keys and values
+are computed separately by the
+two modality specific encoders.
+The joint attention box simply computes
+and applies the attention scores.
+Finally, the joint attention
+output is bifurcated again.
+Image tokens float to the
+left, text tokens to the right.
+They're each passed through their own
+linear output projections and continue to
+travel through the rest of their encoder.
+Even though the DiT and MMDiT were
+introduced in the context of image
+generation, they later became
+the basic building blocks for
+video generation models as well.
+But at this point, I'm tired,
+you are tired, and that's
+a story for another time.

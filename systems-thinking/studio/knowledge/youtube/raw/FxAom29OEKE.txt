@@ -1,0 +1,270 @@
+Design a social media platform that can
+handle millions of user requests. Where
+do you even start from here? Today we'll
+walk through core fundamentals that you
+need to get started. We can start with a
+simple web server and one database to
+store your user data. However, this will
+not scale as your user base grows. So
+distributed system are the go-to
+solution. These are network of
+independent computers working as one
+coherent system. When we talk about
+distributed system, we need to
+understand the key characteristics.
+Scalability. This is the system's
+ability to handle growing demands. There
+are two ways to scale. Horizontal
+scaling by adding more servers and
+vertical scaling by upgrading existing
+hardwares. Reliability. A reliable
+system continues to function correctly
+even when components fail. Availability
+is the percentage of time a system
+remains operational. This is often
+expressed in nines. For example, 99.9%
+availability means the system is down
+for no more than 8.76 hours per year,
+while 99.99% would only be down for 52.6
+minutes per year. Efficiency measured by
+two main factors. Latency, which is the
+delay in getting the first response, and
+throughput, which is the number of
+operations handled in a given time.
+These characteristics often involve
+trade-offs. Your goal is to balance
+these factors based on the given
+requirements. Although ideal distributed
+system face inherent limitations, the
+CAP theorem states that a distributed
+system can only guarantee two out of the
+three properties. Consistency. All notes
+display identical data, guaranteeing
+that reads always reflect the most
+recent, right? Availability. Every
+request receives a respond without
+guaranteeing that the data is the most
+recent. Partition tolerant. The system
+continues to function despite network
+failures between node. This trade-off is
+crucial in designing distributed system
+influencing how systems handle data
+updates and response to failures. Now
+our architecture uses multiple web
+servers which is amazing because we can
+handle more load by adding more servers.
+But what happens if one server ends up
+receiving more requests than others to
+manage distributed system load
+efficiently? We need a load balancer
+which distributes incoming requests
+across multiple servers to ensure that
+no single servers becomes overwhelmed.
+If one server goes down, the load
+balancer will only redirect traffic to
+healthy servers. A load balancer can be
+placed at various levels between the
+users and web servers, between web
+servers and application servers, and
+between the application servers and
+databases. There are several algorithms
+load balancers use to distribute traffic
+such as least connection method sends
+requests to server with the fewest
+active connections. Roundroin cycle
+through a list of servers sequentially.
+IP hash uses the client's IP address to
+determine which server receives the
+request. Which one to use really depends
+on the specific needs. It's also worth
+noting that load balancer itself could
+become a single point of failure. To
+prevent this, we can add another load
+balancer for standby. If the primary one
+fails, the second one takes over
+immediately. Things are going great so
+far, but we start to notice that these
+servers often request the same data to
+our database. That's where caching comes
+into play. Caching takes advantage of
+the principle that recently requested
+data is likely to be requested again.
+Retrieving data from cache is typically
+way faster than from the original
+database. Aside from application cache,
+there is also content delivery network
+or CDN which is ideal for serving static
+media. CDN's cache content closer to the
+user to reduce latency. However, caching
+does come with its own sets of
+challenges which is maintaining data
+consistency and making sure that the
+data is in sync with the source of
+truth. We don't want to serve the data
+from cache if it's not up to date. This
+leads us to cache and validation
+strategies. Write through data is
+written to both cache and storage at the
+same time ensuring consistency but
+increasing right latency. Write around
+data bypasses the cache and goes
+directly to the storage preventing cache
+flooding but potentially increasing read
+latency for new data. Right back data is
+written to cache first and later to
+storage offering low latency but risking
+data loss in case of system failures.
+When a cache reaches capacity, we need
+eviction policy to make room for new
+data. Some common ones are least
+recently used removes the least recently
+accessed data.
+First in first out removes the oldest
+item first
+and least frequently used removes the
+least often accessed items. As our
+platform grows, we need to think about
+storage strategy. Should we stick with a
+traditional SQL database or go with
+NoSQL. SQL stores data in tables with
+predefined schemas. Each row contains
+all the information about a piece of
+record. If you want to add a new column,
+the changes will need to be applied to
+all the records in the table. Popular
+SQL database include MySQL, Oracle, and
+Postgress. NoSQL on the other hand is a
+non- relational databases that have a
+more flexible data structure. They come
+in four main types. Key value stores
+like Reddus, document databases like
+MongoDB, wide column like Cassandra,
+graph databases like Neo4j. When
+comparing SQL versus NoSQL, we often
+look at the structure. SQL has a rigid
+schema while NoSQL has a more flexible
+schema. Querying SQL databases use
+standard structured query language while
+NoSQL databases queries are more focused
+on collection of documents. In terms of
+scalability, SQL typically scales
+vertically although can be done
+horizontally through sharding while
+NoSQL scales horizontally. Reliability.
+SQL is AXIT compliant while NoSQL often
+sacrifices this for performance and
+scalability. Axid refers to a set of
+principle where atomicity ensures that
+transaction is fully completed or not at
+all. Consistency guarantees that a
+transaction takes a database from one
+valid state to another enforcing all
+defined rules. Isolation keeps
+transactions separate so their
+operations don't interfere with each
+other. Durability ensures that once a
+transaction is committed, it remains
+permanent even in case of failure. So
+which one to use? We want to use SQL
+when we need access compliance. Think
+financial applications and when our data
+structure doesn't change often. No SQL
+would be a good option if we're dealing
+with large volumes of unstructured data
+or if we're in need of rapid development
+that requires a lot of flexibility.
+After choosing our database, we notice
+that queries are really slow and we need
+to fix this ASAP. We notice that data
+that we're querying doesn't have an
+index. So, we're constantly having to
+search through the entire user's table
+every single time. Indexes work by
+creating a separate data structure that
+points to the location of the actual
+data, speeding up search operations. The
+most common types of indexes are primary
+key, the unique identifier for each
+record in the table. Secondary index,
+the additional index on a non- primary
+key columns for faster search query such
+as searching for user's first name.
+Composite index created on multiple
+columns. Useful for queries involving
+those columns together such as first
+name and last name. Not an index but
+worth mentioning. Foreign key which is a
+constraint that enforces a relationship
+between columns in different tables.
+While indexes dramatically improve read
+performance, they can also slow down
+write operations. This is because every
+time you insert, update, or delete data,
+the index must also be updated. That's
+why it's very important that we are
+decisive and intentional when creating
+indexes. Because we designed such an
+amazing platform, so many users decide
+to sign up for this app and that we're
+now facing challenges with the sheer
+volume of data. Our database is
+literally going to explode. So, you try
+to beef up your database by adding more
+hardware, but the growth continues and
+it's just not enough. When our database
+can no longer scale vertically, we can
+look into data partitioning, which is a
+technique for breaking large databases
+into smaller, more manageable parts.
+This improves performance, availability,
+and load balancing as your application
+scale. There are three main partitioning
+methods. Horizontal partitioning, which
+divides rows of a table across multiple
+databases. Vertical partitioning
+separates entire features or columns
+into different databases. and directory
+based partitioning uses a lookup service
+to abstract the partitioning scheme.
+Partitioning can be done on various
+criteria. Key or hashbased applies a
+hash function to a key attribute to
+determine which partition the data
+belongs to. A notable approach here is
+consistent hashing which is a technique
+that minimizes data redistribution when
+scaling the number of servers. At a very
+high level, it works by distributing
+data across some number of servers
+around a hash ring. Each data is hashed
+to determine which server it belongs to.
+Each server is also only responsible for
+a portion of the hash range. When adding
+or removing servers, only a small
+fraction of data needs to be remapped.
+This makes it very easy to scale
+dynamically and reduces the impact of
+server changes. List partitioning.
+Assign each partition a list of value,
+storing each data based on which list
+its key belongs to. Round robin.
+Distribute data evenly across partition
+in a circular order. Composite
+partitioning combines two or more
+partitioning methods. While partitioning
+solves scaling issues, it also
+introduces its own challenges like
+difficulty in joining across multiple
+partitions leading to potentially tricky
+data rebalancing.
+We've taken our social media platform
+from a simple single server setup to a
+robust scalable architecture. I couldn't
+cover everything in this introductory
+overview to system design and there's
+just so much more to cover. If you're
+interested, let me know if you want to
+see more of this. But I hope that you
+were able to learn something new today.
+As always, thank you so much for
+watching and see you in the next one.

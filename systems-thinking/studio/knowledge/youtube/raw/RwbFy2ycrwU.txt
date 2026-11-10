@@ -1,0 +1,734 @@
+But, yeah, I'm a shook um [music] and um
+I'm a staff engineer at Apple, like you
+introduced. Uh before this, I used to
+work for
+Oracle AI and um was mostly involved in
+uh building the superclusters
+and um
+bugging in like new GPUs and our most
+recent GPUs I worked on was like
+Blackwells, um if you guys have heard
+about it. Um but uh with Apple, I've
+been continuously working on responsible
+AI governance. But, most of this uh um
+architecture which I'm going to talk
+about is how to build safe agent
+systems.
+Like you actually I've been hearing
+about building AI agents throughout,
+likely you're going to be hearing how to
+build agent systems, um you know, from
+multiple different enterprise solutions.
+But, this is going to be concentrating
+on open source agent
+um I work closely with the Linux
+Foundation team um and we've been
+deciding uh you know, designing of like
+different systems on like what is the
+what's lacking in in open source to
+bring up you know, safe agent systems.
+So, this architecture is a reference
+architecture for that. So, this is what
+this is why it's called like beyond
+orchestration, like enterprise solutions
+typically concentrating on orchestrating
+agent systems. But, what do you want to
+achieve is build an agent system which
+is safe and reliable and trustworthy.
+So, how do you build it? That's exactly
+what this is about. Next slide.
+Next.
+Thank you. Um so, the what I what I mean
+by safe in this case is um the the demo
+to production gap, as you can see, these
+are like a couple of things which um
+you're usually like worried about.
+Obviously, the safety concern, you know,
+like unsafe actions. I used to work for
+like Oracle Health before and again most
+of my ideologies are like publicly
+available statement. You can you can
+search for it, but this is mostly open
+source framework and architecture
+disclaimer, right? So, the
+the unsafe actions is like someone's
+trying to perform
+let's say hey
+is this the right action for me to do
+when in the AI says yes, go ahead like
+without even thinking much about it then
+you have to think about your own
+preferences, your own personal you know,
+needs and then your your project scope.
+There's too many different variables
+which unsafe actions can result in like
+how do you ensure that it is a safe
+action? And then cost overruns
+obviously. Right now everything is being
+assessed by tokens, number of tokens. I
+recently probably Jensen Huang also said
+like if you're if you're not consuming
+250,000 tokens, you're not a good
+developer. Sure.
+And the black box decisions and
+obviously the silent drift. I'll tell
+you what is a silent drift about. It's
+it's a funny concept if you guys not
+about not heard about it.
+At first everything looks perfect,
+but then it slowly start drifting.
+So, I'll tell you what that means.
+Next slide.
+So, this is basically the open source
+reference architecture and things you
+would want to consider
+you know, when you're when you're
+building it.
+So,
+agent systems is all about like you
+know, just you know, connecting an agent
+creating a Python script creating
+whatever script you'd want to and then
+make two agents talk to each other or
+four agents talk to each other to create
+a multi you know, multiple orchestration
+layer or durable concept, right? But
+then
+is is that all it's about like there are
+too many different things you know, you
+you need to think about actually making
+sure that the agents doing what you want
+it to do. And and that's exactly what
+this reference architecture talks about.
+It's it's observability, policy,
+agent controller, tools layer, you know,
+what tools this agents are using, you
+know, what information are they
+retrieving? Is it controlled
+information? Is it not? Is it Is it a
+trustworthy information which it's which
+it's pulling it from? You know, there's
+too many information which, you know,
+agents as you as you design this you
+need to consider. And and these are all
+the concepts you need to think about
+when you're building a safe agent
+architecture.
+So, agent controller, um here I'm going
+to go into the actual architecture. So,
+as you as you spoke about the reference
+architecture, so this actual
+architecture is going to be going
+around, um you know, how do you create a
+actual house for the agent, like
+ensuring that it it's a durable concept.
+So, the agent controller is uh basically
+that uh house where the environment
+which the agent's being hosted, right?
+So, durable concept, so it has to be
+uh it it has to go through a certain set
+of checks, right? So, what the durable
+concept should check for? I I've given
+like temporal celery. You can use your
+own framework for durable concepts. Uh
+temporal and celery is is basically an
+open-source uh architecture. Temporal
+came out from Cadence, which is from
+Uber before. If you guys not you know,
+heard about it. Uh Cadence again is also
+I think a different company right now.
+But but but temporal and celery is
+pretty much open-source. Anyone anyone
+should be able to check it out.
+And and what you really need to do in
+the temporal are are the are celery,
+right? So, when you will build an agent
+system is that you want to ensure that
+each different agent's checkpointing is,
+you know, you want to check that if each
+each agent's step is is something you
+are aware of. Like you want to make sure
+that's conditional, right? You don't
+want to just say, "Hey, do something and
+then get something back black box." So,
+that's that's basically the
+checkpointing uh what it's what it's
+trying to do. Retry safety system, which
+is like you get some information and
+then you you get some out out output
+back, but then you want to check if that
+output is a reliable output. But if it's
+not, then you want to retry it. So,
+these are all different systems
+[clears throat]
+um with different things you want to
+check during the uh agent controller
+time, but then how do you run it? You
+want it to run as durable concept.
+That's exactly what this temporal or
+celery actually provides you. So,
+you basically can run a workflow. And it
+works through GRPC, right? So, the each
+different agents actually communicate
+with each other and then you can do an
+inference. I'll go around inferencing.
+How do you How do you actually create
+inference architecture after this? So,
+agent is basically how you start Create
+a You create agent controller and then
+you You then start start to do
+checkpointing and then you check for
+retry and safety. You ensure there's
+enough cost controls, enough budget
+controls, so there's no token overrun.
+For example, you could say that, "Hey, I
+want to have a token budget of 8,000
+tokens or or 10,000 tokens. I don't want
+to go more than that." Because if you
+keep letting it to retry and then, you
+know, it's suddenly going to give you a
+$100,000 bill, which you don't want to.
+So, these are all important things to
+think about and that's exactly what this
+durable workflow with with these
+different items that you want to make
+sure are existing when you're building
+an agent agent system. Next slide.
+And the serving layer essentially,
+right? So, once you cross the hurdle of
+creating the agent system, then you want
+to get into actual serving itself,
+right? So, I've got an example of
+KServe. You could You could use
+different serving methods. There's also
+RayServe.
+So, KServe is basically going to be
+essentially hosting your inference
+endpoints via LLM for actual
+inferencing.
+You can use a CUDA architecture which
+NVIDIA provides.
+There is also MLX architecture. So,
+different chip providers would provide
+you different architectures. There is an
+open-source architecture which is
+actually coming up. I think SG Lang is
+another variant. SG Lang is also a good
+good option here for
+most of NVIDIA's chips, I think. So, but
+some of this inference is a little bit
+tricky, but if you guys want to want to
+have some solution specifically done for
+your your type of you can reach out to
+me. I can help you with like identifying
+which one you want to pick. But, this is
+this example is essentially using VLLM
+to
+you know, to be able to go run our
+inference in the back and then and and
+get the output back. So, during this
+time, what do you want to consider? Here
+is essentially like LM optimizations,
+right? Um you don't want to again run an
+inference and then it just let it keep
+running. It's going to and then time out
+it eventually if you have a time out or
+if you don't have a time out, it's going
+to just cost consume because you're
+essentially running it on a GPU. GPUs
+are pricey, right? So, these are all
+different things you don't you want you
+want to consider. Then, auto scaling,
+right? So, the the the problem with auto
+scaling is that GPU space, for example,
+if you're using 80 GB, let's say and
+then you you're using you're using a
+model of 35 GB,
+two users can consume 70 GB. Then, you
+just have are left with 10 GB which you
+can't even use. It's actually subs uh
+swap space in the in the in the time.
+So, auto scaling is actually very
+important, but at the same time cost
+control is also another important
+important method to do, right? So, VLLM
+actually helps you in how do you want to
+scale it? How do you want to batch it?
+So, you actually can create those jobs
+in a very very you know, very controlled
+way. And all these things you would
+don't get in a lot of enterprise
+softwares. That is exactly what's hidden
+behind because you just go ahead and
+then run agents, sure. But, then what's
+really those agents are doing? They're
+doing inference. How are you going to
+control them? If you don't control them,
+you just go with enterprise software,
+you're going to get a huge bill. You
+This is how you control them.
+These are all different things you need
+you need to think about to control them.
+Next next slide, please.
+So, tools. So, we we spoke about agent
+control, we spoke about inference. Now,
+how what is an what is a brain, right?
+Like
+I'm basically having a service. Today,
+probably a lot of companies have their
+own services, right? Like that could be
+a monolithic, it could be microservice.
+So, if you have like services, you know,
+you're probably creating MCPs right now,
+that's fine.
+There might be APIs, direct API
+interface, database interface, whatever
+is whatever is your interface layer. You
+know, those are essentially tools.
+Who's accessing these tools? You know,
+like how how are you controlling the
+access layer? Who's accessing the data?
+For example, will you just let let your
+agents to access personal information,
+user information? Like that's just not
+good, right? So, you want to ensure
+every tool is tool is kind of
+contracted. So, you want to say, "Hey,
+this tool gets access only for this,
+only for this purpose. And I've written
+a contract and this tool needs to say,
+if you you cannot go beyond this
+contract." Just like how you would work
+with someone, a company, let's say, a
+third-party company, you say, "Hey, I
+would want to trust you because you're
+working with a real agent, which can
+think and do things, which can be
+intelligent in the sense." So, you don't
+want to want it to do any malicious
+activity beyond the contract you already
+established. So, that's what this is
+about. So, you want to ensure that tools
+are used as contracted services.
+Right? Next slide.
+So, this is kind of the final thing of
+how how things are made up, right? The
+bounded loop concept.
+So, the bounded loop is I I keep doing
+something I I'll explain a problem with
+all this. There's a problem of latency.
+But, this is all about like how do I
+create a safe infrastructure, right?
+But, the bounded loop concept is about
+ensuring you evaluate, you observe, you
+keep retrying until it is safe, then
+act.
+That's the bounded loop concept. And
+whatever I've told so far, spoke about,
+essentially helps you build that.
+Um
+things which could go correctly in the
+first iteration, 95% of the project
+could could look like it's going
+correctly.
+Then, the 5% actually fails, then
+eventually it starts to drift, and 95%
+of the project fails.
+The reason is that
+first 6 months people don't think about
+any of these what I've just spoke about.
+It's all about like I'm going to go
+build a agent, I'm going to connect the
+dots, I'm going to use the LLM, and then
+it's going to give me an output. That
+isn't that it's not done.
+It's never done that way, right? You
+want to think about all of these
+different in- individual details, and
+then build it from the core to be able
+to actually build a safe system. That's
+That's why it's bounded. I'm talking
+about a limited system, which is bounded
+by your restriction and your contract
+for your business needs to be able to
+build in such a way. And all of the open
+source um uh you know um softwares and
+tools are basically built by these great
+people again from lot of people
+contributed to this from Nvidia, from
+OpenAI, from Anthropic. Uh um uh Meta
+contributed a lot. Amazon contributed a
+lot. Like Apple contributed a lot. So,
+all of these companies actually
+contributed all their learnings into
+these open source systems directly into
+Apache and and Linux foundations. That's
+exactly what I picked here and shown you
+as examples.
+Next Next slide, please.
+So, the action classification framework
+um is a is essentially um
+is a it's kind of decision point for
+everyone like where
+how do I decide this essentially, right?
+So, I've been talking about, "Okay, you
+need to build this framework." Like, how
+do you decide when should I really go
+build these framework? So, I want to
+automate where I want to automate.
+Right? I want to augment with the data
+where I want to augment. And then I want
+say, "This is human only.
+I don't want the agent to decide this."
+So, you want to basically categorize
+your problem scope
+and say, "This is my problem scope, and
+this is exactly what I want to do, and
+this is human only. I don't want the
+agent to touch it."
+Next slide, please.
+the human in the approval concept, it's
+pretty much um I think a lot of people
+are are aware of it. Um
+but but I've just you know slightly I've
+I've added I've added like two different
+changes in that in my architecture,
+which is not usually available, um which
+is the last two, um the signed artifact
+generation and the policy engine
+uh validation. Uh so, I'll go into the
+policy engine next quickly. So, the
+signed artifact uh generation is
+basically every artifact you're using.
+It could be models, it could be tools,
+could be different types of data sets
+you're using. Um you know, it could be a
+simple example is let's say um you're uh
+building a software and the software's
+let's say is about ordering um ordering
+some let's say from a restaurant, then
+um the tool you're providing is let's
+say the restaurant service. Uh the tool
+you're providing is user management,
+menu match management, right? So, those
+are all different tools. Now, to
+understand that data, you're going to
+you're going to compile that and create
+a data data set or model or you're going
+to be using that for inference. So,
+these are all artifacts. So, you want to
+ensure that you sign them. What is
+signing? It's essentially I've verified
+it with all my uh evaluation, red
+teaming, whatever, and then I I've
+signed it and I know that this is my uh
+expected output from these models and I
+versioned it. So, that's signing. So, I
+would only use those models. I would not
+be using anything other than that. If
+you fine-tuned it, again, that's a
+version. For example, if you might be
+using an OpenAI model, then you can
+actually fine-tune it with your OpenAI
+APIs. Once you Once you sign them,
+that's a version signed. And policy
+engine, policy engine is basically once
+the input output comes through, you want
+to run through a policy engine and
+validate it.
+So, what policy engine we can use? Next
+slide.
+So, this is actually again open source.
+There's an OPA uh agent, uh this is an
+open policy agent, which actually uh is
+a is a great concept. Um
+um you know, I like this one is because
+uh the it it kind of uh helps you write
+policies in like uh most uh structured
+and constructive way. And also, you can
+provide a lot of complex layers in it.
+It's very simple to just go apply it
+instead of writing in plain English,
+which is ambiguous. See, English is
+ambiguous. Right? So, you don't want to
+just
+talk again the concept people are trying
+to push out. Maybe works for enterprise,
+maybe works for people who are um you
+know, in non-technical professionals who
+just want to communicate with English.
+Sure. But, when you are actually
+building trusted systems, English is
+ambiguous. So, when you go write in
+plain English language, the agents
+actually interpret them in multiple
+different ways. So, you want to
+structuralize that. And that's exactly
+what I you this helps this helps
+structuralize this um and not in a
+traditional Java or Python code because
+again uh it that is not the purpose.
+This is to
+um provide informed decisions. My
+informed decision of my variable my
+system is this and I want to do this.
+And that's exactly what this helps you
+do.
+So, the checklist, right? So, we went
+through all of this like what do you
+want to go build? Ensure that these are
+your checklist. So, ensure you will
+track consent of a user. If someone says
+or or a data or a service, if a service
+says I will share you this data,
+ensure that this the service said I
+would share this data
+um on this date. You
+you track the consent of that service.
+If if it says I'm only sharing you data
+A, I don't want to share you data B,
+then don't use data B. Only use data A
+because they didn't share it to you. So,
+that's consent tracking. Um sensitivity,
+right? That's PII, SSN. Let's say some
+user just comes up comes up and says,
+"Hey, this is my SSN. Can you go pull up
+something?" Do not record the SSN,
+right? So, that's sensitivity. Bias
+risk. Pretty much a lot of people knows
+what's bias risk, right? So, being
+biased about certain actions. You know
+what? I'm of this race, I'm of this
+color. You know, what do you think this
+would work for me? You know, you would
+want to think like before you answer.
+This is This is all going to
+you know, going to go into like a
+million dollars uh suits. That's why
+you're trying to avoid it. Auditability,
+essentially what the system did. You
+want to ensure you you audit it. You you
+trace it. Next next slide, please.
+So, data access and PII reduction. So,
+these are all uh different ways and like
+this is basically a connected dots of
+like how do you want to um access the
+data. So, the sense This is actually
+answering the sensitivity track. And how
+you apply that is basically the the
+policy as code which I mentioned before,
+the OPA agent. You could you could use
+this framework. This is So, I spoke
+about like OPA as a agent where you can
+write the policy and then you can apply
+it on the agent responses. So, uh in
+what framework you want to apply, uh
+this is one example framework which I I
+want to contribute it to the to the open
+source community. And this is something
+uh some companies are using already. So,
+I've just shared this here. Yeah, next
+Uh tracing decisions. Uh so,
+once you have that framework of how uh
+OPA agent is able to track all that safe
+information, you want to then trace each
+decisions. And trace uh trace tracing
+each decisions is this agent um
+you know, ran this PII reduction. That I
+I would I would want to redact the SSN
+from it. You know, I would want to
+redact the the the the user the user's
+information before I share it with share
+it with the another agent. Let's say so
+So, there are a lot of uh reduction
+activities happened. What if it redacts
+the you know, real contextual
+information which could you know,
+prohibit you from actually doing the
+agent's work. So, you would want to
+ensure that you're tracking each
+decisions. So, these are different steps
+in in reda- in ensuring that you're
+you're checking that out. Uh so, the
+example is let's say the agent run
+system classifying the intent of the
+agent. And you want to ensure that
+you're checking for uh let's say you A
+did it redact the user details. So,
+there are certain things you can
+actually check for as per your system.
+Next one.
+So, these are different metrics to
+capture um and um
+as part of the uh reduction and tracing,
+these metrics basically helps you in in
+tracing those um back to the information
+of auditability. So, this is explaining
+like what the what metrics to capture.
+Yep. Um, so, latency. This is what I was
+uh initially pointing out. As you build
+this, it's going to blow up your system.
+It's It's most people's thought process
+like, "Okay, if I go build a
+safe agent, it's going to blow up my
+system because I'm going to add all of
+these different components." Building
+agent is just 5%. Building these systems
+is like 95% of the uh of the problem.
+So, um for for me, um you know, without
+these systems, if I go uh I would never
+be comfortable providing a production uh
+level solution. So,
+how do I ensure that it is uh it is, you
+know, it's efficient? It's essentially
+through uh caching, serving layer
+optimization, and ensuring you're doing
+the right model training for right
+needs. Use smaller LLMs uh where you
+need. Use the right uh inference
+endpoints where you need. So, this is
+essentially like talks about um how do
+you add latency uh you know, don't add
+latency to the system. Instead,
+efficiently handle uh your system. Next
+one.
+Um, CI/CD is how you capture it. I'll be
+a little bit quick. Next one.
+Yeah, and this is how you uh deploy it.
+Um,
+and shadow mode is actually an important
+concept because you don't want to let
+any agents run in shadow. At the same
+time, ensure you capture any shadow
+agents. Next one.
+Yep. This is all your uh closed a closed
+loop feedback. For example, capture the
+signals, have canaries back in the
+agents, have uh have like a triaging so
+that it doesn't silently drift apart.
+Every week, you want to triage it. Every
+week, you want to confirm that the agent
+is not uh drifting up. Next one.
+This is the complete stack, pretty much.
+Yeah.
+Which I just spoke about. So, right
+away, you can go ahead and then use the
+slides, for example, to go implement it
+if you'd want. And this is the five
+different steps you can go ahead and
+implement. It probably would take you
+like maybe five weeks to even bring up
+something in your existing agent system.
+So, each item is basically a let's say a
+week worth of work for like up to the
+two developers to to bring up something.
+Yeah, next one, that's it.
+So, this is all the open source
+architectures I referenced.
+and you can use them. Uh you can pull
+them today. It's It's all should be
+available for free. And um you each of
+the systems, depending on your needs,
+you can actually just use a use the
+systems to build a um trustworthy
+agents.
+Awesome. That's it. Thank you.
+Any questions?
+&gt;&gt; [applause]
+&gt;&gt; Questions?
+&gt;&gt; Yeah, so uh
+in the in the chat in the slide where
+you uh define different checks, where
+you have the spans,
+&gt;&gt; Uh-huh.
+&gt;&gt; um
+a lot of those look like other LLM
+calls. Do you include those LLM calls in
+the bounding parameters that you set?
+&gt;&gt; Mhm. Yeah. Yeah. So, the question is
+um when the agents are going um going
+and calling LLMs, are you bounding those
+LLM calls as well? Is that right?
+&gt;&gt; For the for the checks?
+&gt;&gt; Yes.
+Yes. Uh yeah. So, the um the your agents
+could actually have um
+localized LLM calls or sometimes
+third-party uh agents or third-party LLM
+calls. Both are possible. And and all of
+those you would want to consider as
+tools.
+And yes, they need to be considered as a
+contracted services. Then you would have
+bounded checks for those tools instead
+of being able to directly do an LLM
+check because that's not possible.
+&gt;&gt; I don't know if you can go into this
+depth, but I'm I'm curious uh what
+you're seeing in production today in
+terms of like depth and breadth of agent
+interactions. Like [snorts]
+uh basically, you know,
+how much is just executing one agent
+versus uh orchestration agent with big
+fan out or deep depth or some
+combination?
+&gt;&gt; Uh yeah, so that you you would want to
+use
+the deep fan out when you need, but at
+the same time it's an it's a depends on
+the business needs. For example, if the
+user is ready to wait, if it's a
+background operation. So it really
+depends on that, right? So if it's a For
+example, if I'm just building a chatbot,
+um I would not be fine waiting for it
+for a response, then deep fan out would
+actually would not would not work. Then
+you want to be as optimized as you can,
+and then build just a a breadth system
+in that scenario. So you'll probably
+just spin up all different parallel
+actions and do a breadth system. But if
+you're doing a background option where
+operation where the services are
+actually doing background operations, a
+deep fan out is necessary as as as
+needed. So multi multi agent
+orchestration should really get into
+deep fan out as needed or or breadth as
+needed, but you don't want shadowy AI
+systems at the sister at the at the same
+time. Ensure that no agents are going
+unbounded, that you don't For example,
+an agent is running without actual need
+of it. That's that's wrong. That's
+something you would want to avoid. Does
+that Does that answer this question?
+&gt;&gt; Yeah, I was also just curious about
+state of the art and like how much cuz
+what we're experiencing is like
+uh
+it can be complicated for an
+orchestration agent to really understand
+the capabilities
+of a lot of different sorts of agents
+and for them to pass data efficiently.
+I'm curious what you're seeing in
+production, like
+&gt;&gt; Yeah. Yeah, so most of the time we are
+trying to cut it down to one to one to
+two depth, sometimes three depth.
+&gt;&gt; That's our experience. That's our
+experience.
+&gt;&gt; Yeah, one to three depth at max. You
+don't want to really
+keep running like five, six, then it
+just becomes multinomial.
+&gt;&gt; Yeah.
+&gt;&gt; Uh yeah, that is exactly what I'm
+experiencing.
+&gt;&gt; Great.
+&gt;&gt; Thank you.
+&gt;&gt; [music]
+&gt;&gt; Mhm.

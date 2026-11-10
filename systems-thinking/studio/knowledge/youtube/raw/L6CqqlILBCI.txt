@@ -1,0 +1,2484 @@
+[Music]
+okay and so basically what I'm going to
+talk about today is well I want to talk
+about networks I don't have too much
+time I have two hours so I will talk
+about different aspects of networks of
+different types of tools that people can
+use in order to deal with networked
+systems and I'm going to focus more in
+detail on one particular aspect which is
+community detection some sort of form of
+clustering for graphs and networks but
+just before we start I just wanted to
+give you a broader perspective of why
+personally I find networks interesting
+so so I've been interested in something
+called complex systems for quite a few
+years since I started my PhD and usually
+it's not that easy to define what
+complex systems are and the best way to
+to explain what it is is to go through
+an example and the very good example
+would be looking at birds flocking
+together so you are confronted to a
+system where you have birds flying
+together each bird is a single entity
+they're interacting with each other and
+even if there is no leader you will
+observe the formation of beautiful
+patterns in the sky and that's a good
+example because first of all it's an
+example that everybody knows everybody's
+been walking around on the beach in the
+countryside looking at birds flying
+together it's an example you see that
+even even if there is no central entity
+you can have the emergence of patterns
+just due to the interactions between
+each of the each of the birds
+well it's something beautiful and I
+think that science should be beautiful
+so it's just beautiful to watch and you
+see that these patterns emerge not only
+in space but also in time they are
+moving around so very good so another
+thing is that so when people are
+interested in in complex systems well
+what they're interested in is how
+patterns are emerging so how order is
+emerging from chaos how is it that you
+observed nice patterns around how is it
+that you have very nice bird flying
+together and not flying completely
+randomly in a very chaotic way and just
+a short slide from the 19th century so
+so I don't know if any of you have heard
+of the Maxwell demon
+at some point No so that's why you see
+that I have a physics background I
+studied physics origin even if I'm no in
+math well in the 19th century people
+didn't try to understand why order
+emerges they try to understand why
+disorder emerges and that was at the era
+of thermodynamics and ii often and
+tournament dynamics tells you that the
+disorder of a system is going to
+increase in time and at the time people
+try to understand why you would have
+this second daughter than the
+thermodynamics while you would expect
+that disorder is emerging in time the
+things that that was what people were
+interested in the 19th but in the 20th
+people change viewpoint and they said ok
+we understand why we can understand the
+concept of entropy we understand why
+disorder has to emerge due to physical
+laws but yet around us we don't we don't
+observe a chaotic world what you observe
+are very nice patterns all around us and
+these patterns can be when they can be
+spatial patterns but they can also be
+temporal patterns and those would be
+like fireflies whose activity is
+synchronized in time very good so and
+and basically as a scientist I'm
+interested in this emergence of patterns
+why do I observe patterns and how can I
+spot how can I extract these patterns
+usually in very noisy systems now if you
+want deal with a complex system complex
+that is composed of many elements that
+are interacting with each other you can
+use all sort of tools in order to
+represent and to analyze the system so
+you can use tools from dynamical systems
+for instance you can use all sorts of
+tools from data mining and optimization
+the things that personally I have been
+while developing some expertise in using
+networks as a way to represent systems
+composed of elements and why would
+networks be a good model for such system
+well of course it's just a model it's
+just an abstraction it's an abstraction
+that emphasizes the importance of the
+connections so it means that you might
+put aside certain aspects of the system
+certain aspects of the data but you what
+you try to do
+to to emphasize is the the the the
+impact that the connectivities of the
+system might have on how the system the
+system behaves and the good thing is
+that networks provide you a language
+that you can use through to describe
+extremely different systems you can
+think of social networks you can think
+of biological networks you can think of
+information networks all of these
+systems are can be modeled as networks
+you will have nodes and connections
+between them even if the meaning of the
+nodes and the meaning of the connections
+are completely different so it means
+that this system this one here that
+completely different the meaning of the
+nodes and the meaning of the edges are
+extremely different but yet I can use
+exactly the same tools in order to
+represent them on the board but also in
+order to try to extract something useful
+from the myriad of connectivities good
+so but as I said and it really something
+that's quite important to keep in mind
+is that networks are just an abstraction
+so it means that very often when you
+adopt a network in order to represent a
+system you will discard some information
+so for instance that that's the this
+example from the Koenigsberg bridges of
+ovular why it's something a classical
+example from graph theory well that was
+an example were Euler was a 1/2 a city
+was interested in how different regions
+of the cities would be connected by
+bridges well if you're just interested
+in connectivity you don't need to care
+about where the buildings are so you can
+discard this information you don't need
+to care about the drug graphical layout
+all you need to do is to represent the
+different regions and the connectivity
+is between them and of course because if
+you are only interested in connectivity
+you don't need this extra information we
+should but you should always keep in
+mind that sometimes when you adopt a
+network perspective you might have
+thrown away some extra information so so
+but what would after you did that after
+you've been representing a network by a
+system by a network done well as I said
+very different systems can be
+represented
+the same two so here it's an example
+from the internet or you would have
+Reuters connected with each other by
+physical connections here it's a nice
+example I think it's the first sociogram
+so it's something that it dates from the
+1920's 1930's by a psychologist called
+moreno and he invented something called
+sociogram where and it was on the front
+page of the New York Times at the time
+and so what is that we want to toast
+cool he looked at kids and this would be
+the boys those would be the girls and he
+looked at who was playing with whom and
+that of course you would observe that
+there is a segregation and when you're
+six or seven years old well the boys
+play with each other the girls play each
+other but they're just a few connections
+between them between the two groups so
+here that would be an example from I
+think it's a brain networks we'd have
+different regions of the brain that are
+connected with each other if they have
+some functional relations if they tend
+to be activated at the same time and
+here that will be an example of a food
+web where you would have like species
+and connections between the species if
+there are any feeding on each other and
+so as you say as you see well again very
+different systems very different meaning
+from the nodes and edges and yet you can
+use the same tools to represent them and
+analyze them very good so now how does
+this relate to to data well the thing is
+that well nowadays well I guess I'm the
+turing institute i shouldn't say that
+too much but we are flooded with data
+data is coming at a pace that is too
+fast to deal with and the things that
+very often interesting data come in the
+form of networked data you will have
+connections between different types of
+data and that's certainly the case for
+social media in general where you would
+have that's when social networks have
+become quite quite important for the
+last twenty years it means that many
+many systems will tend to have we will
+have a very strong network structure
+where you will have different elements
+that are connected with each other
+through different types of connections
+usually so now so personally or how I
+see the kind of research that I do or I
+try to summer
+well usually I I deal with data so I
+will have some I'll deal with real-world
+data and from this data what I try to do
+is to to try to answer two different
+types of questions that are somehow
+feeding each other on the one hand what
+I try to do is I try to - I try to
+extract some information from the data
+that I have either using existing tools
+or developing new tools so I have data I
+try to to get some insight and some
+understanding about how the data is
+organized and on the other hand I also
+am also interested in some theoretical
+challenges because I'm interesting
+trying to build models that can
+reproduce the data is as I observe them
+and and the things that these two
+aspects are somehow related because you
+will have that the data the knowledge
+that you have about the data is going to
+be fed into the mother's which is going
+to help you to produce some new models
+and usually some some new theoretical
+challenges and at the same time better
+models can lead you to develop better
+tools better methods better algorithms
+in order to extract information from
+from the data so really have the data
+the tools and the mothers and what I try
+to see I do my best to try to to focus
+on these three aspects together so okay
+so so now what what is a network so so
+maybe I'm just going to ask because I
+don't know I think that have a very
+broad audience in front of me so as
+anyone ever had a course of graph theory
+one day in his life okay it's a minority
+as any one of you ever had to deal with
+data that had networks in them and using
+some methods or tools for network
+analysis
+okay so minority so very good so that's
+good because this is we start from the
+start so so so what is the network so as
+I said usually a network would be it's a
+system or you will well it's it's a
+model where you would have nodes that
+are connected with each other and the
+thing is that networks can be usually
+encoded in in different ways and one
+classical way to encode a network would
+would be food by the use of matrices so
+again in terms of math does anyone feel
+comfortable with matrices yes it's okay
+okay good so so you would have matrices
+and the typical matrix would be what's
+called the adjacency matrix and what is
+it so it's good you will have a zero if
+you don't have a connection you will
+have a 1 if you have a connection it's a
+binary representation so so of course
+here I have an example where the what
+the graph is undirected there is no
+direction to the edges so that would be
+fitting for instance for Facebook what
+you have like like bilateral relations
+between people but if you were
+interested in Twitter with a directed
+interactions and then the the the
+network would be directed and if the
+network is directed the matrix here
+wouldn't be same symmetric anymore
+here it's symmetric but it needs not to
+be the case yes and also if you want to
+you can also make the model more rich by
+including some weights on the edges
+let's say that you have some information
+about the strength of a social
+interaction in that case you would have
+a weight on the edges and in this case
+you would you wouldn't have ones but you
+would have the weight of the interaction
+in the matrix okay so so this is one way
+to represent that graph and these two
+ones are exactly equivalent yes from
+here I can build this and the other way
+around now the things that why do what
+do I present this adjacency matrix
+because as you'll see just a bit later
+it's a very convenient way to think
+about networks from a mathematical
+perspective because when you have a
+matrix you can use all of the very nice
+and beautiful tools of linear algebra in
+order to try to extract some some
+information from the matrix then that
+would be something directed yes exactly
+and in that case the matrix wouldn't be
+symmetric anymore but it would it would
+be a similar to actually we just have
+they say that the Li instead of being a
+1 and
+one you would have a one here because
+and zero here just to show that there is
+an asymmetry in the relation yes so
+another thing that sold you your C
+letter is very convenient from a
+mathematical perspective and also in
+order to develop tools but you pay a
+price in practice because let's think
+about Facebook Facebook has about 1
+billion users and it doesn't seem to be
+very very smart to try to to encode a
+graph of 1 billion users with the matrix
+keeping in mind that this metric could
+be made mostly of zeros because on
+Facebook through 1 billion users on
+average people have around three four
+hundred friends so it means that on each
+line of the matrix you would have 300 or
+400 entries that are different of 0 and
+the rest would be 0 so it's not really
+the best the most convenient way to to
+store the information so it means that
+in practice you almost never store a
+graph as a matrix what you will do
+instead if is storing it as it's a list
+of connections you'd say there is the
+link 1 5 5 2 5 3 3 4 and so forth but
+still it's important to keep in mind
+that you can think of them as matrices
+because they can be used afterwards ok
+so now so so people have been interested
+in in networks for many many years but
+really like I think that for for the
+last 20 years with the access of large
+data databases of network systems people
+have tried to extract some some
+commonalities some general properties
+that you observe in very different
+systems and one of the most well one of
+the most influential observations that
+people made in the 90s was the fact that
+if you look at what's called the degree
+distributions what's the degree
+distribution so the degree of a node is
+its number of connections yes and then
+you can show if you have a large graph
+you have a large number of nodes you
+have a large number of numbers that are
+the degrees and you can just do an
+Instagram of that so you can simply do
+measure this distribution that's going
+to tell you what is the probability that
+if I take a link a trend I know that
+random it will have a certain number of
+a certain number of
+yes so here's the rights people have
+many links here to the left this one a
+zero link um and the thing is that if
+things in classical views of graphs
+people tend to assume that graphs would
+have a shape like this one so it means
+that you would expect that the that the
+distribution of the number of links
+would be roughly distributed around the
+average either like a Gaussian or
+something like that and and so it means
+that there would be like a good notion
+of what's the characteristic number of
+connections of nodes now the thing is
+that when people looked and perfectly
+what the observed was something
+extremely different so people would say
+that this would be fitted by Pablo
+people would say it's fitted by another
+kind of distribution but the most
+important is that this the kind of
+distribution that people observed were
+extremely different from this bad shape
+and what it induces is that in many
+American networks what you will have is
+our strong eternity some links with an
+extremely large degree some links that
+play the role of hubs with a very very
+large number of connections and the vast
+majority of the nodes that just have a
+very very small number of connections
+and that's something that people have
+been observing in maybe I have annoyed
+on I didn't put it it's something people
+have been observing in very different
+systems so if you look at Facebook if
+you look at so the web or the web would
+be a very good example if you consider
+the web
+well obviously we'll have certain pages
+that receive a large number of
+hyperlinks yes but you will have that
+the vast majority of pages just receive
+a few links either from their parents or
+their mother or whatever so it means
+that you have a very strong inequality
+in the system and this strong inequality
+is important because it will affect the
+way the system is organized but also it
+can affect how to search for information
+in the system because if you look for
+instance and we'll do it a bit later for
+clusters groups of nodes that are well
+connected well if you don't take this
+into account you might have a very
+different answer then if you take it
+into account so that's some information
+that that needs to be kept in mind
+so no that's not really important so
+okay so now okay so now we so there are
+some observations that people made so
+now and I'll come back to other other
+observations after I just wanted to
+start and give a few few slides about
+the notion of models of networks so so
+okay so when people look at networks
+usually so they have access to some
+empirical data and that makes the mix of
+observations so the observe that the
+degree has some properties of the things
+have some properties but then at some
+point you want to answer the question is
+it expected or not is it something that
+is remarkable or is it something that I
+would have expected just because that's
+the way it is and in order to answer
+this question typically what people do
+is to build models of networks so what
+they try to do is they try to build
+stochastic model random models of
+networks that have certain properties in
+order to show whether or not some
+observations are unexpected or if there
+are simply what you would expect in a
+random model basically and how do you
+how do people build models of networks
+that many ways to do so and quickly they
+are divided in two families so the first
+family is really really has a
+statistical nature so what we put what
+people would do is to consider for
+instance so the most basic weather is
+what's called the other shiny model
+so Erdos you probably heard of him as
+some of you ronnie was also a Hungarian
+scientist he was he developed something
+called the Rani entropy and we go back
+to entropy as from the start of the
+introduction but okay so the other shiny
+model it's from the 1950s and it's a
+very simple model that suits it where I
+assume that you have n nodes what you
+will do you will consider all pairs of
+nodes and with a certain probability we
+will make a connection between them
+otherwise you don't make a connection so
+it's an extremely simple model so each
+edge is an independent Bernoulli process
+we
+same probability to happen a certain
+parameter P and what you do so we have n
+nodes you have n times n minus 1 divided
+by 2 pairs of nodes and for each of
+these pairs while you throw a count with
+a certain priority you will have a link
+otherwise you don't have a link and so
+that an extreme is simple it's a very
+naive very simple model but it has very
+beautiful properties because you can
+calculate analytically almost all of its
+properties and make predictions about
+how it's going to behave and for
+instance what you can and so and so it's
+important to keep in mind that so this
+model so this model corresponds to an
+ensemble of graphs so it means that you
+have parameters but because it's it's
+just it's a stochastic it's a random
+model
+well of course from one realization to
+the other you will have different
+properties right because from one way
+for once one through up dice you will
+have one graph another graph another
+graph another graph so all of these
+graphs are possible but the the might
+appear with different probabilities yes
+and in principle so think that the other
+shown in network well almost every
+simple graph can be realized it's it
+could be possible that with a certain
+set of parameters you will have an empty
+graph so just note and no connection
+that would be possible of course or you
+could have a full graph the set of note
+and everybody's connected to everyone
+but these two extreme configurations
+will happen with different probabilities
+yes so and the thing that for this and
+sample of graphs to this random an
+ensemble we can calculate all sorts of
+properties for instance you can
+calculate what would be the degree
+distribution the one that I talked about
+before so the priority that we notice as
+a certain degree and then it's kind of
+easy to show that is good is going to be
+something looking like a binomial
+distribution that looks very much like a
+Poisson distribution in certain limits
+and the thing is that that's what you
+see the trends on this model well it's a
+model that doesn't do well as compared
+to empirical data because you will have
+that so that would be an example from
+the internet so there are some real life
+real-world data of a degree distribution
+this would be for the collaboration
+between scientists with the people that
+we worked with each other here you would
+have protein interactions you'd have
+proteins and there's a connection
+between them if they tend to interact in
+certain in certain reactions well in
+these three scenarios you have the red
+curve and you have the darker and what
+it is what is that one that would be the
+corresponding degree distribution for
+the order running model with the same
+number of nodes and same number of edges
+and you observe here that this black one
+and this red one are quite different
+from each other so from here you can you
+can drew drew two conclusions the first
+one is that it's very likely that the
+empirical system is not generated as the
+other shiny model so it means that what
+you could expect is that because the red
+and the dark are very different from
+each other you could expect that
+actually the internet science
+collaborations and protein interactions
+are not generated completely by chance
+what it seems to make sense I suppose
+but then it also means that if you want
+to build some more faithful model of
+reality what you need to improve on that
+model and that different ways to improve
+it and typically the ways to improve it
+is to continue to think in terms of
+ensembles of graphs so again this
+probability a probabilistic point of
+view but by putting some constraints on
+the graphs so what does it mean so if
+you think about the other shiny model we
+looked at all while we looked at all of
+all of the possible graphs with built
+where each edge was independent well
+it's possible to try to put some
+constraints by for instance allowing or
+only certain types of graphs among all
+the possible graphs you restrict and you
+only look at certain of them that
+satisfy some some constraints and you
+look on this cell and sample from the
+initial and sample
+and so now instead of looking at the
+statistical properties of the whole
+number of grads that are possible it
+will restrict on some that satisfies on
+certain constraints that are either well
+motivated for physical or biological
+reasons or due to observation that you
+made in the past and one of one of the
+constraint that can be done for instance
+would be to impose a certain degree
+sequence so what does it mean here so it
+means let's assume you observe a graph
+you calculate the degree of each node
+and then what you want to ask is the
+question okay so now I would like to
+build a random graph such that I will
+keep exactly the same degree for each of
+the nodes so of course if you look at
+the degree distribution for the original
+graph and for the model it's going to be
+the same by definition yes because you
+keep the degree exactly the same for
+each node but then you can compare other
+properties you can look at all sort of
+other things and check what would be the
+difference between the original data and
+the ones associated to this random model
+and the way to do typically is well so
+is to keep the degree sequence conserved
+and how would you do that in practice
+well for instance let's assume we have a
+small graph here with four nodes we know
+that the first one is three edges the
+second one is to the other one - the
+other one one well what we do is we
+reach so we see that each of these
+extremities is the end of connection
+what we do is we completely reshuffle
+everything and we connect two ends
+randomly with each other so it means
+that for instance one realization would
+lead to something like that well this
+one with twin oh three degree three two
+to one have been reconnected such as to
+preserve this constraint completely
+randomly but of course it could also
+happen that due to this randomness you
+would have a self-loop appearing you
+would have that this node is connected
+to himself or you could also have that
+some pairs of nodes are connected by
+multiple edges that's something that
+that's it's possible it's a possibility
+by by chance
+and so this an example of graphs that
+are generated so you have just have
+three realizations but I could have many
+more obviously this and number of graph
+is something called the configuration
+model and the configuration model so is
+really a non sum of random graphs
+preserving the degree sequence that you
+observe in important data and usually
+that would be a model that many people
+use in order to confront what they
+observe to come to a model because that
+because this model it is as this strong
+a turret or Jannetty associated to it if
+the original data is heterogeneous the
+model is going to be heterogeneous to
+yes so of course there's one small
+cavity is this possibility for having
+self loops and multiple edges and that's
+something that might not make sense for
+the system that you are considering but
+luckily enough if your graph is
+sufficiently large it can be shown that
+under some generic properties that the
+number of self loops and the number of
+multiple edges is vanishingly small as
+compared to the total number of edges so
+it means that in practice if you have a
+large network it's relatively safe to
+use such a procedure and in practice
+what would the people do they would
+generate the graph according to this
+procedure procedure look for self loops
+and multiple edges and remove them so by
+doing that you might decrease just a bit
+on total number of edges but in
+principle this decrease should be
+marginal because for large systems the
+number of loops and the number of
+multiple edges it's not it's not large
+very good so that's that would be for
+for the configuration model and just
+something that will we need to that
+we'll be using and just in the second
+order of the talk is for this model for
+this configuration model what you can
+estimate what would be on average the
+number of connections that you have
+between two nodes and so the con what
+you would have as an answer is this
+thing here so what what would that mean
+so ki would be the degree of node I
+KJ the degree of no J and to M is just a
+notation for the total number of edges
+and so here this quantity mean this
+model means that the expected number of
+links you would have between two nodes
+take I and J so when you think about it
+why would they be something like that
+well it should be proportional to the
+number of connections of node I because
+the more connections is not high the
+larger would be the number of links that
+are connected to him and it should also
+be kin proportional to the number of
+connections of node J for the very same
+reason so it should be proportional to
+the product of the two and actually it's
+relatively easy to show that well what
+the system is large enough that would be
+exactly equal to this quantity here and
+simply because if you have a node with a
+large degree another one with the last
+degree it's very likely that they will
+be connected with each other just
+because each of them has so many edges
+that's one bit of this one will connect
+to another bit and and make a connection
+between between the two nodes and you
+see we'll be using this property here
+when we'll be doing some clustering very
+good so so that's what that was for for
+the first types of type of model and the
+first type of model was really very
+statistical we we built we have a
+certain random rule and then we look at
+all of the configurations that can arise
+from the troll now the things that are
+also other types of model that people
+have been interested in that are more
+mechanistic ones so these mechanistic
+models what did the a bit less
+well-defined from a statistical
+perspective but what they try to enforce
+arises the the mechanisms by which the
+network has been evolving in time and a
+very very well influential model is B is
+a model for growing networks where you
+try to understand how the system is
+grown from a small network to a very
+large one and how would that how would
+these types of model evolve well you
+would start from an initial
+configuration and then you try to
+imagine that a new node
+I've sinned and it connects to
+previously existing nodes with certain
+probabilities and typically something
+that would people would do would be to
+say that a node connects with the higher
+chance to hide the green nodes than to
+load the green nodes and and this very
+simple mechanism is something that that
+has been existing for a long time so if
+you go back in history so I don't know
+if anyone has heard of polio - poly is a
+very important statistician from 1940s I
+guess what the Polya iron model is is
+something called well it's it's a
+multiplicative it's a small tikal deep
+stochastic process that has very very
+same ingredients incorporated into it it
+was not about networks but it was about
+multiplication and why do I say
+multiplication because I just told you
+that you have a high chance to connect
+to a high degree node but then it means
+that at a later stage you have a higher
+degree and so you will have an even
+higher priority to be connected and the
+more the more the time advances the more
+the less equal should the system is
+because if you have a slight advantage
+is going to be multiplied in the future
+basically and that model of polio so it
+was then developed for networks
+specifically and it was known as well
+like Merton has been looking at it but
+one of the nice ones from Herbert Simon
+how about Simon Nobel Prize in Economics
+he looked at this model especially for
+networks in the 60s and it developed a
+model where basically the system was
+growing in time with this notion of rich
+gets richer the richer you are the
+richer you're going to be in the future
+and you're rich in terms of connections
+not in terms of money and the thing is
+that in the 90s while barabási and
+Albert developed a very very similar
+model than these ones and they called it
+preferential attachment again you attach
+preferentially to no data that have a
+higher degree and so so to close this
+and so the things that so there are
+these two different types of mothers
+probabilistic ones mechanistic ones and
+for these metric mechanistic models well
+what you gain is you you
+you you can try to understand how
+certain rules can lead to certain types
+of organizations and also the things
+that for these kinds of models you can
+also solve things analytically actually
+easily so it means that for all sorts of
+variations of these models you can
+calculate many properties by hand and
+that's good because then you don't need
+well you have a well you can then
+compare what you observe from the
+predictions of your model for instance
+very good so okay so so far I only
+talked about one aspect that was the
+degree distribution the distribution of
+the degrees present in the system but of
+course it's a very naive way to
+summarize a graph like a graph as we
+said so it in principle it's encoded by
+your end time and matrix and here I
+summarized it simply by looking at the
+degree of each node and so I was just
+interested in how the distribution of
+these degrees was looking like now the
+things that are many many metrics that
+people have been developing in the last
+decades in order to characterize either
+the graph as a whole or single nodes and
+for instance one type of measure that
+people have interested in is trying to
+measure the local cohesion of a graph is
+the graph that you have very random or
+very cohesive for that the classical way
+to do would be to look at the density of
+triangles that are present in the graph
+because triangles are a measure of
+cohesion so typically for for social
+networks for instance well if you have a
+very cohesive group its associated to
+the fact that if I have two friends
+they're also friends with each other my
+group is a coherent group and in
+sociology these configurations would be
+understood to be stable configurations
+so when you have a triangle that's
+something stable because well there's no
+reason for this configuration current
+configuration to to to change an example
+of unstable configuration would be if
+you take a network with signs positive
+or negative signs and you have friends
+and enemies well if I have two friends
+and these two friends are enemies with
+each other what that wouldn't be a
+stable configuration because I
+personally
+be put in a stressful situation every
+time I talk to person a I cannot mention
+person B and the other way around right
+right everybody's gonna go through these
+kind of ugly situations and so forth in
+sociology that would be a kind of
+pattern that would be unstable and we
+need to evolve in time and the different
+ways to do so either a and B become
+fronts with each other that's the ideal
+situation or I take side and I decide to
+go with a and I become an enemy of B for
+instance although I become enemies with
+everyone because they just piss me off
+that would be a third way so it means
+that so that all of these notions for
+instance especially in social networks
+about stable configurations and usually
+the stable configurations are associated
+to local cohesion and the presence of
+local trainers and and so in order to
+measure that in a graph without measures
+called the clustering coefficient that
+are gonna that are going to be measuring
+the density of triangles that you find
+in a graph another question we people
+people are very much interested in is
+the notion of centrality how do you say
+that a node is central or not and for
+centrality well I could talk of
+centroids for two hours so that many
+many ways in which you can define
+centrality the most simple one would be
+to say that a node is central is if it
+has many connections that will be the
+degree but that's not very interesting
+one the other ways to do so and for
+instance you could say no note is
+important if it tends to be on the path
+connecting people yes and it would be
+well if you think of a road network that
+would be a good point where to put a tax
+office such as the goods are taxed
+between the two different countries when
+success and these nodes that are between
+people they're extremely important again
+for instance in social networks because
+they would they can broker information
+they have access from information of one
+side of the graph and also the other
+side of the graph they can exploit this
+information that other people might not
+have access to for instance another way
+to define centrality would be by using
+some some some tools like like PageRank
+so PageRank it's well what Google
+used to use 15 years ago to rank pages
+on on the web and how did they do well
+they defined a centrality measure for
+directed graphs and these centrality
+measures was defined in a recursive way
+and it was said so a page would be
+important if it receives many
+connections from important pages so it
+seems to be a definition that is like a
+circular but actually yes and so an if
+you so your important if you connected
+to by if you receive connections from
+many important pages each of them being
+important with the receiving form any
+connection from important pages and so
+on and so forth and you can show that
+actually if you write this this
+expression mathematically in terms of
+matrices everything reduces to a simple
+egg eigen value problem you will have
+that the page rank the importance of a
+nodes relates to a certain egg and
+vector of a certain matrix so it's what
+you see that linear algebra can be
+important you can become rich with
+linear algebra to so that would be
+cohesion centrality another kind of
+something extending a bit on triangles
+would be looking at all the kinds of
+local configurations and that's
+something that people are very much
+interested in for instance in biology so
+in biology there are many biological
+systems were they can be represented by
+networks and in biology people try to
+find some building blocks by which the
+system has evolved in time and typically
+these building blocks might be certain
+types of connectivity patterns that you
+observe at a very high frequency much
+more than you would expect by chance and
+here for instance that would be
+situation when you look for certain
+types of motifs in a graph and you try
+to estimate whether or not this number
+of motifs is high or not cake or and
+call periphery so what would that be so
+well what this one I will not function
+and so the grid agree correlation so
+that's something that also people have
+been quite interested in is so when you
+have an edge between two nodes you can
+ask the question do I tend to
+servlets high degree nodes are connected
+to high degree nodes not as I would
+expect by chance or do I have that high
+degree nodes are connected to low degree
+nodes and this can lead to very very
+important differences for how the system
+is behaving but or so far in order to
+understand how the system is being
+constructed because if you have a high
+propensity for high degree nodes to be
+connected with each other or you can
+think that if you imagine the system you
+will have a very core a dense core with
+high degree nodes connected with each
+other and the and then the the outer
+ring or you would have weaker weaker
+nodes nodes with a with a small degree
+that are some hog that are less
+connected and to this cord and then the
+other ones and that would also lead to
+very very different types of functioning
+for these systems and the last point
+that is a bit related to this one and
+that's something that is extremely
+important in practice is there are many
+situations where you can have some
+metadata about about a network for
+instance you have attributes about nodes
+so you know that each node in a social
+network has a certain age as a certain
+gender might have a certain taste in
+music might have whatever so we can
+characterize nodes by certain by some
+some data and then what you can try to
+understand is is do I tend to observe
+that neighboring nodes share the same
+attributes so statistically do I have
+that node with the same attributes are
+connected with each other and for that
+there are some simple measures of
+homophily
+that simply try to estimate whether or
+not around an edge you tend to observe
+that the same attributes are present of
+very different attribute attributes and
+again for instance in in social networks
+there could be well it's something that
+has fun is fascinated social scientists
+for many years to understand let's
+assume that you have an awfully let's
+assume that around an edge you have the
+same kind of attributes well is it due
+to the fact that people with the same
+you'd tend to connect with each other or
+is it due to the fact that once you have
+a graph the attribute is diffusing and
+the taste of the people is evolving well
+it depends I suppose if you think in
+terms of the color of the eyes that
+would be the first answer for the color
+of the eyes well usually it doesn't
+change too much and so for that if you
+have an awfully for the color of the
+eyes it might be that people with the
+same eye colors tend to connect with
+each other but if it's about the taste
+of music it could be both ways I could
+make friends with someone because he
+likes the same music as I do and we went
+to the same concert or I could be friend
+with someone and I could try to to push
+him to listen to certain types of music
+because my taste is the best and and you
+see that when you have a muffle II well
+of course yes with very different with
+many systems it's very different to to
+in to know if what you observe is a
+correlation or or a causal relation but
+at least you know that there is
+something you know that certain types of
+attributes tend to be correlated with
+each other
+all round edges and for that store there
+are these measures associated to what's
+called a morpholino in order to deal
+with that what time is it so it's 1034
+maybe B if it's fine for you could just
+have the small break now
+is it possible because then because
+basically so during the first hour so
+I've been discussing more like generally
+about the different concepts now during
+the next hour so I'm going to focus on
+something very particular it's something
+called community detection graph
+clustering well what you try to do is to
+consider your graph and we try to find
+groups of nodes that are densely
+connected with each other so it's really
+a clustering problem and what I was
+planning to do during the next hour is
+to talk about one type of methods that
+that is very popular now to show you
+indeed just a bit in detail how they
+work and also to show you some
+limitations that it has and but that
+would be for the second-ever
+if it's fine for you okay thank you
+many networks are tend to be modular so
+there are two networks are not so we've
+seen that there are a thorough genius in
+the sense that the degrees are either
+generously distributed but besides that
+they are not like one set of nodes all
+connected in a relatively slim wait with
+each other they tend to be made of
+groups such that most of the connections
+are within the groups and there would be
+few connections between nodes of
+different cups so so that's something
+that that can be observed too so I think
+that's I'm going to skip that so that's
+something that can be observed in many
+systems and we're matically that would
+look like something like that
+of course here that's an example where
+things are extremely visible so I like
+that
+there is a very strong modular structure
+that that we have in an example like
+this one and the thing that in practice
+it will be much more noisy and one
+important question is how do you
+characterize such a modular structure
+and how do you find the groups how do
+you find the modules when you're
+confronted to a network especially when
+the network is large so so in practice
+what would be this question of community
+detection so so the idea is that you
+take something put up a graph and as an
+output what you would like to have is a
+method that tells you how many groups
+you have and which nodes belong to which
+group so you would have you start from
+here and you would be able to say that
+you have a group of blue nodes and a
+blue group of red nodes and well that
+would be a two that you can use on any
+graph of situation now so community
+detection is really like a topic that
+has gained a lot a lot of attention for
+for the last 15 years so and and and up
+quite a few reasons why that's that kind
+of tool that's that is interesting
+besides the intellectual questions that
+are associated to it the first one is
+that very often
+well - ok so very often the detection of
+communities helps you to navigate
+information so what I mean here is that
+so very often when when you have a graph
+so personally when I have I'm confronted
+to a graph I just like to draw it
+because I not like the idea of
+visualizing it and trying to get at
+least to gain some intuition from the
+visualization and that's something that
+works extremely well on very small
+networks but as soon as the graph
+becomes too large if you try to
+visualize it with even the most fancy
+algorithms for data for network
+visualization what you will just observe
+like a group of points that are
+connected in a fairly that you know in a
+way that looks completely random and you
+would gain absolutely no information
+from the from the visualization so so it
+means that when you typically when you
+have a network that becomes to dance and
+or to large
+well network visualization becomes
+completely hopeless so now why would
+community addiction possibly bring an
+answer here because if you start from a
+node if you are able to find groups of
+the nodes then you can change your level
+of abstraction and instead of
+representing representing all of the
+node you could simply represent the
+groups of the nodes it would lead to a
+decrease of the size of the system and
+you could then try to visualize the
+network of communities instead of
+visualizing the networks of nodes and
+that's something that actually people
+like made in practice so there are some
+tools now so that's the tool here
+developed by some colleagues in Sweden
+where so they so they collected all of
+the wiki or the Wikipedia graph so you
+would have entries for pages note are
+the pages and the hyperlink between the
+pages would be the connections and what
+they did the build tool interactive tool
+where you can navigate the Wikipedia
+system by using this notion of
+communities and by allowing you to to
+zoom in and to zoom out at different
+resolutions so how does that work here
+so you would have that each node here
+corresponds to a community and in that
+community you would have thousands of
+pages but you just represent the
+important ones and the important ones
+would be done those with the highest end
+charity as I discussed before and here
+the most central one would be Big Data
+for instance and you see that this
+cluster is connected to a certain number
+of smaller cluster and then in practice
+how does it work well you can either
+zoom out
+and try to look at what to look for
+large communities such that this
+community belongs to a larger community
+or you can zoom in and look at the
+details inside this community and when
+you think about it it's though a bit the
+way Google Maps is working so if you use
+Google map well if you type London you
+will see the important streets of London
+you will see the important skeleton of
+London and it's only by zooming in that
+you will have the smaller roads
+appearing right so you try to hide the
+unmet and necessary details only to show
+what's important well here it's a bit of
+the same philosophy if you are
+interested in visualizing and a very
+large network it doesn't make sense to
+visualize everything so what you try to
+do is to try to find a certain level of
+resolution we find the groups you find
+the connection between the group and you
+represent that and then you let the user
+decide whether or not it fits it there
+is the right resolution for him and then
+you can zoom in on in certain regions
+and more details a content theory and so
+that's sort of a way where you try to
+play with resolutions where each level
+of resolution would correspond to a
+certain notion of cluster basically so
+that would be one type of application so
+an another type of a bigger application
+of why to look for for networks is the
+fact that very often when you have
+clusters groups of nodes that are
+present in a graph they are associated
+to a certain imaginative behavior so if
+you think about I don't know like web
+pages if you find clusters of our pages
+it's very likely that these web pages
+have something in common
+either in terms of topic or in terms of
+country or in terms of users that are
+using them so it means that if you don't
+have access to the information about the
+pages or if you just have a partial
+information you have some data about two
+percent of all of the pages of the web
+but you have the clusters well you can
+use the clusters as a way to guide you
+in predicting what would be the topic of
+a sudden reference because usually this
+metadata is aligned very much with the
+presence of clusters in the network that
+you consider in
+and here it was just an example where I
+think it was an example from Facebook
+where were well you we had different
+types of patterns of a sort of a thought
+activity in different regions of Luca
+Facebook so here you would have a region
+where I think men and women were
+connected in a like a in a fairly
+similar fashion why you would have very
+des no no he would do it would be this a
+sorta tip so he would have that men and
+women are connected in the same way with
+each other why you would have regions
+where it's not the case you will have
+that only men are connected with each
+other and men are connected with each
+other so there are very different
+regions with very different behaviors
+that might correspond to different
+social norms for instance and then for
+the little story so forth to motivate
+students especially so there is
+something that exists called the karate
+trophy so it started as a joke but it
+became something extremely prestigious
+in the field so so the things that when
+people test community detection methods
+the most simple network where people
+truth test it is something called the
+karate club it's a small social network
+actually I showed it before so it's this
+one here it was maybe the first one I
+showed actually it was this graph here
+and you see that I used two different
+colors because actually it was the
+outcome of a community detection was to
+say that there were these ones and those
+ones this karate club so it's a network
+from the 70s by someone called Zachary
+was the name of the scientist he went to
+a karate club and during his stay there
+there was a crisis in the club that led
+to the split of the club into two groups
+basically and the things that this graph
+is very often used as a way to test an
+algorithm it's simple it's small it's
+very easy to find the solution so it's
+like the first example where people try
+methods typically and while because of
+that there's been this creation of the
+kata trophy where if you are at the
+conference and you talk about the
+karateka because you're the first one to
+do it at the conference and the person
+was the trophy is in the room you
+receive the trophy and the trophy then
+goes from group to group
+the work he's been crossing the Atlantic
+quite a few times I think is back in the
+US no it's in Colorado and I've never
+had it but obviously I wish to have it
+and but so please yet you can't have it
+but after me if it's fine
+yes so okay so there is this so now what
+would be what would be a good community
+so there are many ways by which you can
+define communities many many ways but at
+least there would be a consensus to say
+that if you have a system controls of
+many disconnected components well at
+least as a first order these
+disconnected components could be
+understood as communities yes makes
+sense to say that two nodes belong the
+game two different components shouldn't
+be in the same community and so just for
+for the little story so so the things
+that this notion of connected components
+is something that has a long history
+even in inter study of networks and
+graphs and it's associated to a certain
+notion called percolation so I don't
+know if you have a herd of percolation
+but the idea is the following so if you
+took this erdos-renyi graph that i
+mentioned before if you pick P equal to
+zero it means that for each pair of
+nodes the Proteas zero to have a link
+while the graph will always be like that
+if you put P equal to one every time you
+have a pair of node there's a link you
+will have a full graph and the question
+could be well what would you find in
+between and if you look at what's
+happening in between well you see that
+it will not be something continuous you
+will have different regimes that appear
+and so if you look at the size of the
+largest component in the graph with
+respect to the probability or
+equivalently the average degree that you
+have in your graph these two things are
+equivalent what you observe is that one
+that when the one P is too small the
+size of the largest component is
+extremely small as compared to the total
+size and at some point you have a change
+of behavior and you have the appearance
+of a Jagga of a gigantic component and
+this transition here is called
+percolation transition it's a phase
+transition where you go from a regime
+where you would have many very small
+clusters to
+one where you would have one big cluster
+and a few small ones on the side and
+well and this is something that is
+extremely well studied and but the thing
+that it's just important to keep in mind
+that for more empirical systems
+typically for reasonably the reasonable
+data you will not be with everybody in
+the same cluster you will be in
+situation like this one you would have a
+very large cluster and a few small ones
+so it means that if you do community
+detection in practice or you will only
+consider the largest cluster and try to
+look for communities inside the larger
+cluster and you will assume that all of
+the small ones there would be
+independent communities that that don't
+really need very fancy algorithms to
+look for communities and basically so
+now so it means that from from now on we
+will assume that the graph is connected
+and what you'll try to do is to to look
+inside this connected component for
+something something finer some finer
+structure so so the things that's so
+community detection so it's it's
+something that emerged 20 years ago 15
+20 years ago and it's very related to a
+very classical problem in graphs and in
+in graph analysis which is called graph
+partitioning so in graph partitioning
+it's it's a problem where you have a
+graph and you want to well you want to
+divide it in some emerging amo genius
+regions and how the problem is phrased
+usually is that you will you will try to
+divide the graph in two groups by fixing
+the number of groups and the size of
+each group and it's a kind of tool that
+people use a lot in electronics in order
+to organize better board and to have as
+few connections as possible between
+different part of of an electronic
+electronic board for instance and the
+thing is that for community detection
+it's a bit different because you don't
+want to impose a certain number of
+groups you don't want to impose the size
+of the groups what you would like to
+help is a method that finds it by itself
+so the things that in each of those two
+cases well even if the problems so that
+you see a bit later the front look a bit
+the
+they're different but they can they
+always have the birdseed in the same way
+first what we'll try to do is to
+formalize the problem we'll try to
+define what is a good community we try
+to give a definition what would be a
+good community and then as a second step
+we'll try to find a way to search right
+and these two steps are not trivial like
+defining what is a good community it's a
+very highly debatable problem and but
+even if even if you've defined a good
+definition then searching for the good
+community's given the definition is
+typically very hard computationally hard
+problem and you need some fancy and some
+some smart methods in order to find them
+or approximations of them if the graph
+is is is too large so so I just wanted
+to mention that so today I will only
+focus on certain types of methods where
+we will assume that each node belongs to
+one single group so it means that each
+node will belong to one community not 0
+not to just 1 so we will what we'll do
+is we can wiggle a partition the graph
+into different regions and in certain
+applications that it's a very fair
+approximation but for other for but in
+other situations it could lead to very
+paradoxical or unreasonable outcomes and
+so for instance if you're interested in
+social networks and you're interested in
+small groups in social networks but that
+wouldn't be a good approximation because
+as an individual I belong to several
+groups I would have my groups of
+colleagues I would have groups of my
+family my group of friends and typically
+these different groups are not connected
+with each other and so it means that I
+as an individual I don't belong to one
+single group I belong to several groups
+and so it means that for instance for
+social networks if you're interested in
+groups or communities social groups or
+round people then you should look for
+methods rowing for overlapping
+communities but that's not what I'm
+going to deal with today but there are
+there are some methods for that as well
+so so here I'm going to focus the
+situations for each node belong to once
+in control so ok so now what about as I
+said so community detection is somehow
+relate
+it to the graph partitioning problem now
+for the graph partitioning problem
+typically what you would do so as I said
+you would have a graph and a very simple
+scenario would be you say I want to
+divide my network into two groups one
+with a certain size N 1 the other one
+with a certain size and to that's my
+problem and how do I say that
+the partitioning is good one way to say
+this would be to say that I want to find
+a partitioning such that the cut size is
+minimal so what would be the cut size
+you have a group of node here a group of
+Donder the cut size is the number of
+links between the two groups I want to
+say is that you want the cut size to be
+as small as possible so you want to
+arrange the groups and to put some load
+on the left others to the right yeah
+such that you will have as few
+connections as possible between the two
+groups and it would be minimizing the
+cut size so of course so that's a it's
+it's it's it's it's a know it so we have
+the definition we define the problem now
+you have to if you want to solve it you
+need to find the best partition it be
+kind of it becomes an optimization
+problem and well the very naive way
+would be to look for around all of the
+possible partitions and to pick the one
+with the best value of the cut size but
+of course it's completely infeasible in
+practice because the total number of by
+partitions is something in the graph
+grows much faster than the exponential
+so it means that you cannot do it in an
+exhaustive in the exhaustive way so you
+need to find some heuristics you need to
+find some ways to find for a good
+solution in a smarter way than that and
+there are quite a few methods that have
+been proposed in the literature
+one of which exploiting the matrix
+structure of a graph so the the
+algebraic the so the linear algebra
+associated to a graph structure and so
+these methods are called spectral method
+methods because they are based on the
+spectral properties of certain matrix of
+the graph so here maybe I wish I had
+more time but maybe I'll just go a bit
+fast and I but I can give you some
+references you if you want but so
+basically what what you do is you diff
+you say that what is the cut
+sighs our so it's 1/2 of a sum of all
+pairs of nodes that are in different
+groups so I don't take pairs of nodes in
+the same group that need to be in
+different groups and I some AI J if you
+remember AI J was equal to 1 if the
+words are linked 0 otherwise
+and so I divide by 2 because of course
+if there is a link between I and J there
+is another one between J and I so I
+count the same link twice so I need to
+divide by 2 here
+yes now the thing is that this
+expression it can be rewritten very
+easily by using a certain indicator
+vector si so si would be something that
+tells you that not I belongs to the
+community plus one or to the community
+minus one and if you encode the
+belonging of this with the assignments
+of the node to a certain community with
+this vector
+well you capture within just a few lines
+you can re-express are in terms of this
+expression here well as well L is a new
+matrix it's a matrix called the
+laplacian of the graph and what you
+would have that you have 1/4 of a sum of
+all pairs of notice times width without
+this constraint anymore of this matrix
+the laplacian times s items a 3 so it
+means that optimizing this or that is
+just the same yes and now if you want to
+optimize this quantity one one way to do
+so would be to think of a relaxed
+problem let's come back to the program
+that you have originally so originally
+what you would like to find is to find
+the best vector s I think made of Plus
+Ones and minus ones such that this
+quantity is as small as possible it's a
+difficult problem
+what much what is a much easier problem
+is to say I want to find a vector s
+without this constraint that minimizes
+this quantity here and if you do so well
+what you will have is that so if you so
+L IJ some symmetric matrix you know that
+because it's a symmetric matrix its
+eigenvectors are gonna form a base of
+the space
+the laplacian has very nice properties
+it can be shown that it's smallest
+eigenvalue is zero and all of the other
+ones are positive and if you keep all of
+this information together if you plug
+everything together so L IJ is sum from
+2 to n because the first one is zero of
+the eigenvectors times the product of
+the eigenvalues times the product of the
+eigenvectors and if we put everything
+together you will directly see that what
+is the best value vector s the one that
+minimizes our that would be a vector
+that is parallel to the eigenvector of
+the smallest angle value why because you
+would have that if it's parallel to the
+vector with the smallest eigenvalue only
+the landed tool can appear all of the
+larger ones will not appear and so you
+will only have contributions from the
+modes with the smallest eigenvalue
+lambda 2 and so it means that if you
+want to minimize this quantity for the
+matrix l without constraints well you
+would have that actually you need to
+take s to be proportional to the
+eigenvector with the smallest eigen
+value of that matrix and you can then
+even say that the cut in that case would
+simply be equal to it's going to be
+proportional to the corresponding
+eigenvalue okay so I hope it roughly
+makes sense
+so now of course so it means that we can
+solve the problem very easily for
+general vectors s but how do we do in
+practice because we want to cluster the
+problem too close to the graph but then
+in practice what we do is we find the
+this eigen vector and we try to find a
+vector with Plus Ones and minus ones
+that is as close as possible to the
+Younger eigen vector that we found so
+for instance let's assume that this
+would be the eigen vector so that would
+be all of the entries of my and eigen
+vector I will reorder them from the
+largest one to the smallest one and what
+I will do is let's assume I want to find
+grouping into two groups one of size for
+the other one
+sighs whatever 15 what I will do is I
+will put together the phone note with
+the highest values and I will put
+together all of the note with the 15
+lowest values I will try the opposite I
+worked want to put together all of the
+nodes with the 15 signs values and
+together the ones with the four smallest
+values I have to candidate partitions
+and for each of those two I calculate
+the cut size and I pick the one that is
+asked basically and well there is no
+board around no but really the idea is
+that so if you think of this you will
+have like a vector you will have
+something that's decreases and what you
+try to find is the best step function
+made of ones and minus ones the step
+function that is as close as possible
+from this that is not a step function
+so really the optimization that we do is
+we first do the optimization easy
+optimization for any vector and then we
+try to find a vector that satisfy the
+constraints that is as close as possible
+from the approximate solution to the
+approximate problem actually though the
+weight works good now why do I talk
+about that so so that would be for graph
+partitioning it's a classical problem
+and these these tools of spectral these
+spectral methods they were defined while
+the originated by works of fiddler in
+the 1970s now the things that it is
+going to appear with a very similar way
+for community detection so in community
+direction as I said now we what we have
+is will build a quantity that tells us
+if this partition is better than this
+one or that one or that one so it would
+be a quantity that tells you what is the
+best partition which Traverse number of
+clusters and the size of the clusters
+yes
+yes and so yes of course so the things
+that so typically then it's it's using a
+recursive way so you would find the best
+by partition and then you will continue
+to cluster it down by clustering the
+groups and and you continue until well
+and then each level you look if you have
+a better better partitioning than before
+or like a better cut size than before so
+another thing that for for community
+elections so there's also something
+equivalent to cut size that people use
+so and and so but actually there's not
+once one single answer and I'm going to
+try to infer size that at the end of of
+the talk so but possibly the most
+popular quantity to estimate the quality
+of the partition of a graph is something
+called Newman govern modularity it was
+defined in around 2004 2005 but Martin
+and Michelle Gavin and as you see it's
+not perfect but many people use it and
+it in certain ain't work relatively well
+so what would be the definition of
+Newman governed modularity so you take
+graph you take a politician of a graph
+and you have you try to characterize the
+quality of that partition and you would
+have that the Q this Q for modularity
+would be the fraction of edges that you
+have that are inside the communities and
+you subtract the expected fraction of
+edges if everything was to be random so
+you see that non models appear one more
+time so now in practice how how would
+you do that well you'd have that
+modularity it's it's just a constant
+which is not very important here there
+were some of all pairs of nodes and
+these sums are such that you only keep
+terms what nodes I and og are in the
+same community such as C is equal to CJ
+are in the same community and then you
+have a positive and a negative term so
+the positive term counts the edges
+simply a IJ counts the edges between I
+and J
+such that I enjoy in the same community
+but then you subtract something else
+your subtract P I J and P I J would be
+the expected number of edges between I
+and J in something that is random and
+the thing is that very often what is
+used here to estimate the expected
+number of edges between nodes I and J
+would be the expectation for for the
+configuration model when I define before
+where you would assume that you have the
+completely random graph except for the
+degrees of each node and if you remember
+I told you that the expected number of
+edges between a node I and a node J for
+the kind of regression but that would be
+this quantity here it would be
+proportional to the degree of I and the
+degree of G so basically what do we do
+here so we have a positive and negative
+terms and it really takes this this
+expression here and we say that the
+modularity is high if it tends to group
+nodes together such that the difference
+here is very positive and the difference
+here is very positive in which
+situations well one you have edges
+between nodes that we don't have that
+that are less likely to have to be
+connected then that would be by chance
+basically and this quantity here so it's
+called this Neumann govern modularity
+and that's what people use as as an
+objective to optimize in order to find
+the best partitions of a graph so so
+there are many things that can be shown
+about modularity well the first one
+being that with the moderator of of one
+big cluster when you put everyone
+together it's going to be equal to 0 so
+I didn't say that so modularity it's a
+number that by definition is between
+minus minus 1/2 and 1 you know that if
+you have 0 you put everyone together and
+what can also be shown while it's a bit
+of math but you can show an is
+relatively intuitive that if you have a
+community if if in your partitioning you
+have a community-made of nodes in
+different connected components you
+should divide the community because it's
+going to be better so it makes sense you
+will never have by optimizing modularity
+groups of nodes that are in different
+connected components so it seems to be
+relatively intuitive now the problem is
+so so that so the profile one first
+problem that it was shown that
+optimization of my derivatives and be
+complete so you need heuristics in order
+to be able to give some approximate
+solutions to the optimization problem
+and what I want what I'm going to talk
+about now is it's two ways by which you
+may try to optimize modularity one that
+inherits the basic leads it rebuilds on
+the spectral methods for graph
+partitioning it's going to be a spectral
+method and then another one which is a
+greedy method and that has different
+very different nature as you'll see and
+as an each type of method as its own
+advert engine advantage is basically so
+okay so what about spectral methods so
+here actually it's it can really be done
+it's almost a translation of what it we
+did before so here you would have that
+instead of trying to minimize the cut
+what you try to do is to optimize
+modularity and this modularity if you
+look at it you have a matrix that is a
+IJ minus K IJ divided by 2 n so that
+would be the matrix that you try to that
+is used in the in the summation of your
+modularity expression and typically for
+using spectral methods the way it works
+and it relates to it to your question is
+you first try to find the best partition
+into two communities and then yuri
+divided the communities each one of them
+and then you continue to do it from from
+the top to the bottom and you will and
+then basically at each time you divide
+you check if the merger that you have is
+better than before and at some point you
+stop when you get the best level when
+you when you when you get the best
+partition that has been obtained always
+by dividing by by 2 and by 2 and by 2
+and by 2 from very big communities to
+very small communities and at each
+subdivision what do you do well you have
+your matrix you can again for your for
+the division to two communities use the
+same vector as before plus one minus one
+and then you will have that the
+modularity queue is obtained by this
+expression here
+and again you can use solve the
+approximate relaxed problem where you
+don't impose s to be plus one minus one
+you impose s to be you don't put a
+constraint on s you ask what is the best
+s that maximizes Q but before we wanted
+to minimize the cut so for the
+minimization of the cut we had to look
+for the eigenvectors with a smallest
+eigenvalue here for the maximization of
+modularity we'll have to find the s with
+the largest eigenvalue
+the one that leads to the largest
+contribution to the Sun and basically
+the spectrum L that tells you that you
+will take the vector a vector s that is
+that that is the dominant eigen vector
+of your matrix the one with the largest
+eigenvalue and how do you go back to the
+original problem
+well that vector might have positive
+entries and negative entries you don't
+have any constraint you want to put
+Heaviside function on that but you don't
+want to impose the size of it you just
+want to you want to have Plus Ones and
+minus ones but you don't know exactly
+the size of each of these well what you
+say is that I will put a suppressor on
+all the positive entries and the minus
+one all of the negative ones and so you
+would really look you will you you rank
+all of your entries in a decreasing
+fashion and all of the positive ones you
+put on one side all of the negative ones
+you put on the other side and that would
+be the outcome of the optimization for
+the first by partition and once you do
+it you continue on the smaller ones and
+you apply recursively basically now so
+that methods its weight method that
+works relatively well so it's been
+refined quite a bit for since it was
+first presented but the ingredients
+remain the same and these this kind of
+methods it works quite well it has a
+nice mathematical nature and but it has
+one limitation is that in order to do it
+you need to solve large eigen vector
+problems and typically if you have a
+graph made of millions of nodes it will
+not be tractable so typically it works
+well until tens of thousands of No
+roughly speaking after that it doesn't
+really work well it doesn't scale well
+with the size of the system so for
+networks that are larger than that but
+then people use completely different
+methods that are greedy methods where
+instead of proceeding in a divisive way
+using spectral arguments they built in
+an ad relative way so they try to build
+clusters from the small to the large
+using some greedy so some greedy
+approximations and and so basically
+there are different methods that that
+are using such greedy ingredients in the
+literature I will be just a bit self
+referential I'm going to present the one
+I was involved in partly because I know
+it well first of all but also because
+while we were lucky that it's the one
+that everybody uses so it was the winner
+takes all one and so that's the one that
+is implemented in most of the libraries
+nowadays so how does that method work so
+it's called the Louvre method because at
+the time I was in new vine Belgium so
+how does it work so what you say that
+you start from your graph and you
+initially you put a random order to all
+of the nodes so this is not 0 1 2 3 4 5
+and so on and then what you do is the
+following so an initial you say that
+each node belongs to its own community
+so node 0 belongs to its own community 1
+or so 2 or so if we also and so on and
+then what you do is the following
+you start from not 0 you take it out of
+its community and you check if there
+would be a gain of materiality by
+putting it into the moderator of one of
+its neighbors and do that for all of the
+neighbors if there is no gain not zero
+remains where it is if there is again if
+changing it from community to it from
+its own to another one leads to again
+you do the move that that leads to the
+highest gain so you move to the
+community of your neighbor that leads to
+the hiring highest increase of
+modularity you do that for the node 0
+for not one for no two for node three
+you do it sequentially until node n
+minus 1 and n minus 1 you go back to 0
+to 0 and you do it several times and
+every time you do a very greedy local
+optimization you always change the
+community from one
+to one of the neighborhood ones and you
+do that until you reach a local maximum
+you cannot increase modularity anymore
+and you reach a plateau you get a look a
+local maximum you cannot move once you
+get there you do something else once you
+get there you somehow change the
+resolution at which you look at the
+problem and that's why it's it's some
+sort of a multiscale method because you
+will see that you will change the way
+you do your Grady steps first you do it
+between neighbors then you will do it
+between neighboring communities so how
+do we do so once you get the local
+maximum which changed the representation
+and from here we go to a representation
+where you would have nodes being
+communities and connections with weights
+being being the number of coming of
+links between the communities so for
+instance between the Green and the blue
+community you see that there are one two
+three four edges we don't want to lose
+that information and we want to have
+something well a representation
+well the both of these things are
+equivalent to each other and so
+basically here we also have a four that
+tells that there is a there are four
+links between these two communities and
+what do we do now so we change the
+resolution by doing drink that we
+decrease the size quite quite
+drastically and then the next step is we
+really apply the first step so it means
+that on this one we again say that we
+try to say this one is in its in its in
+its own community this one as well this
+one says this one as well and we try to
+move it into the communities of the
+neighbors until we get a maximum and
+then we change the resolution again and
+we do it always the first part the first
+step the second step the first step the
+second step until we get a situation
+like this one here where nothing aborts
+anymore
+and so really so it's a method where so
+it's very greedy because we only do
+things for the best choice or not always
+it's very local we always move to the
+neighboring nodes but it is slightly
+multi scale because it looks at things
+locally initially between neighboring
+nodes then when you are at this
+representation it looks at things
+between neighboring communities
+so you know groups of nodes to move
+together and the more steps you do the
+large groups of nodes you try to move
+around around the crowd basically and
+the things that so it's a method that
+works quite well and so so here's just a
+visualization so we start from here we
+get the local maximum we change the
+representation we have another local
+maximum would change the representation
+and nothing happens anymore and that's
+why it stops yes well it's a very good
+question so it's a method that is
+deterministic besides what two
+possibilities one would be I said that I
+would move to the to the community of
+the neighbor where the increase is
+maximum but if there is a draw we pick
+one at random so that would be one one
+aspect of noise but the most important
+one is the fact that we see here that
+the algorithm depends on the ordering in
+principle which is the first node that
+we use and we set it as something random
+here and the things that well in
+practice what we observed was that the
+order doesn't have too much of an
+influence
+if the coming if the network is strong
+communities as well-defined communities
+while if you have a system where the
+communities are extremely noisy then you
+might have very different results at the
+end and actually it's something that we
+use somehow as as a verification is we
+use the methods 1020 times on the same
+graph with different orders and if we
+always get the same communities it means
+that the method is robust and it's quite
+likely that the result that we have are
+to be trusted
+well if we get very different results
+it's kind of likely that nando
+communities are very weak and it's you
+should look at them you know with a lot
+of care basically so so and so as I said
+and that's a method that is really
+different in a philosophy as compared to
+the previous one because the first one
+was divisive this one is accumulative
+and now in practice it's it's good for
+certain aspects is that it's very fast
+and so that's
+a table from the paper from almost 10
+years ago now where we looked at the
+time at the fastest methods existing on
+the on the market the karate club as
+usual 34 notes 77 edges and the largest
+that we considered was a part of the
+world with 100 million nodes and 1
+billion edges and for each one we
+reported the value of modularity that
+you obtain from the optimization and the
+time that it took on a standard desktop
+thing that maybe 16 gigabyte of run
+because we needed to store the graph but
+besides that it was a standard computer
+and we observed that well that was
+convinced guess the community that we'll
+always had a much higher value of
+modularity is compared to the existent
+ones and at the times were also
+relatively fast so like for this one it
+took about 2 hours to do the
+optimization so so now what time do I
+have
+it's ok so now so so generally so so
+something that is important to keep in
+mind is generally so I just presented to
+you two methods each one based on the
+notion of modularity so now the question
+is of course they are not the only two
+methods are there are thousands of
+methods nowadays for community direction
+a subset of which looks at moderate
+optimization and the question would be
+well how do you yeah say that one method
+is better than another one
+well of course force if if you are
+interested in in if you first want to
+compare methods that try to optimize
+modularity well you you can just first
+compare the value of modularity that you
+have and the highest is the better
+because it's it's an optimization
+problem you have a heuristic so you try
+to find the method that gets you the
+best values ideally in the fastest time
+so it's there so balance usually between
+accuracy and the speed of the method but
+that of that's of course something that
+you can only do if you want to compare
+methods that are both trying to optimize
+modularity if you take a method that
+optimizes modularity and the method that
+optimizes something else that would be
+unfair
+to compare them with modularity because
+of course the first one will win because
+it's what it tries to do then for these
+other types of methods what some people
+try to do is to try to check if the
+communities that are found time to be
+aligned with some metadata that you have
+so here
+it's an example that is visually
+striking but socially extremely expected
+so that's a mobile phone network of
+Belgium in Belgium we have two languages
+French Dutch and a bit of German too so
+I should not forget them also because
+it's recorded so so mainly we have two
+languages and here you have the
+communities that are found by the
+methods and well basically what you have
+is that each blob here is a city and you
+have that most of the cities with a
+certain language are community
+communicating with each other versus
+other cities and there is just a tiny
+part here that is a subset of browsers
+the central versus were Flemish and
+french-speaking people live in peace
+together and talk with each other and
+basically of course that's something
+that you don't need very fancy methods
+to know that but you can show it from
+from the data and and so the one way to
+test a method would be to say well while
+actually I find communities and these
+communities tend to be amo genius for
+certain data and for some data that I
+have about the notes but you cannot be
+sure that community structural
+communities are aligned with this extra
+information so it's not it's not clear
+that that would be the best way to do
+another way that people used as well was
+to build some benchmarks in these match
+marks how what do they do so you you
+consider a variation around the other
+Sonia model so it's a random graph but
+but instead of having that so for
+alderson you remember yeah for each pair
+of nodes a certain p to have a
+connection what you do here is you are
+so instead that you have something
+called a stochastic model and stochastic
+model means that the simplest one would
+be you take two groups of nodes and you
+have a pretty p1 to have connections
+inside the first group p2 12o connection
+inside the segment rope and p1 to to
+other connection between nodes of
+different groups
+and typically if p12 is smaller than the
+other two it means that most of the
+connections are inside the groups and
+you have fewer connections between the
+different groups so basically it's a
+random model while you plant communities
+and you have some noise and you have
+potential connections between the nodes
+and then typically what you try to do is
+to try you try to see if the communities
+that you find by your method are those
+that you planted initially basically and
+what you try to do is to you compare the
+quality of your answer as a function of
+the cut it is to find the solution and
+how difficult it is is typically well
+does the p12 is it very very small or is
+it of the same order of magnitude that
+the piece inside the communities and
+typically you get something where most
+of the methods are good initially and
+then also the quality decreases at some
+point and you can say that a method is
+good if it pushes this bordered the more
+to the right basically well again that's
+something that works well but it also
+has some problems that the many many
+ways to build my benchmarks and and
+somehow when you built a mensch mark you
+you build your own intuition of what
+would be a community according to you
+and sometimes you would have that some
+benchmarks are what some methods work
+extremely well and some benchmarks and
+others on other benchmarks and well it's
+not always clear what what would be the
+worst the worst either yes excuse me
+there are some supervisors in math it
+exists yes so well I want to well but
+first of all it's not really about
+supervised or unsupervised but so what I
+would mention after just after is that
+there are some methods where the debate
+where the term model-based approaches
+where what you try to do from
+statistical perspective is you try to
+find the best stochastic block model so
+you try to find the best structure in
+blocks and the different probabilities
+that explain the network that you have
+so really what you have in mind is you
+have some data you have a model of your
+data in mind and you try to find the
+best parameters that explain what you
+observe
+and that's something where there have
+been a lot of work for the last few
+years on that but it's still
+unsupervised for supervised there are
+some there are some work where they try
+to to incorporate some partial knowledge
+of the communities for instance and to
+try to build around that and some simple
+ways would be for instance to do some
+seed expansion for instance see if you
+know that three nodes have the same
+community by the information that you
+have then typically you do some some
+globe with some search around them and
+you will assume that in a sufficiently
+small neighborhood the nodes will be in
+the same community for instance and so
+that's another way where you can try to
+infer which what did what other
+communities another way to do that is
+kind of nice is to directly ask to the
+people and so there was this experiment
+by some someone was working for Facebook
+now where what he did at the time during
+his PhD was to to develop a method for
+community detection like many people and
+to save the close clusters that he found
+were good
+he asked users to rate the clusters
+found in their social network so it's on
+Facebook you log in it takes your social
+network it does a cluster and then it
+presents you the clusters and you need
+to give stars to different clusters to
+assess what are not it makes sense to
+you in that case when it was a nice
+experiment of course it's difficult to
+scale it very much because you need to
+have the active participation of users
+and I think that in that case it had
+maybe 500 people who participated and so
+use that as a way to validate these
+methods because it allowed to give
+ratings based on the expertise of the
+persons dancers so ok so I don't have
+too much time so especially while the
+idea was to leave maybe five minutes for
+questions so I have five minutes left so
+I'll just go through some some some
+problems of regularity I might not say
+everything so the first the first
+program of modularity is the fact that
+in practice if you do your optimization
+you will have that in many many
+empirical systems you will have a very
+rough length landscape meaning that even
+if you find a very high value of
+modularity close to the optimum
+you will have that this solution might
+be extremely different from that one so
+this cluster might it might be very
+different from that one even if the
+value of Madeira it is roughly roughly
+the same and it goes into the discussion
+that you had about the ordering well it
+could be very well that for Louisville
+for instance with one random ordering
+you arrive here with another one you
+arrive there you get roughly the same
+value of majority but you have very
+different answers that would be a
+possibility so that's something that
+needs to be checked how robust are your
+solutions knowing that the optimization
+program is not easy to solve so another
+thing that is very annoying is something
+called resolution limit and it's the
+fact that community so so I didn't say
+too much about it but modularity in
+principle when you find the best
+partition you will have a certain number
+of communities and you didn't decide
+that so the method magically decided
+what was the best number of communities
+that's good but now the problem is that
+it's quite easy to find examples where
+this number of communities that you have
+doesn't make any sense and one example
+would be this one here would you have a
+circle of cliques that are connected
+with each other if you have a small
+number of cliques material typical
+optimization is going to find the case
+but then if the number of cliques
+becomes too large what you will find is
+groups of cliques and of course it's not
+a very physical or intuitive solution
+there is no really meaning why you would
+put these two together because well the
+the doesn't seem like these two together
+are very dense cluster but it's somehow
+hidden in the method there is a reason
+for that and the reason is that somehow
+in modularity you compare this term with
+that term but of course the M here if
+it's large this becomes very small and
+actually materiality optimization has a
+size dependence some of the larger is
+your system the more positive will be
+this term and the more likely you will
+find big clusters in your in your system
+and it could be that the clusters that
+you have don't make any sense and so
+graph
+flea it works well it finds you a number
+of clusters but you should not trust it
+completely because there are many
+situations where it doesn't work and it
+can be shown so and what this one is
+it's just a bit less interesting so now
+for the conclusion so in principle I'm
+supposed to give a follow-up to this
+course so maybe we'll see next term and
+what what would be next as compared to
+what I said before so one thing that
+could be next that could be discussed
+next term would be the fact that there
+are many many other ways by which you
+can do community detection so here the
+method that we had was really
+combinatorial what we did was we counted
+the number of links inside clusters or
+the number of links between clusters and
+we try to minimize or optimize that well
+actually there are very different
+perspective that can be bitten that can
+be used some of them are based on
+stochastic block manners a statistical
+approach where you have a model of your
+graph and you try to find the best
+parameters that explain the graph as you
+observe it so you try to find the best
+model that explains the data as you as
+you see them and that's one thing that
+what people work a lot right now another
+way would be to use a more dynamical
+perspective and to try to to find groups
+of nodes they have the same impact on
+some dynamical process for instance if
+you think that a group of nodes should
+be group a group of nodes that play the
+same role for the functioning for that
+for the dynamical functioning of your
+system well then there can be some
+dynamical methods that people use in
+order to find the crews another and just
+to show something very intuitive of
+course the clusters affect the dynamics
+because for instance here that would be
+a network with some communities here
+that would be the outcome
+so X of T would be so we have for each
+node with a certain value and we apply a
+very very simple dynamical rule it's
+called a local averaging so it's a
+consensus dynamics you have your value
+and you do the average between you and
+your neighbors and then each type step
+you do that of course at the end
+everybody converges to the average
+because the averaging becomes
+but what you observe is that at certain
+times you will have that inside
+different groups you will have distinct
+approaches and these and you can really
+see that there is a big difference
+between you will have a separation here
+between what's happening in the first
+cluster versus the second quarter versus
+the third cluster so typically you will
+have that you will have consensus taking
+place initially inside each of the inch
+of the groups and then you go to the
+global credit to the global consensus
+and this is something that can be used
+in order to find to find the clusters in
+empirical data Frances another thing
+that is quite interesting is the so so
+far we only focused on structures like
+those we try to look for clusters so
+that the links were inside and the
+clusters with them other types of
+patterns that could be looked for and
+that can be very important in different
+systems for instance you could have
+something like a core periphery type of
+organization where you have a core the
+core is connected to the periphery but
+the periphery is not connected to the
+periphery and that's some type of
+organization that can be present in
+certain systems another one would be
+some bipartite type of organization but
+what you can have in mind is not only
+looking at things around the diagonal
+but other kinds of patterns that reveal
+certain types of organization that are
+present in the system and okay
+and I think that I'm gonna stop now so I
+just have a few references for you so
+for for general reference it's a very
+good book is the one of Mark Newman it's
+really very elementary and it goes into
+some of the details it's quite good I
+couldn't not put a book that I wrote but
+I don't if you want to read it I would
+not say too low but send me an email or
+send it by PDF because it's extremely
+expensive so I don't think it's yeah I
+think for free it's a good thing to read
+for 100 pounds maybe not so so don't
+hesitate to send me an email for the PDF
+we talked a bit about power laws for
+power rules there's this very nice
+review from ten years ago but why we'd
+except to find power loss in eternity
+net and
+stems in general and then there is this
+nice paper there that proposes method to
+test whether or not you have power loss
+in empirical data these two ones are
+very nice to read and about community
+detection so there's a very old paper
+that I advised by Herbert Simon called
+the architecture of complexity it's just
+a pleasure to read there is no math it's
+just a story and it's tries to explain
+why you would expect things to be
+modular and clustered all around the
+world in in nature and in society there
+is this review paper by Center for
+tonight Oh from 2010 there was a reason
+follow up last year two years ago but it
+is roughly the same about all the
+different types of methods that exist
+for community detection and then there
+is this other paper here which is about
+trying to understand the different types
+of philosophies that exist be in
+community detection by Michael Chou
+which is a bit shorter and that could
+also be of interest for you and I think
+now it's time for me to stop because I
+will have to leave at 11:45 so it means
+that I can give four minutes for
+questions if you have any three four
+let's let's see four so thank you very
+much thank you
+[Applause]

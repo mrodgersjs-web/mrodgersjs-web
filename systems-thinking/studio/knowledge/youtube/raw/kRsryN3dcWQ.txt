@@ -1,0 +1,931 @@
+[Music]
+so let me just thank the organizers for
+accommodating all our needs because we
+came with our daughter and I don't know
+if she causes any trouble to you well
+sorry alright so I will talk about where
+the distance is in scale free random
+graph what else and to start with some
+motivation or what is varies is coming
+for from I will give some examples of
+information diffusion which means just
+basically any type of spreading process
+on a graph so you can think of viruses
+for instance they spread across the
+society so here you can see the spread
+of the Zika virus all across the world
+starting from Africa and then here you
+might have heard of a completely
+different drivers a ransomware attack
+called wanna cry which affected
+I think computers in in May 2017 and it
+basically spread across Europe in three
+days and caused a lot of trouble so the
+the so this these are sort of emblematic
+examples of information spreading on
+some networks here it is the Internet
+network but you can also think of other
+more fun things like the spreading of
+memes on online social media this this
+visa Packer meme spread in a couple of
+days all over Facebook I'm sure you have
+seen it or some versions of it of course
+you can think of viral videos like the
+Gangnam style which which hit a billion
+views just in a couple of months right
+so so the
+the goal of my of a part of my research
+is to understand and describe
+mathematically how this type of process
+is spread on networks and to be able to
+do so we need models so and to be able
+to model information spread on real
+networks somewhat realistically we need
+to first do some analysis on these
+real-life networks to be able to find
+the model that fits them sort of at
+least and so the first observation is
+that many real-life networks have power
+law degrees so this means that a number
+of neighbors of vertex in in the network
+follows a power law so the probability
+that if you pick a vertex uniformly at
+random from your network and that the
+degree of that vertex equals x the case
+as a power of X this power is typically
+or I will denote it by tau and so the
+very physics papers show this is by
+plotting the log proportion of vertices
+with degree acts against against log X
+and then you should see a straight line
+with slope tau so so this was first
+observed or one of the first observation
+of this phenomenon was by follows whose
+follow susan follows in 1999 no I think
+three brothers or I'm not sure about the
+precise relation
+but anyways so they they plotted the
+degrees of the IP level or Uther level
+internet network as it was growing from
+November 97 to March 98 and December 98
+and oh sorry this is IP level and this
+one is Rooter never and they found that
+even as the graph grows tamata follows a
+power law with the Tau being sort of
+minus two point two okay and then here
+and here's another completely different
+example so so in the literature if you
+if you open up any a real life network
+literature you can find examples protein
+interaction networks gene regulatory
+repertory networks many of them follows
+power laws or truncated power laws but
+not everything is a power law okay so
+you have to be a bit careful so these
+are ecological networks where there are
+animals and plants and they are two of
+them are connected with if the animal
+pollinates the plants or eats the plant
+in this case and and you can see that
+some parts of the network it's bipartite
+graph in this case follows a power law
+while others don't so it's not always a
+Paulo but many of them are so another
+important observation that will be
+relevant in my research that the power
+love parameter so the exponent tao is
+very often between two and three and
+this will be crucial so this this does
+make us difference
+why because in this case the empirical
+variance of the network diverges as the
+number of vertices grows okay while the
+average degree stays bounded okay so
+this this sort of makes a big difference
+in how processes behave on the network
+alright so so the one of the easiest
+models that you can fit two such
+decrease is called the configuration
+model so for those of you who haven't
+heard of it it's just a model that
+matches the degrees of the network so if
+you have a naturally the given degree
+distribution or a given how do I click
+with this mouse oh I guess on the side
+man can someone explain me how to use
+the mouse no I have no idea okay
+yeah okay now I completely lost it it
+seems like oh yeah I'm sorry and this
+one maybe okay now it works okay and
+then I want it to click on let's say
+this link the first one and then Victor
+the second one okay so what you see is
+for each vertex you plot the little half
+edge and how many hostages you plot
+there it is going to be the degree of
+that vertex
+and once you did this for all of the
+vertices you just take a uniform
+matching of all the half edges so a
+uniformly random matching this gives you
+a graph and the randomness sort of comes
+from the matching right so this is the
+end result
+all right now it's not you can say click
+or explain me how to just like babe okay
+so very is my presentation sorry I'm
+like technically challenged the same
+okay okay okay and now the second one
+all right great right now I want to just
+change the power over there okay
+so so if I change the power loss so
+let's say 2.7 and the number of vertices
+to a thousand then then you get the
+network like this so this is sort of
+what I'm having in mind so the the power
+low exponent is is somewhere around you
+know between 2 and 3 and the number of
+vertices is large and as you can see
+there's a well like a core right there
+there are high degree vertices in the
+network because of the power law
+relationship and these high degree
+vertices are sort of clustered in the
+middle so this is the graph I would like
+to understand and if I increase this to
+let's say 3 comma 5 no this is minimal
+degree 2 but minimal degree true helps
+us because then you know there's
+basically one connected component okay
+so this is ran'tao is above 3 and in
+this case at least in the limit there's
+no core ok so if as tau crosses from two
+two point something to three point
+something the core disappears so it more
+becomes like a web and yeah so this is a
+sort of the difference between tau
+between 2 and 3 and provision tau above
+3 so now can you help me find my
+presentation great yay ok so so once we
+have this graph so this is what you have
+in mind that this graph with the very
+high degree vertices forming a core to
+be able to model the information
+diffusion we just add a ID edge weights
+to
+existing edge and we think of this as
+the transmission time of the information
+through that edge okay so if the
+information reaches one vertex it takes
+that edge rate amount of time to reach
+the vertex next to it along the edge
+okay so so in this model the spreading
+time from one vertex to the other so if
+the information starts at some vertex u
+the time that it takes to reach vertex V
+is just the weighted distance in this
+weighted graph okay so this is a random
+object for two different reasons that
+the graph is random but also the edge
+weights are completely iid okay and so
+the question is how does how does this
+this distance behave in terms of the
+degree distribution and in terms of the
+edge weight distribution so we would
+like to characterize the university
+classes of of this object okay so so to
+be able to do so the first thing you
+should be able to do is to understand
+the graph locally how does the graph
+look from the point of view of let's say
+the initial vertex of the spreading and
+and it is common or it is kind of
+well-known that the configuration model
+locally in the locally convergent and
+converges to a branching process okay
+and because of that because of the way
+the model is defined you are more the
+the degree of your neighbor so if this
+is your original vertex the degree of
+your neighbor is the size bias
+distribution of the original degree
+distribution okay so so the local
+neighborhood offer vertex looks like a
+random tree with the size bias
+distribution so so if we want to
+understand how distances behave or how
+this weighted distance behave
+the initial process of the initial part
+of the information this fusion looks
+like random tree where the degrees are
+power law and the tail exponents shifts
+by by one because of the size biasing so
+so it's tau minus two which is between
+zero and one so okay so my tail exponent
+I mean the probability that the degree
+is larger than X is constant over X to
+the Alpha okay and then each edge
+additionally has an iid edge weight
+which is this this edge weight
+distribution so this is called an age
+dependent branching process okay so let
+me let me define it to you so I will
+denote it by BP X comma Sigma where X
+denotes the offspring distribution so
+the root is just born at time 0 it
+produces a random variable X number of
+offspring and then each of those
+offspring each of those children are
+born some Sigma time later and this
+Sigma's are iid
+okay so this one is born Sigma one time
+later this is Sigma two time later so
+it's born this at this moment and so on
+and and given that the child is born
+it just reproduces completely
+independently so it has again iid number
+of children from distribution Sigma and
+all of the birth times are again iid
+sorry of distribution X and all of the
+birth times are iid Sigma ok so the
+important crap nam or in the important
+parameter or object to study is the
+number of born individuals before some
+time T so let's say DT is in this case
+so the number of born individuals before
+time T in this case is 11 because 1 2 3
+4 5 6 7 8 9 I guess I've missed
+something so it should be 11 points
+before this vertical line alright so
+this is the population born mind by
+by x d and the definition that an h
+dependent branching process is called
+explosive if there is some time T such
+that this this random variable the size
+of DT is infinite with positive
+probability okay so the question is how
+can this even happen well if the
+expected number of offspring is finite
+it cannot happen but we are in a setting
+where the expected number of offspring
+is infinite okay so in that case it can
+happen and if this happens the branching
+process is called explosive otherwise
+it's called conservative so this this
+definition goes back to even the Harris
+book treats a sufficient and necessary
+condition for a branching process to be
+explosive if the birth times are
+exponential but here we are having a
+completely general birth time
+distribution so so Sigma the edge length
+is completely general distribution not
+even absolutely continuous now all right
+so the the main question is when is a
+branching process explosive and then
+there was a lot of work on this in the
+Russian literature in the 80s and they
+gave a lot of sufficient conditions but
+the necessary condition came from a
+minute of Roy Griffith and over in 2012
+I think in an annus of probability paper
+and so I will just sort of have a
+rewritten version of what they did so if
+you assume that the tail of the Oz
+offspring distribution is at least a
+power law so so it's 1 over x2 1 minus
+something so you have to be like
+strictly bounded from below by a Paolo
+but you are not very heavy so it's less
+than 1 over X to the epsilon Y so the
+tail is not like not 1 over log X ok
+those cases are excluded
+and the branching process is explosive
+if and only if this integral diverges
+okay so what is this integral but you
+take the distribution function of of
+your edge weight distribution invert it
+in the generalized inverses and then you
+look at e to the minus e to the said
+dessert and integrate that you can
+integrate it from one actually and if
+that diverges you are explosive
+otherwise you are conservative so this
+is sort of a mysterious criterium I will
+explain it well in a second so but
+before I do that so let's just note that
+this integral doesn't depend at all on
+the very precise power law tail of X ok
+so it only requires that it's sort of
+bounded from below by some power law
+between tail exponent that is strictly
+less than 1 and and still exponent that
+is strictly like larger than 0 and and
+this is it so which means that if a
+branching if a distribution of Sigma
+forms and explosive branching process
+with some power law then it forms an
+explosive branching process with for all
+power laws ok so in particular for all
+power laws where the original Tao was
+between 2 and 3 so this criterion sort
+of comes from the fact that if here's
+the root and you plot the branching
+process like this and Z K is the number
+of the size of generation K then that K
+that is approximately exponential well 1
+over the tail exponent also let's call
+that alpha to the power K
+so so if you look at the minimal edge
+lengths leading to generation 1 and then
+the minimum edge length leading to
+generation 2 and so on so the typical
+order of magnitude of that is as Sigma
+inverse at 12 1 over that K so 1 over
+the exponent 1 over alpha to the K so
+this is the typical order of magnitude
+of the minimal edge length leading to
+some generation and if you sum this up
+from K from 1 to infinity if this
+diverges then you cannot explode of
+course because then even the minimal
+edge lengths are not summable and any
+any ray infinite line of this and
+leading to infinity is of course longer
+than that and and what they show that
+this this criterion is actually
+sufficient as well so if the some of the
+these typical minimums is finite then
+actually you can find one ray leading to
+infinity with finite total length all
+right ok so just to give you an example
+what distributions are explosive what
+are these Sigma's well so what matters
+is how the distribution starts off at
+the origin if it's if it's kind of steep
+at the origin you you are exploding
+otherwise you not so exponential gamma
+uniform are all explosive you can just
+plug this in this is basically for
+exponential it's just e to the minus e
+to the Z which is integrable so so those
+are all explosive anything that starts
+off as a polynomial is explosive so if
+you make it thinner like X minus 1 over
+T to the beta that's also explosive so
+how thin you can make it well sort of
+this has to be like what this explosion
+has expression has to be like 1 over Z
+or 1 over Z 2
+some power so you can calculate the
+boundary case which is like double
+exponentially themed around the origin
+so e to the minus e to the 1 over T to
+the beta around the origin which is
+explosive MBTA's less than 1 otherwise
+conservative alright so so let's go back
+to the configuration um on that so now
+we know when now we know that there's a
+dichotomy in terms of how the
+information process starts right so it's
+either starts in an explosive way in the
+local weak limit sense or not so so here
+here's the the first theorem that we had
+with Ramco and the PhD student and Rico
+Baroni so if you consider the
+configuration model with power law
+degree distribution exponent within Tao
+Tao between 2 and 3 you add iid edge
+weights to it from distribution Sigma
+and if this underlying branching process
+so the size bias decrease form the
+offspring distribution and Sigma forms
+the first times if this branching
+process is explosive then typical
+distances so the distance between two
+uniformly chosen vertices tends to just
+the sum of two random variables so it
+converges in distribution and this
+distribution is the same as the
+distribution of the explosion times of
+two independent branching processes so
+what is the explosion time of the
+branching process well is the first time
+that you find infinitely many
+individuals in it ok so this is nice
+otherwise so otherwise typical distance
+is 10 to infinity and and for the
+longest time we did not know what what
+is this other case so so how fast do
+they tend to infinity if it's not
+explosive
+and the reason for that is somehow that
+the branching process part is not very
+well understood how does a non-explosive
+branching process behave okay so let me
+just mention that this this this result
+was first shown by Shankar by Mindy
+Remco and hirato for him strapped for
+exponential edge weights okay and then
+with an reco be generalized to all
+explosive edge weights alright okay so
+so this year with either with a master
+student Arvind adrienne's we we sort of
+did the missing case so the you assume
+again that the degree distribution falls
+in this power low range at iid edge
+weights and then if the branching
+process is conservative out so there's
+no epsilon there
+it's just convergence in probability so
+so there's a weird expression coming so
+is this one so if you divide typical the
+typical distance by this quantity it
+converges in probability to one so this
+is the main order of magnitude so so let
+me explain so the sum goes to look like
+an envelope tau minus 2 some of you
+might know that this is the graph
+distance so 2 times this is the graph
+distance so so what you do is you sum up
+from 1 to half of the graph distance to
+well sort of the typical minimum edge
+length in in generation K so suppose
+there would be a branching process
+approximation which there isn't this
+long but then here you would have a tau
+minus 2 and if you just sum up the
+minimum edge length in each generation
+then then this is what you get and you
+have to sum it up sort of half of the
+graph distance and take twice because
+from each vertex you go from unv you go
+half of the graph distance that takes
+this much time and and then you somehow
+connect all right but this is the
+intuition okay so just to have a bit of
+an outlook what happens when Tao is
+larger than three so what happens when
+the empirical variance converges I mean
+it's finite in the limit so this was
+solved by Shankar committee
+Remco again and here at Hofstra correct
+me if I'm wrong this is not so if Sigma
+has a density then what they showed is
+that the order of magnitude is always
+logarithmic with a very deterministic
+constant prefactor which is 1 over the
+Matteson parameter of this branching
+process and there's well a type number
+random variable which is even converging
+I guess if it has a density than it's
+converging right and if it's not it
+doesn't have a densities they're tight
+oh you didn't show you but it's kind of
+true right ok so ok so if it has a
+density then this tight here converges
+to a very specific random variable
+otherwise I believe it's tight but
+apparently they didn't show okay and the
+reason for that that in that case this
+these branching processes is much too
+soon so it grows exponentially so it
+takes like one of our mottos and
+parameter times log n time to swallow
+the whole graph so to speak all right so
+before I move on to the proofs let me
+just tell you because there are so many
+special people here so we managed to
+sort of generalize this result or
+actually this was probably earlier to a
+spatial model so this is cost carefree
+population and before I define it to you
+let me just show you a simulation so
+this is how it looks like so it's a
+power-law
+distribution graph on the whole of Zadi
+okay there yeah so some vertices have
+power load degrees but the model is
+defined on sandy and there are long long
+range connections so how is the model
+defined well the vertex that is that D
+and each vertex has a vertex weight that
+sort of describes its fitness and so we
+added nearest neighbor prey edges which
+are actually not present in the
+simulation but just for convenience and
+then if you condition on the whole
+collection of the vertex weight then two
+edges I mean an edge between two
+vertices is open with the probability
+that the Poisson random variable is
+larger than one and the parameter of
+this was a random variable is the factor
+of the two Fitness scenes divided by the
+Euclidean distance to some power alpha
+and then you have a lambda pre factor
+which sort of his a percolation
+parameter okay so so this has a couple
+parameters so it has the power laws of
+the edge V of the vertex weights then it
+has a parameter alpha that is like the
+long-range parameter and the percolation
+parameter lambda and after all this you
+still add iid edge weights Sigma to the
+whole model okay so what so this model
+was defined by Ramco and mia Delfin and
+when they showed where they showed among
+others that the degree distribution
+follows a power law again with a
+different exponent gamma that is well
+the combination of the long-range
+parameter dimension and the power law
+parameter of the vertex weights so it's
+alpha times tau minus 1 over D all right
+if alpha is larger then okay so again
+this is the
+that you have to have in mind and and
+what we did is so if this power low
+exponent is between one and two so here
+there's no real size biasing so that's
+why it's one and two
+oh no sorry this is the tail so there is
+cyber thing okay
+so if this comma is between one and two
+and then you fix a unit vector E and you
+look at the vertices that M times that
+unit vector then the typical this the
+distance B of that vertex and the origin
+is well behaves as a similar formula so
+it converges in probability if you
+divide by a very similar formula and
+this formula is where you have to go to
+log log M over low gamma minus one which
+is sort of the Kraft distance half of it
+and then this inverse of the Sigma
+distribution so so sort of the
+configuration model is is is universal
+in the kale in in the conservative cases
+at least okay all right so I will move
+on to the proofs okay so so first I will
+give a picture proof of the explosion
+and I made this picture when when I
+broke my shoulder so it's going to be
+very ugly handwriting okay so so you do
+a branching process approximation from
+both vertices right so U and W here are
+uniformly chosen vertices and you can
+approximate with the branching process
+until you reach let's say n to some
+smaller number of vertices so some small
+power and to the epsilon so you can show
+that these clusters are still with high
+probability disjoint they don't overlap
+and as a result the typical distance has
+to be larger than you know the time it
+takes to swallow up this this branching
+process here and this branching process
+there so since the number of vertices
+tends to infinity this come this
+converging distribution to the explosion
+time sort of by definition because the
+definition is the explore of the
+explosion time is you know the time it
+takes to reach infinitely many
+individuals which is the limit of the
+time it takes to swallow up let's say
+anger and individuals okay so this gives
+you the lower bound what give what gives
+you the upper bound but we use
+population so we we percolate the whole
+graph we use the edge weights as an
+auxiliary auxiliary variables to
+determine which edge to keep so we keep
+an edge if and only if it's if it's
+Sigma on the edge is less than some
+epsilon this is a different of epsilon
+and that one okay so so in in this
+percolated graph every edges that has
+length less than epsilon and then we can
+show that the maximum degree vertex or
+at least one vertex in this branching
+process has sort of high enough degree
+and then also that in this percolated
+graph this this core structure that i
+showed you on the simulation persists so
+there is this core structure what does
+that mean that the core can be
+decomposed into layers or shells like an
+onion and it
+the property that if you are in one
+shell if you are a vertex in a shell
+then with high probability you will find
+the neighboring vertex in one shell well
+one more in okay which means that you
+can build the path using this
+recursively to the very very core and
+very very curious let's say vertices
+above the degree square root of N and
+they form a complete graph so they are
+connected now of course this path uses
+edge is in the pair collective graph so
+it uses edges that have length less than
+Epsilon
+and how many layers I have well only a
+constant number okay so so ultimately
+the the typical distance is less than
+well the time to swallow up the two
+branching processes on both sides plus a
+constant times epsilon so you can play
+this for every epsilon which means which
+we sort of finishes the proof okay yes
+sorry no no the constant doesn't depend
+on epsilon it's it's it's absolutely
+absolute in the panel constant I mean
+that's kind of the magic about it okay
+so what do we do for the conservative
+edge weights
+well sort of similar so the picture will
+be very similar to this except these
+branching process parts are going to be
+timing so I don't want to run them to n
+to the epsilon I just want to run to
+some small generation number so I run
+them until generation m MN sorry
+which I will determine later so I draw a
+picture you know
+so here's you and this time I do really
+a generation
+in process so this is generation a man
+if let's say W and it has this is it's a
+man's generation and then I I do a
+percolation again but it's it's a bit
+more tricky this time so I say I keep an
+edge if and only if its edge Lang is
+less than some threshold function that
+depends on the degrees of the vertices
+that the edge connects okay so if the
+edge is between a vertex of degree
+hundred and three hundred then this
+threshold function depends on these
+degrees and the higher the degree the
+smaller distress what will be which it's
+sort of captures the idea that if the
+vertex has very high degree it's minimal
+edge length is very tiny that goes out
+of it okay so after this so I will talk
+about this in a second a bit later how
+to choose this one but then I also want
+to find in these branching processes in
+the last generation a vertex u tilde and
+here a vertex W so this is let's call
+this V V field and what I want is that
+the calculated degree of it so dag P of
+U tilde is larger than some K n okay and
+this K n will depend on the amount so I
+I want this to be fairly high at least
+standing to infinity all right so let's
+talk a bit about how to do this degree
+dependent percolation
+so there's an argument of yongsan that
+says that if you do percolation on the
+configuration model and or and the
+probability of keeping an edge
+factorizes
+into well two parts a function of the
+degree on the two sides then you can
+look at the resulting percolated graph
+as a new configuration model so so maybe
+in rampu in Johnson's paper you cannot
+find precisely this version but we did
+it with and well it's sort of hidden
+there but we did it with enrico very
+precisely so you can find it within one
+of our papers and so the reason for this
+is that somehow you can reverse so the
+configuration model let me remind you is
+that you drew these hostages to the
+vertices and then which was the degree
+and then you just took a uniform
+matching so instead of first matching
+the hostages and then doing the
+percolation you can reverse the order
+and if the percolation probability
+factorizes and just kill or keep every
+half edge which with probability P if
+this vertex has degree d1 then you keep
+this hostage with probability P be one
+independently of everything else and and
+here this is the to you keep each
+hostage with probability P b2 and
+whichever you didn't keep sort of this
+hostage you move it out so so you you
+you don't erase it but you you detach it
+then and move it out and then maybe this
+one you also didn't clips keep so you
+move it out to an artificial vertex of
+degree one and then after you have done
+this so maybe this one is cat this one
+is also cat after you are done you have
+done this you match all the hostages and
+you just look at the sub graph that is
+formed by the capped hostages and that
+sub graph has the precise same
+distribution as as the percolated graph
+so it's a tricky argument alright so I
+will choose this so we are we are free
+to choose this P function that depends
+on the degrees and and if you if I go
+back so in in this one it was just a
+constant right so you kept every edge if
+it's edge length was less than epsilon
+so that means you keep every at you the
+constant probability which of course
+factorizes but here I have to choose the
+PB and i chosed it stretched
+exponentially in the log degree so I
+take some ethought that is less than 1
+and this is my P D and E and then so
+what is the threshold function coming
+from this BD well you just have to apply
+the expectation on both sides of here
+and they have to match so what you get
+that your threshold function is this the
+inverse of Sigma of the Sigma
+distribution function at at this place
+which is PD 1 times PD - ok so why why
+this why is why I chose this function
+but because if eta is less than 1 C is
+arbitrary then its power law preserving
+so if the original distribution follow
+the power law with a certain power
+exponent then the calculated degree
+distribution still follows the same
+power law I mean the power with the
+exact same exponent okay so somehow it
+doesn't destroy the structure if if the
+purple ate the probability of keeping
+well hostages is this is this formula
+alright and this is basically the best
+you can do if PD is much smaller than
+this you lose the power law alright
+let's continue so let let's put it
+together so because of this Jensen's
+argument that
+that the percolated grass is still a
+configuration model and because we chose
+the percolation probabilities so that
+its power log preserving so you again
+have a config the percolated graph is a
+configuration Madhavi the same paolo so
+you can find again this layering
+structure so just like before the only
+difference is that now you start at the
+degree that this is much much smaller
+some km so the next layer is has degrees
+km to the 1 over tau minus 2 the second
+next layer has Keun to give 1 over tau
+minus 2 squared and so on these are
+increasing and you can go up all the way
+to decrease that are larger than square
+root of them alright so if if we put
+this together so there's a path here
+that you constructed this way so what is
+an upper bound on the length of this
+path well you have to go from u to oh
+sorry this should be Sigma here not L so
+you have to go from u to u tilde between
+the branching process and from V to V
+tilde and then an upper bound is of
+course the threshold functions right and
+that's just the threshold function on on
+these degrees okay so let's let's put it
+together so this this is just copied
+from there and this is my threshold
+function I've seen my inverse the log
+degrees to the power ETA so so these are
+your degree so you can just plug them in
+and see what comes out and what comes
+out is well you have to like transfer
+form the sum to an integral change
+variables transforming back to a sum and
+what you get is this one so you get a
+factor 1 over E
+in front and then the sum only goes to
+eat a log log n over log tau - - but
+other than that is basically what we
+want so F Sigma inverse at e to the 1
+over tau minus 2 to the I so this is
+what we want except I don't want here
+this ETA and I don't want here this ETA
+ok so how to choose ETA so eta is less
+than 1 so the summation boundary is just
+fine if I drop the ETA so that's again
+an upper bound but but this is buttering
+so so I have to choose the ETA let's say
+less than so that one over it is less
+than 1 over epsilon over 3 okay and then
+this is with high probability this was
+with high probability so now what I have
+is that the distance between U and V is
+less than the L so the time from go to
+here from here to there and from here to
+there and plus basically what I want
+okay so I have to deal with the first
+two terms so I have to show that I can
+choose an a man so that these terms are
+negligible but a man has to tend to
+infinity because if this km doesn't tend
+to infinity then I lose the convergence
+in probability okay so so the way to do
+that is is you choose this you tell that
+based upon the degrees it's only and not
+looking at the edge length or edge
+weight and then you can use that this
+vertex is in generation and man so so
+the time to go from u to u tilde is just
+dominated by well the sum of MN iid
+Sigma's okay so what we have to show
+that that the probability that this
+expression is let's say larger than
+epsilon over 3 that times what I want is
+is negligible in the limit and I want a
+man to tend to infinity and and so so
+this is not so trivial because Sigma can
+have
+three mojave tears like one over log
+Logan but we showed that regardless of
+the tale of Sigma you can do that so so
+there's a actually generally it's true
+that if you have a stickman say and that
+tends to infinity then and the
+distribution let's say Sigma then
+there's always a dead of am that Sigma I
+is larger than a n so this tends to
+infinity so there's always a choice of Z
+as a sequence sorry to tend to zero yeah
+so so for all for all n tending to
+infinity and for all distributions Sigma
+there's a sab of a and that tends to
+infinity than that you can do this and
+and somehow these that depends on of
+course it depends on a and but also very
+heavily on the tail of the Sigma so if
+it's it's finite mean you can just use
+Markov inequality and to choose one but
+if it's infinite mean then you have to
+work a bit harder yeah this should be
+zero so if it's the other way around
+then then you you are zero then it's one
+okay so let's combine so I have here two
+times 1 plus epsilon over 3 times this
+and these are at most epsilon over 3
+times that with high probability so if
+you sum them up then you precisely get
+well what we want which is let me go
+back know here AppData so then you
+precisely get that that this Sigma u v
+is less than 2 times 1 plus Epsilon
+times this expression so we get the
+upper bound like this okay so this
+finishes the proof of the upper bound
+which is the harder direction so so if
+so I didn't put it on the slide but the
+lower so the lower bound is is fairly
+simple because I still have time so what
+you can do is so here's you and then
+here's the some generation I don't know
+Kappa any of you
+and here's we and some generation copper
+and of me and and you can show that you
+can couple the you the the local
+neighborhood of U and V 2 to the
+branching processes all the way until
+generation copper and new and copper and
+V so that these two tend to infinity
+with high probability and this graph
+these are still disjoint and then you
+just do the emini deploy overtrick that
+so this Sigma u and let's say the last
+generation is larger than the sum of the
+minimum edge lengths leading to its
+generation okay and so this is the sum
+of the minimum to go from so the Sigma
+distance between generation K to
+generation k plus 1 k goes from 0 to
+Kappa n let's say u minus 1 and then
+then you just yeah you just use how big
+these generation sizes are they are
+approximately this you plug that in you
+know that the typical min
+like this so you get the lower bound oh
+yes yes of course I mean and if it
+doesn't tend to infinity then I mean if
+it if it's less than log broken then is
+you have a problem so this is let's say
+log log and overlocked are -2 plus side
+and then you are good because you only
+lost a bit all right so so maybe maybe I
+stopped here so thank you for the
+attention
+you

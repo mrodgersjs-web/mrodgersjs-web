@@ -1,0 +1,330 @@
+hello its scott manley here lots of
+space fans know about the Apollo
+guidance computer
+I myself have talked about this historic
+device its famous errors during Apollo
+11 I disassembled the cord and even had
+the chance to look inside a real one but
+fear of you knew that there were
+actually four different computers on
+every Apollo mission to the moon all
+with different roles and designs the
+four computers were the launch vehicle
+digital computer on the Saturn 5 which
+had to be launched of the monster rocket
+there was the Apollo guidance computer
+in the command module the handle didn't
+handled the deep-space navigation needs
+and there was a second Apollo guidance
+computer in the lunar module which would
+handle landing on the moon the return to
+orbit and rendezvous with the command
+module then there was the abort system
+in the lunar module which was a backup
+system that would handle I returned to
+lunar orbit if primary guidance failed
+so there were three distinct designs
+developed and built by three different
+teams and three and a half sets of
+software since the AGC code for a
+command module and lunar module actually
+shared a lot in common and you know
+being a bit of a computer nerd I want to
+talk to you about how all these were
+unique technological creations in their
+own way so let's start with the launch
+vehicle digital computer that was
+developed by IBM to control the Saturn
+1b and the Saturn 5 it was part of the
+instrument unit fitted to the final s4b
+stage this unit also included the power
+cooling communications and sensors
+required for the entire guidance system
+the digital computer itself weighed
+about 36 kilograms and fit into a box
+about 75 centimeters by 32 by 27 the
+logic hardware was built out of
+individual transistors and diodes these
+came in tiny half millimeter chips which
+would be soldered onto one centimeter
+square alumina chips and these in turn
+would then be soldered onto an eight by
+sent a six centimeter PCB this can
+Packaging was something that IBM had
+developed experience with furthermore
+earthbound mainframe computers the
+computer used magnetic core memory which
+came in 4096 word modules and there
+would be up to eight of these modules
+that could be fitted to store the
+program and the working memory providing
+a total or a theoretical total of 32,768
+words of storage there wasn't any
+read-only memory the program was loaded
+into memory and could be modified during
+vehicle assembly the computer clock
+cycle operated at 2048 kilohertz but the
+processor would take about a hundred and
+sixty eight cycles to execute most
+instructions because it's operating one
+bit at a time so it'll run about twelve
+thousand instructions per second but it
+also had triply redundant hardware so
+each operation was also performed by
+three separate units and the most
+popular answer was chosen to guard
+against failures there were two
+arithmetic units one would perform your
+basic addition subtraction logical
+operators in a single cycle while the
+other would handle the more complicated
+multiplication in four cycles or
+division in eighth but the two units
+operated independently so one
+instruction might start a division and
+then spend the eight next eight cycles
+doing something else before coming back
+and retrieving the result the computer
+operated on twenty eight bit words but
+each word was split into two fourteen
+bit syllables and one of those bits on
+each syllable was a parity bit for error
+checking now an instruction could be
+encoded with a four bit opcode and a
+name bit operand so you'd put two
+instructions in each word of memory
+numerical data would instead be stored
+in 26 bits across both syllables as
+two's complement integers the computer
+had two memory modes which could be used
+by programs it could be used in simplex
+or duplex mode with duplex mode
+essentially providing redundancy by
+performing each read and write operation
+onto two memory banks since the
+instructions only had named bit operands
+for addressing Batman you could only
+address 512 or
+words of memory to cover the entire
+memory range the hardware had to use a
+complicated bank switching system which
+made it hard to pass lots of data
+between programs running on different
+memory modules in particular this meant
+that some code had to be replicated on
+each memory module for performance
+reasons well at least that's what the
+team at MIT told NASA because early on
+in the development our IBM argued that
+the Apollo guidance computer shouldn't
+even be built and they should use their
+lvdc instead and they produced
+substantial reports which the MIT team
+responded to with a detailed report of
+their own and as far as we know this is
+the only document which includes
+examples of how you wrote code for the
+launch vehicle digital computer IBM have
+never really released any documentation
+and there's not really any dumps of the
+code that ran on the lvdc but you know
+hypothetically you might be able to
+retrieve it from the memory of the lvdc
+in the National Air and Space Museum if
+they've let a hacker near it finally
+that digital computer is assisted by a
+second analog computer the flight
+control computer was an essential part
+because it would take the commands from
+the digital computer and it would
+translate those into the engine control
+commands the gambling this was needed
+because the digital computer was too
+slow to deal with the real-time
+operation of the rocket and had to have
+the analog computer performed the fine
+adjustments to the engines to keep it
+straight so the computer would tell at
+which way to point and the flight
+computer would make sure that it stayed
+pointing in that direction so let's go
+on to the AGC there were two of these in
+the Apollo spacecraft and they're the
+highest profile of the devices that the
+computers that were up there when people
+say the Apollo computers this is what
+they typically mean unlike the lvdc we
+have complete working code we even have
+working hard we are thanks to some
+amazing hardware hackers the AGC is so
+well documented that there are error
+emulators you can play with on
+simulators which use the real code and
+actually you can use it inside Kerbal
+space program if you really want to
+the AGC was developed by Draper and they
+used integrated circuits for compactness
+the block 2 computer which was used on
+the crude flights had its core logic
+implemented in 2800 integrated circuits
+each of these had a pair of 3 input nor
+gates implemented in transistor
+transistor logic the clock speed was
+again 24 to 8 kilohertz but the memory
+cycle time was only eleven point seven
+microseconds and the instructions took
+between one and six cycles to complete
+so overall the AGC was significantly
+faster than the lvdc
+the memory used 16-bit words but one of
+those bits was reserved for parity with
+one instruction per word numerical
+values were reserved a single sign bit
+but were once complemented unlike most
+computers these days which use to
+compliment instructions were originally
+supposed to take one word of memory but
+as the computer got more and more
+complicated they ended up adding
+instructions that took two chunks of two
+words of memory the memory itself was
+split between 2040 words of a reasonable
+core memory that's RAM and thirty six
+eight hundred and sixty-four words of
+rope memory which had to be hardwired in
+a factory and couldn't be changed at
+that point the AGC also still needed to
+use memory bank switching to address all
+the memory and this was more complicated
+in some ways than the lvdc but actually
+ultimately it worked out to be faster
+and more efficient than the LV DC's
+implementation unlike the lvdc
+there wasn't any redundancy the ADC you
+had a single core and its approach to
+reliability was to make rollback and
+recovery from any error very fast and
+this was seen in Apollo 11 when those
+alarms are going off the computer is
+resetting and restarting and picking up
+where it left off almost instantly the
+astronauts would interface to the
+computer with the disk II interface and
+this of course had the famous verb
+commands and the big displays when a lot
+of people point to the computer that's
+what they see but the actual
+shooter was typically and if it was an
+elsewhere in the spacecraft I think on
+the lunar module it was on the wall
+behind them in a sealed box that was 60
+centimeter by 31 by 15 centimeters the
+whole thing masked a bit 32 kilograms
+the main difference between the command
+module Co AGC and the lunar module AGC
+was the court on those rope memory
+modules for the crewed Apollo missions
+the command module cord was called
+Colossus and the lunar module cord was
+called luminary but there were a bunch
+of other versions named notably the
+first cord flown on an Apollo spacecraft
+was called Corona later later versions
+for Colossus were known as Artemis and
+the final versions of the AGC software
+on Skylab were known as Skylark
+so the AG C's don't have redundant Sade
+they have this rapid restart and resume
+capability but just in case something
+disastrous happened the lunar module
+carried a second computer to handle
+emergency situations
+the abort guidance system was originally
+called the backup guidance system or
+bugs but this was seen as asking for
+trouble amongst a superstitious bunch of
+Engineers so it became a GS it was
+developed and built by TRW and they
+again came up with their own
+architecture most of the logic was built
+out of a library of eight types of
+integrated circuits using diode
+transistor logic it used eighteen bit
+words with no parity bit instructions
+were five instruction bits and an index
+bit and twelve address bits allowing it
+to access a flat four killer words of
+memory the memory was all ferrite core
+with half of it considerably reasonable
+and half of it read-only but this was
+really only the way of still using core
+memory it was just the ability to
+overwrite the memory was inhibited many
+of the instructions took a bit 10
+microseconds to operate so it was about
+the same speed as the Aging's
+AGC and you know device divided could
+take him as much as seventeen
+microseconds and interesting like off
+the 27 instructions that were
+implemented there were four that were
+specified that
+intentionally omitted the memory refresh
+and that would leave the memory as a
+zeros but it would save power and
+programmers were told to use this to
+reduce the power of you know Lord in the
+system astronauts would interface with
+the abort guidance system using the data
+the data entry display adapter which was
+as a cruder version of the disk II in
+essence you could use it to display
+contents of memory and specific
+locations or to set values with only 4k
+of data to work with
+it was missing many of the features that
+the Apollo guidance computer had but it
+had enough smarts to put the lunar
+module in a safe orbit and then
+rendezvous back with the command module
+the AGS was never needed for a full
+lunar module abort but it did find use a
+couple of times during the missions on
+apollo 13 it was used to keep the
+vehicle stable during the short burns
+used to trim the entry angle the AGS
+used a lot less power than the AGC say
+it was the better option and on Apollo
+during the final rendezvous and docking
+maneuver Neil performed a rotation which
+pushed the inertial platform on the
+primary guidance system into gimbal lock
+now the AGS had its own simpler strap
+down like gyro system and it didn't
+suffer from gimbal lock so that was used
+to keep the El lunar module controllable
+during the final docking and in case
+you're wondering the strap down system
+was easier small or comp more compact
+but it drifted more over time so the
+primary guidance system with its you
+know fancy gimbals was better for long
+periods stability the truth is the abort
+guidance system didn't get used very
+much because the Apollo guidance
+computer was so reliable
+even without redundancy in the processor
+or the memory it never had any serious
+in flight failures and due to hardware
+and it doesn't help that the Apollo 13
+movie writes the AGS out of the script
+entirely but as a hardcore computer nerd
+I find all these different approaches
+and implementations fascinating back
+then these designers couldn't
+agree on how many bits should be in a
+word and yet they all work together to
+put people on the surface of the Moon
+and bring them home
+I'm Scott Manley fly safe
+[Music]

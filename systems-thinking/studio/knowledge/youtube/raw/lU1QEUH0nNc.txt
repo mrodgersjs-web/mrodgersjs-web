@@ -1,0 +1,1595 @@
+all right um so good evening let's get
+started um today's topic is uh Network
+communities so in fact this is a topic
+for next three lectures um today we'll
+sort of have a broad introduction to uh
+communities and to um sort of ideas to
+definitions um and we'll look at two
+methods to very very simple and
+intuitive but at the same time uh heris
+methods of finding community is um next
+lecture we'll goote to um some linear
+algebra and um ways to actually build
+pretty strong algorithms for Network
+communities um and the last lecture uh
+will be about um overlapping communities
+and uh some other ideas related to um
+actually numerical
+computations on the
+communities okay
+so um we're going to talk today about
+cohesive groups and we'll give some I'll
+give some definitions and we'll talk
+about graph clicks and we'll discuss why
+clicks um in their normal um social
+scientist or or computer scientist
+discret mathematics um definition is not
+a good um definition for us to use as a
+communities we'll talk a little bit
+about klex as K course um and lat later
+um at the seminar you will learn more
+about key course and how to compute them
+um and then we'll actually switch to
+network communities and we'll discuss
+two main ways to
+actually um find them one through
+similarity based clustering um based on
+the ideas we developed in the previous
+lecture um on a structural similarity
+between nodes and then the sort of the
+major way is through graph partitioning
+we'll start this topic and we'll
+continue on with it um next lecture
+so Network
+communism you know by by looking at this
+network and in fact this is network of
+collaboration of co-authorship among
+professors at at the at one of the
+universities um you can pretty much
+intuitively see what communities are so
+you you probably you know each of you
+realize that something like this is
+probably
+Community right and maybe this is a
+community and this looks like as a
+community and and this is a
+community this is probably community of
+course this one completely separate is a
+community it is harder to um find
+communities in in the rest of the of the
+graph but you can probably also sort of
+decifer that there is some community in
+here and maybe something here and maybe
+maybe something here and here and and
+here so we had just done we partitioned
+the graph into communities um in fact
+this this communities corresponds to
+different um Departments of the
+University well we didn't know that we
+didn't have labels um the idea would be
+to actually being able to detect those
+communities um just based on the graph
+structure and again if you think about
+this you know purely intuitively uh what
+we were doing what I was doing here I
+was looking for a group of notes that
+are kind of tightly connected between
+them and maybe less connected to the
+rest of the notes in the graph so that's
+in fact informal definition of the
+community and we'll try to um get to
+that definition through a few
+examples so um couple
+points um in this lecture we'll be
+considering first of all under directed
+graphs um there are there are a lot of
+things that can be extended to directed
+graphs uh but implicitly will will stick
+with
+undirected and other thing is we're also
+going to look at the petition of
+connected graph well the reason for that
+is because you know it's sort of obvious
+and trivial to select this community
+which is separate from which is
+separated from the from the graph so
+before using any of the methods that
+we're going to discuss today if you
+given a graph you should first run um
+connected component those um algorithms
+and U work with connected component
+right um if connected component
+algorithm returns you a bunch of
+components while each of them um can be
+candidate for uh detecting of network
+Community all right so the the problem
+of finding communities um really
+originated from as as as pretty much
+everything in this social network
+originated from sociologists um there is
+a very good summary in in basman and F's
+book um but historically it probably
+goes to 40s and um the the the name for
+the community back then was a cohesive
+group or cohesive subgroup in the
+network and and so there are several uh
+Main properties of this group that
+people usually look into well first of
+all it is mutuality of ties so the idea
+that everyone in the group has ties to
+one another so if we if we thinking
+about the community we might
+want to have connections from every node
+to you know every Noe right something
+like that um we want to have compactness
+compactness is in in a sense that it is
+closeness or reability of group members
+in small number of steps what I have
+just drawn this is reability for every
+note to every other note in one step
+they're all adjacent but in fact you
+might have pretty tight connections um
+with say missing one of the links and
+then um reachability will be um can be
+in two steps for example from here here
+to here um we get in two steps um but
+again it's a small number of
+steps and then the other sort of thing
+that we detect uh looking at the at the
+graph on the first slide was pretty much
+density of edges right so there is a
+high frequency of density um of ties
+within the group um and it is high
+compared to um the the frequency of ties
+um among different group members or
+compareed to non-members for example if
+this was one of the communities and that
+says another community and they're
+connected like this well um the average
+density of ties which is the number
+of um number of edges divided by the
+maximum possible number of edges um
+within the community will be higher than
+in between the
+communities um so these are sort of
+generic ideas that that um allows us
+will allow us to build some more precise
+mathematical definitions and so we'll
+start working with them and see how it
+goes so mutuality of ties is really uh
+is really is definition of a click so
+click is a complete or fully connected
+subgraph uh or a set of vertices where
+each pair of vertices is
+connected and again you know this very
+nice uh picture you can clearly see here
+few
+clicks right so this is clearly click um
+there is another one here and there is
+another one here well in fact these are
+not just clicks this are what's called
+maximal click we'll Define it in a
+second but click is a completely fully
+connected subgraph so if for example I
+look for a click of size three it's
+really it really means a triangle and so
+then this is also a
+click so um on this picture we'll see
+the click of
+size five and and and higher but this is
+a click of size three well in fact every
+two
+nodes every pair of nodes that connected
+are actually click of size two but you
+know we're not interested in that so the
+question is um just the definition of
+click is not enough to find what we're
+looking for because we are interested in
+things like
+this um and and say this one though it
+is a click um you know it's for us it's
+not a big deal because well you know
+three nodes but if you take the
+neighboring nodes um it's not belong to
+the C click well the formal definition
+here is a
+following maximal click is a click that
+cannot be extended by including an
+adjacent
+vertex so it is not part of a larger
+click well let's let's take a look at
+this so here's a few examples well this
+is a maximal click well first of all
+it's a click because there are two nodes
+and they're connected it's a maximal
+click because if we include the third
+node what we got is not a click anymore
+um it's not a click because for for it
+to be a click this should be connection
+in here but there is no connection like
+that on the other hand if we look at
+this picture this is not a maximal click
+why well
+because uh we can add one more node to
+it this
+node and what we
+have out of four nodes is also a click
+so this click size three can be extended
+to become click size four and so click
+size three in here is not a maximal
+click well on this picture this is just
+not a click at
+all and this guy is in fact maximal and
+maximum click so maximal in the sense
+that it cannot be extended and it cannot
+be extended because um the only node we
+have here nearby is this guy if we take
+this guy into
+account well there are some edges
+missing for this to be extendable by by
+by this extra node we should have had
+this connections but we do not have that
+so this is a maximal click because you
+cannot extend it it's a maximal click
+you cannot extend it anymore and the
+maximum click is the largest uh possible
+click in in the graph and so here this
+is maximal and maximum click right and
+quite often there is a um you you can
+define a click number for the graph
+which is the size of the maximum click
+so using this definitions going back to
+our previous slide um you can see
+that that um this is
+this is a maximum that's a maximal and
+maximum click these
+are maximal and this
+is maximal Click right so three of them
+are maximal and the largest out of this
+three maximal is a maximum click and for
+example the click um of of three nodes
+is not maximum because if I add
+neighboring node it it sto becoming
+so this is a definition pretty strict um
+definitions uh but but the good news is
+well when you have definitions you can
+actually try um you can take a graph and
+try finding those clicks well there are
+troubles in here and and troubles are
+pretty obvious
+because um if you realize what we're
+trying to to do is we're trying to go
+over all the possible combination of
+nodes a little bit later in in the
+lecture we'll actually calculate how
+many of those um are in there but but
+the point is um the problem of course is
+you know there's a factorial explosion
+and the problem becomes NP right it is
+really non-p polinomial in fact um when
+we have a if if the goal is to find a
+click of fixed un size k um this is a
+complexity um of of of the procedure now
+uh finding maximum clicks Max finding
+maximal and among the maximum click um
+carries this complexity it's where and
+is the size of the
+nodes so the point being
+that though the definition of of the
+click is is very
+precise um it's not very useful um in
+the sense of um you know computations so
+you can easily detect Clicks in smaller
+graphs it is much harder uh well
+actually it's impossible to do in large
+graphs but um and there is a little B
+but um if we're dealing with sparse
+graphs story changes and the good news a
+lot of social networks are quite sparse
+and this is in fact the sort of the the
+difference in between you know
+traditional discrete mathematics and
+discussion of graphs and and what we're
+doing here in network analysis um in
+graphs um or or in discrete math
+people um used to spend a lot of times
+time and and you know building
+algorithms and and
+finding
+um the complexity of algorithms for of
+course you know full
+graphs in real life we have sparse
+graphs and so things that seemed
+impossible they're actually doable in
+sparse graphs quite often doable and
+there is an algorithm that in fact
+depends on the um node degree and number
+of nodes so it is not linear in number
+of nodes but it's sort of of that order
+of magnitude and um I think I believe
+this algorithm is actually implemented
+in network X and definitely implemented
+in
+IAP so there are still ways um to find
+uh to to efficiently find U maximum and
+maximum Clicks in um large farse graphs
+and you know typically again we're
+interested not just in clicks we're
+because there are just too many and
+everything is literally you know click
+on the graph um but we're interested in
+maximal and um sort of the
+largest maximum
+click now there is yet another problem
+with this story um though the graph that
+I showed you you on the previous slide
+is really pretty um in real life most of
+the graphs are not like that because the
+definition is really really strict we
+require
+connectivity between every single pair
+of nodes and that means um especially if
+you have lots of nodes all of them
+should be connected for the for this
+structure to be um called um called a
+click and again um in in in real life um
+quite often this is not the so you will
+have a group of people who pretty much
+everybody knows each other except one
+person but if that link is missing you
+know the definition doesn't hold it's
+not a click anymore and and so it's kind
+of bizarre because
+um if we have you know something like
+this which looks like you know pretty
+dense but there is one one Edge missing
+well we'll not consider it as a hesive
+group uh if we think about cohesive
+groups as a click which you know
+obviously not true because it is a
+pretty cohesive group so the definition
+of click um should be relaxed and we
+should allow um some missing edges and
+in fact um there is a
+definition um oh and actually uh well
+first let's find clicks and then and
+then we'll talk about the sort of the
+relaxed version of definition um this is
+an
+example um of of very very famous social
+network it's called Zachary ktic Club um
+well there was a little story behind it
+uh Wayne Zachary was a sociologist who
+was actually um investigating
+interaction in you know in social groups
+and he um for several years um he
+observed um the small University karate
+club um and their interaction and and
+friendship communication between them
+and he build a social networks there was
+this 34 for people well the interesting
+part that during the time of the
+observation time
+um U there was some sort of internal
+conflict or whatever in the club and the
+club split in two um
+with some students staying with sort of
+original instructor and some students
+going to to another instructor and um
+the very interesting question would be
+okay well based on this um on this graph
+um of the social inter ction between
+members of the karate club would you be
+able to predict uh how and where the
+split occurs right and so in some sense
+if we could do that well that is a um
+result that would be result of um
+Community detection because well what's
+communities well right I mean based on
+our definition it's a group of people
+that are tightly CED U between
+themselves and so you would
+expect that if the split occurs it would
+happen sort of based on the on on a
+community structure and again without
+sort of going close into the details
+just eyeballing um you know this this
+picture you might think okay well you
+know maybe sort of these guys um
+separated
+out um or you know maybe there was a SP
+you know somewhere in here um we got two
+groups so there will be one community
+and there will be another community so
+something like that well in fact if you
+look in the paper there there is a
+ground truth in that so one can compare
+with it but before we do that um let's
+let's look and study um
+clicks so in fact um we can detect
+maximal Clicks in this graph and um
+there are you know
+11 um clicks of size of size of maximal
+clicks of size two and again not just
+clicks but maximal clicks meaning that
+if you add you know say here add a third
+node will not get a
+triangle um there are um there are um
+21 uh clicks of size three and and there
+are two maximal clicks of size four and
+two maximal click of size five so let's
+take a look at their largest maximal
+clicks which is maximum
+clicks um and here they
+are so if we look
+carefully say this guys um
+one you know two three four 14 yes
+they're all connected each with each so
+it is really a click it's a maximum
+click and here is another one it's also
+maximum C there are a couple points here
+first point is um you notice is that
+they overlap so there are two maximum
+clicks but they
+overlap right but they overlap but they
+differ and and in social setting again
+maximum click just really means you know
+people communicate with each other
+another point is though we can find
+those maximum clicks it's really cannot
+help it doesn't help us answer the
+question of sort of splitting of of of
+this karate club into two groups um you
+know there is no answer to that question
+on this pictures what we see is just the
+tightly coupled uh groups of students
+but when and and presumably after the
+split they will stay together um but
+that's about it um it doesn't tell us
+anything about the rest of the graph
+about the rest of the Kate
+students so as I mentioned um
+earlier there is a way to relax this
+definition relax the definition of uh
+click um and um there are actually a
+bunch of relaxation so one of them is uh
+what's called
+klex well
+klex is a of size N is a maximal subset
+of n vertices such that each vertex is
+connected to at least n minus K other
+vertices so in other
+words it means any vertex can actually
+Le ties but with no more than K members
+well um say if we have
+again some simple
+graph um say what it says if if um I I I
+look at this as a
+tlex um then um this will be a twox
+because for example this vertex this
+verx is missing um two ties well the way
+it's calculated is
+um you you count as as sort of as
+missing a tie to itself
+here um there is another definition
+which is also relaxation but sort of
+from the different direction uh which is
+called a k core a k core is a maximum
+subset of vertices such that each vertx
+is connected to at least K other
+vertices in a
+subset well though those two definition
+so relax stations do exist um
+klex is well quite useless because
+um it also uh you there also factorial
+large uh number of those cxes and the
+same way as as with clicks um they're
+computationally hard to
+find k core on the other hand happens to
+be a very very um interesting
+construction well first of all because
+there is exist a linear algorithms to
+actually construct those
+cores and um they they became very very
+useful um in fact not for uh finding of
+of uh communities but rather for
+preparation for graph preparation uh for
+for the processing uh for cutting out U
+small edges and finding the actual sort
+of core of the graph and today on the
+seminar um Andre will talk about it more
+and you will do some examples on
+actually how to find this uh how to do
+this k core
+decomposition but um Kord decomposition
+is and and klex is not an answer for um
+the community detection
+problem
+so before we move go any further um any
+questions about cores and and and plexus
+and sort of the that discrete discrete
+mathema
+all right either I don't hear you or or
+you
+quiet we'll try it we'll try it again
+any
+questions okay well if that's supposed
+if that means no then then no let's move
+on
+um
+so those definitions were the clicks
+were too strict for us um and what we
+actually looking into is something that
+sort of bridges you know this this this
+discrete mathematical very very strict
+definition and the sort of relaxed
+understanding of the community that
+exist in in in social sciences and you
+know one of the ways to to think about
+this this network Community um is really
+a group of vertices that are similar to
+each other
+I mean you know if if um they're they're
+connected they're
+communicating um and and they're sort of
+interconnected you they they should be
+similar I mean you know if you look at
+this at this picture let's say this
+those two notes they probably um well
+they're very similar in terms of um how
+they're connected to to other noes and
+so they probably belong to one community
+and again um you know there is a bunch
+of nodes here that seems to have very
+very similar um connectivity patterns
+and they might be a community and um and
+these say four guys they are all
+connected between themselves and also
+connected to node one so they have very
+similar um connectivities
+structure and on the previous lecture we
+actually talked
+about um about structural similarity
+right we talked about structural
+equivalence and sort of relaxation of
+the notion of equivalence structural
+similarity and so the idea that you know
+we might use is uh well you know let's
+let's just look calculate similarity
+between vertices I mean structural
+similarity between vertices and group
+together those vertices that are that
+have similar that have high structural
+similarity which means you know they
+have very similar or close connection
+patterns so in other words you know they
+pretty much connected to the same type
+of noes and it's it is clear that again
+if we look at this sort of um
+any um any click like that well yes this
+node is connected to this guy this guy
+this guy and this guy well if I take um
+take another
+node this Noe well I can do a different
+color
+um this node um connected here here here
+um here and here so these are the
+patterns so those four nodes are the
+patterns for the connections um and and
+for this guy you know these are the
+patterns of the connection these are
+neighbors so um lots of neighbors these
+neighbors they do overlap um which means
+you know the the structal similarity is
+pretty
+high just to point out we so right now
+we're talking about um similarity about
+structural similarity between nodes we
+do not have we have not assigned any
+labels um to the nodes though it is
+clear that you know we can um add the
+the labels and similarity between labels
+if you know we have that and and sort of
+extend this this notion of similarity
+between vertices just from structural to
+also um to include um the values of the
+labels but at this moment it's all about
+graphs
+structure
+so um based on this definition if we
+want to detect a community it really
+means um we we just need to assign each
+and every vertex to a particular
+community so we just need to go over all
+the
+vertices
+um and say okay well this vertex belong
+to the community one to the community
+one to the community one to the
+community one to the community one and
+let's say this vertex belongs to the
+community Community 2 Community 2
+Community 2 Community 2 22 Etc so go all
+all the vertices and and give every
+verdict and assignment which Community
+the vers belong
+to today and the next lecture we'll be
+looking at nonoverlapping
+Community which means verdict can belong
+only to a single Community only to a
+single group later on WE again relax
+this condition and and will allow for
+overlapping community
+but today it's non overlapping which
+means every vertex just have one
+assignment um and it's sort of strect
+assignment so similarities well we
+talked about it last time and um we can
+we can use um jard similarity uh which
+is just the number overlapping neighbors
+of the nodes um we can go for you know
+cosign similarity um Define it last time
+we can go for piercing correlation
+coefficient we in fact can even do ukian
+distance between two vectors um if if
+again they're considered in the space of
+other nodes uh but you know since it's
+distance we can recalculate it into well
+it is dissimilarity so we can
+recalculate convert it into similarity
+recalculate it into similarity by doing
+either one of distance or one minus so
+there are multiple ways to Define it and
+this is sort of a strength and the
+weakness of the methods because um you
+know
+different similarity metrics will
+actually lead eventually to different
+communities and and the question which
+one is correct well it's it's a very
+polite question it really depends on
+your application um you know when we're
+dealing with with social networks you
+you should realize you should think of
+which of those similarities actually
+make more
+sense okay so after after we're done
+with this um after we're done with with
+with selection of similarity we can
+calculate um similarity Matrix in fact
+we did it last time so you just
+calculate a matrix um of
+pairwise
+similarities now again um if the graph
+is dense that is um you know that is not
+very cool yeah it's it's n
+squ size of the similarity Matrix and
+for each them you'll have to go so for
+for each of of to calculate each and
+every value you'll have to go and and
+compute similarities and go through
+um go go through each and every node so
+in fact it's um you know it's literally
+if we're talking about say Pi
+correlation or cosine similarity it's
+really Matrix times um it's transpose um
+so and keep computations um so you again
+it's not going to scale the good news if
+you have sparse matrices um you don't
+have to do that many computations um and
+you can also do use some certain cutof
+parameters so you you you for example
+can calculate not hairwise similarity
+between every every single verx but you
+for example can calculate similarity
+only between those vertices that are
+connected because you know if they
+belong to the same Community they better
+be most likely be connected right um or
+the rather sort of shingling methods to
+actually reduce the the computational
+burden in here but um again doing
+building this similarity Matrix for
+large graphs has to be taken you know
+carefully and seriously and after this
+Matrix exists well we need to group
+together vertices with high similarities
+that that's already sort of no-brainer
+because in fact um that is what you do
+in in in every clustering algorithms in
+every clustering algorithm and whether
+you want to use um say k means or or
+hierarchical clustering you know
+whatever you want right because you have
+now you have similarity in
+Matrix so we're going to talk a little
+bit about hierarchical clustering
+typically um within the social network
+world uh people use hierarchical
+clustering to do this so just to remind
+you um You probably most of you have
+seen those this algorithm from um course
+on data mining or machine learning um
+the way it works is is quite simple you
+start by assigning each vertex uh to a
+group on its on its own right so you
+have bunch and bunch of vertices um you
+assign each of them oh and by the way
+they're they're they're
+connected right it's
+it's it is a
+graph so vertic is connected
+but what we're going to do is we're
+going to Cluster them based on the
+similarity so first we computed
+similarity metric then we assigned um
+every every node of this graph to its
+own cluster and then we start merging
+those nodes um based on their similarity
+between them and the similarity based on
+the connectivity pattern right based on
+a uh structure and and so the way it
+works uh course like classical
+agglomerative clustering is first we ass
+a Vertex to a group of its own and then
+we find two groups with a highest
+similarity and you know and on the very
+first step it's really just veres with
+the high similarity and join them into
+the single group let's say we we detect
+these guys were the high similarity We
+join them into single group we realize
+um Next Step that this for example this
+verx um has a high similarity to this
+little group compared to everything else
+and we join them into um one class and
+and the way we calculate similarity
+between groups well there are three
+three sort of different ways to do it
+one is what's called single linkage
+clustering which means we Define
+similarity between groups and again if
+we're talking about one node and say
+three no oh okay let's do two nodes in
+one group and three nodes in the other
+group and we're thinking about merging
+those groups um and if we want to merge
+them we need to calculate Cal at
+similarity now between groups and to do
+that we can either use what's called
+single linkage clustering which is we
+select most similar in the group and you
+know if I think
+about um sort of projecting this into
+low dimensional space and and the most
+similar will be like s of the nearest
+here literally the nearest nodes or U
+complete linkage um is based on on the
+distance on the similarity between the
+furthest away or average linkage means
+you know we just mean similarity between
+groups so all pay right
+similarities um each and every of those
+methods you know have right to existence
+they actually also will provide
+different um clustering
+schemes and and so the way this works is
+we sort of iteratively do this and and
+build up um the partitioning into the
+groups again this is just classical
+agglomerative clustering um if we look
+at this little picture here um what
+shows is the following first um we
+connect nodes A and C um join together
+nodes A and C so this is our little
+cluster then um we compare again all the
+um and the reason we started with with
+joining a and C simply because we
+compared AC AB BC b d d e um b e and a
+happens to have the strongest similarity
+so we join them together first um then
+with you know we we again keep
+comparing um every node with every um
+other node of pair and we found that b
+is in fact stronger connected to um AC
+than than anything else and and then
+they merg into the sort of extended
+cluster uh we keep going it happens that
+D is is more similar to e um they merg
+they being merged
+together and eventually this whole thing
+gets
+connected into one big cluster one big
+group and while we're doing so we we can
+keep building what's called dendogram or
+this hierarchical structure that tells
+us um how things has been
+connected so that's again very
+traditional hierarchical clustering um
+sort of hierarchal agative clustering um
+the only thing that we have here from
+social networks is the way we build the
+um the
+Matrix and um
+when we have this dendrogram um we can
+determine clusters and and to find the
+Clusters or and in this case clusters
+will be communities what we need to do
+is to cut this say dendogram at some
+level and and this
+level um will give us say if I cut here
+will give us two uh
+clusters so the sort of the very very
+basic method of doing it uh here's an
+example um look I look at the same Kate
+clab and um we have a similarity Matrix
+and this is really um correlation Matrix
+so I used correlation as a similarities
+as a
+similarities metric here so it
+is
+correlation and
+um you know the the color it it is
+colorcoded um the following way you know
+the stronger the ation um the darker the
+color so of course on the diagonal we'll
+have like ones but there are some blocks
+here um if you look for
+example down here at this corner you
+will see notes say 33
+34 um being in a sort of making a darker
+corner and and these are these two guys
+so they're very very very similar um you
+can also look at the
+notes um right here that you know that
+there is a 16 17 and there is a bunch of
+nodes here that that have very high
+similarity so that they play similar
+roles um in in those graphs so if we do
+this then we can just take this Matrix
+and um fited it into you know clustering
+algorithms right hierarchal cluster and
+you know I Ed say um you know average
+linkage and this is a pig picture um I
+got and and what what it shows is you
+know there is this guys that has been
+for example merched first and there this
+and so on and so
+forth so as I mentioned in order when
+you have this tree in order to get
+clusters well you need to select some
+sort of cutting level um on which you
+plead this this tree into separate trees
+and if I select it up there well I'll
+have two trees is if I selected say um
+this this cut down here um I will have
+one two 3 4 five six trees I'm sorry six
+clusters so there is you know there is
+this parameter selection that will give
+you the number of communities again it's
+no different from traditional
+clustering and here's the picture if I
+do if we um do a cut at at this level uh
+and and that's what it gives
+us well in in fact this is very
+very good picture because
+uh we're kind of looking at first at at
+the beginning the beginning we looked at
+this graph and we thought well this
+might be a petition and uh you know it
+just nailed it um in fact if you notice
+that this is that group um that we
+detect it as a click and it stays
+together stay together um but it sort of
+can be it has been expanded right to
+cover the rest of the graph now um there
+is one thing that I sort of swept under
+rag really quickly is that um by hand uh
+you know we
+selected number of clusters and to be2
+right um this is sort of the knowledge
+that we did not EXP from the data we
+just said okay well let's B to and as
+always in clustering this is the
+trickiest part is how to select um
+number of clusters and we'll talk a
+little bit more about this um at the end
+of the lecture
+um on like sort of how to use something
+different from just similarity um to
+detect to detect good
+clusters but you know if we actually go
+for three clusters uh and the way to do
+it is just to
+select this height on the on the cutting
+um on on a when when you cut the gender
+gram well that's what we get now this
+makes much less sense and uh you the the
+it's very clear why um the clustering
+algorithm cut out those nodes well
+because 34 and 33 has very similar
+connectivity pattern and in fact if you
+look at the node 25 and 26 they're all
+connected into here and this two guys
+are also connected into there so the the
+overlapping structure of connections are
+pretty high and that's why um when when
+I start looking for sort of smaller
+clusters I get those
+too um and so now yeah there is there
+are three
+clusters but it's probably not the
+answer we're looking for so you know
+from the point of view of the sociology
+that the best answer was two
+clusters at the same time you know who
+knows
+um the the team the the club was played
+in two pieces but there is
+still some sort of social interaction
+happening inside and and there are still
+sort of subclusters or subgroups of
+people who are um much more connected
+between themselves than with the rest of
+of of the club and in this sense you
+know partitioning into more clusters
+might make sense and I would say okay
+well here is these guys and here is
+probably these guys and here is probably
+these guys so maybe you know there's a
+sort of for cluster is is even better
+approximation um to to the problem but
+again as always with with clustering um
+this you know discussion is sort of
+subjective right so you need some
+external metric to confirm you know how
+many actually clusters um you
+have okay so here we talked about the
+sort of the similarity based uh methods
+for Community detection this is really
+uh conceptually the easiest one and and
+and it's standard very very standard in
+the sense that okay well take notes um
+calculate take note calculate similarity
+Matrix and and then go do your sort of
+standard data
+mining because now um you know you know
+for you know similarity in between two
+nodes you know do whatever you want you
+want to do PCA do PCA you want to do um
+uh say uh you know MDS do do MDS you
+want to do um you know clustering do
+clustering you don't want to do SVD do
+SVD whatever whatever you want to do
+with it and and we're pretty much done
+with with with social networks at that
+moment
+now there is another definition there is
+another way to think about Network
+communities that actually stays entirely
+within the realm of
+networks um and and this is sort of the
+the graph language
+now we can Define Network communities
+and this is sort of the second
+alternative definition of network
+communities um at a group of vertices
+that are more tightly connected between
+them that uh within the group than
+between the group
+so this is you know to me is much more
+intuitive definition because you know
+it's not very clear what similar nodes
+are but it is very clear when you're
+looking at the graph when you see uh you
+know dense patterns of of
+connectivity so by looking at this
+picture it is sort of obvious that we
+have three clusters in
+here and uh you know the the number of
+edges within each of those groups
+is definitely higher than the number of
+edges uh between
+groups and to detect the Clusters to
+find the Clusters what we could do is we
+could go and do what's called graph
+partitioning in other words we can
+actually instead of looking for similar
+nodes we can actually start cutting
+connections and we can explicitly cut
+out this edges you know this Edge and
+that Ed that pair of edges and when we
+do so we'll we'll end up with three
+communities now the question would you
+know remain well how do you find those
+edges that you want to cut and of course
+this is no easier question than than
+than we we do with clustering but it is
+a very different approach in the sense
+that here we'll be dealing directly with
+edges versus um on the previous method
+we actually looked at the structure of
+the graph computed similarity between
+nodes and then we sort of operated on
+the similarity of not similarity
+basis before I move forward um any
+actually questions about the sort of the
+similarity approach we
+talked have you done hierarchical
+clustering before in in in data
+mining yes yes okay okay good so that
+shouldn't be any problems to actually
+apply it here
+and and one of the goals would be at
+some point to actually compare methods
+right okay
+so again we'll move on um by looking at
+the finding of network communities as a
+graph partitioning problem and and so
+we're going to be talking you know right
+now we'll be talking the graph language
+we'll sort of shift from data mining
+perspective to actually discrete
+mathematics and and graphs and now we're
+going to be doing graph partitioning
+so uh we'll be trying to find those
+edges that we need to remove to split
+the graph in into pieces and every piece
+would be
+community and S overall goal um that
+objective we're trying to to get would
+be okay find sort of communities
+communities are group of nodes that are
+tightly coupled between themselves and
+we'll need to cut sort of as as few
+edges as possible out of the graph to to
+see the graph sort of split and fall
+apart into those groups so that's that's
+the intuition behind what we're going to
+be doing and U today we'll actually look
+at sort of another heris method of doing
+so um next lecture we'll actually build
+up a pretty strong Theory um of how to
+you know find those uh communities
+consistently before we go into
+this there's like
+very you know important
+point graph rition problem is
+NPR um the reason for that is again
+because it's a combinatorial problem
+right so even if you want to divide say
+n nodes network of n nodes into two
+groups it's a factorial number of ways
+of doing so well the the way to think
+about this formula is very simple um if
+you have
+and objects and let's just think about
+um nodes of the graph well the N
+factorial ways to arrange them right n
+factorial ways to arrange
+them and now if we want to split it into
+two pieces say Do by partitioning let's
+say you know we do it
+here then you can exchange places of all
+the guys within one partition and
+exchange places of all the guys in the
+other partition that will not change the
+partitioning and so that's why there is
+N1 factorial and2 factorial down
+there that's that's a large number right
+so even by partitioning if n is large
+you know you just cannot do it
+straightforwardly in fact there is a
+there was a formula if if you want to
+divide um um your your uh graph your n
+nodes or n objects into k nonm group and
+that this formula would have a name it's
+called steerling numbers of the second
+kind and I I just put it here um so you
+would realize that well yeah this is uh
+this is factorial right so this is um K
+factorial ided by J factorial um K minus
+J
+factorial and this is a power of n right
+and if I want to calculate the total
+number of possible
+clusters or you know not empty groups
+I'll actually need to try all kind of
+partitions you know partitioning the
+graph into two groups three groups four
+groups five groups um up to n and that
+means you know adding this um
+together and this will give us total
+number of possible partitions it's
+called Bell number
+now this is huge and um if you try to
+just calculate it say with you know with
+with 20 nodes the total number of all
+possible combination of those nodes you
+know in different groups it's actually
+here so this is like um you
+know thousands millions billion well
+trillion right and it's only for 20es so
+yeah we can just forget yet um going
+through all the possible combinations
+and trying to figure out
+uh you know how how how to split this in
+into uh
+communities um pretty much all
+algorithms that exist out there for
+graph partitioning they're either pure
+theistic which means um there is
+something we know in practice work or um
+they're gritty algorithms which means
+we're not trying to go through all the
+possible combinations um we just uh have
+some objective we're trying to optimize
+and we're doing it in a gritty fashion
+in a gritty fashion means on every step
+we're not looking ahead we're just
+optimizing what we can on on that steps
+or quite often it's local
+optimization those gritty algorithms
+like you know in every other um
+situation they usually you know they
+will not lead you to an optimal solution
+um but you know quite often they're
+good and um that's sort of the the um
+approach we're going to be
+Tak today we're going to talk about
+theistic
+algorithm and um you know this is kind
+of you know cool algorithm that uh
+actually physicist came up
+with um you know at the early 2000s and
+and it caused a lot of stir in the
+community because it was sort of obvious
+but nobody done it
+before um so the idea is the
+following what we're doing is we're
+actually trying to find um the sort of
+the weak ages between communities so
+we're trying to find those sort of
+places um you know in the graph that are
+weekly
+connected and
+you know the way to think about it is is
+following if we look at this at this
+picture you
+realize
+that those edges that connect
+communities they actually act as Bridges
+right and you know as Bridges you know
+they will have to carry lots of of
+traffic pretty much every time you want
+to get from every node to every to from
+the node in one Community right the node
+to any node into another Community
+you'll have to cross this
+bridge now so the the
+traffic um you know
+analogy in in terms of graph would be
+well shortest
+SPS so those bridges that connect
+different
+communities they will have lots of lots
+of shortest paths going through
+them now if you if you remember a little
+bit um a few lectures back we talked
+about the centrality
+metrics and there was one centrality
+metric for the node that is very similar
+so we talked about um between the
+centrality right and between the
+centrality was defined as um for the
+note we calculated it by the total
+number of the shortest path that goes
+through this
+node well you can actually you know
+nothing prevents you from extending this
+definition to actually
+edges and um Mark nman and and Michelle
+Gan they actually did this they extended
+traditional definition uh from sociology
+the definition of node betweenness so
+the betweenness centrality into onto
+edges and and the extension is obvious
+what you need to do is you just need to
+calculate the total number of shortest
+path that goes through every
+Edge
+right now it is also it it is
+computation computationally
+intensive um and because of that
+again this method though very pretty
+works works is very easy to to code but
+it works well on the for the smaller
+graphs again because of computational
+complexity but it's very very nice and
+very clear clean idea so the idea is the
+following we Define an edge
+betweenness as a number of shorter spot
+that going through that that goes
+through particular Edge and for every
+Edge we calculate that
+value we then
+realize that those edges that connect
+communities those edges that are between
+communities will have the largest value
+of this Edge between
+us and then we can just remove
+them and by removing them by removing
+those bridges we'll split the graph into
+communities so here is algorithm
+uh for every Edge compute Edge between
+it oh and by the way I formulate this
+now as as algorithm for for several
+reasons um one is well we're actually
+getting into sort of algorithmic part of
+the class um where where we'll talk more
+about um algorithms and and the other
+reason is
+um by whatever s surprising reason
+Network X um has has very very few graph
+partitioning algorithm implemented it's
+probably coming in the next release but
+it's not there and so that means you
+know for the homework and for you you
+know there will be homework on actually
+implementing those
+algorithms
+so there you
+go okay so the idea is very simple for
+every Edge we compute Edge between
+us and then we remove edge with the
+larges between
+us and we do it until uh any edges left
+right that will create a dendogram or
+tree very very similar to hierarchical
+clustering sort of in in in a nature now
+there there there are a couple subtle
+points here one point is the following
+let's say we have
+this graph I'll draw
+it so and let's say we calculate Edge
+betweenness and um on the very first
+step we found that say there is this the
+edge betweenness um the largest for for
+this Edge and so we cut it out so what's
+left is sort of this
+piece what we need to do then is to
+actually recompute Edge between this
+because after we remove this Edge the
+routes could have changed and there
+might be other edges that are not as
+obvious as these two guys that are up
+for
+removal so that's one
+point another point is we could actually
+build this into B partitioning
+algorithms if we want um you know nice
+uh tree nice dendogram tree so the way
+to do that
+is is the following
+um say we
+do um we let's say we we sort we
+calculate the betweenness right and we
+sort edges and we removed we start
+removing and then um we remove this Edge
+and then we calculate components
+calculate connected
+components um if we remove um this Edge
+actually I can probably erase it yeah um
+if I remove this
+Edge there is still a connected the
+graph is still connected let's say the
+next Edge for removal
+is this one I remove it and now grab is
+split into pieces and um the connected
+component algorithm will of course
+detect this change and now we'll have
+components and then you can work in a
+sort of typical classical hierarchical
+manner which is okay well now you have
+two components and you just take this
+algorithm and apply it to each of the
+components
+separately
+Okay so that will build you know that
+will help you to build a dendogram a
+tree because you'll start with one um
+big uh component then it splits in two
+and um you know etc
+etc now there is you know one question
+remains here um is the following well
+the same as with hierarchical clustering
+when you get this sort of dendrogram
+tree um you'll need to somehow decide
+where were components because you know
+you sort of you eat edges on on every
+step well by the end the graph is gone
+sort of you got the tree but where were
+those um where were those sort of
+communities um the other thing
+is opposite to uh opposite
+to hierarchical clustering we're
+actually doing what's called divis
+opposite to agglomerative clustering um
+because in in in um in the case of
+similarity we did acclimation we started
+we looked at the pairs of notes and
+combined them together to build the
+whole graph here we're actually doing
+divisive clustering so we started we
+starting with um the whole group the
+entire graph and then start splitting it
+into pieces and so in fact to get
+communities in this case we don't need
+to go all the way down right so we can
+stop after a few sort of iterations but
+the question is you know where when to
+stop in some sense this question is very
+analogous to the question okay how many
+clusters just sort of different look at
+at the same
+problem well to do that and and by the
+way this is sort of U you know
+dendogram um we're going to get when we
+do this hierarchical clustering well to
+measure the the Clusters the quality of
+the Clusters we can use some metrics and
+um one of them um we already already
+familiar
+with um it's
+modularity now remember modularity uh
+calculated um assortative mixing for the
+nodes but here we're literally facing
+the same
+because creating
+communities is really is about assigning
+a label to a
+node and what we would like to have is
+the nodes sort of the nodes in the same
+Community um should have the same labels
+right and they they should be
+connected now if all of them totally
+interconnected that's a click if there
+are fewer connections um it's not a
+click but still there should be more
+connections
+more connections more edges inside in
+between the nodes of the same color or
+of the same sort of label than um you
+know within the group than between the
+group and that's really what uh
+modularity will will will will give
+us look um Delta cicj is a chronic Delta
+and it means if the classes of the node
+I and node J coincide it's one and if if
+they're zero if they're not Conde if
+they're different it is zero so what
+this sum does this piece of the sum is
+really just adding up all their edges
+that exist in the graph and AIG J means
+the edges exist in the graph butor Delta
+makes sure that we're adding up only
+those that belong to the same
+cluster right so if an edge connects two
+different clusters um this is say node I
+and this is node J well chroner Delta
+will be zero and and so this no this
+Edge will not be taken into account so
+this part of the sum is just adding up
+number of edges um within uh
+clusters and here as we discussed last
+time um this what we do is we
+subtract this is expected number um of
+Ages if um the graph was random now this
+is so so-called you know null model if
+if you think about statistics um would
+like to compare some values to the null
+model and if everything was random we
+would have an average that many edges
+within the cluster and and this is how
+many edges we we do have um and so they
+idea is that the score the modularity
+score will tell us how
+much how much more ages we have within
+the cluster compare to if there were no
+cluster there if we just had random
+connectivity and in this sense the
+higher the modularity score the better
+are the communities the more modular
+things
+are now because it is normalized um it's
+within the range from minus one2 to one
+it's just little weird range but that
+the way it was defined you know if we
+have a single class it's actually going
+to be zero and so we can actually think
+of this modularity as starting from zero
+and then you know growing and then when
+we have sort of bad when we over cutting
+into pieces it will decrease and and so
+we can
+actually try to detect this point when
+the modularity this is
+modularity when the modularity is is the
+largest right and this is number
+of clusters we
+do so what we can do is while we're
+removing those
+um edges we can monitor the values of
+modularity and when we sort of detect
+that we pass through the pass the peak
+we can startop
+stop and that will be sort of the
+most you know the most quality well the
+best quality
+clusters now this is just one of the
+possible metrics and and again uh we
+will discuss more um metrics uh to deal
+with clusters next time but this one is
+quite
+popular
+so this is the same
+um karate graph as as uh I shown
+before and um here it's a
+modularity well it's just sort of on the
+on the side and um you can see here the
+the the the authors used the um Edge bit
+witness to build the entire graph and um
+you know measure modularity on the
+different um on the different levels and
+um what shown here is the modularity for
+this particular graph has you know this
+this kind of funny shape right it goes
+up then there this thing and then it
+decreases and so in some sense based on
+the modularity um there are probably you
+know there there are two different sort
+of cutting levels that make sense so one
+is right there on the very top which
+really if if we follow sort of this um
+cut line um that that will literally
+just split um graph into two pieces and
+that corresponds to this cut or um there
+is another one a little bit below um
+that will actually
+separate graph into one two three four
+um five
+communities okay and so based on the
+modularity metric um this is the best um
+split for the for this particular graph
+um now I actually did this sort of uh
+clustering on on on on the smaller graph
+well you know in my case um the maximum
+ularity happened um not with five but
+with six nodes now this is just a
+visualization though there is an overlap
+in colors here um every note still build
+belongs only to one
+cluster you know I'll go back for a sec
+to
+ah okay to to this to this picture so um
+what happened is the optimal modularity
+would actually uh correspond to almost
+this petition right there is this notes
+um and
+um there was this 26 25 so there's this
+guys um this guys there's a Big Blob
+here you know blob here and it's cuted
+out this piece right so going to this
+picture um yeah that's what we pretty
+much have right um though again
+historically R Club did split somehow
+this way you know there are
+more
+structure in in the data than just split
+because it's clear that within the
+karate club there are
+subgroups um and modularity Metric gives
+us this as the best
+partition okay so to sum up uh we talked
+about uh first of all we talked about
+the the ways to do sort of we talked
+about what clustering what uh
+communities are and we looked at two
+different ways one is to actually do
+similarity based clustering and the
+second is we we started looking at the
+graph
+partitioning and we did today um a very
+simple heris method and it's heris
+because well you know we're just decided
+that it would be a good idea to remove
+sort of bridges
+between uh between uh groups but there
+is no good optimization function that we
+optimizing there's no sort of U
+consistent optimization you know there
+is no guarantees in here it just seems
+to work both of those methods um are you
+know very clean in terms of the ideas
+used unfortunately both of of the
+methods are quite competen intensive in
+order to build um a similarity Matrix
+you need to calculate you know pairwise
+similarity between you know every pairs
+of nodes um and then um hierarchical
+clustering is uh you know n cubed in the
+simplest implementation it can be done
+N2 log n but it's still you know there
+was N squared in there and U you know
+you can trig the things you can use a
+lot of techniques um to make it better
+but it is computationally intense
+um this method also requires between
+this calculation between all pairs of
+nodes um um I'm sorry between this
+calculations for every Edge but um the
+between this calculation for every Edge
+you know you have to go through all the
+pairs of nodes in that calculations and
+um it's again quadratic in in in this
+number again you can sort of make things
+better there algorithm that allows you
+to calculate betweenness um much faster
+but it's still not the method of choice
+because
+um honestly at this moment very few
+people interested in in in clustering on
+networks on nwork network communities in
+in the network of 30 people um it's
+interesting to partition you know
+Facebook Graph it's interesting to
+partition um you know graph with
+millions of nodes um it's interesting to
+petition call graph you know think about
+how many um people using say you know Mt
+um MTS or or or megaphone or Etc so the
+scale is much much much much larger and
+and so um somewhat different approaches
+needed um needed approaches that has
+some sort of theory behind it and
+something that is actually scalable in a
+sense that it's the performance is not
+worth the not worth that that of n or
+better if it is even less than that um
+and these are the type of algorithm
+we're going to talk about um next time
+things that are sort of very very
+practical so few references um if you're
+interested in this topic I strongly
+recommend you um to look at this review
+um Community detection and graphs and
+and there is another review um graph
+clustering um in fact these are also
+sort of as as we've seen many many times
+um in in this course because people come
+from different
+background um the
+terminology quite often they they use
+sort of different terminology to to
+define the same thing so this the both
+papers is about Community detection um
+at this moment probably uh Community
+detection is
+or communities in networks is sort of
+the the most stable terminology and and
+widely used um and people quite often
+refer to graph clustering um in terms of
+um the sort of the the the way to find
+communities through graph
+similarities and here are the two papers
+uh by Mark Newman um one one about
+between the centrality and the other one
+about um modularity and ablating
+community structure so again um these
+are pretty big reviews they like I think
+like 70 PES um each uh but they have
+tons of information and references so
+strongly recommend
+it um that's pretty much it for today um
+[Music]
+questions okay well um

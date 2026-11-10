@@ -1,0 +1,352 @@
+All right, folks. We have a new tool for
+Hermes agent. This is the Kanban task
+board. It's basically a live dashboard
+where multiple agents are working
+together to finish a project and you get
+to see it unfold in real time. You know,
+what's the difference between Kanban and
+your typical uh orchestrator agent
+delegating tasks to sub agents? Well,
+uh the problem is um especially if you
+you've been working on a a lot of
+projects where you have a big task and
+then you hand it off to your Hermes
+agent who is the orchestrator agent.
+What they would often do is they would
+break those tasks down into smaller
+tasks and they would delegate those
+tasks to the sub agents. But, the
+problem is uh these sub agents are
+pretty unreliable most of the times,
+right? Because they're just they get the
+job done, but it might not be the
+quality you're looking for. So, if you
+want a more hands-on process from your
+agents, the Kanban lets multiple named
+agents collaborate on work together
+and they actually have and a defined
+role that separates themselves from your
+typical sub agents. So, in this video
+we're going to try out um the Kanban
+step by step uh and basically if you
+have any idea,
+you can just
+use the Kanban workflow rather than
+building something in your IDE or in
+your typical TUI. So, first and
+foremost, we're going to have to update
+our Hermes agent because this is um a
+new release 8 hours ago.
+All right, once that's done, we're going
+to create the board now.
+Here.
+And let's see what it looks like.
+Okay, so we see that it's already
+initialized the Kanban DB.
+Uh but we don't have any profiles yet
+and that's where we're going to have to
+create one uh with this command
+before assigning tasks. So, it's pretty
+nice. It's It's pretty much the same
+process as you would create a new folder
+in your directory and then you would CD
+into that directory in an IDE and then
+you can start uh building something in
+that. Now, we're going to have to start
+the gateway. So, we'll
+follow the instruction here. Okay,
+Hermes gateway start.
+Updated gateway, user service started.
+Okay, perfect. Now, the next step is to
+create a task. Let's actually keep it
+simple for now. Let's use the uh example
+that was given here.
+There we go. Okay, it's ready. So, we
+can uh check the dashboard.
+Ready.
+Click it.
+All right, so it seems
+even with the example, we need to create
+with Hermes profile create researcher.
+So,
+if we see that,
+we go here,
+create researcher.
+Profile researcher created. Ah, okay.
+So, this is what they're talking about.
+Creating actual multi-agent profiles is
+uh depending on what role you want to
+give your Hermes agent, this is where
+you can create the profile. This is the
+actual multi-agent architecture
+that you can customize by yourself. So,
+we created researcher in our runtime,
+the dot Hermes runtime directory uh
+under profiles researcher and we can
+actually double check that
+in the folder. So, we go to dot Hermes,
+we go to profiles and there it is.
+So, it seems it kind of
+brand new. Take a look at its sold at
+MD.
+Okay.
+So it's the generic one.
+All right, let's see what the next step
+is. So this profile has no API keys yet.
+Now once we've created the profile,
+we need to set up the API key for that
+agent. Otherwise, it will inherit
+inherit keys from our shell environment,
+which is no problem. So this is very
+interesting. Um every profile does not
+have an inference provider configured,
+uh which means do not assume that
+the uh API key for your current Hermes
+agent has been set up for every single
+uh profile. So you're going to have to
+set it up again. Um and we don't need a
+messaging platform for this
+um researcher profile. So this is
+interesting. Our researcher profile has
+its own .env file and the config file as
+well. So it's very clean. It keeps it
+separate from your orchestrator agent.
+And you can always edit these
+configurations as well. Uh so launch
+chat. Test if it works. Hi. Mm, okay. So
+you can see here uh on the left.
+All right.
+I'm backspacing. You see that the
+researcher profile is right there. So So
+this is great. This is much more
+effective than opening a new session and
+then chatting with your main agent.
+Because keep in mind, if you're doing
+that approach where you just open a new
+session and then you chat with them,
+your agent is still a
+jack-of-all-trades, not specialized in a
+particular skill or in a particular
+role, despite having so many different
+skills. But if you want them to be a
+much better uh specialized expert, this
+sort of profile here is um a very nice
+distinction moving forward using Hermes
+agent.
+So, now that we know that this is
+working,
+we can go back.
+So, control C and then check how's it
+going here. So, we're scrolling down to
+the worker logs and see what is it
+doing. So, it is in fact starting it's
+making grep web searches for AI funding
+rounds 2024, 2025
+using tools to research on the AI
+fundings.
+It's fetching TechCrunch articles.
+Also pretty recent, too. That's quite
+impressive.
+Oh, hey. Look at that.
+So, it already completed its research on
+the AI funding landscape. Run 14,
+previous seven attempts all crashed.
+But, the information looks very solid.
+Yeah. And there we have it. We hit
+refresh and it went from in progress to
+done for this
+simple project, which is to research the
+AI funding landscape. Here, if we scroll
+all the way to the bottom, it gave us
+the report right here. And it's also
+up-to-date, too. Even analyzed trends.
+Made key observations.
+And metadata status as well. So,
+I was in the process of synthesizing
+these findings into a structured report
+for the workspace when I hit the tool
+iteration limit. Yeah, the data
+collected is current as of May 4th,
+2026.
+Source directly from TechCrunch's live
+AI category feed.
+The workspace is at home. Okay.
+Workspace, but I was unable to write the
+final report. Let's actually check if it
+is in fact
+in the workspace.
+Workspace.
+Lies.
+It's not there. Okay. So, what I'm
+trying to do now is I'm trying to go
+back to the TUI chat with my researcher.
+But when you go Hermes sessions list,
+which is the usual uh command you run to
+go back to your previous session, it it
+didn't appear here, okay? So this is
+very uh this is a nice thing cuz it's
+very clear that there is a separation
+there between your main agent and your
+um
+multi-agent profiles. So what we do
+here, if we ever want to go back to TUI
+chat, is we go
+um Hermes sessions
+sessions list, space bar, dash dash, and
+then profile researcher, or whatever
+name you've assigned it to. So profile
+researcher, there we go. So we got it
+back. So we're going to copy the ID. And
+then in the command, we go Hermes, space
+bar, dash dash
+profile researcher.
+Space bar, dash dash resume
+session ID.
+So it's a lot of
+&gt;&gt; [laughter]
+&gt;&gt; a lot of typing. Um it's annoying. Uh my
+first impression there is you have to
+navigate through a lot. It's like
+opening doors, you know what I mean? But
+yeah, we're back here.
+Uh researcher.
+So if there's problems with the Kanban,
+we can resume our conversation here in
+the TUI
+uh because my problem here is it did the
+research, right? It gave me an output,
+pretty nice, but it never got saved to
+the uh workspace. Oh, actually, it just
+got updated. Let me check. Uh it's still
+not there. Okay.
+So I'm going to clarify with it. I'm
+going to copy
+copy this.
+Go to TUI
+and say
+"Hi.
+You got your report in the Kanban
+uh worker logs, but it never got saved
+to
+Okay, the file is definitely there and
+readable. You might have checked before
+the right completed.
+What are you talking about? It's not
+here.
+It's not here. You're gaslighting me.
+Kanban
+Right?
+Oh, my bad. My bad.
+&gt;&gt; Man, all these names. Okay, so I have to
+go to dot Hermes. And then
+the actual documents that they've
+written is under Kanban, not profiles.
+So, that was my bad, okay?
+Uh and there we go. Okay, so there it
+is, AI funding landscape. So, the the
+full report
+should be here.
+Mhm. All right, there we go.
+Very well detailed. I actually prefer
+this to my usual AI news cron job,
+actually.
+So, this is really good. I'm actually
+quite impressed. Although it is a bit,
+you know, inconvenient to set up,
+because when I first saw on X
+how the team said they asked it to plan
+and make this video about itself, I
+thought it would be like complete
+hands-off, where you just
+spin up the Kanban, you
+you create, yeah, here, right? Create
+the task. As And then this part should
+be like automatic, right? But no, it
+seems like the assignee, the profiles,
+you have to create um by yourself one by
+one, depending on how many assignees you
+have for the project. So, maybe a big
+project would have like five assignees,
+which let's actually talk about some of
+the use cases you can achieve with the
+Kanban. So, there are four stories, aka,
+you know, use cases or methodologies of
+how you use Kanban.
+Number one is solo dev shipping feature.
+This is the one we just did where it's
+pretty much just one assignee and if you
+have API endpoints
+that you need to connect to complete
+those projects, then you need to create
+another assignee
+such as a back-end dev to
+achieve that. So, what we did was pretty
+much just design the schema. We didn't
+implement any API. And if we are able to
+to implement API, we can get more
+sources from other
+platforms. It doesn't have to be just
+TechCrunch. So, I think it just used by
+default
+web searches for the free websites that
+it can access to get those information.
+And then you can do a test task that
+depends on the API. But I'd say, you
+know, start off easy first. If you can
+get a schema to work and just generate a
+markdown file for you, that's already a
+success. That's already a success, okay?
+Then you can start customizing bits by
+bits with the API endpoints.
+Other thing that you can do is fleet
+farming. So, this is where you have
+multiple schemas with multiple assignees
+for that schemas to achieve a task.
+Then you have multi-role pipeline with
+retries. This This is where it gets into
+like sort of any end territory where you
+can have nodes in in your pipeline that
+you can test yourself and if it fails,
+at least you can identify where it
+fails. And this is actually a good
+solution to vibe coding cuz when you
+vibe code and something fails, it's
+somewhere in the middle where it fails,
+but it never shows you the full logs or
+the process of how it failed, right? And
+that was really the strength of n8n cuz
+you know which specific node fails, but
+with the multi-roll pipeline with
+retries, this is sort of that system
+where it's much more comprehensive,
+but it's much more hands-on too if
+you're going to have to
+this sort of system.
+Then you have circuit breaker and crash
+recovery. This is an add-on to the story
+three. But if you're a beginner, just
+focus on story one, then we can move on
+to story two, three, and four, which
+we're definitely going to do in the
+future. We're going to try out
+using the Kanban task board to the max
+cuz I think this is a really
+game-changer. I'm saying to hype it up,
+but this is much better than delegating
+tasks to your sub agents cuz the sub
+agents are there to just hand in the
+homework. They're not really there for
+quality assurance even though your
+orchestrator agent does like QC, it's
+still not enough. Whereas this one, you
+can see
+they go really in depth to complete the
+task. All right, so if you find this
+video helpful, smash up that like
+button, drop a comment down below if you
+have any helpful tips on how to use the
+Kanban task board or any requests you
+want us to do with the Kanban task
+board. Remember to subscribe to the
+channel if you have not already. My name
+is Ron. Shawn and out.

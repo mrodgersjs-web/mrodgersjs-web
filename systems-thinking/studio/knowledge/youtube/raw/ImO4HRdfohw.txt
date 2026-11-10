@@ -1,0 +1,397 @@
+okay so so far we've established two
+things there is a small world phenomenon
+in social and other networks and there's
+all this interesting local structure
+which we can capture in part by
+measuring clustering and this extends
+beyond social networks right that you
+have high clustering and short average
+shortest paths for example and you have
+this in neural networks after
+collaboration networks are admittedly
+social semantic networks of languages
+and networks such as food webs the first
+to tie it together how is it possible to
+have high clustering and low average
+shortest paths were watts and Strogatz
+what they said is let's start with a
+regular lattice in this lattice every
+node is connected to its two closest
+neighbors on either side so for
+neighbors total and you can you can vary
+this this number of course and we're
+going to start rewiring or just adding
+random edges eventually it's going to
+look like an erdos-renyi random graph
+because all of the edges are going to be
+random but what they wanted to know is
+what happens in the middle and so I
+mentioned two ways that they can go
+about this they can rewire the links so
+for example here this node used to be
+connected to this one in the lattice but
+now it has a random tie to a randomly
+chosen other node or you can simply just
+add edges on top of the existing lattice
+eventually getting something that looks
+mostly random but it's overlaid on the
+original lattice in the ring and you
+just take care not to do some things for
+example rewire to yourself or you know
+have multiple edges to the same node so
+just to recap you have this lattice each
+node has four nearest neighbors and we
+want to distinguish now that we can tune
+what does the network look like when
+there's a small
+ability P of linking to a random node as
+opposed to just your neighbors on the
+lattice and what happens so for small P
+we know it should look like regular
+lattice for large P we know it should
+look like a random graph so just to
+check your understanding which one of
+these is a result of higher rewiring
+probability so hopefully you can see
+that this one has had more rewiring
+happening or it actually looks like that
+in this algorithm the edges were just
+added on top but now we're interested in
+what happens in between as we vary P is
+it true that you can't have small
+shortest paths without also having low
+clustering or can you find a sweet spot
+and indeed if you vary P here so this is
+1% of the links rewired here you have
+10% of the links you can see that even
+by the time you have 1% rewired the
+average shortest path of the network has
+pretty much dropped to far below what it
+was in the regular lattice on the other
+hand the clustering coefficient is still
+pretty much at the value that it was in
+the lattice so you get this in-between
+regime where with just a few random
+links you have high clustering but low
+average shortest paths and then of
+course as you continue to add more and
+more random links than the clustering
+itself Falls and will and the average
+shortest path will continue to be very
+low it basically asymptotes to what it
+is for the random graph and you can try
+this out in net logo so you can set this
+up and then you can vary the probability
+like so and observe what happens to the
+clustering coefficient
+and the average shortest path you can
+estimate how the clustering coefficient
+falls as a function of the rewiring
+probability P simply by considering that
+the chance that a rewiring will form a
+triad by accident is very slow what's
+what's going to contribute more to the
+clustering coefficient is the
+probability that out of this triad all
+three of these edges were preserved
+which means that you know each one of
+them is going to be rewired with
+probability 1 minus P so the probability
+that all three of them are intact is 1
+minus P to the third and then the
+clustering coefficient for this given
+rewiring probability and then is just a
+drop from the original lattice
+clustering coefficient times 1 minus P
+to the third and this is what the
+function looks like here it's on linear
+instead of logarithmic axis axes but
+there isn't really such an analytical
+derivation for average shortest paths
+and here we can just look at a bunch of
+different networks and see how their
+empirical properties match up with what
+we expect of a small world network so -
+the thing to look at is these are
+networks of widely varying sizes they're
+quite different film actors
+co-authorship network substrate Athenee
+coli and the c elegans neural network
+this is the actual shortest path and
+this is the shortest path in the
+equivalent random graph and you can see
+here that these values are actually
+quite quite close if not in some cases
+even a bit lower so it's not the case
+that because these networks have more
+structure that their average shortest
+path is any is significantly longer than
+it is for an equivalent erdos-renyi
+random graph and then if we look at
+clustering here is what it would be for
+the equivalent random graph you can see
+rather small values and the actual
+observed is much much higher so these
+are all highly clustered networks that
+have the small world property so which
+of the following is a description
+matching a small world network just to
+make sure we we understand what we're
+talking about here over and over again
+what is missing though from the WOD
+Strogatz model it's it's neat that it
+could explain clustering coexisting with
+short paths but there's much in the real
+worlds that it doesn't capture for
+example it rewires the links at random
+and for most of us our experiences that
+we're not just as likely to know someone
+across the globe no matter what cursor
+is doing at the moment to help bring us
+all together then someone who maybe is
+in the neighboring town right so maybe
+would make sense for the links to depend
+on geography yes I'm much more likely to
+know people living on my street but I'm
+also more likely to know people who live
+in the same city than I am to know
+people in a distant City and what about
+hierarchical structure and groups I mean
+you can think of geography in a
+hierarchical way where a neighborhood is
+part of a city that might be part of a
+larger urban area that's part of a
+county etc so how is that captured and
+maybe geography is not the only the only
+kind of nested structure that we're in a
+we're part of different organizations as
+well how are those nested and then it
+doesn't capture the presence of hubs
+which we know to play a very important
+role in many networks with the Watts
+Doggett's model for the for the original
+lattice each node has exactly the same
+degree so naturally there are no hubs
+but even as you rewired
+a model that you're attending to is the
+erdos-renyi random graph which again
+does not have hubs so the model doesn't
+really capture a lot of the real
+structure but it goes a long way towards
+explaining what we do see here's a hint
+as to how Geographic ties may be
+distributed this is from the original
+paper by Milgram
+he says the geographic movement of the
+message from Nebraska to Massachusetts
+is striking there's a progressive
+closing in on the target areas each new
+person is added to the chain so it seems
+like the way that the message is
+traveling is that it makes large hops
+initially and then as it gets closer
+it's really homing in using short nearby
+ties so how is that possible
+well John Kleinberg proposed a model of
+small worlds that are laid out on the
+lattice so for example in a 2d lattice
+he said in addition to these local
+lattice edges you're going to have the
+probability of a link between say nodes
+U and V to be proportional to the
+distance between you and B to this
+exponent minus R and the question is
+what happens as this exponent varies so
+I'm going to just show you briefly and
+that logo demo that I'm going to try and
+figure into your assignment so here we
+can vary what R is and you can set up
+the network it's it's rather slow
+because you need a large lattice in
+order to see how the search starts to
+work and then we're going to repeatedly
+be selecting target and a starting point
+and seeing using a greedy search at each
+point
+each node selects one of its neighbors
+who's closest to the target how quickly
+does the message reach the target and
+you can also vary the
+this probability so we can make the
+links highly localized by increasing our
+so let's just look at what that looks
+like
+you should you should be able to see the
+edges okay right so almost all the edges
+are local and if they do come out
+they're just kind of being very very
+short bridges and so if we then do a
+search you can see it going very very
+gradually because it basically has to
+make all of these little steps on the
+other hand if we change it so that we
+allow many long range ties let's see
+what that looks like the the edges might
+be so far made to being that they'll
+obscure the lattice structure altogether
+indeed and now we can start and here the
+lattice really isn't large enough to
+show what's going on but typically you
+see a very large initial jump and then
+kind of going along the last and what
+that's showing you is that maybe it's
+best if I move back to this right okay
+so what you should be seeing is when the
+edges are random you have these long
+hops initially but then they're no
+short-range high so you basically have
+to go to to to to to touch right to get
+to the target and you know there are
+many other edges present but none of
+them really took you in the right
+direction I'm sorry I guess I'm still
+running okay so hopefully it's going to
+cry it down on the other hand if we have
+this very high
+are then what happens is that we just
+don't have that many long-range ties so
+again what kind of stunts you know that
+there are ties heading in the right
+direction that we're still stuck making
+very slow progress and then finally
+ideally for one over distance squared
+what we have is both the presence of
+some long-range ties and then some
+shorter range ties once we're close to
+the target that we can use and this is
+this concept of navigability that is
+does the placement of the edges allow
+you to at each step make some amount of
+progress towards your goal and what
+Kleinberg proved was that indeed if the
+exponent R is 2 that is the probability
+of linking to someone Falls as 1 over
+the distance squared then you can make
+enough progress on at each step such
+that the number of steps that you have
+to take only grows logarithmically so
+your quiz question just to test whether
+you understood this what is true about a
+network where the probability of a tie
+falls off as distance to the minus 2
+and just a reminder I mean I've brought
+this up before that the interesting
+structure that we see in social networks
+and other networks could really be a
+projection of a bipartite network for
+example if you have different contexts
+and individuals and then you have
+individuals who share a context have
+joined ties so why not model this
+explicitly so Kleinberg also proposed a
+hierarchical Network model where you
+have these nested groups and the
+probability that two individuals
+an edge is proportional to a constant to
+the minus alpha and then the distance
+that you have to go up in the hierarchy
+to get from one to the other also if you
+just have these nested groups and then
+you have Q being the size of the
+smallest group that these nodes of
+interest V and W belong to then the
+probability of an edge existing between
+V and W is going to be Q to the minus
+alpha so two different ways of
+representing nested group structure such
+that you can now not only use it to
+represent geography as I said
+neighbourhoods parts of cities parts of
+counties but also other things such as
+individuals who are taking the same
+class say at a university who are who
+have the same major or in the same
+school within the University who are
+part of the same University who are part
+of the universities in that country etc
+and concurrently Watts Dodson and Newman
+proposed another hierarchical model
+which is very similar that said that the
+probability that I and J know each other
+is again proportional to e to the minus
+Alpha X where X s is equivalent to H in
+the previous slide it's then it's the
+number of steps up in the hierarchy have
+to go in order to join two individuals
+and what was different about their work
+was that they looked at navigation and
+when you have different hierarchies so
+you can concurrently have a hierarchy
+for geography a hierarchy for occupation
+and when individuals are searching they
+can switch between hierarchies so if I
+know that my target lives in
+Massachusetts but I also know
+he's a stockbroker well then I can
+decide oh I know someone who's not a
+massachusetts but who's a stockbroker or
+I can choose oh I know someone who lives
+in a neighboring town even though
+they're not in the banking industry I I
+will forward the message to them and
+these these theoretical models then
+correspond closely to what was found in
+early experiments there's a neat reverse
+small world experiment that killeth and
+Bernard that there are the same ones who
+looked at the accuracy of the chains
+that individuals are able to create so
+they gave individuals a whole slew of
+hypothetical targets so they weren't
+actually running the chains they were
+just curious who would you pick and why
+and they found that overwhelmingly
+people chose based on geography and
+occupation so those two hierarchies make
+a lot of sense and only 7% were chosen
+because they were hubs because that's
+someone who knows a lot of other people
+and also there was an absence of second
+degree strategy so I'm going to pick my
+friend because I know they know someone
+in Massachusetts so that seemed to be
+relatively rare if we go back to the
+email experiment that was run out of
+Columbia um one additional nice analysis
+that they did was to look at successful
+chains versus ones that didn't quite
+make it and what they found with the
+successful chains was that they
+disproportionately used weak ties
+professional ties ties originating at
+work or college and those that focused
+on on the targets work and they
+disproportionately avoided using hubs
+and there were no there was no evidence
+of funnels so in the original Milgram
+experiment it seemed like the last
+people in the chain tended to be the
+same too you know another stockbroker
+and maybe a tailor from from this town
+where the stock
+broker lived but there is no evidence of
+funneling in this new experiment and
+also people and successful chains used
+family and friendship ties less and
+these attempted tend to be again in
+strong ties and the strategy
+interestingly paralleled that of the
+Milgram experiment which is that
+individuals first focused on geography
+you know like get into the right country
+then worry about what the what the
+person's profession is but those the
+last few Hobbs tended to reach the
+targets professionally as opposed to
+just trying to narrow down to
+graphically

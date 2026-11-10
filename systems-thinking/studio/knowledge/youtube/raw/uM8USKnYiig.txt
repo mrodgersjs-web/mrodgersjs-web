@@ -1,0 +1,379 @@
+welcome to the second of three videos on
+basic centrality measures for networks
+in the previous video we observed that
+there are various ways that a vertex can
+play a central role in the network
+this video will cover three of the basic
+centrality measures
+degree centrality which is a measure of
+local importance
+as well as closeness and betweenness
+centralities
+which use shortest paths to capture the
+global structure of the network
+as a reminder here are some of the
+symbols that we will use
+our network g consists of a vertex set v
+and an edge set e here g stands for
+graph which is the mathematical name for
+a network
+we use n to denote the number of
+vertices and m to denote the number of
+edges
+of the network the symbol k sub i
+is the degree of vertex i that is the
+number of edges
+incident with the vertex i
+a convenient way to represent a network
+is with an n by n
+adjacency matrix this matrix has a 1 or
+a 0 in entry i j
+depending on whether the edge i j is in
+the network
+here are two equations that relate the
+adjacency matrix
+to the degrees and the edges of the
+network
+first we can find the degree of vertex i
+by summing the entries in row i second
+we can find twice the number of edges of
+the graph
+if we sum all the entries in the
+for a directed network there are two
+types of degrees the in-degree
+denoted kn is the number of arcs
+pointing into the vertex
+for example the vertex 3 has in degree
+2. the out degree
+denoted k out is the number of arcs
+pointing out of the vertex
+so our vertex 3 has out degree 1
+in this case
+the adjacency matrix for a directed
+network is defined in the same way
+as for an undirected network we can use
+this matrix to find the
+in degree and the out degree of a vertex
+if we sum along a column i of the matrix
+then we get the in degree
+of the corresponding vertex and if we
+sum along
+row i
+we get the out degree of the
+corresponding vertex
+finally if we sum all of the entries in
+the adjacency matrix then you get the
+total number of directed edges
+unlike in the directed case each of
+these one-way edges appears exactly once
+in the adjacency matrix rather than
+twice
+a simple measure of network importance
+is having lots of links
+if you have many links then you have a
+lot of friends and this makes you
+influential
+because you have many opportunities to
+exchange information
+this is the idea behind degree
+centrality the more links
+you have the more important you are in
+an undirected graph the degree
+centrality of a vertex
+is the degree or number of links of the
+vertex
+here we tack on the word centrality to
+emphasize that we are thinking about
+network importance
+in a directed network a vertex has
+in-degree centrality
+and out-degree centrality a large
+in-degree centrality means that many
+people give you information
+and a large out-degree centrality means
+that many people
+listen to you either of these dynamics
+can make you quite influential in the
+and we will revisit the interplay
+between these roles when we talk about
+hubs and authorities in another video
+sometimes it is helpful to normalize our
+centrality scores
+so that they fall between 0 and 1. these
+normalized scores convey relative
+importance
+independent of the size of the network
+for example if my degree centrality is 6
+does that make me important
+well it depends if the total network
+has size 9 then
+yes because i have
+6 out of the possible eight connections
+that i could have
+on the other hand if i have degree
+six and i'm in a much larger
+network let's say one that has 101
+vertices
+well then i only have 6
+out of 100 possible connections which is
+relatively small
+so this is the idea behind normalized
+degree centrality we take the centrality
+scores
+and we divide by the maximum possible
+value
+the maximum possible degree is n minus 1
+meaning that the vertex is adjacent
+to the other n minus 1 vertices and
+regardless of the size of the network
+i know that a normalized score of 0.75
+is very high while a score of 0.06
+is not here is an example network with
+its centrality scores
+the degree centralities are shown on the
+left
+and the normalized degree centralities
+are shown on the right
+and in this case a degree centrality of
+6 is actually a pretty high score
+we can see when we look at the
+normalized values that this means that
+our vertex is connected to
+half of the remaining vertices
+let's move on to talk about vertices
+that are in the geographic center of the
+these vertices are important because
+they are centrally located
+in a global sense note that you don't
+have to have
+high degree in order to be centrally
+located as this example shows
+here's the formula for closeness
+centrality which gives high scores for
+being in the middle of the network
+it might look intimidating at first but
+the formula is actually quite natural
+let's start with the symbol dij
+this is the length of the shortest path
+from vertex i
+to vertex j to find the closeness
+centrality of vertex
+i we sum the distances
+from i to every other vertex
+j
+now a vertex in the geographic center
+will minimize the sum of the distances
+to the other vertices
+and a vertex on the outskirts will have
+a very large value
+but this is backwards we'd really like
+larger values to correspond
+to more central vertices so what we do
+is take the reciprocal of this sum and
+voila
+we have closeness centrality
+and the vertices in the geographic
+center
+get the highest scores so
+how do we normalize closeness centrality
+this time we have to multiply by n minus
+1.
+this is because the smallest possible
+denominator
+corresponds to a star graph
+and the hub node of a star graph is
+distance 1
+from all of the remaining n minus 1
+by the way we have another nice
+interpretation of normalized closeness
+centrality the
+average distance from vertex i
+is just the sum of the dij
+divided by n minus 1.
+and so the normalized degree centrality
+is the reciprocal
+of the average distance from vertex i
+next we have a chance for you to
+practice with the definition of
+closeness centrality
+you should pause the video here and try
+to calculate the closeness centrality
+for each vertex in this network
+then multiply each value by n minus 1
+where n is the number of nodes
+this gives you the normalized closeness
+centrality for the vertices
+okay give it a shot
+okay welcome back the closeness
+centrality scores are shown here on the
+and i'll calculate one of these for you
+let's
+confirm this 112 value you see here so
+what i need to do is
+add up all of the distances to this one
+and i can see that there are three
+vertices that are at distance one
+there's one vertex that's at distance
+two
+another at distance three and then the
+last one is at distance four
+and if i add up all those numbers i get
+12.
+so sure enough the closeness centrality
+is 1 over 12.
+now to get the normalized centrality i
+have to multiply
+by 6 which is one smaller than the size
+of this network
+and so my normalized value here is a
+half
+the most central vertex gets a score of
+6 over 11.
+as we mentioned on the previous slide
+this means that the average distance to
+the other vertices
+is the reciprocal or 11 over 6 which is
+just shy of two
+now it's worth noting that closeness
+centrality has some disadvantages when
+it comes to large-scale real-world
+networks
+the reason is that many real world
+networks have a so-called small
+world effect where every pair of
+vertices is connected by a very short
+path in comparison with the size of the
+so the closest centrality values can be
+quite compressed making it hard to
+distinguish between vertices
+however in smaller networks like this
+one closeness centrality can be quite
+revealing
+now let's talk about betweenness
+centrality like
+closeness centrality betweenness strives
+to capture being in the structural
+center of the network
+let's suppose that distance vertices
+communicate
+by passing messages through the network
+so the message moves and gets forward
+along by intermediaries
+and we want to know which vertex
+forwards the most messages
+since important news travels fast we'll
+assume that messages find an efficient
+route to their intended target
+in other words messages travel a
+shortest path
+connecting two vertices sometimes
+there'll be more than one shortest path
+between a pair of vertices
+and in this case the message takes any
+of them chosen randomly
+we conclude that the most important
+message passer
+will be the vertex that lies on the
+largest number of shortest paths
+that's the idea of betweenness
+centrality
+now we're ready for the precise formula
+it's a little notation heavy
+just keep in mind that high betweenness
+corresponds
+to sitting on lots of shortest paths
+between other vertices
+now for a starting vertex s
+and a target vertex t
+let's let nst denote
+the number of shortest paths connecting
+them
+furthermore let's pick another vertex i
+and let's let n s of i denote the number
+of these shortest paths that
+actually pass through vertex i
+now if i were to pick a random shortest
+path that connects
+s to t what would the probability be
+that i is on my shortest path
+well this would just be the number of
+paths
+that contain i divided by the total
+number of paths
+and that's the value that you see here
+now to calculate the betweenness
+centrality of i what we want to do
+is we sum over all possible starting
+and all possible target vertices
+and here we assume that i is neither the
+starting or the target vertex which is
+fine
+and this is our definition of
+betweenness
+to get normalized between this we divide
+by the maximum possible value
+once again the star network maximizes
+the value
+in this case the hub node in the middle
+is
+on every single path and there are a
+total of
+n minus 1 times n minus 2
+ways to pick the starting vertex and an
+ending vertex
+and so that's the value that we divide
+by here and
+we should note here that the betweenness
+value counts paths from s to t
+and paths from t to s
+now we have a chance for you to practice
+calculating betweenness
+and the good news here is that in this
+network the shortest paths are all
+unique
+so this means that nst is equal to one
+for every source and target vertex
+so the denominator here is always one
+and by symmetry here there are only
+three types of vertices the red vertex
+the yellow vertices and the blue
+vertices so you only need to do three
+calculations
+so pause the video and give it a try
+so here are the betweenness and
+normalized betweenness centrality values
+for this network and let me show you how
+to calculate one of them let's pick
+this yellow vertex
+all right in order for this yellow
+vertex to be on my path
+i must be traversing from one side of
+the yellow vertex to the other
+and there are three vertices that live
+over here
+and nine vertices that live over here
+and so
+if i take my source from this side i
+have three choices
+and then i take my target from this side
+i have nine choices
+or i could do the reverse and i could
+take my
+source from over here and my target from
+and so i have to do the calculation
+reverse
+and so i get 27 plus 27
+which is 54.
+in summary we have talked about three
+centrality measures for networks
+degree centrality measures how many
+links you have closeness centrality
+measures how centrally located you are
+in the overall network
+betweenness centrality measures how
+important you are for the efficient flow
+of information through the network
+in our third video we will put these
+definitions into practice using a
+network created from the social
+interactions of a group of dolphins

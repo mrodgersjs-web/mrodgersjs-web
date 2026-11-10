@@ -1,0 +1,1511 @@
+any time i'm giving a lecture to
+students one of the things that i'm
+always kind of afraid of and i think
+everyone should be
+is that students if they go on to a long
+programming career will be programming
+for like 40 years and i've already been
+programming for 40 years and i know that
+any kind of advice
+or information or things that people say
+are true
+40 years ago often aren't true even a
+few years after let alone for
+all your entire programming career
+so for this lecture i kind of wanted to
+try and figure out is there anything
+that i could say
+about software architecture which is
+primarily what i work on
+day to day and what i think most about
+is there anything i could say
+that i've ever seen
+that approximates an actual like law
+like something i don't think will ever
+break
+so that if you learn to think about it
+and apply it every day in how you view
+software architecture and architecture
+in general
+that you'll never really have to update
+it maybe you'll refine it but you'll
+never really have to update it
+so
+first i want to try and tell you what is
+a law like what do i actually consider a
+law to be and we can look to other
+domains and figure this out really
+quickly we all know what a law is in
+physics here for example is newton's law
+of gravitation and this law is very
+simple it just says that the force
+acting between two bodies right is going
+to be
+proportional to some constant times the
+masses divided by the radius squared
+between them right the distance squared
+between them
+and this was very revolutionary i'm sure
+at the time it was presented but it
+lasted for 400 years or some odd till
+today
+and we still use it if you wanted to do
+gravity simulation today in a program
+in
+like terrestrial body mechanics you
+would still use this until you got to
+like entire solar systems or something
+like that right
+so this law did get replaced eventually
+got replaced by einstein's theory of
+relativity which i've never typed into a
+program i have used the old one um
+newton's newton's law i've never used
+einstein's sort of updated law and so to
+me that is really what the definition of
+a law is it's something that we're so
+sure about
+like newton's law of gravitation that
+we've proven out so well
+that even when it turns out to be wrong
+it's not really wrong it's more like not
+quite complete and we're sort of making
+some more subtle more nuanced version
+that lets us capture more things we
+don't even have to stop using the old
+one because it really does still work in
+all the places it wasn't a lie for all
+the things we were using it for it still
+works it's just now we want to go beyond
+we you know make a refinement so the
+question is does software have anything
+like this right software is very new uh
+physics has been around for much longer
+so you expect them to have laws by now
+hopefully right but but what about
+software
+i would say that you know it's too early
+for us to say but there are things that
+do look like they might turn out to be
+laws for example this is omdahl's law
+it's actually called a law amdahl's law
+but in software people call everything a
+law so that's not really much of an
+indication there's no criteria for being
+called a law but it does happen to be
+it's amdahl's law and this is a very
+interesting observation about
+parallelizing programs what it says is
+the time execution time like how long
+you expect something to run
+the time for something using n parallel
+workers so like n threads for example
+is going to be equal to has to be equal
+to the amount of time
+it takes to run the part that cannot be
+parallelized so the part that simply
+cannot be broken up into multiple work
+pieces that can be done simultaneously
+the part that cannot be paralyzed plus
+whatever is left over so the time it
+takes to do the thing single threaded
+minus the part that cannot be paralyzed
+divided by the number of threads now you
+don't have to understand this for the
+lecture so you know i'm not going to go
+into
+too much detail but it's a fairly simple
+equation and it's fairly straightforward
+if you went and looked at it for 10
+minutes you'd totally get it
+and if you graph what this means you can
+look this up anywhere i grabbed this
+chart from wikipedia just a well-known
+result
+as you start to increase the number of
+threads so as you increase the number of
+computing components working on a task
+amdahl's law tells you that the amount
+of time it takes to execute that task
+rapidly
+approaches and then can never exceed
+the amount of time it takes to execute
+the single threaded part why because
+that part doesn't get faster by adding
+more threads
+and here you can see a couple lines one
+is for if it's a perfectly parallel
+parallelizable problem basically if 95
+of it's paralyzable versus if like very
+much smaller amounts or pellets you can
+see where you end up asymptotically on
+your speed up right
+and so you can see why this happens it's
+very uh simple as the number of threads
+or parallel workers goes to infinity
+this term just drops out because the n
+becomes extremely large so it just isn't
+there so really it's just the
+non-parallelizable part that dominates
+the runtime so as you get more and more
+and more and more cores in a computer or
+more and more in course in a gpu or
+whatever it is you expect the single
+threaded part to become dominant because
+it will never speed up no matter what we
+do
+but of course that's not really about
+software architecture i mean it does
+tell you something about optimization
+and it might inform your choices of
+software architecture it is sort of
+something i think everyone should know
+and i do think it's good to learn
+will it stand the test of time who knows
+i mean we'll probably get more subtle
+versions of it people already are sort
+of thinking about communication in there
+more there's other things you would
+probably add to it but it's a very good
+thing to know and it does seem kind of
+like a law because we know you'll never
+be able to exceed that asymptote no
+matter what you do
+that's just math
+but does architecture have any laws like
+that right that doesn't really tell us
+anything about the structure of the
+program beyond the fact that here's the
+speeds it will end up running at if you
+broke it into this many pieces but
+that's really all it tells us
+so there are things going around
+masquerading as laws but they're really
+not laws some of them are called law
+some of them aren't there's things like
+the you know if you googled software
+architectural law which i did just to
+see what people might call a law you'll
+get things like the pareto principle
+which is also called the 80 20 rule it's
+like you know it comes in various forms
+80 of the time is spent in 20 of the
+program or other things like that
+there's all kinds of versions of it but
+it's not a law it doesn't really tell us
+anything it's also just kind of not true
+i mean sometimes it happens sometimes
+it's not it's more of like a vague this
+tends to happen kind of a thing
+um that you know it like like maybe uh
+but you know not it's not even really
+actionable in all that many ways so it's
+it's not really a law
+um you have things like solid which
+you'll get taught which are like this
+list of rules of thumb for
+object-oriented programming or something
+but again it's not a law doesn't tell
+you anything about software architecture
+other than some things someone thought
+was a good idea most of which i don't
+even think are good ideas so it's
+definitely not a law it doesn't
+there's no there's nothing in here that
+like causes an actual
+you know real uh emergent property of
+software to be told right like a law
+would
+there's things like pastel's law which
+is now something called a law but it's
+not a law it's just again a rule of
+thumb it says something like you should
+be lenient in what you accept and
+stringent and what you output again not
+a law
+and then there's brooks law which
+actually is a software law but again
+it's still not quite
+architecture but i do want to mention it
+because much like amdahl's law it's sort
+of a little bit related to what we're
+talking about here and it is something
+that appears to actually be true so i'm
+quickly going to say this before i go on
+to the actual i want to talk about
+brooke's law
+is
+an observation by fred brooks uh wrote
+the mythical man month a long time ago
+it was sort of the first book that said
+all these management practices are based
+on this concept called the man month
+which imagines that a human being is
+just something that you throw at a
+problem and it gets faster so you know
+if we have something we're trying to
+make throwing more people at making it
+just makes it faster
+and what brooks tried to argue in this
+book was based on a lot of management
+experience and what the industry had
+been going through at the time
+he basically tried to argue that look
+when tasks are complicated and they
+involve intercommunication
+you end up not being able to do that
+he these are graphs that i grabbed from
+the actual book i happen to own this
+book and i scanned it
+the first graph is what it looks like
+when you add people to a project and
+they're no communication necessary so
+it's like they're just doing something
+on assembly line they don't need to talk
+to each other they just do it
+that looks a lot uh like what you expect
+right just keeps getting better as you
+go but you know each person you add you
+know the first person you add if you
+only have one person working something
+doubles the time the next one won't you
+right so you have a natural sort of
+powerful off there
+uh the next graph is what happens if
+there's no ability to parallelize things
+if the things have to be done
+sequentially and they're you're only
+building one of them for example then
+adding people to a project doesn't do
+anything they're just sitting around
+doing nothing right because one person
+has to finish all the stuff they were
+doing and hand it to the next person
+before the work can proceed so you don't
+expect any speed up in that kind of a
+case
+the asymptotic case which is the one on
+the right
+is the one where it says look you can
+make things faster by adding people but
+there's a communication barrier those
+people have to talk to each other in
+these complex tasks so rather than it
+continuing to go towards zero it's going
+to go towards something higher than zero
+that's whatever the natural
+communication cost is to coordinate this
+task they're never going to get beyond
+that not until we have hive mind
+technology from you know elon musk
+implants in our peds or something like
+this right
+and then finally he showed a graph that
+was like the worst case is when the
+communication cost actually can just
+increase past the efficiency point so if
+we add people to a project and our
+communication isn't efficient it will
+actually start costing more than it did
+originally as we add people right
+now if you take a look at the asymptotic
+one where it's like assuming we got our
+communication worked out as well as we
+could we assume there's a natural
+barrier where even if we're as optimal
+with communication as we can be we're
+going to hit some natural floor if you
+just imagined like turning that around
+and comparing it to amdahl's law
+you're really kind of looking at roughly
+the same statement these are statements
+about how fast you can make something
+with parallel workers and recognizing
+that there's a fundamental stumbling
+block in amdahl's law's case it's the
+part that cannot be parallelized the
+part that has to be sequential and in
+brook's law case it is the part that it
+requires coordination between workers
+which makes it so that adding more does
+not get you as much as you would have
+expected
+right
+now we're getting close because that
+sort of is about architecture but it's
+not quite architecture yet so that
+brings us to the paper i actually want
+to talk about talk about
+which is how do committees invent this
+is a paper from 1968 in a magazine
+called datamation it was published in
+this magazine which by the way still
+exists
+which is which is odd it doesn't exist
+in print anymore it exists online
+datamation is a magazine where this was
+printed because the harvard business
+review or something like this wouldn't
+print it because they didn't think it
+proved its conclusions strenuously
+enough or something like that which is
+kind of amusing to me because this is
+probably one of the best papers on
+architecture i've ever read
+bar none so it's i guess fitting in my
+opinion of harvard business review that
+it didn't publish it so it was published
+by a fellow named melvin conway
+he was from caltech and he was actually
+working at sperry rand on the univac
+at the time on rand's univac division
+okay so let me give you a quick overview
+of what this paper says and then we'll
+kind of go into why i think it's
+important
+so this paper is very accessible i
+highly recommend that anyone who's
+interested in this after hearing the
+lecture go read it it is not a paper
+that requires a lot of technical acumen
+to understand it's it's broad it's
+intuitive
+and it's very well written so it's other
+than the fact that it's kind of a little
+old-timey because it was 1968 so you
+know the the prose is a little more like
+sophisticated than it would be today
+let's say um
+other than that it's very easy to
+understand what's being said
+what this paper says is there used to be
+you know inventors and they would just
+invent things right because the things
+they were inventing were pretty simple
+they could be invented and designed by
+one person or two people five people
+they could just be in a room doing stuff
+and then you got whatever came out the
+other end it was fine right but as we
+want to do things that are more
+complicated like the you know apollo
+moon landing these huge projects or even
+things that are less impressive like
+just a basic computer
+still requires tons of people to work on
+these projects because they're that
+ambitious now and there's things that no
+one person can really hope to accomplish
+by themselves so in order to actually do
+the task of design of invention
+you must first do things
+before you start really
+and what the paper points out is before
+you even really get going
+somebody has to decide two things
+one
+what is it that we're actually making
+meaning it can't really be very
+open-ended we have to first kind of
+circumscribe what we might be trying to
+make
+and give it some kind of at least vague
+definition
+and then we have to decide what the
+structure is of the organization that
+will pursue that design
+in other words we're going to need some
+way of we need a company right we need
+we need people in positions or a
+collection of companies or a consortium
+or committees or something
+if we want to bring more than 20 30 40
+people to bear on this task we have to
+start breaking them into groups and at
+the outset someone's going to have to
+decide that or some small group of
+people decide that
+the paper then goes on to say well
+if you're going to break things up right
+if you're going to have enough people
+that you have to start making teams that
+are going to focus on particular topics
+you've created a coordination problem
+right you now have to have those teams
+talk to each other they need to know
+what each other are doing and they need
+to be able to work with each other and
+that's an actual problem in and of
+itself separate from the act of
+inventing or designing whatever it is
+that they're making
+and here
+begins the very crucial and what i think
+are profound insights from this paper
+melvin conway then tells us
+once you have chosen some aspects of the
+design
+and you decide to delegate duties to it
+right like you create an org chart or
+something this team's going to do
+something and maybe that team
+actually needs sub teams to coordinate
+right once you start having a structure
+an actual human structure to the design
+every time you make a new piece a new
+breakdown of that organization
+you are
+pre-supposing that certain designs are
+not necessary you may not be doing this
+knowingly
+but just the act of drawing a dividing
+line between two teams means that you're
+saying that the design of the thing
+you're making
+doesn't really need to have a high
+bandwidth communication
+on between those two areas right
+like the tires of the car
+and the engine of the car are going to
+be designed by different teams so we're
+presupposing that the engine and the
+tire cannot be one piece
+and sometimes that's a perfectly
+reasonable thing
+but other times it may be lopping off
+parts of the design space that actually
+were where the best thing was
+this leads to what i think is a really
+great conclusion probably the most
+important part of the paper although
+it's not the one it's remembered most
+for
+and that is that given any
+design team like this is the
+organization
+of the team
+you can
+already say
+that there are certain designs it cannot
+produce
+because it is unable to do the
+communication that would be necessary at
+the frequency that it would need to do
+so to produce that design
+now uh if you take this a little bit
+further and conway does in the paper
+what he basically says is
+that sets up a sort of homomorphism
+if we look at the org chart for an
+organization and we look at the
+structure of the products that it
+produces we would expect them to
+basically just be collapses of each
+other meaning if i took one graph and
+the other graph
+i should be able to do some small node
+collapses or expansions on one or the
+other
+and get the same graph back there's
+going to be basically the same structure
+between the two of them
+and we're not going to expect to see
+much difference
+okay
+so what this tells us
+is that we would expect to see
+organizations only able to succeed at
+designing things that look like
+themselves
+and furthermore that if an organization
+cannot itself change its org chart
+meaning to the extent that it is
+difficult in an organization to change
+how teams are organized or if you do so
+only very infrequently or if there's a
+lot of rules about who can talk to who
+et cetera et cetera
+you will cave off more and more and more
+of the possible designs that you could
+have to the point where a completely
+static org chart one that cannot change
+one that has very defined lines of
+communication for example and it doesn't
+change over time
+basically he comes to the conclusion
+that it will just produce a copy of
+itself
+every product that comes out of that org
+will just look like the org right
+so that's conway's law conway's law as
+pithily stated is that companies
+organizations teams at any level of
+detail they produce things that have the
+same structure as they do
+right it's not so much that we're
+creating a piece of software as we are
+creating a copy of ourselves in software
+with the same kind of diagrammatical
+structure
+so to put this a little bit more visual
+for those of you who've never had any
+experience with comedy's law before
+which is probably a lot of people
+because it doesn't get talked about that
+often so not many people have really
+thought that much about it unfortunately
+uh hopefully that will change because i
+think it's very important
+but
+if you imagine us sitting down we're
+gonna design something first we have to
+decide what we're going to design all
+right maybe we decide we're going to
+design an operating system
+and then we start to come up with the
+things that it needs oh it's going to
+have to have like internet and it's
+going to have to have this and that and
+like one of the things we decide is
+going to need is media like it needs to
+play back media it has to have like
+audio visuals right so we decided
+there's going to be like a delegation
+from you know the the main you know our
+main company there's going to be a team
+in there or
+probably an org a whole sub org devoted
+to figuring out how this thing is going
+to play media and writing that well
+probably because we're hiring people
+we're going to hire like audio people
+for audio and video people for video we
+probably end up structuring the team as
+there's an audio team and a video team
+right and they're both underneath the
+media umbrella
+the audio team might be like split up
+into like playing music versus playing
+sound because some of those have
+different uh you know aspects to them or
+whatever uh and then the video team
+might be like split into 2d and 3d let's
+say this is this is just give you a very
+simple example of like very basic any
+org chart today like at a company um
+like google or something is vastly more
+complicated than this so this is like
+very simple background just to give you
+a flavor of it right
+if we were to sit down and do this what
+would we expect to see as a product at
+the end of the day it would not
+be something that's just arbitrary we
+wouldn't expect to have i don't know
+there'll be some api for playing media i
+don't know what it will be or it'll just
+be an operating system that happens to
+be able to play media no
+what we expect to see is this
+direct music direct sound direct draw
+direct 3d right we expect to see one api
+for each of these things because that is
+how we structured our teams we decided
+ahead of time that that's what we were
+going to do and so the product has that
+structure and by the way this is exactly
+the structure that windows had when they
+sat down to do this right
+now furthermore they also ended up with
+other parts of the org chart exposed we
+not only know as end users who were not
+privy to design process
+we not only know about the fact that
+there was this direct blah in here but
+the directx org like the whole system
+that works on that also kind of gave
+itself a brand and has its own like sdk
+that they ship right so the the whole
+org chart actually starts to be exposed
+and we can see it in the end product
+now there's an additional wrinkle here
+that i want to talk about a little bit
+later so i'm just going to you know put
+it in there so that way i can come back
+to it
+and that is if you look at what ends up
+happening nowadays these are a little
+bit different direct music went away
+it's not still there you can still
+redistribute if you wanted to use it or
+something but it's not like actively
+pushed and the org doesn't exist inside
+microsoft anymore it went away in both
+the product and the company right
+there's x audio now instead of direct uh
+instead of direct audio right that the
+they they've added new ones the old ones
+are still in the product but there isn't
+like a team working on direct direct
+sound sorry um
+i meant direct sound not direct audio so
+it's right in the slide i said it wrong
+uh x audio direct uh draw is now direct
+2d
+but it's a completely different api
+right so direct draw is still in there
+but direct2d is there now as a different
+api and direct3d is still around that
+one has maintained the whole time so
+again don't need to think about that
+part right now but we're going to come
+back to it so please remember that you
+know when you first create one of these
+things in software that's not the end of
+the story
+so what i want to try and get across
+here is that what conway's law tells us
+if it does turn out to be true is that
+the org chart is the asymptote right at
+the end of the day the best you can do
+is put out a product that looks roughly
+like the org chart now it's an asymptote
+it's the best you can do
+the worst you can do is actually
+something much more
+uh
+you know granular like something where
+we have lots of different apis or things
+for one purpose because a team that
+didn't really have to didn't do a very
+good job so they make too much
+complexity in their area and don't do a
+good job on their design let's say
+so it's an asymptote it's the best we
+can do it's not necessarily what we'll
+get because maybe the people weren't
+very good or maybe it's our first time
+around or whatever who knows
+but it's the best we can expect to do
+now
+if it's an asymptote to me it fits
+nicely in here right
+we had brook's law
+we had amdahl's law
+and now we also have conway's law and
+they're all talking about asymptotes in
+what we can aspire to do in programming
+brook's law tells us the asymptote for
+like getting a project done right it's
+about the inter team communication it
+tells us what we can expect from our
+schedule
+omdahl's law tells us what we can expect
+for when the thing runs because it's
+just going to tell us no matter how fast
+computers get there's going to be this
+natural asymptote based on what we see
+in the unparalyzable part of our program
+the longest single dependency chain if
+you will
+and then we have conway which tells us
+at the limit if we do the best we
+possibly can
+what will the software architecture of
+our product look like and the answer is
+it will look like the teams
+and communication structures that built
+it
+now i want to emphasize that the y in
+conway's law is way more important than
+the what because the y can be applied
+all over the place so just remembering
+the pithy saying of org charts produce
+copies of themselves doesn't really give
+you the full insight
+and so what i want to do is just
+emphasize i just like to make it really
+clear
+for anyone who
+wants to sort of get this into their
+brain as a fundamental tool
+that what we're talking about is not org
+charts necessarily cloning themselves
+that's the result
+but the mechanism for that
+has to be understood the mechanism is
+that communication between teams is more
+costly than communication inside teams
+or if you want to go to the limit a
+single person typing in code
+communicates with themselves basically
+infinitely fast i always know what i am
+thinking right so one person has
+complete latitude to think their way
+through a problem any way they want to
+as soon as i split that problem into
+work that two people have to do there
+now has to be some communication between
+them either they agree on an interface
+or they communicate daily or weekly or
+monthly to update how their code will
+work with each other right
+or they don't communicate at all which
+means that their code cannot co-evolve
+meaning the boundary between them will
+remain fixed at all times because
+there's no way they can even talk to
+each other and uh you know have some
+kind of a way of agreeing on what to do
+next um and again communication this
+case doesn't mean literally talking it
+could mean that i check in something to
+a source tree that you have to check out
+and that always costs way more than if i
+were just doing it because you don't
+know what i was thinking you don't know
+why i did these changes you don't even
+know if they're good or whatever right
+you have to validate that or come to an
+understanding or ask me so
+no matter what ends up happening
+the higher the cost of communication the
+less iteration will happen there
+so what you end up with the reason that
+org charts seem to replicate themselves
+is not because of that literal
+concept that org charts replicate
+it's because inside any given
+organizational box communication is
+faster and therefore design iteration
+can happen more quickly
+than if it has to go across boxes where
+the cost is increased
+so it's really about creating
+nested domains of optimization where
+each level you go down the design can be
+optimized more fluidly and more quickly
+and each level up you go each time you
+try to go further like for example if i
+needed this team here to talk to that
+team there they have to go like all the
+way up and over here if there isn't a
+way for those two teams to meet directly
+for example right
+the further the path is between two
+things the less we would expect them to
+be able to explore shared design where
+solutions to their problems actually
+come from doing work together
+so conway's law is not only about org
+charts it's actually just about this
+fundamental concept that there are high
+cost and low cost areas and the low cost
+areas will get optimized eventually if
+you have good people but the high cost
+areas cannot be they just can't be
+so what i'd like to do finally is take a
+look at where we've gotten to now today
+if you believe anything that i just said
+about conway's law or maybe i should say
+if you believe
+conway's paper and i highly recommend
+everyone read it
+i don't think we can call it a law yet
+because we don't have lots of ways of
+proving things in the software world and
+we don't really know how to come to that
+kind of consensus so it's called
+conway's law
+i kind of think it probably is sort of a
+law but it's not the law like law of
+gravitation but it's the only thing i
+could think of that might someday be
+and furthermore i would say i can
+already sort of see that there's also
+probably an einsteinian refinement to it
+right there's probably going to be if we
+can really confirm conway's law as some
+kind of actual fundamental property that
+we would then also see that there's a
+refinement to it that actually carries
+extra nuance
+so that's what i want to talk about now
+i call this section conway's nightmare
+because i wanted to call the talk that
+but unfortunately melvin conway is not
+the con way people think about usually
+about john conway so i thought if i
+called the talk conway's nightmare
+people would come thinking that there
+was going to be a lecture on john comey
+which is not and i didn't want to be
+misleading so i figured mysterious title
+is better than misleading title and i
+went with the only one unbreakable law
+if you would like to mentally re-title
+this conway's nightmare
+please do
+it's not that conway didn't know about
+software architecture
+he did
+so i'm not trying to say that conway
+didn't already think about these things
+i'm just
+pretty sure that he didn't quite foresee
+where things would go because he was
+writing this in 1968 when software and
+software creation organizations were
+much simpler and smaller than they are
+conway definitely knew about software he
+gives an example in the paper of
+assigning five people to write a
+compiler and getting back a five pass
+compiler right um which is kind of funny
+but you know is exactly kind of what you
+would expect right
+he also gives an example of an operating
+system being broken down into the same
+parts as the orgs that actually
+designed it right and things like this
+so he was thinking about computers and
+software for sure when he wrote the
+paper but i don't think he was thinking
+about anything like this right nowadays
+some of the most important and
+foundational software that we use every
+day like unix or something or windows
+you know their lifespans are massive the
+original code branch of windows is 1985
+to 2000 right
+that got merged together to produce like
+with the windows and t code branch was
+started in 93 these kind of merge
+together and are still running today in
+2022 right
+so we have something that started at
+least part of it in 1985 and that's
+running until 2022 and beyond there's no
+sign that anyone's going to stop running
+windows next year right
+so that's four
+decades
+of a code base
+being in
+use there are some ideas probably from
+the original version of windows some
+small pieces of that design concept
+space are probably still present today
+certainly all the ones from windows 95
+era are there still today right uh the
+entire ui
+basis if you actually look at the
+programming model looks like that right
+it's maybe slowly getting replaced over
+the years but it's still all there and
+tons of things use it etc etc
+so four decades 40 years
+of codebase
+and so what i think conway didn't
+foresee because i don't know how he
+could have
+but what conway i don't think foresaw is
+he was thinking that there would be like
+a company org chart that's going to make
+a product and they make the product and
+it looks like the org chart right so
+company makes product they look like
+each other
+and then if you change the org chart to
+something somewhat different you made
+some changes
+the next time you make a product it will
+then look like that org chart i think
+that's what conway had
+in his head when he was thinking about
+this paper right we changed the org
+chart we change the product
+what i don't think he foresaw is that
+these products because software is so
+easy to leave around nowadays legacy
+code bases are not just common they're
+like the rule
+when you
+do your next product it's more like the
+previous product also
+carries forward right
+so new products not only have the org
+chart from the old team
+and the new team
+like in in them they merge right
+so a product you produce today will
+effectively have something in it from
+like every org chart your company ever
+had
+will be in your current design at least
+that's what it appears to be doing as
+far as i can see right and the only time
+this stops happening is if you do a
+clean wipe if you say we're getting rid
+of all of this code and we're starting
+over or something like that right it
+says if you became a new product or a
+new org
+and that's what i think kama was
+thinking of i don't think he was
+thinking that things would end up mostly
+being like this he probably would have
+thought of this as like a rarer case but
+now it's the norm
+so what that means is those delegations
+those breaking things down and
+introducing barriers because you have to
+for communication now includes time
+travel we're not just talking about one
+org chart we're talking about all of the
+superpositions of all of the org charts
+that existed in time much like an
+einsteinian modification to newton's law
+of gravitation time is on the table now
+and just to give you some example if you
+don't believe me
+um i i have my operating system workshop
+before let's you know say we're doing
+microsoft windows it has that audio team
+somewhere in there and you know that's
+the kernel audio team i said that
+that was just the directx one that i
+drew but really the org chart for
+windows is way more complicated because
+there's audio driver teams like the
+kernel audio which is different than the
+directx audio team like it's there's a
+whole situation right
+let's assume we're just talking about we
+want a volume control on in our audio
+right so we have some audio organization
+who knows how complicated it is probably
+very if it's microsoft or something and
+just somebody gets assigned the task or
+even a team gets assigned the task of
+please
+be able to control the volume of this
+like the speakers right i just i i just
+need the volume of the speakers i want
+to be able to turn this volume up and
+down
+so what we would expect based on
+conway's law as an asymptote if
+everyone's doing their job is there'd be
+a volume slider somewhere and maybe for
+usability purposes that volume slider
+could pop up in multiple places but we
+would expect it to probably be all the
+same volume slider because the person
+would figure out okay what's the best
+way to display volume and they would
+just display the volume that way and you
+the user would learn to use it once and
+then they would always use the volume
+slider and understand it and it would be
+predictable and they would they would
+know it by sight and all those great
+things and they would have a clear
+understanding that it was the same
+volume slider all of these things should
+be relatively easy to accomplish it's
+one slider for one value right
+but what we actually see if we open up
+windows this is on my personal machine i
+just screenshotted all the volume
+controls that are on the base install of
+windows
+this is how many you have there's
+actually five
+you don't just have one volume slider
+you actually have five volume sliders
+and they're not just five copies of the
+same slider that are popped up for
+convenience they're actually all like
+completely different some of them are
+horizontal some of them are vertical
+some of them include a picker for
+whether or not you're going to change
+the output some of them don't some of
+them have additional settings buttons or
+other things like that some of them have
+a mute button you know all these there's
+there's all of these different things
+that might be involved or might not be
+involved depending on the circumstances
+and if you take a look at where all
+these come from what's interesting to
+see is that none of them come from the
+same version of windows basically
+some of this comes from like the
+original control panel
+some of this comes from windows 7 adding
+a more sophisticated mixer drop down i
+believe it was windows 7 it could have
+been xp or vista i i to be honest i i
+don't really have enough version of
+windows to check
+then there was windows 8 which added a
+modern settings experience as they call
+it it's definitely experience
+windows 8 added a modern settings thing
+and that has its own kind of different
+style in there
+um and then in windows 8 they didn't
+actually replace the drop down in the
+systray
+uh with one that looked like it so it
+actually used to look more like this one
+when the drop down and the system the
+mixer from wind 7 is what you used to
+actually see but then in windows 10 they
+changed it to look more like the modern
+settings right
+so now when you run windows 10 what you
+will see
+four volume sliders from windows
+and one that is actually predicted by
+conway's law directly
+first let's talk about the conway's law
+predicted one so we need no modification
+to conway's law to realize that i made
+an error when i originally said well we
+have an audio team and we delegate to
+having a volume control so we would
+expect to have one volume control wrong
+i forgot to say well i mean i didn't
+forget because i made the slides i
+pretended to forget to say
+that we know there'll also be people
+shipping the sound hardware and the way
+that we chose to set up our operating
+system way back when in windows is that
+the people who install the hardware can
+also install their own software and
+obviously if you have an org chart that
+has an audio team on one company
+microsoft and an audio team at another
+company which is the people who spy the
+sound card they're both going to
+delegate volume control to somebody and
+those two teams are never going to talk
+to each other so we're going to have at
+least two volume controls in windows
+always for all of time they're at least
+b2 volume controls until they change
+this idea right and lo and behold that's
+exactly what we always see in windows at
+least there's always the windows volume
+controls that they ship and then every
+ihv real tech
+you know whoever it is that you have for
+your sound your machine ships their own
+thing which has its own volume control
+always
+right so that's just that's just going
+to happen conway tells us that will
+happen and he's always right in this
+case right
+but let's just focus on the windows part
+why are there four of these in the
+windows part when conway might have said
+there'd only be one right because it's
+just one delegation to to one person or
+one team
+well the reason is because of that
+temporal right delegation
+people write stuff in the original
+version of windows or you know windows
+95 or something like this whatever the
+last time was that they did a wipe of
+that area and did a clean rewrite
+when they did that they introduced like
+this control panel which had a volume
+slider for you know the particular piece
+of you know the software that had a
+volume slider for that particular output
+or whatever it was in the control panel
+and later they decided well pop-up mixer
+would be better so at some point they
+add the mixer and that mixer also has a
+drop-down in the systray right that's
+that's a quick version that's a simple
+version of itself right
+then later they add the modern settings
+panel which is completely different
+thing and again they don't replace any
+of this
+and then finally they decide well we're
+going to replace just the drop down so
+this old drop down is not going to be
+there anymore but they didn't bother to
+replace the mixer so it's still there
+so if we look at the different pieces of
+you know this software stack if you will
+when they got added and who was touching
+what when
+you can see that we actually have
+different pieces of the software being
+done at different times there was the
+original programming org that was
+involved in doing this part there was
+the win7 org then the win8 org the win10
+org and
+part of it is no longer visible right
+the win 8 part is not visible anymore
+because win 10 kind of unified that
+whole thing right
+so we now are kind of seeing the win 10
+result the win 7 result and the original
+result we're seeing at least three
+results right
+and when the user looks back at it they
+will see at least that many
+now in the original i was like well you
+kind of see this part that got
+introduced in win8 but it's sort of
+unified with the win10 part so that's
+why i didn't include it here so i'm
+giving them the best case the best case
+is you could say well it was it's win 10
+control so it was reduced to win 8 but
+they're the same right so the win 10
+control is basically the same we'll give
+them that but the win 7 control is
+clearly different and the original
+control is also clearly different right
+so what we come to is that this org
+chart is not really the org chart that
+produced the software that we're talking
+about because this part of the org chart
+here this volume where we delegated the
+audio team delegated someone to write
+the volume they actually delegated only
+a subset of the code necessary to do
+volume control in windows according to
+what actually shipped
+previous teams that existed previously
+in time
+were effectively delegated to for parts
+of the product that still ship today
+because it just continues
+as you ship the same code so this is the
+most generous interpretation of that org
+chart that we have a volume team that's
+actually comprised of three temporally
+distinct teams right
+so the reason we have at least four
+volume control visual volume controls in
+windows is because of this right there
+are four actual teams working on it
+what we actually might say is it
+probably looks more like this which is
+to say you would have to go backwards in
+time to actually communicate with the
+win 7 team or the original team so
+really it's infinitely expensive these
+links almost don't really exist so you
+would expect them to be completely
+separate and have no way of really
+playing nice with each other or doing
+anything like that because the only
+choice for this team is basically to
+obey whatever these teams feed forward
+if that makes sense
+so that's one reason i think conway's
+law is almost under selling itself when
+it says oh the org chart brews a copy of
+itself really it's the entire temporal
+integration of the org chart that copies
+itself so it's this it's this
+four-dimensional org chart that's
+replicating itself in the software today
+because the cost for just reshipping all
+the old software is very low so anytime
+someone doesn't have enough people to
+actually solve the whole problem they
+just leave all the old stuff in place so
+that they only have to just solve the
+new problem right and you just end up
+with this org propagation
+there's another problem which is that
+programmers now think delegation is a
+separate good this is something that
+conway probably would not have expected
+uh necessarily in software but he
+actually did predict it in terms of
+management so i guess i would say
+probably somewhere along the line conway
+would have known this if he didn't know
+when he wrote the paper he would have
+said ah it looks like this is happening
+inside software as well
+so what i mean by that is
+what is this
+this is a class diagram
+of just the llvm
+operator class so like when you want to
+add two numbers together or shift left
+or something in c right
+it's just the operator class
+just the operator class i'm going to
+keep saying that because this
+is just the operator class
+there's no code here
+this is just boilerplate that people
+have to deal with and write down to
+basically specify like oh the operator
+you know goes to conditional operator
+has a shift left operate it's just code
+organization inside the code
+that does not specify anything about how
+the program runs
+it's just there
+as something that programmers added to
+artificially constrain the way the
+program works that's what inheritance
+hierarchy is it's an artificial
+constraint on how your program is going
+to work now if you turn this around
+right if you turn it 90 degrees it's an
+org chart
+so modern-day programming practices have
+actually now grown to effectively be
+org charts
+inside org charts there's an actual org
+chart which will replicate itself
+onto the product that is the
+organization of the humans that made it
+then there's an additional org chart
+that programmers invent for no reason
+other than they are unable to keep the
+entire complexity of the problem in
+their head
+so they invent artificial breakdowns of
+problems that have nothing to do with
+the design process because the optimal
+design process would allow all of this
+to be fluid to find what design was best
+for the product as it goes
+they artificially fix and create
+increased cost to that change by
+creating one of these for no reason
+other than mentally trying to grapple
+with the problem now unfortunately they
+don't really recognize that they're
+doing this because they've been taught
+that this is good this is a good thing
+to do
+it's actually not a good thing to do
+it's a bad thing to do for the code
+the reason that it ever got a reputation
+for being good is because it is a way of
+breaking down problems to make them more
+manageable so it may have been a
+necessity for a problem too large for
+the person trying to tackle it right
+but it was exactly what an org chart is
+in the real world it's something we do
+because we had to
+not something that's actually good this
+is a sign that you're under achieving
+not that you're doing a good job you may
+still have to do it because we can't
+figure out how to do it any better given
+the human brain being what it is
+but it shouldn't be cause for
+celebration right
+now conway because this paper is amazing
+basically predicted all of this just
+more to do with management than software
+but he either was thinking about
+software or would probably soon think
+about software as also having these
+traits as he saw things happen like
+object-oriented programming coming along
+and so one of the things he says is
+if a designer is faced with a problem
+that is too complex for the designer to
+solve
+what they will generally try to do is
+artificially break it up into smaller
+problems right
+and oftentimes they will do this without
+the necessary information about where
+those should happen right because by
+definition the person doesn't understand
+the problem that well so they're not
+necessarily able to figure out oh the
+end design should look something like
+this so i can break the teams into these
+pieces to tackle these problems
+separately and i won't incur any design
+costs because i already know that the
+end design should be optimally looking
+like that
+so that's how you get these kinds of
+programming things happening and these
+kinds of situations where code bases
+seem to be divided in ways that doesn't
+actually make them very easy to work
+with because hey they probably were not
+originally divided into that way by
+someone who actually knew what a good
+efficient end solution was because in
+order to start the process of
+programming they had to make decisions
+about design dividing things and in so
+doing they eliminated possibilities of
+the design space
+now things are only getting worse
+unfortunately
+libraries engines package managers
+containers virtual machines
+microservices all of these things
+are ways of introducing
+more org charts right more boundaries
+between things that cannot be optimized
+across because the people cannot
+communicate with each other rapidly or
+at all
+and again
+when people say that any of this is good
+it's very important to recognize it is
+not good right
+objectively speaking for the end product
+these are all bad
+because every single one of these
+implies
+that we are under optimizing our
+eventual product because we have a
+priority decided what we will not
+consider to work together and to
+optimize together and to merge right
+we may need to do all of these things we
+simply might not have the brain capacity
+as humans or be able to form the kinds
+of communication structures that we need
+to until we have the elon musk brain
+implant right
+to do away with them so the we may be
+stuck with this
+but it's crucial to always keep our eye
+on the fact that it's not good that we
+do that people think these are good
+they're all bad right
+but we have to do them right now because
+we haven't figured out how to do it
+better and it's crucial to keep that in
+mind because we might be able to do
+better so we should always be on the
+lookout of ways we can stop doing some
+of these or doing them less
+because we would lead to more optimal
+products better design more efficiency
+now finally conway even predicted all of
+those things right he talks about the
+fact that managers when faced with a
+thing to do if they have the choice of
+trying something new
+and possibly it failing or going with
+some old thing that they know will not
+be as good of a fit for what they're
+doing but at least it's known quantity
+they'll go with the known quantity why
+because no one ever got fired for
+mitigating risk right
+so in terms of your success as a
+programmer or your success and
+management career unless you want to be
+a trailblazer right and you're like i'm
+going to blaze new i'm going to forge
+new paths
+of course you're going to do things like
+yeah yeah i install as many package
+managers as i can and use tons of
+libraries why because i know those
+things at least work because everyone's
+using them so i know i'll only be as bad
+as everyone else is right not somehow
+worse because i failed to do my new
+thing that would be more optimal or
+better right you're not taking that risk
+you're letting someone else take that
+risk because that's the safe choice
+so in conclusion
+um i i would leave you with what
+with what melvin conway actually wrote
+he basically said that look
+if we care about doing a good job and
+we're trying to push our design ability
+forward
+then what we need to do is understand
+that we must be as lean
+and as flexible as possible
+and as hopefully i've given you some
+indication of if you study this kind of
+thing you will realize that that goes
+for the org chart and the code base so
+both are actual communication
+restrictions that we have because we are
+humans we have to talk to each other and
+also the things we do in code that
+restrict its ability to be optimized
+together such as encapsulation or using
+a library those sorts of things normally
+considered good actually they are all
+costs
+that lead to worse designs
+if we somehow magically could get past
+them
+maybe our brains can't but if we could
+it would be better conway's law tells us
+so and i think it's really true
+and unfortunately those two things lean
+and flexible are like the opposite of
+what almost anyone's doing now
+40 000 person orgs using hundreds of
+thousands of different components and
+libraries and docker containers inside
+virtual machines running on top of
+hypervisor like we're the opposite of
+lean and flexible we are as fat and
+unflexible as you could possibly imagine
+and it's kind of unfortunate and i think
+conway's law kind of gives us a lens to
+see
+why we shouldn't be happy about that
+maybe we're struggling to do better and
+can't
+but we should be struggling to do better
+in kant not thinking that we're doing
+good because conway's law kind of tells
+us that we aren't
+and so in closing i guess i would say
+all the thanks go to mr melvin conway
+for what is arguably the best software
+architecture paper i've ever read and in
+fact is just seems to be true about
+architecture in general software or
+anything else
+and
+i'm i'm sorry on behalf of all of us
+working today
+that even though you warned us and gave
+us a lens through which to understand
+what we were doing wrong we still have
+sort of ended up in your nightmare
+scenario
+where all of those problems that you
+talked about are not only as bad as they
+were when you talked about them but they
+are ten hundreds thousands of times
+worse
+because we're really not doing a lot of
+work to try
+and get past them

@@ -1,0 +1,175 @@
+let's learn about the fusion models
+diffusion models are a fairly new
+innovation in the world of deep learning
+they are generative models that are
+being used in many different domains
+like audio generation or image
+generation you might have heard of them
+with their use in dali or imogen for
+example diffusion models can be used
+standalone like they did with glide or
+it can be used as part of a bigger and
+more complex model like it was done at
+dali 2 very recently their inner
+workings are quite complex so it could
+get a little bit confusing to understand
+how they work and how they are trained
+that's why in this video we are going to
+approach it step by step and explain the
+fusion models in five varying levels of
+difficulty starting from the easiest one
+to the more complex one
+level one
+diffusion models were inspired by
+non-equilibrium thermodynamics from
+physics and as you can understand from
+the name this field deals with systems
+that are not in thermodynamic
+equilibrium for example a drop of paint
+in a glass of water the density of the
+paint after you just dropped it is very
+high in one spot and zero in other parts
+of the water by the laws of physics the
+drop will diffuse into the water until
+it reaches an equilibrium in the
+physical world reversing this the fusion
+process is simply not possible but with
+diffusion models the goal is to learn a
+model that can reverse this process
+and bring the drop of paint to its
+original state in other words the drop
+being in one spot includes some
+information and as the diffusion process
+progresses we lose information in our
+case this information equals to clear
+images so working backwards from this
+diffuse paint is equivalent to working
+backwards to a proper image level two
+diffusion models work by replicating
+this diffusion process by adding noise
+to original images and later learning
+how to reverse this noise process the
+noise is applied to the images following
+a markov chain what is a markov chain a
+markov chain is a chain of events where
+the current time step only depends on
+the previous time step so that means
+there are no cross dependencies between
+time steps that do not immediately
+follow each other and this assumption of
+markov chains makes it tractable for the
+noise adding to be reversed later so at
+the end a diffusion model is a markov
+chain where in each time step we add a
+little bit of noise to our image until
+the image only consists of noise and
+later learning how to reverse this noise
+adding process after it is trained given
+only noise this model is able to
+generate high resolution images level
+three so now that we understand what
+diffusion models do is basically add
+noise to an image let's understand what
+it means to add noise to an image there
+are many different types of noise and
+the noise that is added in the fusion
+models is called the gaussian noise what
+is gaussian noise it is a noise that has
+the probability distribution of a
+gaussian or normal distribution given
+the different mean and variation values
+for this noise the location and the
+width of the distribution can change but
+the bell shape will stay the same adding
+gaussian noise to an image means
+changing the values of the pixels of
+that image slightly and the area of the
+probability distribution let's look at
+an example let's say for simplicity we
+have a 2 pixel image x-axis shows us the
+value of pixel 1 y-axis shows us the
+value of pixel 2 and the z-axis gives us
+the probability distribution if the
+values of our original images pixels are
+120 and 90 out of zero to 255 our images
+will live in this point
+if we want to apply gaussian noise to
+this image we can draw the gaussian
+probability distribution where the mean
+is and the variance is determined by a
+constant let's say for now that it is
+10.
+that means to add noise we select a
+random position inside this distribution
+it could be anywhere really close to the
+original point really far from the
+original point or somewhere in between
+the probability distribution tells us
+that this new point being closer to the
+original point is higher than it being
+further away from it so let's say if
+this point is selected randomly then the
+image in the next step of our markov
+chain will look like this and
+effectively we will have added gaussian
+noise to our image this is an example
+where the image only has two pixels but
+of course that does not really reflect
+reality normally images have many more
+pixels and when that happens this graph
+will have many more dimensions diffusion
+models add noise to the image in this
+way until it becomes nothing but noise
+this is done by adding just a little bit
+of noise for hundreds or even thousands
+of times so at the end we have a hundred
+or thousands long markov chain level
+four we learned what it means to add the
+noise but what does it mean to reverse
+or remove this noise reversing or
+removing the noise means recovering the
+values of these pixels so that the
+resulting image will resemble the
+original image in diffusion models this
+is achieved by using neural networks so
+let's look at our two pixel example
+again let's say this is where the image
+lives and this is the point it is fully
+noise during the forward diffusion
+process the image follows a path from
+the original position to gaussian noise
+position
+during the reverse diffusion we want to
+find a way to bring it back to its
+original position to do that we input
+the image to a convolutional neural
+network and we ask the network to
+produce the image in the previous step
+the type of convolutional network used
+in the original paper is called a unit
+it is called that because of its shape
+through the convolutions it makes a
+small representation of the image and
+then samples it back to the original
+dimensions this way the input and output
+dimensions of the networks has the same
+size okay that was a lot of information
+i hope you were able to follow along i
+based this video on this amazing article
+made by my colleague ryan o'connor in
+the assembly ai team and on top of
+everything we learned here today the
+article goes deeper into the math behind
+diffusion models you can find the link
+to the article in the description if you
+have any questions about how the fusion
+models work don't forget to leave them
+in the comment section below and if you
+like this video i would really
+appreciate it if you give it a like and
+subscribe to our channel to be one of
+the first people to know when we publish
+a new video thanks for watching and i
+will see you in the next video
+[Music]
+you

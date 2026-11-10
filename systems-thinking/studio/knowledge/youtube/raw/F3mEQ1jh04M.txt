@@ -1,0 +1,241 @@
+hey guys in this video let's talk about
+the simpsons paradox which is another
+probability problem that data scientists
+often confront in job interviews and in
+their everyday work simpson's paradox is
+a common occurrence when we look at data
+across multiple levels or categories it
+is an issue that involves conditional
+probability and it's called a paradox
+because it's not very intuitive to
+understand nevertheless understanding
+simpson's paradox is important for
+correctly interpreting data so in this
+video i will give you some examples to
+help you understand what it is and what
+the implications are when we deal with
+data in reality let me first give you
+the formal or academic version of the
+paradox we observed that the probability
+of a given b and c is less than
+probability of a given b complement than
+c and the probability of a given b and c
+complement is less than probability of a
+given b complement and c complement
+but probability of a given b is larger
+than probability of a given b complement
+as you can see this formula contains
+conditional probabilities and the
+complement as denoted by the c subscript
+i will not dive into this formal
+definition because it's not super
+helpful for understanding its practical
+implications
+instead i want to give you a more
+practical form of the definition first
+we will define simple 2x2 contingency
+tables for subgroups of a sample and
+then we will explain the patterns within
+the tables that indicate simpson's
+paradox suppose that we have i equals 1
+2 3 and mutually exclusive subgroups and
+a i b i c i and d i is a 2 by 2
+conditions a table for subgroup i with 0
+less than or equal to a i less than or
+equal to bi and 0 is less than or equal
+to ci less than or equal to di we can
+add the tables together to create
+capital a capital b capital c capital d
+is the same as sum of a i some of bi
+some of ci and sum of di respectively
+simpson's paradox occurs if one of the
+following is true
+essentially when we compare the sum of
+the numerators with the sum of the
+denominators the sign of the inequality
+we observed within the subgroups is
+reversed
+let me give you a simple example with
+only two groups of data to illustrate it
+we can see that this data meets the
+criteria for simpson's paradox in group
+1 a1 over b1 is 10 over 99 which is less
+than c1 over d1 which is 1 over 1. in
+group 2 a2 over b2 is 0 over 1 which is
+less than c2 over d2 which is 1 over 99
+but when we look at both groups together
+cape to a the sum of a i over the sum of
+bi is 10 over 100 which is larger than
+the sum of ci over the sum of d i which
+is 2 over 100
+this is the simple example of simpson's
+paradox now that you understand the
+definition of simpson's paradox let's
+see how it applies to data science and
+what its practical implications are
+let's consider an example closer to real
+life suppose we have two advertisements
+and we want to find out which one is
+better so we collect data from two
+groups of users and compared the clicks
+rates of both of them for those that
+don't know the clicks rate is a ratio of
+the number of clicks that the ad
+receives divided by the total number of
+times it is shown or what is commonly
+referred to as impressions in other
+words it measures how likely an ad is to
+be clicked after being shown to viewers
+for example if an ad has one click among
+100 views then the clicks rate will be
+one percent
+a high clicks rate means that users find
+the ad relevant and helpful and add with
+a higher clicks rate is considered to be
+a better quality ad now back to our
+example let's look at the data in both
+groups of users the clicks rate is
+higher for the first add than the second
+ad in group 1 44 over 700 for add 1 is
+larger than 75 over 1200 for add 2. in
+group 2 46 over 800 for add 1 is larger
+than 17 over 300 for add 2. based on
+this analysis we are tempted to conclude
+that the first add is better
+this is until we look at the two groups
+together and see that the first ad is
+worse than the second one because the
+first ad has a lower overall clicks rate
+why is the finding consistent across the
+two groups but it's not true anymore if
+we look at it at an aggregated level
+basically the overall trend differs from
+trends in segments or subgroups with
+this example it's clear why simpson
+paradox can be an issue it's hard to
+draw conclusions from the data when the
+data tells us two opposing stories at
+the same time
+now you might be wondering which
+conclusion is correct and which data
+should we trust well both cases are
+possible let me explain
+suppose i tell you that the first group
+contains all the ios users and the
+second group only has android users so
+there's a difference between these two
+groups of users then it's possible the
+operating systems people have can affect
+the user's experience and influence the
+clicks rate if we have this assumption
+or hypothesis we should look at the
+groups separately in other words we
+study a specific group of users who use
+ios or android instead of a mix of users
+now if i tell you that there's no
+difference between these two groups of
+users at all they are homogeneous in
+terms of demographic browsing behavior
+and any other factors we care about in
+that case it does not make much sense to
+look at the disaggregated view because
+we could consider the two groups as one
+big group
+as you can tell both cases are possible
+sometimes the aggregated view is correct
+and sometimes the disaggregated view is
+correct people might be tempted to think
+that the divided view is always better
+because it contains more information but
+it's possible that this aggregating an
+additional variable provides confusing
+or even misleading information without
+enough understanding of the data and
+domain knowledge it's hard to know which
+view of the relationship between these
+variables makes more sense in our case
+it's which ad is better for our users
+now let's talk about when does simpsons
+products occur is there any way to get
+the heads up that it might occur let's
+talk about when it happens simpson's
+paradox appears when we have unbalanced
+data set for each pair of segments
+basically the sampling is not uniform
+and the sample size of each segment is
+different from the other
+this might be simply due to the way that
+the data has been partitioned into
+subgroups or due to another variable of
+factor impacting the results
+in the example we talked about earlier
+we have the same amount of total
+impressions of ads 1 and add 2 but there
+is a major disparity in the number of
+impressions between group 1 and group 2.
+it means we did not have balance the
+sample sizes between each pair when
+doing the analysis for at one the number
+of impressions was similar across the
+two groups so we would expect its
+overall clicks rate to be halfway
+between the rates for the two groups but
+for add two the first group was much
+larger and also has a significant higher
+click-through rate so we would expect
+the ads overall rate to be closer to
+that for group one you may want to pay
+particular attention to differences in
+sample sizes that vary considerably in
+size
+another way to understand what and why
+simpson's paradox happens is to think
+about underlying explanations for your
+data which is a wise idea when examining
+any analytical results what underlying
+unseen factors might be influencing the
+results you are seeing a common factor
+may impact both the subgroup's
+assignment and outcome in the previous
+example you might ask yourself what
+other factors associated with and
+differentiates those subgroups such as
+age geographic location or device type
+might be influencing the result
+as i mentioned earlier if group 1 is ios
+users and group 2 contains all the
+android users then device type may be a
+factor impacting as clicks rate
+that might explain why simpson paradox
+is happening by looking into factors
+that may influence the assignment of
+groups and asking yourself such
+questions you'll be prepared to identify
+simpson's paradox when the occurs to
+summarize simpson's paradox occurs when
+splitting the data causes certain
+subgroups to have an imbalanced
+representation compared to other groups
+it might be simply due to the way the
+data has been partitioned into groups or
+due to another variable of factor
+impacting the result now let's do a
+quick recap before we end this video we
+covered simpson's paradox which is a
+common occurrence in practice it
+describes the situation in which the
+overall trend differs from trends in
+segments or subgroups the lesson here is
+that we need to be cautious when drawing
+conclusions from data collected from
+multiple groups or segments or different
+percentages the obvious conclusion might
+not be correct and now you know it can
+be explained by simpson's paradox
+i hope i have done good job explaining
+simpson's paradox to you if you have any
+comments or questions feel free to
+comment below if you like this video
+please subscribe to this channel to get
+more content like this i appreciate your
+support see you soon

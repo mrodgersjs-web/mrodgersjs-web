@@ -1,0 +1,228 @@
+this lecture is on open loop versus
+closed loop Control Systems a control
+system is a mechanism that alters the
+future Behavior or state of a system now
+in order to be considered a control
+system and not simply a change the state
+system the behavior or the outcome must
+tend towards a state that is desired
+control theory is a branch of
+mathematics that is concerned with the
+strategy to select the appropriate input
+or or to put it another way it deals
+with how to go about generating that
+outcome without control theory the
+designer is relegated to selecting
+appropriate actions through trial and
+error now all Control Systems have two
+basic parts the system to be controlled
+usually called the plant and an input
+into the plant the input acts on the
+plant which responds over time to
+produce a system output this type of
+control system is called an open loop
+system because the input does not depend
+on the system
+output open loop control systems are
+typically reserved for simple processes
+that have well-defined input output
+behaviors for example a dishwasher is an
+open loop control system the goal of a
+dishwasher which is the plant is clean
+dishes which is the output once the user
+sets the wash time which controls the
+time to clean the dishes the dishwasher
+will run for that set time now this is
+true regardless of the cleanliness of
+the dishes if the dishes loaded were
+clean to begin with the dishwasher would
+still run for the prescribed time
+further if you loaded the dishwasher
+with 10 Plates Full of cake the set time
+might not be enough to clean
+them another common example of open loop
+control is a sprinkler system for your
+lawn in this control system the system
+out outp put is the moisture content of
+the
+soil again the user sets the timer which
+controls the amount of time to run the
+sprinklers and while the sprinklers are
+running the plant which is the grass in
+this case is being
+watered again an open loop sprinkler
+system would still run even if it was
+raining outside for a more complicated
+example imagine trying to obtain a
+constant speed in your car without the
+benefit of the built-in automatic cruise
+control to do this you a rod between the
+front of your seat and the gas pedal to
+depress it halfway down the output of
+the control system is the speed of the
+car and the input is the position of the
+gas pedal again the car itself is the
+plant the car begins to accelerate down
+a flat road until the force supplied to
+the system is balanced by the force of
+friction at this point the car stops
+accelerating and maintains a constant
+speed but what happens when the car
+encounters a hill or a valley without
+varying the input
+that is adjusting the gas pedal the car
+will slow down or speed up and the
+desired constant speed will not be
+maintained this is the primary drawback
+to open loop control the input to the
+system has no way to compensate for
+variations in the system now to account
+for these changes you must vary the
+input to your system with respect to the
+output and this type of control system
+is called a closed loop control
+system now in addition to calling it
+closed loop control this can also be
+referred to as feedback control negative
+feedback control or automatic control
+for the time being we'll use these terms
+interchangeably although there are
+slight variations between some of them
+that we won't address in this lecture in
+Clos Loop control you measure the output
+of the system with a sensor and compare
+the result against a reference signal
+often this is referred to as the desired
+State or the commanded State an error
+term is generated and then fed through a
+controller where the error is converted
+into a system input value when drawn in
+block diagram form it's easy to see why
+this is referred to as a control Loop
+the negative part of the negative
+feedback control term is based on the
+comparator juncture where the feedback
+is
+subtracted so how does feedback control
+work in practice well let's take the
+case of the dishwasher there could be a
+sensor that measures the cleanliness of
+the plates the reference signal would be
+some sort of desired cleanliness level
+that would be set either by the
+manufacturer or by the
+user this desired cleanliness level
+would be compared to the measured level
+an error term would be generated which
+would be fed through a controller which
+would monitor wind to shut off the
+dishwasher a sprinkler system could also
+benefit from closed loop control the
+sensor could be a device planted in the
+soil that measures the moisture content
+of the plant remember that in this case
+the plant is both the grass and the soil
+the reference signal would be a desired
+soil moisture
+content and again the error signal would
+be generated which would then be fed
+through a controller and the controller
+would adjust the amount of time that the
+sprinklers ran the sprinklers would then
+run until the moisture level reached a
+specified value and then they would be
+shut
+off for the car with cruise control
+closed loop control would work something
+like
+this the sensor is a speedom
+which measures the speed of the car the
+reference speed would be the speed that
+the car was going when the cruise
+control was
+set now assume that the car starts in a
+steady state position on Flat Road and
+what I mean by that is that the speed is
+constant at your desired speed and also
+that the gas pedal is depressed the
+amount needed to generate that speed for
+this example let's say that the desired
+speed is 100 mph therefore the speedom
+would also read 100 mph and since the
+measured speed exactly matches the
+reference speed the error term is zero
+the gas pedal would stay exactly where
+it is once the car encounters the hill
+the speed starts to slow now the
+reference speed is greater than the
+measured speed and the error term
+becomes positive which signals the
+controller to speed up if the car
+encounters a downhill the speed will
+increase now the reference speed is less
+than the measured speed and the error
+term will be negative the beauty of the
+feedback control system is that is
+capable of reacting to changes to the
+plant automatically by constantly
+driving the error term to zero I want to
+leave you with one more thought
+regarding closed loop
+control if we take a block diagram and
+assign letters that abstractly represent
+the various parts of a control system we
+can gain new insight into how feedback
+control is manipulating a system for
+example if we label the reference signal
+V and we call the controll or some
+abstract process D through the plant G
+which produces an output we'll call Y
+which can be fed back through the sensor
+H to generate an error turn e we can
+then reduce this block diagram even
+further for example we can multiply D
+and G to combine into a single block to
+reduce further however takes a small
+amount of algebra the error signal is
+the reference signal V minus the output
+y times the sensor process H the output
+Y is the error term time D * G
+now solve this equation for E which will
+give you y over
+DG now you can set both equations equal
+to each other and through a few more
+algebraic steps you can solve for the
+variable y with respect to
+V and since Y is the output and V is the
+input the rest of that equation is what
+we refer to as a transfer function of
+system in this case the transfer
+function is d * G over 1 + d g h and for
+those who are paying attention you'll
+notice that I forgot to write the V at
+the end of that equation
+there we can now rewrite this back in
+block diagram form these two block
+diagram representations are equivalent
+of each other now doesn't this new
+process look a lot like an open loop
+control system only with a modified
+plant the feedback path has altered the
+original plant to be something new and
+furthermore the open loop behavior of
+this new plant has the exact character
+istics we wanted from the original plant
+namely that it follows our input now
+here's something to ponder until the
+next video what are the limitations of
+feedback control in other words can we
+make any plant G behave like anything we
+choose just by adding a feedback control
+system which is made up of a controller
+d and a sensor
+H one other thing do you think in our
+car example from up above that using
+using feedback control we can turn a
+pinto into a Ferrari just by applying
+more
+gas we'll discuss that in a future video

@@ -1,0 +1,202 @@
+{
+  "schema": "rig.systems-thinking-studio.mechanisms.v1",
+  "version": "2026-08-30.2",
+  "authority_state": "STAGED_NOT_PROMOTED",
+  "source_cutoff": {
+    "campaign_id": "systems-thinking-5gb-20260829",
+    "raw_artifact_bytes": 5193250515,
+    "raw_target_bytes": 5000000000,
+    "raw_artifact_count": 2512,
+    "raw_artifact_chain_sha256": "02f4593217516b6fb53c1a8ec3bcff1d6f8126c2455f744d1fd5133edad57a33",
+    "lattice_sha256": "0db4857eab972dc94903248472381ed529b313fa98eec4749e4183eef00098fd",
+    "cutoff_reason": "Full 5 GB target reached; all 18 topic anchors have at least two source classes.",
+    "l2_pass_cards": 18,
+    "l2_quarantined_cards": 0,
+    "l2_not_ready_topics": [],
+    "l2_summary_sha256": "d7752666f4d2088145a38e5255a1e578c64affa97fa2d6d5cd165f626eb2deff",
+    "appendix_sha256": "6ff3e1dadc16193bb607f1327e55e63cd491cc9a4d9188bb2d40f03877d74b37",
+    "proof_ref": "ssh://rig36gb/Users/rig36gb/.rig/omniscout-campaigns/systems-thinking-5gb-20260829/PROOF.json"
+  },
+  "mechanisms": [
+    {
+      "id": "causal-intervention-loop",
+      "transfer": "direct",
+      "source_card_sha256": "a918d20abed6a7fb69c1434912f2a0ad01f2d4e4170f4286c892576952c0c2e1",
+      "source_topic": "causal-inference-falsification",
+      "rule": "A causal improvement claim names an intervention, observable outcome, rival explanation, and refutation condition.",
+      "studio_change": "Require causal hypothesis, counterfactual baseline, rival explanation, and dated falsifier in every intervention packet.",
+      "gate": "Remove the rival explanation from a packet; verification must turn RED.",
+      "applies_to": ["rig-adversarial-verification", "intervention packets", "studio verifier"]
+    },
+    {
+      "id": "safe-to-fail-complex-probes",
+      "transfer": "adapted",
+      "source_card_sha256": "e1685dcb32d54ae86f03d85df87837143b4a82fcc7f262590b28eefda7596cf0",
+      "source_topic": "complex-adaptive-systems",
+      "rule": "When cause and effect are only coherent in retrospect, use bounded probes and select on observed emergence rather than a single imposed plan.",
+      "studio_change": "Require Cynefin context, probe budget, kill criterion, signal window, and rollback for complex interventions.",
+      "gate": "Declare a complex intervention without a kill criterion; context gate must turn RED.",
+      "applies_to": ["decision-contexts", "studio context", "shadow interventions"]
+    },
+    {
+      "id": "constraint-first-wip",
+      "transfer": "direct",
+      "source_card_sha256": "fc10837b4cf1fbba8caaf3b553064f63bcdcf233fc16347b33307ea9dd4bdd5d",
+      "source_topic": "constraints-flow-queues",
+      "rule": "Protect the bottleneck: cap work in progress before adding throughput, agents, or schedules.",
+      "studio_change": "Make WIP cap, queue-age signal, drain condition, and bottleneck owner required leverage fields.",
+      "gate": "Raise WIP above the cap in a fixture; queue gate must turn RED.",
+      "applies_to": ["Prefect", "fleet routing", "daily cadence"]
+    },
+    {
+      "id": "observed-control-boundary",
+      "transfer": "adapted",
+      "source_card_sha256": "48975423815d27770d2f304a48708213ac50df0fd44867514579a12fc5638b25",
+      "source_topic": "cybernetics-control-observability",
+      "rule": "An adaptive controller acts only from observed state, explicit bounds, and an UNKNOWN route; it never infers missing observation.",
+      "studio_change": "Require controller, sampled state, sampling delay, allowed action, and UNKNOWN behavior in frames.",
+      "gate": "Delete sampled state from a controller frame; framing verification must turn RED.",
+      "applies_to": ["H=(E,T,C,S,L,V)", "systems frames", "self-healing monitors"]
+    },
+    {
+      "id": "calibrated-decision-thresholds",
+      "transfer": "direct",
+      "source_card_sha256": "643213ec8e9ba03765e985e816a585e3cce20c22f3155b906aacc46867aceb09",
+      "source_topic": "decision-calibration",
+      "rule": "Represent uncertainty as a confidence band, option value, and kill threshold instead of a binary forecast.",
+      "studio_change": "Add confidence, uncertainty source, reversible option, and kill criterion to intervention packets.",
+      "gate": "Replace confidence and kill criterion with an unqualified certainty claim; calibration gate must turn RED.",
+      "applies_to": ["BMS", "strategy recommendations", "daily outcomes"]
+    },
+    {
+      "id": "stock-flow-feedback-map",
+      "transfer": "adapted",
+      "source_card_sha256": "21d15f694f0baf177a51d1c83e2fc747c785f03ce4730c4d737d3c54cbdae811",
+      "source_topic": "feedback-stock-flow",
+      "rule": "State the stock, inflows, outflows, feedback polarity, and delay before changing a system.",
+      "studio_change": "Keep stock, flow, loop, and delay fields mandatory in Studio FRAME artifacts and intervention reviews.",
+      "gate": "Remove an outflow or delay from a frame; structure check must turn RED.",
+      "applies_to": ["systems frames", "simulation", "archetype diagnosis"]
+    },
+    {
+      "id": "typed-human-approval-boundary",
+      "transfer": "direct",
+      "source_card_sha256": "e813fe5b0e5d51f77f552417a05ab1401b87c9293f143626e36c640ae37a07a1",
+      "source_topic": "governance-auditability",
+      "rule": "High-impact effects stay pending until the authorized human decision is typed, scoped, and recorded.",
+      "studio_change": "Require approval owner, scope, expiry, and ProofPacket evidence for every high-impact intervention.",
+      "gate": "Attempt a high-impact effect without an approval record; Gate-D must stay RED.",
+      "applies_to": ["Gate-D", "ProofPackets", "human Gate-D"]
+    },
+    {
+      "id": "incident-to-control-learning",
+      "transfer": "adapted",
+      "source_card_sha256": "6e6c2dcfd302df2cb4ac60d9bede261dfab6d2a3e7acfb7a9c5ef3280d748020",
+      "source_topic": "incident-learning-postmortems",
+      "rule": "Convert incidents into normalized evidence, a causal hypothesis, an early signal, and a regression gate—not a narrative alone.",
+      "studio_change": "Add incident timeline, contributing conditions, early signal, owner, and regression case to learning closeout.",
+      "gate": "Submit an incident without an early signal or regression; closeout must turn RED.",
+      "applies_to": ["forensics", "self-healing monitors", "daily closeout"]
+    },
+    {
+      "id": "evidence-to-durable-learning",
+      "transfer": "direct",
+      "source_card_sha256": "a25b1400c250ac1e5310aa0da787b35b34e0e74be1d3ba2385074d41835e4e7a",
+      "source_topic": "knowledge-organizational-learning",
+      "rule": "Raw evidence becomes durable learning only through source hashes, structured mechanism cards, ownership, and future retrieval.",
+      "studio_change": "Route evidence through source-gated cards into the Studio registry and named next-gap task.",
+      "gate": "Delete source hash or owner from a learning record; ingestion gate must turn RED.",
+      "applies_to": ["OmniScout evidence flow", "Memory OS", "Studio registry"]
+    },
+    {
+      "id": "coordination-contracts",
+      "transfer": "adapted",
+      "source_card_sha256": "235527b0e8ed6764edb6dfeb51e57ab434a4e6cb89de5dfafd6cbacaafd36a15",
+      "source_topic": "multi-agent-coordination",
+      "rule": "Agent coordination needs explicit role, input, handoff, authority boundary, and completion signal; more agents alone increases ambiguity.",
+      "studio_change": "Add role, input, output, authority, and handoff fields to multi-agent intervention packets.",
+      "gate": "Spawn a multi-agent packet with no handoff owner; orchestration check must turn RED.",
+      "applies_to": ["agent crews", "Hermes", "Studio phase agents"]
+    },
+    {
+      "id": "agent-first-diagnosis",
+      "transfer": "direct",
+      "source_card_sha256": "48bdfb023209c4c8a67e1758e61995d7455effe8460754000943a9064d186a75",
+      "source_topic": "platform-observability-sre",
+      "rule": "An unattended system needs structured state, last-success/failure, bounded retry, and a diagnosable degradation path.",
+      "studio_change": "Require health receipt, failure reason, freshness timestamp, and recovery evidence for Studio-operating controls.",
+      "gate": "Suppress a failed receipt and report healthy; observability gate must turn RED.",
+      "applies_to": ["agent-first observability", "Prefect", "control-plane supervisor"]
+    },
+    {
+      "id": "intent-preserving-handoffs",
+      "transfer": "adapted",
+      "source_card_sha256": "8973dd371c6a4c5ad7696cab0cfdb3e2260efb6407415f0f44d2dba3be09e2f6",
+      "source_topic": "requirements-model-based-engineering",
+      "rule": "Preserve the original intent and constraints across each boundary; a transformed artifact must remain traceable to its contract.",
+      "studio_change": "Require source contract, output contract, and trace links in phase handoffs and Excalidraw process maps.",
+      "gate": "Remove a handoff constraint from a downstream artifact; traceability check must turn RED.",
+      "applies_to": ["mission packets", "Studio phases", "process maps"]
+    },
+    {
+      "id": "redundant-recovery-proof",
+      "transfer": "adapted",
+      "source_card_sha256": "2bdb3fbd4bfa05e98a47a261f50013c1330032a2933146d11c5c9b067f51a59c",
+      "source_topic": "resilience-high-reliability",
+      "rule": "Recovery capacity is real only when an alternate path is exercised and restoration is evidenced.",
+      "studio_change": "Require fallback state, visible degradation, restore procedure, and restore evidence for resilience claims.",
+      "gate": "Disable the primary path and omit restore proof; resilience gate must turn RED.",
+      "applies_to": ["self-healing monitors", "fallbacks", "ProofPackets"]
+    },
+    {
+      "id": "shadow-before-intervention",
+      "transfer": "direct",
+      "source_card_sha256": "7af76d7b00a8fd678c0296da0c669c83a8dc29a7772a2e1ddf4ec25db8b6672e",
+      "source_topic": "simulation-digital-twins",
+      "rule": "Test a reversible intervention against a shadow baseline and divergence threshold before treating a projected gain as real.",
+      "studio_change": "Require shadow baseline, intervention variant, divergence threshold, and stop rule in experimental packets.",
+      "gate": "Run a shadow packet with no baseline; simulation gate must turn RED.",
+      "applies_to": ["shadow modes", "Euler models", "intervention packets"]
+    },
+    {
+      "id": "human-incentive-override-map",
+      "transfer": "adapted",
+      "source_card_sha256": "a3ec50c4fed58876e951c90f050c774b08e3e69bac6621034a79f7f64a75dea8",
+      "source_topic": "sociotechnical-organizations",
+      "rule": "Human roles, incentives, and override paths are part of the mechanism—not implementation detail.",
+      "studio_change": "Require affected roles, incentives, dissent channel, and override route in synthesized interventions.",
+      "gate": "Remove the human override route from a high-impact packet; sociotechnical gate must turn RED.",
+      "applies_to": ["human Gate-D", "Studio synthesis", "agent operations"]
+    },
+    {
+      "id": "archetype-before-solution",
+      "transfer": "direct",
+      "source_card_sha256": "7e8a934e40c05921eceb5afc3f67a711c4a09c375802bb6a8f8c13bf291483e0",
+      "source_topic": "systems-archetypes-leverage",
+      "rule": "Diagnose recurring structure and its constraint before prescribing effort; collaboration bottlenecks are often system design problems.",
+      "studio_change": "Require archetype candidate, predicted stock behavior, and constraint hypothesis before leverage selection.",
+      "gate": "Select leverage with zero archetype or constraint evidence; diagnosis gate must turn RED.",
+      "applies_to": ["archetypes", "Studio diagnose", "leverage selection"]
+    },
+    {
+      "id": "situation-coverage-safety-case",
+      "transfer": "direct",
+      "source_card_sha256": "b095632668580dcf7044cde1ab01a389c3c00ea7d46424c150bf46d0c9947fef",
+      "source_topic": "verification-safety-cases",
+      "rule": "A pass claim covers relevant state × boundary × failure-mode combinations and survives a planted failure.",
+      "studio_change": "Require situation coverage, planted-red result, restore evidence, and proof hash in VERIFY.",
+      "gate": "Plant an uncovered failure mode; verification must turn RED.",
+      "applies_to": ["ProofPackets", "studio verifier", "rig-adversarial-verification"]
+    },
+    {
+      "id": "single-scheduler-sealed-effects",
+      "transfer": "direct",
+      "source_card_sha256": "1f2c3ec895fd283f20a007837207632c2606331bb5b3cb7ffb24bc625101d740",
+      "source_topic": "workflow-scheduler-authority",
+      "rule": "One scheduler owns cadence; effects are idempotent, receipt-bound, and distinct from observation.",
+      "studio_change": "Enforce Prefect sole cadence, Temporal observation-only, and receipt-bound effect/idempotency fields in operating controls.",
+      "gate": "Start a second scheduler or emit an effect without a receipt; control-plane gate must turn RED.",
+      "applies_to": ["Prefect", "Temporal", "scheduler authority"]
+    }
+  ]
+}

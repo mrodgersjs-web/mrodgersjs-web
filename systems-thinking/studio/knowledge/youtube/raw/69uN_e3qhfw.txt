@@ -1,0 +1,449 @@
+So, in this video, I am building a local
+open-sourced
+video generation studio
+through OpenRouter's API
+where you can generate and compare
+different video generation models, all
+done locally. So, you'll watch me do
+this from the start of the idea all the
+way until the end. And in the end, we
+got this pretty nice video
+out of it.
+There you have it. So, watch till the
+end to see how I produce this in my own
+local open-source studio, as well as to
+see the open-source GitHub repo where
+you can try this out yourself.
+So, a couple weeks ago, OpenRouter
+announced that they were going to start
+providing video generation models
+um using one API. So, I've been using
+OpenRouter for a while now, and it's
+really good cuz they usually have access
+to the newest models when they first
+come out. So, I was looking at this, and
+they have access to a lot of the major
+video models, Seed Dance, Veo, Sora 2,
+Kling as well, I saw there,
+with one unified API.
+So, I wanted to test this out, but I
+wanted it to do it my own way with my
+own kind of local studio.
+So, I was brainstorming this idea with
+my Hermes agent, and this was the spec
+that we came up with. The idea is for an
+OpenRouter video studio. It's going to
+be local for first, open-sourced. It's
+going to be desktop web studio for
+generating AI videos through
+OpenRouter's video generation API.
+So, this is going to be very clean.
+So, there's ones, I believe, that have a
+lot more bells and whistles, very
+complicated
+setups, but I wanted to do something
+that would be clean and simple for
+people just to create videos through
+this OpenRouter API locally without
+having to rely on other harnesses or not
+on a node canvas or multi-provider lab,
+nothing with Docker or any kind of
+hosted platforms. Doing it totally
+locally
+and then just through the OpenRouter
+API. So, that is the idea to make this
+um
+These are some of the
+the video models they have right now.
+Sure they will have others as well.
+Um I didn't see exactly this concept in
+my market research.
+The product is very simple, right?
+It's just going to be a local studio,
+clean model browsing, some generation
+modes, job local gallery, and prompt
+iteration, comparison. So, this is going
+to be
+as clean as possible. There's a couple
+others, but they had a lot of other
+integrations. Down the line, if people
+like this, we can add like a MP and CP
+server, which wouldn't be hard to do it.
+So, you can connect it with like a Codex
+or Claude code or Hermes agent.
+So, I'm going to be building this out.
+I'm going to try with Codex, I believe.
+I usually do Claude code for something
+like this, but I want to try Codex more
+with GPT 5.5 and see if they can handle
+something like this.
+This will probably be one of the first
+build episodes that you've seen me using
+Codex, but this is the spec we're going
+to hand it.
+And let's get to work.
+And if you like this video, please
+subscribe to my free weekly newsletter
+where I get my honest thoughts about the
+week's AI news that I can't share here,
+as well as interesting research and
+papers that I found, and what projects
+I've been building behind the scenes.
+There's a link in the description or go
+to onchainaigarage.com.
+Every word is written by me, mistakes
+and all. So, if you're sick of AI slop
+articles or all hype with no substance,
+subscribe and give AI Garage Weekly a
+shot. Now, back to the video.
+So, we are here.
+Um you can see we're using GPT 5.5.
+Um the prompt I gave it was, "Please
+review the spec file in this directory,
+do any necessary research, then plan
+this out."
+I feel like there's a lot more color
+with Claude code.
+I'm using the same I use Warp Terminal,
+uh which actually just got open-sourced
+as well, but I use that for usually for
+working with Claude code
+and anything that needs terminal usage
+cuz they're pretty good.
+Okay, so it's doing some research, I
+guess,
+of
+um let me see here.
+Uh it looked at the current OpenRouter
+OpenRouter docs and found some
+differences between the spec.
+Nothing that should affect the actual
+plan, but
+product plan, build this focal focused
+local router open video workbench, not a
+full creative suite. Ship a local first
+app where user can add an OpenRouter
+key, browse current video model
+capability, generate videos, track async
+jobs, save locally, compare results.
+So, yeah.
+Keep it simple.
+Um
+So, this is the plan.
+I think this looks good.
+Okay.
+Looks good.
+Go with it. I think we can build the
+most like boring local transparent
+small version of this, and then we can
+iterate on top of it.
+Like I said, this is going to be an
+open-source product, so it'd be nice if
+I can build at least the core
+functionality. People can fork it and
+build on top of it.
+I mean, I like a clean UI.
+Codex sometimes has difficulty with
+visual
+uh work,
+but I've heard it's getting better, so
+hopefully
+um it looks decent. I mean, I it doesn't
+need to be anything fancy. Like I said,
+this isn't a
+full video suite,
+but I would like it to look nice, nice
+and clean.
+Okay, I'm going to let this work, and
+we'll see what we get.
+All right, it's been working now around
+12 minutes, you can see.
+I like that it doesn't
+if it runs into issues, I feel like
+Codex is much better at like finding
+ways through it that are more logical
+and stay more focused on the actual
+the task that I gave it.
+I feel like Claude sometimes comes back
+to me and is asking me a bunch of
+questions, whereas this one just just
+finds a different way to get through
+whatever issue it faced.
+So, I was brainstorming this more with
+Scampi, my Hermes agent, and we were
+talking about it. So, the idea, because
+with OpenRouter, you can do a bunch of
+different models,
+if I could set up a way that you do a
+single prompt and you have the option to
+send it to multiple models, I think that
+would be great.
+Um cuz you could easily compare them and
+then pick whichever one you like.
+And that would just be a single prompt.
+You would have to do something to kind
+of like
+limit the credits you spend.
+But let me see. Uh
+Codex finished. What do we got here?
+Implemented the MVP scaffold and start
+the local server.
+Cannot test real OpenRouter job
+submission without the API key.
+Okay, let me see here.
+There we go. It's very basic, but this
+is kind of nice.
+It's very basic, jobs, gallery.
+We can work on the UI a little bit.
+Um I mean, this is gets the job done,
+but is super light.
+I'll make this a bit nicer.
+So, this is where you would put your API
+key.
+Your output directory is here.
+Settings.
+Confirm expensive generations.
+Uh models, nothing cuz I didn't put my
+API key in. This isn't going to work.
+So, let me do that.
+Um and then let me save that.
+Okay, so I saved my API key, and this is
+saved locally, not in a cloud or
+anything. No other external platform has
+it. It's just on your local files.
+So, I did synced
+video files.
+So, let's do Do you want to try here?
+Google, I believe, it is the cheapest
+one.
+Rather not burn through a ton of
+these um this testing. So, I think
+Google Veo 3.1 light is the cheapest,
+right? I just want to do a quick one.
+This is the prompt that my Hermes agent
+gave me, a cinematic shot of a samurai
+walking through neon rain.
+That'd be pretty cool.
+Let's try just 4 seconds.
+Um auto
+size, let's just leave that as audio, I
+guess. We don't need audio for this. I
+just want to see
+what we get. This works.
+Yeah, I'd say that looks pretty good.
+Just a quick 4-second clip. So, I said I
+want to add that estimated cost panel on
+generate so people know how much it will
+cost.
+It shouldn't be hard, just add it here.
+And most of these are fixed, so since
+we're doing like duration up to 10
+seconds,
+I guess by model it varies. There's
+limitations.
+This is the estimated cost
+um for 4 seconds. You can see down to 20
+cents, yeah.
+Available units, 4 seconds.
+With audio, it increases.
+Estimated costs.
+So, 720 is 12
+is 100 is 20 cents.
+Okay, that looks good.
+That would give you the um
+the estimated costs. And the last thing
+I want to do
+Okay, so it has a plan here
+for how to do the multi-model
+comparison.
+We're going to do the max models will be
+three. I think that's plenty.
+and then it's also going to be added to
+the cost estimator.
+Okay, it completed that. So, I think the
+last thing
+before we try to fix up the UI a little
+bit is we're going to try to generate
+a couple different models using the same
+prompt.
+Okay, so let's So, we see batch across
+multiple models.
+Which ones? Let's pick a couple here.
+Let's do the Google.
+What was the other cheaper one?
+So, I think it was the the One 2.6 and
+then let's try this MiniMax one.
+So, we have three models, one video per.
+Do you want to try it from a a reference
+video? Let's try it.
+So, I attached my uh PFP that you've
+seen the for Tom B.
+Uh the little character. So, I attached
+him and say
+a cinematic shot of the
+character walking
+through a sea of robotic
+shrimp and crabs. How about that?
+I don't know.
+This is going to cost me $1.
+Five
+5-second video, $1.
+Maybe I'll be able to use it for
+something.
+We lower the resolution a little bit.
+Do audio.
+Uh so, 5 seconds.
+So, yeah, the One 2.6 cost the most, but
+it's worth it, $1.
+Let's see what we get here.
+Or if this actually works.
+Oh.
+Uh duration 5 seconds is not supported
+by this model. So, that's an issue. So,
+I told Codex about this.
+So, it should be an easy fix. You just
+need to
+It will only offer values common in the
+selected models.
+We got one of them. Let's watch the one
+that we have. One 2.6. That's my PFP
+that you know.
+That's pretty fun.
+Yeah, short 5-second clip, but that's
+pretty good. Like you could probably use
+this for something.
+Look at that.
+Not bad. They maintained kind of the
+cartoony quality of of the character.
+That's pretty good.
+Worth 50 cents, surely. Okay, let's try
+this one more time. I just want one
+clean
+uh like comparison.
+So, this is going to be I'm just going
+to use a text prompt. A shot of cartoon
+robots and shrimp working in a garage is
+the words Onchain AI garage fall down
+and bounce on the ground.
+I might use that as a trailer or
+something. Let me try to use this
+MiniMax one that I want to use.
+And then
+I'm going to try Kling.
+Uh duration 5 seconds. So, you can see
+it be kind of
+If I set this all to audio auto
+Um so, a dollar for this. Okay.
+So, we're going to be using comparing
+this the MiniMax High Luo
+and then Kling.
+Hopefully, this will work.
+Give it a shot.
+Okay, another conflict.
+Uh but Codex is working on that.
+So, another feature here is this There's
+this compare button.
+You can see so, it will
+compare the two of them. This is kind of
+a pop-up. It looks weird cuz the
+dimensions are different. But, you can
+compare the two of them
+side by side.
+I think one uh wins that one.
+Well, our MiniMax one came in. Let's see
+what it looks like.
+Here we go, the MiniMax came in.
+I could use that for some kind of
+promotional.
+There we go, Onchain AI garage.
+They came out pretty nice, actually.
+That's the uh MiniMax High Luo.
+It's a 49 cents for that one.
+Okay, so uh we did a more like hardening
+to try to
+take out all these edge cases, but I
+want to do another one um
+the same prompt as I gave it the
+MiniMax. This one to the Google light
+and to Kling video.
+So, let's I'd like to get one batch
+uh to work properly.
+So, hopefully this one goes through.
+Okay, I think we have success here that
+you can see these are both queued up,
+the Kling video
+and the Google.
+Okay, gave it a prompt to kind of fix
+the UI a little bit. I want it to be a
+dark mode style, black background, white
+text,
+silver borders and accents in general.
+Try to make it look sleeker without
+being heavier. You don't need like
+anything crazy, but
+um I just want to make it kind of a dark
+mode.
+Uh
+I think they're done generating. So,
+this is Let's compare some of these.
+So, this is the Kling one.
+It got the text way wrong.
+Um these are cute, but the characters
+are cute, but the text is is not close.
+Those are supposed to be shrimp, I
+guess.
+Uh um
+Uh this is the Google light one.
+There we go, got the text correct.
+Onchain AI garage AI AI garage. Wow.
+Didn't get this part right.
+So, the best one was the MiniMax here.
+This was the
+the winner of this comparison.
+There we go, Onchain AI garage. Very
+nice. Yeah, I think I'll use that for
+So, this is how this is kind of the cool
+thing about this tool I think um is you
+can do the same prompt like this, do
+batch jobs, and see different outcomes
+of these.
+See how the different models handle the
+same prompts
+in different ways.
+Okay, so this is the updated um UI.
+Very simple, but a dark mode at least.
+Um and I think it I mean, it's it's very
+simple, but I think it looks fine. I
+just wanted a dark mode.
+So, I think we'll go with that.
+Okay, and I changed the name. I believe
+we're going to go with Open Video
+Studio.
+Very simple, but it gets to the point.
+It's open source,
+local video studio for you to experiment
+with.
+And if you're curious, all the um
+the experiments I did today cost me
+around $2, a little over $2 altogether.
+Okay, so this is open open sourced
+on Tom B Studios/Open Video Studio
+on GitHub. So, you can come to check
+this out yourself.
+Um feel free to clone it. Feel free to
+work on it. Do whatever you would like
+to do with it.
+It's a very just lightweight
+video studio
+using OpenRouter's API.
+So, that's going to be it for this
+video. Uh I hope you enjoyed it.
+Kind of a fun project came together in a
+couple hours, but I think it could be
+actually useful.
+So, if you like this video, please
+subscribe. Please like. Leave a comment.
+I'm curious to hear your thoughts on
+this project.
+And I will see you in the next one.
+Thank you for watching.

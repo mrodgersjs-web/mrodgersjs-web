@@ -1,0 +1,1765 @@
+I'd like to welcome our speaker Robert
+wills he's an engineer at Cisco and
+HAARP ndon and he writes software for
+Internet reuters has a keen interest in
+the history of computing and users and
+what they actually did with the
+computers and has been fascinated by the
+Apollo guidance computer for the last
+ten years and is still learning things
+about it today he's going to tell us
+about the final stages of the lunar
+descent which was fifty years ago in
+July and the three nail-biting seconds
+in which it appeared that the mission
+would have to be aborted so without
+further ado Robert Wales July the 20th
+1969 Neil Armstrong and Buzz Aldrin were
+in the lunar lander 30,000 feet above
+the surface and descending rapidly all
+seemed to be going well when suddenly
+the on-board computer indicated a 1202
+program alarm and the computer restarted
+Neil Armstrong as ever remained cool
+calm and collected and radioed Houston
+with just a hint of urgency in his voice
+asking for an update on that 1202 alarm
+three seconds later Houston came back
+and gave Armstrong the go to continue
+shortly after another program Aladdin
+occurred this time at 12:01 and another
+and another and another in total during
+the Apollo 11 descent there were five
+program alarms and restarts the last one
+just 2,000 feet above the moon's surface
+there could not be a worse time in the
+flight to have computer problems now at
+the time the press gleefully reported
+how Armstrong seized manual control from
+a crippled and failing onboard computer
+and managed to heroically and
+single-handedly land the spaceship on
+the surface of the Moon
+to all odds nothing could be further
+from the truth yes Neil Armstrong was an
+outstanding and brilliant pilot but the
+Apollo guidance computer worked
+flawlessly in this mission and every
+other mission that Italy this was thanks
+to pioneering hardware and software
+design principles which were used to
+make the system robust against any
+failure no matter what happened and
+those design principles although pretty
+revolutionary at the time now form the
+basis of all sorts of highly reliable
+software that we use every day so in
+this presentation I'd like to use the
+story of Apollo 11 to tell you a bit
+about the Apollo guidance computer so
+I'll start by actually introducing the
+computer to you and then I'll walk you
+through in detail how you land on the
+moon and I'll show you the computer and
+the role that it played in doing the
+landing next I'll talk about some of
+those revolutionary design principles
+that we use to make the software robust
+and then finally once we've got all that
+backgrounds I'll go back over the Apollo
+11 landing and we'll get to the bottom
+of those program alarms and I will show
+you that the Apollo guidance computer
+save the mission rather than ruining it
+first they're a little bit about me so
+as we said in the introduction I've been
+working at Cisco for the last 10 years
+in the service provider business unit so
+we we write software for really
+top-of-the-range readers that you
+wouldn't normally see these things sits
+in the core of like a data center or a
+whole country's network and so it's
+really important that these Reuters are
+very reliable and so there's a lot of
+links between the things that I do as
+part of my job and some of the topics
+and I'm going to be talking about today
+in my spare time I absolutely love the
+history of computing and I believe that
+old computers should not sit on a shelf
+and gather dust where they should be
+plugged in switched on brought to life
+and demonstrated in the context with
+which they were designed to be used or
+if you don't have an Apollo
+computer and a spaceship handy at least
+try and demonstrate it on the screen and
+I spent 10 years researching the Apollo
+guidance computer it's my favorite for
+all sorts of reasons not least the story
+I'm going to tell you today
+ok so first let me introduce you to this
+amazing machine so there it is on the
+screen and it was designed at the MIT
+instrumentation laboratory it was
+actually the first contract that NASA
+awarded as part of the Apollo program so
+just six weeks into the Apollo program
+starting NASA awarded this contract and
+they realized that some sort of on-board
+computer would be needed and it was
+responsible for almost all of the
+guidance navigation and control of the
+Apollo missions so it managed it got got
+you into orbit around the earth it got
+you to the moon it got you into orbit
+around the moon it got you down onto the
+surface it get you back off again it
+managed to rendezvous the two ships back
+together it got the whole caboodle back
+to earth and it managed to reentry the
+same hardware but running different
+software was used in both the command
+module so that's the mothership and the
+lunar module that's the thing that
+landed on the moon it weighed only 32
+kilograms this is really important
+because you pay for the weight three
+times you pay to get it off the earth
+you pay to land it on the moon and you
+pay to get it off again it consumed only
+55 watts and every time I give this
+presentation I double check that number
+because I just don't believe it and it
+occupied only one cubic foot now in an
+era where most computers occupied entire
+rooms consumed vast amounts of power and
+required huge amounts of cooling I think
+those three numbers are truly remarkable
+and it ran at between 50 and 100
+thousand instructions per second this is
+where the claim comes from that there's
+more power in your pocket calculator
+than Nepal
+guidance computer that as you'll see is
+a load of rubbish so getting a little
+bit more techie now it was built
+completely from scratch from one type of
+logic gate the three input nor gate so
+this is the simplest possible logic gate
+you could ever think of and they were
+able to connect about five and a half
+thousand of these logic gates together
+and it turns out that you can connect
+them together to make any digital
+circuit you can think of now it was it
+was actually built from integrated
+circuits and so you had two of those
+logic gates on each integrated circuit
+and so the computer was made up of just
+under 3000 integrated circuits now the
+choice to use integrated circuits was
+itself really ahead of its time for
+example in 1963
+60% of the United States entire
+integrated circuit production went to
+MIT for the Apollo guidance computer so
+that's how radical it was that they were
+using integrated circuits did they
+solder them together
+oh no they welded them together to form
+these modules and then 26 modules
+plugged in to a backplane and the
+backplane connected all the modules
+together and made the final computer
+there's a slightly bigger picture of the
+tray with some modules and plugged into
+it and there's a picture of the other
+side that's the backplane those blue
+lines you can see a little wires that
+are connecting all the modules together
+in terms of memory there was a really
+really tiny amount of memory in the
+computer so there were 2,000 words of a
+raisable memory what we would call RAM
+and that's where variables would be
+stored so in English that means you can
+store 2,000 different numbers in your
+computer for example you might store
+where you are you might store where
+you're going to be landing you might
+store various other bits of information
+like your speed so you can store just
+two
+thousand of those numbers which believe
+me is not very much and it had 36
+thousand words a fixed memory what we
+would call ROM and that's where the
+program was stored and so more in
+English again that means you can store
+36 thousand instructions in your
+computer so really not very much of
+either of those things now the fixed
+memory is pretty cool so it's actually
+here on the slide and you can see
+there's these very thin copper wires
+this is all magnified these very thin
+copper wires going through these rings
+and roughly speaking if a wire went
+through a ring that was a 1 and if it
+didn't that was a 0 and so the software
+was literally woven together to form the
+fixed memory there's a picture of an
+engineer at Raytheon she effectively has
+the program listing in front of her and
+she is very carefully weaving those tiny
+copper wires through the even tinier
+rings to translate the program into the
+fixed memory that the computer can then
+read you wouldn't want to make a mistake
+there would you now given it was made up
+of only five-and-a-half logic gates it
+was surprisingly feature full it had a
+real time clock interrupts parity
+checking and extensive input and output
+connectivity but it also had some quirks
+it had a 15 bit word size what that
+means is it the numbers it can store and
+not very big it used ones complement for
+integers which will shock any
+mathematician because you can have two
+different values for 0 positive 0 and
+minus 0 and believe me this is not using
+any computer system today for obvious
+reasons it had no floating-point numbers
+so you can have anything with a decimal
+point everything had to be a whole
+number but actually it turns out that's
+not too bad you can work with that and
+in many ways that's preferable and
+instead of having lots of different
+instructions it did quite a lot with
+these weird memory locations so for
+example
+than a special instruction to shift a
+number one place to the left which turns
+out to be a really useful thing to be
+able to do in a computer rather than a
+special instruction to do that you would
+write your number into the special
+location 20 and then magically when you
+read it back again you get the number
+shifted one place to the left so that
+was kind of another quirk of the
+instructions as we've seen it had a very
+tiny amount of memory it had no stack
+and a bizarre and awkward instruction
+set if you gave a modern day systems
+engineer the Apollo guidance computer z'
+instructions they would be really
+scratching their heads to try and figure
+out how to use those instructions to
+make a program ok let's talk about IO so
+this thing on the screen called the disk
+e was the main way that the astronauts
+interacted with the guidance computer
+and you can see it's got a display on
+the top right they can show you some
+numbers it's got a keypad at the bottom
+for entering some data and on the top
+left you can just about see it's got
+some special lights the disk e used a
+verb noun format for entering commands
+and displaying data and there are many
+other human interface devices present in
+the spaceship for example the 8-ball
+indicator lamps and hand controllers and
+I will show you all of this later on the
+computer could also radio data back to
+Houston and receive data from Houston
+and of course a spaceship has lots of
+very exciting ia for example a rocket
+engine is IO the computer is able to
+control the rocket engine it's also able
+to read data from lots of specialized
+instruments which again I'll talk about
+later so one of the things that the
+guidance computer is really good at
+because it had to be was input and
+output okay so that's the computer now
+I'd like to talk to you a bit about how
+they landed on the moon with Apollo
+first of all we're going to need a
+spaceship so here's our spaceship and
+the first thing that we need is a beer
+rocket engine and that rocket engine
+will give us lots of thrust and we'll
+use that for us to slow ourselves down
+that will take us out of orbit and
+gently onto the surface so there's our
+big rocket engine however we also need
+to be able to steer and that's the job
+of these little RCS thrusters the RCS
+thrusters allow the computer to steer
+the spacecraft in any direction the main
+source of data is this thing called the
+IMU the IMU can tell you which way the
+spacecraft is pointing and it can tell
+you which way the spacecraft is
+accelerating and with those bits of
+information you can calculate the
+position and the speed there's also the
+landing radar which uses radar to
+measure the height of the spaceship
+above the moon's surface there's the
+window the window is very important I'll
+have a lot to say about that later on
+the feet of the spacecraft are these
+little probes called the lunar contact
+probes and in the middle tying
+everything together sits our best friend
+the Apollo guidance computer so that's
+our spaceship I'll just talk very
+quickly about a couple of things that
+will be less familiar to you first the
+RCS thrusters so on four corners of the
+spacecraft are these quads of RCS
+thrusters one pointing up one pointing
+down and two pointing out at right
+angles and the computer can give little
+squirts of thrust through these tiny
+thrusters and using those little squirts
+it can steer the spacecraft in any
+direction the computer once T the other
+thing worth talking about quickly is the
+IMU the IMU was a remarkable piece of
+engineering it was a sphere and inside
+the sphere were two three sorry
+concentric rings which could rotate
+around each other and then right in the
+middle of the IMU was something called a
+stable member the stable member had
+three gyroscopes on it
+mounted at right angles to each other
+and because they were gyroscopes that
+keeps the stable member completely fixed
+in space so the spacecraft can move
+around however it likes and the stable
+member stays completely in the same
+place now there are sensors on the
+concentric wings and you can use those
+sensors to see how the spacecraft has
+turned around the stable member which is
+always fixed and so by taking those
+measurements you can measure which way
+the spacecraft is pointing and there
+were also three accelerometers a bit
+like in your phone that can measure the
+acceleration in three directions okay so
+that's enough about the spaceship that's
+all you need to know about that next I
+need to give you a two minute course I
+need to condense hundreds of hours of
+nasa training into two minutes and tell
+you how they landed on the moon so let
+me set the scene for you we're coming
+into the mission at the point where the
+astronauts are in what was called the
+descent orbit now this is a really
+misleading name because the descent
+orbit doesn't actually take you down to
+the surface of the Moon the descent
+orbit is an ellipse and the lowest
+points of the descent orbit is nine
+nautical miles above the surface and the
+lunar module called quite happily go
+round around that descent orbit forever
+and ever in order to land on the moon we
+need to execute a series of maneuvers
+starting from that lowest point in the
+orbit and those maneuvers will take us
+out of orbit and gently down onto the
+surface those maneuvers are the hardest
+bits of the landing and that's the thing
+I'm going to be talking about today now
+that comes in three phases the first is
+p63 the braking phase now the aim of p63
+is to slow the spacecraft down and as
+the spacecraft slows down it will also
+lose lots of height so the spacecraft
+starts nine nautical miles or fifty
+thousand feet above the surface and it's
+going really fast
+1670 meters per second during p63 we
+fire that massive rocket engine that
+slows us down we lose most of our height
+so at the end of P 63 we're much lower
+we're only 8,000 feet above the surface
+and we're going much slower 210 meters
+per second so that's P 63 next is P 64
+the approach phase now up until this
+point the astronauts broadly speaking
+are on their backs with the rocket
+engine pointing out in front of them and
+they can't really see where they're
+going so the first thing that happens at
+the start of P 64 is that pitchover
+maneuver and that allows the astronauts
+to see forward out of the window to see
+where they're going to be landing which
+is kind of useful during p 64 the
+astronauts and the computer work
+together to fine-tune the landing site
+finally when the lunar module is about
+200 feet off the ground and it's
+basically above the landing site we
+enter p 66 the final phase the aim of p
+66 is to touch down nice and gently
+vertically and without any side to side
+or Falls or backwards movement so that's
+the three landing phases p 63 the
+braking phase where we slow down and
+lose most of our heights p 64 the
+approach phase where the astronauts and
+the computer work together to fine-tune
+the landing sites and p 66 the final
+phase where we want to touch down in a
+nice and gentle manner okay so that's
+that's how they did it now I'd like to
+rewind the clock and show you the
+computer in action doing it stuff now
+there's quite a lot of detail here and
+you don't need to remember any of the
+detail to enjoy to enjoy the rest of the
+talk I just want to sort of demonstrate
+to you the sort of things that the
+astronauts and the computer we're doing
+so you get a flavor for what's happening
+okay so let's rewind the clock we're
+back in the descent orbit and we're
+about ten minutes before we're due to
+start at the landing maneuver and the
+astronauts have the disk key in front of
+the room remember that's the main way
+that they interact with the computer and
+the first thing they need to do is load
+the landing software so to do that they
+type in verb 37 which means please load
+this program and then they type in the
+program number so program 63 they press
+ENTER and the computer loads the landing
+software now the computer has been
+programmed ahead of time with where the
+landing site should be and the computer
+calculates at exactly what time it needs
+to start firing the rocket engine to
+start that landing maneuver so the
+computer displays that to the astronauts
+using verb 6 noun 61 which means I have
+some information about the landing to
+show you and the most interesting number
+if you're excited about getting to the
+surface is the second one the time until
+ignition so here it's saying it's 600
+seconds before the computers calculated
+that we need to light the engine okay so
+fast-forward we're now a hundred seconds
+before ignition and the computer has an
+important message
+so to signal that to the astronauts it
+illuminates the key release light on the
+disk II the astronauts can view that
+message by pressing the key release
+button and the message is verb 50 noun
+18 well what does that mean well that is
+the computer asking permission to
+maneuver the spacecraft now if you
+remember at the start of P 63 we need
+the spacecraft sort of on its back with
+the rocket engine pointing out in front
+of it and so the computer is asking
+permission to do that if the astronauts
+are happy they press the proceed key and
+then the computer automatically
+maneuvers the spacecraft so it's
+pointing the right way
+the next thing the computer does is
+called Alec and it fires a little jolt
+through some of the RCS thrusters and
+that jolt settles the rocket fuel in the
+bottom of the fuel tanks so that the
+rocket engine will ignite cleanly first
+time so they really did think of
+everything
+now wine for the clock again we're now
+five seconds before ignition and the
+computer flashes verb 99 now and 62 now
+every Apollo astronauts can tell you
+what verb 99 noun 62 means it means are
+you sure you want to land on the moon so
+the astronauts have five seconds to
+calmly reach over and press the proceed
+key to authorize the computer to perform
+the landing so we're all ready to go
+just to remind you where in our descent
+orbit we're now at the lowest point and
+it's exactly the right time the computer
+is going to start the landing maneuvers
+so here we go well we know how this
+works it starts with P 63 and the first
+thing the computer does is my favorite
+bit of the whole software and it made my
+year when I found out about it it lights
+the rocket engine it's a very measly 10%
+thrust so barely noticeable thrust and
+it does that for 30 seconds and what on
+earth is it doing well the computer is
+measuring to see whether that thrust
+causes the spaceship to spin around and
+if the spacecraft starts spinning the
+computer swivels the rocket engine to
+make sure that the thrust acts perfectly
+through the center of gravity and that
+will stop the spinning
+so after about 30 seconds of sort of
+sort of gently firing the engine and
+gently swiveling the rocket engine once
+the computer is happy it ramps up the
+thrust
+oh yeah there's my swiveling everyone
+that's exciting
+and there we are so the computers ramped
+up the thrust and for reasons you can
+ask me in the Q&amp;A full thrust is 94% now
+this is not just a question a fire a
+massive rocket engine and hope for the
+best throughout the entire landing the
+computer is running sophisticated
+guidance calculations and it always has
+two points in mind the first one in
+green is the desired landing site so
+that's the landing site that's been
+programmed into the computer and that
+desired landing site can actually move
+as I'll show you later the other one is
+the projected landing site in blue and
+that's where the computer thinks it's
+going to land based on its current
+position its current speed and doing
+some orbital mechanics to extrapolate
+the trajectory and the the computer's
+whole reason for existence is to steer
+the spacecraft to try and move that
+projected landing sites towards the
+desired landing site so sophisticated
+stuff okay again don't worry about the
+details just enjoy the computer doing
+it's amazing things at the start of p63
+the landing radar is too high above the
+surface to be able to to out to see the
+surface so the only source of data the
+computer has is from the IMU now the IMU
+is extremely accurate but it loses
+accuracy during accelerated flight and
+of course nothing says accelerated
+flights like having a massive rocket
+engine lit up your backside so the
+computer signals to the astronauts that
+it doesn't know exactly where it is or
+exactly how fast it's going by
+illuminating the altitude and velocity
+lights on the disk II okay we're still
+in P 63 but we're now a bit lower with
+40,000 feet above the mean at which
+point we're low enough that the landing
+radar can lock onto the surface and
+start providing data to the guidance
+computer so when that happens the
+computer clears those two lights and the
+astronauts are eagerly waiting for this
+moment
+it happens they type in verb six now 63
+which means please show me the
+discrepancy between how high you thought
+you were based on the inaccurate data
+from the IMU and how high you actually
+are based on the very accurate
+measurement from the landing radar and
+it was common 40,000 feet above the
+surface for there to be a thousand feet
+discrepancy between where the computer
+thought it was and where it actually is
+now obviously when you're 40 down the
+feet above the moon a thousand feet here
+or there doesn't make much of a
+difference but as you start getting
+lower you really want to start using the
+more accurate numbers so the astronauts
+kind of check this data they sort of
+make sure it looks vaguely okay and if
+they're happy they do something called
+incorporating to incorporate they type
+in verb 57 which means you guessed it
+please incorporate and the guidance
+computer will then merge the very
+accurate height information from the
+landing radar with the information it
+already has from the IMU to get a much
+more accurate position and then over
+time the guidance computer will steer
+the spacecraft to correct for any
+discrepancy now that it knows exactly
+where it is okay through a model halfway
+through the landing now towards the end
+of P 63 the computer automatically ramps
+down the thrust to precisely calculate a
+time to keep the spacecraft on the
+trajectory and then when it reaches
+8,000 feet it automatically enters
+program 64 that's the next bit of the
+landing well we know what happens from
+our two minutes NASA training the first
+thing that computer does is it does that
+pitch over maneuver to get the
+spacecraft sort of more vertical now if
+you remember during P 64 the astronauts
+and the computer work together to
+fine-tune the landing site so the
+computer needs some way of telling the
+astronauts exactly where it's going to
+land it needs a very surface
+to get a device yes it's the window the
+window has these two axes marked on it
+like that
+a bit like graph paper in school and
+during program 64 the computer shows
+verb 6 noun 64 and that means I'm
+telling you where you're going to land
+and it works like this you see that 5 on
+the top row of the disk e that tells
+Armstrong to look 5 along the horizontal
+axis in the wind day and that 40 on the
+right-hand side tells Armstrong to look
+40 up the vertical axis and so Armstrong
+then imagines a red dots looking out the
+window and that red dot is the computer
+telling Armstrong exactly where and the
+spacecraft is going to land so
+throughout this part of the landing
+birds will be calling out the numbers
+like 5 40 an Armstrong will be looking
+out the window using those axes to
+imagine the red dot and he can see oh
+that's where we're going to land okay
+what happens if I was drawing doesn't
+like the look of where the computers
+going to land well he can move his hand
+controller and if he moves his hand
+controller that moves the desired
+landing site and then the guidance a
+Graydon's will steer the spacecraft to
+move the projected landing sites towards
+the new desired landing site and it was
+common throughout P 64 for that
+imaginary red dot to move around the
+window
+especially if Armstrong was using his
+hand controller to change the landing
+site so bursts might be saying 5:45 5:45
+0 etc and Armstrong all the time is
+using his hand controller to fine-tune
+the landing site if he wants team
+throughout program 64 the hand
+controller is connected to these very
+sophisticated guidance algorithms
+because the the hand controller doesn't
+direct
+steer the spaceship it moves the desired
+landing sites and then the guidance
+algorithms will calculate how the
+spacecraft should be steered to achieve
+that and then those steering commands go
+down to the much lower level attitude
+control software which takes those
+steering commands and turns those into
+commands that get given to the thrusters
+so there's a lot of sophisticated code
+between the hand controller and the
+thrusters once the lunar module is
+pretty much above the landing sites
+Armstrong moves that pings mode switch
+from auto to attitude hold and roughly
+speaking that automatically puts the
+computer into program 66 at which point
+the hand controller is disconnected from
+the sophisticated guidance algorithms
+and instead is plugged directly into the
+steering software so that means that
+when he moves his hand controller rather
+than changing the landing site he's
+directly steering the spacecraft so it's
+a much more - Rhett relationship of
+control in the final stages of the
+landing but the point I want to make is
+that it's not total manual control at
+all times there is code running in
+between Armstrong's hand controller and
+the thrusters finally once the lunar
+module is really close to the ground
+lots of dust gets kicked up and
+Armstrong can no longer see out the
+so he looks at two instruments inside
+the cockpit both controlled by the
+guidance computer the first is the
+8-ball and that tells him is the
+spacecraft the right way up and the
+other one is the cross pointer display
+which tells him is there any
+side-to-side or forwards and backwards
+speed and Ultron looks at these two
+instruments to make sure the spacecraft
+is completely vertical and isn't sort of
+shifting side to side or forwards or
+backwards and this is very similar to
+how a pilot would land an aircraft in
+the fog finally you remember these
+little probes on the feet of the
+spacecraft well once they touch the
+ground a blue
+contact light illuminates in the cockpit
+the astronauts quickly switch off the
+engine breathe a sigh of relief and
+that's how you land on the moon and
+that's my demonstration of the Apollo
+guidance computer however what about
+those pesky programmer labs well in
+modern Tate like that's a serious
+problem that's a bit like seeing that or
+if you're a few a little bit more
+old-school something like that or worst
+of all that
+the 1202 alarm was nothing to laugh
+about if you're in the spaceship itself
+now of course they always have the
+option of aborting but an abort was by
+no means a trivial thing obviously you
+lose billions of dollars that have been
+spent on there or at least hundreds of
+millions on the mission you lose a huge
+amount of national pride and your own
+pride but aside from all of that it's
+actually technically very difficult to
+abort so if they push the abort button
+for pyrotechnic bolts who would have
+exploded they would have separated the
+lunar module into - so the whole descent
+stage would have come away just leaving
+the ascent stage a fifth pyrotechnic
+would have fired which would have fired
+a guillotine across all of the cables
+connecting the two stages together so
+it's completely separating the
+spacecraft in two so you sort of you
+could only abort one see if you nanami
+can't have another go and then of course
+Mike Collins in the command module has a
+very big orbital mechanics problem to
+solve because he has to go and pick up
+his friends so an abort was a completely
+non-trivial and not safe thing to do so
+the question of what we do about the
+tower - alarm was a very serious one and
+so that's what I'd like to talk about in
+the latter half of the presentation so
+first I want to talk a bit about the
+mission software and they will leak back
+into the cockpit and get to the bottom
+of those program alarms first though a
+little bit about the software now this
+is a sort of a slightly drier ten
+minutes of the talk but just bear with
+me let me say what I've got to say and
+then we'll jump back into the spaceship
+and have fun for the last 15 minutes the
+software in the lunar module was called
+luminary and I hope in my demo I've
+persuaded you it was a sophisticated
+piece of kit it controlled all phases of
+the mission so it got the lunar module
+into that elliptical descent orbit it
+managed all of the landing that's the
+stuff I've just been talking about
+it got you off the moon again and it got
+you rendezvous back with the command
+module so it did everything and as we've
+seen it controlled that massive rocket
+engine it fired the RCS thrusters it was
+updating information on the disk II it
+was moving the eight ball in the cross
+pointer display reading data from the
+IMU in the landing radar doing all sorts
+of things all at the same time so it ran
+a very simple real-time operating system
+that they wrote from scratch as part of
+luminary and I want to very quickly talk
+about six design principles that they
+used in that real-time operating system
+to make it reliable oh I always forget
+this bit the source of luminaries very
+one get hurt yes very good okay number
+one use a high-level language so as I
+said towards the start the Apollo
+guidance computer z' instructions were
+very primitive and difficult to use and
+that meant that you had these
+complicated guidance algorithms and it
+was difficult to translate those into
+code that was correct
+also the 15 bit integers the the small
+numbers that the computer can store were
+not big enough to give the kind of
+accurate precision that the guidance
+computer needed so their solution to
+this was something called the
+interpreter this provided a sort of
+virtual set of instructions that were
+much more powerful so for example they
+gave you matrix and vector operations
+which are really useful if you're doing
+guidance calculations they gave you such
+luxuries as being able to index into an
+array and they gave you a stack which is
+good for writing much more structured
+readable code it got round the 15 bit
+word size by giving you double and
+triple position integers so it gave you
+much bigger numbers to work with and
+that gave you the accuracy that you
+really needed for those calculations you
+know working out the landing site and
+how you should steer the spacecraft etc
+it also meant that the same algorithm
+took up a lot less space because each
+instead
+action did a lot more things for you so
+you needed few of them to get the job
+done and if you remember there wasn't
+very much memory so if your program took
+up less space that was a really good
+thing it also made it easier to write
+correct code because the instructions
+were easier to use but the downside of
+the interpreter was it ran really slowly
+so the final software was a blend of
+both things the really time critical
+stuff like controlling the thrusters or
+reading data from the IMU that had to be
+done all the time and in a really timely
+manner those were written in they're
+difficult to use low-level language and
+the interpreter itself had to be written
+in the difficult to use language as well
+but then all of thirst deluxe
+guidance algorithms that were doing
+complicated maths were written in the
+interpreter and they could do that
+because those guidance algorithms only
+had to recalculate stuff every second or
+every three seconds so it didn't matter
+if they ran slowly number two divided
+your system into jobs the guidance
+computer was doing lots of things sort
+of all at the same time and so they
+split the system up into jobs where each
+job did one thing a bit like different
+apps on your phone so for example there
+was a job called read acts which read
+data from the IMU and used that to
+calculate the position and the speed of
+the spacecraft there was a whole suite
+of jobs used to implement the digital
+autopilot
+there was a charmingly named job called
+pinball and pinball updated the numbers
+on the disk II there were jobs for the
+high-level tasks like P 63 P 64 etcetera
+and tens of other jobs that I haven't
+even included here if you remember one
+thing remember this each job had a small
+area of memory that it could use for
+sort of temporary storage a bit like if
+it was doing some calculations it had
+some space where it could sort of show
+it's working and there was enough memory
+to have seven jobs on
+go at any one time and they very
+carefully really carefully designed the
+system so you would never have more than
+seven jobs running at the same time
+number three restarts on failure
+now speaking is a grey-haired software
+engineer it is a sad fact of life that
+all software will encounter failures now
+I'm not talking about bugs where the
+programmer misunderstood what the
+program should do or the programmer was
+lazy those things would be caught much
+earlier during testing I'm talking about
+one in a million once in a blue moon
+kind of events that are really rare and
+those really rare events can trigger
+unusual code flows through the software
+that can cause the software to fail if
+you sort of didn't think about that
+eventualities and you often wouldn't
+find these things during testing because
+they only happen one in a million times
+so you'd have to be really lucky during
+testing to hit the error condition if
+your software has failed it cannot be
+trusted to recover itself it's failed so
+all bets are off so instead you restart
+the bit of software that's failed and
+the hope is that if you restart the
+software whatever transient condition
+was happening that caused it to fail
+will have gone away the software can
+have another go and hopefully this time
+it will work and the system will recover
+the gun's computer provided several
+levels of restart so you could restart
+just the failed job you could restart a
+group of jobs you could restart
+everything but leave vital information
+like where you are and where you're
+landing intact
+that was called a pudy you cannot you
+can ask about in the Q&amp;A as well or you
+could literally switch the hardware off
+and back on again that was called a
+fresh start
+okay we're halfway through so bear with
+me on the design principles number four
+checkpoint you're good States so
+restarting is great but you lose
+whatever it was that your job was doing
+so when your job reaches a sensible
+points called a checkpoint it can save
+that point for later
+and then if the job gets restarted it
+can read in what it saved and pick up
+from where it left off for example if
+you're the job that reads loads of data
+from the IMU and then eventually
+calculates the position you'll be doing
+lots of calculations and then eventually
+you'll get a result and so once you have
+a sensible results you might check point
+that so that if your job gets restarted
+you can read in the position that you're
+not calculated and pick up from there
+you might say what happens if the
+checkpoint is bad and the in that case
+the more draconian restarts like the PD
+and the Fresh Start would clear out the
+checkpoint so jobs would have to sort of
+do more work to get back up and running
+but they would at least be starting from
+a blank slate number five Hardware
+monitors the software and this is the
+most techie one the guns computer to
+kind of make it look like lots of things
+we're running at the same time it used
+cooperative multitasking and this is
+different to most modern software
+systems with cooperative multitasking if
+you're a job and you're running then
+every so often you have to explicitly
+check to see if there's another job
+that's waiting to run and if there is
+you have to give up control to the job
+that's waiting and in the guns computer
+code the way you did that was your job
+had to check a special variable called
+new job if new job didn't have anything
+in it then your job could continue
+running happily if new job had a value
+in it then you had to immediately give
+up control to whoever was waiting and
+the sort of coding guidelines for Apollo
+whether a job had to write code to check
+this new job
+every 20 milliseconds so there'd be
+explicit checks sprinkled through the
+code to check new job you might say oh
+isn't this a bit rubbish because you
+have to add these checks into your code
+and it relies on actually people doing
+the checks in the first place but bear
+in mind this software was all written by
+one team everyone was on the same side
+and the software has a very specific
+well-defined purpose so in those
+situations it's actually simpler to
+reason about this kind of multitasking
+and besides it was the only feasible way
+of doing it now you might ask but what
+happens if for some reason a job hangs
+so it gets in some infinite leap and
+never ever checks a new job again well
+in that case even if lots of jobs are
+waiting they'll never get to run because
+new job never ever gets checked well the
+solution to this is in the hardware so
+the hardware knows about the new job
+special variable and so if the software
+gets stuck and never checked new job
+again then the hardware will reset the
+computer itself after 640 milliseconds
+so that's how the system stopped hanging
+and finally number 6 Center lemma tree
+so in the demo I was showing you the
+disk II and if you remember it's like
+verb noun and three numbers so that's
+enough for the astronauts but that it's
+quite a primitive way of understanding
+what's going on Houston needed a lot
+more information so the guns computer
+would periodically send its internal
+state back to earth and that would be
+about 100 numbers giving the state of
+the computer for example where it is how
+fast it's going the desired at the where
+it's going to land the current program
+that's running the number of jobs etc
+etc so loads of information and then
+back in Houston there was an entire team
+of people completely dedicated to
+looking after the guidance computer and
+they would all day stare at this
+telemetry to make sure that the system
+was working properly
+so just to sum up use a high-level
+language so that complicated algorithms
+are easy to write divide your system
+into jobs where each job just does one
+thing if software fails restart it
+hopefully whatever caused it to fail
+will have gone away we can have another
+game checkpoint you're good state so
+that if you get restarted you can pick
+up from a good place where you left off
+Hardware monitors the software to make
+sure the system doesn't hang and send
+telemetry about your system to a group
+of experts who can understand it and
+make sure it's working okay so now I'd
+like to jump back into the cockpit and
+explain those pesky program alarms first
+they I've lied to you there was an extra
+radar on the spaceship called the
+rendezvous radar and the rendezvous
+radar was completely useless when you
+were landing on the moon utterly useless
+but when you were taking off again the
+rendezvous radar is what was used to
+find the command module and I should say
+in this section I am making a couple of
+simplifications but I'm telling it
+better than most people do so you'll
+still get the better story in the master
+now
+we've seen as all it's complicated
+software running that's doing all this
+landing stuff and it was actually the
+most processor intensive part of the
+flight so put the computer under about
+an 80% laid which for any engineer
+that's really quite close to the wire
+but that's okay the problem was the
+rendezvous radar had a hardware bug that
+they never found during testing but well
+landing on the moon is a
+one-in-a-million event and so sure
+enough join them real landing they hit
+the hardware bug the hardware bug meant
+that the rendezvous radar sent a stream
+of data to the computer and the stream
+of data was I can't see anything
+I can't see anything I can't see
+anything I can't see anything it's a bit
+like having a really annoying friend tap
+you on the shoulder
+you turn round and they've got nothing
+to say and they keep doing it this
+Hardware Berg puts the computer under a
+15% so it puts an extra 15% load on the
+computer now 80 plus 15 is 95 percent
+even I can do that so actually that's
+fine
+this is Hardware Berg but the computer
+can still stagger on it's totally fine
+and this meant that when they were in
+the descent orbit and actually even in
+the first bits of p63 they didn't notice
+that anything was wrong because the
+computer was just about able to handle
+the load so what changed well what
+changed was Buzz Aldrin Buzz Aldrin was
+clearly very excited to be getting down
+onto the mean and so he typed in verb 16
+now 68 into the computer that means
+please show me some extra information
+about the landing and please constantly
+recalculate that and update the display
+now I'm making fun of Buzz here but this
+was a completely this was a perfectly
+fine thing for him to do and he'd done
+it in training hundreds of times without
+any problem however in order to handle
+that request an extra bit of code gets
+started to handle the verb 16 noun 68
+tasks and that puts the computer under
+an extra 10% load so now the computer is
+overloaded it's only slightly overloaded
+but it is overloaded and so over a
+course of a couple of seconds it falls
+over in slow motion like this the jobs
+pile up and the computer because it's
+overloaded can't quite dispatch them
+quickly enough and so seven jobs get
+scheduled and when it comes to the 8th
+job that should never happen there's a
+problem there's no memory to store that
+job and that's what the 1202 program
+alarm means
+so what does berthsy well he's keyed in
+verb 16-ounce 68 and he's studying the
+dis key and rubbing his hands he's going
+to have his place in history and then a
+couple of Sen seconds later he sees two
+lights that you never want to see when
+you're landing on the moon the first is
+the program alarm lights followed
+rapidly by the restart light now birds
+needs to diagnose this pretty sharpish
+to do that he types in verb 9 and verb 5
+now 9 which means please show me the
+program alarms so the computer says that
+a 1202 alarm has happened and that 3 is
+the restart type but the system recovers
+and the spaceship keeps flying so how
+did that work well if you remember
+that's the situation we got to there's
+the extra bit of code running Buzzy's
+1668 with the extra 10% load the 1282
+happens the computer restarts various
+bits to try and recover but crucially it
+doesn't restart the thing that birds
+asked for because it's considered not
+important enough and so that extra load
+goes away the computers no longer
+overloaded and the spaceship keeps on
+flying
+so that's the first 1202 alarm but birds
+of course is really annoyed because he's
+last 4 verse 16 mound 68 and it's gone
+from the disk II he's to Scott this
+pesky program lab instead so he reaches
+over he types in verse 16 now 68 again
+sure enough the same thing happens this
+extra bit of code gets started and it's
+the same as before it puts a 10% load on
+the computer the system slowly falls
+over once it gets to shelling the eighth
+job then a program alarm gets triggered
+the very similar 1201 alarm once again
+the computer restarts bits of the
+software to desperately try and recover
+it doesn't restart the thing that buzz
+important enough the system recovers so
+that's the second program alarm
+but buzz you just can't take the hint
+he keys in verb 16 968 again that
+triggers the third alarm in exactly the
+same way now is this brilliant moment in
+the mission recording where the penny
+slowly drops and buzz realizes the
+connection and he's slightly sheepish
+she says it seems to happen when we have
+a 1668 come up now from that point I can
+assure you that buzz is sat on his hands
+he's not touching the disky again he is
+he he never types in verb 16 now 68
+again because he correctly realizes that
+for whatever reason it's causing these
+issues even though the spaceship is
+still flying okay so that's a half of
+the story but there were five program
+alarms in total the last two happened
+much later in the mission so the firstly
+I should say were all more than 25,000
+feet up so I mean that's bad that they
+happened but when you're 25 thousand
+feet er you've got plenty of time to
+diagnose the problem and figure out
+whether it's safe the last to happen
+2,000 feet above the surface a lot later
+during P 64 why did they happen well we
+know how P 64 works that's the computer
+calculating the imaginary red dots
+Armstrong's moving the hand controller
+to change the landing site the computers
+doing all sorts of calculations to
+figure out how the spaceship should be
+steered it's naturally just doing more
+work and so the load that the software
+is under naturally increases and the
+computer together with the hardware
+Burgh naturally overloads itself without
+any intervention from buzz so the fact
+that P 64 is more complicated than P 63
+causes the last two program alarms but
+there's one final mystery why was it
+that when Armstrong heroic Lee seized
+manual control why did the program alarm
+stop well that's simple he didn't cease
+manual control at all we
+what he did he entered p66 so that he
+had much more direct steering of the
+spacecraft and he actually entered p66
+early because he wasn't he really wasn't
+happy with where the spaceship was
+landing they were quite distracted by
+the program alarms and he wanted to
+rapidly take control of the spaceship
+and rapidly reposition it so he entered
+p66 early and we know what happens when
+you enter p66 the hand controller
+connects to the much lower level code
+which naturally reduces the load that
+the computer is under so Armstrong by
+entering P 66 reduces the load he
+doesn't know that that's going to happen
+but the load reduces and that's why no
+more program alarms were seen during the
+very very final stages at the landing so
+just to go back to those design
+principles how did they help well we
+start on failure these program alarms
+happened bits of the software where we
+started and that allowed the computer to
+recover divide your system into jobs
+that meant that even though some bits of
+the software were being restarted the
+really crucial landing software
+particularly the software that kept the
+spaceship stable always kept running and
+it also meant that non-essential things
+like buzzes 1668 were not restarted
+checkpoint you're good state so even
+though some bits of the autopilot was
+actually restarted the autopilot was
+using checkpoint so it would the
+autopilot would start up and it would
+say well what am I supposed to be doing
+and it would look at its checkpoint and
+it would say oh we're landing on the
+moon where we lad Big O here it's at the
+checkpoint where are we oh it's here in
+the checkpoint so even though the the
+autopilot was restarted it could sort of
+recover roughly from where it was and
+finally send telemetry back to earth so
+I hope I've persuaded you even
+diagnosing the program alarm was a real
+faff but the fact that the computer was
+sending lots of information back to
+Houston gave Houston the authority and
+the confidence to give Armstrong the
+go to continue because in in Houston
+with the telemetry they could see that
+the the flying bit of the software was
+all still working so wrapping up I'd
+like to pick out two people from the
+400,000 who worked on the Apollo
+projects the first is Steve bales he
+accepted the nasa group achievement
+award on behalf of the entire apollo 11
+mission operations team this is a much
+more sort of exciting award than you'd
+first think from the name in the words
+of Nixon this is the young man when the
+computer seemed to be confused and when
+he could have said stop or he could have
+said wait said go it was Steve bales who
+understood the technical meaning of the
+1202 alarm
+it was he who recognized that the
+spaceship was still flying correctly and
+it was he who realized that the system
+in this exact situation would recover
+and finally Margaret Hamilton who led
+the team MIT who developed all of this
+amazing software and she finally
+received the US Presidential Medal of
+Freedom in 2016 for her work on Apollo
+and her entire career developing
+reliable robust fault tolerant software
+and this is the highest civilian award
+you can get in the United States and
+finally just tying it back to modern day
+so these pioneering techniques I've
+taught about now form the foundation of
+all sorts of robust software that we use
+every day such as the top-of-the-range
+Reuters that I work on for example there
+are all sorts of weird things that can
+happen to these Reuters maybe a
+particularly weird or bad packet gets
+sent maybe the user enters some unusual
+configuration perhaps the customer wants
+to hotfix the code without interrupting
+the flow of traffic using all of these
+techniques on modern software in 2019
+isn't quite as cool as Apollo but it's
+still really awesome so thank you very
+much for listening
+and I will take any questions if we have
+time I've seen the graticule on the
+window in lots of Apollo films and what
+I've always wondered is surely it
+matters where your head is and how did
+they manage that so the wind day was
+either double or triple glazed and on
+two of the panels was a across so
+Armstrong would make sure that he was
+looking out so that the two crosses
+merged together and again that's that's
+common in aircraft cockpits today as
+well the Apollo program started in the
+early 60s
+and I'm wondering this computer system
+you vote you focused a lot on the
+descent but from Apollo 1 to Apollo 10
+where they were just attempting to
+travel to the moon but not it's not land
+what stage was this computer system
+developed and what part did it play if
+any in the in Apollo 1 to 10 I don't
+have a precise answer to that so the one
+thing the computer didn't do was getting
+you off the earth there was a separate
+computer in the Saturn 5 rocket that did
+that so they're kind of very early stuff
+of let's just get off the earth they
+didn't need this computer for there were
+two sort of major major iterations of
+this computer block one and block 2
+block 2 was the computer that got you to
+the moon block one was a more primitive
+machine I suspect that they flew some
+block ones during some of the early
+Apollo's possibly Apollo 8 but one of
+the problems they had was that the
+requirements of the software kept
+getting more complex and so they
+realized in the sixty three or four that
+the block one machine wasn't going to
+cut it and so they had to redo a lot of
+things for the block team so it did fly
+some of the early missions but I don't
+know exactly which good question in the
+descent programs you had p63 yeah
+and what's right one that mother slight
+question was that in the first picture
+will that stack of books was that the
+program for the the landing this is
+actually a that that picture that
+picture so this is so I've I I've often
+wondered them out this picture and two
+months ago I thought I must finally
+research it I read an interview with
+Margaret Hamilton this they basically
+came into the office they said we'd like
+a picture of you and they grabbed any
+copy of the source code they could so so
+this is the source code but it's
+probably more than one copy I think I
+would imagine Lee when he would would
+fit into one of those binders but I'm
+not completely sure so yes yes every day
+I spent p65 so in principle the lunar
+module could land itself on the mean and
+that was that was the role of p65 pieces
+if I was the automatic last bit of the
+descent one of the really interesting
+things about the whole computers in the
+palo thing was there was some tension
+between the astronauts and the engineers
+and mathematicians the astronauts wanted
+to be able to fly the ship manually all
+the way down the engineers wanted the
+whole thing to be completely automated
+and the compromise was what i displayed
+on the screen it turns out that humans
+are not very good at doing the orbital
+mechanics intuitively so the computer is
+better at flying most of the descent but
+then the sort of the compromise was that
+the astronauts would do the last bit so
+p65
+in theory could get you down to the
+ground automatically but the astronauts
+always took over and switch to p66 which
+was just let me do it please thanks you
+mentioned about the person with the
+development the techniques that they
+used to develop this so how would it you
+know obviously I work in a world of
+safety critical software nowadays so I
+presume this would either at the time or
+at least so nowadays thinking would be
+regarded as sort of safety critical
+don't know whether it would or not you
+can maybe answer that and then how would
+the sort of techniques they use to
+develop it in terms of like them
+development models and lifestyle
+because that they used compared with how
+you develop safety critical software
+today my so my career is based on soft
+real-time systems non safety critical
+systems I don't know a huge amount about
+safety critical software so I'd be
+interested in talking to you afterwards
+to get your views on it
+however I think this was definitely a
+hard real-time system and pretty
+safety-critical you would be a better
+judge of whether the techniques I talked
+about would apply today actually in
+broad in broad terms would you agree or
+would you disagree
+yeah so one of one of Margaret
+Hamilton's contributions to the project
+was developing was turning the software
+development process into a sort of
+engineering process and starting to put
+some of those processes that you've been
+talking about because before then it was
+much more of a sort of Wild West less
+controlled environment for writing
+programs so she she recognized that this
+this really had to be described as an
+engineering discipline and a lot of
+people laughed in her face when she said
+that but she did get results so I think
+that I think that the Apollo project
+among others was the start of these
+rigorous processes but clearly they've
+been evolved over time hey you might
+have the answer might be the same as the
+last one but um you mentioned at the
+start will these limitations there
+compute ads specifically I'm thinking
+like Ram yeah the idea of writing a
+program now with 2000 words of RAM in
+space was kind of terrifying so how did
+the programmers it ensure that they kind
+of weren't violating those restrictions
+and just more general like how do they
+do rigorous testing to make sure that
+the program like will pass through the
+program where it's safe yeah
+the set of trade-offs they made when
+writing the software was a bit different
+compared to modern day so for example in
+order to make in order to have enough
+space for all of the variables if you
+remember I said there's room for two
+thousand variables in RAM they had to
+reuse the same memory location for
+different variables and they would sort
+of prove to themselves that you'd never
+you'd never need both uses of the memory
+location at the same time nowadays we'd
+be like that's completely crazy just put
+more RAM in the system and don't don't
+take the risk of reusing the same bit of
+RAM but back then they had to do various
+things like that in order to make
+everything fit on the flip side I think
+it was a it was it was quite a small and
+close-knit team of software engineers
+they were doing lots of talking to each
+other and often in software the trick is
+for all your engineers to be talking to
+each other so that everyone's on the
+same page so I think but by really
+keeping it close NIT they made sure that
+even though they were making compromises
+the the system would still fit the
+constraints yes Sheridan William someone
+the volunteers here I was 21 when the
+Apollo 9 to 11 landed on the moon I'm
+very envious and I actually saw Apollo
+17 takeoff as well went to see that
+obviously I was incredibly incredibly
+interested in the whole thing specially
+is my degrees in computer science as
+well but when I met someone from NASA
+probably a few years after 1969 they
+just gave me the simple answer that what
+went wrong was because they forgot to
+turn the docking radar off was it just
+that simple so this this this is all
+this so say yes you were saying that
+that the the issue was that they forgot
+to turn the radar off and this has
+always bugged me because I've thought
+that I've thought that there's if you
+look at all of the things all of the
+planning that went into Apollo I cannot
+imagine a situation where an astronaut
+would have deliberately left the raid
+switched switched on when it should have
+been switched off it just that's never
+made sense to me and I've never been
+happy with that explanation so my take
+on it is that there was this rare
+hardware bug which definitely that was
+definitely found they definitely figured
+that hardware bug out so that was
+definitely a thing and the workaround
+was to add an item to the checklist
+saying make sure this radar is switched
+off so my take on it is that it was a
+workaround to get around this hardware
+bug rather than the actual course 99
+times out of 100 they could have left
+the radar switched on which they
+probably did during training and there
+would never been a problem because the
+hardware Burgh would not be triggered
+well it's it's a difficult story to tell
+accurately it's a difficult theme to get
+to the bottom of because there are
+conflicting sources of information but I
+cannot fathom a world where an astronaut
+would have just forgotten to turn the
+radar off and that's the end of the
+story that doesn't make sense to me
+just one further observation on the on
+the constraints I think I wrote my first
+bit of code in about 1967 and you know
+we were used to the fact that we had
+very small memory in the first place so
+the whole piece about you know fitting
+everything in in some senses was less of
+a challenge that it might look at from
+today's perspective because we certainly
+couldn't do what you described which was
+we're just Excel or ramen you know so
+well yes that's that's a really good
+point we've thought we've almost
+forgotten how to write or in some sense
+we're unable to write software yeah I
+could not write a hello world that took
+less than 100 kilobytes
+I was just gonna go back to the the
+radar issue and he was saying that the
+the one of the points was the telemetry
+yes who stand see that this information
+coming in and so could they could they
+debug the problem from from from the
+from the ground or were they unaware
+that that that information was
+overloading the system I'm that's a
+that's a good question my belief but
+without any evidence is that Houston
+couldn't see this was happening and the
+reason why is because the way that the
+the way that the radar feeds information
+to the computer is by pausing the
+computer so stopping the computer
+running very quickly giving the I can't
+see anything data to the computer and
+then starting the computer again it was
+a very weird way of doing IO and because
+it basically paused the computers clock
+from the computers point of view it was
+like it the computer had been
+cryogenically frozen then defrosted the
+computer woke up again and had no idea
+had been paused so because the ia was so
+low level and so weird
+I don't think Houston would have named
+[Music]
+yeah so the question was if they did a
+p65 would it have worked I don't know
+although actually if they've done a P 65
+they'd have landed in their boulder
+field so because and that's the that's
+the that's the other complicated bit of
+the story people conflate the computer
+issues with Armstrong not landing in a
+boulder field and those are two
+completely different things that often
+get completed completed together do you
+know how many actual physical instances
+of the computer there were how many did
+they build there was obviously two for
+each missions in the moon
+one of which came back
+I think it's it's like in total even
+test units it's the low hundreds 100 200
+most of them tragically got melted down
+and scrapped so nowadays they are
+incredibly rare yeah why is the thing
+called poo do you are my favorite person
+so I love it when people ask the
+questions you tell her to ask them to
+our so let me just get a picture the
+disk gate so we can see on the disk II
+the top number is the program number
+okay and you know like you know like on
+your computer if you turn on your
+computer you might have programs running
+but if nothing's running it's just like
+the desktop and the equivalent on the
+disk II was something called program
+zero and that would just mean the
+computer isn't really doing anything and
+that was cool poo because it was like
+program zero so they they nicknamed it
+poo and so when the computer did that
+kind of restart it closed down all the
+program so it closed down all the apps
+and what was left was just the desktop
+poo so that was called a Pudi so it's
+because they nicknamed the idle state
+poo for program zero
+can I also just say no one's ever asked
+me that question even though I said ask
+me the question so that's a great great
+shout I love it I'm assuming they fixed
+it for Apollo 12 the hardware book so
+for Apollo 12 the workaround was was
+make sure the radar switched off okay
+and also did they actually know about
+sort of cosmic ray hits during computers
+because even though they they were they
+were actually flying through a time when
+the Sun was very active so that would
+actually keep a lot of the galactic
+cosmic rays away but I just wondered if
+they knew about them the computer was
+definitely engineered to be sort of
+radiation hardened and it used parity
+checking so whenever it read numbers
+from memory it would it would sort of
+check to see sort of have these been
+affected by external radiation and I
+think that the hope was that those those
+parity checks and the radiation
+hardening would be good enough and if a
+party error occurred the computer would
+do a restart just going to say that's
+cool memory isn't it which is naturally
+resistant to electromagnetic
+interference
+yes interestingly the parity sort of
+calculation permeated through a lot of
+the digital circuits so I wonder whether
+they were also trying to protect the
+actual digital logic from being flipped
+as well but anything that forces James
+and so the question I have you mentioned
+that a common fallacy is that people
+assume that it's sort of less powerful
+than the the calculator in your pocket
+was the terminology used do you one sort
+of give your version of what's actually
+true Lex or what in modern terms what is
+the the relative power what what can we
+compare it to if if the calculator
+example is is so far off the problem is
+you can't you can't really compare it to
+any other machine because it had such a
+special purpose it was made for just one
+thing you'd struggle to find another
+machine with that amount of iron for
+example and my point was more that
+saying saying using the clock speed of
+the computer
+a way of comparing its power is
+meaningless because the real power of
+the computer comes from the ingenuity it
+was used to make it special for the
+actual mission so it's sort of like
+apples and oranges yes going back to
+number of units built was there any
+redundancy built into the actual kit
+that was on board there there was only
+one computer so that wasn't redundant I
+am trying to remember if there was more
+than one IMU there were certainly things
+that weren't redundant and there was
+only one computer they could only afford
+one computer but if if during the lunar
+descent or any other stage they wanted
+to abort than a separate much smaller
+computer would take over and during the
+landing one of Buzzy's jobs was to
+manually read numbers from the disk II
+and type it up in type it into the spare
+computer but the spare computer was a
+lot simpler all it could do was um do
+the guillotine and then sort of take you
+away from the moon and then you'd sort
+of fix everything else later
+I'm just wondering during development
+did they have a software emulation or
+something of this back on the MIT people
+were they working on hardware they they
+had both and but presumably I was really
+quite difficult because as you said the
+hardware so intimately tied to the
+inputs and outputs and the real-time
+behavior must be very different yes
+anything about how we do things today so
+one of the lovely things about this
+computer is there are hundreds of
+thousands of pages of documentation and
+test logs and all sorts of things so
+it's a real treasure trove one of the
+things I found a huge numbers of pages
+of the results of doing simulations so
+they would simulate running the computer
+landing on the mean so they clearly had
+the capability to simulate things like
+the IMU in a sophisticated way to test
+the software I would I would give my
+right arm for a copy of that simulation
+software but so far to my knowledge no
+one's found it but my understanding is
+they did do extremely sophisticated
+simulations and your other question was
+how does that tie in to today yes yes we
+do we yeah we would run software
+simulations and hardware simulations
+yeah I would say that the the level of
+testing that they did for the software
+is comparable to the testing you would
+do for say an aeroplane software today
+like it was very well tested
+great excellent well once again I'd like
+to thank Robert for an absolutely
+fascinating talk and could I say thank
+you very much for coming it's a real
+pleasure to be able to talk about
+something that I'm really interested in
+so agree for people who look into status
+[Applause]

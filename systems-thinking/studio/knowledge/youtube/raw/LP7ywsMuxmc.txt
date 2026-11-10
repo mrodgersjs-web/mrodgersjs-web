@@ -1,0 +1,597 @@
+So, my AI agent replicated my sense of
+taste to build our Toolbenders app. This
+is my design influence executed by my
+agent. I was not vibe coding this in
+Cursor, and this was not any sort of one
+shot. That's not what I'm saying. I was
+still involved orchestrating and
+approving things, but this is an example
+of what is possible when you create a
+personal agent. I created mine with Open
+Claw. And the way I describe this is
+think of an AI model dropped inside of a
+car that you can build. And inside of
+that car, you have your tools, your
+files, your memory, and your own custom
+rules. Now, I spent $13,100
+on that car over the last 90 days. And
+today, I am going to show you what that
+looks like, and more importantly,
+whether it was worth it. My goal is to
+inspire the curious builder in you. That
+means exploring tools, including AI,
+something I'll be doing a lot of because
+well, that's the moment we're in. But
+sometimes that upsets people who are
+feeling overwhelmed or aggressively
+anti-AI. Or for people who are
+discovering this channel for the first
+time and aren't familiar with our
+values. And if that describes you,
+maybe skip this one. And instead check
+out my video about trying to discover
+soul in our storytelling. But for
+everyone else, take a look at this. This
+is me working last Tuesday morning. I
+have not opened Claude or ChatGPT as a
+standalone product in about 4 months.
+What you're looking at is Slack, and it
+has become the surface for where a lot
+of my work occurs, and not just for
+talking with my team. Now, I've been
+running this agent harness since
+January, Open Claw as my container,
+Obsidian as my knowledge layer, and
+Slack as my interface. And currently, I
+run four different agents for the
+different parts of my work. Now, last
+week I told you the future of AI tools
+wasn't just about smarter models. It's
+also about the harness or personal
+agents we can build around those models.
+And I promised to show you what these
+are, how mine work, and how to build
+your own.
+So, let's get into it. The first thing
+you must know about agents,
+you're going to have to unlearn some of
+your habits for how things work.
+Karpathy, one of OpenAI's early
+founders, said the gap in how people
+understand AI's actual capability is
+growing, and I am also seeing the same
+thing. A lot of people I've talked to
+formed an opinion on early-stage tools
+and then haven't touched them since. And
+others have become pretty familiar with
+AI coding tools, and they've kind of hit
+a ceiling, but they haven't really
+branched out. But, what I've discovered
+is that personal agents provide these
+capabilities that both of those groups
+aren't very familiar with yet. And it's
+actually a very challenging time to try
+and discuss these capabilities, but I am
+going to try and show you. Now, when you
+install OpenClaw, it is like a starter
+kit project car. It is a car frame with
+a swappable engine, the engine being any
+AI model you choose to use. It's
+basically a folder that you install onto
+your computer that contains about seven
+markdown files. You have the soul.md.
+This is how the agent behaves, its
+voice, judgment, its decision-making.
+This is the biggest file and the one you
+probably will tweak the most. And if you
+have other behavioral rules conflicting
+with this, this file takes priority. You
+have identity.md. This is a sort of
+short startup card, the driver's
+license. It's the agent's name, a
+handful of rules that it loads before it
+begins. It's almost sort of a routing
+layer. Then, there's user.md. This is
+all about who you are, your name, your
+time zone, your job description. This is
+what makes your agent feel personal to
+you. Inside of agents.md is more of a
+permission system. This tells it which
+agent is allowed to edit which files and
+which operations they're allowed to
+perform. This is also a sort of safety
+layer that prevents agents from just
+nuking all the files on your computer.
+And then you have memory.md and a memory
+folder. This is the long-term agent's
+memory. Anything the agent needs to
+remember to keep behaving correctly
+across conversations, like preferences,
+any sort of project context, or prior
+decisions, that lives here. Now, I use a
+separate layer for capturing knowledge
+over time, but I will get into that in a
+bit. Inside of tools.md is more of a
+user manual for the agent's tools. This
+is not a list of permissions, it's more
+like a set of instructions on how and
+when to use these tools. And then you
+have heartbeat.md.
+So, you have these background listeners
+that are monitoring the system's health,
+and this tells them basically not to
+pollute your interface with a bunch of
+useless info unless something's wrong.
+Now, these files are just instructions
+written in plain text. You can literally
+add anything you want to your project
+car, which is most of the reason why
+everyone's individual experience with
+this is so inconsistent. And
+Open-Assistant documentation does
+explain its built-in features, but you
+can also just vibe code your own. In
+fact, I would recommend using an AI
+coding tool or chat to help you install
+this. A couple of weeks ago, my son came
+to me and asked me to help him create
+his personal agent. He's 17, knows how
+to write basic code and use AI tools.
+Now, normally, I would walk him through
+it, but this time, I told him to ask
+Claude. I am trying to teach him how to
+teach himself, and it starts with being
+able to recognize the questions inside
+of your frustrations. A week later, he
+had connected it to Discord and built a
+tagging system for indexing his
+conversations and storing them in its
+memory. And he built this because that
+initial question led him there. So then,
+I showed him a tool that he could
+connect that solved the same problem,
+but better. And he was able to
+appreciate it. When you stop thinking of
+a custom agent as just a chatbot and
+start thinking of it like an operating
+system, some useful questions are going
+to start to pop up, like where does the
+memory live? What is the source of
+truth? How do I enforce my rules better?
+What should stay manual? And you can
+work with your agent to improve its
+harness around these questions. Yes,
+using your agent to build your agent.
+And over time, you'll start to realize
+that the agent's limitations aren't just
+about the model. They're a lot more
+about the system that you have built
+around it. Because you can't control the
+quality of the model, but you can
+control the quality of the system. Now,
+the most important part of my setup is
+the knowledge vault. This is my
+alternate memory, and it is built around
+the work that I actually do. And it's
+just an Obsidian folder structured
+around my health, my journal, the
+external signals shaping my worldview,
+my project planning, and my writer's
+room, and also the operations of
+OpenClaw itself. There's also a routing
+file that tells the agent how to use all
+of this, so it's not just spinning up
+random folders and putting files in the
+wrong directories. It will do that if
+you don't enforce it. So, OpenClaw is
+the container, and Obsidian is its
+memory. And I choose to use Obsidian
+over the built-in memory because it just
+gives me a better human experience. I
+can use it on my phone and on other
+devices. But you don't have to use
+Obsidian. You can use things like Notion
+or Convex or, you know, whatever your
+preference is. But if we zoom out,
+there's about four layers that kind of
+hold this whole thing together, starting
+with skills, which are just basically
+repeatable workflows the agents can
+perform. Maybe it's pulling down your
+emails every morning and filtering out
+the spam. And then there's memory. This
+is the long-term stuff that it learns
+about you through conversations and any
+sort of context that you feed it over
+time. But then there's the actual
+context, and this is specifically to
+what the agent can see right now in the
+chat session you are working with. And
+then finally, you have connections,
+which are just the different tools that
+the agent can reach. Maybe it's
+connected to Slack, Obsidian, your
+ability to browse on Chrome, Linear,
+different design tools, or the Google
+Suite.
+&gt;&gt; Quick pause because I'm about to skip
+past something important. Every tool you
+connect to your agent comes with a
+secret key. It gives you access to all
+your private data, and once your agent
+has it, you better hope it doesn't leak
+it. This is a real security concern, and
+I'm not going to deep dive on this here,
+but it deserves its own video. Read the
+security section of whatever harness
+you're using. Open Cluck covers it in
+their docs. Don't skip it.
+&gt;&gt; And when all four of these layers are
+built well, that's when the agent stops
+feeling like ChatGPT, and it actually
+starts feeling a lot more powerful. And
+I'm going to show you some examples of
+what mine is capable of. This is my
+capture loop. I see something on the
+internet, a tweet, a study, maybe a
+video, and I drop it in Slack with a
+plus sign. My agent will summarize it
+and then route it to the correct
+position in the Obsidian vault. And then
+it will actually pattern match it to
+other related captures. It builds themes
+and tags around like entries. I even
+visualize this knowledge graph just to
+get a sense of what all of these
+relationships look like. So next week,
+when I am writing a newsletter or
+prepping for a meeting, or maybe trying
+to remember something I saw in February,
+I can just ask my agent a pretty vague
+question, and it will pull up all of the
+related links. And I don't experience
+any hallucinations because I am the one
+curating what is worth remembering.
+We're going to come back to this one a
+lot. My agent automates my podcast in
+meeting preparation. Every morning,
+it'll read my calendar and for every
+meeting, it figures out who I'm meeting
+with and reads everything that they may
+have published online. It'll also crawl
+my Obsidian vaults and pull things that
+it thinks are relevant to bring to my
+attention. Then it writes me a meeting
+prep doc. they're a podcast guest, it
+runs that preparation document through
+Google's Notebook LM and gives me an
+audio summary that I can listen to when
+I'm getting ready or I'm drinking my
+coffee.
+&gt;&gt; You have a big interview coming up with
+George Hastings and our sole mission for
+this deep dive is to serve as your
+personal prep team.
+&gt;&gt; It's kind of nice. But then after the
+meeting, that conversation's transcript
+gets put back into the knowledge vault
+and now becomes part of the greater
+memory. And over time, this is how it
+starts to compound. My agent also helps
+me with things like my survey research
+projects. When I'm building a research
+survey like the state of prototyping we
+just released, I usually start with
+about a 10-minute voice note that I send
+to my agent through the WhisperFlow app.
+And I just yap. It's a complete stream
+of consciousness. And as I'm talking, it
+is searching Obsidian for everything
+I've ever written or saved on that topic
+and throwing questions back at me to
+answer. And by the end, my fuzzy
+thinking is kind of sharpened into a
+real testable hypothesis. And then it
+drafts the research plan. And then
+together we brainstorm the question set
+and we'll test the phrasing of language
+for any sort of bias. And this is a big
+project because then we have to write
+the technical plan, which it does. It
+codes the survey out for me and then we
+ship it. And while the responses are
+rolling in over the next 30 days, it is
+monitoring Vercel and Sentry for
+anything wonky that I need to be aware
+of. I want to make sure we're collecting
+that data accurately. So, when the
+survey closes, it will clean the data,
+analyze the responses, and it'll surface
+these patterns that I wouldn't have
+thought to look for. And while it's
+doing that, I am dumping all of the data
+into Google Sheets so that I can
+fact-check it myself, and I also am
+identifying patterns that it did not.
+Now, in the Obsidian Vault, it has
+access to our design system guidelines.
+And one day, I noticed it had started
+ideating the data visualizations inside
+of paper without me asking it. It saw
+the deadline coming, and it I guess just
+got got just got going. Now, that
+doesn't always happen. And I didn't
+really dig in to understand why. I have
+some ideas, but it did this time, and we
+shipped on time. The survey generated
+$50,000 in sponsorship revenue and
+helped me recoup my $13,000 token spend.
+It helps me distribute my content
+automatically. Every time I publish one
+of my newsletters or a new podcast
+episode, I don't have to upload them one
+by one to the other 10 places that I
+publish my work. And there's a lot of
+tediousness that used to go into this.
+The title, tags, thumbnails,
+descriptions. Even just copying these
+over to each one took me about 45
+minutes, all said and done. I've timed
+it. Now, I publish them once and then
+ask my agent to copy it all to each
+platform. It's done in about 10 minutes
+while I'm responding to an email. I do
+this four times a week, and I'm about to
+automate it entirely. And I could go on
+and on, like how I use this to manage my
+fantasy leagues, or how it helps me
+catalog and search through terabytes of
+footage when we're putting together our
+documentaries. Now, what I didn't show
+you was how multiple agents will work
+together to complete tasks, or how I can
+walk away from my computer and some of
+these agents just keep working. Now,
+some people talk about how their agents
+will work all night while they're
+sleeping, but I choose not to build
+those sorts of continuous loops because
+I actually don't like removing myself
+from the loop entirely. But my agents do
+run smaller tasks while I'm in meetings
+or maybe watching season 2 of Beef with
+my wife. Now, before I show you how to
+build your own, I want to get a little
+philosophical for a second because there
+are some parts of my old workflows that
+I'm starting to miss. So, why work this
+way? Surely there's
+more to life than just working faster,
+right? Now, over the last 4 months, I
+have worked harder than I ever have and
+I'm not trying to glorify hustle
+culture. That is not a flex. Our revenue
+has been pretty strong this year so far,
+but it goes right out the door to pay
+for the documentaries that I am
+producing. But the work that I'm doing
+right now is genuinely life-giving. I
+feel really rejuvenated learning to
+become a filmmaker and I'm not talking
+about these YouTube videos. I'm talking
+about telling stories with soul while
+running a business that's able to
+support it, even if it's barely. And I
+hear from so many of you that I've
+inspired you to go out and be curious
+and build and create and that fills me
+with a lot of purpose. I mean this when
+I say
+I can die satisfied with that being
+true. But I also get to do all of this
+while spending time with my family, my
+wife, my four teenagers, and my little
+girl while managing my health and still
+having time for my hobbies. You know, I
+do have concerns about the economics and
+some of the ethics of AI, but I can't
+deny how much my quality of life and
+work has improved this year. And we will
+see how this all looks come summer, but
+right now I am suffering a lot less in
+this river. All right. Now, to build
+your agent. So, I'm going to give you
+the high-level steps, but just like my
+son, it is going to be up to you to
+wrestle with the questions. I want you
+to think about a task that you already
+perform and all of the steps that go
+into completing it. Maybe it's designing
+a landing page or building a workout
+routine. Maybe running a marketing
+campaign or investing into the stock
+market. This is no different than
+systems or product thinking. You have to
+identify the steps inside of a workflow
+and then pinpoint what exactly sucks
+about it. And if you're not very good at
+this, that's okay because this is a
+muscle that you can train. And I
+recommend grabbing maybe a pen and paper
+and practicing by mapping it out. Now,
+the most challenging part of this whole
+thing is the unlearning. Many of us have
+old habits that have calcified into our
+brain. It is why my 17-year-old is able
+to run laps around us. He has no baggage
+about how things are supposed to work.
+But, identifying the workflows just step
+one. Let's talk about building the
+agent. First, I want you to choose an
+interface because OpenClaw integrates
+with every major conversational UI:
+Slack, Discord, Telegram, iMessage,
+email. You can pick one and I would ask
+AI to help you connect it. Next, we're
+going to build that context layer I
+talked about earlier. You can use
+OpenClaw's built-in memory feature or
+just ask AI to help you build a
+connection to whatever storage tool of
+choice you prefer. Now, when you create
+a new chat session with your agent, it
+doesn't go and crawl your entire memory
+knowledge base. That would create an
+extremely expensive and unsustainable
+context window. Instead, you need to add
+a search layer on top of your knowledge
+base so that it can find what it needs
+when it needs it without you explicitly
+telling it to. If your memory is going
+to use markdown files, which I believe
+it does by default, then I would
+recommend connecting your harness to a
+third-party tool called QMD. Now, QMD is
+an open-source search engine that runs
+locally on your machine and sits on top
+of that knowledge layer. And it goes
+through and basically indexes the whole
+thing and allows your agent to search it
+basically like Google. And if all you do
+this weekend is create four folders and
+start taking some notes in markdown, you
+are well ahead of most people. Now, for
+step three, it is time to connect
+whatever your primary work system is.
+For me, it is Linear. Maybe for you it's
+Notion or Jira. Where does all the
+source of truth of your work live? Maybe
+it's a couple of places. Because the
+agent needs a way to see what's going on
+in the work, not just talk about it. And
+this is where MCPs come in extremely
+handy. I would check to see if your tool
+has one. Many are starting to create
+them. MCPs are just ways that AI can
+plug into external tools. You can think
+of them like USBs for your AI. They are
+a universal standard for connecting an
+AI with tools and data so that it can
+make use of them. Now, step four, for my
+designers, I want you to connect a
+canvas. Maybe that's Figma or something
+like paper. We're going to point the
+harness at an actual design file, and I
+want you to let the agent just kind of
+read the structure, maybe pull some
+components or generate a few rough
+variations of something. Because the
+blank canvas problem is still one of the
+great hidden taxes of design. And I
+would challenge you to try and create
+your own little workflow that helps you
+solve the blank canvas problem. And once
+you do that, in step five, I want you to
+give it one automated job. And for this,
+we're going to create crons. A cron is
+just a recurring instruction that you
+create for your agent. It might say
+something like, "Every Monday morning,
+prune my inbox." You set it once, and it
+will run forever unless you give it an
+expiration. There is no manual prompting
+required, and you can create as many of
+these as you want. you might tell your
+agent, "Hey, every morning at 6:00,
+check Lanier for any task tagged design
+that is due within 5 days. And if you
+find something, read the ticket's brief,
+pull our design system from Obsidian,
+open up Figma, and generate a few
+variations." And then I want you to pull
+those variations and post them as images
+inside of a particular Slack channel.
+Now, my first time creating new loops
+usually hits a snag or it produces some
+sub-par stuff, and that's something
+you're going to experience, but you'll
+notice that if you tune it and continue
+to trial it, it gets better until
+eventually it's actually pretty
+reliable. And for a bonus, I'm going to
+share with you a few advanced tips.
+Because once you go through those
+motions and you get your first loop
+running, I think the creative space
+starts to open up for you, and you'll
+start to have maybe some fun questions
+surfacing like, "What happens when I do
+this?" And I would recommend making time
+for those experiments. But here are four
+things that I've learned that I want you
+to know. One, try not to use the agent
+for coding tasks. And some design tasks
+are coding tasks in disguise. I still
+use tools like Claude Code and Cursor
+because coding through the APIs
+consistently more expensive than just
+doing it through the native tools. Now,
+I do believe you can connect these
+native coding tools to your agent. I
+haven't done that yet. It's probably
+something that I should explore. But
+what I do instead is I will plan the
+project with my agent, who typically has
+better context than my coding agents,
+and then I will take that plan to the
+coding agent, and we will start to plan
+against it and execute. Number two, use
+model gating to reduce token costs. Not
+every task needs a frontier model like
+reading a document or summarizing a
+Twitter post or cleaning up some notes.
+Those are all cheap and easy tasks.
+Things like deep research or long
+context analysis or some sort of deep
+planning, those are frontier tasks. And
+I put all of those gates inside of my
+soul.md file. Number three, know your
+model alternatives. A lot of people are
+saying Kimi's newest release is on par
+with Opus 4.6. Now, I have not tested
+this enough, but if token spend is
+holding you back and you still want that
+high-quality model, maybe give Kimi a
+look. Now, the geopolitical conversation
+around Chinese model weights is real,
+but for the cost-sensitive individual
+builder, you still may want to give
+Kimmy a look for now. And four, your
+harness is just a file. A soul.md is
+just some markdown with structure. You
+can change this at any time. Everybody's
+set up is different. If you lined up
+screenshots of every person's harness,
+they would look like custom-built
+spaceships out of the game No Man's Sky.
+Nobody's is right, but everybody's works
+for them. And if you want to hang out
+with other designers and builders who
+are doing this stuff, join our Discord
+from the QR code or the link in the
+description. You don't need my setup, I
+promise you. You don't want it. All you
+need is the mental model I just gave you
+and a willingness to explore. And when
+you get frustrated, the ability to pull
+out the questions that you need to
+answer. Pick one workflow that you
+already own and then ask four questions.
+What does the agent need to be able to
+do? What does it need to know about your
+work? What does it need to see right
+now? And what does it need to reach the
+finish line? Skills, memory, context,
+connections. An agent is not a chatbot.
+It is a car.
+Now go build yours.

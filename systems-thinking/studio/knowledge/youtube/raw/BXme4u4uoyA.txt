@@ -1,0 +1,183 @@
+This is Manifest. I switched to it for a
+weekend and my token costs dropped by
+70%. Same agent, same tasks, just better
+routing. If you're building AI agents,
+there's a good chance you're paying way
+more than you should. Most requests
+don't need GPT-4o or Claude Opus, but
+that's exactly what they're hitting
+anyway. So, our agent ends up using
+expensive models for basic stuff like
+classification, routing, summaries, and
+that's how your bill quietly becomes
+three to five times higher than it
+should be. How does Manifest even work?
+Let's find out.
+Here's where things break down. Agents
+don't just make a few calls, they make
+thousands of these calls. And most of
+those calls are really simple. Pick a
+tool, summarize a chunk, classify input.
+But if everything goes to the best
+model, you're paying a premium price for
+rather basic work. So, you could try to
+fix it, I guess, by writing routing
+logic. And now your code is full of all
+these if-else statements that break the
+second your prompts change. Okay, yes,
+we could just use Open Router, sure. But
+there's a fee with that. And then your
+prompts actually leave the machine. I
+guess there's also something called
+Light LLM you could try, which is solid,
+but you still have to manage routing
+manually. So, the real problem isn't
+access to models, it's choosing the
+right one every single time. And that,
+ladies and gentlemen, is what Manifest
+does. It sits between your agent and
+your models. You send one request, it
+scores it across 23 dimensions, and
+routes it to the cheapest model that can
+handle it. There's no rewrites and just
+one endpoint. If you enjoy coding tools
+and tips like this, be sure to
+subscribe. We have videos coming out all
+the time. All right, sweet. Now, let me
+show you. Same agent, same task. I spin
+up Manifest with Docker here. Simple
+curl command, docker compose up. And now
+I point my OpenAI endpoint to it. That's
+the only change here. Now, I can link
+different ones here, as you can see,
+Anthropic, OpenAI, Ollama. I chose
+OpenAI, dropped in my key, and I linked
+in Ollama so I can go between the two.
+And now we're going to run this Python
+script. You can see I'm using the
+Manifest API key here. That's the only
+key we need cuz Manifest has the other
+ones, okay? So, when we run this, the
+agent starts working, and instead of
+sending everything to an expensive
+model, Manifest makes a decision. This
+one's simple. Root it cheaper. Now, jump
+here, our dashboard updates in real
+time, showing us token usage, cost per
+agent, and budget tracking. The key
+number can change, but it can be
+anywhere up to 70% cheaper. Same output,
+lower cost, and because this runs
+locally, your prompts don't leave your
+machine just to be routed. This didn't
+take a whole lot of time or resources,
+so it's something worth integrating into
+your flow, especially if you're building
+and using AI. Okay, so, now what
+actually happens here? You can think of
+Manifest as like a controller, right?
+Your agent sends one request in,
+Manifest decides where it should
+actually go. So, that could be an API
+model, could be a subscription, a local
+model, Ollama or Llama.cpp.
+It supports hundreds of models across
+tons of providers, but here's the
+important part to all this. It doesn't
+call another LLM to decide. That would
+be counterintuitive, so it would just be
+slow and expensive. Instead, it uses
+deterministic scoring. So, routing
+happens under 2 milliseconds. No added
+latency to any of this. Manifest just
+sits in the middle, and it makes better
+decisions. And it's clearly built for
+agents. Open claw plugin, multi-agent
+tracking, we have those, and we even
+have observability built in. The biggest
+savings don't come from hard prompts,
+they come from all the small ones.
+Really just the boring calls our agents
+make constantly. Okay, so, real quick,
+how is this different from tools that we
+already know? So, I'm going to compare
+this really quickly. I mentioned Open
+Router earlier. So, Open Router gives
+you one cloud endpoint, but your traffic
+still leaves your system. Manifest can
+run fully self-hosted. Then we have the
+tool I mentioned of Light LLM. This
+gives you a unified interface, but
+routing is still something you have to
+control manually. Manifest handles
+routing automatically. There's also
+routing intelligence. Now, where
+Manifest scores requests across 23
+dimensions, that is their version of
+routing intelligence. Other things like
+this rely on failover or rules. Then we
+have subscriptions. Yes. So, while you
+don't actually pay for Manifest, you
+still obviously need things like an
+OpenAI or Claude API key, right? Now,
+agent focus is something where Manifest
+actually stands out. It's built for
+multi-agent workflows. So, the
+difference is simple. If you want
+access, just use Open Router, right? If
+you want control, there's Light LLM. But
+if your problem is actually cost from
+agents cuz we're making all these API
+calls, Manifest is built for that. There
+are countless tools to bring down your
+costs, you just need to find them, and
+this is one of the ways.
+Now, being honest here cuz it's great,
+but with an AI tool, you're going to get
+some things that might have you just,
+honestly, scratching your head. First,
+the good. Where the first would be
+savings, especially with subscription
+routing. You're using plans you already
+pay for, instead of paying per token
+again. Then, the fallbacks, right? If
+something fails, your agent keeps going,
+which is a huge win. Then we have the
+dashboard. The dashboard is great
+because you can actually see where your
+money is going across different models,
+per agent, per task, all in real time.
+And it works with existing clients
+without any big rewrites. But like I
+said, there are things that we would
+expect a tool like this such to have,
+and you know, there's things like your
+scoring's going to be opinionated,
+right? AI, okay? So, sometimes it roots
+cheaper than you'd expect. You can
+override that, but you need to know it's
+happening in the background. Setup also
+isn't zero cuz you're still managing
+keys and wiring providers, but it was
+dead simple. And devs still want more
+SDKs, more storage options, and more
+features. So, yeah, it's really cool,
+but it's still infrastructure. It's not
+perfect. Some things need to be tweaked.
+It's definitely worth it if you run
+agents every day, or if your agents make
+lots of small calls. Heck, even if you
+care about keeping prompts local, this
+is great. But maybe not if you want zero
+setup. In that case, something like Open
+Router is simpler, but for most of us
+devs building agents, this is one of the
+fastest ways to reduce your cost because
+you don't change your agent, we keep
+everything. You just change how it
+routes together. Same inputs, same
+outputs, lower bill, and that's the key
+here. If you enjoy coding tools and tips
+like this, be sure to subscribe to the
+Better Stack channel. We'll see you in
+another video.

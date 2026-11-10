@@ -1,0 +1,752 @@
+In this video, we're going to start
+talking about graphical models or
+probabilistic graphical models.
+Specifically, we're going to talk about
+basian networks, which is a type of
+graphical model. So, we're going to talk
+about overall the general idea behind
+graphical models. Uh, I'll define what a
+basian network is, and then we'll we'll
+look at examples of graphical models
+that we've already seen so far. So,
+we'll look at how naive bay and logistic
+regression can be viewed as bay nets. um
+and then we'll talk about how to do
+inference in bay nets.
+So a probabilistic graphical model is a
+way of representing a probability
+distribution in a way that the the
+distribution can be represented can be
+can be encoded
+um such that we can read off conditional
+independence structure from a graph.
+Okay. And and I'll I'll explain how that
+works. But the idea is we want to to
+encode you know what variables are
+independent of other variables given
+other variables um based on or encode
+that in a graph so that we can use graph
+algorithms to do inference and learning.
+And this is all just about how we
+abstract the idea of conditional
+independence which is a very statistical
+idea which is probabilistic.
+um and abstract it in a way so that we
+can use
+uh you know computer science to think
+about how to efficiently
+reason about probabilities. So here's an
+example. This is a basian network that
+describes a conditional independent
+structure. And what makes it a basian
+network is that it's
+uh the the the the distribution is
+represented by a bunch of variables
+which are the nodes in the graph the
+nodes in the network and edges between
+the the variables or directed edges
+between the variables. So they have
+arrows attached to them. They have a
+directionality that describe the
+conditional dependencies.
+So there's a conditional independent
+structure here. And and again, what
+we're trying to describe is a full joint
+probability distribution. So we're
+looking for the full joint probability
+distribution of of P of L, R, and W. So,
+uh, winning the lottery, raining, and
+the the ground being wet. And what this
+basin network structure tells us is that
+this joint probability actually
+factorizes into this form. So
+specifically that uh win lottery because
+it's sitting by itself in the graph and
+it has no connections to any other nodes
+uh it is completely independent of
+everything else and the variable for
+whether it's raining is
+dependent on or or is related to whether
+the ground is wet. Right? And this is
+very this example is obviously a cartoon
+um cartoon yet uh understandable
+situation. Right? The lot winning the
+lottery has nothing to do with the
+weather, but whether the ground is wet
+certainly depends on um the weather. And
+the idea here is that you know there's
+some probability of there being rain and
+then there's some probability of the
+ground being wet given the rain.
+So we can we can continue this. We can
+grow this we can grow this model by
+including other variables. And here we
+might have another variable where uh you
+know if the ground is wet we might
+expect there's some probability of us
+slipping in which case we would have a
+uh conditional probability factorization
+of the joint. Okay so we have the full
+joint probability and we can factoriize
+that into a bunch of bunch of uh prior
+probabilities and conditional
+probabilities
+and we can see that we again have the
+same structure that we had before. So we
+have, you know, P of L by itself, then P
+of R by itself sort of, but but then
+there's a P of W that depends on R and
+then P of S that depends on W.
+And one of the interesting things here
+is that this this whole basian network
+structure
+um shows us that we can ignore certain
+ideas, right? We could have written this
+easily as the P of S given W and R,
+right? because because in some ways
+R determines which conditional
+probability distribution we use for W
+and W then determines what distribution
+we use for S. But if we already know the
+value of W, we don't need to consider R
+anymore. So we can cross that out.
+So to summarize you know this this I
+guess definition by example. A basian
+network
+describes a probability distribution
+among all variables which by putting
+edges between the variable nodes where
+the edges represent um us having a a
+conditional probability factor in our
+factorized probability distribution. And
+it's important to note that that by the
+the structure that we've uh of the
+factorization that the the network
+implies restricts um that structure will
+restrict the different possibilities of
+what distributions we can have um
+you know fit that factorization. So you
+can't actually express all possible
+distributions all possible joint
+distributions um if you're restricted to
+these factorizations.
+So a few interesting things happen when
+you look at these factorizations. So
+consider this new network which is I
+guess slightly a slight variant of what
+we had previously where now we have
+another possibility for why the ground
+may be wet. So the probability
+distribution or the factorized
+probability distribution corresponding
+to this basian network is the following.
+So now we have the probability of R by
+itself. We have the probability of C by
+itself. uh C being the car wash. So it's
+either going to rain or it's going to be
+a car wash. And then we have the
+probability now of wet ground given car
+wash or rain or not. It's not really an
+or car wash and rain, right? The the two
+variables considered together.
+And these variables remember they can
+take multiple states, right? This is the
+this is just a conditional probability
+table that's indexed by the state of C
+and R. So we're not saying that C and R
+are both true. who are saying that
+whether they're true true false false
+true or false false determines the
+probability of W. And another way to
+characterize how a basian network
+translates into a a factorization of a
+joint probability is that we we say in
+general that the probability of X is
+going to be conditioned on the parents
+of X.
+So where X here is wet ground right we
+look at you know what are the parents of
+X and parents in the sense of the graph
+theoretic sense where these are the
+nodes that have directed edges coming
+into this this variable. So we have you
+know what ground is our is our node. So
+what are the parents of what ground?
+Well rain and car wash are the parents.
+So these are the the variables that
+determine which conditional probability
+we're going to use. And you can do the
+same thing with slip. So slip the only
+parent of slip is wet ground. Uh and you
+can do the same thing with rain and car
+wash and who have no parents. So
+therefore they just have you know P of R
+and P of C.
+So you can probably start to imagine how
+this this type of organization enables
+more efficient inference of you know
+figuring out different conditional
+probabilities. is you might be
+interested in uh deriving from the full
+joint probability and uh but before we
+get into that let's look at some
+examples of other distributions we've
+looked at and see how they can be viewed
+as basian networks
+so here are two basian networks and I
+want you to just think about you know
+what do these look like so
+you know what is the joint probability
+of the top one so again for each node we
+look at which parents which variables
+are its parents parents and we say we're
+going to have a probability factor that
+is the node conditioned on its parents
+and in this case each of the nodes or
+each of the x nodes x1 through x5 has y
+as its parent right only one parent and
+that means that we have the probability
+distribution of you know it's going to
+contain all these terms that have to do
+with uh the probability of x given y
+so that should seem a little familiar
+And then on the bottom we have something
+we have the opposite. We have now x's
+are you know have the arrows are coming
+out of the x's toward the y which means
+that the x's have no parents but the y's
+or the each y has all the x's as its
+parents.
+So these are the distributions
+corresponding to these basin networks
+and you can see that the these should
+look familiar. So at the top we have the
+naive bay
+factorized distribution, right? It's it
+we make the it's essentially the
+conditional independence assumption
+about the features given the labels. And
+then on the bottom we have something
+that looks kind of like logistic
+regression. It's not exactly the same
+thing because we actually have the input
+likelihood here, right? We have P of X.
+Um but if you divide out P of X, then
+you end up with u you know P of Y given
+X where X is the full input. It's all
+the dimensions of the input.
+So if we think about it now, especially
+for the case of naive bays, we we know
+that we were able to compute things
+pretty efficiently with naive base,
+right? We didn't have to worry about
+some gigantic probability table that
+considers, you know, if there's
+dimensions. We have k to the d possible
+probabilities for y, right? That would
+be the worst case scenario if we had to
+consider a P of Y given X for an
+arbitrary joint distribution. It really
+simplified to the point where we just
+needed to add up all these log
+likelihoods for each dimension.
+And that's really an instance of the
+power of basian networks but where basin
+networks generalize beyond naive bays.
+And on the bottom we actually have the
+opposite effect where if we were to
+implement this you know in the most
+general way the probability table of p
+of y given x1 x2 x3 x4 x5 would be huge
+right again we'd this is exactly what I
+just just described we would have to
+consider
+uh you know k to the five different
+possibilities for p of y given whatever
+the states are of x1 through x5
+And what we did instead was we
+parameterized this right we we didn't
+consider all possible probabilities we
+just considered the probabilities that
+would come out of a logistic squashing
+of you know a linear uh combination of
+the x variables and that's a big
+restriction right in general that you
+know quickly or strongly restricts the
+the space of possible distributions we
+might be interested in in in
+representing.
+So from uh so from these examples you
+should be able to see that you know
+naive bay has a in some sense a nice in
+quotes um
+probability distribution in terms of
+efficiency and then and then the
+downstairs thing which we've we've shown
+we can parameterize to make logistic
+regress regression but in general the
+probability distribution that's
+described in the bottom is not nice
+right in the sense that it's expensive
+to to think about the bottom
+distribution So then looking at the
+graphs, what is it about the top graph
+versus the bottom graph that make them
+more or less efficient or more or less
+expensive to reason about?
+And that gets us to the idea of
+independence. And what the naive base
+graph really takes advantage of is this
+conditional independence, which was the
+the fundamental assumption. It was the
+the the first thing we talked about that
+enabled it to be be uh inexpensive to
+work with.
+And in a bayet in a general baset that's
+not necessarily just this one layered
+thing like the like the baze naive baze
+graph um in in general the idea in
+independence is that each variable is
+conditionally independent of its
+nondescendants given its parents which
+is kind of a you know a lot to think
+about. So let's look at some examples.
+So consider
+this basian network on the right and
+let's look at the variable C. So
+variable C uh you know has a parent A
+and let's say we observe A. So at this
+point what variables are independent of
+C? Now we know E depends on C because E
+is C's descendant or more specific
+specifically it's its child. Um but the
+according to the rule that on the left B
+and D are independent of C and you can
+write out the probability distribution
+described by this basian network and
+work this out and see why it's true. But
+then furthermore you can do things like
+considering the variable E and suppose
+we observe the parents C and D. So we
+know the value of C the variables C and
+D and we want to consider is the
+variable E dependent on any of the other
+variables on top and the answer is no
+because according to the rule again you
+know C and D are the parents and E has
+no non- descendants so E becomes
+independent of A and B and again you can
+work out the math to see why this is the
+case if you just you know write out what
+the probability distribution is
+described by this network and another
+rule for independence and basic networks
+is that each variable is conditionally
+independent of any other variable given
+its marov blanket which is a new term
+here most of you probably have not heard
+about it but a marov blanket is the uh
+the set of all parents children and
+children's parents of a node so in a
+family tree uh nomenclature that would
+be something like the the parents the
+children which are easy and then the
+children's parents you know kind of have
+a weird interpretation um but you can
+think of it as like spouse houses or
+co-guardians of of the children. So, so
+in this case, uh here's an example. So,
+node C has a marov blanket that includes
+A, E, and and D. So, A is a parent, E is
+a child, and then D is a child's parent.
+So, you know, if this were a family
+tree, that might be that may might be C
+and D may might be spouses or
+co-guardians of E. Um but you know the
+analogy breaks apart a little bit but
+the idea is that
+once you if you ever observe all of the
+members of the marov blanket then that
+variable becomes completely independent
+of every other variable in the network
+and that makes that makes things a lot
+easier and a lot more efficient to
+reason about.
+So let's think about how we can use this
+independence
+especially in the task of inference. So
+given a basin network um you know
+describing a joint distribution of X Y
+and Z you know one question we might ask
+that's that's a a problem of inference
+is what is P of Y right what is the the
+marginal probability of of one variable
+which would essentially require us to to
+enumerate or sum over all the possible
+settings of X and Z all the remaining
+variables
+and the first approach is enumeration so
+let's look at what that would look like.
+So if we have the um the same
+distribution we looked at before
+uh this was the rain wet uh slip and a
+car wash example. We had this structure
+this basian structure. So it was uh you
+know P of R and P of C had no parents. P
+of W had C and R as parents or W had C
+and R as parents and S had W as a
+parent. And let's say we're trying to
+figure out the probability of R given S.
+So we're trying to figure out the
+probability that it's raining given that
+we slipped, right? So we walked down the
+street and we slipped on the ground and
+we're now we're wondering, you know, is
+it raining? Now it's kind of a silly
+question. Imagine, you can imagine this
+could happen to a robot. So, a robot is,
+you know, rolling down some street on
+some mystery planet that is that it's
+exploring and it slips and it doesn't
+have, you know, weather sensors. So, now
+it's it's trying to figure out based on
+its locomotion sensors whether it's
+raining.
+And the way we would do that, the way we
+would write that out is we would want to
+divide or sum up the joint pro the joint
+probability of all the variables for all
+the possible settings of W and C. Right?
+those are the variables we don't care
+about. And then we'd want to divide out
+the probability of S.
+Um, and but for the dividing out, let's
+just say we could normalize that out.
+Um, and so we would just say that it's
+proportional to summing out all the
+variables that are not involved in our
+in our uh target distribution, right?
+We're looking for P of R given S. So we
+want to sum out all the other variables,
+which is C and W.
+And here here I've written the
+factorized form of the joint
+distribution. But in general this is
+just the idea that we want to sum out
+the joint distribution the joint
+probability.
+And this is expensive, right? Doing it
+doing it the way that's written out is
+expensive because
+um you know we have to enumerate over
+all the possible settings of W and C and
+and that's bad already in this example.
+But in general that's you know that's
+essentially like O of N variables for
+which you have to consider the joint
+setting of so that's like uh you know K
+to the O of N uh which is really huge.
+So we want to think about how we can use
+the basian network structure to
+alleviate this problem. And it's not so
+much the structure. I mean you can see
+it right on the screen. Um it's it's
+right there in algebra uh for this
+example. But in general when we have
+these uh basian networks as inputs we're
+going to be dealing with distributions
+that are a lot harder for a human to see
+how to simplify. But let's try to
+simplify this case. So we have you know
+a sum over w and a sum over c. And what
+the essentially the essentially the
+trick that we're going to try to do is
+we're going to try we're going to try to
+uh pull out terms that are not affected
+by the variable being summed over. So
+for example, P of R is not affected by
+either W or C. So it gets pulled all the
+way out to the to the top. Um P of W,
+excuse me, P of S given W is not
+affected by C. So that gets pulled out
+of the C summation. And then that that's
+as far as we can get. So then now we're
+down to you know a slightly simplified
+uh form but it's still pretty expensive
+because if you look at this we
+eventually are going to sum over this
+distribution P of W given C um R which
+is a case where we have to look up a
+probability distribution over two
+variables. And and in general, if you
+have, you know, two or excuse me, if you
+have n binary variables that are in the
+conditional, uh, you know, you need two
+to the n different probability
+distributions that you need to be able
+to look up. So that that's expensive. We
+don't we want to try to avoid this. But,
+uh, for now, this is this is, uh, how
+you do enumeration.
+And you can view this as a tree.
+Sometimes it's helpful to think of it
+that way. So, we want to consider all
+the possible settings of W and C. And
+because these are binary variables that
+are either true or false uh we can we
+can draw it out nicely as a tree. So we
+have P of R sort of by itself. Uh and
+then we have to sum up over all
+possibilities of this you know second
+subree of P of S given not W and P of S
+given W. So on the left is not W on the
+right is W. Uh and then down at the next
+level we want to then sum over all the
+possibilities of C right not C or or C.
+Um and and so maybe this is a useful way
+of of breaking this down, but overall
+the idea of enumeration is the wrong
+idea because it's not fully taking
+advantage of the independence here, but
+it's useful to think about because it's
+uh it's it's it's the goal that we're
+going to try to accomp accomplish, but
+we're going to do it in a more efficient
+way. So instead, what we're going to
+look at is the technique of variable
+elimination. And it's it looks at the at
+the very at the beginning it looks
+almost the same as enumeration.
+So so we we have this summation over the
+joint probability distribution that's
+described by the basin network. But
+because of the way that the basin
+network has split up all these
+independent terms or conditionally
+independent terms, we can we can try to
+isolate one variable at a time. And
+we'll do this by looking you know in
+this example let's look at the C
+variable first. So these are the terms
+that depend on the C variable.
+So let's now have a you know function.
+We'll make a function C or excuse me F
+of C that will uh you know take in some
+W which is the other variable that this
+depends on and outputs the summation of
+the over C for all these values and and
+what we gain is now let's think about
+what the size of this function is. So
+this function you know it has to be
+computed uh by summing over all possible
+c's right so there so there is some cost
+here so it's but that's only two or it's
+k in general but but in this binary in
+since the c variable in our example is a
+binary variable it's just you know two
+terms that we have to sum over and then
+at the end we end up with a function
+that has two settings right it can it
+gets w as input so it can either get a
+true or a false as input so we're going
+to have to do this twice
+But that's not too bad. And then we can
+once we once we have that function, we
+can rewrite the original probability
+that we're interested in or this this
+thing that's proportional to the
+probability we're interested in um as
+the following. Right? Now now we have
+the same summation of all the terms that
+didn't depend on C and then just this f
+of C function. So we we've replaced the
+summation over C with a a function.
+So let's run through a more general
+example. So here we have
+a probability distribution over uh four
+variables wx y and z. And let's say
+we're trying to find the probability of
+y.
+Okay. And then the the the brute force
+way of writing this or the the the the
+full way of writing this is that you
+you're going to sum over all of the
+variables that are not in our target
+probability. So we're going to sum over
+w, x, and z.
+and let's run variable elimination. So,
+so the idea is we're going to pick a
+variable. We're going to eliminate it by
+replacing it with a function. Replacing
+the terms that affect that variable with
+a function. Okay, let's do W first. So,
+what are the terms in this summation or
+excuse me, in this joint probability
+distribution that's been factorized?
+What are the terms that depend on W?
+So, these are the terms, the P of W and
+the P of X given W. And those are the
+those are the only terms that depend on
+w. So from there we've just now defined
+a new function that takes in x. And and
+by the way we have to think about you
+know what what should the input to this
+function be then and we should look at
+the terms that are affected by w. So p
+of w and p of x given w and think about
+what are the other variables in these
+terms. And in this case the other
+variables are just x. There's just one
+variable that's that's not w. And what
+we've done by replacing this with a as a
+uh this summation over w as with a
+function of x is that we've eliminated w
+from the equation. Right? So now this is
+the new equation. And so you can see
+there's no more summation over w and
+there's no even there's not even a
+mention of w. I mean it's sort of in the
+subscript but that's not that's not like
+the set that's not the state of w that
+it has to consider. It's just that it's
+just a index saying that we're this used
+to come from the variable w. So we've
+eliminated the w variable and now we can
+continue. So let's continue. So let's
+pick the variable x now to eliminate. So
+what are the terms in this function that
+depend on x?
+So here here are the terms that depend
+on x. And uh and we can uh see that the
+the other variables that are the input
+to this
+uh or to the input to the functions that
+depend on x is just the y variable. So
+now we have the a term that's f of x of
+And then finally we plug that one back
+in and we end up with this. So now we've
+eliminated the x variable and we
+eliminated the w variable before that.
+Now we're all all we're left with is Z
+which we can just sum up and we're done.
+Right? Then we have computed the
+probability table for P of Y. Right? Not
+just not just P of Y given an input Y
+but we can actually now we've now
+actually computed the marginal
+probability of Y.
+So that was, you know, an example of
+variable elimination, but where I've
+I've sort of just gave you uh an order
+to to eliminate in. And in general, you
+want to be smart about what order you do
+because what order you use for
+elimination because it can strongly
+affect the computational cost of
+variable elimination. Right?
+Technically, you can use any order,
+right? the the the math will work when
+you use any order, but some orders will
+will eliminate large tables quicker and
+others will keep them around longer. And
+a lot of that reasoning comes in by
+looking at the structure. So, let's
+think about the structure of this this
+basin network. Um, and if you just draw
+out all the conditional probabilities
+that I that I wrote up at the top, you
+can see that this is a chain structure
+uh basing network, right? So there's a W
+that points to an X that points to a Y
+that points to a Z.
+So let me summarize variable elimination
+uh on one slide. And the idea is that is
+based on the idea that var every
+variable that is not an ancestor of a
+query variable or evidence variable is
+irrelevant to the query. So let's think
+about that. So every variable that is
+not an ancestor of a query variable or
+evidence variable and and in this case a
+query variable is the variable you want
+to uh you want to output the probability
+of and evidence is something you might
+want to condition on. So in both cases
+those are ones where that's what we we
+want to we want to leave those alone. We
+don't want to eliminate those. But then
+everything else should be eliminated.
+So here's the process. You iteratively
+do this. You choose some variable to
+eliminate from the set of non-query and
+non-evidence variables and you sum all
+the terms that are relevant to the
+variable and you generate a new factor
+and that new factor will take in as
+input any other variables that are
+affected by these terms
+and then you just keep doing that until
+there's no more terms to evaluate or no
+more variables to eliminate rather.
+Now in you know we we there's no free
+lunch here. um exact inference with
+variable elimination in general is NP
+sharp P hard. So that's worse than NP
+hard. Um and but there are certain cases
+there are certain types of basing
+networks for which we can we can prove
+that if you use a use the right variable
+elimination order you can get uh
+polomial time or or in in actually in
+even better news in certain cases we can
+get linear time. So for a tree
+structured basian network we can get uh
+a linear time variable elimination and
+we're going to use that specifically in
+in chain structured basian networks
+where we can figure out the order very
+easily. It's it's actually we just go
+essentially we just go in order uh of a
+chain where that means we're going to be
+able to do variable elimination or exact
+inference in linear time.
+So this is one of the the foundational
+methods for inference in a basian
+network. But now what about the question
+of learning? How do you do learning in a
+basian network? So assume that we have a
+fully observed situation where we can
+see you know we have a bunch of training
+examples that that tell us the state of
+every single variable in our
+distribution. Now if that's the case
+learning is super easy and we all
+already saw this with ba with a naive
+bay right? It was just counting, right?
+Estimate each conditional probability
+just like we did for naive bays. All we
+do is just count the probability of, you
+know, each variable given its parents
+from our training set. And then we might
+add some priors like we did for naive
+bays to prevent overfitting or to
+prevent situations when we have don't
+have enough data uh from going going
+crazy. But overall, this is really easy.
+There's no, you know, it is technically
+an optimization. We showed this in our
+derivations, but it's such a simple
+optimization that you just end up
+counting and dividing by the number of
+examples.
+And that's really good news. And then
+the the slightly less good news is that
+there's also ways to do this when we
+don't fully observe everything. And
+we'll talk about that in the next class
+or the next video. But of course, you
+should already have a hint as to how
+we're going to solve this because we
+solve that problem uh when we have
+unobserved or latent variables uh with
+the Gaussian EM example.

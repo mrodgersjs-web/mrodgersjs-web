@@ -1,0 +1,752 @@
+The AI agent space has never been more
+powerful, and has never been more
+scattered. Claude code lives in one
+terminal window. Open claw runs in
+another. Hermes agent is open in a
+third. Each one has its own
+configuration files, its own model
+context protocol setup that you have to
+maintain separately, and its own
+conversation history that disappears the
+moment you close the session. The tools
+themselves are genuinely impressive, but
+managing all of them at the same time
+feels like running five different
+applications just to do one job. That's
+not a workflow. That is a context
+switching task that adds up every single
+time you sit down to work. And it's not
+just those three. The same problem
+applies to Codex, to Quinn code, to
+Goose AI, to Augment code, to GitHub
+Copilot, and to every other command line
+agent that has landed in the last year.
+Each one asks you to treat it as the
+center of your development universe.
+When in reality, most developers are
+already juggling two or three of these
+tools depending on the task. There's
+been no common layer that brings all of
+them together until now. Ion UI is a
+free, open source desktop application
+built to be exactly that layer. It sits
+above your existing agents, unifies them
+inside a single workspace, and adds a
+layer of capability on top of all of
+them without asking you to give up the
+tools you already use or trust. In this
+video, we're going to break down what
+Ion UI actually is, how its core systems
+work, what makes it different from
+anything else in this space right now,
+and who it is genuinely built for. If
+you find this kind of deep dive content
+useful, go ahead and hit the like
+button. It genuinely helps this channel
+reach more developers and AI enthusiasts
+who are looking for exactly this kind of
+breakdown. If you're new here, subscribe
+so you do not miss future videos on AI
+agents, open source tools, and
+everything happening in this ecosystem.
+And if you know someone who is already
+using Claude code, Open Claw, Hermes
+agent, or any of the other tools we're
+going to cover today, share this video
+with them because this one is directly
+relevant to how they work. With that
+said, let's get into it. Ion UI is a
+cross-platform desktop application built
+on Electron and React. It runs on macOS,
+Windows, and Linux. It is completely
+free and fully open source under the
+Apache 2.0 license. As of April 2026, it
+has accumulated over 22,000 stars on
+GitHub with more than 4,400 commits,
+which tells you this is not an abandoned
+side project. This is something being
+actively built, actively maintained, and
+actively used by a growing community of
+developers. At its core, Ion UI is a
+unified workspace for AI agents. The
+simplest way to think about it is this.
+Instead of your agents living inside
+separate terminal windows with no
+awareness of each other, Ion UI gives
+all of them a shared home. One
+interface, one place to manage sessions,
+one place to handle configurations, one
+place to see what every agent is doing.
+The goal is not to replace the agents
+you already rely on. The goal is to make
+running all of them together a coherent
+experience rather than a fragmented one.
+Now, there's an important distinction
+worth making right at the start because
+it shapes everything else about how Ion
+UI works. Ion UI ships with its own
+built-in agent engine. You do not need
+to have Claude code, Open Claw, Hermes
+agent, or any other command line tool
+installed on your machine to start using
+it. You sign in with a Google account to
+access Gemini for free, or you paste in
+any API key from any provider you
+prefer, and you are up [music] and
+running immediately. Full agent
+capabilities out of the box, including
+file reading and writing, web search,
+image generation, and model context
+protocol tool support, all available
+without touching a terminal. For someone
+who want a capable AI workspace without
+any setup overhead, that path is
+completely available. But the deeper
+value of Ion UI opens up the moment you
+bring your existing command line agents
+into the picture. When you have Claude
+code installed, Ion UI detects it
+automatically. When you have Open Claw,
+Hermes agent, Codex, Quinn code, Goose
+AI, or any of the other supported tools
+on your machine, Ion UI finds them and
+surfaces them inside the same workspace.
+No manual path configuration, no extra
+setup steps. The detection is automatic.
+And from that point forward, all of
+those agents exist inside a single
+environment that is aware of all of them
+at the same time. That is the
+foundation. Everything else we're going
+to cover in this video builds on top of
+it. One of the most important things to
+understand about Ion UI is the breadth
+of what it supports. This is not a tool
+built around one or two headline agents
+with token mentions of everything else.
+The supported roster is extensive, and
+it covers essentially every major
+command line agent that matters in the
+developer ecosystem right now. On the
+coding agent side, you have Claude code,
+which is Anthropic's official command
+line developer tool and one of the most
+widely used agents in professional
+development workflows today. You have
+Open Claw, which takes a fundamentally
+different approach through its gateway
+architecture and skill registry, making
+it one of the more extensible options
+available. You have Hermes agent, which
+is built around a self-improving
+learning loop and layered persistent
+memory, a design philosophy that sets it
+apart from most other agents in this
+category. And then beyond those three,
+the list keeps going. Codex from OpenAI,
+Quinn code, Open code, Goose AI, Augment
+code, GitHub Copilot, Kimmy CLI, iFlow
+CLI, Factory Droid, Co-buddy, Mistral
+Vibe, Nanobot, and Coder CLI are all
+supported, all auto-detected, and all
+living inside the same unified
+workspace. Ion UI also has its own
+native agent called Ion CLI, which is a
+Rust-based backend that shipped as a
+full production option in the most
+recent release. It now appears as the
+first option in every agent selector
+across the app, on the guide page, in
+the preset assistant configuration, and
+in the scheduled task editor. So even
+outside of the external integrations,
+Ion UI is developing its own backend
+agent stack in parallel. What makes the
+auto-detection mechanism worth
+highlighting is what it means in
+practice. There is no manual
+registration process. There is no
+configuration file you need to edit to
+tell Ion UI which agents you have
+installed. You install a command line
+tool the normal way you always would,
+and when you open Ion UI, it finds it.
+That design decision removes an entire
+category of friction that most
+multi-agent setups require you to deal
+with up front. The agents just show up.
+It's also worth noting how different the
+philosophies behind these agents
+actually are. Claude code is Anthropic's
+first-party tool, tightly integrated
+with Claude's capabilities and optimized
+for that specific model. Open Claw is
+built around extensibility and
+monetization infrastructure with an
+entirely different architectural
+approach. Hermes agent is focused on
+memory and continuous self-improvement
+across sessions. Codex represents
+OpenAI's approach to the same problem.
+Quinn code brings a strong open weight
+model into the command line agent space.
+These are not interchangeable tools.
+They each have distinct strengths,
+distinct use cases, and distinct
+audiences. Ion UI does not try to
+homogenize them or abstract away what
+makes each one different. It simply
+gives all of them equal standing inside
+a single workspace and lets you decide
+which agent is the right one for any
+given task. That combination of breadth,
+automatic detection, and respect for
+each agent's individual identity is what
+makes the multi-agent foundation of Ion
+UI genuinely useful rather than just
+impressive on paper. When you look at
+what Ion UI actually does beyond agent
+detection and session management, the
+feature set breaks down into a handful
+of systems that each solve a distinct
+and real problem. None of these are
+cosmetic additions. Each one addresses
+something that developers running
+multi-agent workflows genuinely run
+into, and understanding how they work
+individually is what makes the full
+picture of Ion UI click into place. The
+first is parallel sessions. Inside Ion
+UI, you can run multiple agents at the
+same time, each operating with its own
+independent context. Claude code can be
+working through a code base refactor in
+one session while Open Claw handles a
+completely separate task in another, and
+Hermes agent runs a third workflow
+alongside both of them. All of this is
+visible from the same desktop workspace
+simultaneously. There is no terminal
+switching, no window hunting, no losing
+track of which session is doing what.
+Conversation history for every session
+is stored locally in a database on your
+machine, which means nothing disappears
+when you close the app. The next time
+you open it, every conversation is
+exactly where you left it with full
+context intact. The second system is
+unified model context protocol
+management. And this one is arguably the
+most practically valuable feature Ion UI
+offers for anyone already deep in the
+agent ecosystem. The model context
+protocol has become the standard way to
+extend AI agents with external tools,
+giving them access to databases, APIs,
+file systems, and custom capabilities.
+The problem is that every agent manages
+its own configuration separately. If
+you're running Claude code, Open Claw,
+and Hermes agent alongside each other,
+you're maintaining three separate
+configuration files and making the same
+changes in three different places every
+time you add or update a tool. Ion UI
+eliminates that entirely. You configure
+your model context protocol servers once
+inside Ion UI, and that configuration
+automatically syncs across every agent
+connected to the workspace. One change,
+everywhere, instantly. For developers
+who rely heavily on this kind of
+tooling, this is the kind of improvement
+that has a compounding effect on how
+much time you spend managing
+infrastructure versus actually doing
+work. The third feature is YOLO mode,
+which Ion UI also refers to as full auto
+mode. By default, most command line
+agents pause at certain points to ask
+for your confirmation before executing
+an action, like writing a file, running
+a script, or making a change to a code
+base. That confirmation loop is useful
+when you're watching closely, but it
+becomes a bottleneck the moment you want
+an agent to run a long task
+autonomously. YOLO mode is a one-click
+toggle that bypasses all permission
+prompts across every connected agent,
+allowing them to run to completion
+without waiting for human approval at
+each step. Every agent Ion UI supports
+has access to this mode. And for those
+who want the opposite, granular control
+over exactly what each agent is allowed
+to do, the per-agent permission dialog
+system is still fully available as the
+default with a sidebar badge that shows
+pending approvals so nothing slips
+through unnoticed. The fourth system is
+scheduled tasks, and this is one of the
+features that most clearly signals what
+Ion UI's long-term vision actually is.
+You describe a recurring task in plain
+language, something like, "Every morning
+at 9:00, summarize yesterday's Git
+commit log. Ion UI converts the
+description into a scheduled job and
+runs it automatically on that schedule.
+Each scheduled task is bound to a
+specific conversation, which means it
+carries context across every run rather
+than starting fresh each time. When a
+task completes, the results come back
+into the conversation window. And if
+you're not at your computer, those
+results can also be pushed out to
+Telegram, Lark, or DingTalk, so your
+agents are reporting back to you through
+the communication tools you already use.
+The ability to run agents on a schedule
+with persistent context and receive
+their output in a chat notification,
+that fundamentally changes what an AI
+agent can do for you on a daily basis.
+The fifth feature is the web interface
+and remote access system. Ion UI can run
+as a standalone server, serving a full
+web interface that is accessible from
+any device on your network. Both local
+network access and cross-network access
+are supported. What this means in
+practice is that the desktop application
+is not anchored to the machine you
+happen to be sitting in front of. Your
+agents can be running on powerful
+workstation or remote server, and you
+can interact with them from your phone,
+your laptop, or any other device without
+any additional setup. Combined with the
+bot integrations for Telegram, Lark, and
+DingTalk, you can send instructions to
+your agents remotely and receive their
+outputs directly in your messaging apps,
+which turns Ion UI from a desktop tool
+into something closer to a persistent,
+always-on agent infrastructure layer.
+The sixth feature is the file management
+and preview system. Ion UI includes a
+built-in file preview panel that
+supports a wide range of formats, giving
+you visibility into what your agents are
+actually producing without leaving the
+workspace. Beyond preview, it tracks
+file changes as they happen, maintains a
+version history of modifications, and
+supports one-click rollback to any
+previous state. For developers working
+on codebases where agents are actively
+reading and writing files, this is not a
+convenience feature. It's a safety
+layer. You always know what changed when
+it changed, and you can undo it
+instantly if something went in the wrong
+direction. Taken individually, each of
+these systems solves a specific friction
+point. Taken together, they form a
+coherent infrastructure that makes
+running multiple AI agents in parallel a
+genuinely manageable workflow rather
+than an exercise in constant manual
+oversight. Everything covered so far has
+been about running agents in parallel
+with multiple agents and multiple
+sessions all operating independently
+inside the same workspace.
+&gt;&gt; [music]
+&gt;&gt; Team mode is a different concept
+entirely. It is not about running agents
+side by side. It is about running them
+together as a coordinated system, where
+each agent has a defined role, a
+specific responsibility, and a shared
+understanding of the overall task.
+Here's how it works. When you activate
+team mode, you designate one agent as
+the leader. That leader receives your
+high-level instruction, whatever the
+task is, and its job is not to execute
+that task directly. Its job is to break
+the task down into a set of subtasks,
+propose which agents should handle each
+one, and delegate accordingly. The
+teammate agents then receive their
+assignments and begin executing in
+parallel, each one working through its
+piece of the problem independently. As
+they complete their work, results are
+shared back through a messaging system
+between agents, and progress is written
+to a shared task board that both the
+leader and you can see at any time. The
+leader can also pass file attachments
+directly to teammates, which means
+complex workflows that involve handing
+off documents, codebases, or data files
+between agents are handled natively
+within the system. And a team is not
+static once it starts. You can add or
+remove teammates while a session is
+actively running. If an agent goes
+silent, it is automatically escalated to
+a failed state with a one-click removal
+option. So, a single stuck agent does
+not freeze the entire team. The
+underlying coordination layer for all of
+this is the agent communication
+protocol, which is Ionway's own
+multi-agent coordination system. The
+agents that can serve as leader or
+teammate in team mode include Claude
+Code, Codex, Gemini, Snow CLI, and Ion
+CLI, with any other compatible backend
+also supported. Each teammate runs on
+its own model and its own backend, so
+you are not locked into a single agent
+for the entire team. You can have Claude
+Code leading a session with Codex and
+Ion CLI as teammates, each one bringing
+its own capabilities to a different part
+of the problem. Granular permission
+control carries over into team mode as
+well. Each agent in the team has its own
+permission confirmation dialogue, and a
+sidebar badge tracks pending approvals
+across all of them simultaneously. If
+you have YOLO mode enabled, the entire
+team runs autonomously without any
+interruption. [music]
+If you want oversight, you have it at
+the individual agent level. What team
+mode represents is a meaningful step
+beyond what most developers think of
+when they hear the words AI agent. A
+single agent working through a task
+sequentially is useful. A team of
+specialized agents breaking a complex
+problem into parallel work streams,
+executing simultaneously, and
+synthesizing results through a shared
+coordination layer, that is a
+fundamentally different class of
+capability. And Ion UI makes it
+available inside a desktop application
+without requiring you to write
+orchestration code, set up a framework,
+or manage the infrastructure that would
+normally sit underneath a system like
+this. The practical implications are
+significant. Tasks that would take a
+single agent a long time to work through
+one step
+[music]
+at a time, such as large codebase
+refactors, multi-step research
+workflows, or complex document
+generation [music] pipelines, become
+candidates for parallel execution across
+a coordinated team. The ceiling on what
+you can delegate to your agents moves
+Ollama and LM Studio are both supported,
+which means you can run Ion UI entirely
+offline against a locally hosted model
+if privacy or cost is a concern. The
+built-in agent is genuinely
+model-agnostic, and that flexibility is
+baked into the core of how the
+application is designed rather than
+added on as an afterthought. What this
+combination of the built-in agent and
+the assistant library means is that Ion
+UI has a meaningful answer for two very
+different kinds of users at the same
+time. For developers who are already
+deep in the command-line agent
+ecosystem, it is a unification layer.
+For people who are earlier in that
+journey and want a capable AI workspace
+without the setup overhead, it is a
+complete starting point that can grow
+with them as they add more tools over
+time. To understand why Ion UI matters
+beyond its feature list, it helps to
+zoom out and look at the trajectory of
+the AI agent tooling space over the last
+couple of years. The first wave of this
+category was individual command-line
+agents. Claude Code arrived and gave
+developers a powerful terminal-native
+interface for working with Anthropic's
+models. Codex brought OpenAI into the
+same space. Open Claw built out an
+entirely different architecture around
+extensibility and a skill registry.
+Hermes Agent introduced persistent
+memory and a self-improving loop as core
+design principles. Coin Code brought a
+capable open-weight model into the
+command-line agent category. Each of
+these tools emerged with its own
+philosophy, its own strengths, and its
+own dedicated user base. That wave
+established that the terminal was a
+legitimate and powerful environment for
+AI assisted development work. The second
+wave was orchestration frameworks. Tools
+like LangChain, CrewAI, and AutoGen gave
+developers the ability to build
+multi-agent systems programmatically,
+defining how agents communicate, how
+tasks are distributed, and how results
+flow back through a pipeline. These
+frameworks unlocked serious capability,
+but they came with a significant
+barrier. To use them effectively, you
+needed to understand the framework's
+architecture, write orchestration code,
+and manage the infrastructure sitting
+underneath the system. The capability
+was real, but the accessibility was
+limited to developers willing to invest
+the time to build it. Ion UI sits at the
+front edge of what looks like a third
+wave, unified desktop layers that make
+multi-agent workflows accessible without
+requiring you to build the orchestration
+infrastructure yourself. The agents
+exist, the frameworks exist, but what
+has been missing is a coherent workspace
+that brings everything together in a way
+that does not require you to be an
+infrastructure engineer to use. That is
+the gap Ion UI is directly addressing.
+What sets Ion UI apart within that
+emerging category is the combination of
+depth and openness. The feature set is
+not shallow. Parallel sessions, unified
+model context protocol management, Yolo
+mode, scheduled tasks, remote web
+interface access, team mode with a full
+coordination protocol, a built-in agent
+engine, 20 professional assistants, and
+a three-tier skill system. That is a
+genuinely comprehensive set of
+capabilities for a tool that is
+completely free and Apache 2.0 licensed.
+Apache 2.0 is not a minor licensing
+detail. It means Ion UI can be
+self-hosted, forked, extended, and
+embedded into other tools and commercial
+products without restriction. The
+community can build on top of it without
+asking for permission. The growth
+trajectory is also worth paying
+attention to. The project gained over
+2,700 GitHub stars in a single 3-day
+window in January 2026. It now sits at
+over 22,000 stars with 1,700 forks and
+more than 4,400 commits. The kind of
+momentum in an open source project is
+not manufactured. It reflects genuine
+adoption by developers who are finding
+it useful in their actual workflows.
+There is one honest trade-off worth
+naming here. Ion UI is built on
+Electron, and Electron applications
+carry memory overhead by design. Running
+multiple heavy command line agents in
+parallel inside an Electron wrapper will
+consume more system memory than running
+those same agents in raw terminal
+sessions. For developers working on
+machines with constrained resources,
+that is a real consideration. It is not
+a deal breaker for most use cases, but
+it is worth knowing before you commit to
+building a workflow around the tool. The
+broader point, though, is that the
+direction Ion UI is moving in reflects
+something important about where the AI
+agent ecosystem is heading. The question
+is no longer whether individual agents
+are powerful enough to be genuinely
+useful, because they clearly are. The
+question now is how you manage,
+coordinate, and scale the use of
+multiple agents together without
+drowning in configuration overhead and
+context fragmentation. Ion UI is one of
+the most serious answers to that
+question available right now. And the
+fact that it's free and open source
+means the barrier to finding out for
+yourself is essentially zero. The honest
+answer is that Ion UI covers more ground
+than most tools in this category, which
+means the answer to who it is built for
+is not a single profile.
+&gt;&gt; It is worth being specific about the
+different situations where it makes the
+most sense, because the value
+proposition looks meaningfully different
+depending on where you are in your
+workflow right now. If you're already
+running Claude code, Open Claw, Hermes
+Agent, or any combination of the other
+supported command line agents, and
+you're managing those sessions across
+separate terminal windows with separate
+configurations and no shared history
+between them, Ion UI is a direct
+solution to that specific problem. The
+parallel session management, the unified
+model context protocol layer, and the
+persistent conversation storage address
+exactly the friction that comes with
+running multiple series agents at the
+same time. You do not have to change how
+you use any individual agent. You just
+stop managing them in isolation. If your
+work involves tasks that run long enough
+that staying in front of a terminal
+becomes a real cost, such as waiting on
+an agent to finish a refactor, a
+research workflow, or a document
+generation pipeline, the combination of
+Yolo mode and scheduled tasks changes
+the equation significantly. You set the
+task, you set the permissions level, and
+you let it run. If you have the web
+interface and messaging integrations
+configured, the results come to you
+rather than requiring you to stay
+anchored to the machine. That is a
+workflow shift that compounds over time,
+especially for developers who are
+running agents as part of a larger daily
+process rather than as a one-off tool.
+If you're interested in multi-agent
+orchestration, but building that
+infrastructure yourself with a framework
+feels like more overhead than you want
+to take on right now, team mode gives
+you a working implementation of that
+concept inside a desktop application.
+You define the goal, the leader agent
+handles the decomposition and
+delegation, and the teammates execute in
+parallel. The coordination layer is
+already built. You do not have to write
+it. If you're earlier in the journey and
+you do not have a collection of command
+line agents installed yet, the built-in
+agent with the 20 professional
+assistants is a capable starting point
+on its own. Sign in with Google for free
+access to Gemini, or connect any API key
+you already have, and you have a full AI
+workspace with file capabilities, web
+search, image generation, model context
+protocol support, and a library of
+specialized assistants ready to use
+immediately. Ion UI scales with you as
+you add more tools over time. And if
+data privacy is a consideration in how
+you think about AI tooling, the local
+first architecture is relevant. All
+conversation history is stored in a
+local database on your own machine.
+Nothing is sent to external servers
+beyond the model API calls you
+explicitly configure. For developers or
+teams working in environments where data
+residency matters, that is a meaningful
+architectural choice that most
+cloud-based AI tools simply cannot
+offer. The common thread across all of
+these situations is that Ion UI lowers
+the operational cost of working with AI
+agents seriously, not the cost of the
+models themselves, and not the cost of
+the individual tools, but the cost of
+managing them, configuring them,
+coordinating between them, and building
+workflows that rely on more than one of
+them at a time. That cost is real. It
+compounds as the ecosystem grows, and
+Ion UI is one of the most direct
+attempts to address it that exists in
+the open source space right now. Ion UI
+is a genuinely interesting piece of
+infrastructure for anyone who is serious
+about working with AI agents. Not
+because it replaces the tools you
+already use. It is not trying to do
+that. But because it addresses the layer
+above those tools that nobody else has
+solved cleanly yet. The agents are
+powerful. The problem has always been
+what happens when you need more than one
+of them working together. And the answer
+until now has been a collection of
+separate terminals, duplicate
+configurations, and workflows that fall
+apart the moment they grow beyond a
+certain complexity. What Ion UI brings
+is a coherent answer to that problem.
+Parallel sessions with persistent
+history. Model context protocol
+management unified across every agent in
+one configuration. Yolo mode and
+scheduled tasks for autonomous
+execution. Team mode for structured
+multi-agent orchestration without the
+infrastructure overhead. A remote web
+interface so your agents are not
+anchored to the machine you're sitting
+at. A built-in agent with 20
+professional assistants for anyone who
+wants a capable workspace from day one.
+And all of it free, open source, and
+Apache 2.0 licensed, which means you can
+run it on your own hardware, extend it
+however you need to, and build on top of
+it without any restrictions. The GitHub
+repository is linked in the description
+below. If you want to go deeper on any
+of the systems covered in this video,
+the documentation at ionui.com covers
+all of it in detail. The community is
+active on Discord for English speakers,
+and the project is moving fast, so it is
+worth keeping an eye on the release
+notes as new capabilities land.
+If this video gave you a clearer picture
+of what Ion UI is and whether it fits in
+how you work, the like button is the
+best way to let this channel know that
+this kind of content is worth making
+more of. Subscribe if you want to stay
+current on what is happening in the AI
+agent and open source tooling space,
+because there is a lot more coming. And
+if there is a specific tool, comparison,
+or topic in this ecosystem you want
+covered next, drop it in the comments.
+That is where most of the ideas for
+these videos come from, and the more
+specific you are, the more useful the
+video will be. Thanks for watching, and
+we will see you in the next one.

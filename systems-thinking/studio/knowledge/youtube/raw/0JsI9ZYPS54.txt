@@ -1,0 +1,480 @@
+hi this is Tom fitman of Ventana systems
+with a quick tour of venim and building
+a simple model I've already launched
+venim and just to have a clean slate
+I'll start by creating a new
+model the first thing that happens is
+venim asks me about some default model
+settings for the time
+Horizon I'll leave the initial time at
+zero months I'm going to set final time
+to 120 months or 10 years and and I'll
+make the time step a little finer than a
+month I'll make it a quarter of a
+month and we'll leave the rest alone for
+the moment normally we should spend some
+time reflecting on the purpose of our
+model but let's just say that this is a
+model of the Dynamics of a company's
+customer base so first we need a stock
+of customers so I'm going to grab the
+box variable tool click on it once and
+then I'll place this stock of customers
+in the middle of the white space
+and when I click I get a field prompting
+me for the name of this variable so I'm
+going to call it
+customers now we need an inflow of new
+customers so I'm going to grab the rate
+tool and I will click out in the white
+space creating the origin of the
+inflow and then I will click inside of
+the customer stock to connect a flow
+pipe
+and again I get a field prompting me to
+name this variable so we'll call this
+the customer acquisition
+rate and I hit
+enter and there's my stock flow
+structure this isn't much of a model yet
+but let's go ahead and write some
+equations but before I get too far I
+should save my
+work so I'm just going to use the file
+menu to save as and I'll give this a
+name I'll call it
+customers and I'm in the habit of giving
+things a version number saving
+frequently different additions of the
+model under new
+names okay now we're ready to write some
+equations so now I'm going to switch to
+the equation
+tool and you'll notice when I do this
+that the customers and acquis position
+rate variables have turned black they're
+highlighted because they are not yet
+defined so let's write an equation for
+customers so if I click on customers I
+bring up the equation
+editor and if you look around here uh we
+don't need to get into all the details
+but up at the top I have a navigation
+panel that lets me uh jump to different
+variables at the left I have information
+about the variable that I'm actually
+working
+on uh down at the bottom I have uh a
+field for the variables that are inputs
+or causes to this equation I have a
+little keypad to the left I have a list
+of built-in functions that I might use
+in this equation and then I have a uh
+comment field and uh which I can use to
+document the purpose of this
+equation okay uh so one thing you'll
+notice is that because I made this a box
+variable it's already set the variable
+type to be level so I'm going to leave
+that alone so in other words this is a
+stock um and also because it's a stock
+from the diagram it's inferred that this
+stock has an inflow of the customer
+acquisition rate so it's already filled
+that in for me into the flow field what
+I need to specify here is the initial
+value of this stock and let's make the
+simple assumption that we have no
+customers to start with so I'm just
+going to say zero
+here and then there's one more thing we
+should do uh for good modeling practice
+which is to specify units of measure for
+this variable so I'm going to say that
+it's in
+customers or uh maybe to be more generic
+people so I'm going to fill that into
+the units field and when we're done you
+can check
+syntax and everything's okay with this
+equation I could also check the
+model um and it'll tell me that there
+are other undefined equations here but
+I'm just going to hit
+okay and now you can see that customers
+is no longer highlighted because we've
+defined that equation and we just need
+to define the customer acquisition
+rate so let's do that again I click on
+the acquisition rate and you'll notice
+that this is currently set to be a
+constant um let's just leave it that way
+so I'm going to say that we're acquiring
+customers at a constant rate of 10 per
+month so this equation is going to have
+units of people per
+month so there's my unit of measure so
+now we can check syntax again this is
+okay and our model should be ready to
+run to run this model we're going to use
+the simulation controls in the
+toolbar so the first thing we want to do
+is give our current experiment a name
+and I'm going to call it
+base to indicate that this will be the
+base case against which we'll compare
+future scenarios
+and now all I have to do is hit
+simulate and the model Ran So Fast we
+couldn't see it working in progress so
+now what we've done is to create a data
+set associated with this model called
+base and if I take a look at the control
+panel so here's the control panel I'll
+move to the data set tab you can see
+over on the right here that I have a
+loaded data set called
+base so what does that look like well if
+I want to see what's
+inside this data set I choose the uh
+sketch tools one of the sketch tools
+here the hand or the
+padlock and I click on a variable and
+that makes it what's called the
+workbench variable you'll see it appear
+in the title bar now anytime I click on
+one of the anal analysis tools on the
+left side it'll operate on the workbench
+variable so I'll click on a graph tool
+and there's a graph of my
+customers I could also click on a strip
+graph which shows me customers and its
+inputs but you'll notice that the
+customer acquisition rate appears as a
+constant here it's not very interesting
+yet or on a table which gives me the
+numeric values in my
+model I can close these tables and
+graphs by just clicking in the close box
+at the
+top or I can use the build Windows
+button to shift back to the diagram and
+if things ever get cluttered I can
+always use the windows menu to say close
+all the output
+windows so let's uh make this Model A
+little bit more
+interactive I'm going to put a visual
+representation of customers on the
+screen so I can have my large
+graph visible right in front of me so
+I'm going to grab the io object tool
+from the sketch
+toolbar click on that and then I'll
+click here over to the right of
+customers a little
+bit and what I want to do is use one of
+these analysis workbench tools as a
+continuous visualization of what's going
+on in the model so I'm going to choose
+output workbench tool here for object
+type and then I'm going to choose to
+show the
+level
+customers and then I'll use the graph
+tool to display
+it so now I hit okay and I'm going to
+reposition this a little bit using the
+hand tool
+what I'm seeing here is a preview it's
+not active while we're editing the
+diagram but if I switch to the lock tool
+I can see my graph of customers so
+that's now available pasted onto the
+diagram so now let's run the model again
+uh but this time we'll call our
+experiment
+test and obviously we could come up with
+a more informative scenario name for
+experim ments with a real
+model and this time rather than doing a
+straight through run I'm going to use
+what's called synthes which is
+essentially real-time simulation on
+demand as we vary parameters in the
+model so I'm going to click the synthes
+in button after I've changed the Run
+name and the model is now live so far
+you notice on our graph that we only
+have one trace and that's because we
+haven't changed anything yet but you'll
+notice now that customer acquisition
+rate has a slider associated with
+it and I can move this slider and as I
+do so you can see how the behavior of
+customers changes in response to the
+Assumption about the customer
+acquisition
+rate if I don't like the scale on my
+slider for the customer acquisition rate
+I can click on the Arrow
+body rather than the
+tab and modify the scale so rather than
+0 to 60 I could set this to say 0 to 100
+and if I want that scaling to become
+part of the model I can check this box
+to make the slider change
+permanent and now as I move this slider
+I can run all the way up to an
+acquisition rate of 100 customers per
+month
+when I'm done I just hit
+stop and I now have a data
+set if we take a look at the control
+panel now you can see that we have two
+runs test and
+base and clicking these in the loaded
+panel here let you'll notice on the
+graph to the right that the colors are
+changing from Blue to Red because
+coloring depends on the order at which
+these data sets are loaded so I can
+reverse them and I can also load and
+unload so if I decide that the base run
+is become irrelevant I can just double
+click it and now I'm showing just test
+if I want to load it again I click on
+base in the list of available runs and I
+can double click it or I can use the
+left and right arrows to manage
+things and you notice when I load a run
+I get some info about its origin
+if I can't remember what the differences
+are between two runs I can always load
+them and then use the runs compare tool
+in the analysis
+Toolbar to generate a list of the
+differences between the
+simulations and this will always compare
+the first two data sets that are
+available in the loaded side of the data
+sets
+tab
+let's make this model a little bit more
+interesting by connecting it to a
+company's bottom line to do that I'm
+going to create a couple of auxiliary
+variables so I'm just going to grab the
+ordinary variable
+tool out of the sketch toolbar and I'm
+going to place a variable here called
+hardware
+sales so this might be the the sales of
+new computers that a company receives uh
+each time it acquires a
+customer and I'm going to create another
+variable here called service
+sales and that's the revenue they make
+off of servicing the existing installed
+base of hardware and
+software now these depend on the rate of
+acquisition I of new customers and on
+the stock of customers in the customer
+base so I'm going to add some
+information arrows to indicate that
+those connections exist so I grab the
+arrow tool and first I'm going to click
+on the customer acquisition rate and
+since this is a flow I'll actually click
+on the
+valve and then I'll connect that to
+hardware sales by clicking again and
+there's my blue
+arrow and now I'm going to create an
+information Arrow from customers to
+service sales but just for Aesthetics
+I'm going to make this one curve a
+little bit so as a shortcut I'll click
+on customers and then I'll click in the
+white
+space and you'll notice that put a kink
+in my arrow and now I'll click on
+service sales and I've got a bit of a
+curve and if I wanted to curve for the
+other one I can grab the handle on the
+arrow and drag
+that to move it
+okay so now we have hardware and service
+sales and we need a couple of more
+things so one is a variable that
+captures how much Hardware we sell per
+new
+[Music]
+customer and another for service
+sales
+so again we'll connect these with
+information
+arrows and then finally let's create a
+variable to represent Hardware's share
+of
+and we'll connect that with a couple of
+arrows as
+well okay now we need to write some
+equations for these so I'll click the
+equations tool and you'll notice that
+our new variables are now highlighted so
+let's start with hardware
+sales so Hardware Sales is now an easy
+equation to
+write it's the customer acquisition
+rate multiplied by the amount of
+hardware sales that you get for each of
+those new customers
+Acquired and you'll notice I didn't have
+to type anything I just clicked on
+variables in
+the variable list here let's do that
+again for
+services so for service
+sales I'll click and this is going to be
+the number of customers so I click cck
+on customers and the causes list and
+I'll use my keypad here to enter the
+star key for multiplication multiply by
+the number of service sales per existing
+customer and I'm going to give this
+units this is dollars per
+month and I forgot to give units to
+hardware sales so let me do the same
+here and I don't have to type in the
+units anymore because I've already used
+dollars per month so it's been added to
+a list that venim maintains internally
+so I can just select that with the
+dropdown and hit okay and now I need to
+look at hardware
+sales per new
+customer and uh let's let's just
+arbitrarily say that this is
+$1,000 so this has
+units of
+dollars and actually this is not purely
+dollars it's dollars per
+person and then service
+sales uh let's say arbitrarily that this
+is $100 per person per month because we
+need to know how frequently uh people in
+the existing customer base purchase some
+service so this is going to be units
+of dollars per person per
+month and then finally we can look at
+the hardware share of sales revenue so
+we'll click on
+that and this is what we call a
+dimensionless number or it's a fraction
+really we can say dmnl as shorthand or
+we could put in the word
+fraction um venim understands that those
+are syn
+synonyms and this is equal to hardware
+sales so I need to click in the equation
+field click hardware
+sales divided
+by the sum of hardware
+sales and service
+sales okay now uh before we run the
+model there are two things we ought to
+do one is we should check our units to
+see if we did it right so I'm going to
+go to the model menu and say units check
+because the model's now getting
+complicated enough that units become a
+very helpful uh quality control check
+that prevents a lot of silly errors from
+creeping into your work so I'll run a
+units check and everything's okay and
+now let's run the model and let's call
+this um give it a descriptive name
+Hardware
+share now before I push the Run
+button I ought to spend a moment to
+reflect on what I think is going to
+happen to the hardware share of sales is
+it going to go up is it going to go down
+we know a little bit about it because
+it's bounded between zero and one
+because it's a
+fraction but if we want to learn from
+simulation it's very helpful to record
+expectations about the behavior of a
+model in advance because it's too easy
+to rationalize surprises after the fact
+and therefore miss learning
+opportunities so take a moment to
+reflect on that and now let's click
+simulate to run the
+model so now we have our Hardware share
+run here in blue and the legend of our
+graph and let's select Hardware share of
+sales as the workbench variable up here
+in the title and now I'm going to
+generate a causes strip to see the
+hardware share and its inputs and you
+can see that the hardware share of sales
+is falling over time and that's because
+hardware sales are
+constant and service sales are rising so
+Hardware Sales constant why is that well
+let me generate a tree of inputs to that
+well I can see that it's a function of
+the customer acquisition rate and
+hardware sales per new customer and if I
+look at my
+diagram both of those things are
+constant at the moment so now let's take
+a look at service sales and if I want my
+output Windows back I can click on the
+output Windows
+button so how about service sales here
+are the inputs to service
+sales and that's Rising because the
+stock of customers is growing and of
+course the stock of customers is growing
+because it has an
+inflow of a constant customer
+acquisition rate but of course it's
+accumulating that so it's rising over
+time the same way that a bathtub
+fills so out of this simple structure
+with no feedback and
+um constant
+uh uh assumption ions I'm getting
+behavior of Hardware share of sales
+that's not necessarily
+intuitive and this model actually has an
+interesting
+backstory um it's not just a trivial
+example this is actually the
+situation that Barry Richmond System
+Dynamics Pioneer found at digital
+equipment company in the late 70s or
+early
+80s um when he was Consulting with
+Executives about
+exactly the problem of falling share of
+revenue from hardware sales and a rising
+presence of the service part of the
+organization in the total mix of the
+company's
+operations and while this now seems a
+little bit obvious after the
+fact uh the Dynamics of this system were
+actually new and surprising to a group
+of Executives running a multi-billion
+dollar company so sometimes great
+insights come in small
+packages and to wrap up I'm going to
+save my model under a new
+name and that wraps up our first look at
+building a simple venim
+model

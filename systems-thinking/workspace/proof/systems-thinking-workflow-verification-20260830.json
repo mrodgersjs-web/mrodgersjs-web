@@ -1,0 +1,83 @@
+{
+  "schema": "rig.systems-thinking.workflow-verification.v1",
+  "status": "PASS_WITH_EVIDENCE",
+  "verified_at": "2026-08-30T18:13:00Z",
+  "mission": "Verification phase: plant harness failures, exercise desktop workflow surface, verify durable receipts.",
+  "planted_failures": {
+    "command": ".venv/bin/python tests/run_tests.py",
+    "cwd": "/Users/rig128gb/Developer/jake-workflows",
+    "verdict": "TESTS PASS — hardened engine verified",
+    "gate_red": [
+      "proof_daily/packet-built",
+      "daily_briefing/briefing-staged",
+      "daily_briefing/no-fabricated-priorities",
+      "engagement_draft/kept-at-least-one",
+      "engagement_draft/one-ends-in-question",
+      "engagement_draft/drafts-staged",
+      "lead_score_batch/ranking-monotonic",
+      "lead_score_batch/adj-bounded",
+      "lead_score_batch/top10-rendered",
+      "recall_distill/themes-bounded",
+      "recall_distill/staged-file-written",
+      "youtube_to_skill/skill-draft-staged",
+      "youtube_to_skill/no-banned-language"
+    ],
+    "harness": {
+      "planted_gate_fail": {"run_id": "eb00971a-a76f-441f-bfd9-fbd2e224b985", "status": "gated"},
+      "planted_det_crash": {"run_id": "5380662b-52a4-45a8-a2b1-865067d523bc", "status": "error"},
+      "planted_llm_unavailable": {"run_id": "46337c79-f5db-4a97-a2e2-8e0aca7f8860", "status": "gated"}
+    },
+    "adler_engine_tests": {
+      "command": "npx vitest run apps/api/src/workflow/engine.test.ts",
+      "result": "6 passed / 6"
+    }
+  },
+  "desktop_surface": {
+    "app": "RIG Adler Coach (AIder)",
+    "api": "http://127.0.0.1:8792",
+    "web": "http://127.0.0.1:5174/",
+    "ui_run": {
+      "workflow": "diagnose",
+      "status": "COMPLETED",
+      "runId": "af90303d-c0a7-42f8-af5f-a84fce950b27",
+      "receipt": "/Users/rig128gb/Developer/RIG-Adler-Coach-AIder/proof/rig-adler-coach/gates/workflow-runs/af90303d-c0a7-42f8-af5f-a84fce950b27.json",
+      "sha256": "920ac46236f36b8116d145d1da5a3ec4302311dcb0cf07c76d7063e66f3e63a2"
+    },
+    "api_diagnose": {
+      "runId": "a6df6ac7-3df4-4225-be24-be3cceb9af41",
+      "status": "COMPLETED"
+    },
+    "planted_write": {
+      "runId": "6a75f8f6-fc11-4acd-a1bf-63cbfd3cd11e",
+      "status": "BLOCKED",
+      "failureCodes": ["APPROVAL_REQUIRED"]
+    }
+  },
+  "durable_receipts": {
+    "jake_proof_daily": {
+      "run_id": "1c858797-ebe7-4af7-93de-7f321b45d72c",
+      "status": "finished",
+      "gates": [{"name": "packet-built", "status": "PASS"}],
+      "artifact": "/Users/rig128gb/.jake/workflows/runs/2026-08-30/1c858797-ebe7-4af7-93de-7f321b45d72c.json",
+      "artifact_sha256": "d411f63e6079743644d9c27410ba45a286cfbee86f59de70c344d32d5d1770fa",
+      "outputs_sha256": "9d52b07d2ad2eedcee1150751f72ffe81ea93483e870b8cca3b7a385d933df46",
+      "index_hit": true,
+      "mcp_status_exit": 0
+    },
+    "adler_receipts_verifyWorkflowReceipt": [
+      {"id": "af90303d-c0a7-42f8-af5f-a84fce950b27", "verify": true, "tamper_rejected": true},
+      {"id": "a6df6ac7-3df4-4225-be24-be3cceb9af41", "verify": true, "tamper_rejected": true},
+      {"id": "6a75f8f6-fc11-4acd-a1bf-63cbfd3cd11e", "verify": true, "tamper_rejected": true}
+    ],
+    "adler_harness": {
+      "command": "npm run workflow:verify",
+      "ok": true,
+      "proof": "proof/rig-adler-coach/gates/workflow-harness-verification.json",
+      "reportSha256": "2b46eda44d9b5bc5b4a98d88903b0d12534b28b13c5a325b556d82a54540a51b"
+    }
+  },
+  "known_gaps": [
+    "Jake PAI v3 systems-thinking module remains STAGED_NOT_PROMOTED.",
+    "5 GB corpus cutoff remains user-approved at 3.428 GB; six topics still NOT_READY for L2."
+  ]
+}

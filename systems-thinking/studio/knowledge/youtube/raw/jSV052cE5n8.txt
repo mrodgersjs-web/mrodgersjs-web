@@ -1,0 +1,2953 @@
+[Applause]
+I'm delighted to be here today and I
+wanted to start out with a roadmap of
+what we will be presenting so I'm going
+to give some preliminaries to sort of
+orient everybody so we're all on the
+same page
+an introduction we'll talk about you
+know what is evidence and and how is how
+do we think of evidence in order to make
+causal inference and then Jose is going
+to take the bulk of the technical work
+he's going to go through potential
+outcomes randomization and matching
+methods and then a very detailed example
+on the impact of natural disaster on
+educational outcomes in Chile and then
+I'll conclude with some practical
+considerations in terms of preliminaries
+what are our goals today well first of
+all it's to provide a conceptual basis
+of cause and effects and may sound very
+simple but we want to be very precise
+we're going to lay out some of the
+causal assumptions and and hence that
+those are the assumptions that you
+should be familiar with by the time you
+leave this tutorial and then to
+understand the strengths and limitations
+of various approaches to causal
+inference our setting today is going to
+focus on binary treatments and sometimes
+we'll call them treatments sometimes
+we'll call them interventions sometimes
+we'll call them call them exposures but
+it's going to be treatment compared to
+comparators so just to two choices we're
+only going to look at a single primary
+outcome we know that in many studies
+there are multiple outcomes that people
+want and for a causal inference about
+which people want to infer causal
+inference but we're not going to we're
+just the one primary outcome we're going
+to talk about a shingle pardon me a
+single sharp hypothesis tests and we're
+going to focus on matching methods and
+Jose will go through those but there are
+many other methods that fit in nicely in
+this framework but we're just going to
+focus because of time today on matching
+methods and finally we're going to we
+want to make inference
+the tutorial is causal inference so
+what's the inference part there are many
+approaches to making inference we are
+going to focus on a rant a randomization
+based inference and so to contrast that
+there's sort of the super population
+focus on inference where you sample some
+population and then you get a patient's
+and you end up getting an estimate of a
+treatment where again you take in the
+sampling variability of that of that
+population the randomization based
+approach is really going to focus on the
+sample of patients you have at hand so
+the sample is fixed and how do we make
+inferences and again going forward that
+will be clear but we wanted to make sure
+there you understand there are lots of
+different frameworks for thinking about
+causal inference I also wanted to
+highlight some of the work that has been
+accomplished by Harvard faculty and so
+what I've done is I've produced just a
+sample of books and so the faculty come
+from the various schools the Faculty of
+Arts and Science the School of Public
+Health in the medical school you may not
+be able to read this exactly but we have
+all of these books are about causal
+inference different perspectives I will
+note I could not find the the real face
+cover of this book so it's so it's a
+template that's not what the book looks
+like if you want to look for a brown
+book it's random if it ends up being
+brown but Miguel Hernandez Robbins so
+again there are many more people here at
+Harvard University that do do causal
+inference across all the schools and so
+I just wanted to highlight that fact for
+you and I do want to acknowledge support
+for work on causal inference this is a
+grant actually Francesca is also on the
+grant from the national institutes of
+general medical sciences and jose work
+is partly has been partly supported by a
+grant from the
+sloan foundation so before I get to the
+now the the introduction of the tutorial
+I do want to say that if you have
+questions we we welcome them so please
+ask them if we find that we're too short
+on time we may say let's defer it and
+talk about it later the problem I will
+have I don't know if Jose will have that
+is I don't know if I'll see you so if
+you're asking a question and I didn't
+you'll make a lot of noise if I can't
+see you ask a question okay so I'm
+really going to talk about what do we
+mean by causal inference and what do we
+mean by evidence for causal inference so
+some of the examples that cut across a
+variety of areas are the following so I
+work in the in the medical area in
+Health Services Research and some
+important questions are whether or not
+your health insurer should cover the
+costs of new procedures new drugs that
+are approved by the FDA and so one
+particular example are do drug code of
+balloons reduce restenosis rates among
+Medicare beneficiaries with a particular
+disease so there we have a treatment
+it's a drug coated balloon and basically
+that just is a drug and explained it
+squishes away the plaque in your
+arteries versus it could be a non drug
+coated balloon the outcome here is
+restenosis and we're looking at a
+disease based population I also do work
+in transportation and in that area you
+could think of safety and so one
+question that may be asked is does low
+pavement marking visibility cause
+nighttime crosses so you know when
+you're driving on the road you're
+thinking where is the line is that
+actually causing nighttime crossers
+versus if you have clear visibility of
+those more marked pavement markings so
+again a causal question
+trademark infringement so you could in
+in the case of the law if you're going
+to say there is infringement what you
+need to show is whether or not a good or
+service causes confusion regarding the
+source of the good or service and so
+there it's you want to know whether or
+not the good or service compared to not
+that good a service is actually causing
+confusion and another example is in
+geophysics I don't know anything about
+this but an example would be does
+planetary wave activity in the lower
+atmosphere cause ion severac total
+electron content changes so this is
+really meant to say or to demonstrate
+causal questions exist in many fields in
+some fields they're harder than others
+we'll get to this later on in the talk
+but if you want to think about
+replication I don't know how we can
+replicate a planetary wave activity but
+again there are things you can think
+about to put your mind in the causal
+inference setting so what is evidence
+and again evidence takes many forms and
+shapes but I think an important point to
+emphasize here it's an accumulation of
+information so you'll get evidence from
+some studies but you're going to get in
+order for it to be real evidence you
+want lots of confirming pieces of
+information to refute or support a
+particular theory we want to ask whether
+or not the finding can be replicated and
+hence that's why we want to look in
+different different study designs
+differs different settings maybe in
+different populations do we find the
+same finding and then the other question
+for evidence is you should really think
+about is there an underlying mechanism
+so we're contrasting this of course with
+predictive inference we can predict
+things using all sorts of information it
+may not make sense to us but we're fine
+if we have a predictive interim it's
+we're predicting well
+but causal infants you really do want to
+think about why is X causing Y and so
+that's the underlying mechanism in in
+medicine there is a hierarchy of
+evidence and so this is actually a a
+pyramid where at the bottom you have in
+vitro test-tube research and as you go
+higher and higher you get two controlled
+studies randomized designs and then many
+randomized designs so again one may
+think that the quality of evidence is
+different but it really depends how well
+the studies been done so the point here
+is many types of studies contribute to
+evidence whether or not they're
+observational whether they're randomized
+whether they're looking in animals but
+you want to make an inference about
+human beings all of that is evidence and
+we need to to think about that and
+understand that if we want to make
+causal inference so certainly in public
+health we always go back to Bradford
+Hill and 1965 would wrote a paper that
+many epidemiologists would refer to in
+terms of what he described as evidence
+needed if you're thinking about a cause
+and effect and so these nine items were
+written in 1965 they still apply today
+you want to look at how strongly the
+cause is related to the effect you want
+it to be consistent you want it to be
+specific is there if you get if it's a
+dose response if you give more of the
+drug do you see more of the effect so
+again there's a gradient there whether
+it's plausible where it's coherent by
+analogy and here I bolded experiment
+because that's argument what's going to
+be our thinking today experimental
+thinking we are going to set up the
+framework of creating evidence with the
+thought and mind of conducting an
+experiment where you have control of the
+treatment assignment the interventionist
+at whatever in your hands I also wanted
+to say that for people that were at the
+conference yesterday there was a
+discussions about big data and
+algorithms so computational algorithms
+in massive datasets so we just want to
+emphasize that clearly these
+opportunities can help the way we
+conduct observational studies but we're
+not going to talk about any specific
+specific considerations with bit with
+big data so we might we're not going to
+talk about much machine learning in this
+workshop it really is a side question
+it's an important side question but
+we're going to focus on the on the
+fundamentals so we know that the amount
+of data is growing at a staggering pace
+and finally we do want to emphasize and
+that will be the the lesson basically
+for today's tutorial is that predictors
+are not founded on causal relationships
+and the use of big data is not a
+substitute for thoughtful study design
+and so we're going to be focusing on
+thoughtful study design today and that
+will be the emphasis so now I'm going to
+turn it over to Jose who's going to go
+through the bulk of the presentation and
+in this tutorial to talk about causal
+thinking
+thank you very much Charlize
+yes we want to do a careful study design
+and carefully talk about causal effects
+and for that we need to introduce the
+right notation so I'm going to start by
+introducing the potential outcome
+framework for causal inference suppose
+that we want to estimate the effect of a
+labor training program on a given person
+i we're going to have this running
+example throughout the most of the of
+the presentation again this example
+about the impact of a labor training
+program ideal in a person single person
+but as it turns out we'll have to do it
+for a sample of people as al explaining
+us in a minute we're going to define
+this notation the potential outcomes
+notation which we're going to say that
+for each unit I in the sample we're
+going to have the outcome that this
+person would have shown under treatment
+and the outcome that this person would
+have shown under control as yi1
+and why i north so in our example we can
+think that this outcome is earnings
+after the labor training program why i
+one would be the earnings that this
+person would have shown if traded
+otherwise if control the problem of
+course is that we get to see only one of
+these states of the world we only get to
+see the outcome of the person if the
+person underwent treatment or if it
+under one control we never get to see
+the two of them and this is what it's
+called a fundamental problem of causal
+inference we would like to estimate this
+contrast this difference between the
+outcome that the person would have shown
+under treatment - the outcome that the
+person would have shown under control
+here
+but I said we never get to see the two
+of them this individual effects are not
+cannot be seen in the data they are not
+estimable so we cannot get to estimate
+this quantity that we wish we would
+estimate so here wish to emphasize that
+a causal effect is a which define as a
+contrast between two competing
+treatments between two well defined
+alternatives when we talk about an
+effect with what we want to be very
+clear not about only what is the
+treatment but what is the alternative to
+treatment the control in this case here
+treatment is undergoing the labor
+training program and control is not
+being part of the problem and it's
+important because in some cases we the
+alternative is not all that well defined
+for example when we ask what is the
+impact of obesity what do we mean
+exactly by obesity and by not being
+obese it's not that clear so this is
+something really important in this
+presentation we're going to be focusing
+on these difference in potential
+outcomes to be precise in a sample of
+Units but I wish to emphasize that we
+could have also focus on this other
+contrast which is the ratio of potential
+outcomes so this is what we would like
+to estimate but we can't because we get
+to see only one realization of the world
+people are treated or their control we
+don't get to see both states of the
+world otherwise causal inference would
+be quite easy in an ideal world we would
+see something that looks like this
+we would be this omniscient researcher
+we would get to see this science table
+as done Rubidoux coalesced where for
+each unit here here I'm highlighting the
+first unit in the in the sample of 10
+units that we have this is the income
+that person one would show under control
+this is the one that it would show under
+treatment this person actually underwent
+control and under control the outcome
+that we get to see is the potential
+outcome under control and the individual
+effects are simply these differences
+so if we were to be the submission
+statistician that gets to see everything
+the problem would be quite easy the
+problem is that in practice in real life
+we're dealing with a table like this one
+which we can call the statisticians
+table where under control we get to see
+the potential out and under control as
+we're showing here we never get to see
+the potential outcome under treatment
+and this difference is it's not
+identifiable from the data all right so
+what can we do we start asking the
+question about an individual effect we
+cannot do that unless we put a lot of
+structure on the problem unless we make
+some very strong assumptions so what
+we're going to do instead is instead of
+asking the question for an individual
+unit we're going to ask can I estimate
+an average effect can I estimate an
+average effect and piously so we're
+going to settle for an average namely a
+sample average treatment effect on the
+treated and that is going to be our
+estimate here and for that it turns out
+that we can do something the statistical
+solution to this fundamental problem of
+causal inference is to settle for this
+average effect and randomly assign
+subjects to treatment and control
+because by randomly assigning subjects
+to treatment and control this sample of
+treated subjects is going to be if you
+wish representative of the sample of
+control subjects and both are going to
+be representative over the overall
+sample of subjects so you can unbiased
+the estimate the effect of treatment by
+taking the average of the outcomes here
+and the average of the outcomes under
+control the difference between the two
+another way to think about this is that
+randomization is going to produce two
+groups at her balance that they're equal
+in expectation randomization is going to
+make sure that these two groups are
+similar in terms of observed and
+unobserved coverage here I'm showing you
+an example of a block pair randomized
+experiment where we're randomizing
+within pairs and choosing this structure
+to UM prepare the ground for talking
+about matching afterwards but it's also
+a good idea to randomize within blocks
+to ensure better balance at the end
+the day the randomisation advises these
+two groups that are similar in
+expectation in terms of things that we
+can see and things that we cannot see
+hence differences in the outcomes of the
+day we can attribute to differences in
+the treatment as opposed to differences
+in confounding variables so that's the
+statistical solution to this problem of
+causal inference randomization let me
+introduce the notation more carefully
+throughout this presentation zi is going
+to be this treatment indicator which is
+going to be one if person eyes assigned
+to that labor training program and zero
+otherwise and we're going to this
+distinguish again between the observed
+outcomes and the potential outcomes so
+it's that equals one here we get to see
+this the observed outcome we get to see
+the potential outcome under treatment if
+set equals zero we get to see the
+potential outcomes under control we're
+also going to have a vector of observed
+coverage and UI is going to be an
+unobserved cover it in the framework
+here everything is going to be fixed
+except on treatment assignment set and
+the variables that inherit the
+randomness from treatment assignment so
+the observed outcomes are going to be
+thought as fixed but the potential
+outcomes sorry the observed outcomes are
+going to be random because they inherit
+the randomness of treatment assignment
+but both the potential outcomes and the
+vector of observe provides an unobserved
+kobarid they're going to be thought as
+fixed so randomness here is coming from
+the randomization distribution of
+treatment assignment all right and we
+wish to estimate the sample average
+treatment effect on the treated
+I wish to highlight that this notation
+is super important it avoids us to make
+many mistakes as I'll say in a second
+but embedded in this notation there's
+this very important assumption called
+the sattva assumption the sattva
+assumption stands for stable unit
+treatment value assumption ad and it has
+two assumptions within this assumption
+first its assumption says there's no
+interference between our units and
+second it says there are no vibrations
+of the treatment beyond the dose encoded
+by that to give you an example the
+meaning of there being no interference
+between units says that participation of
+one subject in the program does not
+affect the outcome of another subject
+this is an assumption that is violated
+in some settings for example in vaccine
+trials if one subject lets a vaccination
+that is likely going to affect the
+outcome of another subject
+right because of contagion so we're
+ruling out this in this notation but
+there are generalizations of this
+notation to take care of that problem -
+and second we're saying there are no
+versions of the treatment beyond those
+encoded by zip by said this means that
+there are no levels of labor training a
+person is part of the labor training
+program or not it's not that you get a
+little or or more of labor training you
+can also extend this notation to doses
+all right but I wish to be very clear
+that the notation here is implicitly
+saying this if we want to think about
+multi value treatments then we have to
+extend the notation this is for binary
+treatments and I think this notation for
+causal inference is a truth because it
+allows us to think carefully about
+causal inference and separate the
+quantities that we wish to estimate from
+the models and estimators that we use to
+estimate those quantities the potential
+utterance framework was developed by
+Nieman and Rubin and Hollen has a very
+nice paper discussing this potential
+outcome framework Robinson Arnon have
+extended this framework to longitudinal
+studies
+and invents and world within a very nice
+econometrics survey paper they discuss
+the advantages of this potential
+outcomes framework and again what they
+say is that this framework allows us to
+decouple the quantities that we wish to
+estimate to then say under what
+assumptions we can actually estimate
+those quantities from the data without
+making any parametric assumptions about
+the methods those come later the
+alternative approach which we can call
+the estimators first approach poses a
+model and then ask the question okay
+under what assumptions is this really a
+causal effect and oftentimes we run into
+trouble by doing that and we ended
+imposing very strong assumptions that we
+don't want to impose so I think it's
+quite handy this notation to talk about
+causal inference again because we start
+by defining the quantities we wish to
+estimate then we talk about assumptions
+identification estimators and so on I'll
+explain more this in a second
+but there's also some criticism about
+about this potential outcome framework
+and here I would refer you to this paper
+by David in just a with a discussion so
+this is the mostly used framework but
+there also other views that you should
+know about
+so randomization is the statistical
+solution to the fundamental problem of
+causal inference let me explain you more
+carefully why is that we said that in a
+randomized experiment the treatment
+groups tend to be similar in terms of
+their observed and unobserved coverage
+such that at the end of the day we have
+this nice table one for covariates where
+we see that the treatment and the
+control groups are similar in terms of
+their means but we also expect the
+distributions of these cohorts to be the
+same across treatment groups
+hence differences in outcomes I can be
+safely explained by difference in
+treatment as opposed to confounding
+variables that we can see but most
+importantly randomization also biases
+in terms of things that we cannot see so
+randomized experiments are the gold
+standard for cosa inference the most
+reliable approach for learning about the
+effects of treatments because
+randomization biases an unbiased
+estimator by construction and second I
+wish to emphasize too because
+randomization gives us a basis for
+inference without resorting to any kind
+of assumptions this what Fisher called
+the recent basis for inference and I
+want to explain these two things
+particularly the second one because this
+is going to be our model for inference
+which is going to be valuable later when
+we move to observational studies and ask
+the question about a hidden kobarid to
+what extent a hidden kobarid can explain
+our significant findings so this is this
+is why I wish to spend some time
+explaining this this second role of
+randomization because it will facilitate
+a mode of sensitivity analysis to hidden
+bias which is really important in
+observational studies all right but
+first let me talk about the role of
+randomization for statistical control
+using fields davis notation for
+independence randomization guarantees
+that the treatment assignment is
+independent of the potential outcomes
+under treatment and under control in
+english this is saying that the flip of
+a fair coin knows nothing about our
+cells the flip of a fair coin knows
+nothing about how my outcomes would show
+under treatment and under control it
+cannot predict it the distributions of
+these two potential outcomes are going
+to be the same across treatment groups
+and therefore the means are going to be
+the same and so on this is something
+that we get in randomized experiments by
+construction
+because we're randomly assigning
+because of this we can estimate the
+average treatment effect on the treated
+from the observed data this is the
+quantity that we wish to estimate the
+to be precise is the sample average
+treatment effect on the treated so these
+expectations are going to be taken over
+the distribution of the random
+assignment that requires some careful
+definition but it can surely be done
+I just wish to emphasize that because of
+Independence you can get to see this
+from the observed data so because of
+linearity of expectations you can write
+this as the difference in means right
+the expectation is a linear operator and
+because of Independence I guess I can
+switch this indicator because since that
+is random the distribution of the
+potential outcomes and their treatment
+and the new control is the same in both
+groups and hence the mean is the same so
+this one independence buys us and then
+if I'm working with the treated subjects
+I get to see the potential outcome under
+treatment so because of this coherence
+of potential outcomes and the observed
+outcomes I can change this for the
+observed data the point being that we
+have written the quantity we wish to
+estimate in terms of these potential
+outcomes very well defined you know and
+then under this assumption that we have
+by designing randomized experiment we
+can identify this we can compute this
+from the observed data for example by
+taking the difference in means in sample
+means between the treatment and control
+group all right and similarly we have
+that in a randomized experiment the ITT
+average treatment on the treated is
+equals to the average treatment effect
+over the overall sample because of that
+assumption over there in the same way
+that we could change this index s here
+this indicators we can get rid of them
+all right so that's the role of
+but there's this other role of
+randomization both an overlooked which
+is really important for inference and
+again it's going to facilitate a
+sensitivity analysis to hidden bias and
+the point is that randomization by this
+physical act of flipping coins like this
+you're physically inducing a
+distribution that can be used for exact
+testing what's the meaning of that that
+we're going to compute p values by
+counting as opposed to resorting to
+distributional assumptions from the
+start we're going to be doing these
+nonparametric tests which i think is
+helpful particularly in smaller samples
+so we're going to consider this null
+hypothesis
+these Fisher null hypothesis also called
+the sharp null hypothesis which says
+there's no effect and no effects it
+means no effect period no effect on
+anybody for all I there's no effect this
+is the first question we're going to ask
+for the day to the data I think it's the
+first question we can ever ask to the
+data a second question we can ask to the
+data is the question about a typical
+effect where the average is zero that is
+also a very good question that's the
+Niemen all hypothesis but we're going to
+start from here you can also do
+randomization based inference for the
+name onion no for the average but I'm
+going to start from here to fix ideas
+all right so no effect means no effect
+what is the testing procedure here well
+the recipe goes as follows first we're
+going to assume that H North the null
+hypothesis holds if it holds if there is
+no effect the observed outcomes are
+fixed right if you're treated I'm going
+to see the same outcome than if your
+control right treatment is doing nothing
+second we're going to consider all the
+possible set of of random assignments
+Omega okay I can randomly assign pairs
+in two to the number of pairwise right
+third we're going to choose our test
+statistic wisely we're going to compute
+the test statistic and then we're going
+to calculate how often I see a value of
+the test statistic that is at least as
+Extreme as the observed one under the
+null hypothesis
+dawn Rubin has a very nice way of
+thinking about hypothesis test on the
+under sharp knew which is he says a
+stochastic proof by contradiction in a
+proof by contradiction we start assuming
+something we push through the logic of
+that something and if we end to
+something that is nonsense then we
+reject that initial hypothesis this is
+the same thing here but there's
+randomness here so we're going to assume
+this holds we're going to push through
+that logic and then we're going to ask
+okay how likely is it to observe a value
+of the test statistic at least this
+extreme it is very unlikely we're going
+to reject the null hypothesis
+that is the logic of hypothesis testing
+and we're going to do this by counting
+here and this example considers much
+pairs and and is taken from this book by
+Paul Rosenbaum on design of
+observational studies we're going to
+have this much bird design where we're
+randomly assigning subjects to treatment
+and control by flipping a coin by
+flipping a fair coin one possible
+treatment assignment is is this one here
+but another one would be to have this
+lady over here being the treatment group
+like here I have just switched them if
+you can see them okay
+another possible assignment is to switch
+these two gentleman's right the flip of
+the Farrakhan would have could have been
+that one and so on we have 2 to the 5 in
+this case 32 possible treatment
+assignments these 2 to the 5 possible
+treatment assignments can be listed like
+this right in the first row we have that
+the first subject in in in every pair is
+assigned to treatment in the last row
+the last subject in the con in in in in
+the the pair is assigned to control is
+the opposite but we have this per design
+in which we have matched before
+randomization subjects on their age on
+their race and then we have randomly
+assign them to treatment and then we get
+to see this outcome under treatment for
+the first subject in the first pair and
+this outcome under control
+for the second subject in the first pair
+and here we can write the difference
+between these outcomes right under all
+these possible treatment assignments
+here I'm highlighting in green different
+possible assignments
+I can compute that difference in pairs
+right
+remember that randomization is doing
+nothing but flipping the sign of people
+so if you two are matched and if you are
+treated and your control if your outcome
+is larger than yours I get to see a
+positive difference under this
+assignment but if under another pair
+another possible assignment I get to see
+the same absolute difference but with a
+Nega but but with a negative value and
+so on so in our experiment say we get to
+see this this different in in outcomes
+in pairs and taking the mean difference
+of all these differences this is the
+value of our test statistic this is not
+the best choice of the test statistic
+but is the traditional one this is the
+sample average treatment effect there
+are more robust test two outliers but I
+think is the best one to start to fix
+ideas but the question is it that in our
+single randomized experiment this is the
+value of the test statistic that we get
+to observe but under other realizations
+of the random assignment mechanism we
+could have in this or this or this or
+this and so on the question is is this a
+large enough value to reject the null
+hypothesis of no treatment effect we can
+answer that question by fixing a
+significance level say 5% the usual
+level and just by Counting so what we're
+going to do here is to sort all the
+values of the test statistic in
+decreasing order and we're going to
+compute the cumulative probability of
+observing a test statistic at least at
+large so here we can already see that
+here I have a larger one a larger one
+and another larger one if we do this we
+see that the observed value of the test
+statistic has this probability of
+seeing an alternative value of the test
+statistic that it's at least at large
+this is a randomized experiment in which
+each pair is randomly assigned to
+treatment and control with the same
+probability 1 over 32 1 over 32 is
+approximately 3% each of these
+realizations has the same probability so
+the cumulative probability of observing
+a value of the test statistic at least
+as large as the observed one is a 19%
+which under the usual level leads us to
+reject the null hypothesis of no
+treatment effect so we do not have so
+here we fail to reject the null
+hypothesis of no treatment effect but
+the point is that for valid inferences
+about the effect of a treatment in an
+experiment it just suffice us to require
+random assignment here we have computed
+the p-values by Counting without making
+any distributional assumptions and
+probability here entered the experiment
+only through random assignment which was
+controlled by the experimenter all right
+so I think it's very important to have
+all these concepts really clear now that
+we move to an observational study
+because in an observational study we
+want to constantly ask ourselves how we
+would have ideally done that grant that
+that's that in the first place ideally
+we would ask answer all our causal
+questions based on a randomized
+experiment we cannot afford to do that
+we have to live with observational data
+but still we want to ask the question of
+how it would have done that experiment
+if we cannot map our observational study
+to then ideal randomized experiment
+we're often in trouble ok and here we're
+going to emphasize methods of adjustment
+that very closely map the design of an
+observational study to that randomized
+experiment we would have done for this
+reason we're going to be using matching
+which has pros and cons it's super
+transparent but it comes at some
+efficiency cost which I'll did I'll
+describe
+all right so I said we would ideally run
+a randomized experiment every time we
+can because randomization buys a
+statistical control namely the law of
+large numbers ensure that the treatment
+and control groups are comparable and
+second we can do correct inferences just
+using random assignment however
+randomization is not always feasible we
+cannot always do this and we have to
+live with it with a study that looks
+like this where we don't only have a
+larger reservoir of control units but
+they also differ in terms of for example
+here gender in the control group we have
+a larger proportion of females than in
+the treatment group and we have to
+adjust for Coverity in some way but this
+is one type of biases in observational
+studies biases to two variables that we
+can see which we're going to call overt
+biases overt biases are biases that we
+can take care of by using some form of
+adjustment and matching sub
+classification regression which in my
+mind are are all forms of weighting so
+upward biases can be taken care of by
+some form of weighting hidden biases are
+going to be the elephant in the room all
+the time and and these are biases due to
+variables that we didn't get to observe
+so an overt bias in our running example
+about the labor training program would
+be differences in age or education which
+were measuring in our study hidden bias
+would be something like ability workers
+have different abilities and that also
+affects their earnings and it's likely
+to be correlated with whether they
+participate or not in the program
+and for these biases we we often cannot
+do much we can do a sensitivity analysis
+we can also come with clever designs but
+what I want to emphasize is that this is
+the difficult part of the problem hidden
+biases so overt biases can be controlled
+by adjusting for coverage but hidden
+biases require other approaches such as
+an instrumental variable or a
+discontinuity in treatment assignment
+which under different assumptions they
+get us to estimate different estimates
+to often more local estimates than the
+treated so I wish to discuss a method
+for adjusting for observe cover / co' a
+biases that that is quite transparent
+I said that that's matching and here the
+motivation is is following a Cochrane
+who coined the term observational
+studies is to ask ourselves when dealing
+with observational studies how would the
+ideal study be conducted if it were
+possible to do it by control
+experimentation all right
+so the question is before introducing
+the methods is under what conditions
+adjusting for observed coverage works
+remember the notation we have an outcome
+variable Y a treatment indicator set and
+a vector observed covers X imagine that
+X includes all the variables that are
+associated with both the treatment
+assignment and the potential outcomes
+then if X includes all these relevant
+coverage for individuals with a given X
+we were fixing X if everybody has the
+same X the same education the same age
+the same gender all the other relevant
+confounders within those cells those
+classes defined by X we have a little
+randomized experiment so we've been
+values of X treatment assignment is
+under treatment and under control so in
+English what this is saying is the same
+as before but we didn't levels of X this
+is saying that conditional on all the
+facts that I can measure about you in a
+data set treatment assignment is
+essentially random that is the working
+assumption of most studies in in in
+observational studies this called the
+unconfoundedness assumption so again
+this assumption is saying that Y north
+and y1 are conditionally independent of
+set given access and this assumption has
+many names in different literature's in
+econometrics people speak about this
+assumption as exogeneity or selection
+and observables in statistics is often
+called inner ability which coupled with
+the next assumption of positivity is
+going to be strong inner ability but
+this also related to this notion of
+missing data which is missing at random
+so we can say that the potential
+outcomes are missing at random given the
+observed coverage
+so this going to be perhaps this central
+assumption that we're going to make but
+we also need this assumption this is
+often called the positivity or overlap
+assumption which says that treatment
+assignment is not deterministic for all
+the possible values of X so for every
+possible combination of the XS there is
+a positive probability of receiving
+treatment which is different than one so
+for everybody of X you have a possible a
+positive probability of being created or
+control otherwise you cannot make
+inferences about subjects with with
+those levels of X under these
+assumptions we can see the quantity that
+we wish to estimate from the observed
+data we wish to estimate the average
+treatment effect on the treated again by
+linearity of expectations we can we can
+break the expectation of the difference
+into this difference of expectations
+this quantity over here it's easy
+because it's directly estimable from the
+data because under treatment I get to
+see the potential outcome under
+treatment this is just at the the
+observed outcome which I could even
+compute by taking the sample average the
+difficult quantity is this one here
+because I'm asking what's the potential
+the mean of the potential outcomes under
+control for the treated subjects and
+what is going to get us there is going
+to be the unconfident nessa sumption in
+addition to using iterated expectations
+so by using iterated expectations we
+have this expectation over the XS for
+all the possible values of X's this also
+called the tower property and then by
+unconfirmed honest I can change this
+index here because we said that four
+levels of X I have a little randomized
+experiment like before
+and now we're in business because for
+the controls I get to see the potential
+outcome under control so this quantity
+is directly estimable from the data so
+we're going to write as follows
+the mean potential outcome for for
+treatment set given the observed
+coverage and under the above assumptions
+we can compute this just from the
+regression on the data which suggests an
+estimator of the following form this
+suggests an estimator in which we're
+fitting a regression model on the
+controls and then we're averaging the
+predictions of the potential outcomes
+under control for the treated subjects
+and we can do this for example by using
+linear regression and what I want to
+show is the linear regression can go
+wrong so we want to use something
+different in this example here we're
+going to have here in the x-axis the
+earnings before the labor training
+program and in the y-axis the earnings
+after the program we're going to suppose
+that the physical model that generates
+the outcomes under treatment is a curve
+like this one for the controls
+by contrast is going to be a function
+like this one so this is the mean
+potential outcome function of the
+outcomes under control the potential
+outcome under control and under
+treatment for levels of learning imagine
+that in our observed data we get to see
+these observations for the treated
+subjects and these observations for the
+controls so overlap is not great for the
+control subjects we get to see people
+with lower incomes and for the treated
+subs we get to see people with
+comparatively larger incomes right and
+the problem with estimating this effect
+with linear regression is that we're
+assuming that we have this constant
+additive treatment effect all the way
+through and by B specifying these true
+regression functions here in this
+example here we're going to greatly
+underestimate the average treatment
+effect on the treated because we may
+specify the model so we would like to
+estimate these quantities in a way that
+we are more robust to model
+mystification that's one thing in such a
+way that when there's limited overlap in
+khabar distributions I am more robust to
+that miss classification with we don't
+want to give an answer about a causal
+effect where we essentially don't have
+data right we want to restrict our
+inferences to those portions of the
+sample where we have both treatment and
+controls observations this is often
+going to change our estimate all right
+but there's an argument to be made that
+it's better to change your estimate and
+target something for which you have data
+than for something that you for which
+are imposing a very strong model all
+right and the other thing is this point
+that Don Ruben has been making for quite
+some time that is that in practice we
+want to blind ourselves when doing the
+statistical adjustments in a randomized
+experiment
+we never got to see the outcomes under
+until after we did the experiment right
+so we were blinded to see the
+effectiveness of treatment in a similar
+way in an observational study there's a
+case to be made that we want to adjust
+for coverage without looking at the
+outcomes the point is that with routine
+analysis of linear regression methods
+were simultaneously adjusting for
+covariates in a way that is not all that
+transparent by the way I can explain
+that if you wish afterwards but at the
+same time we're seeing was the
+coefficient of that of that treatment
+indicator right so there's this
+temptation of selecting a model that
+better suits our hypothesis by including
+age H squared and H cube as opposed to
+just age because the the findings are
+better suited to our hypothesis so what
+we would like to do is to adjust for
+coverage in a way that we are
+approximating this ideal randomized
+experiment that we would have done
+without using the outcomes and in such a
+way that our estimator is going to be
+sampled bounded in the sense that we are
+not extrapolating like we did here with
+this regression model and for this what
+we're going to do is matching you could
+do other things like waiting we're going
+to do matching today because of time and
+also because it has this nice
+sensitivity analysis to hidden bias
+which is quite transparent we find so I
+think this is a good moment to take a
+break to take a 15-minute break and then
+we can take it over with matching
+methods and show you an example an hour
+in sensitivity analysis and others
+Thanks know better yeah I said that now
+the fun part is going to begin well in a
+randomized experiment the treatment and
+their observed and unobserved coverts
+sadly in an observational study which is
+most of the time they're not so we need
+to adjust for corporates and perhaps the
+simplest and most transparent way of
+Justin for coverts is by doing pair
+matching like for example here we're
+trying to find a clone for every treated
+subject in the control group right we're
+trying to find this randomized
+experiment that it's quote and code
+hidden inside the observational study
+that's the intuition behind matching and
+we're going to do it exactly in this way
+by forming pairs first and this can be
+relaxed into more general matching
+structures and awaiting in general the
+goal of matching is to find this nice
+stable one for kobarid but balanced
+often an observational study starts by
+showing Auto randomized experiment study
+starts by showing there's balance in the
+treatment and control group we have a
+similar distribution a similar mean for
+example for age in the treatment and the
+control group often measured by the
+standardized difference in means which
+is nothing by the difference between
+these two means over a pooled standard
+deviation that takes the the simple
+average of the standard deviations the
+simple average of the you take the
+variance divide each of the balance by
+two and take the square root of that
+this is this so it's a standardized
+difference is a difference in terms of
+standard deviations and we want to find
+something like this this nice stable one
+for kobarid balance so Y matching
+the question is whether these last two
+variables are outcomes yes the last two
+variables the question is whether
+earnings here are outcomes no these are
+Co Barrett's all these are variables
+measured before the treatment are
+covered by definition is going to be
+something measured before the treatment
+we're measuring age education race
+married and so on earnings before the
+treatment and then we're asking what is
+the impact of the labor training program
+on earnings afterwards right so we're
+going to measure earnings I believe it's
+in year 78 but this before and if this
+were randomized experiment our table one
+for Co varied balance would look
+something like this so all the
+covariates are balanced across treatment
+groups correct yeah the question was
+whether we can match on Lac outcomes
+outcomes measure before the treatment
+the answer is yes you can think of them
+as a kobarid and it's actually the ideal
+thing to do because there are very
+strong predictors of the outcome
+afterwards they're really good coverage
+most of the time Thanks
+and as a matter of fact in this
+particular example this cover it's
+generated a lot of literature because
+there are studies without the 75 measure
+or the 74 measure and the results are
+different when you control or not for
+that cover it so why matching first we
+would say because of its conceptual
+simplicity here we're making an
+apples-to-apples comparison where the
+unit of analysis remains intact
+I don't know Sharon leise after matching
+remains to be Sharon leise are supposed
+to be a weighted combination of people
+that represent her which is also okay
+you know but this facilitates I think
+simpler forms of inference also if I
+want to collect more information about a
+given unit in the sample is easier to do
+it this way and so on so the unit of
+analysis remains intact
+second the adjustments babe made by
+matching for cover it's an are an
+interpolation based on the available
+data as opposed to an extrapolation
+based on a model that can be specified
+that goes beyond the support of the data
+third we're going to use matching
+without using the outcomes therefore
+preventing selecting adjustments that
+better suit our our hypothesis this is
+the argument about blinding ourselves in
+matching and it also facilitates
+sensitivity analysis to hidden
+confounders the sensitivity analysis
+model that we're going to use to see
+what would need to be the influence of
+an unobserved kobbari to explain away
+our effect estimates
+I think it's simpler than with other
+methods we're going to discuss some
+matching methods but I wish to
+acknowledge there are many other
+matching methods namely all this
+literature nearest neighbor matching
+started I understand by Rubin and
+formalized by a body and in bands then
+there's this literature on optimal
+matching by Rosenbaum and Hanson here in
+the university a Gary King and and
+co-authors have developed course and
+exact matching we also have genetic
+matching the covert balancing propensity
+score matching via network flows there
+are many forms of matching here today
+we're going to be using and certain
+optimization tools namely integer
+programming tools in order to to balance
+Kivar it's very well and very closely
+match individual units I just want to
+tell you guys that there are many other
+methods out there so when it comes to
+matching yes
+yes the question is whether after
+matching were using all the observations
+that we initially had in the vast
+majority of time the answer is yes we're
+dropping observations and I would argue
+we want to do that because those other
+observations are too different and you
+can only say something about them based
+on a model for which perhaps we don't
+have a very strong justification yes
+another side of this question that
+you're asking is whether I'm using all
+the treated subjects that I had to begin
+I said that my sd man was going to be
+the sample average treatment effect on
+the treated well if I drop some treated
+subjects my estimate generally is not
+going to be Darwin okay it's going to be
+a more local average treatment effect
+the average treatment effect for the
+match units yes so so the feasibility of
+matching all the observations typically
+depend on the number of control subjects
+and treated subjects that you have in
+the two treatment groups that that yes
+but we're going to discuss a technique
+here which well drop in treated
+observations you can still target the
+ATT based on coverage so you're going to
+find the largest much sample of
+treatment and control subjects that have
+a similar coverage structure than the
+original treat treated sample all right
+so you can still be discarding subjects
+but in a sense still targeting this
+parameter for the for the treated
+subjects
+yes because the smaller is your sample
+size yet the question is whether they
+discarded some subjects will have an
+impact on the precision of my effect
+estimate well the smaller is just your
+your match sample the the larger is
+going to the larger going to be your
+standard errors yes so in that sense yes
+all right any other questions yes
+there's a bias variance trade-off in
+doing that other questions so we want to
+adjust for coverage and ideally we would
+do this by finding clones by matching a
+female with a given age and a given race
+and a given education in the treatment
+group to a female with exactly the same
+coverage but this is not very practical
+if we have one binary cover it then we
+have two types of units as depicted by
+this tree here but if we have four types
+it will have two binary coverage now we
+have four types of units right with
+three we have eight with four we have
+sixteen with five we have 32 units and
+with 20 binary coverage we have over a
+million type of units so for the typical
+observational study where we don't have
+20 binary coverage but we have 20
+continuous coverage for 60 continuous
+coverage or hundreds of them they're
+just not no people on earth to exactly
+match exactly for everything so this is
+a great impulse something I'd grade that
+we would ideally do but we can never do
+it in practice what we can do in
+practice is to balance covariance in
+aggregate which is what after all
+randomization is doing randomization is
+buying as discovered in aggregate in
+expectation so we're going to target
+that in our observational study balance
+in aggregate and a fundamental tool for
+doing this is the propensity score
+introduced by Rosenbaum and Rubin in in
+a landmark paper in 1983
+what is the propensity score the
+propensity score denoted there is the
+conditional probability of receiving
+treatment given the observed cooperates
+not given the unobserved coverage given
+the observed collides that's the
+definition of the propensity score the
+propensity score is this very helpful
+dimensionality reduction technique where
+we can summarize all the XS P of them
+many many of them P can into this single
+scalar the propensity score that has
+this great properties property number
+one is that matching on the propensity
+score tends to balance all the coverage
+you used to estimate the score so by
+working solely with the propensity score
+the promise of the propensity score and
+is a theorem is that you will tend to
+balance all the coverts used to estimate
+the score that is quite handy was
+specially handy like I don't know like
+in the 1980s when this was introduced
+and computers were not that powerful so
+it's a very practical tool I would say
+especially then now less but
+conceptually it's very very important
+and the other property of the propensity
+score is that is the course a summary of
+the data by you can balance the Pico
+farad's it suffices to work with this
+one-dimensional score okay because of
+this properties of the propensity score
+is that it's widely used in practice the
+propensity score often in matching in
+weighting and in regression when it
+comes to matching the way we work with
+the propensity score is by defining a
+distance between the propensity score of
+a given treatment unit T and a control
+unit C so if you're treated in your
+control i estimate the propensity score
+for both of you and here i compute the
+absolute value difference between the
+two of you and i can imagine doing this
+for you and the difference and all the
+people in the control group so we can
+imagine building this distance matrix
+where we have all the possible pairwise
+distances between treatment and control
+and I could do this in this scale or the
+logit scale alternatively we can use the
+propensity score as calipers as it's
+often used such that when we're close on
+a caliper in terms of the propensity
+score then the distance is some version
+of a Mahalanobis distance here we have a
+robust version which is version which is
+robust to outliers and to real binary
+outcomes so I don't want to get bogged
+down in the notation the point is that
+this is the Mahalanobis distance when
+you're close on the cover it's sorry
+when you're close on the propensity
+score when you're far on the propensity
+score the distance is a very large
+number so you prevent two units from
+being matched and and we soften the
+distance that is recommended in practice
+but this distance doesn't work that
+great as I will discuss later because at
+the end of the day we want to balance
+covariates the propensity score on the
+maja the maja nobies distance are an
+instrument to achieve balance so if it's
+balanced what we care about why not
+targeted directly and that is the logic
+of the methods were going to discuss
+based on the propensity score we can
+define these distances that I said here
+now that we have distances between every
+possible pair of units we need an
+algorithm to pair the units the most
+widely used algorithm for matching is
+nearest neighbor matching which in its
+most basic form what it does is to sort
+all the subjects based on the estimated
+propensity score we sort of the treated
+subjects for example in the creasing
+order and then for the first subject
+here in the treatment group
+I find the closest control and I match
+them with pairs for example with or
+without replacement if it's without
+without replacement then I remove these
+two subjects and I move to the next guy
+and so on I go matching all the subjects
+right I find the closest
+available control once at a time making
+this first best decision once at a time
+mm-hmm
+which is an algorithm that is quite
+handy because in the sense that it's you
+can run this algorithm very quickly but
+it's not optimal it's not optimal in
+terms of distances because you are not
+minimizing the total sum of covariant
+distances you're making this one at a
+time best decisions so you're not
+necessarily minimizing the distances so
+then there's this literature developed
+by Paul Rosenbaum and Hansen and others
+where they develop these algorithms for
+optimal matching were using most of the
+time network flow algorithms they find
+at once not making this one at a time
+decisions they at once find the optimal
+configuration of treatment and control
+subjects that minimizes the total sum of
+Kivar distances right and a version of
+this problem is the assignment algorithm
+in in the optimization literature but
+their difficulties with both of these
+approaches both of these approaches rely
+on a summary distance of the covariance
+namely the propensity score which has
+those two wonderful properties that I
+mentioned but these are stochastic
+properties their properties that hold in
+an appeal to the law of large numbers
+what I'm trying to say is that these
+properties will hold of repeated
+realizations of the data generating
+mechanism but I don't have the guarantee
+that in my given data set by optimally
+matching on the propensity score I will
+get good balance that's the case even if
+I estimate correctly the propensity
+score because if you're covariates are
+sparse for the size of your data set
+then the law of large numbers will not
+kick in and you will not necessarily
+balance the coverage even if you're
+estimating correctly the score and of
+course this is more difficult because in
+practice we never know that we're
+estimating correctly the propensity
+score so there's a lot of iteration and
+and guesswork when we're trying to
+balance coverage with
+Stan driven algorithms for matching and
+this makes very difficult balancing the
+means of the covariates but we often
+want to balance more than the means of
+the covariates we want to balance the
+entire distributions of the covariance
+right so what we're going to do instead
+is to have a more general matching
+framework in which we're going to use
+integer programming to directly target
+covariant balance and the matching
+framework here goes as follows we're
+going to solve this optimization problem
+that has these two components this
+objective function here that I'm
+highlighting and this constraints here
+our decision variables are going to be
+this vector of MS which are going to be
+assignment indicators if I match you to
+you or you to you all right and we're
+going to minimize this objective
+function where we have these two terms
+that compete with each other we're going
+to minimize the total sum of distances
+between match units for example using
+the propensity score distance and we're
+going to minimize the negative of the
+information of the match sample so if
+we're minimizing something that is
+negative or maximizing the information
+the idea is that we often have to subset
+the matches and we want to subset them
+in such a way that we hi we find the
+largest subset of the data in a way that
+we're maximizing the precision of our
+estimator all right and we're going to
+do this subject to matching constraints
+balancing constraints and
+representativeness constraints the
+matching constraints are going to
+enforce a matching structure like for
+example forming pairs or one-to-many
+matches if I want to match with a
+variable ratio the balancing constraints
+are going to balance almost anything
+that we want ranging from min balance to
+balance in the joint distributions if
+the data allows us to do that a relevant
+question is going to be what should we
+be balancing and and we can talk
+that too but in principle if the date
+allows us we could balance anything here
+so these constraints can be quite
+intricated in practice we can not we
+don't have any observations to balance
+everything but you can write the program
+like this and we're also going to have
+this representativeness constraints in
+such a way that we are not necessarily
+finding this control group that looks
+like the treatment group but we're going
+to match these two groups towards a
+reference group or a reference
+distribution so that this is
+representative of a target sample and
+under certain assumptions about sampling
+representative of the population so that
+is the idea and in this framework here
+optimal matching is a particular case
+where lambda is equals to 0 so we're
+minimizing distances subject to matching
+constraints and another instance of this
+problem which we're going to discuss
+today is what is called cardinality
+matching where you're minimizing the
+negative of the information of the match
+sample subject to matching balancing and
+representativeness constraints if the
+matching constraints enforce pairs
+forming pairs that is what we're going
+to do today then this information is the
+total number of mappers so you're
+maximizing the total number of mappers
+subject to matching balancing and
+representativeness constraints
+it's called cardinality matching because
+it maximizes the cardinality or size of
+the match sample subject to these
+constraints all right
+what is this going to buy us let me show
+you a pseudo algorithm with distant
+driven methods for matching the way we
+proceed in practice is first by
+specifying what constitute Goods balance
+for us for example we want to balance
+the means of the cabarrus what we do
+next is to repeat the following steps we
+estimate the propensity score the
+Mahalanobis distance or something else
+and with those distances we often have
+to trim the observations according to
+whether they overlap or not based on the
+estimated propensity score then we match
+on this summary measure for example
+using the nearest neighbor matching and
+then we assess kobarid balance what
+happens if balance does not meet the
+code requirements that we have here we
+have to repeat we have to estimate the
+propensity score using a different
+functional form for example including
+higher order terms for those covers that
+are out of balance or by modifying the
+distance matrix by having penalties for
+a given coverage but the point is that
+there can be a lot of iteration here in
+order to achieve balance so we repeat
+this until we find a balance sample by
+contrast with cardinality matching we
+are going to have the first the same
+first step which is going to be to
+specify the covert balance requirements
+and then we're going to directly
+optimize to find the largest match
+sample that satisfies such requirements
+and we're going to be done because by
+construction we're going to get an
+answer or not we're directly optimizing
+towards this it is true that in this
+step here one I'm not paying attention
+to Kaveri distances I'm just finding the
+largest match sample so this is purely
+awaiting a 0 1 waiting right but that is
+not a problem because after cardinality
+matching for balance you have found this
+the largest match sample of say 5 match
+purse that is balance relative to the
+coverage what I can do next is to
+per these subjects in order to minimize
+corporate distances and moreover I can
+go back to the original data set and for
+that fixed size data set that I obtained
+in step 1 I find the optimal matching in
+terms of distances that minimize covered
+distances but I would know that it's
+going to preserve discovered balance
+[Music]
+okay because because I'm going to impose
+those constraints again in that problem
+so this procedure it dominates optimal
+matching in terms of distances and
+covered the and
+unbalanced for simple match instructors
+you're you're going to get the the same
+kobarid distances but with better
+coverage balance alright
+so Cochran in one of his landmark papers
+in causal inference gave two pieces of
+advice when designing observational
+studies first he said when selecting
+samples for study make sure that they
+are large enough to have complete enough
+data to allow aspects of practical
+importance to be estimated and avoid
+treatment and control groups with large
+initial differences on confounding
+variables and he also argued that we
+should use both the statistician and the
+subject matter expert knowledge in the
+planning stages so this means that the
+statistician and the doctor have to work
+together in in doing these adjustments
+one can argue that cardinality matching
+is doing this by finding the largest
+match sample that is balanced and the
+subject matter expert knowledge here in
+the cardinality matching problem comes
+in to the matching problem via the
+balancing constraints because he is
+telling you which ones are the relevant
+coverage and more or less to what extent
+you should balance them so in principle
+you you can do this in practice is quite
+difficult to select the coverage and to
+and to select to what extent to balance
+them I can discuss that more in a second
+because we have made some progress along
+those lines but a lot more remains to be
+done but in principle you can do
+something very much in this piece
+it with cardinality matching and you can
+balance anything here ranging from min
+balance to balance in the joint
+distributions you can have constraints
+on exact matching for the groups or the
+pairs on an approximation to exact
+matching that is called near exact
+matching or almost exact matching and
+you can have balance in aggregate for
+joint distributions and marginal
+distributions and there's the room in
+between when you balance for example
+two-way interactions of covariates so
+you balanced the joint distributions of
+pairs of Kivar it's something that is
+often called strength k balance you can
+implement here and you can balance
+moments ranging from means to variances
+to skewness and so on so in principle
+you can burn as many things and here you
+would like to give you an example of how
+to use this I can share this code with
+with you if after the tutorial and what
+I'm going to show is how to implement
+these things in this package that we
+wrote with 18 Urkel Cho glue and Juan
+Pablo Wilma called design match for our
+okay can you read well yes everything is
+very commented so if you do this at home
+you should be able to understand
+everything what we're going to do first
+is to load the design match library
+which is this real file here that says
+that this sub package formats design in
+randomized experiments and observational
+studies it basically has two functions
+the function be match for bipartite
+matching and the function n match for
+non bipartite matching by Parton
+matching is when you have two groups
+that are defined before matching a
+treatment and a control group non
+bipartite matching is when you don't
+have those labels for example when you
+want to match similar subjects and then
+randomly assign them to treatment first
+you match then you randomize within
+match pairs so for the most we're going
+to be using the be match function in
+practice I think
+and we have another function called card
+match which is an optimized version of B
+much for doing cardinality matching okay
+let me continue through this example I'm
+going to load some auxiliary functions
+here and here we have this labor
+training example this Lalande example
+which I'm going to attach here to R and
+I'm going to briefly describe it in this
+data set we have 185 treated subjects
+and 429 controls I in order to estimate
+the sample average treatment effect I'm
+going to find pairs of control subjects
+that look very much like the treated
+subjects these are the variables in the
+data set let me make this bigger so that
+we can see everything together
+these are the same coverage that we had
+before all these variables are measured
+before the treatment and we can see here
+the mean of the treated subjects and the
+control subjects for each of these
+coverage and what do we see how does
+balance look like looks okay well I
+guess for this covered here education it
+looks pretty good right
+but for this coverage here like married
+and this income variable it doesn't look
+great
+oftentimes the rule of thumb is to say
+that covariates are balanced when the
+standardized difference in means in
+absolute value is smaller than 0.1 and
+here it's a lot larger than this okay
+that rule is questionable but but that's
+the rule people of an using practice
+point one standardized difference in
+yes the question is whether there is a
+way of imposing a constraint such that I
+use all the treated subjects the answer
+is yes we're going to do that let me
+show you in a second because this data
+has certain difficult is that that there
+also highlight what happens with other
+methods so so let me let me explain this
+in a second but the answer is yes you
+can do that and we will be doing that so
+what we're going to do first is using
+all the treated observations we're going
+to do optimal matching based on a
+covered distance which here's going to
+be the Mahalanobis distance but it could
+be the propensity score so for starters
+we're going to use something in the
+domain of nearest neighbor matching
+actually optimal matching such that we
+find an optimal pair matching that
+minimizes the total sum of covered
+distances between matched pairs using
+the Mahalanobis distance and we're going
+to check balance for this what I need to
+do first is to define the treatment
+indicator which looks like this and we
+need to sort it in decreasing order to
+not get errors so we had 185 tweeted
+subjects and 429 controls then what
+we're going to do is using all the
+caveats that I showed you in this table
+one for Kaveri balance is to build this
+Mahalanobis distance matrix which I just
+did with this command here and this
+distance matrix is going to have 185
+rows for the treated subjects and 429
+columns for the controls so we have all
+the possible pairwise distances for
+example here let me show you the first
+five elements we have that the distance
+between treated subject one and control
+186 is one point two three but between
+treated subject one and now control 187
+is one point three five and what optimal
+matching is going to do is to find
+the optimal assignment or pairing of
+treatment and control subjects such that
+the overall distances are minimized
+what nearest neighbor matching is doing
+is something that is doing this one at a
+time so here for the first subject I
+find the closest control this one here
+189 I drop this from the analysis if
+it's without replacement I move to the
+next one which one is the closest
+available control the first one I drop
+it and so on so you can see that by
+making this first best decision one at a
+time you can easily end up with a
+solution that is that is quite bad in
+terms of the total covered distances but
+we're going to do this and at once by
+loading a version of the by solving the
+assignment problem actually this
+parameter here allows us to drop some of
+the treated observations as you were
+suggesting before here we're going to
+match all the treated subjects so I
+going I'm going to force the total sum
+the total number of pairs to be equals
+to all the treated subjects I'm not
+going to drop any Twitter observations
+and now here you have to choose what
+solver you're going to use design match
+gives you the option to work with four
+solvers some are free and available for
+everybody but they're not the most
+powerful ones the most powerful one
+perhaps is good OB which is free for
+academic users but not free for people
+outside academia so you may have to pay
+for it and people are paying for it so I
+mean for using it for using it in this
+context it's a super powerful solver
+so if you're in academia good for you
+because you don't have to pay for it and
+here have specified that I'm going to
+use good OB I'm going to find an exact
+solution that's the approximate equals
+zero option and then I'm giving all
+these parameters to be much if you go to
+the health I love be mad you see there
+are many options here here were using
+some of them only the point is that here
+you have all this balancing
+parameters for example if you want to
+balance the moments of the covariates or
+like the means you specify this if you
+want to balance a course and version of
+the kolmogorov-smirnov statistic to
+balance the marginal distribution of a
+continuous kobarid you use this if you
+want to do exact matching you can use
+this if you want to do fine balance
+which is distributional balance for
+nominal covariates you specify that you
+have all these options here and you have
+also options for doing far matching
+which is relevant when you are handling
+an instrumental variable all right
+so you have those options here and we're
+going to solve the matching problem it
+says that is building the matching
+problem we're using guro V and we were
+able to find the match in a few seconds
+and here we're going to see how many
+treated subjects we matched 185 so we're
+matching all the treated subjects what
+is the total sum of covered distances 41
+point 26 and that's the optimal because
+we're solving an optimization problem
+but the really important thing is
+whether we balance the coverage and the
+question is did we balance them
+some people say so so because we said
+that we wanted to balance them up to
+means here we have a big imbalance here
+we have another imbalance so we didn't a
+good job with some of the coverage but
+not for all of them the point is that we
+could improve this be a distant driven
+method for matching by tuning the
+distances in some way or another but
+that involves a lot of iteration or
+guesswork if you if you want so what
+we're going to do here instead is using
+to find a pair matching that minimizes
+the total sum of kobarid distances
+between matched pairs subject to
+constraints on min balance the new thing
+is this step here where I'm going to
+balance all these covariates such that
+the differences are at most point one
+standardized difference you could
+specify something different but we're
+going to do this for the sake of
+illustration so everything is the same
+as before so I'm going to select this
+and run it
+and and we were able to find a solution
+how many tweeted subjects are we
+matching as we required all of them to
+your question 185 and now we're going to
+check balance and now here we see that
+in one step by construction we got the
+balance that we wanted right and we were
+also minimizing distances yes okay this
+is a really good question
+the question is about how expensive it
+is to run this algorithm like in general
+it depends a lot on the solver that
+you're using Moo Rob is really really
+powerful the default in this package is
+tlpk that takes a lot more time if
+you're going to use the lpk I suggest
+here using approximate equals to 1
+because we have a rounding algorithm to
+solve it more quickly and you're not
+going to get exact the exact solution
+that you want but you're going to get a
+pretty good one
+all right any ways to try to answer the
+heart of your question in in practice we
+have another version of these functions
+called card match that I'm going to
+suggest a discuss in a second
+where we have been able to solve
+matching problems with distributional
+constraints for fine balance with
+hundreds of thousands of observations in
+a couple of minutes so in practice this
+is super scalable and it's a lot more
+scalable than
+the implementations that I have seen of
+other matching approaches based on
+distances so you can solve problems with
+hundred thousand of observations in a
+couple of minutes so to the extent that
+that is big data you can do this pretty
+effectively with this solver yes the
+question is how does the computational
+time scales with the number of
+observations depends on the number of
+constraints that you have but to be
+precise depends on the nature of the
+constraints that you have in general we
+cannot predict that these problems are
+labeled as np-hard problems so we don't
+have a promise that we will be able to
+solve them in a given time but in
+practice they're super tractable so for
+special instances of some of these
+problems we have been able to to so that
+are polynomially solvable but not
+generally so the answer is it does not
+necessarily scale linearly but in
+practice it does it performs really well
+because these labels are to coarse
+polynomial an and np-hard problems are
+two cores of labels yes okay you catch
+that
+so as I'm saying here I cheated right I
+found really good balance but I dropped
+the difficult coverage which was this
+indicator for black right the question
+is what happens if I include this
+covered so it's great that you pick that
+up I cheated and I didn't include this
+in the in the balancing constraints and
+I did this because I want to show you
+what happens if you include that
+cooperative we're going to solve the
+same problem as before but now including
+that coverage and the answer that we get
+is error problem infeasible
+which may sound like bad news but I
+thing is really good news why is that
+because if you were doing this with
+nearest neighbor matching or optimal
+matching based on the propensity score
+you could be searching for a solution
+forever and you would never know if
+there's a solution or not in the data
+because you're not directly targeting
+balance by doing this we know that that
+solution is infeasible and then we know
+what options that we have certainly in
+this data set we don't have the option
+to use all the treated observations and
+adjust to this extent for the Coverity
+so what we can do instead is to go and
+collect more data which is not very
+practical another option is to relax the
+balancing constraints and other option
+is to subset the treated observations in
+such a way that we are using as many of
+the treated observations such that we
+have balance by doing this we're going
+to be changing the estimate in principle
+unless we balance towards the
+distribution towards them the sample
+distribution of the original credit
+subjects which I'll discuss in a second
+yes
+the trick was that you had to drop one
+of the covariance supposing that you
+don't drop the covariant is there
+another cost is there another trade-off
+to making that constraint where is it
+simply that sometimes it won't work yes
+so the question is what is the cost of
+including discover it or not as said
+before there's this bias-variance
+tradeoff if you want to adjust very well
+for the covariance you have to drop some
+of the observations and that increases
+the variance of your estimator generally
+speaking yes yes let me explain
+something here we're balancing coverts
+via constraints so they're all equally
+important another possibility is to
+write this problem in which those
+constraints are enforced in the
+objective function and you can have
+different weights for them you can't do
+that the original formulation of all
+these methods was like that and in a
+paper that I can share with you but
+selecting those weights is not that
+meaningful in practice it's more
+meaningful I find to define constraints
+based on on on units that you're kind of
+familiar like age income and stuff like
+that then to define weight when putting
+them all together in addition to a
+distance matrix so the answer is yes you
+can I think this is a more practical
+though yes
+if there's some issue with the black the
+blacks are more likely there's some
+difference between the blacks in the
+treatment of the prober that this might
+hit that soft
+with this dog training feasibly flat
+yes that's a very good point and the way
+I understand your comment is that we
+want to adjust for that cover it and I
+agree we're going to do it we definitely
+do have to adjust for it the point is
+that this will force us to drop some
+observations if we want to balance
+covers up to that extent so what we're
+going to do now is drop in some of the
+treated observations we're going to use
+cardinality matching to find the largest
+match sample of pairs for which all the
+covers are balanced again up to point
+one standardized difference in means yes
+you could also have a larger requirement
+for that coverage such that the problems
+instead of dropping observations yes but
+we said that we wanted to balance all
+the kavaja to this extent this is what
+it's often done in the literature or 0.2
+0.2 0.1 yep and again both are
+questionable and in the context of
+waiting there have been some algorithms
+to to optimally select that we can
+discuss that later if you want so
+everything is the same as before
+but now we're going to have this subset
+equals to one for dropping some of the
+observations we're going to allow some
+of cervezas to be dropped and let's see
+what we find
+so it took a bit longer to run but here
+we have an answer and now we were able
+to match 120 pairs so I said that there
+were 185 tweeted subjects to begin in
+order to meet these requirements we have
+to drop 65 observations so we're
+reducing the effective sample size to a
+fair extent but that is the cost of
+adjusting for coverage to this extent
+with this zero one way it's implied by
+matching and not extrapolating okay and
+that's the case because this is the
+optimization problem for that and then
+we can check back us and here we get the
+balance that we wanted right everything
+is below point 1 now the problem is that
+by doing this we have changed the S
+diamond I said that I wanted to target
+the treated but I'm dropping created
+observations I wait to steal target
+something like that is by finding the
+largest match sample that is not only
+balanced but is balanced around the
+original distribution of the twitter
+propping them and that is what we're
+going to do here everything is the same
+as before but now we have added this
+parameter here targets which says that
+I'm going to target the means of the
+coverts in the treated group before
+matching okay another here like before
+I'm using the function card match which
+is what I would recommend you using
+because this is the one that scales well
+to large data sets so let me run this
+we got a solution very quickly and the
+number of mappers that we obtain is 99
+and we can see that the groups are not
+only balanced relative to each other in
+terms of standardized differences there
+are smaller than 0.1 but they're similar
+to this target which was the
+distribution of the treated subjects
+before doing any adjustments all right
+so these are tools that one used for for
+matching in observational studies yes
+all right the question is how does this
+choice of balancing up 2.1 standardized
+difference in means affect the standard
+errors of of the effects this is a
+really good question
+to my knowledge is a pretty much open
+question so let me tell you what I know
+about that question well that the bet
+the better you balance the cupboards and
+the more variable are going to be your
+weights in this context here the smaller
+is going to be your your effective
+sample size so the better you balance
+the coverts the smaller is your bias but
+the greater is going to be the variance
+of your estimator right in the context
+of weighting we have devised an
+algorithm for selecting that parameter
+by making the observation that by
+balancing coverage what you're
+implicitly doing is to model the inverse
+propensity score function so that's the
+key connection because once we realize
+that we can say that if I'm balancing
+coverts correctly then I'm estimating
+correctly the inverse propensity score
+function and if the propensity score
+function is well specified I'm going to
+obtain balance at the population level
+in other words at the sample level and
+at the level of samples from that
+population in other words at the level
+of bootstrap samples from the original
+sample so we have a bootstrap procedure
+where for a grid of values of Delta the
+imbalance we'll choose the level of
+imbalance that better generalizes to
+bootstrap samples that's one answer that
+we have devised to select this parameter
+in the context of waiting in the context
+of matching the mode of inference is
+different and with Zac Branson were
+thinking about some things along those
+lines using a sensitivity analysis to
+select that so I think it's a great
+question
+I tend to think that question also
+applies to experiments to what extent
+should Yuri randomize such that you say
+you're happy with that level of balance
+so I think it's a really good question
+and that's what what I know about it
+so I think that in practice people are
+going to be happy seeing something by
+point one standardized differences but
+it's a good question
+and let me say by the way that that's
+also a question that applies to linear
+regression because when you you're doing
+linear regression you're implicitly
+weighting the observations and the
+question is how are you implicitly
+weighting them and that is a that is not
+all that clear but but the answer is
+that they're perfectly balancing the
+covariance your you are including in the
+model and if you're doing that you're
+making a choice about Delta Delta C goes
+to zero is that the optimal choice I
+don't think so
+because there's the bias-variance
+tradeoff there again so I'm just saying
+that the question you're posting is a
+very general one that applies to other
+methods not only to matching in the
+context of observational studies yes
+screams make sure you have
+then you're concerned by dropping out a
+certain number of treated samples that
+you're actually missing something
+important if they don't match three for
+freedom
+so it'd be valid to then treat those
+ones that dropped out under these
+conditions as a average
+average averaging model with
+if I understand that correctly the
+question the question is to what extent
+can we use the unmatched subjects to
+learn something about treatment effects
+that's a good general question and I
+guess I could say that under the
+assumptions of unconfident as an overlap
+we have posed here yet this this is a
+valid effect estimate those assumptions
+can be violated and I guess you're right
+that we could use them those controls in
+some creative way to learn something
+else but we have dropped them because
+they are different in terms of observe
+words so I'm just saying that you will
+be able to use them imposing some strong
+structure on the data so I would imagine
+you could come up with something but but
+making strong assumptions yes
+is it right that we can use something
+for no business here
+yes the question is whether instead of
+using the zero one waiting for selecting
+the observations you can use something
+like kernels and differentially weight
+the observations the answer is yes
+people have done things along those
+lines specifically in the econometrics
+literature to my knowledge so you could
+do something like that the reason I
+prefer to do something like this is
+because of the transparency of the
+adjustments if I'm going to do matching
+a I'm going to do a one to one prayer
+matching but as soon as I depart from
+that structure my take is to go all the
+way and do awaiting what you're
+suggesting is somewhere in between and
+and it may have advantages to be
+somewhere in between bodies is not
+evident to me what are those advantages
+maybe it's something along the lines of
+applying the synthetic control method to
+every subject in in the other group and
+then have a synthetic control for all
+the subjects so I can see that that
+could get you something along those
+lines bad but it's not evident to me the
+reason we're doing this is because of
+its transparency the mode of inference
+the sensitivity analysis these apples to
+apples comparisons were you and you and
+the match sample and not a kernel
+weighted version of you but you could
+definitely and people have had great
+proposals of that all right so I'll
+share with this this code with you if if
+you want guys moving in the other
+direction now ok what I wish to
+emphasize that matching can be viewed as
+a form of wedding where the weights are
+the zero-one weights that encode an
+assignment between units so units are
+not only selected but this assignment
+between units is explicitly used in
+inference for match pairs here
+on one side of the spectrum I I would
+say there's matching which emphasizes
+study designing an interpreter ability
+and at the other side of the spectrum I
+would say there's weighting which
+emphasizes statistical efficiency and
+computational tractability yet those
+algorithms are a lot more tractable than
+the ones were using here even though we
+can handle large data sets as I said
+before and certainly these matching
+methods can be complemented can be
+supplemented or assisted with regression
+models in the spirit of W robust
+estimators so you can use matching and
+regression if you want it's not like one
+or the other you can think of matching
+as this design step of your
+observational study and then you can do
+anything you want in principle you can
+do simple different Simmons or fit your
+favorite machine learning method and do
+something along the length of the
+computation you could do that just be
+careful on how you compute the standard
+errors and so on but but there's nothing
+algorithmically that stops you from
+doing something like that so a
+generalization of this matching
+procedure that I described are these
+balancing weights whereby instead of
+maximizing the size of the match sample
+or maximizing the precision of your
+estimator here you're minimizing a
+measure of dispersion of the weights say
+the variance which has had a direct
+impact on the balance of your estimator
+subject to balancing constraints that
+I'm showing here where we're saying that
+for that the weighted average in say the
+control group has to be similar to this
+target that that that you are trying to
+make inference about up to a level Delta
+okay I'm just highlighting that the
+matching problem can be generalized to a
+wedding problem where we often do
+inference in a super population sense
+and there are many proposals along these
+lines like there were by hainu ler in my
+own Brad Kovac China and others
+fan and others they're also the
+balancing weights by which I forgot to
+mention here by fan Li Alex s Lasky and
+carry load Morgan so there are many
+proposals along these lines okay
+a generalization of matching as waiting
+you're relaxing the weights to very
+freely between zero and one in order to
+increase efficiency that's the idea now
+the reason we're doing matching is
+because of the transparency of its
+adjustments the mode of inference and
+that we can do a simpler sensitivity
+analysis to hidden bias that the the
+elephant in the room you have adjusted
+for some things but you did not just for
+everything the question is what can we
+say about that hidden confounder so here
+I'm going to present one mode for
+sensitivity analysis for match pairs
+there are others what I like about this
+one is that I think is very simple
+elegant with few knobs and quite
+interpretable so the question is can
+anything more be said about an
+observational study beyond association
+is not causation can we make this
+qualitative statement a quantitative one
+and and put a number to that so a
+sensitivity analysis is going to be a
+specific statement about the magnitude
+of hidden bias that would need to take
+place in order to explain away our
+significant findings right how large
+would need to be the influence of a
+Coverity we did not adjust for in the
+matching to explain away the significant
+effect estimate if my results are our
+need a very large hidden bias to explain
+away my my estimates I'm going to say
+that my my studies quite insensitive
+otherwise if I need a very small bias is
+going to be quite quite sensitive very
+shaking my results only a small bias can
+explain away what I found
+so weak associations in small studies
+can be explained away by very small
+biases but only a very large bias can
+explain a strong association in a large
+study and the model is going to go as
+follows so we're going to say that a
+study is free of hidden bias if the
+probability of a given unit J of
+receiving treatment is a function of the
+observed coverage period alternatively
+we're going to say that there is hidden
+bias is for if two units with the same
+access varying their probability of
+receiving treatment because of an
+unobserved covered you and in this
+sensitivity analysis were going to ask
+how would my inferences about treatment
+assignment change for hidden biases of
+different magnitudes okay so we're going
+to suppose that unit with the same
+access differ in their probabilities of
+receiving treatments how large would
+need to be these differences to change
+the conclusions of my studies moving a
+significant defect estimate to an
+insignificant one so qualitatively
+changing the conclusions of my study for
+this we're going to assume that in our
+match in our matches two units that are
+match for their observe coverage they
+have the same cobarde values may differ
+in their probability of receiving
+treatment so they must be differing
+because of something I didn't account in
+the matching and now we're going to
+right the the odds ratios of these two
+units for receiving treatment the odds
+in themselves are a ratio the odds ratio
+is a ratio of ratios so we're writing
+here these odds ratios for the
+probability of two units J and K which
+were exactly match under coverage we're
+going to say that they can differ at
+most by a factor of gamma and also
+bounded here by 1 over gamma right so if
+gamma is equals to 1 this PI's are equal
+they collapse 2 pi equals to 1/2 both
+units in this match here that pair had
+the same probability of receiving
+treatment as gamma becomes larger these
+probabilities can be part more and more
+from each other
+right the question is at what critical
+value of gamma I cross the line and a
+significant estimate ceases to be
+statistically significant so our results
+are going to be robust to hidden biases
+if it takes a very big gamma to explain
+away my significant effect estimate so
+if gamma is equals to 1 then the study
+is free of hidden bias and for gamma
+greater than 1 there is hidden bias so
+gamma is a measure of the degree of
+departure of a study that is free of
+hidden bias let me show you this in the
+context of the labeled training example
+I also have code for this that that I
+will share with you but in our labor
+training example we find the largest
+permit sample that is balanced relative
+to the original treatment group I showed
+you balance and balanced look okay right
+then we look at the outcomes what is the
+point estimate that we obtain its 1886
+dollars which is significant at the 5%
+level so labor training increase the
+earnings of people in the treatment
+group by that amount when I adjusted for
+those like roughly nine coverts remember
+he had AIDS education raised the income
+before the
+and so on the question is that I did not
+just for everything I did not just for
+ability for example the question is how
+large we need to be the influence of
+that hidden kobarid ability to explain
+away this association right and the
+answer is quantified here by this
+parameter gamma when gamma is equals to
+1 I have two extreme KSP values which
+are the same point 19 as before but as
+unit depart in their probabilities of
+being treatment being treated because of
+an unobserved kobarid my extreme case B
+values my worst case analysis start to
+depart from each other this p value
+smaller than this one this one is larger
+than this one as I increase gamma a
+little bit as I increase a bit more this
+gap becomes larger and so on and so I
+increase gamma up to 0.1 and Here I am
+at the edge of still being statistically
+significant right but when gamma is
+equals to 1 point 1 1 then my worst case
+analysis ceases to be statistically
+significant so how robust are my
+findings to hidden biases in this
+example not all that robust because two
+units that are exactly match for all
+their observed covariates would need to
+depart in they're also receiving
+treatment by only a factor of 1.1.11
+which is not very large you can compare
+this to other studies so for example in
+this famous study by Hammond about
+smoking and lung cancer if you apply a
+sensitivity analyst to that study then
+the gamma you obtain and is a really
+important study which basically it was
+very convincing to show this association
+between smoking and lung cancer that
+study ceases to be statistically
+significant up again of something like 5
+I remember correctly so units that are
+exactly match for their observe coverage
+will need to be different because of an
+in they're also receiving treatment
+because of an unobserved kobarid by
+design observe garage that changes their
+odds by a factor of 5 so this forces you
+to put a name to that observe and
+observe cover it and see whether that
+can explain that level of departure in
+this case here yet the results are not
+that sensitive but we have this the Doug
+robust I'm saying that they're quite
+sensitive but the point is that we have
+this additional layer on the statistical
+analysis which to some extent under a
+model for sure quantifies the the extent
+that that hidden covered would need to
+play in the analysis to explain away
+your significant estimates yes yeah the
+question is if the cover is our
+unobserved how do you compute gamma the
+way it goes is as follows for different
+values of gamma that you give me I
+compute the extreme KSP values and I and
+and and the value of gamma the critical
+one is the one at the one then your
+findings is to be statistically
+significant for for both cases so you're
+not computing gamma you give me gamma
+and I give you the extreme cases of of
+the of the p-value well this unobserved
+cover it it's a worst-case analysis and
+for that worst-case analysis you can
+compute the value of the test statistic
+here and here and I guess you can think
+about in that way yes
+the people who ran the program tried to
+select
+yes constraints and different methods
+and so forth if you view this gamma
+method is a way to say like my method
+that I tap into have chosen is pretty
+decent because gamma is that that is
+really a great question that's great
+intuition the question is in your
+matching framework you have all these
+decisions you can make
+you can balance coverage to difference
+extent and so on there are many choices
+you have the question is to what extent
+can you use this sensitivity parameter
+gamma to choose a match design and
+that's exactly what we're doing with
+Zack Branson to to select how closely to
+balance the covariance we're going to
+choose the degree of adjustment such as
+the the power of a sensitivity analysis
+as high as possible so I think that's
+great intuition all right
+this sensitivity analysis is in the
+spirit of this first sensitivity
+analysis developed by cornfield but
+there are other approaches to
+sensitivity analysis including these
+ones here there is a quite different way
+by Rosenbaum and Rubin Robbins has
+another very nice one in Burns then
+here's a bass and one by McCanless and
+co-authors and van der Wiel and Dean
+recently proposed the e value there are
+extensions of the sensitivity analysis
+to wit nose and there's a very nice
+paper by calling Fogarty on this for
+coming in JSON and all these sensitivity
+analysis methods that we have discussed
+today are implemented in these two are
+packages by Paul Rosenberg which you can
+download through can alright
+in the slides you will say some
+discussion about other approaches to
+control for an observer variation namely
+using instrumental variables and
+discontinuity designs today in the
+interest of time I'm going to jump to
+this example to show you how you can
+generalize these matching tools to work
+with multi valued treatments and target
+and a representative sample of a
+population alright so here I'm going to
+switch examples we're going to forget
+about the labor training example and
+we're going to ask what was the impact
+of the 2010 Chilean earthquake on
+educational outcomes the 2010 Chilean
+earthquake was a massive earthquake the
+fourth strongest earthquake in the world
+until that time and yeah it was a huge
+devastation in the country and the
+question we're going to ask is what was
+the impact of the earthquake on
+educational achievement to be more
+precise in Chile to get into college you
+have to get a take a test period it's
+like if you take the SATs but that's all
+based on the on the scores that you have
+in the SAT you make it to college one
+two three and so forth other things
+don't count in coming to account is
+purely the test that you're discarded
+you're getting in that test so it's a
+pretty high stakes test
+I remember that they've been very
+nervous because depending on the outcome
+of those three days of test I was going
+to make it to one college or the others
+so it's it's quite an event and until
+they also higher education is super
+important Chile has a very super unequal
+income distribution and and college is
+one of the main avenues of social
+mobility Chile is hit by an earthquake
+very often because steel is located on
+top of these two Nazca plates so we get
+off a earthquakes very often so I think
+it's not right to ask what was the
+impact of the earthquake on on
+educational achievement
+and what we're going to do for this is
+use an administrative census of the same
+students measured before and after the
+earthquake when I say it's an
+administrative census I mean that we
+have all the test scores of the students
+in a test before the earthquake and then
+I also have it after the earthquake to
+get into college in baseline in this
+administrative data set we have a very
+rich set of coverage like the attendance
+of the students to school this test
+scores before the earthquake their GPA
+school characteristics socio-economic
+characteristics of the student we have
+the income of the parents education of
+the parents we have a very rich set of
+coverage for which to adjust for and
+then we're going to look at two outcomes
+we're going to look at the outcomes
+after the earthquake on school
+attendance of that last year of school
+before taking the SAT and the equivalent
+of the SAT score right we're going to
+look at two pairs of outcomes and the
+way we're going to design the studies as
+follows here we have a map of Chile
+showing here with the black asterisk
+where the epicenter of the earthquake
+was and with all these circles here I'm
+showing you at the counties where we
+have data before and after the
+earthquake and we're coloring these
+circles here with the with the strength
+of the earthquake the peak ground
+acceleration of the earthquake so very
+close to the epicenter we had there was
+very strong shaking and closer to the
+extreme of the countries that people I
+barely felt the earthquake so based on
+these levels of shaking we're going to
+think of doses of treatment levels of
+exposure to the treatment and we're
+going to define three five and ten
+levels of exposure to the treatment
+based on basically terror cells
+quintel's and vessels of exposures to
+the earthquake and we're going to build
+this study that attempts to replicate
+this randomized experiment that it's as
+if people were randomly
+sign to live in different parts of the
+country given their observe copyrights
+that is the study we're trying to
+approximate here and one way to do this
+would be by matching on the propensity
+score or to be precise a generalization
+of the propensity score for multivalued
+treatments but if balancing perverts was
+difficult for binary treatments now with
+multivalued treatments is even more
+difficult even checking balance is
+difficult with multi value treatments
+and we also want to analyze the outcomes
+in a very simple and structured way
+oftentimes with these methods you have
+to feed more complex models to analyze
+the outcomes and we would like to be
+able to show plots and tables and
+figures to see what is going on with the
+effects so we're going to use matching
+for this we're going to match in a
+different way and for this we're going
+to use the idea of template matching
+which I'm going to describe in a second
+conventionally when we do matching we
+try to match all the treated subjects to
+similar controls right when the
+treatment group is different than the
+control group so here we have run out of
+rectangles we cannot afford to match all
+the treated subjects right we drop some
+of the treated subjects we're matching a
+subset of the treated subjects and by
+doing this for changing the s demand but
+we would still like to target something
+that looked like the original sample all
+the original population if you want to
+post a population sampling model too and
+what we're going to do here is to
+slightly extend this idea of template
+matching by Jeff Civil Paul Rosenbaum
+and co-authors were they proposed to use
+matching with the previous tools that I
+described to do Hospital comparisons so
+they wanted to do a fair comparison of
+hospitals by comparing the same case
+mixes of patients across all hospitals
+we know that different hospitals tend to
+treat different kind of patients some
+hospitals get sicker patients others not
+so in our
+to do a fair comparison we have to make
+an apples-to-apples comparison and they
+try to do matching but if you're going
+to match with many hospitals if it is
+very large matching in this direction is
+a nightmare but they were very clever to
+think okay what if I define an axillary
+sample a target sample and I match each
+of these groups to that template then by
+beauty of doing that I'm going to get a
+match across all hospitals so it is a
+really important idea which we can
+slightly extend to the concept context
+of representative matching with doses by
+selecting the template sample to be a
+random sample from a target population
+by being a random sample is going to be
+representative of a target population
+and there's also a way that we can make
+it be the best random sample from a
+target population by selecting many
+random samples and choosing the the
+closest random sample to this one here
+it's still random but is the best one
+and now what we're going to do is to
+match across doses in this direction
+here and by doing this we can balance
+Kivar it's very precisely here I'm
+showing you a table one for kobarid
+balance but that it's a lot more precise
+than a table one for covariant balance
+because we're not only balancing the
+means of the cards were perfectly
+balancing the marginal distributions of
+the covariance
+for example gender here across all the
+levels of shaking of the earthquake we
+have the same number of counts of males
+and females we have the same number of
+students in low school socioeconomic
+status schools right every category of
+every kobarid and we have like 17 of
+them so this is a very long table is
+perfectly represented across all the
+doses so we're not only perfectly
+balancing the means were perfectly
+balancing the distributions and this is
+something that you can do by using the
+day previous matching tools so it's I
+think one can make a strong case that
+the groups are comparable in terms of
+surf covariance
+and and I find this handy this this kind
+of adjustment because then we can
+analyze the outcomes by simply looking
+at them we can simply plot the outcomes
+I told you there are two outcomes one
+outcome is school attendance the other
+word the PSU scores similar to the SAT
+scores and let's focus on this panel
+here here we have the distributions of
+difference in attendance between those
+two and the baseline those one and we
+essentially see no effect this box plot
+is centered around zero when I take the
+difference for example between those six
+and those one everything is in relation
+to those one here this effect now is
+larger and we can see that the stronger
+is the shaking of the earthquake the
+bigger is the effect so we see this dose
+response relationship of the impact of
+the shaking of the earthquake on whether
+students to what extent students
+attended to school after the earthquake
+it is not surprising to find this but
+the point I want to make is that we're
+seeing this effect and it's big and it's
+very transparent what we're doing with
+the data here you can see how we are
+adjusting for cupboards so we can simply
+plot the outcomes the point is that we
+can do something similar for the PSU
+scores and here's what we see
+so let's focus on this panel here again
+this is what we had before and this what
+we have now and what do we see we see
+nothing right which is quite striking
+because the earthquake has this massive
+effect on so many things in Chile
+including school attendance but when it
+comes to take the PSU test to get into
+college it it appears it didn't have an
+effect which is interesting as you say
+and also controversion one may say like
+one hypothesis a corrosive a hypothesis
+is what our students really learning in
+the last year of school
+tours tours this test maybe it's the
+case that they're learning everything
+outside school so going to school is not
+all that relevant that's a possibility
+but but the point I wish to highlight is
+that here were using matching to handle
+many treatment doses ten of them the
+adjustments are transparent you sue the
+tables for balance and then we can look
+at the outcomes and so the point is that
+it facilitates I think transparent
+analysis of the outcomes and transparent
+sensitivity analysis - yes oh the
+question is what was the time difference
+between the the earthquake and the PSU I
+think it was roughly something like nine
+months in this case yes
+the COS in n yes so here for every
+treatment dose were we have a match
+sample of size 1,000 because we're doing
+it the template I chose it to be a side
+point 1000 but you can you can optimize
+that to so that it's much larger this is
+just for the sake of illustration so it
+was size 1000 each of the samples is
+size 1000 and I think here I should
+finish so that
+oh but to the practical part okay so we
+have emphasized certain study design
+principles here which which we think
+there are some important study design
+principles regardless of whether we use
+matching or something else right if
+you're going to use a different method
+for adjustment we still think it's
+really important to be careful about
+design to specify what is the target
+population and your estimate under what
+assumptions can you get to see that
+estimate from the observed data and to
+avoid strong parametric specifications
+and and and I think it's important that
+these adjustments are transparent in the
+sense that we know what we're doing to
+the data what differential weighting
+were doing to the data with linear
+regression as it turns out as hidden
+inverse has explained in one of his
+papers that the implied weights can be
+very large and negative which can
+translate into a lot of extrapolation so
+matching maps these principles in the
+sense if this sign based in the sense
+that we are not using the outcomes in a
+way where football focusing on the
+treatment assignment mechanism we are
+doing to this concept of target
+population by doing template matching
+what are the assumptions are stated here
+the parametric has specifications
+it's tempted to say they're virtually
+none but from the moment we are
+targeting certain forms of kobarid
+balance if we don't have a nonparametric
+agenda for balancing things the
+justification for balancing some things
+and not others comes from a parametric
+family of models so nearest neighbor
+matching in principle is nonparametric
+you can also do nonparametric balancing
+but if you're just balancing the means
+that implies a linear model in the end
+okay
+so matching is matching can be
+nonparametric if you do it in that way
+and I hope that I have conveyed that the
+adjustments are transparent you can see
+what is going on perhaps the algorithms
+are complex but at the end of the day
+the structure of the data is simple so
+that we can talk about the methods let
+me say again that matching is not the
+Silver Bullet for the problem of causal
+inference it has some very nice
+appealing characteristics again to
+repeat I would think transparency but
+we're doing this 0 1 waiting on the data
+and a more efficient way of waiting the
+data would be too relaxed are waiting
+for example we also there have been all
+dis advancements in machine learning
+which I think they're very available and
+they can be used for example as a
+complement to matching or as an
+alternative to matching so we wish to
+emphasize this matching tools because I
+think they should be part of the toolkit
+of anyone of us doing causal inference
+in this Big Data era and to kind of to
+remember these design principles from
+from randomized experiments so so in big
+bet I think we also want to be thinking
+carefully about this study design
+considerations and matching I think
+lends quite naturally to be careful
+about the thinking but there are many
+other methods so let's finish here I
+think we're on time

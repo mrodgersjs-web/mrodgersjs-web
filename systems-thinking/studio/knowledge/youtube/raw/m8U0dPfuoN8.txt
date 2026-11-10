@@ -1,0 +1,203 @@
+Here is the wildest GitHub story this
+week. A TypeScript YouTuber published
+his Claude code config folder and it
+just gained 7,400 stars in 24 hours.
+Okay, so here's the thing.
+Matt Pocock runs AIHero.dev and has
+about 60,000 people on his newsletter
+and a couple of months ago he started
+quietly committing his personal .claude
+directory to a public repo called
+skills. It just sat there for a while,
+then this week it got fire.
+36,800
+stars total, almost 3,000 forks all
+under MIT. The interesting part is what
+is actually inside it because this is
+not another agent framework. There is no
+orchestrator, no planner, no spec kit.
+It is a folder of small markdown files
+Matt uses every single day to ship real
+code.
+The numbers tell the story. 36,800
+stars, a brand new repo only created in
+February 2,800 forks already and a
+hardline position against vibe coding.
+Pocock is the same guy who taught a
+generation of devs how to actually use
+TypeScript. So when he says vibe coding
+does not work, people listen. Let me
+show you what is actually in this folder
+because it is way more interesting than
+the title makes it sound.
+The readme opens with a thesis that the
+user is going to either love or hate.
+Pocock straight up calls out approaches
+like GSD, BMAD, and spec kit by name and
+says they take away your control and
+make bugs in the process hard to
+resolve. His pitch is that engineering
+is hard and the answer is not heavier
+process. The answer is small composable
+building blocks that you adapt to your
+own brain.
+Then he lists out four common failure
+modes when you work with a coding agent
+and for each one he names the exact
+skill he wrote to fix it.
+The agent did not do what I want. The
+agent is way too verbose. The code does
+not work. We built a ball of mud. Each
+one comes with a quote from pragmatic
+programmer or domain driven design or
+Kent Beck, then a fix that is literally
+just a markdown file in his Claude
+folder.
+The whole repo is tiny, only 110
+kilobytes, but the philosophy behind it
+is very specific.
+So why is this hitting now? The whole
+agent ecosystem has been moving toward
+heavier abstractions.
+Spec driven kits, beam at workflows,
+multi-agent orchestrators, every week
+there is a new framework that promises
+to own the entire process.
+Pocock is doing the opposite and his
+pitch is striking a nerve with engineers
+who have been quietly skeptical of all
+of it.
+The repo facts are pretty wild given how
+new this is. 36,800 stars from a project
+created on February 3rd. MIT licensed,
+written almost entirely in shell because
+the skills are just markdown plus tiny
+installer scripts.
+322 people watching for new commits,
+which is unusually high for a config
+dump.
+Here is the actual menu of skills you're
+getting. The most popular one is called
+grill me and it is exactly what it
+sounds like. You tell the agent what you
+want to build and it interrogates you
+with question after question until every
+branch of the decision tree is resolved.
+Pocock says it is his most used skill
+and you should run it before every
+single change.
+There is a sister skill called grill
+with docs that does the same grilling
+but also writes your domain language
+down into a contract.md file as you go.
+So your second session with the agent is
+faster because the jargon is already
+documented. There is TDD which forces a
+strict red green refactor loop with
+proper failing tests first and there is
+diagnose which is a structured debugging
+loop. Reproduce, minimize, hypothesize,
+instrument, fix, regression test.
+Then there is the architecture half of
+the toolbox. Improve code base
+architecture is a skill you run every
+few days and it looks for places where
+the code is becoming a ball of mud and
+suggests deepening modules in the John
+Osterhout sense.
+To PRD turns whatever conversation you
+just had with the agent into a proper
+product requirements doc that will go
+straight into your issue tracker.
+To issues breaks any plan into
+independently grabbable GitHub or linear
+tickets sliced vertically so each ticket
+actually ship.
+And zoom out is a tiny but useful one.
+You ask the agent to zoom out on a piece
+of code and explain it in the context of
+the whole system instead of the usual
+function level explanation.
+The implementation is almost insulting
+how simple it is. Each skill is one
+folder containing one skill.md markdown
+file with a description, when to use it,
+and the agent prompt.
+There is a tiny installer at npx
+skills@latest @mattpocock/skills
+which lets you pick which ones you
+actually want and which agents to
+install them on.
+Claude code, cursor, codex, anything
+that reads a .claude or .agents
+directory. There is no runtime, no
+daemon, no orchestrator. It is just
+markdown that gets dropped into your
+project and the agent picks it up.
+Here is what installing actually looks
+like, two commands and you're done.
+The first one is the npx installer that
+pulls in the skills. The second one is
+the setup command that asks you which
+issue tracker you use and where you save
+docs.
+After that, every skill is available as
+a slash command in your agent.
+The repo is shipping aggressively. The
+latest commit landed yesterday afternoon
+adding a setup skill that walks you
+through configuring all the others.
+Earlier this week, Pocock added the
+triage skill which moves issues through
+a state machine of triage roles and a
+new caveman mode that compresses the
+agent's output by about 75% by stripping
+article and filler words.
+He has been merging pull requests from
+the community at a serious pace
+including some from GitHub Copilot
+itself co-authoring fixes.
+So who should actually clone this? If
+you're a solo builder who already lives
+in Claude code or cursor and you have
+felt the pain of an agent burning 20,000
+tokens before realizing it built the
+wrong thing.
+The grilling skills alone are worth the
+install.
+If you're working in a team and your
+code base has accumulated jargon nobody
+can keep straight. The contracts.md
+pattern is genuinely good and survives
+across sessions.
+If you're a TypeScript developer
+specifically, you're getting Matt's
+actual personal config which means his
+preferences for type safety, schemas,
+and library choices are baked in.
+And if you are an agent skeptic who
+thinks all of this is overcooked, this
+is probably the most minimal entry point
+you are going to find.
+It is 14 markdown files.
+Okay, let's be real about the tradeoffs.
+This is one engineer's personal opinions
+packaged as best practices so some of
+the skills will not match your stack.
+The grilling sessions can be slow when
+you just want to ship something small.
+And there are some skills like migrate
+to shoehorn that are extremely specific
+to Matt's own libraries and you will not
+use them. But for everything that is
+opinionated about it, the project is
+real.
+MIT licensed, almost 3,000 forks, 60,000
+newsletter subscribers behind the
+author, shipping commits this week. If
+you're building with a coding agent in
+2026 and you're not at least reading
+what someone like Pocock keeps in his
+.claude folder, you're missing the wave.
+Links are in the description. Thanks for
+watching. I'll catch you tomorrow.

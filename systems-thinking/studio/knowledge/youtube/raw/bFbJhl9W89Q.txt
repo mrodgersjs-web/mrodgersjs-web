@@ -1,0 +1,262 @@
+in the natural world the Elegance of
+collective behavior is on Full display
+take bees for example they perform
+complex dances to Signal the location of
+a nectar Rich flower to the rest of the
+hive or ants leaving behind pheromone
+Trails indicating to the Colony a path
+to a valuable food source these small
+individual actions Guided by Simple
+Rules seem almost inconsequential on
+their own yet when combined they give
+rise to a sophisticated unified swarm
+intelligence capable of solving complex
+problems and adapting to everchanging
+environments as it turns out we can
+actually use This brilliant swarm-like
+Behavior to our advantage to help solve
+some of the most challenging
+optimization
+problems in the mid1 1990s Dr James
+Kennedy and Dr Russell Eberhart decided
+to try to harness these principles for
+optimization problems in Computing
+Edward Wilson writes in his book
+sociobiology the new synthesis when
+referencing a school of fish in theory
+at least individual members of the
+school can profit from the discoveries
+and previous experiences of other
+members of the school during the search
+for food this suggests that social
+sharing of information offers an
+evolutionary Advantage which is the
+fundamental concept leading to the
+development of particle swarm
+optimization by blending personal
+learning with social influence Kennedy
+and Eberhart created an algorithm that
+mirrors the Adaptive intelligence of
+natural swarms capable of finding op
+Optimal Solutions in complex
+multi-dimensional spaces to illustrate
+the power of this approach let's imagine
+we need to determine the optimal
+location for a new warehouse for a
+business the goal is to minimize the
+distance to stores in order to minimize
+Transportation costs while also being
+far enough away from residential zones
+to avoid disruption in this problem
+setup each particle would represent a
+potential warehouse location and a
+fitness score would be determined based
+on the distance to stores and proximity
+residential areas as the algorithm
+progresses particles will communicate
+with each other and converge towards the
+best
+solution first let's understand how a
+fitness score is calculated this Contour
+plot shown here was computed based on a
+fitness function this lighter area is
+where the fitness is the highest and is
+the optimal location we want our
+particles to find we can instantly spot
+where this Best Fitness is however the
+particles are completely blind to this
+they have to compute a fitness score for
+each step they take to help determine
+which direction they should go next for
+now let's just focus on one particle and
+how it computes a fitness score
+initially the particle doesn't know its
+location so first it calculates a
+fitness score based on its current
+position remember we're aiming to
+maximize the distance from residential
+areas and minimize the distance to
+stores the particle finds the closest
+residential area and records that
+distance we choose the closest because
+it represents the worst case scenario
+for residential disruption meeting this
+requirement ensures we're far enough
+away from all other residential areas so
+no need to track the others we then find
+the furthest store and record its
+distance we track the furthest store for
+the same reason as it represents the
+worst case scenario for distance to
+stores now it's important to note that
+the closest residential area and furth
+the store will change depending on where
+the particle is but to compute a fitness
+score for this particular particular
+location we take the distance to the
+closest residential area and subtract
+the distance to the furthest store the
+idea here is that if we increase this
+distance to the closest residential area
+and decrease this distance to the
+furthest store which minimizes the
+amount we are subtracting here that will
+overall drive this Fitness score to an
+increasing value so here we are 25 Mi
+away from the closest residential area
+and 100 Mi away from the furthest store
+so our fitness score is
+75 since that is our first calculated
+Fitness score it's considered our best
+score so far so we save this location as
+this particle's Best Fitness which we
+will indicate with a blue star now since
+we have a swarm of particles all other
+particles also have their own personal
+best positions too and only one of them
+we will Mark as the best fitness
+position of the entire swarm which we
+will indicate with a yellow star now
+back to our single particle when it
+initially spawns in we give it a random
+velocity just to get it going once it
+has moved it calculates the fitness of
+its new position here we get a worse
+Fitness score than our personal best so
+we don't update it now to determine
+where we go next this time we've got
+some information we can go on to help
+guide our particle in the right
+direction first we have the Velocity
+Vector we used to get to this location
+this is basically just our inertia since
+an object in motion stays in motion with
+the same speed and Direction next we
+know where the swarm's best position is
+and we should probably head in that
+direction to investigate further so
+let's draw a vector pointing to that
+location this will be our social Vector
+next we also know where this particle's
+own personal best position is and it's
+still definitely worth going back to
+that area and investigating more to see
+if the fitness improves any further so
+we will draw a vector pointing to our
+personal best position two and call it
+our memory Vector finally we perform
+vector addition by adding all three of
+these vectors tip to tail and with this
+we can draw our new velocity Vector now
+in the algorithm you can apply weights
+to these vectors so that you can vary
+the impact each component has on
+particle movement maybe you want higher
+bias on social influence so you would
+increase the weight for the social
+vector or maybe you prefer the particles
+to explore a little more so you can vary
+its inertia or memory Vector so this is
+where where our particle moves to next
+and the cycle repeats this process
+continues iteratively for each particle
+in the Swarm as particles move they
+update their personal best positions
+based on their discoveries
+simultaneously being influenced by both
+their individual experiences and the
+swarm's collective knowledge this
+delicate balance between independent
+exploration and social learning guides
+the entire swarm towards converging onto
+the optimal solution it's a dance of
+individual initiative and group wisdom
+mirroring the elegant problemsolving
+behaviors we observe in
+nature now you might be asking couldn't
+we have just solved this using an
+exhaustive search method where we try
+every position in our search area to
+find the optimal location and to that I
+would say you absolutely could and in
+fact I might even recommend it for this
+particular problem because it's such a
+tiny search space that the time to solve
+is negligible and it ensures that you
+get the correct answer every time and
+yes it is possible that the particle
+swarm approach can give you an incorrect
+answer this can be due to not having
+enough particles in the Swarm or not
+giving the Swarm enough time to
+adequately explore the search space
+however where the particle swarm
+algorithm has the advantage is higher
+dimensional problems let's say for
+example we needed to scale this problem
+instead of finding the optimal location
+for one Warehouse what if we needed to
+find it for three
+warehouses this problem grows
+exponentially for a solution like
+exhaustive search because the position
+of each Warehouse can directly affect
+the fitness of the other warehouses if
+we take our 100x 100 search space there
+are 10,000 possible locations then since
+we're dealing with three warehouses we
+have to evaluate every possible
+combination that three warehouses can be
+arranged in these 10,000 possible
+locations which we can compute using the
+combination formula so there are over
+166 billion different combinations would
+have to compute a fitness for and if we
+say it takes about 10 microseconds to
+compute a fitness score we're looking at
+about 19 days to solve this using the
+exhaustive search approach meanwhile
+using the particle swarm approach we can
+get an answer in a few seconds it may
+not be the perfect answer but it's often
+worth the time that we save if you're
+interested in diving into the code and
+exploring the implementation yourself
+I've posted the Python scripts on my
+patreon page linked below here you can
+play with the variables like the number
+of warehouses the weights of the vector
+components influencing particle movement
+and set any number of stores and
+residential areas to make the problem
+more interesting in my experience
+nothing beats Hands-On learning when it
+comes to understanding New Concepts
+which is why I've chosen brilliant to
+sponsor today's video brilliant is
+incredibly effective at illustrating
+Core Concepts in math data science
+programming and artificial intelligence
+what sets brilliant apart is their
+meticulously crafted curriculum instead
+of passive learning they offer a fun
+gamified experience that challenges you
+to apply concept conepts immediately
+reinforcing your understanding complex
+ideas are broken down using intuitive
+graphics and animations making abstract
+Concepts tangible as you advance you
+gain XP to compete with others keeping
+you motivated to continue learning
+they've got several courses on computer
+algorithms like binary search and
+insertion sort they've even got courses
+on neural networks and Quantum Computing
+to try everything that brilliant has to
+offer for free for a full 30 days visit
+brilliant.org
+01 or click the link in the description
+you'll also receive 20% off in annual
+premium subscription I want to thank
+brilliant for sponsoring today's video
+and thank you for watching

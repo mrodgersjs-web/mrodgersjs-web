@@ -1,0 +1,1162 @@
+misunderstandings about risk statistics
+and probability often lead to flawed
+decision making in many critical areas
+such as medicine Finance law defense and
+transport the Big Data Revolution was
+intended to at least partly address
+these concerns by removing Reliance on
+subjective judgments however even where
+relevant Big Data are available there
+are fundamental limitations to what can
+be achieved through pure machine
+learning techniques alone we've entered
+an era where it's assumed that if you
+have sufficient data clever statistical
+machine learning methods will enable you
+to learn useful things from the data
+this is increasingly the case for
+medical data where for example we want
+to be able to predict specific disease
+risks from observable risk factors or
+its own optimal treatment strategies but
+there are severe limitations to what we
+can ever learn from observational data
+alone
+this doesn't mean that we have to only
+rely on randomized controlled trials
+which have their own severe limitations
+this talk focus on how cools will model
+specifically Bayesian networks enables
+us to do much more with observable data
+and get more accurate results than is
+possible for machine learning from data
+alone I'll start with an explanation of
+why we need to incorporate calls or
+reasoning into obsessional Data only
+causal reasoning exposes the paradoxes
+that produce flawed or biased results
+from observational data but it's not
+sufficient to produce calls or models we
+need a calculus for performing inference
+on these models which is where bays and
+Bayesian nets come in I'll show how
+Bayesian networks resolve the causal
+paradoxes and then review the
+limitations and challenges of Bayesian
+networks before presenting a number of
+real world examples finally I'll show
+why no matter how big the data we're
+never guaranteed to learn causality from
+the data
+no I'm not arguing the pure data driven
+machine learning in healthcare for
+example is a waste of time it can work
+very well in applications like image
+recognition whereas possible for example
+to do as well as human experts in
+identifying radiology and abnormalities
+but that's very different from learning
+or incorporating causal knowledge which
+is required in the type of applications
+that we're focusing on
+oh
+so here's a typical example of a big
+data problem where machine learning
+algorithms are used
+thanks Gava comprehensive data on
+customers to whom they give loans
+they use this information to help them
+to risk assess future customers are
+those most likely to default on loans
+so here are the customers who defaulted
+they've got the yes in this column
+and what statistical machine learning
+algorithms do is learn what the
+distinguishing features are
+of those customers who default
+and how they differ from those who don't
+default
+the first problem with this type of data
+is that although it might be big it's
+completely missing data for entire class
+of customers who we also need to learn
+about
+specifically as it's restricted to
+customers who were given loans it
+contains no information at all on those
+who refuse loans we say that such data
+is censored and therefore biased so we
+can learn nothing about customers who
+refuse loans and why they were refused
+and this creates other problems leading
+to fundamentally flawed algorithms so
+take a look at these cases highlighted
+here
+these are a small number of unemployed
+teenagers given very large loans who
+didn't default now most unemployed
+teenagers ask over big loans would have
+been refused credit because they'd
+almost certainly default but they never
+made it into the data and so we don't
+learn such obvious characteristics
+instead we have a small number who don't
+differ because these are special case
+exceptions they were the children of
+wealthy customers known to the bank
+so instead of learning that unemployed
+teenagers are high risk
+the purely data-driven algorithm learns
+the exact opposite unemployed teenagers
+with big loans don't deform
+now here's a model which represents what
+all machine learning and statistical
+algorithms are essentially doing they
+learn the target outcome which is
+whether or not this is the loan
+defaulted
+as a function of the inputs which
+they're the data but what the model
+can't learn is the impact and
+relationship involving unobserved
+variables in this case the variable loan
+given was censored because we only had
+data for those giving loans we're also
+missing the special client information
+and the latent variable
+which is low in suitability now people
+with expert domain knowledge and a
+common sense understanding of causality
+can provide this type of graphical
+causal model before considering the data
+the example here is based on a real
+study of patients entering excellent
+emergency with head injuries we have a
+bunch of variables
+represent an observable factors about
+the patient and a record of the outcome
+in this case whether they died within 48
+Hours the idea is you want to use the
+data to learn a model to help identify
+patients most at risk of death
+again a typical regression-based
+learning model attempts to learn outcome
+as a function of the observables
+such models rarely achieve better than
+70 accuracy and often produce
+counter-intuitive and incorrect results
+for important outliers
+in particular typical results of such a
+model appear to be working well in the
+sense that as the risk factors
+collectively become more critical the
+predictive probability of survival
+decreases
+but what happens in the most critical
+cases
+but
+you might actually see an uptick in
+survival probability
+now this is all explained in a proper
+causal model
+so delay an injury type impact on the
+seriousness of the injury that's
+unobserved
+arterial pressure brain scan result
+pupil dilations those are simply
+symptoms or test results the seriousness
+of the injury
+ability to recover
+is influenced by seriousness and age so
+these are the risk factors and causes
+but most crucially the outcome is
+influenced not just by ability to
+recover but by an intervention
+namely whether or not patient received
+urgent treatment
+especially at risk patients or of course
+more likely to get urgent treatment to
+avoid the worst outcomes hence you get
+the anomalies and inaccuracies of the
+data learned from regression models
+they're overfitting the data so the
+causal model is more accurate it
+properly handles outliers and it's more
+useful for decision support
+now I haven't defined what Bayesian
+networks are yet but a core component of
+a Bayesian net is its structure which is
+just a directed graph like the ones
+we've seen so far
+these are based on causal knowledge with
+the Arts representing causal or
+influential relationships
+but it's possible to learn a structure
+of a Bayesian net from data alone
+and a lot of people doing Bayesian Nets
+are doing exactly this it so happens
+that this head interest example comes
+from a study in which the authors did
+indeed use structural learning from data
+alone and this is what they ended up
+with
+and it's completely meaningless from a
+causal perspective you know the outcome
+doesn't influence the delay in arrival
+nor does the injury type
+and critically if your Bayesian networks
+are learned purely from data then their
+predictive accuracy is generally no
+better than any other pure machine
+learning technique be it regression
+classification trees canaries neighbors
+neural networks support Vector machines
+Etc I'll go so far as to say the pure
+machine learn Basia Network models
+give Bayesian networks a bad name useful
+Bayesian networks require causal
+knowledge normally from expert judgment
+most of the problems arising from
+learning from observational data and the
+results of two very common causal
+paradoxes namely Simpsons Paradox and
+berkson's paradox
+we'll start with a simple hypothetical
+example of Simpson's Paradox suppose a
+new drugs being tested our group of 800
+people 400 men and 400 women with a
+particular disease half of them get the
+drug and the other half get a placebo
+overall the drug results suggest that 50
+of those who take the drug recover
+compare with only 40 who don't so
+there's a higher recovery rate for those
+who take the drug and those who don't so
+clearly that suggests the drug is
+effective but is it
+well if we look at the drug trial
+results with the sex of the patient
+included
+then what you can see is that among the
+females
+for those who took the drug
+there was only a 20 percent
+recovery rate compared to a 30 recovery
+rate for those who didn't
+so there was a higher recovery rate
+in those who didn't take the drug but in
+the males it's the same we must have
+took the drug there was a 60 recovery
+rate but there was a higher recovery
+rate 70 for those who didn't
+that means that in every subcategory the
+drug is performing worse than the
+placebo
+even though overall the drug is better
+now
+there's no statistical chicane involved
+here you can check that the numbers add
+up you can check for example that
+they're really worth 400 people took the
+drug because there were 300 males 100
+women you can check that number who
+recovered overall was 200 360 because
+down here you got you've got 110 here
+plus 250 here which is the 360.
+well what's explaining this there's a
+causal explanation
+so while recovery is certainly
+influenced by whether a Drug's taken
+it's the sex which influences both
+whether the drug is taken and the
+recovery specifically more men happen to
+be given the drug and they're more
+likely than women to recover naturally
+so sex is a confounding variable
+creating the paradox
+now while that was a hypothetical and
+contrived example the following is based
+on a real observational study
+this was to compare the outcomes or
+success rate of two treatments let's
+call them A and B for patients with
+kidney stones there were 700 patients
+half of whom have to get treatment I and
+half whom have to get treatment B
+now overall there was a higher success
+rate for those who got treatment B
+289 at the 350 compared to only 273 for
+treatment a so treatment B is better
+overall
+but it's worse in every subcategory when
+we split the data for the size of the
+kidney stone so patients with small
+kidney stones the overall success rate
+is generally better but here it's higher
+for treatment a with 93 percent compared
+to 87 for treatment B for patients with
+large Stones the overall success rate is
+lower the harder to treat and again
+treatment a has a higher success rate
+than treatment B
+and yet again there's a causal
+explanation for the Paradox here
+recovery is certainly affected by
+treatment
+but again the stone size
+is influencing both the recovery and the
+treatment specifically patients with
+large Stones were more likely to be
+given treatment are you and it's
+inevitable to get this kind of
+limitation in these observational
+studies
+next we move on to berkson's Paradox
+which is even more problematic for
+observational studies suppose we want to
+assess the effectiveness of a treatment
+for a particular disease and suppose
+that from a true population of 100
+people with this disease we find that 16
+receive the treatment and survived
+and four who received the treatment
+didn't survive so 20 people got the
+treatment and so that's a survival rate
+of 80 for those who didn't receive the
+60 survived
+and 20 didn't survive so a survival rate
+there is 75 percent
+and so the treatment is affected because
+it really increases the survival rate
+now of course in practice we can never
+sample the entire population typically
+any data set from this population will
+be subject to systemic bias
+in particular people who did not receive
+the treatment are most likely to be left
+out so let's look at what happens in a
+typical sample data set
+more of those who didn't receive the
+treatment are missing and what's more
+amongst those who didn't receive the
+treatment the ones not surviving are the
+most likely to be missing so in the
+sample population we only have an
+estimate of the survival rate and
+they're different
+the survival rate amongst those who
+received the treatment is 87 and the
+survival rate amongst those who didn't
+receive the treatment is 94 so in this
+case the survival rate is higher amongst
+those who didn't receive the treatment
+so the treatment reduces a survival
+probability based on this sample data
+set
+again there's a cause of explanation
+in this case the treatment definitely
+impacts on the survival
+but both the treatment and the survival
+influence who's in the sample because
+those who are not treated and don't
+survive are less likely to be in the
+sample those who are treated and survive
+more likely to be in the sample
+now for both parallels is there's a
+hidden causal Factor impacting The
+observed data in Simpsons Paradox the
+cause of relationship exists but it's
+affected or even inverted by the common
+confounder
+and in bergson's Paradox there's a
+hidden collider variable which also
+means that the causal relationship
+exists but it's affected or even
+inverted by the Collider
+the need for causal reasoning in AI
+rather than pure machine learning from
+data has been well characterized by
+Judea Pearl with his SRI lung ladder of
+causation at level one we learn by
+seeing but we can only learn
+associations this way such as from this
+trial's data is this drug effective as
+stopping headaches or in our bank clone
+example we can learn whether unemployed
+people given loans are more likely to
+default at level two we learn by doing
+this way we can learn about
+interventions such as if I take this
+drug will it stop my headache or in the
+bank example if I'm unemployed will I
+default on a loan at level three we
+learn by imagining
+this way we learn about counter factors
+such as if I hadn't taken this drug
+would my headache still have stopped on
+the bank example if I'd been employed
+would I still have defaulted on my loan
+Pearl argues that if we rely only on
+statistical machine learning from data
+then we can only ever get to level one
+on this ladder
+get into both levels two and three
+require causal knowledge of the
+relationships not just between factors
+in the data sets but also including
+unobserved ones like confounders and
+colliders
+now there are real benefits in simply
+drawing graphical models like the ones
+we've seen before doing any data
+collection and analytics it can guide
+the collection of the right data and
+avoid most of the errors that people
+make when analyzing and learning from
+data
+but to use such models for addiction
+inference and decision making and to
+reach levels 2 and 3 on this ladder we
+need a computational framework to
+support it
+based serum and Bayesian networks
+provide exactly that
+so Bayes theorem is all about how to
+properly update our prior belief in some
+unknown hypothesis when we get new
+relevant evidence about it so here's an
+intuitive explanation
+suppose Sarah takes a screening test for
+breast cancer and about one in a
+thousand women for her age habit
+the test is accurate it's got a 99 true
+positive rate so she's got cancer 99 of
+the time it will test positive and it's
+only got a five percent false positive
+rate so only five percent of those who
+don't have cancer will get a positive or
+95 of those who don't have cancer it
+will correctly come up negative
+Sarah test positive
+what's the probability that she has
+breast cancer
+well in a well-known study of Harvard
+Medical School staff and students
+represented with exactly this problem
+over half gave the answer 95 and the
+average answer was 65 so most were very
+confident that Sarah had breast cancer
+but it's completely wrong and that's
+because they're failing to take account
+of the prior belief here which is the
+very low probability one in a thousand
+and to prove that and give a graphical
+illustration of Bayes theorem
+just imagine
+a thousand people getting tested
+about one will have the disease and the
+tests will almost certainly test
+positive for that person but that means
+that the other 999
+don't have the disease
+that's almost a thousand and because of
+the five percent false positive rate
+about 49 or 50 of those are going to
+test positive wrongly
+so if we strip away all those tests are
+negative we only look at those testing
+positive we've got one out of about 50
+who test positive who actually have the
+disease
+that's about two percent
+and of course that's very different from
+the 95 percent assumed by most medics
+so that was a visual explanation of
+Bayes theorem
+I want to introduce it formally used in
+the graphical formalism of Bayesian
+networks so with Bayes we have some
+generally unknown hypothesis H which in
+this case person has disease and for
+Simplicity as in this case we'll assume
+that that's Boolean true or false
+we have a prior probability of the H
+which in this case is one in a thousand
+so here's the prior probability table
+for age
+and we get some evidence about age which
+in this case is the result of a
+diagnostic test and we know the
+probability of the evidence in this case
+the positive test result given that the
+person has the disease
+in other words we know the probability
+of the evidence given H we know that's
+0.99 or 99 and we know the probability
+of e given not H is not 0.05 so we know
+these
+and again we can represent that in this
+case as a conditional probability table
+when H is true there's a 99 the test
+will be positive and when H is false
+person hasn't got the disease there's a
+five percent chance that the result will
+be positive
+but of course what we want to know
+is the posterior probability of age
+given the evidence
+so what's the probability H is true if
+we know the test result is positive so
+we want we want to make an inference in
+that direction
+of course gives us the answer it's this
+formula
+expand into that and of course we know
+each of these terms and we can just plug
+them in
+and we get the value which is just under
+two percent which is what we essentially
+saw in the graphical version of Bayes
+theorem
+and of course this is an example of a
+very simple Bayesian Network which is
+specified by a directed graph
+and node probability tables associated
+with each node of the graph
+in these models we can do prediction
+which is forward influence from call to
+effects and also backward inference from
+effector causes
+now in general Bayesian Network will
+consists of multiple variables not just
+two and the necessary Bayesian inference
+calculations are very complex because
+the inference has to propagate around
+the whole network so we need algorithms
+for performing The Complex Bayesian
+inference now fortunately
+efficient propagation algorithms have
+been around since the late 1980s and
+have been implemented in tools like a
+Gina so once the Bayesian Network
+structure and conditional probability
+tables are specified all the
+computations are performed automatically
+this is a classic example of a simple
+Bayesian Network model called the Asia
+model the objective of the model is to
+determine the most likely diagnosis for
+a patient entering a chess Clinic the
+nodes here represent variables which may
+or may not be known and for Simplicity
+all of these nodes are Boolean meaning
+they have just two states which were
+taken to be yes or no in this case
+there's a directed Edge between two
+nodes if there is a causal or
+influential relationship between those
+nodes for example a person who is a
+smoker is more likely to have lung
+cancer than a person who is a non-smoker
+similar bronchitis and a person who has
+any of these conditions is more likely
+to have the symptom of dyspnea which is
+shortness of breath now associated with
+every node is a probability table
+so for example for the node smoker the
+probability table is just 50 50 for yes
+or no because that represents the fact
+that 50 of the people who enter the
+Chest Clinic are smokers whereas for
+visit to Asia
+only one percent of the people have had
+a recent visit to Asia
+for nodes which have parents the
+probability table is a conditional
+probability table so we have to get the
+probabilities conditioned on the states
+of the parent nodes so if a person is a
+smoker there's a 10 chance that this
+person would have been diagnosed with
+lung cancer and if a person is a
+non-smoker there's only a one percent
+chance they would been diagnosed with
+lung cancer now in its prior or
+so-called marginal State the
+probabilities here represent just what
+is known about the population of people
+entering the chess clinic but of course
+we want to use the model for
+individualized risk assessment so
+suppose a patient comes in and is a
+non-smoker so we're going to enter that
+observation and now what's going to
+happen is we're going to run the model
+and it's going to do all of the Bayesian
+inference and in particular look at how
+the probabilities of these nodes change
+so a non-smoker probably with lung
+cancer went down probably to bronchitis
+went down
+so many of these all went down at this
+point if that's all you know about this
+person then it's unlikely that they've
+got any of these conditions because the
+highest probability of 30 for bronchitis
+but suppose they report shortness of
+breath
+when we run the model again again see
+what happens
+these two increase by a little bit but
+they're still quite low but bronchitis
+is now over 75 so you would diagnose
+bronchitis as a likely condition in this
+case
+well suppose we send the patient from
+X-ray and it comes back positive run the
+model again
+TB and lung cancer have gone up quite a
+bit now but they're still way below
+bronchitis which is still the likely
+diagnosis at this point however suppose
+we decide to check that if this person
+had a recent visit to Asia and it turns
+out they did
+in this case when we run the model
+Everything Changes tuberculosis almost
+from nowhere now becomes the most likely
+probable diagnosis
+now show you using the examples of
+Simpsons and bergson's paradox Bayesian
+Network s can resolve those paradoxes
+and also get us to levels two and three
+of Paul's ladder of causation
+okay so we have our two treatments for
+kidney stones treatment iron treatment B
+and we're interested in which is more
+likely to lead to full recovery so we
+can see that in the study an equal
+number of patients had treatments A and
+B and that the overall recovery rate was
+80 percent
+now for treatment a when we run the
+model we observe the recovery rate was
+78 and for treatment B
+recovery rate is 83 so overall treatment
+B seems to be the more effective if I
+reset the model I'm now going to reveal
+the hidden confounder which is of course
+the stone size
+now if the stone size is small
+let's see what happens
+first of all the overall recovery rate
+is higher 88 and it's also more likely
+that treatment B would have been given
+for a small Stone in fact with the stone
+size fixed at small let's compare
+treatments A and B now
+with treatment a recovery rate is up to
+93 whereas with treatment B
+the recovery rate is only 87 so
+treatment a is better than treatment B
+for small stones what about the large
+stones
+for good treatment B so treatment B has
+a recovery rate of 69 and treatment a
+recovery rate of 73 so treatment I is
+more effective for both small stones and
+large Stones even though overall
+treatment B seem to be better of course
+the reason for this is that for large
+Stones which are more difficult and less
+likely to lead to recovery treatment a
+is more likely to be used than treatment
+B
+if someone is recovered with a large
+Stone
+then it's much more likely they were
+treated with eye we get that from the
+observational data that's the explaining
+why
+if we want to simulate a randomized
+controlled trial what we have to do is
+break the link from Stone size to
+so all I'm going to do is delete that
+reset this
+and now I can see the true effect
+of a independent of stone size
+it's a recovery rate for treatment a is
+83 percent and the recovery rate for
+treatment B
+is 78
+if I don't know the stone size
+which treatment should I choose if I
+want to optimize my chances of recovery
+so
+recovery is true
+you're better off with treatment I
+so here we return to the example of
+where we had a treatment for a
+particular condition that was genuinely
+affected because it increased the
+survival rate but from the observational
+data it was showing a decreased survival
+rate let's see how that happens
+so as far as the observational data is
+concerned 23 percent of the people got
+the treatment overall and overall 92
+percent survived but for those who
+actually got the treatment
+the survival rate decreases to 87 and
+for those who didn't get the treatment
+the survival rate increases to 94
+percent
+So based on the observational data it
+appears the treatment is definitely not
+effective
+but this is explained when we reveal the
+hidden Collider
+the only people in the data set are
+those in the bias sample if we remove
+this bias sample constraint
+then what we can see is that only 65
+percent of the true population is in the
+sample
+for those who got the treatment
+75 are in the sample but for those who
+didn't get the treatment
+a much smaller percentage
+62 percent is in the sample and for
+those who didn't get the treatment and
+who didn't survive
+only 15 are in the sample to see the
+unbiased results
+we can see that for those who didn't get
+the treatment there was a 75 survival
+rate
+but for those who did get the treatment
+there's an 80 survival rate so the
+treatment was genuinely effective but
+this was hidden by the sample bias and
+to get the unbiased results we have to
+explicitly model the sample bias as
+we've done here
+for counter factual reasoning we just
+need an appropriate causal model which
+we can create an almost identical
+counterfactual World copy so for example
+here's our model of the kidney stone
+treatment problem
+we can enter real world observations
+like a particular patient got treatment
+and so that makes it very likely before
+we know about the recovery that it was a
+small Stone
+suppose we also know the patient didn't
+recover then from this we learn the
+problem that was a small Stone decreases
+although it's still more likely than a
+large Stone because of treatment B
+so all of this represents what we know
+and learn about the real world this is
+the thing that we're uncertain about
+now we want to create a link copy of
+that model in a counterfactual world
+and we simply copy and paste the nodes
+that can change in the counterfacture
+world in this case that's the treatment
+and the recovery which ensures the
+probability for Recovery conditioned on
+Stone size is the same as in the real
+world
+now since we want to simulate an
+intervention on treatment
+we break the link into treatment in the
+counterfactual world so there's no link
+from Stone size to treatment now in the
+counter factual world we can therefore
+answer the counterfactual question with
+this patient have recovered if they've
+been given treatment a instead of
+treatment B and that's because we can
+simulate the effect of using treatment a
+on the patient with that updated
+information
+about what we learn about the stone size
+in the real world for this patient and
+you can see that that gives us an 85
+chance that this patient would have
+recovered
+before showing some real world examples
+I want to go through some of the key
+limitations and research challenges beta
+networks because we'll see that these
+have been partially addressed in the
+examples
+performing exact inference in Bayesian
+networks is known to be a
+computationally intractable problem I
+mean there's no efficient algorithm that
+will work for all Bayesian Network
+models it's an MP hard problem
+the standard algorithms like Junction
+tree work very fast for large models
+providing that there are not many highly
+connected components like this
+the algorithm transforms a model into a
+tree whose nodes are clusters of
+minimally connected nodes in a model
+like this
+all of these nodes are connected and so
+there's no reduction possible
+in general even efficient Acura
+approximate Solutions
+cannot be achieved
+so the best we can hope for in the
+general case are algorithms that produce
+efficient accurate approximate solutions
+for a much larger class of models than
+is possible with the standard algorithms
+like Junction tree
+now there's been a lot of work on such
+approximate Solutions but recent work
+led by my colleagues Peng Lin and Martin
+nil have produced such algorithms they
+significantly extend the state of the
+art Peng has been implemented an
+extension of this algorithm very
+recently and we believe it's potentially
+one of the most important breakthroughs
+of the decade in terms of speed and
+accuracy it will handle essentially
+arbitrarily large and complex Bayesian
+Networks
+now until relatively recently the real
+Achilles heel of Bayesian networks was
+that except for some special cases using
+normal distributions they required all
+variables to be discrete
+this meant that continuous variables had
+to be crudely discretized in advance of
+inference resulting in inevitable major
+inaccuracies
+but a revolutionary Dynamic
+discretization algorithm pioneered by my
+colleague Martin nil which has been
+implemented in a generous means that
+arbitrary continuous variables can
+seamlessly be incorporated in models
+along with discrete nodes these are the
+so-called hybrid Bayesian Nets with very
+accurate results and the implementation
+of the algorithm in a genome allows for
+a full range of statistical distribution
+assumptions not just normal assumptions
+and recently paying it out have extended
+the region-based algorithm that was used
+for the discrete models to Hybrid models
+so while the original Dynamic
+discretization of nil worked as
+efficiently as discrete models using the
+junction tree algorithm this new
+algorithm means that much more complex
+Hybrid models can also be computed
+another major impediment to more
+widespread use of Bayesian Nets is a
+difficulty of eliciting from experts or
+even learning from data the necessary
+entries for the node probability tables
+now in this example we have a node D
+with five discrete States and three
+parents each with five states that means
+there are 125 different possible State
+combinations of the parent nodes and 625
+individual entries required for the
+table
+it's impossible to elicit these
+individually from experts consistently
+but it will generally be almost
+impossible to learn this table even from
+Big Data because it's highly unlikely
+that even very large data sets will have
+sufficient instances of the 125
+combinations of parent State values to
+accurately learn the necessary
+probabilities of the states of day
+now we discovered that in many real
+world examples such Bayesian Network
+components involve variables which had a
+rank scale and assuming an underlying
+range of naught to one and a t normal
+distribution it was possible to
+automatically generate the required very
+large Tables by listing some very simple
+information for example in many cases
+the child node was essentially a
+weighted average of the parents and so
+we only need to know the relative whites
+at an uncertainty parameter and so this
+is implemented in the genar risk and it
+means that the necessary tables are
+generated automatically from minimal
+illustration
+now when we add decision and utility
+nodes laser networks become what are
+known as influence diagrams and for
+these there are algorithms that compute
+the optimal decision paths
+but again these algorithms assume
+discrete nodes and so we've developed an
+algorithm for hybrid Bayesian Network
+models that is now implemented in a
+junior risk
+final major challenge I'd like to
+mention is that the so-called Dynamic
+Bayesian networks where we're modeling
+changes in variables over a sequence of
+multiple time intervals now in theory
+you can create a single model
+but this becomes infeasible for large
+models in multiple phases
+now one common solution to this problem
+which is also implemented in a junior
+risk is to essentially use an
+object-oriented approach where the
+instances of the same model are linked
+only by their input and output variables
+but such an approach introduces very
+small inaccuracies which increase with
+larger models and number of phases
+now overcoming this problem is something
+that members of our research team have
+been working on for a while and we have
+advanced the state of the art and we're
+hoping to publish and Implement a
+revised algorithm for that but that's
+not been completed
+it's on some real world examples well at
+the start of the covert pandemic I was
+leading a large Consortium called the
+pambazian project which is investigating
+the use of bayesian-necks for improved
+risk assessment and decision making for
+chronic medical conditions so it was
+kind of inevitable we would look at
+covid and we worked with a number of
+clinicians to produce a comprehensive
+personalized risk assessment model in
+the spring of 2020 that took account of
+multiple causal factors and symptoms to
+provide nesma infection hospitalization
+death and this model is still available
+as an online app on the eduna website so
+you're welcome to try it out although
+we've not updated some of the key prior
+probabilities since 2020. so if you go
+to the agena website you what you
+actually see with this app is a simple
+questionnaire interface where the
+results are shown at the bottom and the
+functionality to quickly produce and
+deploy apps like this based on Beijing
+Network models is available in the new
+Cloud version of ajina
+as I say that coving model was produced
+as part of the ongoing pan Bayesian
+project we worked with expert clinicians
+in the various different conditions
+rheumatoid arthritis diabetes chronic
+heart failure so the published model
+here was one that we did for rheumatoid
+arthritis diagnosis and the published
+model here was for improved management
+of glucose control in gestational
+diabetes
+this model was to predict coagulopathy
+within 10 minutes of hospital care
+and previous work which we did with the
+trauma team at the bartson London was
+concerned with early prediction of
+physiological disorders so again this is
+early identification of trauma-induced
+coagulopathy and this model was
+concerned with improving decisions about
+whether or not to amputate a limb
+ongoing soon to be published models
+include this very recent comprehensive
+model for predicting pregnancy outcomes
+and this model for early diagnosis of
+Alzheimer's disease
+now fresh off the press is this hybrid
+model developed in partnership with a
+major medical devices company processing
+and managing risk of new medical devices
+and here is a model produced for the UK
+government office for product safety
+standards which will be used to
+determine whether novel consumer
+products can be safely certified and
+whether existing ones need to be
+recalled and this is another example of
+a hybrid model
+an accurate Hybrid models are especially
+relevant in Financial Risk applications
+one of Regina's major clients is minimum
+which is the world's largest independent
+Actuarial company and they use a
+generous for operational risk modeling
+of Banks and insurance companies
+and you can get a feel for the scale of
+the models they build
+now there are multiple publicly
+available models dealing with legal
+reasoning both generic models to help
+police and lawyers determine whether
+there's sufficient evidence to bring
+Case to call and detailed models of
+specific cases and there are also models
+that Focus specifically on Forensic DNA
+analysis
+and BNS have been used quite extensively
+for project planning policy planning
+intelligence analysis and even football
+prediction
+so in summary unlike most AI models
+which are Black Box BNS are a visible
+and audible reasoning tool for risk
+assessment the graph and Associated
+probabilities tables fully specify all
+assumptions nothing is hidden
+BNS can quantify the risk of high impact
+low probability events because they can
+be built with minimal missing data it
+doesn't require large data sets we can
+explicitly model causal factors and
+relationships
+we can combine calls and knowledge and
+data in particular causal knowledge is
+used both in determining the graphical
+structure and the probability tables if
+necessary
+as the Asia model shows the Bayesian
+calculations provide both inference from
+effect to calls and calls to effect and
+as we saw with the final observation the
+recent visit to Asia
+Bayesian Nets enable explaining away
+they overturn previous beliefs in the
+light of new observations
+we can incorporate latent variables
+including variables which have got no
+data at all we can make predictions with
+incomplete data and we've seen that we
+can simulate interventions and counter
+factuals and support continuous and
+discrete variables
+okay
+but surely with really big data we can
+learn anything
+we'll unfortunately no
+imagine we've got trillions of data on
+the relationship between two binary
+variables an independent variable X and
+a variable y that we believe depends on
+x
+so assume that these are just binary
+zero one imagine that we collect
+therefore trillions of pairs of values X
+and Y
+then surely we can learn the
+relationship between X and Y
+but what if there's no correlation
+between X and Y I when X is zero then Y
+is equally likely to be zero one
+then the best machine learning
+algorithms must conclude that there is
+no relationship
+but it turns out that X and Y simply
+represent two light bulbs where zero is
+off and one is on so here's bowbacks on
+off on off down here
+and here's bulb y
+on off off on Etc
+and there's a hidden switch that and
+when Zed is off
+and X is on
+barbed wire Beyond
+when the switch is off an X is off well
+I'll be off when the switch is on an X
+is on why are we off
+and when the switch is on an X is off
+while Beyond
+well the hidden switch therefore
+provides a completely
+deterministically causal relationship
+between X and Y
+once we know the switch value on or off
+the value of y is completely determined
+by the value of x
+if Z is equal to zero then Y is equal to
+X else Y is not X there's our completely
+explicit causal relationship
+machine learning from data can never
+learn that calls a relationship because
+it didn't know anything about the hidden
+variable Z but of course knowledge with
+data can
+in this example also demonstrates how we
+can have causation without correlation
+so in summary data-driven methods apply
+to observational data sets produce bias
+and flawed predictions and can't be used
+to reason about interventions and
+counterfactuals
+The observed outcome of Interest which
+we're trying to predict may be wrong for
+many records so any model that scores
+World respect to predicted accuracy may
+just be replicating past errors
+any records relating to people not
+tested or assessed for a particular
+outcome will wrongly indicate that the
+outcome didn't happen
+data set certifically biased towards
+people with specific disease or risk
+factors as we saw with bertson's paradox
+this not only means we learn little
+about people don't have that condition
+and why but we also end up with biased
+floor predictions
+the impact of interventions learned from
+observational data will be wrong if you
+want to use the model for decision
+support that's Simpsons paradox
+causal models are needed for reasoning
+about interventions because we can
+simply cut the link into the
+intervention node
+so Bayesian networks provide a rigorous
+framework and calculus for causal
+modeling that enable us to resolve
+paradoxes from observational data and
+move to levels two and three of Pearl's
+ladder
+friendly no matter how big the data pure
+data-driven machine learning may be
+unable to learn key causal relationships
+now there are many who are unaware of
+the Bayesian developments who feel the
+real solution to the problems I've
+spoken about will come with the Advent
+of big data and increasingly powerful
+machine learning algorithms and I feel
+strongly that much of this Big Data
+Drive is going to be an unnecessary
+waste of effort Big Data turns through
+pure machine learning more often than
+not delivers rubbish
+as the combination of knowledge and I
+guess what we call Smart data which
+generates causal models that make sense
+and the Bayesian approach is the most
+effective method for handling this

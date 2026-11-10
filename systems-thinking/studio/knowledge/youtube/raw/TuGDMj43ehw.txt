@@ -1,0 +1,994 @@
+so in this video we're going to go over
+more about basian networks we'll briefly
+review what we talked about in class
+since it's been a while since we had one
+of these videos um and then we will talk
+about inference algorithms for basing
+networks So the plan like I said is
+we're going to briefly review
+probability then we're going to talk
+about how to do inference in kind of a
+naive Brute Force way uh which will
+actually reveal a smarter inference
+algorithm called variable elimination
+so let's get to the
+review so with probability there's a lot
+of uh very interesting math that comes
+from a pretty fairly intuitive set of of
+identities um and so it's it's it's good
+to just review these and kind of have
+them in our back pocket ready whenever
+we need to think about any sort of
+tricky probabilistic calculations so uh
+first of all I want to just point out
+notation so as much as possible we're
+going to try to write random variables
+in capital letters with capital letter
+varibles and this is just a a convention
+that tries to separate random variables
+from their uh their settings their
+values so in this tiny example the the
+letter capital A could represent a
+random variable that could be something
+like the the weather today and then the
+lowercase a could be something like
+rainy or or or sunny or
+windy um such that lowercase a
+represents one of the many possibilities
+for Capital a um and often times we're
+just going to write lowercase a as
+shorthand with the understanding that
+it's one of the settings for the you
+know random variable of its capital form
+so you know here's an example so one of
+the key identities in
+probability um is the definition of
+conditional probability which is uh what
+we've written here which is that the
+probability of a given b or in the long
+form the probability of capital A
+equaling little a given B capital B
+equaling little B uh is equal to the
+probability of both of them uh The Joint
+probability of A and
+B uh divided by the probabil probability
+of B by itself
+so to make this more concrete let's give
+us some examples so maybe lowercase a
+could be the event that that the weather
+is cloudy and lowercase b could be the
+event that the season is spring okay so
+then the question of you know P of a
+given B is what's the probability that
+it's cloudy given that it's spring and
+we compute that or or the definition of
+conditional probability tells us that
+this is equal to the the probability
+that it's cloudy and its spring divided
+by the probability that it's Spring by
+itself so if you move some terms around
+with some basic algebra you can actually
+get the the next uh identity that we
+should all have pretty much memorized is
+the the product rule which says that if
+we care about this joint probability the
+probability of both events happening uh
+again the probability of it being cloudy
+and it being spring that's also equal to
+the probability of a given B times the
+probability of B by
+itself um and this is kind of intuitive
+it's basically saying that if we're
+really looking for the probability of A
+and B together then what we can do is
+you know write or figure out the
+probability of B by itself so that's P
+of B and then figure out the probability
+of a given the the value of B that we
+figured out and you just multiply them
+together and you get the joint
+probability okay then this gives you
+finally the famous Baye rule which says
+that we can essentially flip the roles
+of the variables in our in our
+conditional probability so where we
+start with a case where we've figured
+out you know the probability of a given
+B well we can use Bas formula to use
+that uh to use that P of a given B to
+figure out the probability of B given a
+and it's a very useful formula but it
+really just comes from you know
+manipulating the products rule above
+and and just some basic algebra okay so
+this is a basian network so what what
+the heck is on the screen so it it
+basically is a way of
+representing the structure of the
+probability distribution and and it's
+one of these things just like with logic
+this might not represent the real world
+instead it's a way for us to
+encode knowledge um in a representation
+that a computer can navigate so what is
+the knowledge we're trying to represent
+here um so on the screen all I've shown
+is the the structure of the basing
+Network I haven't talked about the
+actual probability tables that go into
+it um and we'll deal with those a little
+bit later but for now let's just think
+about what does the structure tell us so
+each of these nodes or these things in
+these ovals on the screen represents a a
+variable in fact is a random variable
+that can take on a true or false value
+in these examples so we can you know
+it's either true or false that we're
+going to win the lottery today it's
+either true or false that it's going to
+rain today and it's either true or false
+that the ground is wet today so what
+we're trying to express with this basian
+network is this probability this joint
+probability distribution the probability
+of you know winning the lottery and the
+and it being rainy and the ground being
+wet all together
+and what the structure of the basing
+Network tells us is that the we can
+actually write this joint probability
+like I've written above which is um that
+we have the probability of the winning
+the lottery times the probability of it
+rainning times the probability of it the
+ground being wet given whether it rained
+so there's a couple things here the
+first is that you know
+intuitively and as encoded in the the
+basian
+network winning the lottery has nothing
+to do with the weather presumably at
+least that would make sense so the idea
+is that right this this win lottery node
+in the Basin network has no connection
+to the rain and the wet ground variables
+so whenn Lottery just sort of lives on
+its own and that's also reflected in the
+math in the mathematical representation
+right the the equation on the left you
+see you know probability of L is just by
+itself it doesn't it doesn't interact
+with anybody um it doesn't depend on
+anything and if you want to compute The
+Joint probability of all the variables
+you just multiply the rest of the stuff
+which we'll talk about by the
+probability of
+L so the second thing is where things
+get a little bit more interesting so
+that's where you know the rain in the in
+the graphics right in the picture rain
+has this Arrow coming out of it that
+points to the to the wet ground variable
+and what this tells tells us is that the
+probability of wet ground of the ground
+being wet uh depends on rain it depends
+on the rain and and again this is more
+or less based on reality right which is
+the idea that the ground is going to get
+wet if the if if it is raining and if
+it's not raining then uh the ground
+would is probably not going to be wet
+but there could be other reasons why it
+gets wet and we'll get to that in a
+second so so here we you know in the in
+the equation you you have the same or
+you have exact that written out in uh in
+probability notation you have that you
+know the probability of rain sort of
+just lives on its own but once you know
+whether it rains you know a lot about
+what the probability of the ground being
+wet
+is okay and we can additionally add um
+more variables to the Basin Network to
+make it slightly more realistic or or at
+least tell a more interesting story so
+maybe we're wondering whether what the
+probability is that we'll slip when
+we're walking on the pavement okay and
+this you know this extra added node has
+uh the interpretation that that the The
+Joint probability of all four variables
+now looks like this so now we have the
+pro joint probability of winning a
+lottery of it whether it's going to rain
+of whether the ground is wet and whether
+we're going to slip okay and that's you
+know the probability of a lottery times
+the probability of it raining times the
+probability of the ground being wet
+given that it rains and times the
+probability
+of us slipping given that the ground is
+wet and you'll notice that I didn't
+write this I didn't write that it's the
+probability of us slipping given that
+the ground is wet and that it's raining
+even though intuitively right there's
+connections here right we know that um
+we you know we know that right the
+rain's going to cause the ground to be
+wet and uh and and so so because it
+rained that might cause us to slip but
+the key is that there's this chain
+there's this effect right uh or there's
+a there's a chain of cause and effect
+right so the the rain causes the ground
+to be wet and then it doesn't really
+matter why the ground was wet because
+all that matters is because the ground
+is wet it's slippery and so we might
+slip on
+it so we don't want to write it that way
+okay and we can go a little bit uh
+further and look at examples where we
+say uh there's multiple multiple
+precursors to um you know one of
+variables in this case the wet ground
+varibles so whether the ground is wet
+could depend on you know whether it
+rains but also whether someone was
+washing their car right someone's
+washing their car maybe the ground gets
+wet and then you know going further down
+the basian network you can see that uh
+you know regardless of whether it was
+raining or whether someone was watching
+the car if the ground is wet we might
+slip on the ground okay and we get then
+again this joint probability
+distribution and I've removed the
+lottery example because I was sort of
+Tri trivially uh disconnected and and uh
+hopefully that got the point across that
+if a node is not connected to the rest
+of the nodes then it can be treated
+completely independently okay so here
+all these nodes are dependent on each
+other in some way so we have the joint
+of whether it's
+raining and whether the ground is wet
+and whether we slip and whether
+someone's washing their
+car okay so then we have
+the way that's written out the the way
+that the basian network dictates the
+structure of the The Joint probability
+you know breaks down into is uh uh that
+we have the probability of it raining
+sort of independently of anything the
+probability of there being a car wash
+sort of independently of everything
+there's sort of I guess there's some
+unreal unrealistic assumptions going on
+here but that's okay so we're saying
+that the probability of car wash just
+sort of lives on its own but then we
+have the probability of the ground being
+being wet
+given that some uh given whether
+someone's Wasing their car or whether
+it's raining and so right that's a
+that's the key difference and the last
+one's the same as before it's the
+probability of slipping given that the
+ground is wet so let's think more about
+this so what's happening here the the
+key is that the wet ground uh variable
+depends on you know the state of both of
+these parent variables um and you can
+sort of think through logically what the
+what the dependency is is it's that you
+know if it's raining or if it's if
+someone's washing their car the ground's
+going to be wet that's sort of the the
+logic approximation of the of what is
+you know what better often better
+modeled as a probab probability
+distribution right so uh I guess the the
+correct English way of saying this would
+be that uh if either it's raining or
+someone is washing their car then
+there's a high probability the ground
+will be
+wet um and similarly if if it's not
+raining or if it's not or if no one's
+watching their car right if both those V
+if both those variables are false then
+uh then there's a low probability of the
+ground being wet right there could be
+another reason the ground could get wet
+you know we already saw one example
+where we added a new variable to account
+for another reason the ground might get
+wet but um but so far we've only added
+two and there's many you know in reality
+there's many many
+possibilities so the general rule that
+comes out of this uh example is that the
+uh the the part that we put into the
+joint probability um that
+represents a node in the basian network
+is always going to be the probability of
+that variable at the at that node X in
+this case uh in the in the on the top
+right given its parents given the
+parents of X in the basian network in
+the the directed graph representation so
+it's uh right the the parents of the wet
+ground variable are rain and car wash
+and that's why that's written that way
+as P of w given C and
+R so with this definition let's talk
+about inference so given a basing
+network uh like I like we've seen so far
+it's a nice way to represent uh a a
+compact probability distribution and you
+know with this compact representation we
+would hope that we should be a to do
+inference um efficiently and the the
+punchline that you're going to see after
+we go through this is that we can't do
+it exactly efficiently we can do it um
+uh we can do it efficiently for
+efficiently for certain basium Network
+structures um but in general if
+inference remains a really expensive
+procedure in the worst
+case but that's okay we can deal with
+the you know better than worst case
+scenarios if we are designing these
+networks ourselves okay so the first
+approach we're going to look at to doing
+inference is just the Brute Force
+approach it's going to be you know it's
+called enumeration but and it's really
+not uh something we would want to do in
+practice but it's something that we can
+use to to get a an intuition about how
+to do it more
+intelligently so consider that
+probability distribution we saw before
+uh right so it was the probability of it
+raining and the ground being wet and US
+slipping and someone washing their car
+and uh you know it broke down into the
+prior probabilities of uh rain and the
+car wash and the conditional
+probabilities of the ground being wet
+given the car Car Wash and the rain um
+and the conditional probability of the
+of slipping given that the ground is wet
+so let's imagine that we want to do
+inference where we're trying to predict
+the probability of it raining given that
+we slipped right so or I guess that's
+kind of an unrealistic situation let's
+say we look we look out our window and
+we see somebody slip and we don't know
+if it's raining we don't know if
+someone's washing their car we just saw
+somebody slip and we want to figure out
+is it raining so what we would do to
+compute that is use the definition of
+conditional probability uh and the
+definition of uh or marginalization of
+summing out of you know extra variables
+from a joint distribution and we would
+think about the joint distribution or we
+would rather we would sum out the
+variables that we don't care about which
+is the the wet ground and the uh Car
+Wash variables we sum over all the
+possible settings of those uh which in
+this example would probably be a binary
+thing where we have a true and a false
+setting and and for each of them we
+would divide out the probability of a
+slipping of somebody slipping so all
+we've done here is just write the the
+definition of conditional probability
+take advantage of the the definition of
+joint probability um and you know one
+one thing that can save us some
+computation time is that we don't
+actually have to really think about the
+probability of slipping you know the
+denominator we can sort of just leave
+that out and just just sum out the
+um uh the the values of the The Joint
+probabilities which I've written here
+and I'm using this symbol to you know
+the symbol the symbol is the
+proportional to symbol um it basically
+means that we're going to have to
+compute this for uh rain and not rain or
+rain equals true and rain rain equals
+false uh and then we just normalize the
+two and that would be basically a
+shortcut to getting that
+denominator um and in some settings it
+might make sense to actually compute the
+denominator to of s but in in this case
+since we're talking about a binary or
+Boolean variable it's it's probably
+easier to do with this uh normalization
+technique so let's talk about just you
+know let's try to compute this uh the
+sum the
+summation so uh you know looking at this
+the first thing you should notice is
+that there's some you know there are
+some terms that we can move outside of
+the sum so rather than you know spending
+all our time comp Computing you know all
+for all the values of c and for all the
+values of w p of R for example we can
+just pull that out and we can we can
+actually do a few things so here's what
+we can do we can move terms outside of
+the summations that aren't part of the
+summations and we end up with something
+that looks like this where we have you
+know we multiply the probability the
+prior probability of R times the sum of
+you know the probability conditional
+probability of s given W for the s that
+we're taking as input on the left
+um and then we sum over C for all the
+the terms that involve C and you know
+this is good this is it's good that we
+did this it's good that we save some
+computation essentially by moving things
+moving these things outside of the
+summations right because we would have
+had to you know look up all the table of
+entries for all of these uh terms had we
+not done that but instead we only you
+know we look up the table entry for p of
+R once and then we you know compute the
+rest um but the the the bad news is that
+through this technique um you know for
+all of for n free variables that we're
+trying to sum over we're always going to
+have to sum you know o of 2 to the N or
+k to the N if there's K possible
+settings for each
+variable and this is unavoidable with
+numeration so it's it's kind of too bad
+because because we have these nested we
+have these nested uh summations right we
+have the summation over W and and inside
+that we have the summation over C so in
+this example it's not too bad right we
+have you just two variables we have to
+sum over um and so we're paying two to
+the two uh but but in in general you
+know once we have lots of variables
+we're not really doing much to exploit
+the the the structure of the basing
+Network right now we're just sort of
+doing something that's not much less
+expensive than you know the full
+summation up top so let's examine these
+these Nest summations you can actually
+um draw these out as a computation tree
+and we can see that um you know what
+I've drawn here this is something that
+the textbook does also with a different
+example you know at the top we have you
+know P of R and then it's multiplied by
+the sum of you know P of s and not W and
+P of S and W uh times other sums over
+C's um so you can sort of see all the
+terms that right all the terms that you
+had to consider if you were to you know
+compute these summations the way that
+they're written out are on the board or
+are on the
+screen and you'll notice that right in
+the middle of the you know right in the
+middle of the screen there's uh there's
+a
+redundant uh a couple a few redundant
+nodes so the the prior probability over
+C and not
+C uh they they occur in both sides of
+the tree right on the left and on the
+right and that's happening because as we
+evaluate this this uh you know the
+nested summations you know naively we
+we're going to look up P of C twice and
+we're going to look up P of not C
+twice so that's that's one small example
+of where we can save some computation
+but uh in general the the the trick to
+doing this uh more efficiently and
+taking advantage of the structure better
+is to do something where we sort of you
+know precompute some of these summations
+and some of these products um and then
+just store them in in tables store them
+so that we don't have to look them up
+again and if we ever need to look them
+up again for another part of the
+summation it's just a lookup it's not
+you don't have to do a product anymore
+you don't have to do another sum another
+nested sum so this is you know there's a
+number of approaches to doing this uh
+but the one that we'll talk about is
+something called variable elimination
+and it's pretty much what it sounds like
+basically you look at all the variables
+you need to sum over and you eliminate
+one at a time and and let's look at how
+we go about doing
+that so here's the false amation that we
+were talking about
+originally and let's say we want to
+eliminate the variable C let's say we
+want to think about you know we don't
+want to have to do we want to do the sum
+over C and we want to store that value
+and then we don't want to have to think
+about doing the sum over C again so how
+would we do that well what we do is we
+would think about what are the terms in
+this uh in this you know factorized
+basian Network representation what are
+the terms that depend on
+C and the answer is is fairly obvious
+it's these two terms it's the it's the
+prior over C and the uh this conditional
+probability that depends on C right it's
+a conditional probability over W that
+ALS uh that given C and and but also
+given
+R so these terms right they depend on C
+but they also depend on other variables
+and uh in this case they they depend on
+W and R but we can kind of ignore R uh
+because R is fixed R is something we you
+know in this case in this inference
+where we're trying to find the specific
+probability of you know little lowercase
+R we can just say R is fixed so what
+we're going to do is we're going to say
+okay let's do the summation over C for
+these terms the terms that only the
+terms that depend on C let's do the
+summation and what we're going to end up
+with is a new function a new factor that
+no longer depends on C but it will still
+depend on everything else these terms
+depend on so that looks like this right
+this is a factor this is a function that
+uh it's subscripted with capital c to
+indicate that it was generated by
+eliminating the variable C but it's a
+function of w it doesn't depend on R
+anymore and I could have written this as
+a function of w and R and since R again
+is a fixed value then it would be fine
+but um it's just a I don't know for for
+laziness I wrote just the function of w
+so so right so here now what we can do
+is we can plug in you know f Sub C of w
+for the terms I have highlighted in blue
+and we get this this is the the updated
+uh
+summation with C eliminated where we
+eliminated C right so there's no longer
+a summation over C so now what we have
+is a summation over W still so we still
+have to continue doing this and it's
+pretty straightforward at this point you
+basically create a factor I I I guess
+when you only have one summation you
+don't have to create a factor at all you
+just do the summation and you're done so
+this is a very simple example example um
+so let's do another example of these so
+we'll start with a uh probability
+distribution that is of this form
+and before uh you know moving forward
+let's let's let's look at the you know
+this equation I wrote and and think
+about you know what is the basian
+network structure of this so it's the
+probability of W Times the probability
+of x given W Times the probability of Y
+given x times the probability of Z given
+y this is a very common structure we'll
+we'll see in a lot of
+applications but okay I'll show you in a
+second but let's think about let's just
+look at the equations first so let's say
+we want to per uh you know infer the
+probability distribution over y so we
+want to infer the prior probability over
+y or the or the the What's called the
+marginal probability over
+y
+um you know ignoring all the other
+variables treating the other variables
+as as if we don't know what they are so
+what does this look like can you imagine
+it you know given given what we have on
+top the the definition of the joint
+probability what is the you know
+expression for the probability of
+Y okay so the answer is the that you're
+going to sum out all the irrelevant
+variables you're going to sum out the W
+you're going to sum out the X and you're
+going to sum out the z um and that look
+looks like this right so now we've
+replaced
+the um you know these these random
+variables these big random variables
+with um uh a a small setting of theand
+random variables so we're going to sum
+over all the possible settings for
+w or rather all the possible setting
+settings for capital W which we're
+denoting with lowercase w we sum over
+all the possible settings of X we're
+going to sum over all the possible
+settings of Z and I'm leaving Y in in uh
+you know Capital form because what this
+value what this is going to come out to
+be is it's going to come out to be a
+table right when we do the summation we
+get a table we get uh uh you know a
+representation of the distribution over
+settings of
+Y so it's a little bit abstract because
+it's not you know we're most math that
+we do uh often is with scalers but in
+this case it's going to be with a
+vector sometimes we'll end up with
+matrices or tensors if depending on how
+many depending on how many variables we
+are working with in our distribution or
+sometimes it's even some even more
+abstract thing if it's uh say if it's a
+continuous variable then it becomes more
+abstract a distribution is some weird
+function that we have to think about but
+in this case it's a simple simple thing
+it's just a uh we can let's just say for
+the sake of Simplicity it's a Boolean
+variable so it's just two numbers right
+it's a table of two numbers so let's
+think about how we do variable
+elimination in this case let's eliminate
+the uh the variable W so what are the
+terms that depend on W and when we pull
+them out we get something that looks
+like this so now we have what we you
+know the process for doing this is you
+basically say what are the terms that
+depend on W and then what are the other
+terms that these uh factors depend on so
+in this case right P of w doesn't depend
+on anything else but P of x given W
+depends on X so we end up with a a
+factor that is a function of X and is no
+longer a function of w right I'm writing
+you know F subw just to indicate that it
+came from W but it's not really it
+doesn't we don't actually have to care
+where it came from we just say Okay X
+you know W is now gone and now this is
+just a function of
+X so we can plug that in plug that right
+into the original summation above and we
+get this we get that now it's just
+there's just three pieces to it and now
+we can go ahead and eliminate you know X
+let's go eliminate X so X you know what
+are the terms that depend on X well
+there's F of f subw of x the thing we
+just added and P of Y given X so when we
+sum that out we get the we get that P of
+Y is now just this summation over Z and
+one of the interesting things that can
+happen here is that sometimes variable
+elimination um doesn't get you you know
+a factor that's important um and so you
+know so here you see that right if we
+continue doing variable elimination we
+we we try to eliminate Z from here we're
+going to sum over you know P of Z given
+y over all values of Z which is going to
+be one right because that's a
+probability distribution over Z and
+we're just summing out all the you know
+all the possible states of Z so that has
+nothing to do with that doesn't affect
+the value anymore so when we go back and
+plug it in it actually goes away and we
+can actually uh now visualize this if we
+go back you know the question I asked at
+the beginning of the slide uh was you
+know what does this thing look like as a
+basan network it looks like this it's a
+chain is a markup chain um something
+that we should we're going to see a lot
+of examples of this is one of the more
+common usages of basium networks is to
+use it in in a chain where you're sort
+of you can think of these as time A Time
+series you can think of the you know W
+as a snapshot that occurs before X which
+is another time uh A Step in Time and
+then Y is a step in time after that and
+then Z is a step after that and you can
+think of these these dependencies as
+transition probabilities just like with
+Mark of decision processes but there's
+no decision right it would be like if
+you have an mdp with no
+actions so the key is that what we this
+this weird thing that happened where Z
+didn't have any effect on the P of Y
+it's um it happen because Z is a child
+of Y is not an an ancestor of Y
+um and and Z wasn't observed if Z gets
+observed that I can that can affect our
+P of Y but if it's unobserved then um
+then it doesn't really have any effect
+so there's some general rules that you
+can pull out of this okay so you can say
+actually that every variable that is not
+an ancestor of a query variable or
+evidence variable is irrelevant to the
+query now we didn't we did evidence
+variables in the first example but not
+in the last example so that's when you
+you know that's when you know the value
+of one of these variables right and so
+so uh in this case that Z was not right
+it wasn't an ancestor of the query
+variable which was Y and it wasn't an
+Evidence
+variable um or an ancestor of of an
+Evidence variable so it's IR relevant to
+the query um so just to summarize
+variable elimination works like this you
+iterate uh this process you start you
+know each iteration you choose a
+variable to eliminate you sum the terms
+that are relevant to the variable and
+you generate a new Factor you plug that
+new factor into the original summation
+replacing right these terms these
+original terms and you just repeat this
+until no more variables uh need to be
+eliminated so this is good uh and and we
+showed some examples we ran through two
+examples that were uh nice where
+variable elimination was nice and fast
+and was uh pretty clearly faster than
+the brute force method although only a
+little bit because in both cases the the
+examples were small enough that the
+Brute Force you know the enumeration
+method didn't look that bad but you can
+sort of Imagine in bigger phas Nets that
+um that you know enumeration can become
+impractical pretty quickly okay now the
+bad news is that exact inference is
+still sharp P hard it's still U you know
+something that we can't do in polinomial
+time unless P equals NP um and that's
+that's because you can always build
+these worst case basian networks um but
+in general or rather a specific case of
+basian networks which is what we're
+going to focus on mostly in this class
+and what we often stick to is that in
+treest structured basing networks it's
+linear time so if you have a tree
+structured uh basing Network you as long
+as you uh you know do your variable
+ordering in the right way you you get a
+linear time uh algorithm for inference
+so uh another important property in Bas
+Nets is to understand how to identify
+Independence um in the sense that you
+you should be a to look at a Bas net and
+figure out which variables are
+independent of other variables you know
+given what we observe and and you know
+when anything is connected when any
+nodes are connected in a Bas net there
+is some possibility of a dependency but
+the key is that there's you know the
+magic of Bas Nets the reason that
+they're that they exist is for is
+conditional
+Independence right so how things become
+independent If You observe certain
+variables along the way okay and so the
+the two rules of thumb that you should
+uh be pretty comfortable with you know
+once you go through a few times is that
+uh the first one is that each variable
+is conditionally independent of its
+non-descendants given its parents okay
+so to visualize this you know look
+here's a simple Bas net uh looks like
+there's um you know A and B are like are
+you know have prior probabilities and
+then uh C and D depend on a and b and
+then e depends on both C and D together
+so if we observe a and we're interested
+in the you know the we're interested in
+thinking about what's independent of C
+given that we observe the value of
+a um the answer is you know from this
+rule this rule is that right it's all
+the all of its non-descendants are
+independent where B and D are in are
+independent of C so that's kind of a
+actually not that interesting example
+but another example of this is if you
+look at you know if you consider e and
+let's say You observe the parents of e
+You observe c and d and what happens is
+when you observe C and D A and B become
+independent of e and this is this is a
+you know a representation of Bas Nets
+right there you know right now A and B
+aren't that complicated but you could
+imagine that A and B could be uh you
+know could be connected to a really
+really complex you know uh other part of
+a base net and the idea is that if You
+observe C and D then you don't have to
+consider any of
+that
+um
+so uh extending this concept the the the
+further generalization of this idea is
+that each variable is conditionally
+independent of any other variable given
+what's called its Markov blanket okay
+and so the Markov blanket in baset
+correspond resp to the parents the
+children and the children's parents so
+for example uh you know again if we
+consider C and let's say we observe its
+C's Markov blanket which would include
+its parent a its child e and its child's
+parent uh D so once we observe a e and D
+it becomes conditionally independent of
+B uh and furthermore well we kind of
+already had that but furthermore
+anything else that's attached to or that
+that might attach anywhere else it's
+independent of
+it okay so these become useful uh they
+actually probably will help you with the
+written homework um but not so much with
+the with the coding the programming
+homework so let's actually talk about
+the pro the programming for a bit so in
+the programming homework you're given a
+pretty simple um baset setup and and
+it's it's a kind of a it's a classical
+uh hidden Markov model base net which is
+something we're going to look at closer
+in class um you know as a as a way of
+representing a Time series um and
+basically what happens is that we're
+given we're given two types of
+probability distributions we're given
+you know this is as part of the homework
+exercise you get you know you get the
+apis to call these probability
+distributions you can so you have the
+probability of a ghost location given
+the previous ghost
+location and you have the probability of
+a noisy distance measurement given a
+ghost location so what happens is you
+know you're you're Pac-Man and you're
+hunting ghosts and you uh you can every
+at every turn you get to get an estimate
+of or a noisy estimate of how distant
+each ghost is and we're going to use
+this uh this this baset to try to figure
+out the probability distribution of
+where that ghost could
+be so the goal is to take this
+information the probability of the ghost
+location given a previous ghost
+location um and the probability of the
+noisy distance measurement given the
+ghost location and
+infer the ghost
+location and the uh given the noisy
+distance measurement that you're
+seeing so right at each turn you're
+going to want to compute a probability
+distribution over all the ghost
+locations um so there's going to be some
+probability for pretty much every single
+Poss possible state but hopefully it'll
+be uh high probability around close to
+where the ghost actually is um and in
+order to compute this you're going to
+need the probability of the ghost
+location given all previous
+evidence so this is actually going to
+strongly relate to variable elimination
+because basically what we you're going
+to do is um you know you're you're
+always going to have a an estimate for
+uh the probability of the current ghost
+location that's what you're maintaining
+right this is the the recursion but then
+in the next step using that estimate you
+know you're going to want to compute the
+new updated probability distribution
+over ghost locations um given the
+previous one and and the wrong way to do
+this would be to you know go back and
+look at the full uh set of unknowns
+which includes all the ghost locations
+from the beginning of the game to the
+current time um and and and compute a
+huge sum over all those possible States
+because that would be huge right in
+Pac-Man it's an N byn grid so it would
+be you know n s by the number of time
+steps um that sort of summation for each
+ghost would be would be too big so
+instead what you do is you you compute
+this factor or this this probability
+distribution over the ghost locations
+for the previous time step and and then
+that is all the information you need you
+know in the same way that variable
+elimination could remove how how you
+need to think about the nested
+summations uh to compute the next time
+step okay so and we can talk about this
+in class and uh go over your ideas about
+how to implement
+this so for the reading just you know
+have a look at chapter 13 that goes over
+some of the basics of probability uh
+that I went over in class and at the
+beginning very beginning of this video
+uh and then chapter 14 uh through 14.2
+talk about um you know exact inference
+and and properties of basian networks uh
+and also
+14.4 through 14.4 point3 that's a little
+fine grained but there's some there's
+lot some sections of that chapter that
+get a little bit too detailed um but you
+know they're the kind of things that are
+good for you to reference if you ever
+need to implement one of these things
+but um for this class I wouldn't want
+you to get bogged down in some of these
+details so okay so I'll see you uh in
+class on Monday

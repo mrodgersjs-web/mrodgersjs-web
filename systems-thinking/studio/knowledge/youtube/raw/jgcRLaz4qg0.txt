@@ -1,0 +1,2457 @@
+Let's take a look here at zero-shot
+prompting. This is when the model can
+perform the expected task with no prior
+knowledge or examples provided during
+prompting. Uh so, an example might be
+that you want to classify some text. So,
+the text here is Andrew is great at
+teaching GenAI.
+Uh do we classify it as neutral,
+negative, or positive? And so, the
+output, the next thing that the um
+uh large language model would write
+would be neutral here. But, the idea is
+that we didn't have to provide it
+examples of what neutral, negative,
+positive look like. It already had that
+built-in knowledge uh from when it was
+trained to be able to perform that task.
+And that's what we call zero-shot.
+So, few-shot prompting is when the model
+can perform the expected task with
+examples provided during prompting. So,
+imagine you have a series of tweets, and
+your model is not capable of doing
+sentiment analysis. So, you're providing
+examples of what negative and positive
+uh tweets would look like. And the idea
+is that it would predict the next one
+based on the prior examples. Uh we could
+also call this in-context learning
+because you're providing in context in
+the prompt message uh
+the way in-context learning because
+you're providing at that point in time.
+So, there you go.
+Let's take a look at prompt chaining.
+So, prompt chaining is where the output
+of one LM prompt is used as the input
+for the next prompt in the sequence. Uh
+the reason is when the context window of
+the prompt is too small to complete a
+single large or complex text task. So,
+we break the task up into smaller tasks.
+So, an example would be imagine we have
+a movie that we want to watch. Or sorry,
+there's a movie that we want to watch uh
+to learn Japanese. And so, we want to
+take the subtitles file and convert it
+into English, uh and then also get
+grammar rules around it, and then
+provide it in adjacent lines file. This
+is actually something that we do in the
+boot camp. And I didn't even realize I
+was doing prompt chaining when I did it.
+But, uh I tried to give it a very
+complex uh prompt, and it just would not
+do it. It would just make a lot of
+mistakes or give me bad information. And
+so, I had to break it up into smaller
+tasks. And so, the thing I had to do is
+iterate each over each line in the
+actual um
+uh
+subtitles file, and say translate each
+line from Japanese to English. And then,
+I would then um ask it to produce a list
+of grammar rules that it found in the
+sentence. Then, I would then ask it to
+explain the grammar rule, and then
+provide five examples. Then, I would
+format the original line, uh translate
+the line, the grammar rule examples into
+JSON uh file. So, yeah, this is just
+where you're breaking up a task because
+the
+the um LM cannot handle such a large
+task, okay?
+Let's take a look at chain of thought.
+So, chain of thought prompting is when
+you tell the model to do step-by-step
+reasoning, so it produces a more
+accurate result. Without chain of
+thought, you'd say something like,
+"Which two prime numbers sum to 10?"
+With chain of thought, you'd say,
+"Please solve the problem step-by-step.
+First, outline your uh your reasoning is
+clear, a logical chain of thought, then
+provide the final concise answer." This
+is not a huge issue for uh larger modern
+models, but the smaller models um
+sometimes they just don't know things
+unless they talk out loud and work
+through it. So, uh sometimes you get
+extremely better results by just telling
+it to think out loud and think
+step-by-step.
+Um and so, that's all that is really
+happening here, okay?
+Let's take a look at tree of thought.
+So, tree of thought prompting is where
+the prompt instructs the model to
+explore possible states and transitions
+rather than trying to produce an answer
+immediately in a single chain of
+thought, basically creating a decision
+tree. And we kind of do this in the boot
+camp with um
+uh another one where it's the Japanese
+language uh
+uh Japanese language construction helper
+where we actually define states and tell
+it how to transition between uh one and
+the other. But, here's a diagram that
+you'll see a lot every time you look up
+a tree of thought. Everyone's using the
+same diagram, so I pulled it as well.
+And so, here you see on A, you have
+input-output prompting. So, that's just
+where you give it an input, and you get
+an output like zero or few-shot. Chain
+of thought prompting where we will tell
+it to um
+uh think about things through it. Then,
+we have self-consistency with uh chain
+and and uh
+uh and self-consistency. So, this is
+where it produces multiple things and
+uses voting to come to a final result. I
+don't think we made a slide on this, but
+it is another thing that we can do. And
+then, we have tree of thought where um
+it has multiple ways that it can go
+through uh uh logic. It can uh add
+branches, remove branches. The idea is
+that it's not taking a um
+a a a a linear line. It's going to
+evaluate multiple options to get to the
+end. So, this one's a lot more complex,
+but I thought it was just really cool to
+uh demonstrate here, okay?
+Hey, this is Andrew Brown, and I want to
+see if we can figure out how to do tree
+of thought prompting. It's not uh super
+easy to do. So, I'm hoping that we can
+leverage something like PromptHub, where
+they say they already have an existing
+template that they that we can work
+with. I'm finding all the examples
+online are showing um
+uh one with the game of 24, and then the
+other one is creative writing. So, maybe
+we can get one of these templates from
+wherever, we can get started here. But,
+I do believe that they have a button
+here, tree of thought prompting. And so,
+now we can go take out take a look at
+PromptHub, which is a place where you
+can manage prompts, which is not a total
+bad idea. I'm going to go ahead and sign
+up here, and make a new account, and
+we'll take a look and see if we can see
+that prompt in here. So, I've just
+verified my email. I'm going to continue
+on here, and I'm just going to skip
+here. Uh set up your team's key. So, we
+could put an OpenAI key in here, and uh
+luckily I do have OpenAI. So, maybe
+that's not a bad idea to go give that a
+try.
+Um
+of course, you'll need an OpenAI account
+to do this. We do this many times
+throughout this course. So, if you're
+not familiar with this, you'll have to
+watch just watch for now, and you can
+always come back to this uh video later
+on. I already have a basic project set
+up here. You can create new projects.
+I'm going to manage projects. I'm going
+to make my way over to API keys. I
+clearly already have an API key. I'm
+going to go ahead and revoke this key.
+I'm going to go ahead and make a new key
+key, and it's going to be called
+PromptHub.
+We're just trying to get into PromptHub
+so that we already have an existing
+template cuz they're
+promising that there's some template
+here, right?
+Um we'll go ahead and dump that key in
+there. We'll hit save and continue.
+Uh
+I don't have anyone else to invite.
+Let's go and make our way into
+PromptHub. So, we are now in PromptHub.
+I want to see some of these templates.
+Let's go over to here
+and see what else we have.
+So, what I'm looking for in here
+is chain of destiny. That's funny. Um
+I'm looking for uh tree of thought. So,
+that's what we we want to find here. So,
+I'm going to go ahead and type in tree
+of thought. Maybe we can get it if we go
+back over to here and click this again.
+Okay, and then it will bring us exactly
+to the template that we want. And so,
+here's an example of the tree of
+thoughts uh one. We'll read through it
+and try to figure out what we have here.
+So, a prompting method that instructs
+the LM to traverse many different paths
+when completing a task. Movie
+recommender is used for example task.
+Update the variable and and steps for
+your use case. So, you're a super
+intelligent movie recommender AI. Here's
+your task. Your goal is to leverage this
+information and use tree of thoughts
+method to come uh to come to an optimal
+conclusion. So, understanding friends'
+preferences. Review the hardcoded movie
+preferences provided for each friend.
+Oh, okay.
+uh create a list of unique movie
+characteristics including favorite
+genres, preferred actors, and any
+specific movie elements uh uh they
+enjoy. Using the gathered preferences,
+generate a list of potential movie
+options that will align um evaluate the
+potential movie options based on each
+friend's preference. You can assign a
+value of 1 to 10 to each movie
+representing how well it's it uh it
+matches its interest. Now that you have
+a list of movies with the corresponding
+scores, review the evaluations to select
+the movies that received the highest
+overall score consider uh considering
+the combined preference of all all
+friends. Finally, reveal the perfect
+movie choice. Output the selected movie.
+That's a lot of stuff going on there.
+How can that do it in all one go? I
+can't automatically assume it would do
+that. So, use the tree of thought method
+to navigate through steps and generate
+the uh best movie recommendation for
+friends. So, this sounds cool. Um how
+can we go ahead and utilize it? So, we
+can hit add to library.
+And so, now we have it here. And since
+this is hooked up to GenAI, I'm assuming
+that we can input the stuff here is the
+task.
+Okay.
+So,
+I'm here.
+Do we have a preset here?
+This is on turbo. I like how it shows
+the price here. That's actually really
+smart. But, I'm utilizing um GPT-4
+usually. I think it's also more
+cost-effective.
+And by the way, if you don't have paid,
+you can just watch me do this, and we'll
+find out here. But, I think the the
+version went down here, but I like how
+they have that. Um
+So, I guess my question is how am I
+inserting
+this?
+Here is your task.
+So, I'm not 100% certain on how to
+utilize this. Let's go look at another
+one here.
+Article content code. So, let's go take
+a look here and say Prompt It Hub
+uh variables. Like, they don't really
+explain
+Prompt
+Hub. They're not really explaining how
+to set those there.
+Just give me a second, and let's find
+out. All right. So, they're suggesting
+there's a thing called team variables.
+So, let's go take a look and see if
+that's true. So, we'll go over to here,
+back to PromptHub.
+All right. Well, what we can just hit
+run test and find out what happens.
+Run test.
+I think it's
+doing it how many times?
+I'm I'm sure.
+Uh-oh.
+&gt;&gt; [laughter]
+&gt;&gt; How many times is it running? Once,
+twice, three times? So, I guess it's
+running.
+Great. So, now where's the run?
+Can I see it?
+Mhm.
+Well, this is GPT-4 and that look kind
+of looks like this is the output of the
+last test run 1 second ago.
+Introduction prompt engineering. Okay,
+cool. So, right away it's already giving
+us recommendations. So, I guess it
+actually did all this stuff. So, it
+basically did all of it.
+Oh, variables. Here we go.
+There we go. Generate 10 article ideas
+for blog posts about prompt engineering.
+But, this is not exactly what we want to
+happen because we need to read this
+prompt a little bit more carefully one
+more time. It goes to leverage
+information for tree tree of thoughts
+methods to come come to an optimal
+conclusion. Review the hardcoded uh
+movie preferences provided for each
+friend. Create a list of unique movie
+genres.
+Review the hardcoded movie preference
+provided of each friend. So, what we
+need for this to work is we need three
+friends. So, I need a
+I need three friends
+and I need to know
+five movies they like.
+Oh, I spelt it wrong.
+Give me three friend friend names
+and
+five movies
+movie titles they like.
+Okay. So, the idea is I'm just doing
+this to feed it some kind of data.
+Okay. And so, we can see we have these
+three folks here. We'll go ahead and
+copy this text. I'm going to make my way
+back over to here.
+And we'll paste this in here.
+And so, now we have that information.
+It's not pasted in the the the nicest
+way, but this should be sufficient for
+this to work. I'm going to click this
+again and make sure that it's set. That
+is set. Let's go ahead and run this
+again.
+Okay. And so, now
+it should do what it's supposed to be
+doing here.
+We'll give it a moment here.
+All right. So, we have a result back
+here.
+So, step one, understand friends'
+preference. I'm going to copy this text
+over here so we can go somewhere else
+and just have an easier time reading it.
+Just give me one moment.
+All right. So, I've just brought this in
+brought this into um
+uh VS Code and I'm just
+previewing it because it did it did look
+like it produced markdown. So, step one,
+understand friends' preference. Rachel
+seems to enjoy fantasy adventure films
+with a mix of animation live action. Her
+movie list also includes a mystery film
+suggesting she enjoys a good plot twist.
+His movie preference is towards drama
+and thrillers and complex narratives.
+His list includes films with strong
+performances and thought provoking
+thought provoking themes.
+Um Priya seems to appreciate a variety
+of genres including stuff. So, we go to
+step two. Consider preferences of all
+three. Some potential movies that could
+suit their taste include
+The Dark Knight, Lord of the Rings, The
+Prestige, etc. Evaluating the movie
+options. So,
+here it looks like they are going
+through here. So, we are getting scored
+values for them. Select the best movies.
+So, Lord of the Rings has the highest
+overall score closely followed by The
+Dark Knight, Toy Story. The perfect
+movie choice for movie night would be
+The Lord of the Rings: Fellowship of the
+Ring. This epic fantasy adventure is
+renowned for etc. So, that's really cool
+that it goes through that. And what I
+was surprised in the prompt was the fact
+that they just said use tree of thought.
+So, clearly the model the model must
+have knowledge of how tree of thought
+works. I figured like if you're using a
+dumber model and it doesn't know that,
+you might have to explain in more
+description of what tree of thought is.
+Probably what we could do is like
+we go over to here and somebody didn't
+know tree of thought. So,
+I am I am using a smaller model that
+doesn't know
+what tree of
+thought is.
+What can we
+do to prompt it
+so it understands
+how to perform
+tree of thought?
+Outline the steps of tree of thought.
+So, explain what it is.
+Outline the steps. Combine explanations
+instructions. So, I guess the question
+is like
+is tree you know is tree of thought
+one shot? Like one like one prompt?
+Because you know, I was expecting for
+tree of thought to be multiple prompts
+like chain of thought. Or not chain of
+thought, but
+prompt prompt chaining, right?
+Is a reasoning framework with a single
+prompt. Okay, there you go. So, I guess
+that kind of makes sense
+about how that could be utilized. There
+we go. So, let's go take a look here at
+a dem- demonstrative example. Let's and
+take a look here.
+So, we will use a step-by-step reasoning
+called tree of thought. In this
+approach, we'll break down the question
+or problem by exploring multiple
+branches ideas.
+So, outline the steps of tree of
+thought. So, restate the problem,
+generalize generate possible paths,
+evaluate and prune branches, expand on
+best branch, provide the final answer.
+So, example prompt. You're an AI
+assistant and we're going to solve
+problems using a step-by-step reasoning
+process called tree of thought.
+Restate the problem. Clearly restate the
+question in your own words. Generate
+possible paths.
+Okay. So, it's just saying the same
+thing. So, we go down below here. So,
+example question. What is 15 * 14?
+Restate the problem. I want to multiply
+15 * 14. Possible paths. Branch A,
+branch B, branch C. Evaluate the
+branches. Quick approach if we recall
+it. More tedious, but guaranteed. And
+then this is the best branch and expand
+on that branch. Okay. So, that's really
+cool.
+That's starting to make sense to me.
+so, yeah. I guess that's tree of
+thought. There are so many techniques to
+prompt engineering.
+I'm not sure if I showed this in a
+previous video, but if we go over to
+prompt engineering prompt engineering
+website. Is it this one? There's so many
+prompt engineering websites now.
+Um some are good, some are bad.
+Uh prompt engineering guide.
+Here it is. Like this one I like quite a
+bit. And so, you know, there's just so
+many techniques and ways of doing prompt
+engineering. A lot times when you are
+using
+uh using LLMs, you end up inherently
+uh using a prompt technique without
+realizing that you're doing it. So,
+I think I mentioned this before, but
+like when I we were doing the Japanese
+subtitle thing, I was using some form of
+state and transition management which
+looks very similar to tree of thought.
+Um and like prompt flowing ended up
+using that intentionally as well. So,
+our plot prompt flowing prompt chaining.
+So, I just would say don't worry so much
+about memorizing all these prompt
+engineering techniques. Um but you'll
+just find that you'll indirectly use
+them, but it does help to generally know
+some of them and come back and review to
+see you go, "Oh yeah. Okay. I am using
+prompt engineering. I just didn't
+realize I'm I'm doing that." There's
+also a big argument about the difference
+between prompt engineering prompt
+designing. So, some folks would call
+using this just called prompt designing
+and prompt engineering requires a lot
+more technical
+coding behaviors to orchestrate
+something a lot larger than simply
+writing a prompt. I'm not going to fuss
+about prompt design versus prompt
+engineering. I'm just considering it all
+Uh yeah, there you go.
+Let's take a look at CO-STAR. So,
+CO-STAR is a prompting framework created
+by Sheila Teo.
+And it basically follows
+this I think it was what's it called? A
+mnemonic. Context, objective, style,
+tone, audience, and response. So, this
+is nothing super fancy. It's just a
+prompt prompt template you can utilize.
+I use something similar, but the idea is
+that you provided a context. You say,
+"What are you doing?" So, here it says,
+"A online introductory Japanese language
+workshop for beginners." The objective,
+"Encourage people to register by
+highlighting the quick, fun, interactive
+nature of the session." Style,
+"Engaging, inviting, clear educational
+tone." Uh tone, "Persuasive yet
+friendly." It's weird that the style
+says tone, but then we have tone down
+below.
+But, that's okay. We have audience,
+"Busy busy adults curious about language
+learning with no prior experience."
+Response, "A concise impact impactful
+Facebook post." So, this is just one of
+many ways that you can format a
+document, but because it's called
+CO-STAR, I thought maybe it might be
+easy for people to remember and adopt as
+a way of making prompt documents to get
+a result that you want. Uh but there you
+go. Hey, this is Andrew Brown. In this
+video, I want to see if there's a way
+that we can implement React prompting.
+Now, there are solutions out there
+that are managed, but I want to see if
+we can write this from scratch. As I
+don't believe that it would be very very
+difficult to figure out. But, maybe what
+we can do looks like there's a video
+down here. Maybe we can do is see if we
+can use GPT to write it ourselves. So, I
+want to implement a
+LLM solution
+that uses React
+prompt prompting.
+How can I implement this?
+Okay. And so, we'll we'll take a look
+here and see
+what we can do here.
+We'll give it just a moment here.
+I'll get my head out of the way.
+All right, so I've asked ChatGPT, let's
+implement it, but I don't want to
+implement it utilizing LangChain or
+LlamaIndex. Those frameworks would allow
+us to easily do that, but I really don't
+want to do that as
+I do feel that they add an extra layer
+that doesn't help us out that much. I'm
+going to go over to GitHub and I'm going
+to go over to our exam pro GenAI
+essentials.
+Just so you know that prompt engineering
+does appear a little bit earlier in this
+course and so if this stuff is out of
+your realm right now, you can always
+come back to it when you learn a bit
+more coding and things like that.
+I'm going to open this up in
+github.github code spaces here today if
+that's okay. Sometimes using Gitpod,
+sometimes I'm using GitHub code spaces,
+sometimes I'm using local development.
+We like to shake it up here,
+but we'll open that up and as that's
+opening up, let's give this a read. So
+we'll create a prompt that instructs the
+model on how to respond to the react
+format. Typically you do something like
+this. So we'll have a system prompt. So
+you're an AI assistant that can perform
+the following steps. Reason through
+problem by describing your thoughts in a
+thought section. When you need to use a
+tool, output an action section with the
+tool name and its inputs. After the tool
+call, you'll see an observation and
+section with the tool output. Continue
+the cycle of thought and action
+observation as needed. End with a
+concise final answer that answers the
+user query. The chain of thought in
+thought sections is only visible to you
+and not part of your final answer. The
+user should only see the final answer.
+So that sounds interesting so far.
+So the user prompt what is the capital
+of France plus the capital of Germany,
+right? So perform a single manual react
+step with an LLM. And so that kind of
+sounds like something that we would like
+to do is to do this manually. So I'm
+going to go ahead and copy this and we
+have lots of code laying around. This is
+actually old code I can tell right away
+cuz it has capital C capital
+the two capitals on there.
+So here it says we pass in a list of
+system messages plus user and ongoing
+conversation parsing the action
+observation. So let's go back over to
+And I'm going to switch this over to
+color themes. We're going to turn this
+into dark.
+And I'm going to make a oops.
+I'm going to make a new folder here.
+Yes, allow me to paste. Prompt
+engineering prompting.
+And we're going to go ahead and see if
+we can implement this react ourselves.
+It's not react the JavaScript framework,
+it's react the prompting framework. So
+I'm going to go here and make a
+basic.py.
+So this is not pi, but iron python ynb.
+And we'll also create ourselves a new
+.env file. We'll also create ourselves a
+new
+.env.example file. We'll also create
+ourselves a new
+.gitignore file.
+I've been using OpenAI quite a bit and
+yeah, we'll just keep using it. It's
+fine. I do have like a Claude a Claude
+subscription with or Anthropic
+subscription with credits on it, but the
+only way you'd be able to do that is if
+you had to pay for it. If you don't have
+the credits or a comparable one, that's
+totally okay. Just do your best to
+follow along with whatever solution you
+have. We do have a whole section where
+we show you how to programmatically work
+the stuff in the workbenches playground
+section. So if you have yet to do so, go
+check out that stuff. But I'm going to
+make my way over to the AI OpenAI
+implementation here, which is over here.
+And I'm going to grab some of this code
+to get started with. So here this one is
+actually a really good example. I'm just
+actually just going to copy this and
+save myself some trouble.
+And then I'm just going to paste it into
+here and let it replace it.
+I'm going to delete this one.
+And I'll rename this.
+ipynb.
+And I'm going to need a key from OpenAI.
+So we'll go over to here.
+I'm going to go over to API API login.
+And I'm going to make my way over to my
+basic project. If you don't have a
+project, go ahead and create one. I'm
+going to go over to API keys. I have one
+here from earlier. I'm going to delete
+this key. We're going to create a new
+key. This one's going to be called react
+and I'm going to place this into the
+basic project. This will generate out a
+new key for me. I'm going to go back
+over to here and go into the .env.
+I'm going to go into the OpenAI one cuz
+this is what we need is these three
+things.
+I'll paste this into the example here.
+Also while I don't forget, I'm going to
+do .env here.
+And then we'll go back. We'll copy this.
+We'll go up to here. And I'm going to
+bring this down and this is the key that
+goes into the first part. So we'll cut
+that out. We'll place it in here. And so
+I need a project ID and an org ID. So
+I'm going to go back over to here and
+we'll go into API login and on the
+left-hand side we'll go over to
+basic into manage projects. Here I can
+grab the
+actual thing I want, which is the basic.
+So we'll grab that.
+And I think we have that was the project
+ID and then we'll go back over to here.
+Hit done and I'm going to make my way
+over to I'm getting a little bit
+confused where I am. Yeah, organization
+general and so here we can grab an
+organization ID. We'll go back over to
+here. We'll paste this in and so now we
+have those three set. Okay, so those are
+all set. Let's go back over to what's
+going on here.
+&gt;&gt; I think I named the file wrong. It's not
+supposed to be a folder.
+Oh darn. I'm going to delete this. One
+second.
+And I'm going to go ahead and copy this
+And then I'm going to paste it in here.
+There we go. And so this should now all
+be configured to work.
+This is not really the example that we
+want, but let's go ahead just make sure
+that it works. I'm going to go ahead
+and let it install python Jupiter
+whatever it needs. Install python down
+here as well.
+Okay, we'll give it a moment.
+Okay, so we'll go to python environments
+here. We'll choose 3.12.
+So we'll run this code here. Give it a
+moment.
+And then we'll import our environment
+variables and we'll just make sure that
+this still works.
+Okay, so it does. So now the next thing
+is to incorporate from ChatGPT
+some of the outputs we have here. So the
+first thing is that
+we need to have this
+system prompt document. We'll go ahead
+and copy this.
+And
+I'm going to make a new line here.
+I'll put this above.
+I'll call this one system prompt.
+I think if it was I think it's like
+triples. If we do triples,
+we can do this.
+Right? There we go. And so now
+instead of having this, we can be have
+this as our system prompt, right?
+I'll bring this on to a new line.
+Okay, so we have that. That's good.
+And we'll go back over
+to chat ChatGPT here.
+And this is our current user prompt.
+So I'll go down here.
+This will be user prompt.
+And so we have that. What is the capital
+plus that?
+So I'll run this.
+I'll run this. And I'm not sure what we
+would expect to see as a result here,
+but I'm going to go and bring this on to
+a new line.
+Sometimes when we're iterating on this,
+I don't want to call it like 100 times.
+We'll go ahead and run this.
+No problem. We'll go run this.
+And I want the content in here. So I'll
+just do this. One second.
+So here I have the thought thought. The
+capital of France is Paris.
+And the capital of Germany is Berlin.
+The question seems to not ask for a
+mathematical sum, but rather to combine
+the two capital names in some way.
+Action, no tools needed for this task. I
+will simply formulate the answer.
+Observation, the capitals of France and
+Germany are Paris and Berlin. Final
+answer, Paris and Berlin. So that's the
+first example of it. Let's change this
+to say what is
+What is the weather
+in
+Thunder Bay, Ontario? That's my
+hometown. Thunder Bay, Ontario, Canada
+today.
+Today.
+Okay, so I'm going to go ahead and
+update that. I'm going to run this
+And let's see what we get this time.
+So run that. So it says, I need to find
+the current weather information for
+Thunder Bay, Ontario. I will I will look
+for a reliable weather source to get the
+most recent data.
+Action, get weather Thunder Bay
+whatever. So here it's saying the above
+action simulates calling a weather in
+the scenario. I'm using it to gather
+current data on the weather.
+Observation, assume I received the
+weather data for the Thunder Bay, which
+shows the conditions such as
+temperature, precipitation, general
+description. The weather in Thunder Bay
+is etc. So the thing is is that when
+you're doing this,
+it's producing a thought and then we
+have an action. And so here it needs to
+call this function. It's telling us
+right here what the action it wants to
+have. And so the idea is that we can
+parse that out and then call that
+function. And so that is what is
+happening here. So down below it says,
+perform a single manual react task is
+fine. So we have action observation.
+And so the idea is that so check if the
+model's produced an action. It did. If
+so, parse out which tool it wants to use
+and the input. Run the tool in python to
+get a result. Append an observation
+message to the conversation. Call the
+LLM. So append an observation message to
+the conversation. Call the LLM again
+with the new
+conversation context repeat until we get
+the final answer. Okay, so here they
+have this big iterative process, but
+it's a lot simpler than we think here.
+So here we have that function. But what
+we'll do here
+like we need some way of parsing out the
+action. So I'm going to go here and just
+say,
+um
+this is what
+looks like in the text.
+How can I parse
+it out using Python?
+All right, and you can even tell the LM
+like how it should display actions.
+We're not doing that right now, but
+we're just going to try to figure out to
+extract the text that we have.
+So we'll give that a moment here to just
+give us some code back.
+Oh, weird. It didn't actually do the
+thing we asked it to do. So I'm going to
+ask it to run it again. It didn't
+actually do it.
+So we'll we'll ask it again. So
+Hey, you didn't give me any code.
+So we'll just ask it to do that again.
+So here we have a regular expression
+where we're grabbing the text. I'm going
+to see if this will work.
+So we'll bring this over.
+I'll make a new line here. So we're
+importing regular expressions.
+We're doing a pattern matching here for
+our our our thing.
+and then here we are trying to do our
+match.
+Okay, so we are bringing our text. Our
+text here is this.
+So I'm going to go and change this a
+little bit. I'm just going to cut this
+out.
+I'm going to say text here.
+We'll still print it out. So now we have
+our text.
+And so then we'll go down here and print
+this next. And we got tool get weather
+Thunder Bay whatever like Thunder Bay
+Ontario Canada. So now what we're doing
+is we would define a function
+um called get weather.
+Right? And then we'd have an input.
+And we're hard coding this. So we're not
+doing for real, but let's just say input
+equals
+this.
+Or you know what? Let's go ask ChatGPT.
+Um how can I get the current weather
+using an API for Python?
+Okay, let's see if we can get an example
+Maybe we can implement it for real.
+Okay, create a free account on
+OpenWeatherMap. Sure, let's go ahead and
+try that then.
+So go here and
+Okay, that's fine. That's fine.
+Sign in. Well, let's go first take a
+look at pricing. Pricing.
+Yeah, there isn't there's a free one, 60
+calls per minute. So we'll go ahead and
+do that.
+I'm going to just make a new account
+And I'm going to generate a new password
+here. I'm going to save that.
+I am older than 16. I agree.
+Uh I don't want a bunch of alerts, so
+I'm just going to go ahead and do that.
+And we will do that.
+I am doing this for educational
+purposes.
+Exam Pro Train Inc.
+Save.
+Okay, and so now I need an API key.
+We'll go over to here.
+I have a key right there. So I'm going
+to go ahead and copy it. I'm going to go
+back over
+here. Let's take a look. And so does
+this have key have a very particular
+name?
+Mm, they're not specifying a particular
+name. That's okay. So I'm going to go
+back over to here into our code. I'm
+going to make a or I'm sorry, go to
+here. I'm going to add weather API key.
+What's that thing called? OpenWeather?
+OpenWeather
+OpenWeatherMap
+And I'll just go back to our original
+example here.
+Like that.
+Okay, so we have our key in here, right?
+So we'll go back over to here.
+And let's go back to our code.
+Which is here. There's a lot going on
+here. So hopefully this just works.
+So I'm going to copy that.
+And we'll go back over to here. I'm just
+going to paste this in here.
+Um and so we do have that API key
+somewhere in here. Here it is.
+And so in here I'm going to go ahead and
+say os.environ.get
+and this will be whatever the name of
+this is.
+Okay, so we have this.
+It's like it's not knowing what that is.
+Let's say import os. I believe I'm
+pretty sure we already imported that
+already, but I'll import it twice.
+Um we have the main part here. I don't
+need a main part as this is a single
+function.
+Mm
+Mm hm hm
+So what I'm going to do
+instead of having the API key here like
+this, I'm just going to take that out
+like that.
+And then I'm just going to grab the API
+key this way right here.
+Okay, and then we'll take this part out.
+I mean this is pretty straightforward,
+so I'm just going to go ahead and delete
+this
+part out.
+So we have the city name, the API key,
+use Imperial for Fahrenheit.
+Um Oh no, we want metric. We're
+Canadian. Or at least I'm Canadian. I'm
+not sure what you are on the other end
+there. And so we have a big example here
+of data. Mm, that's fine. I'm going to
+go ahead and just take this out like
+And so this is our simplified function
+and we can pass in our city name here.
+So the idea is that if we got get
+weather
+right, which we do, then we want to call
+this. So I'm going to define this
+we have these two things here. So I'm
+going to go to our next line.
+And we'll say
+if tool name
+get weather
+then we just call this function.
+Okay, and then from here this will be
+the tool input.
+All right, and so I'm going to go up
+here and just say weather
+info.
+And then we'll go down here and just say
+print
+weather info.
+We do have it. I'll just indent this.
+That way we'll have less of an issue. We
+need a colon there. Okay, so this should
+in theory
+work. The only thing that we need to do,
+I'm just going to fix indentation here.
+It's acting a bit funny.
+Um is we need to reload our .env file
+here because this will have those
+credentials. So I've reloaded it. I'm
+going to go all the way down here. I'm
+going to run this again so it loads in
+that environment variable. And let's see
+if our tool works.
+So it is trying to call it.
+401 unauthorized for the URL.
+Okay, so it's saying that um our URL is
+unauthorized.
+Is it though?
+I mean it's active, right? There's the
+API key.
+May have to confirm my email. Just give
+me one moment. All right, so I confirmed
+my email. So now I'm curious if this is
+going to work now. So we'll go back and
+run this again.
+And try this one more time.
+Unauthorized for URL. So maybe it
+doesn't like the URL that's here.
+Um so let's go back over here. I mean
+this is generated by by ChatGPT. So it
+might not be utilizing the the latest
+thing here. So we'll go over to the API.
+And so this is 3.0. So you can already
+see that there is a difference.
+How to make an API call.
+And so we see this.
+Right? So I'm going to go back over
+to here.
+And so this is data weather. So I wonder
+if there's like a weather API endpoint
+like this one.
+To get the access to current weather
+minute forecast for 1 hour
+Okay, how do I do it by town or city?
+Let's click on this again.
+API docs
+Type in city.
+Contains four endpoints and provides
+access to various data. So we have
+current weather and forecast.
+I mean that sounds like what we want.
+Yes.
+And so the API actually looks like this.
+Latitude, longitude, excluding part.
+Um so maybe you can't just say city
+anymore or maybe the thing was out of
+date.
+So, here then we'd have to get an
+additional step to get the longitude and
+latitude, which is kind of annoying.
+Um but you know, if this works, then
+we'll just use utilize this. But you can
+see how it wasn't as straightforward as
+we thought it would be. So, we're going
+to go ahead and we'll paste this in here
+as such.
+I mean, it has like the the query name
+this way.
+So, really we want is lat
+lon.
+I don't know if we need part. We
+probably don't need part.
+Okay, we don't need the API key here.
+It's already in here.
+So, what we really need is the lat and
+the longitude.
+Um so, this is not going to be like a
+perfect example, but like
+let's just assume that we knew what the
+latitude and longitude of Thunder Bay
+was. So, uh latitude, longitude
+Thunder Bay.
+Which one's the latitude and longitude?
+I'm going to go over here. Can I get Can
+I
+All right. Move over to here.
+Uh decimal 90 -90.
+Can you represent
+as decimals?
+Uh it's probably fine. So, latitude is
+48.3809.
+So, that's the latitude.
+And I know it's not really how we want
+to do it, but I'm just going to hardcode
+it in.
+And this is our longitude.
+And so, then we'll go back over to here.
+So, even though it's passing the city
+name, we're not actually utilizing that
+anywhere. Um just because we found that
+the parameters do not match
+what we're doing here.
+Uh oh yeah, we need a colon here.
+All right, so we'll give this another
+try here. We'll run this.
+We'll try to get that tool again.
+And it says unauthorized 401. So,
+here it's attaching the API key.
+Is the API specified a little bit
+different here?
+This says app ID.
+Was that one called API? Maybe that's
+why.
+No, that's right.
+So, I don't know. We We generated a key,
+so in theory, it should work.
+But it's not.
+Anyway, it's not working, and so I'm not
+going to fiddle around with this
+forever. And so, I'm just going to go
+ahead here and just say like I just give
+me mock data. So, go over here uh back
+over here. Give me mock data
+for the following structure.
+Okay, and we'll just mock it, and then
+we'll continue on from here.
+There we go. So, we'll go ahead and grab
+it like this.
+And I'll go back, and we'll just go here
+like this.
+I would love it to work, but you know
+what? We're not going to We're not going
+to uh lose a lot of sleep over it here.
+We We know like what we expect to
+receive back here, and uh
+so, I'll just comment this out for now.
+There we go.
+And so, we'll go down below here, and so
+that will now return this, and we'll go
+here, and we'll get back our weather
+input. And so, now the idea is that if
+we go back up to um our original one
+here,
+so, note the uh the above action
+simulates calling a weather uh in this
+scenario, I'm using the same. So, we'll
+go back over to ChatGPT, and let's read
+what we're supposed to do next.
+Yeah, so I think we need to specify its
+observation.
+Let's go
+back up to here.
+Check if the model has produced an app.
+If so, parse out which tool did.
+Run the tool in Python to get the
+results. Yep. Append an observation
+message to the conversation.
+Call the LM again with the the new con-
+context. Okay, great. So,
+we have that there, right? And so, we
+have um
+that text prompt from earlier.
+And so,
+I think it's if we go here, print, and
+say text.
+Right? And so, it's saying text
+uh equals plus
+observation
+plus equals
+I'll just do this. Text text plus
+new line observation
+colon
+and then here we have weather info.
+We'll do this here.
+And then I'm going to print out
+updated text.
+it's kind of okay. Um
+I'm not sure why it's acting a little
+bit funny, but we'll just go ahead here
+and make make a new line here like this.
+It has a one little extra space there,
+but I don't think it's going to hurt it.
+So, now what we'll do is we'll go ahead
+back up to this part here.
+And then copy this here.
+Go all the way down.
+And we'll go to a new line.
+And so, now we're going to go to
+the next line here.
+So, this is our text, right?
+That we got back uh from that. So, I
+think it's assistant we write back here,
+right?
+And then here we have our updated text.
+Well, hold on a second. Hold on a
+This is still user prompt, right? And
+then we got back our assistant text,
+assistant,
+which is the text.
+And then
+we have our updated text here. So, we're
+We have kind of a bit of a history here.
+I assume that's what it wants us to do,
+And so, we'll run this.
+And then we'll say
+got to go back all the way up to that
+other one here.
+I'll call this text two.
+And then we'll run this.
+Final answer uh in Thunder Bay, Ontario,
+Canada day is uh -5.2 Celsius. So, one
+thing I'm thinking is like while we're
+doing this, we could have
+um we could have uh probably
+instead of having like four four
+conversations here, we could have
+probably just appended it, but I believe
+it feeds it all in here, so it doesn't
+really matter. But I'm just saying like
+maybe we could have just taken that uh
+assistant prompt
+I don't know. But the point is is that
+hopefully you understand how React
+works. The idea is that you're making a
+thought, you get an action, you have an
+observation, and then you have your
+final answer. Um and so, there we were
+able to do that. Um there are frameworks
+that will automate this stuff, but it's
+better to know how the manual moving
+pieces work, so it's a bit easier. You
+can tell the system prompt exactly what
+you expect the tools to be. You can even
+tell it exactly what tools it has
+because there it was just making
+something up because it didn't know that
+it it it it could just make up tools,
+but that's what it was doing. But we'll
+call this one complete, so we'll say
+React example, and there we go. Okay.
+Ciao.
+Hey, this is Andrew Brown. In this
+video, we're going to take a look at
+OpenAI's uh API. And so, if we go over
+here
+um to product, their UI on their website
+is awful. I don't know why they make it
+so hard to find it. And it's very slow
+loading, but if you drop it down, you
+can get to uh API login. And we actually
+do use OpenAI quite a bit just because I
+find this one one of the easiest ones to
+utilize. Uh it's not the best, it's just
+what I'm very comfortable with. Um but
+when you want to start working with it,
+what you're going to going to end up
+doing is creating a bunch of projects.
+Um so, here there's a project I don't
+really want anymore. I'm trying to
+manage my projects to delete this one if
+it takes a moment here. But I'm going to
+go ahead and just delete it. But you
+come with a uh a default project as you
+can see here. Um and you might have to
+fill in your company information. You
+probably do. Um but the idea is that
+when we want to work on something, we
+first create a project. We'll say, you
+know, basic.
+Okay. And then from there, we want to
+create an API key, which we can find
+here on the left-hand side. And you can
+see that I have a key from a different
+example before. We'll open this up, and
+I'll just say uh basic.
+And I'm going to go and select that
+project and create it. I'm going to make
+my way over to um here, and I think I
+already have Yep, I do. An environment
+open here, so I'm going to open that up.
+But I use OpenAI quite a bit in this
+course, so you're going to see me again
+and again and again do it, so I don't
+feel bad if I'm kind of glossing over
+it. Um
+but we'll go over to here on the
+left-hand side, and we'll just give it a
+And we will open up OpenAI.
+Uh or use OpenAI. So, we'll say OpenAI,
+and I'll make a new file here called
+basic.
+.ipy
+here, ipynb. We'll make another new file
+here called .env. We'll make another
+file in here called .env
+env.example.
+And we'll make another file in here
+called .gitignore.
+Okay. And I believe the key is called
+OpenAI API key. So, that's what it's
+going to be called. We'll go back over
+to our API key. We'll copy it. We're
+going to paste it into here. I'm going
+to go over to the left here and
+copy this part and we'll go back over to
+here and paste it in. Now, we actually
+need a few other things. We need a
+project ID and we also need a org ID. Um
+maybe you don't, but I'm pretty certain
+that I do. And so, I'll go back over
+here to
+up here to the manage projects. And from
+here I can grab the project ID.
+Uh which is right here. So, I'll grab
+that here.
+And we'll drop that in there. And then
+the next thing I'll do is go to general
+and grab my organizational ID
+or organization ID. And so, we have that
+there. And these are supposed to be in
+the .env, of course. So, I'll bring that
+over there
+and then just clear these out.
+But, I'm not sure why I'm missing
+my
+uh open open AI I uh
+API key cuz I thought I just pasted it
+in here. Maybe I did not. Let me go take
+a look at the files.
+Oh, I pasted in the .gitignore. Well,
+there we go. That's where it went.
+So, this
+I'll cut this out. This whole thing.
+I'll cut this out here and I'll bring
+this here and I'll drop it into here.
+And then we'll go over to here. We'll
+ignore the .env as per usual.
+Um and so, there's a few things we'll
+need to install. The first will be pip
+install hyphen q python.env
+and then it'll be open AI.
+And so, I'll go ahead and run that.
+We'll go to the next line here.
+I'm going to pull from maybe Streamlit
+as we do have uh some code here. I need
+the this stuff here to load in the um
+the .env file. So, that will load the
+.env file. And now we just need some
+code examples. So, if we go here, uh
+there should be way we can find it if we
+look up the API reference. Uh they have
+cookbooks down here. I never go to that
+ever though.
+Oh, that's cool. Like we want to do
+structured outputs. They have an example
+Some of these are pretty complex. So,
+I'm not really sure. I'm just looking
+for something that's really basic.
+Maybe we'll just look at the API API
+docs.
+And uh here we'll go to our quick start.
+And so, yeah, it's open AI API key. So,
+I got that right.
+And here's a very basic example. So,
+we'll go ahead and copy that.
+And we'll go back over to here. We'll
+paste it in.
+Is that That doesn't look like Python.
+That looks like TypeScript or
+JavaScript.
+So, this example here
+is Yeah, we want Python. So, we'll go
+over to this one here.
+I knew right away that was not Python.
+And so, we'll paste it in here. I
+actually use GPT-4 a mini quite a bit
+these days. So, we'll go ahead and run
+this and we'll see if it works.
+And it does. Now, I do believe
+function calls themselves write a haiku
+about recursive in programming. Okay, so
+I was wondering like why it was being
+kind of weird there. But, you know, I do
+believe that open AI has a free tier.
+I'm right now utilizing the paid tier. I
+do have some credits loaded up. But, I
+found like even if you load like $5 on
+these things, they last quite a long
+time. Though, the credits do lapse over
+a year. So, you make sure that you do
+utilize them as that can be very
+unfortunate. But, that'll be our open AI
+example and we'll call this one done and
+dusted, okay? So, we have now utilized
+open AI. But, I do want to point out
+that open AI does have a really, really
+good playground. I mean, these videos
+are called
+these are like playground videos, but I
+really been focused on mostly uh working
+with them programmatically. But, if we
+go over here to the playground, we have
+the chat. We have a bunch of options.
+There's not much to talk about, but it
+is a way that we can
+uh work with the stuff and we might come
+back to these environments later on play
+around with them, okay?
+video, what I want to explore is
+utilizing the Anthropic Workbench as
+that is another way to work with
+Anthropic. Um a lot of people might just
+go ahead and try Claude from here. And I
+actually do have a paid account which I
+got just for this um
+uh this boot camp as usually I'm just
+sticking with ChatGPT these days. But,
+the idea is that there's another portal
+somewhere here.
+Um if we go over to API,
+okay, and then we go to start building.
+And so, that brings us to
+console.anthropic.com.
+But, this is bringing us to the
+Anthropic Workbench. Sometimes they call
+these workbenches. Sometimes they call
+these playgrounds. I believe that they
+call theirs a workbench. And so, we are
+now in here. Yeah, we see workbench up
+here. Um I guess the question is like
+can we utilize this in the free tier? I
+think that we have to buy credits to
+utilize it, but we can just find out
+by working with this directly.
+Um so, the plan is the free plan is for
+evaluating capabilities before
+commercial use. So, it sounds like we
+can utilize this uh for free initially.
+And we'll say my
+uh my uh my key here. And let's just see
+how we can programmatically work with
+Anthropic Claude. So, here we have a
+key. I'm going to go over to our GitHub
+repo. I'm going to go down to GenAI
+Essentials.
+Okay, I'm going to go open our uh code
+base in mhm
+GitHub. Uh
+I'm going to delete this old space.
+We'll use GitHub CodeSpaces here today.
+It doesn't really matter what you use as
+this is all serverless, but I'm going to
+use GitHub um GitHub's CodeSpaces here
+today. So, we'll give a moment for that
+to launch up.
+All right. So, we have launched this up
+We got color themes um and I wanted to
+just change this to a darker theme so I
+can see what I'm doing. There we go.
+And I want to um
+I mean, we do have one for Amazon
+Bedrock over here which is working with
+their APIs, but I'm going to make a new
+one uh here. I can call this one whoops.
+We'll call this one Anthropic and
+Anthropic
+An
+thropic.
+And in here I'm going to make a new file
+that I would like to call
+mhm
+I guess the question is should it be a
+workbench or should it be the CLI? I
+kind of like working in in notebooks.
+So, maybe we will make this a notebook
+here. So, I'm going to go ahead and just
+say basic.ip
+uh ynb.
+So, I believe is how we make the book.
+And we'll go ahead here and we'll just
+start adding code. I'm going to use the
+uh whatever the default kernel is here.
+So, we'll install and enable here so
+that we can get going.
+We'll give it that just a moment.
+All right. So, that's now installed.
+We'll go ahead here and just choose
+whatever the default environment is.
+Um and so, we'll go back over to here
+and we have our API key. I'm not ready
+to use it just yet, but um I think what
+we can do is just load put it into our
+.env file here.
+As I'm getting pretty good at loading uh
+external environment variables.
+And I'm just going to save that
+temporarily. I'm going to go ahead and
+make a new .gitignore.
+And in here we're just going to ignore
+the .env as I don't want to commit that
+to my repo.
+And I know that we will want to install
+whoops. Sometimes I get those five
+numbers there by accident, but we want
+to install python.env. So,
+that'll be one thing we'll absolutely
+want to install. I need to figure out
+what the Anthropic library is called. I
+do not know what it is.
+Um so, if we go back over to workbench,
+I know they had like that beginner stuff
+that they were showing us stuff.
+But, I want to get some code. So, we'll
+go over to here. And so, this looks like
+a good start. It's interesting we have
+other implementations. We have for
+Vertex AI which is cool. And then we
+also have the Bedrock implementation.
+We'll go over to Python as that's the
+version that I'm going to mostly be
+utilizing as Python everywhere all the
+time even though my favorite language is
+Ruby. We'll go ahead and we'll paste in
+this code example. And so, here actually
+wants to load the environment variables
+which is
+perfect. So, I'm going to copy this over
+to here and we're going to set uh this
+value as such.
+I'm going to go ahead and just make a
+.env examples
+And that way when I commit this, other
+folks who are running it can follow
+along with their own key.
+So, we'll go back over to here. And so,
+this is the default one that will get
+loaded in.
+So, I think we don't even have to set a
+key because it will get pulled in.
+But, we will have to uh load
+um python.dev. So, it's like .env like
+import.env
+import.d .env and then .env
+.load.
+It's not auto completing which is fine.
+Um but, I'm just going to go to another
+example where I know that I utilize
+this. Here we go. And so, I just want to
+make sure without a doubt this gets
+imported correctly.
+Okay. And so, the library that we need
+to install here is um Anthropic.
+I mean, that kind of makes sense. Let's
+go ahead and and see if we can get her
+installed to go here.
+Probably could have done a hyphen q here
+to make our lives a lot cleaner.
+There we go. And so, now we'll do our
+import.
+And here it's coded for a very specific
+version Anthropic. We'll go ahead and
+run that.
+it says it's a deprecated model. So, it
+looks like
+your credit balance is too low to access
+the Anthropic API. Please go to billing
+etc. So, I mean, we just wanted to
+evaluate it, right? And so, maybe this
+one in particular is not something that
+we can utilize right away.
+And so, if we go here, what if we went
+to like an older one like Haiku? Like
+this model in particular.
+I mean, I know I'm out of credits, but
+like I thought I could evaluate it.
+Maybe I can't.
+So, let's go take a look. Anthropic
+workbench
+does it have a free tier?
+I mean if it doesn't, that's totally
+fine.
+However, please note that the API is
+subject to commercial terms and
+services. Okay, so which model can we
+use for free?
+All right, but it's not telling us how.
+Yeah, it's not exactly telling us which
+one it is. And so, I was hoping that
+we could go in here and maybe we could
+find a very specific model. Now, there
+are some older models here. So, maybe we
+choose this older one here.
+There's no easy way to copy it, but I'm
+going to go ahead and hit try it.
+No, that's not really helping me. So,
+maybe I'll go right click and inspect to
+get the the content here.
+First of all, they just don't make it
+easy to copy here.
+And so, I'm just using inspector to try
+to try to grab that value.
+So, maybe we try
+mhm, this older version of Haiku.
+Then maybe we can use it for free. Let's
+find out.
+I don't know for certain, but we're just
+we're just trying some things out here.
+So, I'm going to go back over to our
+I'm just going to say model ID and I'm
+just going to paste it in as such. I
+want to keep both of them around so I
+can quickly uh switch between the two.
+And so, I'm going to go ahead and just
+grab this one here.
+To me, it's it'd be crazy if they even
+had a free tier just because they're
+always um exhausted in terms of their
+resources.
+But we'll go here and just say model ID.
+I'm going to comment out the top one
+here and we're going to try this again
+and run it.
+And it still fails. So, clearly we need
+to have um
+we need to have uh
+a newer model. So, let's go over to here
+to maybe a newer model and I'm just
+going to go and try to grab this one
+next. Actually, I can probably just grab
+it from my inspector window.
+I'm not fully uh tapped out here yet. I
+just want to see maybe it has to be the
+latest model and that's why it's still
+not working.
+And so, we'll go back over to here.
+And I'm going to paste in this one
+instead.
+I don't think anything changed.
+So, yeah, I think I'm just going to have
+to buy some credits. And that's not a
+big deal, but I was hoping that I could
+show you something with the free tier,
+but at least you know that you're not
+really going to be able to easily get
+free tier. Let's go over to settings.
+Let's go to billing. I'm going to load
+myself up with some stuff here. So, I'm
+going to complete setup and get going
+here, okay? And I'm just showing you a
+little bit. I just clicked on here. So,
+I'm just showing you a bit of the step
+before I fill in some of my personal
+information. Um
+I guess we're small business. Uh we are
+based in Canada.
+It's for both, I suppose. What task will
+Claude be used for? Educational
+Will Claude be used to provide legal
+medical advice? No. Will you be
+incorporating our API into any products
+or services intended for users under the
+age of 18? No. And so, we'll hit
+continue. And now, this is where I will
+have to hide my screen. So, I'll be back
+in just a moment, okay?
+All right. So, I set billing and uh I
+think for now I'm going to just start
+with $5 as that is uh a small amount.
+Auto reload credits when the balance
+reaches a certain threshold. I'm not
+going to do that here today, but I'm
+going to go ahead and just complete the
+purchase.
+And so, in theory, the purchase should
+be completed and I should have those $5,
+but I'll give it a moment here. There it
+is. And so, now I should be able to use
+the API. Um so, let's go over to here
+and take a look at what we have. Um so,
+we'll go back over to here. I'm going to
+go ahead and um run this here.
+And so, it should pick up. It says uh at
+least one message is required. So, now
+it's not an issue of whether it works,
+it's just the fact that we don't have a
+message filled in here. So, I'll go up
+here. I'm just going to put in messages.
+Also, bump up the font here a little
+bit. It is a little bit small. Okay. And
+we'll bring that on down. And I'm going
+to go ahead and bring this here.
+And so, now the next thing I need is an
+example of actual messages. So, we'll
+just say messages API Anthropic.
+Now, I honestly find the easiest way to
+use Anthropic is via Amazon Bedrock, but
+you know, use whatever you need to use.
+we'll say Python here. We'll just type
+this again.
+Python.
+And so, I'm just trying to find that
+example of it. Yeah, so it's role and
+content. So, that is very
+straightforward. I'm going to go ahead
+and just copy that from wherever this is
+here. We're going to go ahead and give
+this a paste in. I'll probably fix this
+up a little bit so it's less of a mess.
+And uh yeah, we'll just leave it as this
+and see what happens.
+And we'll just zoom out a little bit
+here so we can see what we're doing. So,
+at least one message is required. Oh,
+you know what? We didn't actually
+replace
+this value here. We'll go ahead and give
+that a run.
+So, there we go. So, we got a response
+back. Very, very straightforward.
+But yeah, nothing super exciting here.
+Um I know there's other capabilities
+that uh Anthropic uh API has,
+but I really don't investigate their
+individual ones cuz I generally use An-
+Anthropic through Vertex AI or um
+Amazon Bedrock. But sometimes they'll
+have functionality
+that is only accessible through their
+API. So, let's go over to their API
+reference.
+And I'm just looking down here to see if
+there's anything interesting. So, we
+have messages, which is pretty
+straightforward. We can stream messages.
+we can list models. We can do batch
+messaging, which I would assume would be
+more cost-effective just like OpenAI.
+There's the legacy one. I assume we
+wouldn't use that anymore.
+There is an admin API, but I can't
+imagine that that's something we'd ever
+really want to uh fiddle with. Then we
+have Amazon Bedrock and Vertex AI down
+below. Um but yeah, I guess what I was
+looking for was some of those beta
+features cuz there's always really
+interesting things that Anthropic can
+do. So, we'll just say like Anthropic.
+Actually, down below here it says ask
+AI. So,
+what are some of the beta features via
+the API I can use with Anthropic?
+So, I always like hearing really cool
+things like being able to control your
+screen and stuff like that. But where
+they are, they're not clearly here in
+the main API. So, maybe their uh AI
+uh thing can help us. We'll just give it
+a moment here.
+That's what I'm thinking about. Computer
+computer use beta. So, allows you to
+interact with the computer desktop
+comments. Here's an example of the code.
+And we don't actually see Oh, there's
+the example. There we go.
+And message batching. Here it's saying
+it's in beta. I don't think it's in beta
+anymore. Um I think it's just part of
+the API now. Um I'm not sure how
+up-to-date it is. But yeah, I mean
+that's pretty straightforward. We can go
+back over to the workbench itself. Um I
+don't think there's anything exciting
+here to talk about in the workbench.
+Okay. Yeah, yeah, yeah. So, I mean
+something that the API supports, I
+believe, is tool use. So, I guess if you
+wanted to test tool use in here, that's
+something that you could do, which is
+kind of interesting. And so, I guess we
+have an example there. Um do I want to
+show tool use right now? Probably not.
+If we do something with, let's say, rag,
+then we can come back to that. But right
+now, I'm not that interested in showing
+off uh tool use. But yeah, there's your
+your basic starting uh starting place
+with Anthropic. Um I'm going to go ahead
+and commit uh this stuff here. So, just
+say Anthropic example.
+Okay. And so, you can see it's not super
+complicated. The only thing that I did
+not like, and I mean, I understand why
+they did that, but they force you to put
+in your um Canadian business number um
+for taxes. And I suppose you're supposed
+to do that, but I like just to fill out
+forms and I had to go ask Beco for the
+um business number. I'm going to go and
+make sure I get rid of the API key as I
+do not want to have issues here.
+Um we'll go ahead and we'll just delete
+uh this key. And now, we're in good
+shape, okay? Ciao.
+All right. So, we looked at SageMaker
+and also Azure ML Studio. But let's now
+take a take a look and see if we can run
+notebooks in Google Cloud. Obviously, I
+have Google Colab.
+Um but let's see if there's something
+directly in here. I honestly don't
+remember. Um but we'll go over to Vertex
+AI because if there was one place it
+would be, it would be there. We could
+also just type in notebooks at the top
+here and see what we get. And so, we
+have workbench. Um so, that might be a
+way of Yeah, I think that's their their
+managed way of running notebooks. It is.
+Okay, great. So, why they call
+workbench, I don't know. Um but it is
+one way of we're doing it. I already
+have an existing project here. So, you'd
+have to create a project. I keep using
+my free S free S free BSC and I never
+seem to clean up my projects.
+Uh one day I will. It's just managing
+projects in Google Cloud are kind of a
+pain compared to something like Azure
+resource groups.
+So, we've now enabled it. That was
+really fast. And we'll go ahead and
+create a new instance. We probably
+should be paying attention to the cost.
+So, over here, it's showing us it is um
+a dollar. So, that's kind of expensive,
+but maybe we can choose what we're
+running underneath.
+Yeah, and so here we can see we have um
+I mean, these are environments.
+And I guess they're just kind of
+pre-built environments for us. We're not
+really choosing exactly what we want.
+All of our all environments has a list
+GPU libraries installed.
+Okay. So, we have Debian and Ubuntu. I
+mean, I like I like Debian, but let's go
+over here. Does this one become cheaper?
+We switch over to that.
+No, it does not.
+I'm going to go back over to just
+With Intel ML MKL. What is Intel MKL?
+You think I'd know. I know usually
+mostly all the stuff. Oh, math kernel
+library. Okay. Yeah, yeah, yeah.
+Um but you know, I was hoping that I
+could choose Oh, here it is. Okay. So,
+down below here we have our
+configuration.
+Um, so C3 was what we were trying to
+launch earlier for something.
+Um,
+but you see we have a few different
+options. Um, we have AMD, Intel Skylake.
+Mm.
+I want something that's just going to be
+cost-effective. So,
+and I only want a single VCP I don't
+know. Let's choose N1. Is that cheaper?
+I just remember Skylake being um
+cheaper. So, I went here and now we're
+getting into something more reasonable.
+This is even cheaper than um
+than uh
+ML M3 medium, right? So, we have a lot
+of options here, but again, I'm not
+trying to run something for real here.
+Look like look how much memory I have.
+So, this isn't something that you'd run
+a real workload on. It's just me trying
+to show you how to launch up the
+notebook, okay?
+So, we have US Central 1 Iowa. This is
+totally fine. I'm going to go down
+below. We're going to go ahead and
+create this. All the other settings are
+fine. And we will take a look and see
+what we get.
+Really happy about that cost though.
+That's really good cost.
+I don't know if it has a free tier to be
+honest.
+Here it says uh Vertex AI Workbench
+user-managed notebooks is deprecated and
+and will support. Recommend you migrate
+to the AI Workbench instances.
+Oh, is that what we're do Okay. Is that
+what we're using right now, the
+instances?
+User-managed notebooks.
+Jupyter Lab 4 is now available in this.
+Well, how do I know what it launched? I
+don't even know what it launched.
+Managed notebooks.
+Okay, I'll give this a refresh here.
+I don't see anything.
+I mean, I definitely am creating one up
+Mm, see all activities.
+You got to turn on that MFA. Nobody make
+fun of me for not having my I'll get my
+MFA turned on. Don't worry.
+Before the boot camp starts, I'll make
+sure my MFA is turned on, okay?
+But I'm not sure.
+Is it launching or what's going on?
+Executions.
+No.
+That is
+I hate that because I can't tell
+if it's installing now or not. And
+I don't have any notification that
+suggests is other otherwise. So, I'm
+going to give it another hard refresh.
+And so, I'm on instances here, right?
+Like I don't mind launching two. I just
+have to pay attention to it. So, I'm
+going to go ahead and create new.
+Default default. This is fine. Is this
+experience a little bit different?
+Oh, did it take me to a much more
+Mm, no, not really. I'm not sure why
+this is so different.
+Create new.
+I don't want a T4. No, thank you.
+I wonder if that's what
+Colab uses. But here we have an EC2
+standard 4.
+20 cents an hour. Why was the other one
+giving me so many options?
+Instance.
+What does user-managed look like?
+Managed notebook. Well, what did we have
+just a second ago? Why is this
+experience completely different?
+Whatever. I'm going to go over here on
+the left-hand side. I'm going to go to
+instances as that's what it's
+recommending us to do.
+I didn't create this new one. I don't
+even know how to get back to that other
+interface we just had. That's totally
+fine. And so, here it says EC2 standard
+4. I'm going to go to advanced options.
+I just want to see if I have a little
+bit more flexibility change my um
+machine type.
+And so, I'm going to go over to N1.
+Which is Is it any cheaper?
+Oh, it is. Okay.
+But I don't know what happened to my uh
+my other one there. And this will idle
+after shutdown before
+minutes. I'll say
+range 10 minutes. I like that.
+That's good. I like that. So, we'll go
+ahead and do that. That's like the
+lowest setting I've seen so far.
+I think anyway.
+But yeah, I'm not sure what happened to
+that other notebook.
+And I thought like in my notifications
+it would show up here. I guess not.
+Again, just still clicking around here.
+Yep, nope. I don't know what happened to
+the other one.
+I'm sure in a month Becca's going to be
+like, "Hey, Andrew.
+You spun up something that has cost down
+here." We also have Colab Enterprise,
+which I'm not obviously going to use.
+I'm not an enterprise.
+But um
+yeah, I guess they have that as well.
+But we'll stick over stick stick with
+Workbench here.
+And we'll just wait for that to become
+available.
+Uh yeah, so do we click into it?
+Yeah, we're just waiting for it to
+start, I guess. Okay, so we'll hold on
+tight. All right. So, um yeah, it's up
+now. I had to refresh um as sometimes
+you have to do. Let's go ahead and open
+up Jupyter Lab here.
+Let's just give it a moment.
+Nice little Google Cloud logo.
+And here we are. The experience is
+obviously a little bit different.
+Um, I don't recognize some of these
+here. Notebook executor. So, it looks
+like they have a little bit uh little
+bit differences here.
+We have a little nice notebook template
+Um, yeah, some some things here. I'm
+going to stick with the regular Python
+for now. I'm going to go ahead back to
+the launcher.
+We'll choose
+Python 3 IP kernel.
+We'll do our usual pip install
+transformers. Nothing exciting here.
+All right. I guess we modify the
+hardware here. So, yeah, kind of reminds
+me of like uh Sagemaker Sagemaker Studio
+Classic in that there's a few more
+little integrations. Um, I actually
+prefer Sagemaker Studio Classic as
+opposed to the new Sagemaker Studio.
+But AWS wanted to change it. So, yeah,
+we installed it there. And so, now we
+have another environment that we can
+work in. So, if you did not know that,
+you can do that. I'm going to go ahead
+and delete that here today.
+And so, that is another place where we
+can use
+uh notebooks in the cloud, okay?
+All right. In this video I want to take
+a look at Cohere. And so, I'm going to
+go ahead and sign in to Cohere. What I
+really like about Cohere is that they
+have a very generous free tier. So, you
+can get started with them uh very
+quickly. And I've already created an
+account before, so I'm just connecting
+here. And so, now I'm in my account.
+Obviously, we could attach a billing and
+uh use the tier. I do not plan on doing
+that here today unless I need to do so.
+We're going to make our way over to the
+API keys. And you can see I already have
+a a key generated from prior. I think
+I'm still using this key. So, I'm going
+to actually leave it around as um I have
+somebody building something out for our
+boot camp with it. But I'm going to go
+over to GitHub Jenny Essentials. And I
+might already have an environment
+already running here.
+Um, so I do. So, I'm going to go ahead
+and just open that in the browser. Of
+course, if you do not, then you will
+have to launch one in GitHub Code Spaces
+or use whatever you like here today. And
+I'm going to create myself a new trial
+key.
+Um, and so this will just be example
+key. And so, we'll go ahead and generate
+out that key there. And so, now we have
+our example key. Um, which I think we
+can look at it anytime. So, that's
+totally fine.
+Um, and so we're getting this
+environment spun up here.
+But yeah, Cohere has its own playground.
+So, you go over to here and they have a
+playground.
+Um, so we have chat, classify, embed,
+uh and generate, which you do not use
+anymore. But I like their playground
+because it really does give you a lot of
+quick examples very quickly on how you
+can uh utilize it. On the right-hand
+side, you can see they have tool use.
+Um, they have connections to other or
+connectors to other um
+uh things like doing web search, which
+is nice. You can provide it the response
+format um so that you can get back
+structured JSON if you provide provide a
+uh JSON schema file. Um, so yeah,
+there's a lot of stuff that could be
+done here. But I again just want to show
+you how to work with this
+programmatically very quickly.
+Um, so if our environment is spun up,
+which it is, I'm going to make a new
+folder over here and we're going to call
+this one Claude. Uh or not Claude.
+Cohere. I apologize. And we'll go ahead
+and we'll make a new file here called
+basic.ipynb.
+And I'm going to make a new .env file
+here called .env. And then I'll make a
+.env example.
+And then we'll make another one here
+called
+.gitignore. In the .gitignore I want to
+ignore .env. So, we'll go ahead and do
+that if I have yet to do so. Did I
+commit the stuff from last time? I did.
+We'll go over to here. We'll add some
+code. I'm going to assume that it's pip
+install Cohere. So, I'm going to go and
+say install. Uh I'm going to do hyphen Q
+Cohere. We also want python.env.
+Um, I'm going to want to make sure
+that's a percentage. I'm going to make
+sure that I want to uh bring in from
+this one
+this here. So, I'm going to copy this
+over.
+As we want to import the .env into our
+file here.
+And so, now I just need some Cohere
+code.
+So, if I go to chat, I wonder if they
+have Yep, they have code up here in the
+top right corner. We're going to go
+ahead and grab this example.
+And I'm going to go back over to here.
+I'm going to paste it in. I need to grab
+my API key from here. So, I'm going to
+go ahead and copy it. I'm going to click
+the copy button.
+And it looks like it's not saying what
+it's supposed to be. So, we could just
+hardcode a value here.
+I'm going to go ahead and paste this in.
+And it's going to be called my Cohere
+API key. And that's what I'm going to
+call it. I'm not sure if that's if
+that's what it's supposed to be
+implicitly called.
+Sometimes we can look that up. I don't
+always care to look it up.
+And so in here they're saying this is
+where you load your key. So we're going
+to do OS uh environ. So I'm going to
+have to also include in here import OS.
+Um but we'll say OS
+environ
+.get. This will be Cohere API key. So
+that will bring that over here.
+Obviously, it wants us to have a message
+here. This is set up for streaming,
+which is fine. Uh there's nothing wrong
+with streaming. We can absolutely do
+that. It looks like we already have some
+chat history in here. So I'm going to go
+ahead and bring this on down a little
+bit. I'm not sure if this is their older
+their older uh API because I'm pretty
+sure that they standardized
+on
+uh utilizing uh like there's a newer
+format. So I'm going to go ahead and say
+Cohere API cuz that kind of looks a
+little bit old to me.
+Right? And if I go to their docs, just
+want some examples. API reference.
+So it says chat version two.
+Right? So I go here.
+I notice it says messages. So this is
+really what we want. I mean, we can
+obviously do streaming,
+but this is actually what we want
+because I think that um
+uh maybe in their in their portal it's a
+little bit out of date, which is totally
+fine. It also looks like we have some
+variants here if we're trying to do
+different things like documents or tool
+use. The documents documentations really
+really good uh for this platform. And
+we're going to go over here. I'm just
+going to replace this with this version.
+This is using command R plus, which is
+totally fine. It already has information
+for us in here. Um
+I don't know what it uses as a default
+to load
+the environment variable.
+So I'm just kind of looking for that
+Just a moment.
+Sorry, Baker was asking me for my uh um
+baster. He's making a turkey. But
+anyway, I'm back. Um and so yeah,
+somewhere in here there must be an
+indicator in terms of
+what the env is for it. So let's look up
+uh Cohere
+env
+because maybe there is one.
+I mean, theirs is calling it that. So
+maybe I have guessed correctly and it
+will actually automatically load that
+one in. So I'm just going to assume that
+that is correct.
+Um and we'll go ahead and we'll just run
+And then we'll run the next one here,
+and then we'll run the next one here.
+And so we do get an output. Um
+Yep, and we got a response.
+So there'll be like a little bit more
+work that we'd have to do to format this
+response, but yeah, that's as simple as
+it is working with the Cohere API. And
+again, it has a generous free tier,
+which is really nice. I'm going to go
+ahead and delete our example key as I do
+not need it any longer. I'm going to go
+ahead. We're going to add this here and
+just say Cohere API.
+And so yeah, that would be a very good
+um one that you can utilize if you again
+you have no spend. Uh this one is very
+generous. The other thing is that their
+models you can also download them from
+Hugging Face. So they have them in
+another format. I'm not sure if they're
+I wouldn't call them open source, but
+they're open openly available to utilize
+them for locally. So
+I don't think there are limits based on
+that. You can use as much as you want,
+but obviously for commercial use it'd be
+a different story.
+So it's nice that you can have a model
+that that you could use uh serverlessly
+or download and and utilize it as much
+as you need to until you need to put to
+production. But there you go. All right,
+let's take a look at AI21. Uh AI21 is
+known for models that have much longer
+contexts uh than other other ones. So if
+you need a lot of text like large
+documents, that's where this one can
+come into play and it can be very very
+useful.
+Um but let's go ahead and see what we
+can figure out here. I believe that they
+do have some kind of playground here in
+API.
+Um but we have chat with Jamba or build
+with Jamba. Actually, we I didn't know
+we could chat with it. Let's go over to
+And I guess they also have a uh chat
+environment just like any other one.
+So we go over here and take a look.
+We'll say continue.
+And so now we are in uh Jamba chat. I
+can just say, "Hello, how are you?"
+It says, "Hello, I'm doing well. How can
+I assist you today?" So it would be
+really interesting to see how this one
+would perform against other AI-powered
+assistants, but I don't think this is
+intended as an AI-powered assistant.
+This is more just a demonstration of
+what this thing can do. Let's go over to
+start building as this is really what
+I'm interested in. And so now we have uh
+this is the playground. So we have chat,
+conversational rag, rag engine. And so I
+could see how this could be really good
+for um uh large large code bases. Let's
+go over to view code. And so we have
+some code here. And as per usual, we're
+going to go over to GitHub, and I'm
+going to make my way over to GenAI
+Essentials, and I'm going to go ahead
+and open
+in the browser. Okay, and we'll just
+give that just a moment. And so that is
+now opening. I've had this environment
+open from previous videos, but of course
+uh there's nothing special that we were
+doing here that is out of the ordinary.
+Um but yeah, it looks like we have a
+JavaScript and curl option, but mostly
+it's Python. So we'll go over here and
+we will give AI21 Labs a try here. So
+say AI21
+AI21 Labs.
+And we'll go ahead and make a new file
+here called basic.ipynb.
+And in here
+we'll add a couple new code blocks here.
+I'm going to grab
+these here.
+And we'll bring them on over.
+And I'm just going to bring this one up
+into its own. I like to do the imports
+separately if I can. And we're going to
+want our pip install. I'm going to do
+hyphen Q, and we're going to bring in
+AI21 and also python.env.
+And from our previous examples, I'm just
+going to split here and go to uh maybe
+our Cohere example where we've loaded
+our imports here.
+I'm going to go ahead
+bring this on down as such. Maybe take
+that one out. We might not even use the
+the import OS, but that's totally fine.
+Let's go ahead and give that an install.
+And we looks like we're going to need a
+key. So I'm going to go ahead here and
+make a new .env file.
+And we'll make a new .env example file.
+And we'll make a new .gitignore file.
+And I think I spelled that right. We're
+going to ignore the .env file. I'm going
+to go over to here.
+Um sorry, back to basic. And I like how
+it shows us exactly what the key is
+supposed to be called. Not everybody
+does that. For this one it does, and it
+makes my life a lot easier. So clearly
+we're going to need a key. So let's go
+back over to AI21. Well, let's see if we
+can find a key. Let's go over to
+settings to API keys. It looks like we
+already have a key, which is interesting
+cuz I don't remember generating one, but
+we'll go ahead and regenerate it. Maybe
+they give you one by default.
+Okay, but where where's the key? How do
+I get the key? Do not share your key
+with others or expose it in the browser
+or client in order to protect the
+securities uh view of the usage of the
+How do I use the key though?
+Where do I get the key?
+Okay, so AI21,
+how do I access the key?
+Oh, you know what? I bet it's copied it
+to my clipboard.
+Let me see.
+Nope.
+&gt;&gt; I thought it would be like when I press
+this, are you sure? Yes, let's rotate it
+Oh, it's over here. Copy. That is not
+easy to see.
+Whoever did the UI on that needs uh
+needs needs uh yeah, they need to
+they need to not do that. So we can load
+this way. That's totally fine. Um we
+probably could take it out and we'd
+probably still load it. Here it's using
+Jamba. Jamba 1.5 large. I'm not sure
+what their latest one is. We'll go over
+and say
+uh AI21
+models.
+Because there is Yeah, there's like a
+isn't there like a newer one? Let's go
+over to pricing here.
+No, I guess we just have mini and 1.5
+large.
+Which is fine.
+Let's go back over to here.
+So we have this one here. We have a
+bunch of stuff in here. Like I don't
+plan on putting any documents or tools
+here. We're just testing the messaging
+formatting, which is very boring. Also,
+we we're not printing anything out here.
+So I assume that we need to print back a
+response. So we're going to go ahead
+here and just say response, and just say
+response.
+Um and then we're going to need some
+messages in here. So I'm going to go and
+say messages.
+And I do not know what format it wants,
+but let's just assume it wants the usual
+role content. So we'll say role
+user.
+And then we'll say content
+Hello.
+How are you?
+Okay, and we'll go down here, and then
+we'll go and paste it in as such.
+Right? And so now let's go ahead and see
+if we can run this stuff. So we'll do
+this one, and then this one.
+And then we'll do this one. We got an
+error back. It says,
+"Object has no attribute model dump."
+And here it's talking about Pydantic
+version two.
+I mean, I don't know if I need to
+specify exactly what response format I
+Oh, well, first of all, did we even
+place this in the messages? We did do
+that. But I don't plan on using
+documents or tools. I don't plan on
+having a stop here. Um everything else
+is fine. Let's try this again.
+Object has no attribute model dump. So
+it does not like our messages. So I need
+to find
+some example code. We'll go over to
+documentation here.
+We'll say get started.
+And let's see if we can quickly find
+an example
+with the API.
+So yeah, so far
+not seeing it, but uh Python SDK, let's
+go down to here.
+Uh so it needs to be in a very
+particular user message format. I've
+seen this with a few APIs, not all of
+them, but some of them do this where
+it's structured, and I guess maybe
+that's what he was talking about when he
+was talking about Pydantic. So let's go
+back over to here, and it looks like
+that's already being No, it says chat
+message, but we have user message. So
+I'm almost kind of wondering if like
+this stuff is older, so I'm going to go
+ahead here and just do this.
+I'm not sure why uh the there's
+inconsistencies with the doc, but
+sometimes these companies do not have
+time to go and update their docs, which
+is not a good idea, but it's just what
+happens. And so here we have
+um messages. I'll just go ahead and copy
+that.
+Okay. And so, yeah, it's doing some of
+the formatting for us here. Let's go
+ahead and run this. Well, first we'll
+run this.
+Then we'll run this.
+And now we get a response.
+Okay, so that is the way that we can
+start working with AI21. I We obviously
+haven't covered the advantages of AI21,
+but uh this is just to show you how to
+you can start to get uh working with
+AI21, but as far as I understand, their
+big pitch was the fact that they're they
+have giant context windows. So if you
+have very large documents, um then this
+would be a a model that might perform
+very well under that. We'll go ahead and
+just commit our code, so we'll just say
+AI21, and we'll consider this one done,
+and I will see you in the next one,
+okay? Ciao.
+&gt;&gt; Mhm.

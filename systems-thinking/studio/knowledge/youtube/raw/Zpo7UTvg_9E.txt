@@ -1,0 +1,457 @@
+JOE FERNANDEZ: In
+this video, we'll
+explore how you can
+build a personal AI
+assistant to help you code.
+Let's go.
+[MUSIC PLAYING]
+Hey, folks.
+Welcome to Build
+with Google AI, where
+we explore how you can build
+practical solutions with Google
+AI technology.
+Using artificial
+intelligence to help you
+code can be a nice
+productivity boost,
+but it does have some risks.
+What if you want
+to make doubly sure
+your super secret world-changing
+code project stays in-house,
+while still getting
+some AI assistance?
+Google's family of
+Gemma models are
+available to download and
+run on your own hardware
+so you can keep everything
+local and have the option
+to tune the model to work
+better with your code base.
+One of my colleagues and
+I decided to try this out,
+so we built a standalone AI
+code assistant with Gemma so you
+can keep your code
+projects under
+wraps, or just not
+share with anyone
+that you forgot how to
+code a for loop, again.
+The Pipet code agent is a
+Visual Studio code extension
+that uses AI models to help
+you with code development.
+Here's a quick demo
+of the project.
+This instance of
+the extension is
+connected to a Gemma model
+running on an independent server
+that I'm managing.
+So all my AI requests go
+from my development computer
+to my server and nowhere else.
+The Pipet extension
+adds a few new commands
+to VS Code, which you can access
+through the command palette--
+pipet.
+These commands let
+you do things like
+generate code comments or
+request help with your coding.
+You can also add your own
+commands, which I'll show you
+how to do later in the video.
+Right now, let's
+ask the Gemma model
+how to generate a comment to
+explain this Python function.
+Open the command
+palette, type Pipet,
+select the comment function,
+and then hit Enter.
+This command sends
+a copy of the code
+I selected with some
+additional instructions
+to my Gemma instance.
+And in a few
+seconds, the AI model
+generates a comment explaining
+what this code does.
+Nice.
+Let's add this generated
+comment as a proper doc string.
+All right, now let's try using
+the Gemma model for coding help.
+For this, I like to use
+a separate markdown file
+so I can examine the
+generated code before I put it
+into my project and also so I
+can refer back to the answer
+later on.
+I'll just type my
+question here--
+how do I write a
+for loop in Python?
+And send the request.
+After a few seconds,
+the model generates
+an answer, which I can
+review and use in my project.
+I like putting these
+questions in a markdown file
+because then I can view it in
+a nicely formatted preview.
+What I really like about using
+AI models like Gemma for coding
+is that it generally gives me
+very focused answers to coding
+questions and helps me quickly
+tackle new coding problems.
+Remember, you should always
+thoroughly review and test
+generated code before making
+it part of your project.
+Now, there's a lot more can
+do with this AI code assistant
+extension.
+But before we get
+into that, let's
+talk to my collaborator
+on this project
+and have them
+explain how it works.
+All right.
+I'm joined today by my fellow
+builder of this project
+and member of the developer
+relations team, Luciano Martins,
+who's calling me from Brazil.
+[NON-ENGLISH SPEECH]
+LUCIANO MARTINS: Hi, Joe.
+Thanks for having me.
+I'm really glad to be here.
+JOE FERNANDEZ: So
+my first question
+is, why would you build this?
+There are lots of AI coding
+tools available out there.
+Is it really worth
+building your own?
+LUCIANO MARTINS: Well, I think
+having some kind of assistance
+for coding is always welcome.
+But whether you should set
+up your own instance of Gemma
+just for that really
+comes down to your goals
+and your requirements.
+If you want to closely
+manage the AI model,
+assisting you with coding,
+running Gemma on hardware
+you personally manage
+is a pretty good option.
+But it is worth noting that
+you need the compute capability
+around the level of an NVIDIA T4
+GPU to run a Gemma [INAUDIBLE]
+2D model at full precision.
+That's a considerable hardware
+investment for many people.
+But it is possible to run
+Gemma with less hardware using
+techniques like quantization.
+But you should research and
+test out those configurations
+to see if they meet
+your needs before you
+invest your resources.
+Running a Gemma model
+as a code assistance
+also offers you the
+possibility of tuning the model
+to work better with
+your code base.
+If you have a set
+of coding tasks
+that you want to your
+ER AI coding assistance
+to be really good at,
+being able to tune a Gemma
+model for those tasks
+is a nice option.
+Again, be a little
+cautious though,
+because tuning the model
+costs more compute resources
+than just running them as is.
+Even though you just need
+that extra computing power
+while you are running.
+JOE FERNANDEZ: OK,
+so next question.
+How does the Pipet
+Code Agent actually
+work with the Gemma server?
+LUCIANO MARTINS: When you run
+a Pipet Code Agent commands
+with Gemma, it takes your
+inputs and combines it
+with some pre-built
+instructions for that command,
+and sends zero to the
+Gemma model as a prompt.
+The Gemma service wrapper
+receives the request,
+hands the prompt's data offer
+to get tokenized and processed
+by the Gemma model.
+And after the model
+generates a response,
+the service sends
+the response back
+to the Pipet extension, which
+inserts into your editing
+window.
+The previous Pipet
+Code Agent extension
+used the Gemini API to access
+the hosted Gemini models
+and assist with your codes.
+So the big difference
+between this project
+and the previous one,
+is that this extension
+is using an instance of Gemma
+that you manage yourself.
+You can host it
+wherever you want,
+control who has access to
+it, customize its behavior,
+and apply as much or as
+little computer power to it
+as you require.
+If I want to extend
+this project,
+how do I go about doing that?
+LUCIANO MARTINS: There
+are a couple of ways
+to extend the Pipet Code Agent.
+The simplest thing
+to do is to modify
+the Pipet Agent prompt to
+make it work better for you.
+Change the examples should
+be closer to what we want,
+or change the prebuilt
+instructions to see
+if you can get better results.
+The next level of modification
+is to duplicate and refactor
+the Pipet comments to make
+it perform different tasks.
+Maybe want a comment that
+will take a list of items
+and build a for loop
+to process them.
+No judgments.
+You can totally build that.
+An even bigger
+investment would be
+tuning the Gemma model you are
+using for your code assistant.
+If you have some tasks that
+you want your Gemma code
+assistant to be
+better at, you can
+take a few examples of that task
+as request and response pairs,
+run a tuning process
+on Gemma model
+to create new model weights, and
+then import those new weights
+into your model instance
+to change its behavior.
+JOE FERNANDEZ: All
+right, so last question.
+What do you hope folks
+get out of this project?
+LUCIANO MARTINS: Well,
+I hope this project lets
+more developers take advantage
+of AI code assistance,
+even if they can't use
+third-party AI coding service.
+Having open models, like Gemma,
+lets developers access and use
+AI in ways that work
+better for them,
+and I think having that option,
+is great for the developer
+community.
+Generative artificial
+intelligence
+can save you a lot of time by
+handling more routine tasks,
+and it's getting
+better all the time.
+It can help developers
+learn new techniques
+and give you more confidence to
+tackle bigger projects and more
+complex projects.
+I look forward to developers
+being even more ambitious
+with their projects and building
+cool stuff that makes the world
+a better place for everyone.
+JOE FERNANDEZ: All right, great.
+Well, thanks for talking to
+me about the Pipet Code Agent
+and using it with Gemma.
+LUCIANO MARTINS: Thanks
+for having me, Joe.
+JOE FERNANDEZ: It's coding time.
+Let's look at how you
+can extend the Pipet Code
+Agent to create your
+own AI-powered coding
+assistant with Gemma.
+Don't worry about taking notes.
+There's a detailed tutorial
+linked the description.
+For this project, I'm
+hosting the Gemma model
+on a Google Cloud virtual
+machine with a GPU processor.
+Check the tutorial for details
+on hardware requirements
+and setup.
+We're using the FastAPI and
+Uvicorn Python libraries
+to serve the model as an
+API and to handle requests.
+There's not much
+to this service,
+but one of the simple
+ways you can configure it,
+is by changing the Gemma version
+by setting this Gemma model
+ID to a different
+version hosted on Kaggle.
+Once you have the Gemma
+model running as a service,
+you can connect the
+Pipet Code Agent
+and have some AI coding fun.
+The simplest way
+to extend Pipet is
+to modify the prompt
+instructions or code
+of the existing commands, like
+this generate review function.
+Also note any
+performance improvements.
+Next, let's create
+a new Pipet command
+by refactoring an existing one.
+I'm going to build a new command
+for creating a web API service.
+This command will
+generate the service
+and combine it with
+some boilerplate code.
+To start, make a copy of one
+of the existing code files
+and give it a new name.
+I made a copy of the
+question.ts file and called it,
+new-service.ts.
+In the command file, I'm going
+to add some default instructions
+for creating the service,
+and my boilerplate
+code for the service.
+Now I have to rename
+the command and change
+the prompt to combine
+the instructions
+I typed in the editor with
+my default instructions.
+Lastly, I need to insert
+my boilerplate code
+after the generated
+code in the editor.
+And that's all we need
+to create a new command.
+Now let's plug that code into
+the rest of the extension.
+I need to update the
+extension.ts file
+to import the new command code.
+And then register
+the new command.
+Finally, I need to update
+the package.json file
+to declare that new command.
+That's it.
+Now I need to rebuild the
+extension, run the debugger,
+and then switch over to the
+debug environment to try it out.
+The way the new
+extension works, is
+that I type a brief
+description of the API service,
+select that text, and have the
+Gemma model write a draft of it
+for me.
+Let's run the command
+and see what we get.
+Nice!
+The command generated
+code for the new service
+I described and inserted
+my boilerplate code.
+It's pretty useful to be able
+to create custom commands for AI
+code assistance,
+particularly for coding tasks
+that you don't do frequently.
+All right, let's wrap this up.
+That's all the time
+I have to tell you
+about this AI-powered personal
+code assistant project.
+Thanks to my guest,
+Luciano Martins
+from the AI developer
+relations team,
+for helping me build
+and share this project.
+Check out the video description
+for links to the code
+and a detailed tutorial on how
+to build your own Gemma server
+and how to extend Pipet
+Code Agent to work with it.
+If you get some new
+functionality working,
+let us in the comments.
+Thanks for watching.
+I really hope this video helps
+you use artificial intelligence
+for development in a way
+that works for your projects,
+and helps you be a more
+productive and creative coder.
+So keep learning, keep
+building, make something great.
+We'll see you again soon.

@@ -1,0 +1,179 @@
+[Music]
+before we understand
+bayes neural networks let's consider
+a typical task in deep learning such as
+binary classification
+in this example we have an input image
+that is passed to some deep learning
+model that must return
+whether the person in the image is
+wearing a face mask
+there are only two output possibilities
+face mask
+or not face mask and hence this is a
+simple binary classification task let's
+dig a bit
+deeper into this deep learning model
+let's consider one unit of a given layer
+in the deep learning model
+that could be something like a deep
+neural network
+for simplicity we have a
+three-dimensional input to the layer
+the input is passed to a single unit
+that is parameterized
+by a weight vector after passing through
+the linear unit
+the result is passed through some
+activation function
+such as sigmoid to give a single scalar
+output value
+putting this mathematically y equals the
+activation function applied in w
+transposed x expanding the transpose we
+have the expression here
+in typical neural networks we want to
+learn the best values
+for the weights w1 w2 and w3
+the difference in bayesian neural
+networks is that the weights
+are not hard values that we want to
+learn
+instead during each forward pass through
+the network
+the weights are sampled from a
+distribution and it's actually the best
+distribution of each weight
+that we want to learn for example
+we can say each of the weights w1 w2 and
+w3
+are samples from their own respective
+distributions that could be
+gaussian normal distributions therefore
+the optimization problem has changed
+where we don't want to learn the hard
+weight values but instead we want to
+learn the parameters of the
+distributions
+that the weights are sampled from in
+this case
+we want to learn the best mean and
+standard deviation values
+for each of the normal distributions
+now let's get our hands dirty and dig
+into the maths of bayes neural networks
+a little bit more let's introduce some
+notation
+so that we are all on the same page my
+set of training data will be defined as
+dtr
+where i have n input data points
+x and corresponding y output labels
+or n y output labels
+it makes it easier to imagine the
+supervised binary classification task
+of face mask detection discussed at the
+beginning of the video
+let the deep learning model be defined
+by f where the model parameters to be
+learned
+will use the conventional notation of
+theta
+let the fancy mathcal l represent some
+loss
+function perhaps something like the
+common cross-entropy loss
+so let's briefly revisit how normal
+neural networks work
+before dwelling into basic neural
+networks
+at training time the best setting of
+which we would call theta star can
+theoretically be defined
+as the parameter values that maximize
+the probability of the training data
+which is equivalent to maximizing the
+log likelihood of
+each of my training data points
+collectively
+in terms of practical implementation of
+a neural network
+we can find the best theta by minimizing
+some mathematically equivalent loss
+function
+that compares the prediction by the
+model f against the label y
+so that's training at prediction time
+we just take the output that we call the
+test likelihood
+theoretically which practically
+translates
+to a forward pass through our trained
+network with the test input
+okay let's talk about how a bayesian
+neural
+network differs to the normal neural
+network
+as discussed previously the bayesian
+does not have hard values for theta
+and hence we must learn the parameters
+of the distribution
+that theta is to be sampled from
+let's consider continue to consider the
+case where the distribution for the
+weights
+is a multivariate gaussian so we want to
+learn the mean vector
+mu and the covariance matrix sigma
+the theoretical function to maximize is
+the same as before
+with the log likelihood term but there
+is an additional kl divergence term
+that acts as a regularization term
+to maximize the expression we want the
+likelihood term to be as big as possible
+and the kl term to be as small as
+possible
+ko divergence finds the distribute
+distance between two distributions
+here we want to prevent the distribution
+of theta
+becoming too far away from the standard
+normal distribution
+this prevents the sampled weight values
+becoming too big
+and hence prevents overfitting to the
+training data
+in practical terms like before
+the log likelihood term translates to a
+loss function
+note the set change in sign of the kl
+term which occurs because we are now
+minimizing
+instead of maximizing at prediction time
+we have the typical inference equation
+where the distribution for the test
+output
+is calculated by integrating the product
+of the test likelihood
+and the posterior distribution theta
+star over
+all possible settings of theta star
+this is the same as the expectation of
+with respect to the posterior
+distribution
+practically speaking we sample theta
+multiple times from the learned
+using the best settings of mu and sigma
+and then pass our test input through the
+network f
+using each of the samples thetas in turn
+to get the final test prediction we
+average
+over all the individual sample
+predictions
+so that's a whisper stop store of
+bayesian neural networks
+and you will probably need to give
+yourself some time to digest
+all the maths i hope it helps

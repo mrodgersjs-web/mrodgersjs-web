@@ -1,0 +1,921 @@
+Developers are now writing a lot of code
+with agents. Instead of typing every
+line by hand, they now talk to an agent
+and have it write the code for them. In
+the last course, we learned the core
+behavior behind agents, giving them
+these powerful tools and letting them
+run autonomously in a loop. In this
+course, we're going to cover strategies
+to work effectively with coding agents
+to build software. Let's get started.
+Cursor is an AI editor with a built-in
+coding agent. This agent runs inside
+what's called a harness, which is made
+up of three things. First are the
+instructions that you give to the model,
+so the system prompt or any rules that
+guide its behavior. The second are the
+tools that you provide to the model, so
+maybe to edit files or to search your
+code base or to run terminal commands.
+And the third is the model that the
+harness uses, so you get to pick as a
+user between many different frontier
+models inside of Cursor. Now, these
+coding agents can take on very ambitious
+tasks based on the goals that you give
+them. And every harness is slightly
+different. You don't really need to
+think about those details, Cursor's
+going to take care of that for you.
+What's more important is that you learn
+how to effectively use these models,
+which starts with the prompts that you
+give them. Let's compare two different
+approaches for how we might talk to or
+prompt these models.
+You could write a very simple prompt
+like this, but the agent is going to
+have to guess what layout you wanted or
+the components you want to use or the
+styling approach. And this might work,
+but often you need to be much more
+specific with the intent you provide the
+models. If you compare that to a much
+more detailed prompt that can reference
+existing patterns in your code base or
+maybe you provide additional information
+like logs, you have a much higher chance
+of getting a high quality output from
+the model. Now, we're going to talk
+about this much more in-depth when we go
+into developing new features and using
+plan mode, but it's important to note
+that the intent you provide the models
+through prompting really makes a
+difference in the quality that you get
+out. As you work with an agent, your
+conversation builds up context. So, the
+messages you send back and forth, the
+tool calls that the agent makes, or the
+file contents that get read. And this
+context is kind of like the agent's
+working memory. It's very powerful, but
+it does have some limitations. So, you
+want to be mindful of how much context
+the agent is using. And I typically
+recommend if you're starting a new
+feature, you should probably start a new
+conversation with the agent. Or if you
+see the agent kind of going off track
+and making mistakes, that's also a good
+sign to start a new conversation. The
+latest models are getting very good at
+finding the right context for you. And
+when you give them these very
+high-quality tools like being able to
+search over the code base, it can pull
+in all the relevant files as needed. So,
+if you know the exact file, you can tag
+it and include it in the prompt, but
+otherwise, the agents are getting pretty
+good at being able to find the right
+files for you. Okay, now you have a
+better understanding of how to work with
+agents, how to think about what makes a
+good prompt, and how to manage your
+context effectively. In the next
+chapter, we're going to go much deeper
+on how agents actually search your code
+base and help you better understand the
+code and the architecture that you're
+working with.
+One of the most important jobs of a
+software engineer is to build a mental
+map of a code base and to deeply
+understand how the system works. And as
+a project grows, it gets harder and
+harder to find the right code and to
+reason about these complex systems. In
+the past, going through this code meant
+learning regex patterns or having to
+learn new tools to search the code base
+effectively. But now with coding agents,
+you can describe what you're looking for
+in natural language and then let the
+agents use tools to help find the right
+information for you. Cursor gives these
+agents very specific tools to search
+effectively. And understanding how these
+tools work will help you ask better
+questions and get more accurate results.
+The most precise way to find a piece of
+code is to look for an exact match,
+whether that is the name of a function
+or a variable or just some other part of
+the code. Agents can use tools like
+grep, which help you find these exact
+string matches, and they're able to
+create the complicated regex patterns
+for you. Now, there's been improvements
+over grep like rip grep, which makes
+this recursive, and both of these are
+great, but we've taken this even further
+in Cursor using something called instant
+grep, which can speed up these agentic
+searches even further on especially
+large code bases. Now, you don't need to
+learn or configure anything to use these
+tools. The Cursor agent will use them
+automatically. You can just chat with
+the agent in natural language, and the
+agent will use these tools to search
+your code base under the hood. Now, when
+you don't know exactly what you're
+looking for, semantic search can help
+you find parts of your code base by the
+meaning you provide in your text. So, if
+you ask the agent, "Where do we handle
+authentication?", semantic search helps
+you find files like middleware, even
+though the word authentication isn't a
+literal string match inside of that
+file. This is possible because Cursor
+transforms your code base into these
+searchable vectors using an embedding
+model, which is a very fancy way of
+saying that Cursor has this
+understanding of your entire code base
+and all the symbols, and then maps that
+back to the natural language that you
+use. And based on some research we've
+done, this significantly improves the
+quality of the responses you get when
+you combine the literal matches like
+grep and then the semantic search inside
+of our code base. And especially if
+you're working with very large code
+bases, this can have a dramatic effect.
+Now again, you don't need to configure
+anything to use this. Cursor will
+automatically index your code base in
+the background when you start up the
+application. The agent can also spawn
+sub agents to complete tasks more
+efficiently. And there's actually a
+built-in explore sub agent that helps
+you search through your code base. This
+sub agent runs in its own context
+window, which is separate from the
+parent agent, so it can be both faster
+and more efficient without bloating the
+main conversation. And like we talked
+about in the first part of the course,
+understanding your context really,
+really matters. So, you want to keep an
+eye on this. And if you're searching
+through a very large code base with many
+files, it's going to generate a lot of
+context usage and a lot of tokens. So, I
+highly recommend using sub agents to
+improve your context management. They'll
+only return their findings and they'll
+keep that main conversation very
+focused. For larger, unfamiliar code
+bases, you can also ask the agent to
+generate architecture diagrams for you.
+And one popular tool is called a mermaid
+diagram that helps you visualize your
+entire code base. These diagrams are
+super helpful for onboarding,
+documentation, or reviewing how data
+flows through your system. A common
+mistake I see all the time is when
+developers ask the agents to change
+code, but they don't really understand
+exactly how that code works yet. And the
+agent might go and create these new
+utility functions or this new pattern in
+the code base when actually there was
+already existing code that it could have
+taken advantage of. Your intent really
+matters here. The coding agent will take
+your request very literally. If you
+don't provide that intent, they'll just
+use their best judgment. And sometimes
+that might work, but it's really
+important to follow the existing
+patterns in your code base, otherwise
+you can create a lot of tech debt. So, I
+highly recommend using coding agents to
+develop a better understanding of your
+code base before we get to the next
+section. Okay, now that you can find
+code and have a better understanding of
+your code base, it's time for the next
+chapter. We're going to learn how you
+take your ideas and you actually develop
+new features, how you start with plans,
+how you validate that they work, and how
+you turn your ideas into real working
+software.
+Okay, now that you understand the code
+base, it's time to build some new
+features. And the key to doing this
+effectively with coding agents is to
+break the work into steps that the agent
+can verify on its own. So, I recommend
+starting every new feature with a plan
+and then setting up the right guardrails
+so the agent can verify and fix its own
+mistakes. And coding agents are actually
+pretty good at helping you think through
+all of the decisions that you need to
+make as part of the plan before you
+actually go and generate all of the
+code. So, in Cursor, we have something
+called plan mode that helps you research
+your code base, ask and answer these
+clarifying questions, and then produce
+this step-by-step plan you can edit and
+modify before you generate code. So,
+let's actually take a look at this.
+So, I have Cursor open and I have a
+great idea for our documentation. I want
+to add pages for every model that we
+support so you can see more details on
+the model. So, looking at the agent
+input, I'm going to shift tab to go into
+plan mode, and I'm going to say, "Let's
+add dedicated pages
+for each model that we support in
+apps.docs."
+And I'm intentionally going to leave
+this prompt a little vague. I want to
+work with the model to figure out the
+requirements here and to go back and
+forth on the plan so we can make this
+very high quality. So, the agent starts,
+and you can see that it actually kicked
+off some of these sub agents we just
+talked about, the explore sub agent, to
+go and understand the docs site
+structure, how the code base works
+today, and what code we can reuse and
+then what things we'll need to add or
+modify uh inside of our code base. And
+when we're looking at the log here, we
+can see some of the tools that we
+mentioned like grep um is being used to
+find these exact file matches. We're
+reading specific files, and the model is
+thinking about the best way to
+accomplish the plan that we have. Now,
+it can also run shell commands to go
+find more complex patterns, and it's
+going to come back to me with some
+questions to hopefully clarify what we
+want. So, the first question we get is,
+"Which models should get dedicated
+pages?" So, I want to include
+Let's do only the non-hidden models.
+There's a lot of models that we support,
+so we try to keep just a a smaller,
+focused set at the start. Now, one nice
+thing about the interface in Cursor is
+we can create these very interactive
+markdown plans where we can go in and
+edit and change things as needed. And
+then when we're ready, we can actually
+click to go build the plan. So, let's
+actually read through this plan and go
+over it together and make sure that it
+seems about right. So, we have this
+models page that lists all of our
+models. And the suggestion of the model
+here is that we're going to use a
+dynamic route for all of the different
+pages that we support.
+Which seems right. It's going to look up
+the model by ID in our configuration.
+It's going to create this new component
+that shows the capabilities of the
+model. That seems okay. It's going to
+wire this up in the navigation on the
+side.
+And here are some of the files it might
+change.
+And we also have this nice mermaid
+diagram that we talked about in
+understanding your code base to help
+visualize how the data flows inside of
+our application. And if I want inside of
+here, I can make changes directly, but
+for the sake of brevity here, we're
+going to actually just click build, and
+we're going to kick this plan off and
+start building things. Okay, so we can
+click in and look at the diff if we
+wanted, but instead, I want to say,
+"Let's start this
+local dev server to test the changes."
+And we can just tell the agent, now that
+we have this code wrote, it can actually
+go and understand how to start our
+software, how to start our application,
+and because we're working on a web
+application here for this docs app, it
+can run the dev server in the
+background, start it on that port, and
+then open the integrated browser inside
+of cursor so we can go and verify our
+changes. So, we see the documentation
+has been opened, and it's running on our
+local host. So, let me make this just a
+little bit bigger. And inside of the
+left sidebar right now, we have this
+models drop down, and we see that we
+have some new models. So, we can
+navigate to one of these pages. It's
+going to compile that new page, and we
+have an error, which is great. This is a
+good example of how we can provide
+feedback back to the model. So, in this
+case, it looks like
+we have a function error. So, this
+manifest is not not a function. So, I'm
+going to click copy on this error.
+I'm going to paste it and give it back
+to the model. I'm going to hit enter.
+This is the really nice thing about
+using typed languages or linters or
+other things that can give this feedback
+back to the models as you can just
+quickly throw that error back and it
+knows how to fix things. So, now our
+application is compiling. It hot reloads
+so we can see the new version, and it
+works. The first version of our plan is
+created and finished. As we're reviewing
+the output of the model, there might be
+some things that we want to tweak and
+iterate. So, the design here is okay. I
+think it could be a little bit better.
+So, I'm actually going to take a
+screenshot of this, and we're just going
+to paste it in and say, "Actually, let's
+make the pills for the features
+nicer looking with better icons."
+And we're going to see what it does
+here. The great thing about providing
+images or other context that you can
+provide to the models is it just gives a
+much more rich signal for the model to
+understand what you're looking at. And
+inside of cursor, we also have some nice
+features in this integrated browser to
+be able to pick specific elements on the
+page or to actually go and open up the
+dev tools just like if you were using an
+external Chrome browser as well. So, the
+model's making some changes here. We're
+going to see that it's decided to use
+some fancy colors for our pills, which I
+think are okay. I like the icons. The
+icons are definitely much better, but
+now I might want to say, and I'm going
+to use voice mode this time. I'm going
+to hit the voice input.
+Let's keep the colors more on brand with
+our design system, and we're going to
+submit that. Just because we don't
+really have a lot of purples or greens
+in other places in our docs, and it's
+going to go and make these changes. This
+workflow of starting with a plan and
+then going back and forth with the agent
+to iterate on the design details is how
+I build most new things, and honestly,
+I'm pretty happy with how this has
+turned out so far. We could probably now
+get this to a shippable state. So, we've
+built a new feature, but software has
+bugs, and some of those bugs are very
+tricky to find and understand. And in
+the next chapter, we're going to learn
+some systematic approaches we can take
+to find and fix bugs with agents.
+As agents write more code for us,
+engineers are spending an increasing
+amount of time reviewing that code and
+finding and fixing bugs. And even with
+help from coding agents, it's worth
+brushing up on the fundamentals of how
+to do effective debugging. Great
+debugging follows the same principles
+whether a human or an agent is doing the
+work. First, you need to have a way to
+reproduce the issue. If you can't
+reproduce it, it's going to be hard to
+verify it was fixed. Two, you need to
+strip that down to the most minimal
+case. Everything else will just be
+confusing for you and the agents. Number
+three, you want to isolate the things
+that you're changing. If you change
+three things at a time, it's going to be
+hard to find exactly the root cause.
+Number four, you want to come in with
+some specific hypotheses on what the
+actual root cause is. That's going to
+help you ideate and find the issue much
+faster. Number five, you want to
+instrument your code. So, you want to
+add logging or use a debugger to help
+you figure out how the data flows
+through the system.
+And then finally, once you actually find
+and fix the issue, you want to prevent
+regressions in the future by writing
+test. This helps make sure the bug
+doesn't come back in the future. Now, if
+you do these or something close to these
+debugging fundamentals, you're going to
+have a good time in finding and fixing
+bugs. For some bugs that have very clear
+error messages or are pretty
+straightforward, the agent can usually
+just fix this problem directly. So, for
+example, this error that we saw in the
+last chapter, you can just paste this
+directly into the agent and say, "Hey,
+please fix this thing," and it can
+pretty much figure out exactly what it
+needs from the stack trace that has been
+provided. So, in this case, the agent
+works, it reloads, and we fixed the
+issue. So, this works for simple bugs.
+However, this doesn't work when there's
+a more systematic issue that you need to
+debug and find the root cause. For the
+most difficult bugs, we recommend using
+debug mode inside of cursor. Instead of
+pasting in a stack trace, debug mode is
+going to go collect runtime evidence
+first and follow a lot of those
+debugging fundamentals that we already
+talked about. It's going to start with
+generating some hypotheses about what
+has went wrong. Number two, it's going
+to instrument your code and try to add
+some targeted logging that the agent can
+then read, and then it's going to come
+back and ask you to actually reproduce
+the issue. So, you click through your
+application, cause the bug, and then the
+agent is going to collect and read that
+data. So, it's then going to analyze the
+logs and try to find the root cause, and
+then make a very targeted fix based on
+the evidence that it collected. We've
+seen this be very effective for finding
+and fixing some of the most difficult
+bugs versus having to manually paste in
+a bunch of information or do a lot of
+slog work yourself. Here are some other
+tips that I've personally found helpful
+when debugging. So, first, you can ask
+multiple models to fix the same bug, and
+then you can compare the results. Every
+model can take a somewhat different
+approach, and when you have multiple
+shots on goal, you can then pick the
+best option out of the few. You can also
+ask the agent to use tools to go and
+gather evidence for you. If you're
+working with a database, and you notice
+that there is a slow query, you can ask
+the agent to go and analyze that query,
+and under the hood, it might use an
+explain analyze statement, for example,
+figure out why that query is slow, and
+then suggest changes you can make to
+your schema or maybe an index that you
+need to add to speed up that query. The
+agent can also go and pull data from
+external tools. So, you can install and
+use MCP servers to pull in that rich
+data. For example, maybe you're trying
+to investigate an error, and you can use
+the Sentry MCP to go and pull real
+runtime error information into the agent
+context to help find and fix the root
+cause in your application. But by far,
+my biggest tip is to make sure you
+really understand the proposed solution.
+If you don't understand the fix, it's
+going to be very hard for you to
+validate whether the code is actually
+correct. For example, if you're using
+TypeScript, the agent might add in an
+any type, but that's probably not the
+ideal solution that you want. So, when
+the agent proposes a fix, you should ask
+questions until you really fully
+understand it. You might say, "Are there
+other cases we haven't considered? Or is
+this really the root cause of the
+issue?" As we talked about in the first
+part of this course, agents sometimes
+hallucinate things and generate these
+plausible sounding explanations or bits
+of code that don't actually fix the root
+issue. So, it's up to you to develop
+this conviction that you actually have
+the correct code to fix the issue. Now
+that you understand debugging and how
+coding agents can help speed up your
+investigation, you need to make sure
+that the changes are correct and won't
+introduce regressions in the future. So,
+in the next chapter, you'll learn how
+you can use coding agents to review and
+test your code.
+Coding agents can write a lot of code,
+which means they can also produce tech
+debt or introduce an accidental bug.
+Your standards for what gets merged
+should be the same whether it was
+written by an agent or written by hand.
+This AI-generated code can look correct,
+but just be slightly wrong. It might
+follow all your existing patterns,
+compile, pass test, yet still have an
+issue somewhere in your code base. This
+is why code review is so, so important.
+You need to put the right process in
+place to keep a high-quality code base
+and catch issues before they reach
+production. It's your job as an engineer
+to invest in making code review
+successful.
+Before we ask anyone else to look at our
+code, we should do a thorough
+self-review ourselves. So, inside
+cursor, building off our last chapter, I
+went ahead and clicked find issues to
+ask the agent to go through the code
+that we just generated. And it did find
+an issue, actually. It said that for the
+list of models in our sidebar, we're
+using plain strings instead of the
+translated messages. So, if we were
+reviewing these docs in another
+language, it would show the English
+versions. So, I think this is actually a
+bug. I agree with this. I'm going to
+click fix with agent, and it will
+actually tag in the specific line of the
+change, and we can ask the agent to go
+and and this issue. I'm doing all of
+these checks and balances locally before
+I ask anyone on my team to go and take a
+look at the PR. If you've been writing a
+lot of code with the agent, it can be
+hard to review and understand a big
+chunk of code. So, one tip that I
+recommend is to ask the agent, I will
+just go into voice mode here, "Take my
+working changes and break these down
+into smaller, more semantic commits, and
+then push this change and create a new
+PR for me."
+I find that when you break it down into
+more semantic commits, it's much easier
+for a human reviewer to step through the
+commits and understand things if they
+have more questions. And the agent
+actually does a pretty decent job of
+separating out more of the boilerplate
+parts and the commits that are actually
+more relevant to review. So, we're going
+to push this up to a PR on GitHub, and
+we're going to start the process of
+sending over to our team to review these
+changes. All right, so we have the PR
+open on GitHub, and before I send to
+anyone else on my team, I like to do two
+things first. One is I review the code
+myself on the PR, which is just a good
+best practice in general, but secondly,
+I use AI code review tools to do yet
+another pass and make sure that I
+haven't introduced any regressions or
+logic errors. And Cursor is able to
+review my PR and comment if it finds any
+errors using a product we have called
+BugBot. There's a number of tools that
+can do this, and they're very, very
+helpful for another line of defense
+against introducing regressions. Okay,
+so it looks like BugBot did find two
+issues with our pull request. The first
+one is a logic bug that it classifies as
+medium severity where this info icon was
+clipped. And then, the second one is
+this duplicated function across two
+files. And for this one, this is the
+type of thing that would definitely be
+caught in code review where a human
+would notice this. And it's great that
+we can fix this ahead of time before we
+ask anyone on our team to take a look at
+this pull request. Now, Cursor can also
+automatically fix these issues. So, with
+just one line, you can comment and push
+the changes directly on the PR. And if
+you want, you can even click and see the
+specific diff of the preview here. So,
+this is super helpful. I use it all the
+time to make sure my code is very high
+quality before I ask anyone on my team
+to take a look. Another way that we can
+prevent regressions is asking the agents
+to help us write test. In the past,
+building this very thorough test
+coverage took quite a bit of work, and
+most teams would only add tests after
+something broke or they had this heavy
+process in place for ensuring that a
+certain percentage of test coverage was
+met. But, I found that agents make
+writing tests much more approachable
+when you can ask the agent not only to
+write the test for a new feature, but
+also verify that they're correct. And
+when you get these very high-quality
+tests, it gives you a lot more
+confidence to let the agent work more
+autonomously and make changes without
+introducing regressions in the future.
+So, back inside Cursor, I'm actually
+going to ask the agent to "Let's write
+some new tests for the new functionality
+that we've added for the new individual
+model pages. You can use our existing
+testing infrastructure."
+And in this case, I already have some
+tests set up in our application, but
+agents are also great if you don't yet
+have tests set up. You can ask it to set
+up unit test or Playwright integration
+test or whatever your test framework of
+choice is, and can help you get started
+building this high-quality robust
+system. So, I asked the agent in Cursor
+to write some new tests. It's going and
+checking and seeing how we have tests
+set up in our application, and then it's
+deciding to write a few unit tests to
+prevent regressions in the future. Now,
+going forward, on every single PR that I
+run, this can be part of our CI process
+to make sure that we don't have any
+regressions here. Another way that I
+ensure my code is very high quality is I
+use agents to test and fuzz many
+different variations of our application.
+So, in this example, I asked the agent
+to go test through and make sure
+everything is working in the docs, the
+search, copying pages, sharing feedback,
+navigating between pages, switching
+themes, basically everything. And it
+works for almost an hour, 45 minutes,
+and it comes back with these really
+high-quality artifacts, videos and
+photos to ensure that everything works
+as expected. So, when I'm building new
+features and I'm doing code review, I
+often will kick off a few agents to go
+and really test everything for me. As
+you start working more with coding
+agents, you can only move as fast as the
+slowest part of your system. And that's
+often waiting for a test suite to finish
+or running type or lint checks across
+your entire code base or other steps in
+your CI pipeline. If you make
+improvements here, they pay off across
+every session you or your teammates have
+with the agent. So, you can ask to
+improve things like speeding up your
+test suite or trimming your dependency
+tree, optimizing your CI pipeline,
+making your type checks faster, or just
+reducing your build times. These are the
+kind of things that might have gotten
+deprioritized in the past, but when
+agents are going to run these commands
+dozens or hundreds of times a day, the
+savings here really, really compound.
+And the best part is that agents can
+just do this work for you. You can ask
+an agent to profile your test or audit
+your dependencies and strip away things
+that's unused. And because these are all
+very well-scoped, verifiable tasks,
+agents can do very well here. So, I
+highly recommend doing this to speed up
+your entire team. You now understand how
+to ship new features, debug when things
+go wrong, and review code to ensure that
+it's high quality. The last piece is
+making your workflow faster by
+customizing agents to work with your
+code base.
+Coding agents are very intelligent
+without needing any customization. They
+have a great understanding of software
+engineering and generally make the
+correct decisions. However, they don't
+know how your team likes to write
+software or the broader context of your
+business, and that's where customization
+comes in. You can modify agents to help
+them be more effective and produce
+higher-quality output. Cursor provides
+two layers of customization that map to
+how you'd onboard a new teammate. You
+have rules for things they should always
+know, and skills for specialized
+knowledge pull in whenever relevant.
+Rules are markdown files that the agent
+sees at the start of every conversation.
+You can think of them like always
+included instructions that shape how the
+agent works with your code. A great
+rules file is short, it's specific, and
+it points to examples in your code base
+that you want the agent to reference.
+So, I find rules work best for maybe the
+build or test commands the agent needs
+to know, code conventions I want the
+agent to follow, or just pointers to the
+canonical patterns in our code base.
+When I find these, I put them in a rules
+file, and then I check this into Git so
+that my entire team can benefit from the
+shared knowledge. Now, you might be
+tempted to write rules for everything,
+but you should really resist this. Too
+many rules will consume just an
+unnecessary amount of context, and it
+might honestly confuse the agent. So, I
+recommend keeping your rules very
+minimal and high quality. This is a
+shared artifact that you and your team
+are constantly updating, and they're
+included in every conversation. So, if
+you only need something occasionally,
+you should put it in a skill instead.
+Skills extend what your agents can do
+with specialized knowledge and
+workflows. Unlike rules, which are
+included all the time, skills are loaded
+dynamically. So, the agent decides when
+to use them.
+In their most basic form, skills are
+just a markdown file, but they can also
+include custom assets or even scripts
+that an agent can run. You can also run
+skills like workflows. So, I have a /pr
+skill, which tells the agent to make a
+commit, push to a branch, and open a
+pull request for me, which is very, very
+helpful. Now, our community has created
+a lot of very helpful rules and skills
+and other capabilities to extend Cursor,
+and we've created a plugin system that
+allows you to easily install all of this
+functionality. So, everything we've
+talked about so far, rules, skills, MCP
+servers, sub-agents, these things can be
+nicely packaged together and shared with
+your team or the broader Cursor
+community through our marketplace. So,
+you can go inside of our app or on the
+web and find new plugins to install. My
+last tip for customizing agents is that
+you can ask them to use basically any
+CLI tool that's installed in your
+terminal. So, maybe the GitHub CLI or
+AWS, Kubernetes, Docker, all of these
+things agents are pretty good at using,
+and you can just ask for them to use
+them directly. I find this very helpful,
+especially when I'm debugging things.
+Instead of having to go out to GitHub, I
+can just say, "Hey, go check why the CI
+failed on this PR," and it uses the
+GitHub CLI and pulls back that
+information. So, I find that really,
+really helpful. Okay, you've customized
+your agents with rules and skills or
+maybe plugins that you installed. And in
+this final chapter, we'll tie everything
+together that we've learned throughout
+the course.
+Okay, congratulations. You've learned
+how to work with coding agents. You now
+know how you can use agents to
+understand your code base, create
+features quickly, search and find bugs,
+review code, and customize agents to
+your needs. Now, I want to put all the
+pieces together that we've learned so
+far. So, let's just imagine for a minute
+that you've joined a team that runs an
+e-commerce platform, and in your first
+week, you're tasked with adding discount
+codes to the checkout. Now, this code
+base is unfamiliar, you just joined. So,
+before we write any code, the first
+thing you need to do is to understand
+the code base. So, you might prompt
+something like, "I need to add discount
+codes to our checkout flow. Before I
+make any changes, can you walk me
+through how the checkout works? You
+know, what services are involved? Can
+you show me the data flow?" And you
+might read that output and then ask some
+follow-up questions to fill in the gaps.
+"How does the pricing calculation work?
+And where exactly do we compute that
+order total?" If you look at the output,
+you notice that this combines grep and
+semantic search that we talked about
+earlier in the course to go trace the
+specific parts of the code base and help
+you understand how it works. Now that
+you understand the code base, we can
+create a plan and start developing the
+feature. So, we're going to shift tab
+into that plan, and we can look at what
+is generated. Now, this is where again
+we review the plan, we remove steps that
+are maybe too ambitious for this first
+iteration, and we kind of focus on the
+core thing that we're trying to do,
+which is applying this code to calculate
+the discount and show it in the summary.
+And then when we're ready, we can click
+build and we can create the first
+version of that feature. After the plan
+is finished, we notice there's one test
+that keeps failing. When you give a set
+of discounts, it gives different results
+depending on the order that they arrive
+in. This is a pretty tricky bug and it's
+a good opportunity for us to switch into
+debug mode and to have the agent
+investigate the root cause. This is
+going to use all of the debugging
+principles that we talked about back in
+the finding and fixing bugs chapter to
+help us get to the root cause and find a
+fix. After pushing my code to GitHub and
+opening a PR, I can use AI code review
+tools to do another round of reviews to
+make sure there are no more regressions
+before I merge the code in. And now that
+this code is merged and the feature is
+complete, we learned something that we
+want to apply back to our shared
+knowledge our whole team can benefit
+from. So, we go back to our rules file
+and we can add in a specific note for
+something we learned and we can commit
+it to get so that in the future, if
+anyone else is trying to work with
+discount codes, they can benefit from
+the shared knowledge. Hopefully this
+example was helpful to cover everything
+we've talked about in the course so far,
+but honestly my best advice is to take
+what you've learned today and go apply
+it. Go build something for real. The
+tools and the models are improving so
+rapidly that all of the specifics will
+change over time, but this core skill
+that you're learning of how to work with
+a coding agent is quickly becoming one
+of the most important parts of software
+engineering.
+By pushing the limits of what these
+coding agents can do, you're going to
+get the most out of the latest tools and
+models as they improve. So, good luck,
+stay curious, and keep building.

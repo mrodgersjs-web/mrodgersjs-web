@@ -1,0 +1,1518 @@
+I just want to say thank you again for
+joining this webinar where we're going
+to go through basically what site
+reliability engineering is why anybody
+should care and if you're interested in
+it in terms of career and moving forward
+then kind of the steps that you can take
+in order to move that forward for
+yourselves this is kind of what we're
+going to cover in this particular
+session the case for Sr like I said why
+anybody should care the principles that
+guide it the skills of an SRE an example
+workday so you can see what it actually
+means to be an Sr in a working
+environment AI what's the future should
+anybody even bother still being an SRE
+devops or SRE there a question that
+comes up quite a lot right like what's
+the difference between devops and SRE
+the path into SRE job applications
+learning inserts and then finally Q&amp;A so
+there's quite a bit to get through but
+let's just go ahead and get started okay
+so I'm going to try to make the case for
+SRE to start off
+with I want you to consider a time that
+you've been on your favorite app or you
+have been trying to access a website and
+it hasn't been complying right it hasn't
+been responding the way that you expect
+perhaps the website is very slow perhaps
+every time you try to click on something
+you're getting an error right that kind
+of frustration there over extended
+periods of time causes problems between
+the end user you and the person who's
+supposed to be providing this service
+right that level of unreliability means
+that you are no longer happy and the
+moment somebody is no longer happy
+they're less likely to stick
+around it typically looks something like
+this right you attempt say access an
+application it's unreliable it's
+unresponsive you're frustrated and you
+leave and obviously that is not good for
+any service
+provider but it can be a lot more
+serious than that um now let's think
+about a situation in terms of healthare
+think about an application that is used
+to store patient information right and
+the system goes down the medical staff
+can't access that data the consequences
+of something like that could be
+completely unacceptable it could mean
+that they can't do the work that they
+need to they can't treat the patients in
+the way they're supposed to or perhaps
+they treat the wrong patient or
+administer the wrong um Medical Care
+again it's unacceptable there are severe
+consequences to an unreliable system um
+and here is where the case for the SR
+becomes or is made customer
+dissatisfaction which we've already
+spoke about brand damage if people know
+that they can't trust you even with a
+website or an app why would I trust you
+in terms of spending my money or my time
+with you Revenue loss of course loss of
+trust among stakeholders so if they're
+seeing that you can't keep your systems
+reliable then they start to lose
+confidence in you and your ability to
+execute as you said Innovation stifling
+if all you're trying to do is keep your
+systems from failing then you don't have
+time to innovate right which has an
+impact on employee morale because they
+feel like they're just in a putting out
+fires effectively all the time and
+there's also issues around regular um
+regulation and
+compliance this is from the Google SRE
+workbook but if users don't trust a
+system given the choice they won't use
+it so this is where SRE comes in the
+origins of SRE can actually Trace back
+to Google in the early 2000s and the
+first official SRE team if you like
+existed under a man called Ben Sloss the
+intention was to bridge the gap between
+development and system operations in
+order to create a reliable system right
+so using effectively software
+engineering principles things like how
+do we architect um reliable applications
+applications that are fit for purpose
+that are appropriately have testing
+behind them but also with systems
+engineering so how do we create the
+infrastructure around our applications
+in order for them to be reliable
+scalable right so that they can meet the
+demand of our users and it's this
+combination that allowed SRE to be
+born so whilst it started off in big
+Tech and places like Google it's now
+found its way into a range of other
+Industries right so there are finance
+sres sres and e-commerce applications
+even in education they are far spread or
+widespread
+now now I know a big reason people are
+interested in Sr is the money right um
+and compared to a lot of other roles in
+Tech It is Well compensated these are
+just the averages for I want to say an
+entry level but like a mid-level Sr
+94,000 in London 150,000 in New York and
+it scales up quite a lot like the more
+senior you become whether your senior
+SRE now lead SRE the money can increase
+quite a lot and especially if you're
+working in big Tech and SRE and
+somewhere like Google or AWS we're
+talking now into the couple hundred
+thousands but the point that I really
+want to get across here is there is a
+reason why SRE is a well-compensated
+role and it's because it's so Dynamic
+and because the broad the skill set is
+so Broad and I hope that will come
+become clear in this and sometimes you
+will be dealing with high press systems
+um it's not always nice when things go
+down and you don't know what to do or
+it's down to you to work out what's gone
+wrong and how we can get things up and
+running as quickly as possible so yes it
+is there is some good money to be made
+but it's not all roses so now that I
+hope I've kind of made the case for why
+SRE is important and why they exist
+let's kind of dive deeper into like the
+principles so what is backing then
+Sr and I'm going to categorize it into
+these six principles and hopefully again
+how SRE are able to execute what it is
+that's supposed to be doing the first
+one is reliability first automation
+monitoring alerting embracing risk the
+service level model and collaboration so
+let's talk about reliability first
+reliability is the most important
+feature that is what backs everything
+that Sr do this fundamental belief that
+there is no point in you creating a new
+widget a new feature somebody can
+download new videos on your platform if
+the platform is unreliable if every time
+the user tries to click on something
+they aren't getting the experience they
+expect well then it doesn't matter how
+shiny shiny your new widgets are
+effectively and this is what guides sres
+reliability is at the Forefront of our
+minds the second one though is
+automation another quote that you might
+hear is that the job of an SRE is to
+automate themselves out of a job like
+probably not too much because we still
+want to be here and get paid but the
+underlying premise is that we're trying
+to eliminate toil that is any manual
+task that takes away from precious
+engineering time engineering time and
+resources that we could be spent
+innovating and making our applications
+and systems better in a different way an
+example of this may be automating the
+backup of your database the third
+principle then is monitoring and
+alerting and this is a huge huge part of
+Sr effectively you can't have a reliable
+system if you don't know what's going on
+in your system right or if by the time
+you know something's going wrong the f
+is already spreading and this is where
+monitoring in come into place right we
+can see into our systems and then we can
+make decisions a datadriven approach to
+system
+management then there's this concept of
+embracing risk now the point
+surprisingly enough is not 100%
+reliability because we have to accept
+that in order to innovate in order to
+develop and move an application or a
+platform or whatever our system is
+forward we'll have to try things that we
+haven't previously tried and with that
+comes some level of risk so sres are
+there not only responsible for getting
+the system back up and running when
+things go wrong but facilitating
+facilitating an environment where people
+feel like you know we can try things but
+we have our systems in place for that
+when things go wrong whether it's in Dev
+whether it's in QA or whether it is in
+production we know what to do and we
+know how to
+respond and then comes the service level
+model and I'm going to spend a little
+bit more time on this because this is
+perhaps the most defining factor in SRE
+or the thing that you will see quite a
+lot in Sr related resources and this is
+the idea of the service level model that
+is comprised of sis and error budgets
+effectively we are taking a service
+level approach to management and to
+operations and what this means is if we
+look at something like an online store
+right something like this where perhaps
+we allow customers to purchase books we
+could look at this as one big system but
+that probably isn't the most effective
+way to look at this because there is a
+service that may be dealing with the
+account so people logging in or people
+signing up that has a very specific
+requirement and perhaps different
+response times uh different ER rates our
+order service where people are putting
+things in their basket and checking out
+will be different and then shipping will
+be different so by taking a service
+level approach we can serve the
+requirements of each Service as is
+required and so how do we do this this
+is where the sla's slos and sis will
+come in so an SLA is just a formal
+agreement between the service provider
+and the customer it basically says you
+can expect us to meet this standard and
+if we don't this is what's going to
+happen but what are those standards well
+that's what the SL is those are the
+objectives or the requirements that you
+agree to meet but if we say something
+like you can expect my system to be 99%
+available what does that mean how would
+I as an SRE track that the system was
+available what metrics would I use and
+that's where SLI come into place I may
+look at something like response codes
+from um people clicking on the website
+how many times when somebody goes to
+click are they having a successful
+experience or a negative experience and
+again it comes back down to this idea
+that different systems have different
+needs needs and as an SRE and in s this
+is kind of at the core right and that we
+are not trying to approach things in a
+one- siiz fits all and you know we're
+just going to apply this blanket
+statement to everything we have to
+assess the systems that we're working
+with the services that we're working
+with and address those unique needs
+those unique characteristics even if I
+took this to a higher level if you
+thought about an a e-commerce web
+application like that one that we just
+saw that allows you to purchase books
+the requirements of that are going to be
+very different from a financial
+reporting application
+where the end product is a result of a
+data pipeline I might be more interested
+in things like data availability is the
+data available at 8:00 when the
+financial team need to see it or perhaps
+data accuracy is the data that they're
+getting
+accurate and the final principle then is
+collaboration so sres don't work in a
+Solo capacity we interact with
+development teams we interact with other
+stakeholders the system Engineers SRE is
+not a solo Endeavor right and it's not
+great to be in SRE in a a place where
+others don't believe in the principles
+that are guiding you and so some of your
+job a large part of your job is to kind
+of be a Ambassador for Sr in whatever
+organization that you work
+in so those are the principles but let's
+kind of get more into the nitty-gritty
+of the skills of an Sr like what does it
+take to be an SRE if this is the kind of
+job that you wanted you're interested in
+what the sres in your your company
+do it's a very Ro and it's quite
+complicated to explain but the job will
+depend on the organization that you're
+in because people adopt this idea of SRE
+and interpret it differently you can see
+variations in SRE roles in this company
+and that company but at a very high
+level I think we can split it into
+subject matter expert and things that
+you need knowledge of so in terms of a
+subject matter expert you will need to
+know slos s and error budgets and this
+is again a defining factor of SRE role
+but you'll also need to be an expert in
+monitoring and alerting can you set up
+good and effective monitoring systems
+and alerting systems nobody wants to be
+dealing with an alerting system that is
+so noisy that everybody just ignores it
+that's almost as bad as having no
+alerting system at all you're going to
+hear me talk about datadriven decisions
+quite a lot effectively everything we're
+doing behind monitoring and alerting is
+to collect data so that we can make
+decisions and not decisions that are
+based on feelings like I feel that we
+should do this but that these are the
+reasons this is the data on our
+application performance on our
+infrastructure performance automation so
+leading back to that principle of
+automating everything or eliminating
+toil we want to be using the tools at
+our hand whether we are scripting with
+python or whether we're using
+infrastructures Code things like
+terraform or cicd how are we automating
+the steps that are involved in keeping
+the system reliable so that we can work
+on other things incident response so a
+part of being an Sr is being on cool
+often which means if things go down if
+the system goes down you will need to
+respond finally we have cloud computing
+if you're going to be an SRE in a cloud
+environment you are not going to be able
+to escape the need to understand what
+the cloud is and the services that are
+there it's very hard to architect and
+support a reliable system in the cloud
+without any Cloud background and then we
+have troubleshooting and back to
+designing reliable systems there are
+things that you don't necessarily need
+to be an expert in but you definitely
+need knowledge of the first being
+networking and the reason why this is so
+important is because often the issue or
+the source of your issue you may be
+dealing with maybe a networking issue
+right perhaps the reason your
+application isn't working is because of
+something to do with the layers of
+networking something's gone wrong
+somewhere and you need to be able to at
+least decipher that this is a networking
+issue you don't necessarily have to be a
+networking engineer because that in
+itself is a whole career path that can
+get very deep but you do need to
+understand the basics of
+networking cicd pipelines again this is
+something that you'll find more in
+Devils you don't necessarily have to be
+able to build the perfect cicd pipeline
+from start to finish in terms of an
+application but you do need to be
+confident in that you understand what
+cicd is which is continuous integration
+and continuous deployment or delivery
+depending on who you ask you you need to
+understand why we're using it why it may
+be in the organization that you're in
+containers this is something again if
+you're working a containerized um
+environment then of course knowledge of
+containers will be more important if
+you're not for example I don't
+particularly work in containerized
+environments at the moment so my
+knowledge of that isn't as necessary
+application testing you don't need to be
+an application tester to the highest
+degree but you do need to understand
+what tests are and why they're there and
+why we use them why do we care and
+finally security I mean this is
+imperative than all really people in an
+organization are dealing with it and
+applications and platforms should have
+this idea of security in their back of
+the mind or really at the front of their
+mind at all times with everything you're
+doing is this a secure step am I putting
+the data or our platform at risk so you
+will need to have knowledge of security
+the different steps and the different
+touch points that you'll have as an Sr
+and so as you can see it it is a very
+broad role which is why it typically
+isn't an entry level
+role but now let's talk about some of
+the soft skills I've put them in the
+quotes but I actually think the soft
+skills are incredibly important as an
+SRE just because of how broad it is so
+the whole communication element super
+important you're going to be dealing
+with different stakeholders different
+parts of the company and if you don't
+know how to communicate your ideas
+effectively you're going to struggle
+problem solving you're going to be
+dealing with different issues like today
+might be a networking issue today it
+might be an issue related to your
+servers and capacity can you put the
+pieces of the puzzle together in an
+effective time in order to get the
+system back up to the state that we
+expect
+organization again you may be dealing
+with different tickets or different
+pieces of work at the same time can you
+organize and prioritize yourself
+effectively in order to get your work
+done you need to really believe in
+measurements and data driven decisions
+because you will be a stronger SRE and
+the platforms that you support will
+benefit from this way of thinking and
+then finally you need to have a desire
+to evolve this is not a job where you
+stagnant and you know you just sit back
+nothing changes that's it if you not
+prepared to evolve the roll will leave
+you behind effectively just thinking
+about all those touch points I spoke
+about any one of them is moving so fast
+right now right even if we don't even
+get into perhaps even Ai and the
+implications of that that if you're not
+willing to take an interest in those
+Evolutions you will
+suffer sounds a bit intense I don't mean
+like suffer that a bit much but um so
+let's go through an example
+workday just to set the scene so you get
+in in the morning as an Sr let's
+consider this time to get settled
+perhaps you go in and you check your
+monitoring system
+you make sure that nothing was missed
+overnight that the system is stable that
+it's reliable and that everyone's happy
+next perhaps you respond to some emails
+perhaps you've been getting some emails
+from The Debs about some work you've
+been working on them with improving
+application logging and so forth so you
+check and respond to those then you
+review some of the work that you've been
+working on for the last week maybe some
+active work maybe there's some pending
+work that's come in and then you may
+attend your morning stand up which is
+just your morning meeting in Tech in the
+afternoon you might do some more Focus
+work some more deep work where your
+primary task could be setting slos like
+we just spoke about perhaps in the
+afternoon you have a meeting with the
+rest of the SR team to discuss cost
+optimization right how you can reduce
+the cost of say your AWS environment
+while maintaining a reliable system and
+then finally excuse me in the afternoon
+you may be working on other tasks such
+as automating some work but then it's
+not over because if you are on call at
+this point that at 5:00 you don't sign
+off right and you're not on call all the
+time as an SRE unless you're in a I
+don't want to say dysfunctional
+environment but one where the pressure
+is very high and the resources are low
+but typically it'll be spread out maybe
+you'll be on it every week every six
+weeks but at this point you are there to
+make sure that if any alerts go off in
+the night or over the weekend there is
+somebody ready to respond you're there
+to assess the situation whatever that
+issue is collect information and take
+immediate action now at this point it's
+not about having the most elaborate um
+response where you've automated
+everything right now at this point on
+call it's about stabilizing the system
+right it's not about the most
+um what's the word I'm looking
+for it doesn't matter how shiny the the
+um the action is that's taken so long as
+you've secured and stabilized the system
+and then you document the necessary
+information it's not about getting a
+postmortem or a very extensive incident
+report you just need to document the
+necessary information so that in the
+morning when you go back to the team you
+can write up your reports and your
+post-mortems so that's that now let's go
+a little bit deeper a little bit further
+into the future and talk about the ways
+that AI is interacting with SRE and what
+that means for
+us so AI artificial intelligence is
+becoming increasingly embedded into the
+tools that we use as sres right um it's
+changing kind of the way that we operate
+and the biggest ways in simplifying Sr
+task so there are three ways I think we
+can identify that generative AI in
+particular is impacting Sr teams the
+first one is coding assistance things
+like GitHub co-pilot or a us code
+Whisperer because we may be writing code
+we may be writing scripts in order to
+aut to make some work or we may be
+writing a you know a terraform file or
+set of files these coding assistants can
+help us they can help predict what we're
+going to write next or they may be able
+to write the the test for the code that
+we're writing and cut down the time that
+we have to spend on things like that the
+also though the problem solving and
+guidance element of it so we can ask
+things like chat GPT or even Amazon q
+more recently about complex issues to
+break down challenging Concepts and if
+these things have access to your data
+which is something that we have to
+consider because a lot of the time you
+don't want to be putting sensitive and
+propriety data into these systems but
+there are ways of getting around it
+where you can just ask more general
+questions um about complex ideas and
+still get that kind of step-by-step
+breakdown and then you can apply it it's
+not about replacing the SR by just
+giving all your data to these things and
+just seeing what happens it's about
+using it again as an assistant right now
+and the final way is in automated
+analysis so leveraging AI for predictive
+analysis if we give these models access
+to our data in certain environments
+which have been signed off from your
+company and it's passed the necessary
+security and compliance checks um
+something like that we have in AWS we
+can use them to predict how our systems
+will work in the future or capacity
+issues like hm your application usage
+just likely or projected to increase by
+tenfold so you may want to change your
+your your server sizes or the amount of
+servers you've deployed or your database
+structure in order to meet these
+expectations
+this is just one example from something
+called Data dog so data dog is a
+monitoring tool or an observability
+platform one of the most popular say in
+the SR kind of space and they have
+something called Data dog bits AI so
+here you can query effectively your
+observability platform your monitoring
+platform and ask it questions in natural
+language so in the way that I'm speaking
+to you right now I can just speak to it
+instead of writing like a complex query
+or code in order to try to draw this
+information out in this case she said
+are there any issues with the event
+process process of dependencies and it's
+given an answer it's showing you about
+the triggered alerts that are linked to
+it and it's allowing you to click
+through and get more information there
+so that's just the the tip of the
+iceberg really with what's going on with
+AI so devops or SRE this yeah this is a
+question that comes up quite a lot and
+it's because there's quite a lot of
+overlap between the two
+roles I hope it's kind become clear that
+SRE is about achieving higher
+reliability and availability and that we
+use things like slos in order to ensure
+that we're meeting these system
+requirements and that we're minimizing
+downtime devops at its route was more of
+an approach more of a methodology or an
+idea about how we should approach it
+applications and so forth that we reduce
+or actually completely Break Down The
+Silo between development teams and
+operation teams um it has evolved in its
+own role and you'll see the engineering
+role come up quite a lot some of you may
+even be develops Engineers but there's a
+heavy Reliance on automating and
+streamlining the the process of getting
+getting things from development and
+ideas and plans that we have all the way
+into production how can we streamline
+this
+process so that may seem quite Wishy
+Wasing so like I'm still not convinced
+so I think it's probably helpful for us
+to kind of do a comparison of some of
+these aspects of the two so where the
+primary focus like we said with SRE is
+reliability and minimizing downtime with
+devops it's about efficiency it's about
+automation along the software
+development life cycle measurements
+we're interested in s slos and aab say
+sres whereas devops Engineers or devops
+in general may be more interested in
+pipeline metrics things like pipeline
+failure rates right or the time taken
+for the pipeline to complete in terms of
+error handling we do things like error
+budgets in Sr we're very much wanting
+control changes for the most part devops
+typically has this philosophy of fail
+fail fast basically so you fail fast but
+you recover fast collaboration is huge
+in both almost I missed automation super
+heavy in both as you could probably tell
+in terms of the culture I'd say the
+focus in Sr is really an end user Focus
+like above everything else above even
+really the developer experience and all
+these things although they do tie in
+effectively to the end user is how is
+the person at the end of my application
+at the end of my platform experiencing
+this I think with devops it's a little
+bit more Broad in the sense of we we
+very much care about the developers and
+the operations and in terms of the the
+life cycle are we improving their
+experience in order to streamline the
+process that's not to say that they
+don't care about the end user because
+effectively everything that we're doing
+as a unit is for them um but just the
+way that we approach thing may be
+different um and in terms of speed
+reliability over over anything else like
+we've said so we may want to stabilize
+things like there are times when the
+sres will say to Dev no more change
+nothing else gets pushed out no more
+widgets no more anything no more
+upgrades no more nothing the system is
+not reliable we can't do anything else
+until we get things back up and
+running ultimately it's going to depend
+you ask you could ask some else the same
+question that I just answered and they
+will have a completely different answer
+for you um the key thing is when you are
+looking for SRE jobs or you're
+interested in it is to make sure we're
+having conversations and check out the
+job descriptions they will typically
+give you more detail about it than just
+Sr devops engineer sometimes they
+overlap quite a lot and you see that
+people this is labeled an SRE job but I
+think they want to devops engineer or
+vice
+versa so now let's talk about the path
+to Sr like how do you become an SRE
+depending on where you
+are there's no single route into Sr and
+the reason is because the skill set is
+so broad right you've seen from the
+things that we've covered so far that
+sres have a range of skills and a range
+of experiences but that means that
+people from different areas of tech can
+flourish in the role however there are
+some roles that lend themselves towards
+moving into into SRE quite obviously EMP
+prob the top of the list is devops
+engineer because of the sheer overlap in
+the skills that we have and the
+experiences we have devops Engineers
+have a natural transition natural path
+to Sr but also software developers and
+software Engineers as we spoke about at
+the beginning SRE is about bringing
+those software engineering principles
+and those system engineering principles
+so if you already have the software
+engineering side you've been building
+reliable code and building optim code
+and test for that code and integrating
+them into these systems and you're
+already coming with that to the table
+but also support Engineers specifically
+second line there's also a natural
+progression from a support engineer to a
+second line because you have been at the
+Forefront troubleshooting in the
+incidents um handling issues you kind of
+have that element of SRE that you can
+bring and then of course security and
+Cloud Engineers for similar reasons you
+have things that you can bring to the
+table I actually just wanted to draw out
+these real paths that I saw when I was
+looking on LinkedIn I've kind of
+redacted some of the information because
+don't yeah adma has been spreading your
+business bus even though it's on a
+public platform but anyway I just wanted
+to show you that like these are the real
+Paths of people to SRE in this case they
+were a software engineer first this
+person then became devops engineer
+platform and then made their way to site
+reliability engineering this person
+didn't take like a detour in devops they
+just went from software the site
+reliability engineer this person was a
+design engineer then a technology
+analyst and then became an SRE and every
+so often and it's not that common you
+get somebody who has a junior Sr
+position or an associate Sr so actually
+their first job or teen or their first
+kind of job out of uni was a junior SRE
+position but um like I said these are
+rarer so let's now kind of go through
+one of these or a few of these example
+Parts if you are coming from devops you
+already have things under your belt like
+cicd like scripting with IAC Cloud
+architecting to an extent potentially
+even some observability perhaps you've
+built out some monitoring tools what's
+been integrated in the terraform me
+writing you might have some OS
+Administration skills so like Linux
+Administration or Windows and you may
+even have some container knowledge all
+of this will be valuable and allow you
+to build upon PA for the SR position so
+your next step then is going to be
+getting those SRE principles under your
+belt things like service the service
+level model designing reliable systems
+and and focusing in on that the data
+driven decisions and then observability
+and alerting when you're in production
+and the continuous refinement of that
+then you're probably going to layer on
+some things like The Incident Management
+stuff we SP spoke about troubleshooting
+triaging blameless postmortem and then
+effective and at the end you're going to
+wrap this all up in your your attitude
+and skills towards things this end user
+Focus which I keep speaking about
+because it really is at the heart of
+what we do if you're a software engineer
+it might be slightly different because
+you've come now with your programming
+skills your application testing skills
+application design if you've been
+writing good logs hopefully for the sake
+of us in support and on the other side
+in production you've been doing some
+good logging as well and high level
+design so again for you the next level
+may be Sr principles but you probably
+don't have as much experience in things
+like cloud and automation a devops
+engineer so you're going to need to
+spend some more time there and things
+like said cicd and things like terraform
+and as always the attitude and skills
+and finally if you're coming from
+something like second line support then
+you have experience in troubleshooting
+and triaging Incident Management things
+like networking maybe even bash
+scripting so your next level is going to
+be then cloud and automation like we
+said the architecting things like
+terraform finally you're going to lay on
+your SRE principles on top of that
+things like the service level model and
+observability so you can kind of see how
+you can come with like it's not about oh
+I'm starting from scratch as an SRE it's
+that whatever you've been doing
+especially if you're coming directly
+from an IT background will help you as
+an
+SRE so now let's talk about then job
+applications and what that looks like if
+you are thinking about applying for an
+SRE
+position I've just kind of emphasized
+this but I really really want to drill
+that in your application process for
+becoming an SRE you're going to convey
+the value you already bring if you are a
+devops engineer if you've been support
+if you've been a software developer if
+you've been a security analyst convey
+that value do not try to pretend that
+that hasn't happened leaning to that but
+then you're going to layer your
+understanding of SRE on top of that and
+anything you've been working on any
+projects anything you've taken on at
+work to kind of level you up and then
+finally the willingness to learn and the
+willingness to
+evolve so the first thing you're going
+to get hit with when you're applying for
+s is the job description and as I
+alluded already they vary quite a lot
+and I'm going to show you some of them
+actually so you can see how they vary
+and how you can make sure that you're
+applying for a job that you actually
+want to do um versus something else
+where like they actually want a python
+developer with s sprinkled on top but
+they don't want to say it um so here is
+one that we can look at now so in terms
+of what you'll be doing coll these are
+the ones by the way from LinkedIn
+collaborate with a diverse team to
+design and Implement robust systems that
+makes sense with what we've been talking
+about before reliability and scalability
+initiatives again that aligns with what
+we've been saying refining our
+observability Frameworks um empowering
+the engineering team with with the
+collaboration and monitoring here coding
+proudness to automated and streamline
+and then 247 on call so this is quite a
+this is a Sr job description that
+actually Maps quite well to the SRE
+principles they're not all like this but
+this is a great one when you see it and
+in terms of Who You Are proficiency
+Proficiency in AWS and gcp so that's
+Cloud automation python cloud formation
+terraform something of your choice
+they've kept it quite open here which is
+always good when you see ones like that
+um detail troubleshooting and
+observability and then communication so
+you can kind of see that this is almost
+a textbook roll but they're not all like
+that this one is a little bit more
+networking focus and this may reflect
+the needs of their particular system or
+the things that they're having issues
+with um so responsible for operations at
+Enterprise level which is effectively
+they want to make sure that you're not
+coming from absolutely no background at
+all um that you're able to deliver tools
+and software to improve reliability and
+scalability provide on call support
+instant response and collaborate with
+Engineers so some of the things are
+similar to what we've seen before this
+one though in terms of qualifications is
+saying things like bachelor's degree in
+computer science I typically just if
+you've got experience in Tech I just
+think you can usually just write this
+off for the most part experience
+typically trumps whatever degree you
+have in Tech so long as you've been
+doing quality work but it does want you
+to make sure that you've mastered one of
+the programming languages um under Linux
+so in this case python go and this is
+where the networking stuff seems to be
+more important in this particular job
+because they have they've spoken about
+they've declared it quite um clearly
+understanding of network protocols and
+relative Services DNS load balances and
+Hands-On OS
+experience and this final one that I
+want to show you we don't need to go
+through it specifically but I just want
+to to highlight to you that s is moving
+with the times this is a job description
+from a AI first company if you've heard
+of anthropic and the Claude model which
+is anthropic is a alternative to open Ai
+and chat GPT if you'd like they have a
+job description up a job available for
+SRE and it's a lot of the things that
+we've seen they've actually explicitly
+said kubernetes because they are
+obviously working on a contain a
+containerized environment but that same
+stuff is coming up troubleshooting
+monitoring automation resource
+allocation
+deployments these things are still there
+it's now just applied to a new platform
+a new
+system so after that and once you've
+decided where you're going to apply
+you're going to have to put forward a CV
+and a cover letter and the aim of the CV
+and cover letter in this sense is to
+highlight the strengths that you already
+have as we spoke about your experience
+up to this point in Tech demonstrate
+your Technical and your soft skills have
+you led initiatives manage documentation
+the things that are important to S not
+just on a technical level but on a
+supporting level and then convey your
+interest in SRE like it's important for
+somebody who's on the other end to
+understand why you are applying for this
+position do you even understand what Sr
+is like I've been involved at times in
+the hiring process and it becomes clear
+that a lot of people quite fairly
+because it's not spoken about as much as
+the other roles don't actually know what
+s is perhaps some key words perhaps
+heard heard about it in passing and so
+now they're applying but it's really
+important that you understand what
+you're applying for and cover letters
+aren't always necessary I think later on
+in your career you probably don't use
+them as much but they can be very
+important when you are switching roles
+because it applies additional context
+you can answer that question about why
+you're moving into SRE from wherever
+you're coming
+from the next stage is going to be like
+the initial screen so you're going to be
+talking typically with someone from HR
+basically you're not going to be talking
+to an SRE at this point but that person
+there will have a checklist in front of
+them right so they're going to be
+looking for keywords things like
+automation things like slos and sis and
+so this is your chance to demonstrate
+that you understand these things and get
+those kind of buzz words there without
+without using Buzz words what should I
+say the key terms and the key principles
+and that you understand it because they
+then can check that off and be like okay
+this is somebody that I'm willing to put
+forward to the SR the hiring manager or
+so
+forth this is where things can change
+the order of things can change sometimes
+technical interview first the cultural
+interview second but ultimately we'll go
+with the technical interview first in in
+technical interviews as an SRE you're
+likely going to be given some sort of
+task it's not always the case but you
+may be asked to write or review some
+code or automate something or to design
+a system architecture or solve a
+hypothetical issue I've had a mixture of
+these before I've had to write code
+before I've had to do a systems
+architecture um assessment so I had to
+design in front of them a an application
+a three-tier application for their
+hypothetical situation and explain why
+I'd use certain certain resources in AWS
+and why I hadn't used others and I've
+also had the case where I've had to
+solve an issue I was actually given the
+company's website and said use all the
+tools that are free on the internet in
+order to work out some of the issues
+that are happening with our website and
+how you may how approach that you want
+to focus on demonstrating your
+analytical skills your coding ability
+and your understanding of scalable and
+reliable systems right all of these
+things coming together and the
+importance of monitoring as well what's
+really clear here though is that you
+also show your thought process and ask
+clarifying questions and I know people
+say this a lot but if we understand that
+everything in SRE is backed by data
+driven decisions even at this point then
+you're highlighting that you understand
+the importance of colleting relevant
+data um even in a scenario like an
+interview like you're already laying
+that Foundation that you're that type of
+person who thinks in that type of way
+then you'll have the cultural interview
+this is just to kind of layer on some of
+those things that you are the adaptable
+collaborative person that we need the SR
+role so that you're demonstrating those
+skills of empathy and commitment and
+continuous learning and Improvement
+okay so now let's move on to then what
+the next steps look like if you are
+thinking after this that you know I'm
+interested in Sor where do I go from
+here well I would actually say if you
+are already in a tech job um or if
+you're thinking about a new position
+start in that organization if you can
+you don't have to start from scratch
+somewhere else you can instead start
+with the place that you're already in
+use the people around you and the teams
+to get hands-on experience right if
+you're working as a software developer
+spend some time with devops ask to
+Shadow work look at the tickets on the
+board and think about how you can
+contribute to
+those also have free resource guide so
+if you want to take a look at that use
+that as a starting point these are some
+of the resources that we use every day
+so if you want to dive deeper into those
+and get an understanding and hands-on
+experience with those use that to guide
+you it's a little bit difficult with SRE
+because there aren't a ton of of
+documentation around this is what you
+must learn um but this is a good
+starting point
+you could also use this as a starting
+point as well some of the key skills
+that we spoken about today and create
+your own learning plan around them feel
+free if you want to screenshot that or
+take that away with you and use that as
+your starting point here are some
+example resources that you may employ I
+highly recommend this site reliability
+engineering book it's one of the ones
+that I've used and it's been extremely
+useful in my process and in becoming and
+developing as an Sr if you have no Cloud
+experience and you're leaning towards
+something like a us that's kind of the
+one that I specialize in with some gcp
+then try out the cloud practitioner
+learning pathway it is free you can
+access it there if you've got no
+hands-on experience with things like
+Linux the Linux foundation and all the
+courses that they have so these are some
+of the resources that you can
+use in terms of
+certificates these are some of the ones
+you may be interested in in terms of
+cloud we have like the cloud
+practitioner leveling up we have
+Solutions architect if you're interested
+in getting certificates around
+infrastructures code
+then you may look at the terraform
+associate ones if you're interested in
+containers you can check out this
+particular list
+here I also am taking a moment to plug
+my course which is coming out in January
+of next year so this is where I kind of
+go through a lot of the concepts that
+I've spoken about before there's video
+where I speak about things like
+observability and monitoring slos and
+sis but also things like networking and
+the need to know basis there's a mixture
+of resource types so things like videos
+but there also things like written
+documentation so that you can kind of
+serve whatever learning style that you
+have some of them will be more idea
+based or more conceptual based where
+others will go through actual code for
+example in this particular screen here
+and actually showing what the code means
+and why we use that there's also quizzes
+to kind of reinforce your knowledge and
+your learning just to make sure that
+you're actually grasping these things
+and not just going through things also
+projects I'm very big on projects I
+think they solidify your learning but
+they also allow you to build our
+portfolio right so that you can show
+that to potential employers and there's
+also some actual coding jup workbook
+notebooks for you to go through and test
+code and play with code so there are
+things to get on with there but if
+you're interested you signed up to this
+so there'll be some information coming
+out on
+that
+yeah and that's that's pretty much
+everything um I will stop that there
+thank you for listening to to me going
+for about 45 minutes but um yeah let's
+take a look at the questions I'll stop
+sharing
+that I think we've left got some in the
+chat okay um I has said is this the kind
+of job that you could end up being on
+call for yes um yes Sr is a job that
+typically you are on on call rotor for
+and you're expected to be part of that
+when you join an Sr team often they'll
+explicitly say that in the process um
+that are you willing to be on call and
+unless you don't want the job and you
+don't want to be on call then you should
+probably answer yes um is Linux also
+free the particular one that I showed um
+I believe that is a free one the Lin
+introduction to Linux um but take a look
+they have a mix of free and paid
+courses where can I download the
+resource guide the same link that you
+use to um sign up for this you're able
+to just download the resource guide from
+there as well um thank you so much I
+appreciate that um how do I get access
+to the recording after so I'm planning
+on putting this on YouTube but also on
+my website so again assuming that you've
+all accessed this using the link that
+you clicked on to sign up then you be
+sent this out all this information after
+this um is it related to Incident
+Management yes um if you want to you can
+unmute yourself I think I'm not sure if
+you can but generally speaking yes
+Incident Management is a part of um SRE
+right so like when an incident occurs
+you will have to respond and you'll have
+to be able to manage that incident
+coordinate the um the different mood
+parts of the incident from the
+communication triaging which is when
+you're just trying to prioritize work
+out what's going on and is this a P1
+high priority or is this maybe a P3 um
+so yes instant management is a huge part
+of it in terms of mastering one of the
+languages would JavaScript also be an
+adequate one to
+implement it's a good point um
+JavaScript isn't one that I see used
+often for automating however if you have
+JavaScript a background in JavaScript
+that means you already understand some
+of the fundamentals around um around the
+languages and in which case you may use
+some of that but you also may be able to
+transition into python or something else
+that we use with more ease I would say
+um platform engineering impact on SRE
+roles it's a good point um when I see
+platform engineering roles they do seem
+like an all-encompassing like Sr devops
+I still see appetite for the SRE role in
+all fairness there are a lot of job
+openings there are a lot of people who
+are still wanting to not just not just
+have platform Engineers have devops
+Engineers but they actually are keen on
+the specific framework and way that
+their think this is why the way that you
+think is as important as what you able
+to do because it will impact the way
+that you approach work and that you
+approach
+issues um let's see what else can you
+share the link to the course
+recommendation so this will all just be
+in like I said the video will be sent
+out and available for you to get
+afterwards um how can I sign up I'm not
+sure if you mean the course or what or
+if you mean to this but um the course
+information will be sent out to
+everybody who's here who's clicked the
+link who signed up for this and you got
+the email about this course um about the
+webinar you also get the email about the
+course um can I share my experience of
+being what kind of problems did you
+solve and how long did it take that's a
+very good question it's giving me
+interview Vibes but um on call can be a
+little bit wracking at the beginning
+because you're like whoa like if
+something goes wrong it's down to me
+usually at the beginning you're pairing
+with a somebody who has more experience
+with the system and there are escalation
+paths but um I'm trying to think of
+something that I've had to deal with
+usually it's around capacity so like we
+have had an unexpected increase in
+traffic that's happened before and
+that's caused things to slow down
+therefore it's scaling our resources out
+there was also a time when we started to
+get a high number of errors all of a
+sudden it seemed like um but it tracked
+a release that we had so it was about in
+that kind of a case was about when did
+this error rate start or this error rate
+Spike what was going on around this time
+if I can't link it to things with
+infrastructure or something like this
+were there any changes in our
+organization that happened at the time
+turned out yes we had a release into
+into prod some things got missed and
+that was causing the issue roll back and
+work from there will your course teach
+how to script in bash
+also you yourself what languages have
+you used mostly I don't really use bash
+it is in the course though because I
+think it's an important thing to
+understand it doesn't go into it
+extensively and everything you can do
+bash for I personally am a python
+user I prefer Python and I will use it
+when I can um I have some experience
+building with Java and JavaScript but
+that is very far limited comparison to
+my to my python experience um cool Evan
+said based on today's presentation it's
+like with an Sr you'll be doing
+everything some including architectum as
+well as systems can you tell me the
+difference between an sari and a cloud
+architect it's a very good point it does
+feel like you're doing everything
+because you of in all fairness well as a
+cloud architect I think you are for the
+most part involved in architecting the
+solution in the kind of the build phase
+of the project say you're trying to
+build um and a Cloud solution for your
+platform your application or you're
+trying to move into the cloud the the
+role of the architect is to ensure that
+that trans transition can happen and
+they continue to optimize things on the
+platform which is a little bit different
+to thinking about your application or
+your end user in production like I like
+to think about SRV as very very much
+production focus when things are live we
+are there I might not be as involved in
+when you was building this thing out and
+you know architecting your Cloud
+solution at the beginning I'm over here
+now and if I need to tweet some things
+in the cloud and I need to understand
+things that's sure but everything again
+is with this application in mind and
+with the end user in mind um but again
+there is so much overlap with these
+things because the SR role requires so
+much so much knowledge um so I have some
+time for some more questions what are
+some examples of some projects you
+recommend a junior Devils engineer
+looking into strengthening the key
+technical skills that would eventually
+go to SRE work I think to be focusing on
+things around observability and
+monitoring so I don't know how much
+hands-on experience you have with that
+but it would be a very good idea to
+start maybe even in your own projects
+building out the monitoring and alerting
+systems there's a concept called
+monitoring as code if you understand
+what infrastructure code is a very
+similar thing instead of building out a
+monitoring system by clicking on like
+the user interface you declare your
+monitoring system as code just as you
+would your infrastructure just as you
+would your application code so start
+building projects that show that you
+have an understanding of that um that's
+a good place to start I think in terms
+of interest in that and start
+understanding the principles perhaps get
+that Sr book um by Riley and start
+looking into those fundamentals and then
+you'll see how you can bring some of
+these principles into the work that
+you're
+doing
+um what else other questions do we have
+I don't know if you already touched on
+this do you need a programming
+background to succeed as an Sr not
+necessarily you don't have to be a
+programmer or if you'd like a developer
+or an software engineer it helps a lot
+because that's one less thing that you
+have to deal with later on you have that
+background and if you've been a python
+developer or even if you've been a Java
+developer again you understand the
+fundamentals of programming and so it
+makes the job a lot easier by no means
+do you have to have a deep background um
+but you will have to plug to other
+players if you haven't so like a devops
+engineer may not have been a necess
+necessarily a python developer or
+application developer but they'll
+understand applications they you need to
+understand how applications work in
+order to support them um but you can let
+your other things shine and kind of you
+know you can add on to that like there
+is continuous learning like you don't
+start by the way being amazing at
+everything like if that was the case
+that compensation I said not be enough
+if I was py developer at the top level
+also architect at the highest level and
+all of these sorts of things things
+evolve and grow um so yes
+uh next question is we've got a couple
+more minutes I I'll try and answer a few
+more I'm very much interested in SRE but
+as a project manager have you come
+across many Sr project managers like any
+implementation managing changes that's a
+good question I've never heard Sr
+project manager however I have worked in
+teams where there is a delivery manager
+who I think describes the role that you
+are trying to get at so they kind of
+coordinate things this is especially
+true if you work in a consultancy and
+you have multiple clients multiple
+projects multiple Tech Stacks um that
+delivery manager can help coordinate
+that the communication between the
+client and between um the sres and also
+make sure that work is being managed
+effectively changes are being
+effectively managed implementation so in
+that sense yes but if you search SRE
+project manager you're probably going to
+see nothing um in all fairness um okay I
+was thinking of applying for boot cams
+like cod first would you recommend them
+to be a strong start into coding as well
+as getting my foot in the door with SRE
+I can't really endorse any boot camp
+that I haven't been to directly I have
+heard good things about um code first
+girls and I think anything that allows
+you to structurally build out some of
+these skills is probably good especially
+if you're not somebody who you know
+could just go from that and build out
+your own course then perhaps something
+like that would be very useful um but
+yeah I can't particularly endorse that
+because I haven't gone through that um
+okay kindly share a link to the
+registration some of us received just
+the meeting link okay um I'll do that in
+a moment thank you for answering my
+previous question uh do you work in
+Sprints or long projects I'm trying to
+understand if you get allocated task by
+tickets it's another good question in
+this particular job that I have we don't
+work in Sprints um don't do like the
+scrum kind of approach in that sense um
+but I have worked in places where we do
+work in short two week Sprints this is
+the work we kind of have like an
+elongated time is just time we fill it
+with tickets um there is different
+levels of structure that we been in
+place but yeah it can it varies the
+actual ways of working will vary
+depending on the organization as
+well um and what would
+like is somebody I don't know somebody
+has a question they're trying to ask is
+you're unmuted
+T okay that's fine I'll continue um what
+did my training look like when I got
+started working in Sr I trained as a
+cloud engineer I did a boot camp that
+lasted about four three and a half
+months I learned how to build
+applications which is where a lot of my
+Java and JavaScript came from that kind
+of experience with the cloud in mind and
+then spent a lot of time learning how to
+deploy these things into the cloud in
+the most optimal way with ideas of
+infrastructure use things like terraform
+like I said we built cicd pipelines I'm
+trying to remember the exact one I used
+in my boot camp it might have been
+Circle CI um and yeah that's I remember
+from that and then after that I actually
+got my first draw as an SRE but it was
+kind of the I was involved in something
+called QA where they train you up and
+then they put you in jobs the first job
+they offered me was it support I wasn't
+feeling the job description so no then I
+came across this thing called SRE and at
+that point I'd never heard of it so it's
+not like I'd always wanted to be an SRE
+I didn't even know what it was until
+this job description came in front of me
+and I was like oh this is really
+interesting you do a lot of things and
+um the way my mind works it stuck out to
+me that's kind of how I got into it and
+I spent those first that first kind of
+six months
+actually really getting into grips with
+what SRE is and what it meant and I had
+that space to do it and sometimes you'll
+have those jobs that allow that that are
+open to more Junior people or open to if
+you have other skills you can come and
+learn the rest it all depends on the
+organization and then needs of that time
+um and then T said I've been in tech for
+a while app support could I use this
+course to get up to speed I think you
+can I don't know exactly what your
+experience is but if you've been in
+application support then you have a lot
+of these fundament things in experience
+not even just in theory you've actually
+been working with applications I seee
+you've been working on troubleshooting
+them if you've been supporting them then
+you understand the basic principles
+behind applications and then thus how we
+can make them more reliable but layering
+on and layering on

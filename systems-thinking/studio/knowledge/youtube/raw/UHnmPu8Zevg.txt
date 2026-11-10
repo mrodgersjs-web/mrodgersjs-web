@@ -1,0 +1,921 @@
+so the topic of today's lecture is um
+introduction to network science so we're
+going to talk about the plans for this
+module um and um we'll do some
+introductory I I'll talk about some
+introductory
+material so first of all a few class
+technicalities uh my name is l drov and
+um the TA for the class will be Andre
+shestakov
+the course will consist of two modules
+and uh each module uh will have 10
+lectures and 10 labs and Andre will be
+taking care of labs uh so far the
+schedule is uh the lectures we'll have
+in Thursday from U 6:10 p.m. until 900
+p.m. uh here the website where you will
+find all the information about um the
+lectures um there is there are also
+material there papers available there
+and you will also um the homeworks will
+be posted there my emails is uh luga HS
+are you um and Andre's email is also
+given in terms of programming we'll be
+using Python and in particular we'll be
+using IPython notebook and we'll be
+using network X as main um Library well
+in fact you could possibly code a lot of
+things yourself uh but um for efficiency
+reasons uh we decided to to to stick
+with network
+X and uh for some large networks um it
+will be good to use external software to
+visualize them and uh we could use we'll
+use either geffy or yed resolution
+software finally most of the lectures
+will be online and uh we'll be using
+Zoom meeting uh
+software so what are the prerequisites
+uh for the scores well first of all it's
+discrete mathematics it's linear
+algebra um algorithm data
+structures it would be good if you have
+some probabilities Theory uh
+differential equations and we do require
+uh skills programming in Python
+um you will not teach that though we
+have some introductory material for
+IPython if you never used
+it from linear algebra um we require
+some basic knowledge which are vectors
+and matrices operations on vectors and
+matrices um it would be good to know
+about sparse matrices and the type of
+storage used for sparse matrices um and
+uh finally igen values and igen vectors
+now um igen V and igen vectors will use
+a lot and if you don't remember what
+that means or how to find them U please
+look it
+up from graph Theory we'll need some
+main Concepts so what graph is um we'll
+talk about various types of graphs which
+directed undirected simple graph
+weighted graph um you'll need to know
+what connected and strongly connected
+component of the graph are um we'll talk
+about paths and Cycles in the graph
+we'll talk about shortest path about
+trees so these are all sort of main
+fundamental concept that you learn in um
+discrete mathematics and um in the
+algorithm
+class there are several algorithm that
+are also critical for us uh it's breath
+for search depth for search algorithm
+algorithm finding connected components
+and um shortest spth um again if you
+don't remember them uh
+please check them
+out in terms of text books well there
+right now there are several very good
+books out there uh first of all we'll be
+using a lot of Mark Newman's um
+introduction um networks introduction
+book um there is a very interesting book
+on Network crowds and markets though
+this that book is probably more oriented
+more towards uh social scci scientists
+and um it is less strict in in in in
+term of mathematics used in there um
+there were very interesting book on
+social economic networks by Matthew
+Jackson and um there is there is
+absolute classics by um Stanley vason
+and Katherine F and social network
+analysis um what I will provide
+references to certain chapters in that
+book and there is a very nice book on
+that network analysis methodological
+Foundation this is actually collection
+of um articles but there are uh these
+articles are on the sort of fundamental
+aspects of the computations with
+networks there were also several very
+very good and detailed reviews um the
+first one is um review by Albert and
+barabash um statistical mechanics of
+complex networks um it's well it's it's
+pretty dated for right now but it's
+probably still one of the sort of the
+the best and and the biggest reviews um
+the alternative is review by Mark Newman
+structure and function complex networks
+so um links to those are available uh on
+the class
+website so what are we going to do this
+module we'll have 10
+lectures and here's a plan we'll do
+introduction to network science today
+and we'll talk about the problems
+Network science deals with and some
+major properties of um complex networks
+um next lecture will be devoted to power
+lows and we'll talk about all all the
+power all kind of power lows and um
+their role in in in network Theory um
+third lecture will be about random
+graphs and Rand um air runy models of
+random ground generation the fourth
+lecture is about small world and
+dynamical growth model these are
+um new models that that that scientist
+came up with you know 10 15 years
+ago and then we'll switch a little bit
+and talk about uh some metrics and
+measures on the graph and first of all
+we'll talk about centrality measures and
+the notion of node centrality and
+importance of the nodes and ranking of
+the nodes and we'll talk about link
+analysis or how what role links play in
+in in centrality in the node centrality
+and we'll discuss here uh page Rank and
+um hits and other modern algorithms for
+web gra graph analysis lecture number
+seven will be about structural
+equivalence or um about finding similar
+nodes in the network similar in the
+sense of their roles and so which means
+connections um and the network and then
+we'll spend last three lectures on uh
+Network communities we'll talk about the
+definition of of various definition of
+the communities we'll talk about Al that
+allows us to detect communities we'll
+talk about graph partitioning as a way
+to find communities and network and
+we'll talk about specifically designed
+for Community detection um algorithm
+specifically designed for that so that's
+a short plan for this module module four
+will be devoted to processes on of on
+networks diffusion etc etc um this
+module will will mostly dedicate to um
+analysis uh of the structure of the
+network
+so Network science is is is a very new
+science um it's uh actually probably you
+know if you start looking for referrals
+um you know you you will not find things
+earlier with with the name Network
+science you'll need things you will not
+find things earlier than um year around
+you know 2000 or late 90s uh but in fact
+Network science is formed uh from
+various wellestablished Sciences so
+first first of all it's sociology and
+sociologist um used to do social network
+analysis or um sna in short for for
+quite a long time actually in fact since
+1930s um though the networks they dealt
+with were were pretty small right it's
+the network that you can um get uh from
+from you know collecting data by hands
+really um mathematicians they they did
+talk about graphs for several centuries
+um and in fact in mathematics um there
+has been a breakthrough um and and
+pretty much New Field appeared in um in
+50s and 60s with aash and reintroducing
+random graph Theory uh computer
+scientists computer science has been
+dealing with graphs a
+lot graphed the data structure and
+developing algorithm for the shortest
+path where shortest path algorithm and
+um other algorithm flow methods
+statistical physicist they um kind of
+jumped on this Wagon in the uh late 90s
+um with notion of complex networks and
+networks being part of the complex
+systems and physicist um study complex
+systems are complicated well interactor
+interacting systems with a comple
+complex interacting pattern patterns um
+economists also talked about networks um
+and um a lot of pairwise interaction and
+the is finally biologist uh it's
+bioinformatics um it's about um
+interaction between protein protein
+interaction um and many other things
+so as you notice these are very very
+different sciences and each of them uh
+bringing its own approach and some sense
+they're complimentary but sometimes um
+little bit contradictory in the sense
+that we'll see um some terminology
+that is different uh and it really
+depends on where they came from um
+methods and definitions and algorithm
+will be different whether it came from
+say biologists economists or computer
+scientists or mathematicians and and you
+will feel that that that slight
+difference so the difficulty of this
+course is to put all this knowledge um
+together and make it usable for with
+whatever applications you have in
+mind so first of all as I mentioned um
+terminology thing well um as you have
+seen already I've been already using the
+words Network and graph well in fact um
+it's the same in network and graph um
+it's a set of uh nodes or vertices
+collected by Links or edges right so um
+network is is the same as graph and and
+when we talk about nodes um very often
+uh we'll use the the term vertices or
+notes interchangeably but let's say if
+you look at the
+um social sciences literature most
+likely will be about actors links edges
+again uh well social sciences will come
+up Res relations um we could talk about
+communities or network communities or
+network clusters so all these different
+uh termin all the different terminology
+well eventually you you'll have your
+hands on it so if you look at this
+picture um you'll see
+here separate nodes of vertices rectors
+and they're connected by ages
+okay so what's uh you know complex
+Network well again first of all network
+is is a graph and and so it's a
+collection set of um nodes collected by
+hes we'll talk a lot about what it means
+uh for Network to be a complex network
+but just sort of a few ideas um by
+looking at this picture you realize that
+on one hand this network is not regular
+not regular in a sense you know every
+note has a different number of neighbors
+um has different connectivity patterns
+but at the same times it's not random um
+you can see that there is there is some
+some structure in this network for
+example you realize that there is
+something similar sort of at the end
+here right and and whatever in in the C
+looks different so there is a structure
+uh but it's not a regular structure and
+the topology or the conect the pattern
+of the connections is very non-trivial
+now these networks have very very very
+specific properties it's called what's
+called scale free networks and we'll
+talk about it on uh in the next few
+minutes um but what's amazing that
+doesn't matter where this networks come
+from social sciences or from um
+transportation or economics or it's even
+brain networks they have a lot of
+universal properties which means um they
+they they're very similar um and and
+that's that's amazing um and they
+describe a it's a complex system in a
+sense that first of all there are there
+are complicated patterns of pairwise
+interactions and and the other important
+property that you really need to study
+them the network as a whole if you
+decompose it into pieces well you will
+lose the whole thing because network is
+about connection between nodes and you
+know if you cut it into nodes um and
+edges you lose everything and this is in
+fact what complex uh what what physics
+of complex system studies um
+is the system in general um and not
+decomposition into
+pieces so here are a few examples um
+here is the internet the wonderful
+picture from 2003 it's um internet
+traffic routing um well where um every
+node is is a router uh on the internet
+and um edges are connections there are
+actually quite a few connection this
+picture well in fact uh visualization of
+networks is a science by itself and
+there are still um there are a lot of
+algorithm that allows us to visualize
+networks it's actually very hard to to
+build meaningful uh picture and though
+this for example picture is extremely
+beautiful um it's not quite clear how to
+actually use it except for
+um showing that that internet is is very
+very complex objects I'm not sure if we
+can extract any more information just
+from looking at this
+picture um another example um this is a
+blogosphere um there are blogs uh every
+node here is a Blog um red uh nodes red
+colored red are conservative blogs blue
+are liberal and there are links between
+them red links are between um links uh
+from um conservative blog to
+conservative blog uh blue from uh
+liberal to Liberal and orange and uh
+purple are links in between them and if
+you don't so here is it's in the very
+center right there um there are orange
+and purple l L um so for example in this
+picture you can though it also looks
+like a mess but you can clearly see this
+polarization of political blogs you see
+two clusters of two communities liberal
+community and conservative community and
+the community citing each other a lot
+right referring to each other a
+lot here's another example from social
+sciences this is a Twitter um and this
+is uh what's called hashtag diffusion
+well if you use TW you know what it is
+and um well hashtag is just the way to
+reference particular um topic and U when
+you use Twitter you can either retweet
+somebody's tweet or use mansion and and
+here is a propagation of particular um
+hashtag um well in in in this from this
+paper it's USA hashtag um how it was
+retweeted and you realize that there
+were some people who actually retweet to
+a lot of um other people right and some
+people has very very small
+recuits um here is another very
+interesting um example this is example
+uh where the um nodes are um financial
+institution and there are a lot of sort
+of banks that you of course recognize uh
+you know here is your Goldman Sachs um
+and here's your Mar Lynch um and um
+there's Fidelity management um and it's
+bark lies so etc etc etc and there were
+connections between them and this and
+connection mean um sort of lending or
+borrowing U
+money and U you realize that the
+financial structure is is very
+convoluted and pretty much if you're
+looking at this um banks are all
+interconnected so you know from the
+point of view of network analysis might
+be interesting to find out okay well uh
+what the stability of the system what
+happens if say uh one of the banks um
+goes bankrupt or which of those banks
+are Central or important to
+this um here's another great picture of
+the civilization well this is like
+actual map of the public transportation
+um again here nodes uh will be stations
+and um
+edges will be connections between those
+stations stations um I believe there is
+all kind of um means of transportation
+shown here um what makes this graph a
+little bit different from what we have
+seen before is the fact that it can have
+parallel edges so there are some edges
+well if you think about edges as a means
+of transportation that you'll still have
+some of them running in parallel right
+in between um stations so there is like
+parallel edges in
+there here is another example now from
+biology um these are uh
+uh proin protein interaction Network in
+East um again you you sort of realize
+the that that on one hand the the
+structure here
+is really not regular but at the same
+time not very
+random um organizational networks um
+this is just a structure of some
+fictional organization um how people
+interact um in that organization on
+various business
+purposes um and finally a beautiful
+pictures on the Facebook communities um
+here different colors corresponds to
+different communities visualization done
+with geffy and say this is like the one
+of probably the most famous
+visualization of the Facebook of the
+Friendship graph of 500 million people
+um just showing how you know world is um
+interconnected so you have seen all
+those examples and I and I promise that
+um there are a lot of things that are
+common in between those networks so
+there are several features um I would
+like to talk about today um so first of
+all um these all these networks are
+so-called power Lo networks or in other
+words they have power LW node or vertex
+degree distribution another word for
+that is uh scale free network so we'll
+talk about it um today what exactly that
+means um another property is a small
+diameter or average path lengths on this
+network the fact that these are small
+world networks and the third property um
+is the fact that this network has have
+very high clustering coefficients or
+what's called transitivity or in other
+words um number of triangles so they're
+very very much triangulated so these are
+three properties that are very much
+characteristic for um complex networks
+pretty much most of the networks that um
+occur in nature and those that we're
+going to study whether social political
+biological technological networks they
+will all have all have this uh
+properties so what's power law um again
+we'll have entire lecture devoted to it
+but um to give you an idea let's take a
+look at this uh Network this is a
+history of philosophy Network where
+different philosophers are connected if
+one of of the philosophers uh follows
+their um theory of of another and and if
+you notice um if you look closer in this
+picture you realize well yes oh and and
+the number of the size of the node here
+every node is a philosopher and the size
+of the node is really just the number of
+connections or pretty much the number of
+well students for the philosopher the
+followers um
+of that philosopher and
+um if you realize there are not that
+many um of of of those big big
+philosophers right um there was there
+was Aristotle um there was Hegel um
+Emmanuel Kant amazingly Carl Marx uh
+Frederick n right and then there are
+smaller there p is little it's also
+among big ones and there are more of
+smaller philosophers
+now the characteristic here in this
+picture is that there are very few but
+very large uh philosophers and there are
+lots and lots and lots of small
+philosophers so there is very very
+uneven distribution of the number of
+followers for
+philosophers here's another zoom in um
+you'll see uh here Aristotle and you'll
+see plate and there was like lots and
+lots of smaller uh philosophers well we
+don't even have names here for
+them so what does this no degree
+distribution mean in in scale fre
+Network well the idea is the following
+let's just calculate number of links on
+number of friends every note
+has and just count how many of those
+nodes are in the network so here um
+we'll
+have the number
+will show number of nodes in the network
+and on the horizontal axis will be the
+connectivity so how many links they have
+and so here we'll have you know hundreds
+thousands of links um lots and lots of
+links but there will be very few of
+those at the same time in a graph we'll
+have a lots and lots of notes with p
+links with a small number of
+links so that will create a very very
+uneven histogram or distribution and
+it's called Power law distribution we'll
+talk about it more um on the next
+lecture if we compare that distribution
+to the distribution we would expect to
+have from random process um that's
+what's shown on the left side we'll
+realize that it is very very different
+so in in a in a typical process um
+you'll have um lots
+of um lots of nodes with approximately
+the same number of of neighbors and
+you'll
+have some you'll have some distribution
+B shaped distribution with exponentially
+small number of nodes with a larger
+number of um neighbors and smaller
+number of neighbors so in some sense say
+the heights of the PE of people um in
+the world distributed according to um
+this uh B curve um distribution uh which
+is you know have average height and
+there are people who are a little bit
+taller and there are people who a little
+bit
+shorter um if uh you know human race the
+height of human race were distributed
+according to power law then we would
+have very few but would have people of
+of height you know 10 meters 20 Metter
+Etc um and very very and lots of very
+short people so which is not true so for
+example human High distributed according
+to B curve but um number of friends in
+the network is distributed according to
+power law there are people that have
+lots and lots and lots of friends and
+they live here on this edge of the
+distribution um but there are not that
+many of those think about them as
+celebrities they have they might have
+lots of friends and lots and lots of
+followers but majority of the people are
+actually on this um and of the spectrum
+this end of the
+histogram um there are a lot of those
+people um they're very typical people
+they have very few
+friends um so that's called Power law
+this particular type of the distribution
+terms of number of friends uh number of
+connections links per
+node clustering um as I mentioned
+clustering the idea of clustering um
+High clustering or or transitivity it
+really means that if we're talking about
+social networks that if you have
+two
+friends what do probability that they
+know each
+other and we know that in Social
+settings the probability is very very
+high so
+um it is very high because of many
+reasons because you know you usually
+meet new people through your
+friends because you meet your people
+through your friends um and um
+because uh you know it's
+it's it's much easier uh for people to
+get to get introduced um that way so if
+we look at at this graph for example at
+this um geometric graph um now this
+graph is by the way is not a social
+network this is just for an example um I
+showed um geometric graph which is
+generated by randomly putting points um
+on on a plane and connecting them
+certain fashion but I just wanted to
+show um to emphasiz that in this graph
+there are lots of triangles
+right and so because of that um the the
+clustering coefficient or the
+transitivity um of of the network is
+high and the transitivity is just the
+ratio of number of triangles to the
+total possible number of triangles in
+the
+network and here is actually quarter
+Network which is a social graph
+friendship Network where people are
+connected if they write papers together
+and um if you look um you know at at
+this graph you realize that you you
+still seeing lots and lots of triangles
+right there are triangles
+everywhere so it happens that a lot of
+social networks and in general a complex
+networks will have pretty high uh
+clustering coefficient they'll have a
+lot of triangles in
+um and and final property which is a
+small world it has another name which is
+called Six Degrees of Separation you
+probably heard this phrase and it really
+means that um any two people uh on
+average separated by no more than you
+know several Connections in fact this
+idea for the very first time was
+proposed by bries kin it's Hangar author
+in in his um short story in
+1929 but it came back back into sort of
+you know people's opinion um in John
+leir play uh which is called Six Degrees
+of Separation and and in the movie later
+on
+though among scientists this idea that
+among social scientists that that that
+that the world is pretty small was
+circulating since um late 60s and in
+fact there is a very famous well famous
+now famous um small world experiment
+done by uh social psychologist Stanley
+mgram um in
+1967 uh his paper shown here it's
+actually is called U titled experimental
+study of small world problem and so here
+is the idea um of the study uh mgram
+recruited volunteers through the
+newspaper um and ask them to participate
+and send them out the following
+instruction um for the participation in
+the study so the idea was um to actually
+to be able to send um a postcard from a
+person uh from to send a postard to a
+person that um is um in in in in other
+located somewhere far away in
+particularly in his case um he was doing
+experiments sending uh postcards from
+Nebraska to Boston uh but the goal was
+to actually send a postcard through the
+friends uh if you do not know by name um
+their their uh addressy of of this card
+so here is here is a s here's
+instruction that were given uh to the
+participant um of that
+experiment
+uh if you know the target person on a
+personal basis so you know him uh mail
+the the card the fold directly to him
+but if you do not know do not contact
+him directly instead mail this folder to
+a person who you think might know him so
+the idea was to try to figure out if we
+really have a small world if we really
+can pass the message um across this
+world and just try to count how many
+steps it's going to take uh for the
+letters folders uh to actually find that
+receip so here is a setup of experiment
+um they had recruited 196 uh volunteers
+um in in
+Nebraska and 100 people in Boston and
+the target person was actually in Boston
+and so so this is a target area over
+there Massachusetts Boston and the goal
+of the experiment was to actually see
+how many steps it would take for the
+message to get uh from Nebraska to
+Boston um if it is the letter is sent
+only to people that know each other on a
+on a personal on a first name basis and
+um you know before the experiment the
+answers were very very different um you
+know a lot of people assume that they'll
+probably take you know 100 steps um and
+the letter will never make it through
+now um the experiment was kind tricky um
+because they tried to measure several
+things so they wanted to measure not
+only the direct the the uh the path
+through which things go but they want to
+actually experiment with different
+channels um channels in the sense that
+they provide not only um the name of the
+person um who is atress but also his
+profession and and so in some sense you
+know you can if you think about how you
+would locate a person somewhere you can
+go through you know several channels you
+can think of um finding someone who are
+born in the same town and this person or
+finding someone who lives in the same
+town or maybe it's finding somewhere
+someone who has the same profession and
+so we might have you know different
+channels uh based on professions or um
+based on their uh place of birth or Etc
+and um to make it Clinic experiments
+they also looked into um um
+sending this letters also from Boston so
+it's it goes from Boston to Boston but
+just to make sure you know that the if
+that works um compare the the the length
+um the number of this intermediate steps
+letter is going to take so the
+information that was given uh was a
+Target name um his address occupation
+plus employment College
+Hometown and here are the results um
+amazingly uh 64 letters or you know
+almost
+30% um reached the target um here is a
+picture the
+diagram histogram actually showing the
+number of chains or number of um
+those um the number of of the chains of
+particular length so if you look at this
+um you realize that here is how many
+there was like around what seven chains
+of length five so um it went through
+five people
+um there
+were 14 chains of length
+four right and there were probably 16
+chains um of length six so average chain
+length was 5.2 now if you notice this
+this you know the distribution we'll
+call it by model these days right so it
+has two pics and and the reason is
+because it happened that the letters you
+you could classify the the the letters
+as going through two different channels
+so one of them went through the channel
+through the sort of Hometown channel so
+where people tried to um send the the
+letter through the people who uh might
+you know lived or born in the same town
+um and business context went through the
+sort of business context chain it's
+interesting it's interesting to see that
+business contact chain business World um
+happened to be smaller right and of
+course from Boston it would be it was
+shorter but still it took only six on an
+average actually on average 5.2 steps uh
+Five Points to intermediates to um
+deliver the latter which is amazing
+because um people assume that it might
+take you know hundreds of people um to
+be able to um Reach This unknown
+person so there was an experiment that
+proved that we're actually living in a
+small world um that you know this this
+notion of six uh handshakes that that
+that separates people is on on average
+is um more or less a
+reality um of course this experiment I
+mean you know with when when with the
+development of of the internet people
+wanted to to repeat this experiment and
+um well SWS reproduces experiment in
+2001 by sending 40
+8,000 letter letters um email letters
+asking to forward email um to some
+person uh was pretty much the same setup
+a Stanley mgram experiment and he
+calculated that on average um it took
+six forwarding um to get the email to
+the right person now interestingly here
+um the response rate of course much
+lower and I mean you can imagine you
+know if you get email asking you know
+please forward it to your friends so you
+know who might know somebody in Boston
+well most likely go to J right but um in
+2001 there were still people um who
+actually participated in this experiment
+um again this was repeated by uh julak
+uh on Microsoft Messenger graph uh with
+240 million users and they got an
+average an average diameter of the graph
+average length of the graph is 6.6 and
+finally it was reproduced by Lars
+Backstrom at Facebook
+um with even more users um and and they
+actually found out that um Facebook
+um is is a much even even more smaller
+World um than expected so it's only po
+4.7 um steps away and if you realize if
+you look at this
+um you can also clearly see that um it
+is uh shrinking it's especially seen
+well seen on on a um graph for the
+United State users right so the maximum
+is Shifting to the left so the world is
+getting the Facebook world is getting
+smaller it's also true for the entire
+world it's just not that clearly seen
+here but um with with time um and and
+the density of the friendship on the
+Facebook increases and um average Dam um
+average path length is um getting
+smaller so it is a Small World After
+All now um if you have not thought about
+it before it might count it might sound
+weird now how is this millions and
+millions of people it takes on the six
+steps um to reach uh you know every
+person in this world
+well here is a sort of idealistic a very
+very naive um model um very simple but
+it can give you an idea why this might
+work now um we're going to make very
+significant and you know very wrong
+assumption we'll assume that um the
+friends that you have do not know each
+other right now in fact they do but for
+a second let's just let's just assume um
+that they do not and see what happens um
+let's look at this graph let's say U
+this is you and you have four friends
+okay so you have four connections and
+each of those friends have four friends
+more four four more friends um except
+for you um so in fact from the graph
+point of view that this node degree is
+five but um so there there's four extra
+friends here and each of them has four
+more friends etc etc etc so you have
+four friends each of your four
+friends um has four friends
+um that means on this two step distance
+we already have 16 noes and um on on a
+three steps we have 64 noes so if um you
+have if a person has Z
+friend on average and uh then let's say
+Okay um Z to the power of steps will
+give us the total number of people that
+um the that will be connected
+um in the world after d steps well if Z
+to the^ D is equal to n then D is is log
+nid by log Z and logarithm is an amazing
+function if you take n to be 6.7 billion
+you know the earth population and let's
+say on average um every person has 50
+friends then in fact D will be
+5.8 okay so it is six um with this
+assumptions now you know if you have not
+50 friends but 100 friends it will be a
+little less if you have less friends
+it'll be a little more um and of course
+um you know we made a very very strong
+and very wrong assumption that um these
+people do not know that your friends do
+not know each other and so these are
+different people and so the your network
+the connectivity the connectivity growth
+extremely fast exponentially fast but
+still it gives you an idea that you know
+if you have that many people and each of
+those of your friends um that many
+friends and each of your friends have
+that many friends and each of your
+friends have that many friends that in
+only like in six U steps you literally
+cover um all the the entire population
+of the world so it's really um about the
+structure of the network if we live not
+in this type of world but um in the
+world where um you know that is
+dominated by regular Gruffs let's say
+you know the French structure would look
+like
+that with a regular um lce then then the
+average pot in
+between um you know uh the average pot
+lengths on this thing will be
+proportional to say square root of n if
+we're talking about two dimensional
+world and was well six billion billions
+you know well 10 to the 10 so it's 10 to
+the fifth so be huge and it is not um so
+um our world is really structured our
+friendship and connectivity patterns um
+are really much more of have more of
+this uh structure than this um Regular
+GRE
+thing so uh well I hope this give you
+some sort of idea and flavor of of the
+topics we're going to talk about um in
+this course we'll start uh working uh
+from the next lecture in more details on
+on a uh on ideas of of power law
+networks uh we'll talk more about the
+clustering we'll talk about more um of
+the ways networks are structured um how
+they grow and change with times um with
+time uh but for right now um here are a
+few references um that's reading to get
+started um there there are several um
+reviews well short reviews uh popular
+reviews on articles that will um help
+you to get uh started on this topic and
+um this are several historical uh papers
+the paper by uh Stanley Stanley Milgram
+um original paper um and the paper was
+him was J Traverse and and there were a
+couple newer papers on the scale of the
+web well this is um it for today and um
+please if you you know remember uh we
+started with discussion on linear
+algebra and uh graph properties and
+graph analysis and if you're not very
+comfortable with those uh please spend
+some time and refresh those
+ideas well that's it for today

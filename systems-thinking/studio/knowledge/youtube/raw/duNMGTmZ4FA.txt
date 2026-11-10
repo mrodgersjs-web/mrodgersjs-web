@@ -1,0 +1,598 @@
+Our
+exploration of fundamentals and
+resilience engineering has revealed that
+there is a universal constraint, a
+universal property of all adaptive
+systems that that operate at any and all
+scales. Viability requires
+extensibility.
+Resilience as extensibility is a
+critical property for systems to have to
+overcome the risk of brittleleness, the
+risk of saturating the capability to
+respond as situations develop grow as
+challenges to the way you've been
+designed to work.
+So we want to in this video illustrate
+how resilience is extensibility can be
+seen in a very practical sense. And
+we're going to do this by looking at a
+real case.
+And in this real case, we're going to be
+able then to point to general patterns,
+right, about how this plays out so that
+we can think about the ways that we
+would architect and design systems to
+enhance their capability, right, to
+demonstrate graceful extensibility.
+So the question for resilience is
+extensibility is how does the system
+handle the next challenge case that it's
+going to face right when that challenge
+case reveals inconsistencies and gaps in
+the plans and competencies.
+How does the system deploy mobilize and
+generate adaptive capacity to keep pace
+with the spreading challenges over time?
+Now these ideas have long relevance to
+disaster response.
+It's where we traditionally thought
+about these kinds of processes and the
+way we've studied them and tried to
+design systems to be more effective. As
+one expert in this several decades ago
+pointed out uh Longadeex said covering
+how extensibility and challenge works,
+right? The challenge event can be
+considered a brutal and abrupt audit if
+at a moment's notice everything was left
+that was left unprepared becomes a
+complex problem and every weakness comes
+rushing to the forefront.
+So we don't want to be in that situation
+where we become overwhelmed, we become
+saturated, we become overloaded. That's
+what Longaduck was pointing to. How easy
+is it for that to occur?
+So, we're interested in beyond surge
+capacity events. We're based on a
+concrete case. This concrete case has
+several papers investigating a real uh
+mass casualty event in an emergency
+department.
+And we're going to look at this process
+of how we deploy, mobilize, and generate
+over time the exe extra adaptive
+capacity to keep pace with challenge.
+So, as saturation approaches, how do we
+extend our capabilities? Because we'll
+start to run out of deployable assets.
+As our deployable assets saturate, we
+will have to mobilize and inject
+capabilities or even generate new
+capabilities that we could then inject
+into the situation. But timing matters a
+lot. We have to be able to put those
+into action before we saturate
+resources. capabilities or expertise.
+So, let's look at a beyond surge
+capacity event that really happened.
+We'll try to highlight the general
+patterns and rules that this
+illustrates, the challenges that are
+faced that Longad indicated with that
+quote.
+So, we're going to start with an
+emergency room and we're going to draw
+some graphics to help us understand it.
+And those graphics have a yaxis.
+And that y-axis is some dimension we can
+use of the load on the system. So we can
+look at how well it can respond to that
+load. So we can capture when is it
+overloaded.
+And in an emergency department, we can
+think about that in terms of the number
+of patients. Well, that's oversimplified
+because the severity of the injury, the
+different types of injuries or illnesses
+that come in can all affect load,
+especially with respect to the resources
+available to respond. the forms of
+specialized knowledge and expertise, the
+kinds of equipment and supplies and
+resources that can be needed to treat
+different kinds of patients, different
+kinds of assets may be needed in
+diagnostic and imaging and other kinds
+of facilities in the hospital system. So
+load has a multi-dimensional quality but
+we can simplify it and think about it
+aggregate fashion.
+Now we can uh then plot that over that
+load changes over time as people respond
+right deploy mobilize generate is
+developing response capability to meet
+demands.
+So we want to see how extensible
+extensibility plays out as a beyond
+surge capacity event begins because at
+the beginning you don't know that it's a
+beyond surge capacity event.
+Okay. Well, how am I going to score
+surge capacity? Well, first of all,
+that's what an emergency room is all
+about. It's got some ability to vary
+have enough resources and capability to
+handle varying load. How much load can
+it handle? Well, there's a nominal
+amount of load given its resources in
+staff and space and equipment and
+expertise. How much can it handle? Well,
+in our case, we're going to say that's
+the nominal capacity, right? And that's
+the sort of the textbook, what it's sort
+of resourced out at officially by the
+organization. And we're going to say
+that's 28 patients.
+Right?
+Now, what's interesting if we look at
+this chart of how the event began,
+notice how many patients are in the
+emergency room. 40 or 41.
+Wait a minute. That's more than its
+nominal capacity.
+Now, notice there's another line here.
+In other words, it's handling more than
+its nominal. Therefore, its effective
+surge capacity is different. So the real
+organization has already developed the
+the work as done has already configured
+and prioritized in a variety of ways
+because it regularly experiences a kind
+of overload relative to nominal
+capacity. It's used to working at higher
+than nominal load. And that overload now
+doesn't isn't overload isn't experienced
+as overload. It's just the load that we
+handle. Some days may be better than
+others, but we have the regular
+experience of operating above our
+nominal capacity, right? So, we have an
+effective capacity that's higher. Now,
+wait a minute here, everybody. Think
+about how this applies to you and all
+forms of life and activity and systems
+you're in. Right? Under others adapting
+to take advantage keep pushing you back
+to the edge of the envelope. This is
+right the law of stretch systems that
+predated the discovery of graceful
+extensibility. Go back to that video and
+look at the law of stretch systems.
+So we are all experience operating above
+nominal. Right. Right. Of being kind of
+overloaded in a way that makes us feel
+it not as overload but as normal load.
+We ex Now yes there's variation. Some
+days are easier than others. some
+periods are more peak. But in all of
+these cases, we have to adapt and
+develop adaptations in order to have a
+higher effective surge capacity,
+right? And those adaptations linger
+around even on days that are easier,
+situations that are easier. So that's
+illustrated here in simply that 28
+happens to be their nominal load for
+this emergency room in this actual event
+and 55 turns out to be a good estimate
+of their effective capacity to handle
+patients. Again, they're contextualized
+on these other factors that make that
+dimension multi-dimensional.
+Now, what happens at the beginning of
+the beyond surge capacity event? Well,
+the people in it don't know it's beyond
+their surge capacity. They're used to
+having varying surge capacity and
+they're used to doing things in order to
+avoid getting saturated, right? They
+anticipate approaching overload,
+anticipate approaching saturation.
+That's what we do in these situations
+generally. And so we have ways to rep
+prioritize and reconfigure so that we
+don't run out of capability to respond.
+Now, we're facing uncertainty at the
+beginning. We don't know if this is just
+a few extra patients.
+We don't know if this is the beginning
+of a much larger surge of patients
+coming our way. Uh we may not know a
+lot. Are they all going to be like these
+patients who just arrived? These five or
+six patients who've just come in over
+the last few minutes.
+What does this represent ahead? Now, how
+would we know more about what is coming
+at us? We would have to have information
+from other parts of the system. Other
+roles at other layers would have to tell
+us more about what's coming in. But
+generally in the emergency room context,
+you often get delayed information about
+what's coming at you.
+Now, let's move ahead in time. What
+really did happen? Because we all know
+it's a beyond surge capacity event. it's
+going to go higher than 55,
+right? And so now we look a little
+further in time and we can see that the
+number of patients who were in the
+emergency room before or who are showing
+up in the regular flow of patients are
+still running right about in the low
+40s. We haven't been able to move
+anybody out yet, right? We still have to
+take care of them. Meanwhile, we're
+moving up into the 20s, into the 30s of
+patients all coming from one event where
+they were all injured in one catastrophe
+and they're all injured in the same way
+with surface burns. So, we have to
+handle burn patients which require
+specialized care and resources. Now
+we're operating well above our our
+maximum effective surge capacity to
+handle patients.
+So what's going on now? We have to
+anticipate what are we going to run out
+of?
+We have we're experiencing shortages
+already, shortfalls already. Do we have
+a lot of expertise on how to handle
+burns? Right? How do we reconfigure in
+order for the knowledge that we have
+about burn care in those first hours
+after injury? How should that be done?
+What are the physical assets, resources
+that are needed to treat these people?
+Right? Where do we get more of it?
+Because we're going to run out. Can we
+get it from inside the hospital?
+We have to reconfigure activities and
+relationships to handle this increasing
+load or this increasing shortfall of key
+resources.
+So how do we alert the players inside
+the system that we need these assets
+quickly?
+Uh we need more expertise.
+Where can we find people who understand
+burn care?
+We have to reconfigure those sources of
+expertise because they're going to have
+to guide other people who aren't so
+knowledgeable in burn care because the
+number of patients we have to deal with.
+Oh, wait a minute. We need to help get
+these patients out who are less severely
+injured but were already in the
+emergency room. Who can be moved to
+another part of the hospital? Who can be
+sent home so that we free capacity up
+ahead?
+the um uh as we uh what might we relax
+or sacrifice?
+For example, we would sacrifice some of
+the documentation, but you can't
+sacrifice all of the documentation
+because you have to hand off in the
+future the patients care to other
+parties, right? And they need to know
+what and how you've been treated.
+You um you need to know what to
+sacrifice. For example, the procurement
+system might dictate through the
+computer a certain way that you request
+supplies and that there's a certain lag
+in when those supplies will occur. That
+lag is way too long for this situation
+you're in. You need to have a more
+responsive system that gets you key
+physical assets more quickly to meet the
+high demand at the high need that's
+there because the patients are being are
+injured and need care.
+So ultimately the ED needs to avoid
+overload and running out. Not simply in
+terms of what internally controls not
+just stretching out to the hospital
+itself but stretching out wider to say
+how do I mobilize resources and
+capabilities.
+Now one of the nice things that
+indicates that there is a
+uh effective
+uh resilient culture so to speak and I
+mean that in a very so to speak kind of
+way using the word culture but what
+happens because it's a hospital in the
+first world
+once people hear about the mass casualty
+event that's driving this what do the
+staff of this hospital do they head to
+the hospital they don't wait to be
+called. They don't wait to be uh
+signaled who what specialty is needed.
+They come to the hospital to try to
+help.
+Now
+what happens then?
+Now we can see that we have a variety of
+assets coming to bear. We're trying to
+coordinate in within the ER
+the ER to the hospital.
+the hospital to other hospitals because
+as you start to run out of some of the
+supplies to treat burns in the hospital,
+so you run out real quick in the ER,
+then you need it from the hospital,
+you're going to need it from some other
+places. Oh, guess what? The mass
+casualty event is big enough that
+multiple hospitals are overloaded with
+burn patients. So, everybody is trying
+to get additional assets from other
+places who also need those assets. So
+which places aren't using that asset for
+treating burn patients to get them to
+the multiple hospitals that need to
+treat burn patients? Right? This overs
+subscription of backup resources is very
+common in these events. Right? We all
+count on these resources right in our
+contingency plans for emergency
+operations.
+What happens right as the scale of
+events grows and that tends to happen
+with growth and complexification
+as well as the changing uh forms of
+challenge that can occur from external
+sources right all of a sudden what
+happens
+right the thing I thought I could get
+people from supplies from whatever from
+you know the backup software backup this
+or that all turned to be all all tend to
+be grabbed by various parties competing.
+It becomes overs subscribed and
+therefore underserves the various
+contingency plans meaning you fall
+behind. You saturate. When you saturate
+there's forms of brittle collapse. There
+is harm right in this case very tangible
+harm and less than ideal care for
+injured people.
+Um, now in order to handle this high
+load and start to get it to go down,
+I've got to mobilize resources and
+capabilities to cope with overload
+before I saturate,
+right? I have to synchronize with other
+players,
+right, in the ER, expanding the ER's
+capabilities, right, and synchronize
+with other parts of the hospital. I have
+to synchronize with other hospitals,
+right? I may have to synchronize with
+other authorities and depending on the
+scale of the disaster this represents.
+This is a piece of
+now mobilizing resources means I have to
+put them into action. I have to make
+them deployable. I have to bring them
+into have an effect relative to the
+demands. Right? So I have to insert new
+capabilities when the unit is operating
+near saturation and overload.
+It's already been doing rep
+prioritization and sacrifice decisions.
+It's already reconfiguring activities
+and relationships. And now I have more
+of that to do. We can see that quote at
+the beginning as a challenge, right?
+Piles, load upon load, demand upon
+demand. And here's the overload paradox.
+Deploying
+resources to help. As resources
+mobilize, capabilities mobilize to be
+inserted to deploy those capabilities
+takes load from the people over here who
+are overloaded or nearing saturation. So
+in order to get help to avoid being
+saturated
+takes load, it takes load to get help
+because inserting the help right
+requires bringing them up to speed,
+coordinating them with other players,
+assigning them roles, right, setting up
+communication strategies across those
+multiple roles, right? Um so deploying
+mobilized capabilities adds workload
+when the system is already overloaded
+and approaching very close to
+saturation. And that paradox is usually
+missed when people develop plans for
+handling abnormal and emergency
+situations.
+So
+notice now we are starting to have less
+patients,
+less burn patients. We are starting to
+move back to our normal range of surge
+capacity.
+What does that mean? We've coordinated
+with other groups. We've moved patients
+to other parts of the hospital or other
+medical facilities. Right? The number of
+burn patients is decreasing. We've also
+been effective now. But notice the tag.
+it took in order to get the patients who
+were already in the ER down. So, we're
+start starting to have moving from
+mid40s to mid20s in the nonburn patients
+in the emergency room.
+But think about how the extensibility
+continues to play out at this later
+stage. To some degree, we can go, hey,
+we're handling it, right? We've survived
+the worst of it, right? But there's a
+lot of work to move the load that's been
+imposed on this unit via coordination
+and synchronizations with other other
+organizations, other units, even as the
+load is easing. So the load is easing,
+but the transition to moving people to
+other places is bringing other forms of
+load into play too that are often
+underestimated.
+This is happening in the context of a
+mess,
+right? Because in order to accommodate
+this, you had to have a ad hoc
+rearrangement, reconfigur
+reconfiguration, rep prioritization of
+what's going on. And so there are
+residual messes all over the place and
+those get in the way. They have to be
+cleaned up, right? In a variety of
+senses of clean up. It takes work. It
+doesn't just disappear by happen stance.
+It doesn't just call in the recovery
+staff and they'll take care of it and
+you can just come back in the next day.
+No, no, no. There is a lot of stuff to
+still do. Again, often missed how the
+day numal plays out has load
+consequences, mistake uh uh things that
+can go wrong, right? That are often
+misunderstood
+in the way that we hand look at handling
+large surprises. the challenge systems.
+We're re- repprioritizing. We're re-
+reconfiguring and we're demobilizing
+all effortful processes that still play
+out even though they're at the last part
+of a beyond surge capacity event, right?
+The last phase of a large episode of
+putting extensibility into action and
+how that plays out.
+So eventually the stress ends, right?
+We've returned to a typical expected
+pattern of load variations.
+What happens next? Wait a minute. We
+were under high stress and the
+experience of high stress has multiple
+implications.
+The short term there's a refractory
+period following a episode of high
+stress. A refractory period lower
+performance, right? How do you take care
+of patients? Because there's still, you
+know, upper 20s of patients in this
+emergency room. Patients will still be
+injured for other reasons and still come
+to emergency rooms. The staff, right,
+and the extended staff who came in need
+to perform. Yet, there is exhaustion,
+right, from the high stress event in in
+and of itself as a stress event as well
+as the various things that went on. And
+so you can worry about lower periods of
+performance being effective at your
+performance following a a stress event.
+This is called a refractory period and
+it's real and it always exists, right?
+To some degree there always is this
+refractory recovery period.
+Uh second is what what happened in this?
+Well, in some ways, everybody had to
+adapt. And in that process, you learn
+something about adapting.
+And the question is, does that have a
+long-term effect or only a short-term
+effect? Is it a we got through that
+challenge, I don't have to worry about
+that again? Or is it, oh, look how we
+adapt
+our capability to adapt.
+Let's understand more about what's good
+about how to rep prioritize and
+reconfigure. Right? These are called
+afteraction reviews where we go back
+through and try to understand but we
+want to focus them on adaptive capacity.
+How did you reconfigure and rep
+prioritize? All right. How did you stay
+anticipatory?
+All right. as things were saturating and
+recruiting and mobilizing resources and
+capabilities before
+right you reached a brittleleness point
+and collapse. In other words, you're
+react you were anticipating instead of
+reacting. In these events, we were able
+to trace it out that even though it was
+very challenging and sometimes close,
+they were anticipating and replenishing
+in advance of saturation. They were
+staying ahead despite the challenges and
+not getting trapped in reacting. And the
+more you react, guess what? The more
+load goes up. The closer you are to
+saturation, the easier it is for more
+brittle mini collapses to happen where
+care, right, falls short of desirable
+and people's injuries are not treated a
+adequately, right? So long-term
+consequences are worse than they might
+have been.
+Notice also that the ER already has
+experience with operating. Let's go back
+to the first point at beyond its nominal
+surge capacity. In other words, it's
+already learned how to adapt to surges.
+And in to some degree, that makes this a
+special example. Their experience with
+having to adapt their adaptive capacity
+makes them better able to handle one
+that goes well beyond the normal range
+of extra surge capacity they can bring
+to bear.
+Now that's a limit on our ability design
+and architect systems to have graceful
+extensibility. You know is does it
+require you to have to adapt a lot in
+order to do this? uh or can we learn and
+architect systems who may only
+experience these largecale surprises
+right uh in a way so that experience
+them rarely they can perform as if
+they're well practiced at them and
+that's a kind of fundamental that
+resilience engineering delivers on by
+helping you set up adaptive capacity
+potential right and we do that by
+focusing on the normal kind of uh ad
+adaptations to demands given the gaps,
+right? And that's where we started. This
+system doesn't operate at its nominal
+surge capacity. It regularly operates
+beyond its surge capacity. So how we
+respond near saturation, how we respond
+approaching saturation is a universal
+property that defines the resilient
+performance potential of real systems at
+all scales and in all sectors.

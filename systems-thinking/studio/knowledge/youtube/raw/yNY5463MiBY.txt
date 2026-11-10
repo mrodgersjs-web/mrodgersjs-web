@@ -1,0 +1,794 @@
+so start things off let's go over the
+project
+so hopefully some of you have been
+looking through it this should not be
+coming as a surprise because we had two
+lectures on it last week when I was out
+of AI CAG so the main thing here is
+we'll be calculating by beginning you
+guys will all be calculating kirkwood
+both integrals so how do we do that is
+we want to look up isothermal vapor
+liquid equilibrium data so that's a P XY
+diagram because the activity
+coefficients and the excess Gibbs are
+not going to be as sensitive to pressure
+as they are to temperature so that's how
+we can get an accurate fit of the excess
+Gibbs if you do txy data then you'd be
+substantially changing your activity
+coefficients basically so the objective
+is that you are going to be locating pxy
+data now if you can get data sets that
+have it as a function of different
+temperature that'll be an extra
+potential 10% credit on the project so
+there's two sources of extra credit one
+finding data that is temperature
+dependent meaning they've done multiple
+pxy diagrams but you know only not
+finding the data's not with the sort of
+the end goal the end goal is to doing
+the extra analysis because once you have
+temperature dependent excess Gibbs
+information you can get access to the
+excess enthalpy and the excess entropy
+of the mixture as well so what you're
+going to need to be able to do is first
+by next Tuesday
+so the Tuesday before Thanksgiving is
+you'll have to select your paper upload
+it and also let me know
+so I'll update the home page on canvas
+so you can all see which papers have
+been submitted and which ones you can't
+do so it'll be a running list for all
+time that I'll have of which standard
+we've organized and tabulated so from
+the P XY data you'll then be calculating
+the excess Gibbs and excess volume of
+mixing sorry so not only do you need to
+find the P XY data you also need to find
+the density of the mixtures as well
+calculate the excess volume of mixing
+and to fit those calculations with a
+replica stir polynomial
+that you can then numerically
+differentiate to continue on in your
+analysis so then if you do find
+temperature dependent results and you
+want the extra credits that means you'll
+also have to calculate the excess
+enthalpy and entropy then the next step
+would be to calculate the Kirkwood buff
+integrals and if you do as a function of
+temperature again calculate the Kirkwood
+buff integrals as a function of
+temperature however if we're doing this
+with code it should be sort of just
+write a for loop or something like that
+or it shouldn't be that much more
+difficult it's just a little bit more
+organisations required then based on
+what we know about the mixture is it a
+polar nonpolar mixture two nonpolar
+compounds two polar compounds why do the
+Kirkwood buff integrals have the form
+that they do did the molecules like each
+other do they not like each other is one
+happier and the other versus the other
+one so on and so then your objective
+thing is going to be analyzing your
+Kirkwood buff data your pxy your volume
+of mixing and in your own words draw a
+connection between the micro properties
+of the system meaning what is the
+molecule look like what is the polarity
+what's its size when it's a shape and
+the macro properties which is going to
+be the pxy data the volume for mixing
+the excess gibbs and so on so the
+quality of your analysis is going to be
+dependent on the grade right so I need
+you to make a convincing argument that
+you understand both the micro and macro
+thermodynamics of this thermodynamics of
+the system so if you can find let's say
+for example a molecular simulation right
+that also looks at these types of
+mixtures then that's another way that
+you can strengthen your argument right
+so there really is no sealing to that
+component of it then the last part is to
+format your your your information I
+don't have the template put together
+quite yet but basically format it all on
+a standard approach such that this could
+be archived and this is all part of a
+NSF grant so you are the teaching
+component of the reach research and
+teaching integration that's required by
+NSF grants so timeline so reporting in
+to your important is going to be no
+longer than four pages you need to
+include all of your data sources your
+quality fits Kirkwood buffs and
+everything that in any details of
+calculation all needs to be included in
+the appendices if it's sloppy analysis
+how am I supposed to know that you've
+done you know an accurate job of
+calculating the Kirkwood math integrals
+so if that's the case then I you know
+I'm not gonna trust the results so I
+need you to provide all your detailed
+analysis and code as an appendix and
+then great break down basically 10% of
+the grade is just using the paper by
+next week and then it's about a third of
+the points are going to be in terms of
+how claire how clearly are you
+presenting the calculations in the code
+it means you have comments in your code
+all that kind of stuff formatting the
+results in terms of the template is a
+third of the great meaning that I want
+to be it's very important that I don't
+have to go back and reformat all your
+calculations so that's a trivial thing
+no one should ever miss any points on
+that if you do you're being foolish and
+then a third is on the report right now
+itself so the only thing I need to
+define is the template for you to grind
+away on this project if you go to canvas
+under the files machmood creating or
+upload it into the sub folder for the
+project a detailed book chapter of how
+to calculate the Kirkwood buff integrals
+so you don't only have to rely
+necessarily on the lectures from last
+week any questions on the project
+okay
+back to staff back
+okay what we are working on is
+interacting systems now in order to
+accomplish how to include interactions
+into our formulation of a canonical
+partition function we defined this
+function called the configuration
+integral and based on the formulation of
+it
+the pressure of the system is directly
+related to the configuration integral if
+we assume only paralyse adaptivity
+meaning that if you have a collection of
+molecules that we don't have to consider
+the energy of the system is one holistic
+type calculation instead we'll say we're
+going to add up all of the individual
+pairs of interactions now if we do that
+we can write the configuration integral
+so again breaking down the configuration
+integral what we're doing is we have one
+integral over the entire volume for
+every particle so what this integral is
+saying is there we are adding up all of
+the positions of all of the molecules
+for every configuration so every
+possible location of every single
+molecule then within each of those
+individual contributions were adding up
+or in this case multiplying here just
+based on exponential properties or
+adding up the Boltzmann factor scaled in
+the energy of interaction between all of
+them and this gets us into the form of
+the canonical partition function so this
+equation here is just about impossible
+to calculate for any real system so
+instead we approximate it and again my
+my service to the approximation is going
+to be somewhat pathetic basically what
+I'm going to say is there's mathematical
+tricks that we can use to rewrite this
+section here I'm not going to go over
+those tricks but basically we can take
+this integral and we can break it down
+into sort of like almost like a Taylor
+series expansion that approach
+not exactly but along the same along the
+same methods so if we assume that all of
+our molecules interact with binary pairs
+of interactions and if we approximate
+this integral using somewhat of another
+mathematical approximation we can show
+that the configuration integral is
+approximately equal to
+this function here but keep in mind this
+is an approximation of an approximation
+of an approximation effectively so this
+is a hand wavy way to evaluate this
+extremely complicated integral here now
+this 4 PI R squared contribution that
+happens when we're transitioning into
+spherical coordinate systems so assuming
+that this approximation is appropriate
+we can calculate the pressure of the
+system P is equal to KBT times by the
+natural log of the configuration
+integral with respect to bong so if we
+substitute it in alright what is the
+derivative partial derivative of e to
+the n with respect to P
+to me I'm sorry the natural log of
+ourselves let's rewrite this here so
+that's this is that this is equal to the
+natural log of C is equal to an element
+of V plus
+so what's this first contribution here
+what's the derivative of this
+and overbeat and this one
+- N squared beta over to be squared
+so we can rewrite this in a slightly
+different form taking a lot of space
+before today we will put the N make it
+instead of a extensive volume they get
+an intensive volume so basically we have
+k bt b we have 1 minus beta
+squared oh right right
+so then what we'll do instead is we'll
+rewrite this we'll define a new function
+such that the pressure is equal to 18
+does this function look familiar to
+anyone this is the virial equation of
+state 2
+so the virial equation of state can be
+derived from static principles by
+defining the configuration integral
+assuming only pairwise additive 'ti and
+then approximating that integral to a
+more simplified functional form so this
+is ok for moderate pressure but anything
+that starts to get close to let's say a
+super crook like the critical point or
+gets close to condensation the virial
+equation of state will fall flat but the
+good news with the virial equation of
+state is that now we can calculate the
+second virial coefficient based on the
+intermolecular potential so I'll rewrite
+that here just based on doing a little
+quick substitution
+[Music]
+and I switched these years that I got
+rid of the negative sign so this allows
+us to relate between microscopic
+interactions to macroscopic measurements
+of pressure so if we do have a PV
+isotherm we can fit it with the virial
+closure equation of state and see
+approximately at moderate pressures
+which intermolecular potential seem to
+fit which loads at certain parameters so
+we're going to do that now so let's
+start off with a hard sphere so for the
+hard sphere if you recall this goes off
+to infinity so this is U this is our I'm
+a drop the I J just because I'll think
+of it as just R so how we write the
+hearts for your potential
+it's just a piecewise function the
+piecewise functions are fantastic for
+evaluating integrals that's sort of why
+the square well and the hard sphere are
+the two simplest functions that we use
+to sort of play around with and stand
+back because with their piecewise to
+make a break with part really tributing
+so let's calculate the second virial
+coefficient for a square by a hard
+sphere material so we're gonna have two
+pi multiplied from the integral from
+zero to Sigma right piecewise function
+one minus e to the negative infinity
+which goes to zero plus the integral
+from Sigma to infinity 1 minus e to the
+0 this whole thing goes to zero so when
+we substitute in our hard sphere radius
+into this integral here the outcome is
+that the second virial coefficient is
+equal to 2 pi sigma cubed over 3 so this
+means our hard sphere fluids attractive
+or repulsive
+they are only repulsive because if we
+substitute the virial coefficient into
+our expansion we are only adding to the
+pressure meaning the fluid is pushing on
+the walls of the container harder than
+it would necessarily otherwise try to
+all right now for the next one is going
+to be the square well potential will
+substitute it in as well so for the
+square well you as a function of R we
+have this goes off to infinity at the
+radius of the particle we have some
+square well negative epsilon energy and
+then it goes back to zero at some
+parameter R square well multiplied by
+Sigma so how far apart are these range
+of interactions in a piecewise function
+we write this as infinity for R less
+than or equal to Sigma negative epsilon
+for Sigma 2 R square well Sigma and zero
+for your radius greater than your final
+parameter so in Loum actually going
+after the math this is quite a bit more
+complicated to evaluate the second
+virial coefficient looks like this
+yeah that terribly complicated but a
+little more complicated of a function so
+what this looks like I will define some
+reduced temperature and I will define
+some reduced the early equation here
+it's a basic I'm just normalizing this
+relative to what a hard sphere would
+have and then this is just a relative
+temperature based on the attraction or
+repulsion interaction it's kind of like
+a dimensional separation that's looking
+at transport phenomena so if we look at
+this what this function ends up looking
+like so if you plot the star and you
+look at this scale Bureau coefficient it
+ends up looking something like this and
+this is zero
+so and this would be approximately
+reduce to temperature equals to one the
+hard sorry the square well fluid as we
+may expect should be attractive but
+because we have this potential energy
+well where the fluid molecules want to
+be near one another but that attraction
+only occurs when the temperature of the
+fluid normalized by the Boltzmann
+constant is approximately the same
+energy as the depth of this well so one
+way to think about energy transitions
+and molecular systems is you always want
+to think about what is the energy
+relative to the thermal fluctuations of
+the fluid so the Boltzmann constant who
+here feels confident to tell me what
+information is contained within the
+boltzmann constant or the ideal gas
+constant who wants to volunteer
+think about it as the units from Brendam
+oh I was thinking about it as if you
+multiply the Boltzmann constant by
+Avogadro's number you get the gas
+constant yep so they're the same
+principle but once this for a moles
+worth of particles and one is for a
+single particle what is the physical
+underpinnings of the gas constant or
+Boltzmann's law the Boltzmann constant
+they do but let's look at the unit's
+really a little bit more closely they do
+share the units of entropy my gut
+reactions to say that is coincidental
+but of course with thermodynamics
+everything's probably connected so KB is
+equal to 1.3 8 times 10 to minus 23
+joules per Kelvin so when I multiply KBT
+that gives me Jules what now you may
+want to overthink this question what
+does the Boltzmann constant tell us
+it's dead sorry it's that like the
+thermal energy of a single particle as
+it like yes it is the proportionality
+constant between temperature and the
+kinetic energy of the gas right so it's
+a constant basically saying how we
+relate temperature to the kinetic energy
+now one of the reasons why Boltzmann and
+his theory wasn't believed and maybe if
+it was believed they said who cares it's
+just a mathematical approximation is
+because it's very very very very small
+right ten to the minus twenty three
+jewels right is what he calculated was
+the sort of the best approach to sort of
+understand his kinetic theory of gases
+and the principles of static so they had
+already known that the gas constant was
+and so Boltzmann's connection was
+basically saying yes but if we consider
+a fluid to be made up of small particles
+which is basically the foundations of
+his atomic theory this is how small
+molecules would have to be right so they
+had some estimates of what Avogadro's
+numbers were they knew what the gas
+constants work because they had done PV
+measurements of bulk phase fluids for
+quite some time but the challenge there
+is that this is very very very very very
+small number right inconceivably small
+right the energy of a single molecule
+zipping around with its kinetic energy
+I'm getting hit by billions and billions
+and billions of billions of billions of
+those every square centimeter every
+second that I'm faced by right Matalon
+it doesn't pack a lot of punch but one
+way to then think about how molecules
+behave when you think about it in terms
+of intermolecular potentials if you have
+two particles that want to stick
+together
+maybe it's a chemical reaction maybe
+it's like a lock-and-key type polymer
+configuration maybe it's a protein
+binding to some sort of biological
+molecule the way to always think about
+it is respect
+to the magnitude of the energy of
+interaction relative to the energy of
+the thermal lotions of the fluid itself
+so you can kind of think about this
+kinetically then if I have another
+molecule here I can fall down into this
+potential energy well and that's a lower
+energy state of the system
+that's a preferable configuration
+however you're surrounded by a sea of
+other particles and if another one zips
+in and hits you you can get knocked out
+quite easily now the probability of
+getting knocked out of a potential
+energy well like that is going to be
+proportional to how deep that whale is
+the fluid so if you're ever curious
+about length scales time scales and
+energy scales the starting point is
+always what is the KBT thermal
+fluctuation energy of the system I
+should have double-checked my notes on
+this but I think it's on the order of
+G's we do you remember what it is for
+room temperature we can calculate a
+basic right it's just R times by T right
+so 8.314 times by 300
+Solicitors 2400 sort of 2.4 kilojoules
+per so any macroscopic process that's
+less than two point four kilojoules per
+mole it's probably very unlikely to be
+in existence for a room temperature
+pressure system so relative order of
+magnitude how big how much energy you
+think is stored in a covalent bond more
+or less than two point four kilojoules
+per mole
+afternoon otherwise molecules will be
+falling apart at room temperature just
+from two gas particles hitting into one
+another causing that to break apart the
+entire structure so if you have a fluid
+right let's say we have a fluid right
+that has a square well potential here
+you can get a rough estimate of whether
+or not you'd expect it to be in a
+condensed phase as a saw on or liquid or
+is in the gas phase based on the depth
+of the potential energy well here so
+even without tremendous knowledge of the
+details of all the stat mech mumbo-jumbo
+you can get a really surprisingly good
+estimate of the physics of a process
+just by looking at the thermal
+fluctuation energy and also considering
+how deep this potential energy ball
+needs to be so if I were to ask you
+right if I wanted to model the
+condensation temperature of water for
+example you can sort of in the back of
+the envelope know at what temperature
+liquid water condenses and you could
+probably get a surprisingly reasonable
+within an order of magnitude estimate
+how deep this potential energy well
+means to be of the square well potential
+fluid just based on these really back of
+the envelope approaches okay is that is
+that sort of clear but this is a one of
+the tricks that professors like to use
+to understand sort of would things make
+sense what things don't make sense
+we get to do when I consider one of my
+favorite examples in the whole class
+I've got a few of them this is a lovely
+face it has to do because it ties
+everything that we've done the whole
+class together into one conceptual
+thought experiment it's called the
+joule-thomson coefficient
+the joule-thomson coefficient is defined
+at how the temperature changes with
+respect to changes in pressure at
+constant enthalpy which cycle relies on
+the joule-thomson coefficient
+refrigeration so a quick question is an
+ideal gas if it refrigerant why that's
+true we don't actually have to rely on
+phase changes for the refrigeration
+cycle necessarily I think the phase
+changes it I don't think we need to rely
+on that but the phase change stores will
+allow more damage I think but I think
+you can still the refrigeration with out
+phase changes just not as good ok the
+reason for that the joule-thomson
+coefficient is zero basically for an
+ideal gas so alpha is the yes it's the
+coefficient thermal expansion
+coefficient I have I know tiny right
+down this aisle so alpha for an ideal
+gas is equal to one over T therefore the
+joule-thomson coefficient for an ideal
+gas is equal to zero if temperature
+doesn't change when you change it to
+pressure
+eyesynth optically and this makes sense
+right the enthalpy of an ideal gas is
+only dependent on the temperature so if
+we were to look at a joule-thomson
+expansion valve which is a critical
+component of a refrigeration cycle we're
+entering it at some T 1 P 1 relieving at
+some T 2 P 2 now what we're going to say
+if we do the energy balance in the whole
+process
+deu DT is equal to zero we're going to
+treat this as a steady state process we
+have the summation of the mass and the
+enthalpy flowing in and out plus Q plus
+W we can also let's be thorough here -
+my name is P okay so we can be really
+thorough with our analysis I'm going to
+say this is going to be adiabatic Q goes
+to zero
+I'm going to say there's no shaft work
+done it's just a dumb valve I'm going to
+say the walls are rigid there's no
+expansion and the conclusion that we
+reach is that the enthalpy change has to
+be equal to zero now going back to sort
+of the classical approach or the
+advantage of Alice's the reason why we
+can say heat and work are approximately
+zero now this valve here if you went out
+to your your refrigeration unit at your
+house it would of course not be room
+temperature will be cold it would be
+cooling down but the notion here is that
+we're looking at a packet of fluid as it
+travels through the system so if you
+have a high mass velocity going through
+this valve yes you're losing some energy
+overall but if you looked at per packet
+of fluid that packet is oozing very
+little energy now if we integrate this
+into the refrigeration cycle we have our
+joule-thompson coefficient expansion
+that's right here we have the condenser
+it goes into sending this back
+the evaporator and then it goes into a
+compressor
+now he gets evaporated we're sucking
+heat this is Q cold but the condenser is
+outside of your house
+that's a cute hot so you compress it to
+a liquid you condense if you expand it
+again you evaporate it has it boils
+inside their house or cools things down
+that's the standard refrigeration cycle
+just as a throwback okay now let's say I
+have a 6:12 lennard-jones fluid that
+means that my intermolecular potential
+will look something like this there will
+be some potential energy wealth where
+the fluid molecules will want to be near
+one another as you go further away the
+potential energy gets less and less it's
+more positive actually so this is
+actually the lowest energy equilibrium
+state of the system now my question to
+you is I have two points a two a prime
+or B two B Prime
+so we can imagine this right imagine
+that we have a box with a particular
+density certain number of particles over
+a certain volume we can then use this
+information to estimate assuming that
+all the molecules fit into a nice
+periodic array what is the average
+separation distance between those
+particles right this is not exactly how
+the fluid behaves or the fluid has
+statistical fluctuations but in essence
+based on some density we can calculate
+the average separation distance and then
+we can relate that to a pair of
+potential now when I say a 6-12
+lennard-jones fluid what i mean is that
+it's just going to be a spherically
+symmetric monatomic system now this
+doesn't mean that the system has to be
+like that it just means that we're
+approximating that so for example
+imagine water with hydrogen into two
+having as an option is a single sphere
+as you say my question to you so don't
+blurt it out whatever want to think
+about this if I'm running a
+refrigeration cycle do I want to expand
+in my joule-thompson coefficient from a
+to a prime or from B to B Prime all I
+ever want to think about it rationalize
+it and then we'll discuss it a moment
+so you ties everything together
+everything is tied together nice and
+neatly we did equations of state we give
+cycles we get statistical mechanics we
+get intermolecular potential so
+everything's tied together in this
+question that's that's why my favorite
+one of the year I think I said that
+before
+this is one of the favored ones
+who feels in the answer
+today I'm on talking through
+okay so who's leaning just by strawpoll
+who's leaning towards an a to a bride
+who's leaning towards B to B Prime
+so we have one coat for a a for two
+votes from B to B Prime in one blow from
+a date right
+okay so we'll shop what's your phone
+okay so pretty even split yeah so what
+we're looking at here is let's say we
+approximate let's just say for
+hypotheticals Delta H is about Delta U
+just because the PD doesn't contribute
+too much ready for conceptually
+substantive throws off so in this
+circumstance here in a joule-thompson
+valve for a refrigeration cycle right
+that's the limiting here right knowing
+that this is for a refrigeration cycle
+we want this system to cool down right
+so you the internal energy of a system
+at some higher temperature is greater in
+the internal energy at some cold
+temperature this is basically pretty
+obvious conclusions if this isn't true
+violates the second law of
+thermodynamics so when we look at this
+system here when we go from a to a prime
+so U of a prime is greater or smaller
+than u of a smaller so let's see so you
+have a
+is less this way frankly and then U of B
+prime is greater than you beat so no B
+to B prime is the right one because so
+what's happening from a to a prime is
+that you have potential energy the
+energy stored in your system in the
+intra molecular configuration of the
+particles as you expand your system from
+a really cool compressive state to its
+equilibrium configuration you are
+lowering the potential energy of the
+system meaning that you have an excess
+amount of energy it's exactly the same
+principle as mixing water and sulfuric
+acid when you mix water and sulfuric
+acid you are destroying some of the
+energy that's formed in the hydrogen
+sulfate interactions that takes it to a
+lower energy configuration so now you
+have an excess amount of energy that is
+no longer stored in the inter molecular
+configuration and it has to be stored in
+which form heat or kinetic energy so
+you're transferring energy from the
+intermolecular configuration to the
+kinetic energy now when you expand from
+B to B Prime
+you're at a higher energy state so you
+have to steal the energy from the
+kinetic energy in order to adopt the
+acceptable configuration yes
+yes it was adiabatic thing we would we
+would basically just be we were just
+suck you would be going into the system
+so if we think about it this way here
+this is an exothermic process right the
+final state is a lower energy than the
+initial state final minus initial
+exothermic and this one here this is an
+endothermic process the energy of the
+final state is distinct from the energy
+of the initial state so this sort of one
+ties everything together very nicely
+in a tie sort of how to think about
+fluids so now if you with this knowledge
+basically you can now design potentially
+a refrigeration cycle for an arbitrary
+compound you don't have to go into the
+lab and measure all the properties and
+this is where the predictive power of
+statistical mechanics classical
+mechanics is all made up sorry classical
+thermodynamics is all made up basically
+we've got a formulation we need to know
+certain properties but there's no Li to
+actively predict those properties so
+thermo in a classical sense is a
+formulation that allows us to aggregate
+experimental data and use it information
+to calculate more advanced processes
+right so only measuring a PD isotherm
+for a gas is heat capacity we can now
+estimate how it should face transition
+in a mixture it's that's pretty cool
+right but at the end of the day we can't
+predict that PV isotherm we have to
+measure it and then correlate it with a
+cubic equation of state we can't predict
+heat capacities necessarily with stat
+mech we can predict those right we can
+predict with appropriate models bond
+rotations start molecular rotations bond
+vibrations the connect
+energy intermolecular forces at all
+about so that's the real strength of
+statistical mechanics is that all the
+weaknesses of classical thermodynamics
+kind of fall apart when you actually try
+to do predictive things like thermo
+classical thermos and advocates of
+information but here we can actually
+begin to predict how fluids should
+behave based on simple rules and how we
+think molecules should be attractive and
+repulsive one another and this is nice
+visit isin basically energy balances
+processes intermolecular forces so it's
+a really nice example what we're gonna
+be talking about on Friday there's a
+couple of options but working either
+couldn't be talking about dense fluids
+or phase transitions from a staffing
+perspective I haven't decided which one
+holds up yet but soon we'll be covering
+radial distribution functions these
+squiggly lines that everyone can see
+this is basically the next step in
+density the virial equation of state
+what we talked about today that's okay
+for moderate densities but once we start
+talking about real liquids real liquids
+become astronomically more complicated
+than then even non ideal gases non ideal
+gases are relatively straightforward but
+dense fluids like water or any other
+liquid ability extremely difficult so
+actually literally today it's a bit
+challenging to introduce the rate of
+distribution function in five minutes
+anyway
+well see you all on Friday please take a
+look at the project let me know if you
+have any questions yeah next week

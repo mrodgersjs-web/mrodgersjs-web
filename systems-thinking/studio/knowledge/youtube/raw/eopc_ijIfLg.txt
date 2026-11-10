@@ -1,0 +1,1296 @@
+Hello everyone. Thank you for joining us
+today for our session on site
+reliability engineering fundamentals. My
+name is Lauren and I'm the content
+manager on the Google Cloud Community
+team. I'm excited to be joined today by
+technical account manager Pamela Canova.
+Want to say before we get started and
+diving in that questions are encouraged.
+So please feel free to add those into
+the YouTube chat box and we'll be sure
+to get to them over chat or live at the
+end of the session.
+Okay, with that Pamela, I'll hand it
+over to you and we can get started.
+Okay, thanks Lauren.
+Hi everyone. I'm Pamela. I'm a technical
+account manager at Google Cloud in
+Brazil and I'm here to present this
+webinar to you today.
+And this is
+going to be to be a SRE fundamentals
+webinar
+and we're going to share the a little
+bit of what is SRE and how to implement
+it and your company and how to defend
+your knowledge in this area. So let's
+get started.
+We're going to leave like 10 minutes at
+the end for the questions. So please
+leave in the comments and I'll address
+them at the end.
+And this is me.
+And this is is the introduction to SRE.
+Um this is the topic we're going to talk
+about today.
+Uh what is SRE, the key principles of
+SRE, the practices of SRE, how to get
+started and ways to get help.
+So let's start with what is SRE.
+Um
+According to Ben Treynor, he's the SRE
+of
+the VP of SRE here at Google and he said
+SRE is what happens when you ask a
+software engineer to design an
+operations team.
+So basically we are this is getting
+software engineers to
+design our IT operations. So this is
+what he defined as SRE.
+and SRE
+set of principles and practices that
+were
+developed
+at Google and started at 2003 when Ben
+joined Google and he was responsible for
+software engineers team that worked in
+the large-scale reliable site at Google
+and that's where he started developing
+this practice.
+And SRE is also a job like a you can be
+a site reliability engineer. So it's
+both a practice and a job role.
+Um let's talk a little bit about
+the costs of
+operational costs of software. So
+most companies they are typically
+focused on designing and building their
+products but not so much in operating it
+through all the IT operations.
+So it's estimate there's an estimate
+that 40 to 90% of
+uh
+uh software cost or product cost
+incurs after launching it to operate it.
+So it's like sometimes 10 times more
+expensive to maintain and operate a
+product than launching it. So it's
+important that
+the companies can hire focus in hiring
+good software developers but also
+uh people responsible for operations. So
+they don't spend that much after
+launching with unavailability, you know,
+and
+reliability problems.
+Um this is the scenario that most
+companies have. So we have like a
+proverbial wall in the middle between
+developers and operators.
+Um developers just build a product as
+fast as they can and just throw it over
+the wall and the operators have to deal
+with it. So
+uh sometimes the operators they have no
+experience or knowledge in coding and
+how the product works and they spend
+most of their time trying to
+first understand the product and then
+act in solving it. So they have to
+contact the developers and product team
+before they can do something.
+So it's a not a very good scenario a
+setup then. It's not there is no harmony
+and there's a lot of attrition like
+between the developers and the operation
+team. And that's where SRE comes through
+um bring down that wall between these
+areas.
+Um and there are some techniques
+for working this situation. So before we
+talk about SRE
+um to work between business and
+development like the product management
+and the development then we have agile
+practices to work on this wall. And when
+you talk about
+the wall between the development and
+operations then we have DevOps to work
+on this.
+So
+this is the a little bit about DevOps
+definition. So DevOps like a set of
+practices and culture that intends to
+bring down the silos in IT development
+and architecture and everything that
+involves IT operation.
+And the key areas they have first of all
+is
+reducing this organizational silos
+between development and operations.
+Um second that we know things are going
+to break. So
+uh it's how to plan and accept failure
+as a normal.
+Um smaller changes are easier to
+implement and deploy. So
+uh implementing gradual changes
+uh reduces the risks and also makes it
+easier to roll back when you have a
+problem.
+Um and then we want to remove as far as
+we can the human error from the
+equation. So
+if we leverage in tools and automation
+so we can reduce the risk of being human
+error in the process.
+And finally
+uh we want to measure everything cuz
+it's critical to determine like success
+in all areas
+uh if
+we need to measure everything we do. So
+it's very important.
+and then the SRE approach to operations
+um
+The SRE says that we need to use data to
+I'm sorry.
+Uh the SRE says that we need to use data
+to guide our decisions and then we need
+to treat operations as software
+engineering problem. We don't need to
+treat it
+like it's separate areas. So it's
+important to
+Sorry. To treat it as a
+the operations of IT is also a problem
+of the software development team.
+So to do that you need people with
+software engineering skills
+in both sides. Like
+uh you can't have people writing code
+only in software development. You need
+people that are supporting that product
+after it's launched to also know
+coding at least to understand what's
+happening with the product and if there
+is an outage or something they need to
+understand it.
+Sorry, I was
+I was moving the slides in the wrong
+place.
+Okay, now it's the right slide.
+Let me just go back there cuz what I was
+talking the key areas of DevOps so then
+you can watch it later. Sorry.
+So about the
+hiring people of that know coding will
+reduce the problem of
+having to always ask for help of
+software developers when you have a
+So if we have
+coders like software developers of no
+areas then we can design a more reliable
+and operable like service architectures
+and product.
+And so so good to have people how to
+code and automate things is that we can
+uh accomplish many tasks automatically
+and avoid having people looking at logs
+and dashboards all the time if we can't
+be done coding.
+Okay.
+So what do the SRE teams do? So it's
+like a
+basically SREs write software and design
+systems that can operate scalably,
+reliably and efficiently.
+And that goes from designing it to
+operating it.
+So the SREs are responsible for guiding
+the architecture of the system and they
+also work between like the development
+and engineering team.
+So everyone is in the same page.
+Uh SRE is also a job function as I
+mentioned. So mindset and
+like set of approaches to writing better
+products.
+And
+it's like a
+being a constructive pessimism, so we
+the SREs are always hoping for the best,
+but they always have to plan for the
+worst.
+So,
+as I said about DevOps, what they are,
+then
+what's SRE comparing to DevOps? Like
+Actually, if we look into it, it's
+Some people may might say that SRE is a
+way of implementing DevOps cuz they have
+like most of the practices and
+fundamentals are basically the same. So,
+it's like
+implementing DevOps with a different
+perspective, but I think
+the goal is the same. It's always
+building scalable and reliable software,
+so
+it's always the same, but implemented in
+different way.
+And in the next slides, we're going to
+talk in these different areas from
+DevOps, how the SRE works.
+to implementing.
+The first thing we need to learn about
+the error budgets.
+It's like the key principle of SRE.
+It's very important cuz if we don't have
+error budgets, we can't estimate our SLO
+that you're going to see ahead.
+So, if you look into a
+more traditional way, like more like a
+naive approach to
+measuring reliability,
+if we probably look like availability is
+the good time divided by the total time
+of a
+a product product or service.
+And it's very intuitive, so we just
+divide the the good time to by the total
+time and we have a number. But, it's
+a little bit complicated to use this
+kind of approach if we have distributed
+systems, if you have microservices,
+it's important to have another view of
+this
+measurement. So, it's it can be
+applicable to more modern
+applications and products.
+Cuz like if we have a server that's one
+server down, it's easy to know if a good
+good time and the total time of
+availability. But, if we have like
+a service that's composed by three
+servers and one is down,
+is the service down or not? Or is it
+partially down? It's difficult difficult
+to measure if we only
+account for the time it's the up and not
+the number of interactions into that
+application.
+So, the SRE
+perspective is that we should measure
+availability dividing the good
+interactions
+by the total interactions we have to our
+service or our product.
+So, we can have like the way to handle
+the distributed services
+more complex architecture. So, then if
+we have a
+a service that is composed by three
+servers and one is down, then we can
+measure the number of requests that are
+arriving to that server and we can say
+if it's available or not.
+And not just by the time of the up time
+of the server.
+I guess many of you have seen this table
+before.
+So, every company or every product team
+wants to have like three or four nines
+of availability into their product.
+But, it's like really complicated
+thing to have and like
+we have many nuances into looking this
+table cuz sometimes we look like this
+example, we have 99.95%
+availability, but inside this like 21
+minutes, we could have a service
+unavailable in a month.
+How much of this service is is
+unavailable? Cuz sometimes it's not
+completely down, it's just part of it.
+we could have like 10% of the 95%
+or 1%. So, it's important to know
+if it's like a complete like 100% outage
+we have or smaller
+outage like partial outage and how we
+can measure that to make sure we can use
+the error budget correctly.
+And as Ben Trainer said, 100% is the
+wrong reliability target for basically
+everything.
+Cuz it's impossible to have
+any kind of product that's 100%
+available like all the time forever. Cuz
+if we think that it's
+what we want to achieve is 100%, we'll
+never
+have time to
+make testing or like upgrading
+and implementing any changes in the
+environment, then it can never be 100%.
+Otherwise, like something that will be
+turned on forever unless that's what he
+wants. So, it's important to understand
+that we'll never have something that's
+100% available.
+And that's where comes the error budget.
+So, the error budget is
+how much we we have
+how much we want to achieve in
+availability
+instead of the 100%. So,
+like how much we need to talk to the
+product team and the users and the
+business
+to understand how much they can afford
+being unavailable. Sometimes, a product
+is not that critical and it can be like
+5% unavailable or 10%. So, it's
+important to work with all the areas
+from developing to delivering the
+product.
+How much of this can
+be negotiated?
+this is
+what the error budget is. How much I
+want to compromise from my product to
+make the changes or to plan for space
+for like a mistake or anything that can
+go wrong in outage, then that comes from
+the error budget. All the unavailability
+planned or unplanned will come from this
+budget.
+These are some benefits of using error
+budgets, so it's like an incentive for
+development team and the SRE. So, you
+can find a balance between like how much
+you're going to innovate with how much
+you're going to compromise your
+reliability as well.
+Also, like the dev team, they can manage
+the risk of doing any change. So,
+they can decide how they're going to
+spend it. Like if there is a month that
+they haven't had any outage and they
+think, "Oh, maybe then this month we can
+plan for a upgrade or maintenance
+change." So, they are in charge of like
+managing the risk of doing some change
+in the product.
+And it's also important to use the error
+budgets, but being realistic cuz if
+people put like a totally unrealistic
+goals
+for the reliability, then it's
+impossible to
+manage the error budgets. Like, "Oh, no,
+I want 99.99."
+Then,
+it's probably you'll never have time to
+upgrade or test anything in your
+environment. So,
+and these are unrealistic goals,
+probably will
+you'll have like software engineers not
+really motivated to do their work cuz
+they don't have that window of like a
+small window for changing and testing.
+So, they will always be afraid of doing
+anything cuz
+"Oh, my error budget's too low and if I
+do something wrong, I better not do it
+and just leave it as it is." So, it's
+important to check if it's
+a realistic goal.
+And also, the all teams involved in
+error budgeting, they can police
+themselves of how much they are spending
+or not, so they can plan for things.
+Like if I have a
+in the middle of the year and I haven't
+spent
+like half of my error budget, then I can
+plan what I can do next. So, it's
+police
+all this process like all the time and
+work with the risks.
+And it's also
+something that's shared with all
+areas, so
+the error budget is
+shared between all of them. It's not
+something that if something goes wrong,
+you cannot blame only the the devs, you
+know? So, it's important that everyone
+will assume they are part of this.
+And these are the terms that probably
+many of you have seen already. So, we
+have
+some some
+SLI, SLO, and SLA, and these are related
+to the error budgeting. So, the SLI is
+the service level indicator
+and it's like
+tell any any wearing time
+how our service is doing. So, is it
+acceptable or or not?
+How good is it doing? Like how how much
+of the time it's up or not. So, it's the
+like in a real time how you're doing any
+wearing time.
+And the SLO it's the aggregation of SLI
+uh over time. So, it's like
+the equivalent of error budgeting
+talking about service level. So, it's
+over time it says like uh what my target
+and how much of it is how much of my
+application or product is up or down.
+So, it says if it's like I'm how bad or
+good I'm doing over time with my SLIs.
+And the SLA is the service level
+agreement. It's more related to
+business. So, it's where it comes to
+like if I have an outage here at Google
+and if I break the SLA, then maybe the
+customer will will
+give us a fine or something. So, it's it
+comes it's pretty much coming down to
+like breaking agreements and probably
+there is money involved if I don't
+uh I don't have the a good SLA. So, it's
+pretty much related to business and not
+so much to availability of the product.
+So, as I said, the SLO is the aggregated
+SLIs over time and
+it's uh typically measured if we divide
+the sum of the SLI match over the period
+of time, then we have a target
+percentage of SLO.
+it's very hard to decide like choosing
+an appropriate SLO,
+but uh
+it's important to try to keep it simple
+at the beginning if you don't have one
+and you work it over time cuz if you you
+have an SLO that's too aggressive,
+uh then maybe it's too hard to start.
+So, it's better if you start uh lower
+and work with the product and our teams
+to
+to rise it over time.
+So, it's important that we the the
+expectation of the SLO is set between
+all areas. So, before we can launch a
+product or
+have in production environments.
+And this product life cycle that we saw
+previously, then if we have SLOs and
+SREs, we have we can solve all the
+problems between business development
+and operations.
+Cuz then as we talked like the Agile and
+DevOps just work separately two areas,
+then with SLO and SRE, we can
+bring these all three together.
+And with the SLO and SRE that we talked
+in this last slide,
+um we can always uh already compare two
+areas of the DevOps and how
+the SRE works on it. So,
+uh in DevOps, reducing your
+organizational silos, then in SRE, we
+share the ownership.
+instead of accepting uh
+not instead, but
+uh to work with the uh failures and
+accepting the their them as normal, then
+we work with error budgeting in SRE.
+while DevOps try to measure everything,
+SRE works mostly on measuring
+reliability of the service.
+These are the areas of practice
+uh of SRE. So, we have the metrics and
+monitoring, the capacity planning,
+change management, emergency response,
+and culture.
+The first one uh monitoring and
+alerting, then we talked earlier about
+measuring the SLOs and that's where
+monitoring and alerting comes from. So,
+we need to measure how well
+uh we're doing against our targets and
+then you have to
+have high quality alerts and systems
+that
+only trigger when you have
+uh you think that your error budget is
+threatened. So, it's important that we
+automate
+uh the metric systems and working
+determining what's
+what's our SLO and SLIs
+so they are adjusted to our goals
+and that we have proper alerting
+depending on the severity of an incident
+or an outage. So,
+it's important that
+uh we can we only require human
+attention if it's necessary. So, if we
+need uh need to immediate interaction of
+a human, then it's important to have a
+page or a phone or something that let
+let them know that they have to do
+something, but if there is no immediate
+interaction needed, then we can have a
+ticket system
+that will work on this and the their
+an uh an analyst or an engineer will
+have a look when they have time
+depending on the priority of the case.
+And it's also important that
+we don't have humans doing work that
+could be done by coding. So,
+we don't need humans to look at
+dashboards all the time or looking at
+logs and
+they have to have tools that let them
+know that something's wrong. We don't
+need people to do the work of like we
+can do by computers. So, it's important
+that we can reduce the toil of the
+operating team if they can only react
+when it's needed and not looking all the
+time if we have like I'm going to look
+at the screen my whole shift and see
+something becomes yellow or red. So,
+it's important that we
+we can reduce this toil working and they
+can invest time in
+coding for example or doing things that
+will improve their system instead of
+just
+doing a work of like robots could do.
+Something that's also very important is
+that we have uh capacity planning
+and also forecasting what we're going to
+use. Uh we can we can have
+uh organic growth that will come from
+new users or like uh
+growth for your website
+across uh over time,
+but we can also have inorganic growth
+that will come from launching a new
+product or a new site.
+it's important we plan for both. We have
+like uh an estimate and a forecast for
+the for both scenarios.
+So, we don't need to react immediately
+to like oh, we if we don't plan the
+capacity for a product and we have like
+a Black Friday or
+uh another big event that will increase
+the capacity, then maybe we would won't
+have the resources to increase it when
+needed. So, it's important to plan in
+advance these changes.
+And also correlate them with the
+capacity we have. So, it's important
+that we know how much we can grow. So,
+if we don't have enough money or
+resources, how to organize this. So, I I
+need to grow my system uh like 10 times
+for a period of a month. How can I plan
+it?
+Uh how can I be safe that it will be
+delivered and I can scale it if and I
+won't run out of resources or I'll have
+the money to pay. So, it's important.
+And for
+the organic growth, it's just like
+having the metrics over time and analyze
+them periodically. So, you can see how
+much you've grown over the like every 6
+months or 3 months or over a year and
+compare how much you can plan like
+steady 10% every year or it's growing
+over time. So, you can scale your
+capacity over time as well. So, you
+won't have any problem.
+And another point of view uh talking
+about
+this uh scaling and forecasting is that
+we have to think about the efficiency
+and performance of our environment,
+but
+we need to
+always think of both sides cuz sometimes
+we
+overscale things afraid of
+a upcoming event and then we are wasting
+wasting money and resources that aren't
+used. So, resources are very expensive
+and then we need to plan for
+a fair value for like the the amount of
+resources has to be fair. We don't need
+overthink and then put too much into it
+and then we're not going to use it and
+then we are paying for something we're
+not using.
+And also, we don't we can't think of
+like a a margin too close.
+So, then we can have a product like
+degradation and latency and many other
+problems if we think, "Oh, I'm going to
+go only 10% we just cut it too close and
+it comes down to like you needed 20% and
+you don't think you needed and then you
+have the users or customers impacted.
+So, it's important to always think of
+like the capacity and how you can
+optimize it and not spend too much or be
+too short on the resources. Always meet
+in the middle
+to guarantee your availability in big
+product client launches specifically.
+It's very important.
+Another thing that's very important in
+the process of
+SRE and IT in general is change
+management.
+Cuz
+there is a study here in Google that
+says that 70% of the outages we have
+were due to changes in the live system.
+Many people just think they can do
+changes and they That's not a minor
+change and it won't affect my system.
+So, I'll just do it. Just a line of
+code. It's just like I'll just restart
+the VM or something very small and we
+think it won't impact my system. So,
+people need to start thinking that it's
+important to have change management even
+for the smallest changes.
+So, it's very important that we have the
+change management culture and
+it's
+very well known inside the organization.
+So, everyone will understand and learn
+the process
+of change management and how they can
+avoid bigger outages and also we can
+faster rollbacks if there is a problem
+if everyone
+knows how the change is going to be made
+and all the steps
+are informed in the change management
+process.
+So, it's a very important that
+Sorry, that everyone understands that
+and they can quickly react if there is a
+And also in this case it's possible to
+remove humans also just like automating
+operations. It's it's also possible to
+automate changes. So, if there is
+something that we can do by code and
+avoid that there is a human interaction
+in the process, then we can reduce the
+the fatigue of the operations team. We
+can improve velocity cuz we can
+implement it at any time and we don't
+depend on humans needing to do it. And
+we can also reduce errors cuz then there
+won't
+be a human factor in the equation.
+But we know that humans are
+not always replaceable by code, but
+whenever we can do it, we can save time
+and also remove toil from these people
+that we don't need to make people work
+during like night shifts if it's not
+really necessary.
+So, they can have a nice sleep and
+be working at their full the next day.
+So, just think about everyone involved
+and if we really need to
+make this or we can automate it somehow
+spare some hours.
+So, as you like
+like we said before, then 100% is wrong
+reliability targets for everything.
+So, it's important that
+we determine the reliability of our
+product and that we are not trying to
+provide something better than desired.
+Sometimes if we say that we have a
+availability target of 95%
+and that's fine with product team and
+with the user, then we don't need to
+over-deliver what was
+already agreed. Unless of course we can
+review this over time, but always try to
+make sure you meet
+what you've agreed than trying to
+over like overdo this and sometimes you
+do something wrong and you have your SLO
+at risk. So, it's always important that
+we have achieved what what we agreed to
+do.
+And also if we
+we can use the error budget if we don't
+use it over time like, "Oh, it's been 3
+months. We haven't had any outage
+recently. Maybe then we can
+use the time we haven't used to
+upgrade something we find or like we
+found a bug into an application and we
+can fix. Like we can
+we don't need to be afraid of using the
+error budget. I mean like
+the goal is having zero outages, but
+sometimes it's wise to use it if we
+haven't used it yet to improve the
+product or the system. So, it's good to
+use the error budget for experiments and
+testing
+or any other scenarios. If like you're
+being wise not wasting it with minor
+incidents, then you can plan for
+something bigger and then people will be
+prepared for it instead of like, "Oh, I
+won't use it now." and then you just go
+over 6 months without reviewing your
+application or upgrading it or
+like updating this operational system or
+something and then because you didn't
+look at it for 6 months because it
+wasn't like there wasn't a system,
+then if you have a problem cuz like,
+"Oh, the the manufacturer says I have to
+update the operating system every 3
+months for example and I haven't done it
+because there was no outage or anything.
+So, I didn't want to use my error
+budget." and then comes a bug that
+the
+the manufacturer saw and told you, but
+you didn't pay attention and then you
+get you have like a vulnerability or
+something.
+Sorry.
+And then you have an outage. Oh, I just
+saw like
+a question from
+I think we should understand the idea of
+using the error budget.
+Uh
+Like the error budget is the time you
+have agreed
+to use for like outages or changes. So,
+if like we have a 95%
+rate, then you have 5% of error budget.
+The error budget is
+the part of the SLO that we use for
+maintenance or implementing changes or
+also if you have a an incident. So,
+every time you put down the application
+or the service,
+it will count into that time. So, it's
+the other part of the SLO. So, if we
+have 95% SLO, we have 5% error budget.
+Is that part is what you are able to
+use. Cuz some people they just think
+about we have to achieve 9999,
+but then you don't think you have
+incidents or changes. So, it's always
+Um okay.
+Okay, let me see the other question.
+An upgrade that requires downtime is a
+product not built right.
+Oh, not always. Sometimes
+it can be something that comes up after
+it's delivered. It's not something
+I think you can always improve the
+application or the product.
+Yeah, well, it's true if
+there are some upgrades that can be done
+with uptime that if you have a high
+available application, then you can like
+put down one node or like a
+pool or something at a time, but there
+are sometimes you have to put down a
+website or something. So, it's always
+something you
+have to think about
+when you develop if it's something you
+can afford. Of course, if you have more
+resources and money, you can think of
+more reliable and available applications
+and you have less of downtime, but
+sometimes you don't need it you don't
+need it and it's expensive. If it's a
+product that can handle some downtime,
+then it's cheaper. So, if it's the if
+it's not a problem to have like 10 one
+like 30 minutes of a for an application
+to be down, then
+it's cheaper for me to operate than
+paying double for example to have two.
+So, it's always something you have to
+consider if which scenario fits best
+your your business or
+the application and the product.
+The next one.
+So, one thing that's also important
+between the change management and the
+capacity planning is provisioning. So,
+how can we like we always need there is
+always a necessity of upgrading or
+installing something like we need to
+Oh, my product doing very well and I'll
+have to scale it. So, it's
+very important that we plan for this.
+it's will be always necessary unless
+like you over provision and then it will
+be less common.
+But,
+if you
+plan correctly, then you just have to
+provision a little bit over time
+according to the product growth.
+So, it's important not to over provision
+as I said. Then, you can you are
+spending money on something you're not
+using. And sometimes it's also comes
+part of a an outage or something. There
+are some rollouts that can't be done
+uh or increases that can't be done if
+server or application is up. So, it's
+plan this and think about the user
+that's using this product and we
+we need to do it quickly uh with less
+impact to the final user as possible.
+And of course, then it has to be
+done correctly. So,
+uh ideally, it's important that we have
+uh like homologation development all
+environments before production that we
+can test the increase and rollout and
+upgrades and everything. So, it's
+important that we test it before we do
+it directly into production.
+And well, something
+that's part of the SRE culture is that
+you don't have to be afraid of asking
+for help cuz things break. That's life
+cuz
+uh nothing is perfect and it's part of
+the IT world that
+everything breaks at some point in time.
+If it didn't break, something is really
+wrong with it or maybe it's someone
+never turned off that VM or anything cuz
+eventually they will break during an
+update or
+anything can happen or like an incident
+or breach vulnerability. So,
+just deal with it. That's just part of
+life and don't
+don't panic about it cuz uh we're not
+alone. It is
+Well, the world is not ending because of
+this and we have to be calm to mitigate
+fix the problem and then
+after it we can think of what caused
+this and what was the root cause cause.
+Uh but it's important to be calm and
+fix it before anything and
+like if we are feeling overwhelmed or
+that we can't do it, we need some help
+or we don't have the expertise in this
+special product. It's all important that
+pull more people like oh, this is not
+something I've written the code and I've
+worked with this product before. So,
+uh feel confident that you can reach out
+to the rest of your
+teams or like other areas if necessary
+it's it's more important to have the
+problem fixed
+than finding what caused it. So, it's
+always important like fix it first and
+then we look at
+what was the reason it failed.
+uh usually what every incident has at
+least the ones that someone
+complains there is an incident cuz
+not all problems need a postmortem, but
+Oops.
+Not problems require a postmortem, but
+it's important to
+always have one when you need or someone
+asks.
+we have all the information regarding
+like what was the downtime of
+application
+uh or what was the degradation, what was
+the threshold for that problem. And if
+we need to gather all the information
+like if we had lost any data, if it was
+lost any money on this
+it's important to have everything to
+work in this like uh
+if we the person that worked in it has
+to what write down
+everything
+about what happened. As much as you like
+all the information you can gather and
+put it together for a postmortem is
+relevant. Then, when you're writing it,
+you can filter what's like you feel is
+necessary, but all the information you
+can write is
+uh important to put together the
+resolution. So,
+uh and also write like write down a
+timeline of things the problem started
+and when it was solved and what was done
+to fix it is important so you can write
+about it afterwards.
+And it's also important to know what are
+the thresholds for our service or
+product cuz
+maybe for a company if we have a
+like we can see
+of like 10% increase is not uh an
+incident for me, but maybe for another
+company it is. So, it's important that
+we have all the thresholds for each
+product to declare an incident cuz
+uh some situation can be an incident for
+one person, not for the other. Or the
+business can see it as an incident, but
+the technical team says it isn't. So,
+it's important to come up with all the
+thresholds before we can say
+uh we have an incident.
+And about the postmortem philosophy that
+we have. So, it's always important that
+uh the incident is very well documented
+and that we uh we understand all the
+root causes and everything that
+happened.
+So, we can explain the
+very clearly in the postmortem and don't
+hide any information.
+And also after finding the root cause,
+we need to write down
+uh what fixed it and what we can do to
+prevent actions like this uh in the
+future. So, if it was a mistake made by
+someone, what we can do like train
+someone in the tool or the product so
+they won't do the same mistake. Or if it
+was a vulnerability of some sort and how
+we fixed it and how we going to prevent
+it from happening again like scans and
+apply fixes.
+So, it's important that everybody
+understands that the postmortem is a
+document from the beginning to the end
+and also the future of an incident
+and not a punishment. So, it's not
+intended to
+say who did did something like if it was
+a person who caused the incident. It's
+good to put the person who did it in a
+postmortem. It's
+it's about our culture. So, you'll never
+put the blame on someone. It's
+uh it's not nice if like maybe if we try
+to find the the person who caused it,
+then we can find a bigger problem like
+oh,
+then this guy did a mistake doing this
+because he didn't have the proper
+training that we didn't provide. That's
+something that can happen. So, we always
+think have to assume that the people
+doing changes, they always have
+they are never trying to do something
+wrong and but things can go wrong, but
+it's never their intent. Nobody
+has the intent of
+doing something in a way to cause an
+incident.
+So, this is what I was talking about
+before. Then, we have the
+the culture of blamelessness in SRE. So,
+it's like we have to focus on
+identifying the causes of a problem and
+indicating how to fix it, but we'll
+never say uh that someone was
+responsible for it. We as a team or as a
+company, we are responsible for it and
+not uh one
+one single single person is responsible
+for causing an incident. It's all about
+the culture and the process.
+Things like the development, the change
+management, many things can go wrong or
+we lack many things that can lead to a
+an incident. So, uh
+we have to assume that
+uh we can't fix people. Uh but we can
+fix the process and the system. So,
+uh if someone did something wrong
+because of a process, then we go there
+and change that process that led to
+this.
+Uh and we never change the person. So,
+it's always important to think it's at
+angle.
+And about the operational work is
+something that
+I said before, so
+it's important that we find
+opportunities to automate everything
+that we can. I mean, we can't eliminate
+the human factor in this, but we can
+think of uh
+ways to reduce their toil work
+by automating things.
+and also train them in all ways possible
+to avoid them doing this toil work
+that's
+can't be like people can't not like they
+won't feel motivated to do their work if
+they only do toil work.
+And it's important that we have
+good skill set. So, it's important that
+we have
+uh software engineers and also system
+engineers
+like
+with the SRE culture in our company.
+It's It's very good that from from
+development to operations that everyone
+can do a little bit of coding.
+And it's important to empower the SREs.
+uh the SREs, they will have to have the
+power to enforce their budget.
+And also
+we need to see that they are valuable
+and scarce, so we don't we can't we
+shouldn't waste their time with
+uh things that we could do like we
+should get to the SREs uh with more
+complex questions and use their time
+wisely.
+also we have to see uh
+like we don't overload them with
+information and job that they can do,
+otherwise
+it won't
+he won't have time to do everything
+right. So, it's important to keep a
+balance
+on their work and life and
+I think if everyone, not just the SRE,
+but everyone involved in this process
+has to
+have a good balance of work.
+And talking about the other areas cuz we
+talked about three that we covered with
+SLO and SRE. And then the
+with the other two that were missing.
+So, it was
+we added something so like we take it
+about the failure as normal, then we
+have the error budget that I mentioned.
+And then we have the plainest for smart
+hands that also are part of this.
+And implementing gradual changes, we
+reduce the cost of failure.
+And measuring everything, we can measure
+the reliability and the toil of the
+operations operations teams.
+Uh so, these are the four things to
+start with SRE. The first one is
+defining an SLO is the first thing to
+Uh hire people that can write code from
+the beginning to operations.
+Uh ensure the culture of SRE is
+implemented in everything. Everyone
+understands the culture of blindness.
+And also we have uh to implement a lot
+of feedback, so
+we can always have all teams working
+together and going back if something
+goes wrong with this like in the
+feedback and work together to fix it.
+And to start like everyone can do this.
+Like you can pick one service uh and
+start running this only service
+according to SRE model.
+And then you can
+empower other areas and show the
+executive team that you can do it and
+maybe you can spread this to other
+services, but you can start with a small
+one and show it's valuable and doable
+inside your company.
+And spread the love to other areas. So,
+if you have the SLOs defined and you
+have a case study you can share, then
+you can prove it's possible to implement
+it. So, you have to have the data and
+everything to
+prove you can do this to like you can
+implement SRE in your company.
+And the SRE can solve many problems
+and mainly the cloud reliability
+problem. So, we can
+uh work with other teams to
+build
+uh scale like we can build a scalable
+and reliable
+solutions and automate
+uh engineering operations, so it's
+important also to bring like the tension
+down between the development and the
+operations which had like bring down
+that wall between them.
+And we can use the
+error budget to
+bring some flexibility
+so we can have like the reliability and
+also the velocity building new products.
+You can go to this site.
+Um we're going to put it there in the
+comments. So, if you go to
+sre.google/resources,
+you can have access to all books
+uh published by Google on SRE
+and read about them.
+There is also a Coursera uh course
+called Site Reliability Engineering:
+Measuring and Managing Reliability you
+can attend.
+And we have uh certification that's
+called Professional Cloud DevOps
+Engineer that's about DevOps and SRE
+together. If you want to prepare to a
+certification, you can use the resources
+and the books I just said.
+And that's it. I'll have a look at the
+questions now. Just a second.
+Let me see if it's something I haven't
+responded.
+Yeah, I just wanted to say thank you so
+much for that awesome presentation and
+that looks like we answered most of the
+questions in the chat. Um but if you
+have any others, please please feel free
+to add those in now. And then um also
+we'll definitely be sharing a recap post
+in the Google Cloud Community and you
+can find that link in the YouTube
+description with the key takeaways from
+the session and the recording. So, you
+can refer back to it later.
+Let me see if they sent anything new.
+There's one question from Hugo. Is it
+necessary to be a software engineer to
+become an SRE?
+Yeah, like you don't have to be exactly
+a software engineer to become an SRE,
+but uh you need to know a lot about
+coding, but it's not necessary to be a
+software engineer initially, but most of
+your work will be regard like will be
+uh the one of a software engineer, so
+you'll probably start to you'll have to
+start studying a lot of coding and
+stuff that the software engineer do. I
+mean, you can be an operations person
+that knows about the SRE
+um practice and everything, but to be an
+SRE like the job description, then
+you'll have to know a lot about coding.
+Got it.
+I just saw one here that the one this
+was SRE.
+This was SRE, but the Google Cloud
+certification's about DevOps, right?
+Yes, it is, but as I said, there are
+many things that
+SRE and DevOps look at the same thing.
+Like they talk about same thing and some
+people might say that the SRE is a way
+of implementing DevOps. So,
+uh they are very well like close
+related, so you can you'll see that the
+material for this certification talks
+about uh SRE and DevOps at the same
+time.
+And we have one more around
+certification. Right now I'm um
+preparing and pursuing for the ACE
+certification. Can I pick DevOps
+certification after this?
+Yeah, there is no no order or no
+requirements for certifications here at
+Google, so
+uh you can definitely do the DevOps
+after. And you don't even need the ACE
+ACE certification to do it. You can do
+just DevOps directly if you wish. So,
+there is no requirements, but of course,
+it's good to have some experience in
+using and manage cloud products,
+but it's not necessary to have the
+certification.
+Awesome.
+And I did want to share since there are
+a couple of questions around
+certifications that there is a dedicated
+place in the community if you didn't
+know about it um for learning and
+certifications. So, if you're running
+into questions while you're studying or
+um which exam you should take or which
+one to pursue,
+that's a great place to ask your peers
+and the learning team from Google.
+So, I just added that into the chat.
+All right.
+Um, it looks like that Oh, there's one
+more. Oh, can you share Please share the
+site reliability engineering course link
+on the Coursera platform?
+Let me just get it here. This is a
+second.
+I just I just
+I just dropped it into the chat.
+okay. Thanks.
+I was going to try I was going to copy
+it from the slide. All good. All right.
+Well, thank you everyone for joining us.
+Uh, we are at the hour. So, if you have
+any other questions, feel free to ask
+them into the community. I just want to
+say thank you, Pamela, so much for this
+amazing presentation and for joining us
+today and we hope to see you again
+another time.
+Thanks everyone.
+Thank you. All right. Bye.
+Bye.

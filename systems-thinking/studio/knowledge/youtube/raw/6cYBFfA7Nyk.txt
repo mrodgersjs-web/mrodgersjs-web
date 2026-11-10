@@ -1,0 +1,463 @@
+Hundreds of new open-source AI projects
+hit GitHub every single day. Yet, only
+the smallest fraction of a percent are
+actually worth your time. But today, I'm
+going to be highlighting 10 that are.
+Almost every single tool we're going to
+cover today has just come out within the
+last month. So, unless you are as
+obsessed with this stuff as I am, I
+promise you're going to get exposed to
+at least a few new tools. Now, the first
+tool on the list is my favorite because
+it's one I use literally every single
+day at this point, and that is the
+Caveman Skill. This repo's gotten over
+50,000 stars within its first month of
+release. And the whole idea is this just
+a skill that we can use inside of Claude
+code or Codex that makes our agent talk
+like a caveman. AKA, it's not going to
+be so damn verbose. So, you have some
+examples here where you have your normal
+Claude code response where it kind of
+just goes on and on and on. But if I use
+Caveman, well, it's kind of just going
+to get to the point. This repo has taken
+the idea of why say many word when few
+do trick and just codified it. Now, the
+cool thing about Caveman is that there's
+levels to it. Like, we don't have to go
+full Neanderthal, we can do Caveman
+light, which is what I sit at. We can
+also do full, or we can do ultra. Now, I
+will say this repo gets a little excited
+when it comes about how much how many
+tokens you're saving. You'll say like,
+"Hey, we're saving like 75% of output
+tokens." Understand that the way Caveman
+works is it's just going to be changing
+how many words you see. It doesn't
+change how it does its thinking. It
+doesn't change the amount of stuff it's
+ingesting. So, overall, if we take it
+all together, you're looking at about a
+5% or so savings when it comes to
+tokens. And I've done a full video on
+this, and I'll link that above if you
+want to do a deep dive. Now, I think the
+secret win when it comes to Caveman, and
+I think they kind of bury the lead here,
+is the idea that our large language
+models might actually do better if
+they're forced to give more concise
+responses. And this comes from a March
+2026 paper. It's called Brevity
+Constraints Reverse Performance
+Hierarchies in Language Models. And
+basically, the long and short of it is,
+when we have powerful models and we
+force them to be concise, they're more
+likely to give us correct answers
+because they're essentially not going to
+talk their way into the wrong answer.
+And it's actually really interesting
+study, and I highly suggest you take a
+look at it. So, we take those things
+together where we're going to be saving
+tokens and I'm potentially getting an
+actual quality increase, what's not to
+love about this thing? And it's just a
+simple skill. Installing this is super
+easy. You can just run the commands here
+inside the repo, or you can just copy
+the repo URL, put it inside of Claude
+code, and say, "Hey, let's start running
+Caveman." And if you want to do Caveman
+light, just say Caveman light. If you
+want to do ultra, do ultra. It's very
+easy to execute. I'm always a huge fan
+of these lightweight tools that give us
+some wins on the margins without any
+real downside. So, if you check out
+nothing else here, check out Caveman.
+But before we move on to tool number
+two, a quick word from everybody's
+favorite sponsor, me. So, I recently
+came out with my Claude code
+masterclass, and it is the number one
+way to go from zero to AI dev,
+especially if you don't come from a
+technical background. I update this
+every single week, and we really focus
+on real-life use cases and building upon
+the foundation of Claude code with
+things like an entire agentic OS system.
+So, if that's something that you would
+be interested in, you can find it inside
+of Chase AI Plus. There's a link to that
+in the pinned comment. Now, tool number
+two is all about memory and knowledge
+graphs, and that is Graphify. Now, what
+Graphify is able to do is it reads our
+files to build a knowledge graph. And
+because we now give Claude code a clear
+structure to understand what we're
+working with, we're able to execute our
+task while using way less tokens per
+query. They quote 71.5
+times fewer tokens per query versus
+reading raw files. Now, when we talk
+about knowledge graphs and memory, a lot
+of us first start to think about things
+like Obsidian. But Obsidian, while this
+does give us a knowledge graph in
+theory, and that's what we're looking at
+now, this isn't a true knowledge graph
+in the sense of like a graph rag system,
+something like Light rag or rag
+everything. Graphify is much closer to
+that true rag structure than something
+like Obsidian is. Remember, Obsidian,
+for all intents and purposes, is just a
+nice interface for us to be able to deal
+with markdown files, and markdown files
+exclusively. Graphify is multimodal.
+Now, it's not multimodal in the sense
+that it's going to be ingesting pure
+video, something like, you know,
+Google's embedding two, but it is able
+to look at things like PDFs,
+screenshots, diagrams, and it's able to
+take videos and then use Whisper to pull
+what it needs out of there. Furthermore,
+Graphify doesn't use embedding. So, when
+we're talking about sort of that
+spectrum between something like this,
+Obsidian, and a true rag system,
+something like Light rag, I would say
+Graphify sits somewhere in the middle.
+And it's something that we can
+essentially layer Obsidian on top of.
+So, if you're someone who loves
+Obsidian, wants a little extra power in
+terms of what's going on with your
+memory and your files under the hood,
+yet you don't want to take the step into
+some sort of true rag system with
+embeddings and everything like that,
+well, Graphify might be perfect for you,
+and definitely stay tuned for a deeper
+dive on this particular topic. For on a
+video that might be coming out in the
+next few days. Now, tool number three is
+one you probably haven't heard of
+before. It's Claude video. Just came out
+last week. We're at 400 stars. And what
+it does is it gives Claude the ability
+to watch video. Now, what do I mean by
+that? Because we know Sonnet and Opus
+can't ingest video. Well, this tool has
+a pretty clever approach. Once it's
+given a video, it uses FFmpeg to extract
+the frames at a particular rate
+depending on the length of the video.
+Obviously, if it was 60 FPS, and it's a
+10-minute video, that would cost an
+insane amount of tokens. So, it gives it
+a default frame budget based on the
+duration of the video. So, a 30-second
+video would be 30 frames. If it's
+10-plus minutes, it would only be 100
+frames. So, it gets kind of sparse. But
+it essentially feeds screenshots to
+Claude code. It grabs the audio via
+Whisper, and it uses those two things in
+combination to essentially watch videos.
+Now, I think this is a really useful
+tool because when it comes to handling
+videos, there's really only two other
+pathways right now when it comes to
+something like Claude code or Codex. And
+that's, all right, let's just send it
+off to something like Notebook LM
+and have it figure it out. Or, and kind
+of in that same category is, let's
+invoke Gemini via an API call and just
+send it that way. This gives us sort of
+a,
+you know, different approach where we
+aren't beholden to Gemini to deal with
+these videos for us because we're
+breaking it down via screenshots.
+Obviously, when we talk about longer
+videos, 3 minutes plus, 10 minutes plus,
+you're going to run into issues, just
+like, what are you actually trying to do
+with these videos? But I think anything
+that gets us closer to having Claude
+code being able to handle video is a
+great tool for us to play with moving
+forward. Now, tool number four is one I
+did a video on recently, and that is
+Open Design, which is essentially an
+open-source clone of Claude Design. You
+can now use Claude Design, or something
+pretty close to it, with any sort of
+coding agent. So, you could do this
+completely locally for free. You don't
+even have to be on Claude code. It's
+copied the exact layout of Claude Design
+in terms of being able to create
+prototypes, slide decks, and added some
+additional functionality, like also
+being able to call APIs for image
+creation and for video creation. And
+Open Design itself is really built upon
+four other open-source tools. The first
+one being Huashu Design, which is
+basically another clone of Claude
+Design, but it's purely inside the
+terminal.
+The Guzheng PowerPoint skill, so
+allowing us to create these PowerPoints
+and then actually extract them properly.
+As well as Open Code Design and then
+Multika. So, it's taken all four of
+those, added a package of 31 skills, and
+voila, we essentially have local Claude
+Design. So, if you're someone who really
+likes Claude Design, especially the
+graphical user interface portion of it,
+I highly suggest checking this out if
+you've already hit your usage limits for
+the week. Now, if you're someone who
+cares about where your tokens are going
+and how much money you're throwing away
+every single month on these coding
+tools, then you are going to like tool
+number five, which is Codeburn. Codeburn
+tracks token usage, costs, and
+performance across 16 AI coding tools,
+and allows us to get a much better look
+at where our tokens, AKA our money, is
+going
+well beyond what, you know, {slash}usage
+is going to give you inside of Claude
+code. You can see in this dashboard, it
+breaks it down by activity, project,
+model, core tool, shell commands, MCP
+servers, and shows us not only how many
+tokens we're using, but like the actual
+dollar amount, which is really
+important, especially if you're on the
+API. Now, more importantly than just
+telling us where our tokens are going
+and how we're losing money, it gives us
+ways to fix the problems. It tells us
+how to optimize our systems so we stop
+burning so many tokens. So, just like
+Caveman, I think Codeburn is one of
+those lightweight tools that is almost
+pure upside. So, definitely take a look
+at this one. Tool number six is
+Impeccable. Now, Impeccable came out a
+couple months ago, but they recently
+came out with their 3.0 version just
+last week, which is why I kind of wanted
+to include it because their updates to
+Impeccable include the ability to
+actually edit front-end designs in a
+browser. And if you didn't understand by
+now, Impeccable is a tool for front-end
+design. Impeccable ships with a single
+skill, yet that single skill includes 23
+different commands that are all about
+making sure your web pages don't suck.
+What I like about Impeccable is it
+includes this website where I can
+actually see what each and every command
+does. So, it shows a before and an
+after. And you can see, okay, like, what
+will actually happen if I use this
+skill. Furthermore, it now has a live
+mode where you can actually bring up
+your webpage, click on different
+components, and then go through
+different variations on the browser
+itself. I actually did a whole deep dive
+on this, and I will link that video
+above if you want to see this in action.
+But I think the best part, arguably,
+might just be the website and the
+ability to see all these before and
+afters, and just kind of give you
+inspiration for like, all right, here's
+what my AI slop looks like versus what
+it should look like, and seeing the
+different ways you can make minor
+adjustments on individual components,
+but in totality, that can really change
+the way your website looks and feels.
+And again, this live mode just got
+released. So, if you've used Impeccable
+in the past without it, highly suggest
+you take a look at it again. So,
+sticking with the front-end design
+theme, tool number seven is design
+extract. Now, a big repo that came out a
+little while ago that I've talked about
+in the past is awesomedesign.md.
+Now, awesomedesign.md has taken off
+since it first came out about 2 months
+ago. It's up to 70,000 stars, and the
+idea is is they give us this repository
+of all these popular websites, say for
+example, 11 Labs. I click on it, and I
+can see essentially an entire breakdown
+of
+what their website looks like from an
+aesthetic point of view. You know, what
+are the cards? What are the colors?
+What's the spacing? What's the font?
+Etc., etc. The problem with awesome
+design MD is I can only choose from
+these. I mean, there's a lot to choose
+from, but I'm limited as to what I can
+do. Design extract takes it a little bit
+further because it's essentially
+allowing us to get the same thing I
+showed you here inside of design MD,
+but for any website we want. So, we
+point this design tool at any website we
+want to use as inspiration as a
+foundation for what we are building, and
+it's going to grab the layout system,
+responsiveness, interaction states,
+motion language, component anatomy,
+brand voice, on and on and on and on.
+So, we have a comprehensive thing we can
+then bring into Claude code and build
+upon with our brand. And it does all
+this by using a headless browser to
+actually grab all this information. So,
+it's a bit more than just taking a
+couple of screenshots and saying, "Hey,
+copy this." So, if you're someone who
+loves this awesome design repo, but
+wishes there were some more websites on
+here that you could essentially use,
+well,
+definitely check out design extract. If
+you've ever thought about using Claude
+code to help you apply to jobs or get
+your resume in order, well, you will
+like this tool, and that is Career Ops
+because that's exactly what it does. As
+they state here, Career Ops turns any AI
+coding CLI into a full job search
+command center. It evaluates the offers
+of the jobs out there. It generates
+tailored PDFs. It scans portals. It
+processes in batch, and essentially
+tracks everything related to the job
+search process, which is brutal. And
+importantly, this isn't a tool that's
+just like a mass
+application tool. This isn't like, "Oh,
+go on LinkedIn, and now apply to every
+single job under the sun." Like, this is
+much more of a scalpel that's going to
+tune your resume to the job and make
+sure the jobs you're actually looking at
+make sense for you. This isn't just
+like, "All right, go out there and just
+like throw up all over the job
+application process." Under the hood,
+it's using Playwright to actually
+navigate the pages. It evaluates the fit
+based on your CV, and then adapts it per
+each listing. And here's how the general
+flow works. You paste in a job URL
+description. It then classifies it. It
+then figures out, "Are you a match?"
+before then generating a report, the
+PDF, and then updating the tracker. So,
+definitely a useful tool if you or
+anyone you know is trying to leverage
+something like Claude code to help them
+in their job search. Now, tool number
+nine is one I think you're going to hear
+a lot more about, and that is Browser
+Harness. So, think of Playwright if
+Playwright was self-improving after
+every single run. So, the way it kind of
+works is if I used Browser Harness to
+say do something on Amazon, every time
+it went to complete a task on Amazon as
+this autonomous browser agent, it would
+update its own agent skill file saying,
+"Okay, this is what we did for Amazon.
+Here's what worked, here didn't." And
+almost in a sense, almost like a mini
+Ralph loop where we've given it a task,
+it's going to always update its files to
+see, "Hey, did it work? Did it not work?
+What did we already try?" and then try
+again based on the information it wrote
+about itself. Hence, sort of the like
+self-healing thing. So, it's still
+pretty new. It's only been out for a
+couple weeks. It's just under 10K stars,
+but I think this sort of agentic
+approach to these browser agents is
+something you're going to see a lot
+more. Now, I cheated on the last tool on
+the list because it isn't technically
+open source, and even n8n itself isn't
+technically open source. It's fair use,
+but you know, you can use it locally, so
+it gets a little confusing, and that is
+the n8n MCP server. Now, I think the
+death of n8n has been greatly
+exaggerated, but let's be honest, it
+isn't in the same place it was even 6
+months ago. Yet, they've begun to
+realize and pivot into being a tool that
+Claude code can use very, very easily,
+especially with this brand new MCP
+server. So, this MCP server is a little
+different than any other n8n MCP server
+that has come out because there's been a
+few out there, and they were open
+source. The difference is this one uses
+TypeScript instead of just trying to
+generate a JSON file automatically. So,
+I give the n8n MCP some sort of command
+like build me whatever automation, and
+then
+builds it in TypeScript, which allows it
+to actually validate the automation to
+see, "Hey, do these nodes make sense?
+Will this actually work?" From there, as
+a last step, it gets changed to JSON,
+and then it populates inside your
+instance. So, if you're someone like me
+who still really likes n8n, and there
+are use cases for it, although it can be
+kind of niche, this is an awesome tool.
+It just came out a few days ago, and I
+did a full video on that as well, and
+I'll link that above. So, those are my
+10 favorite open source tools for Claude
+code that have come out within the last
+month or so. Like I said, this space is
+literally always changing. It is
+impossible to keep up. So, I hope that
+watching this, you were able to see at
+least a few of them that you might want
+to check out. As always, let me know
+what you thought. Make sure to check out
+Chase AI Plus if you want to get your
+hands on that masterclass.
+And besides that, I'll see you around.

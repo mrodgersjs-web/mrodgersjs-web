@@ -1,0 +1,304 @@
+hello good
+afternoon so this is a group
+two we are working on Swamp intelligence
+with our Focus being on the ant colony
+optimization
+so what is the ant colony optimization
+so the ant calling optimization is a
+type of some intelligence that actually
+uses a natural phenomenon right the fact
+that ants are able to find their source
+of food and then able to trace back to
+their homes and able to communicate with
+other ants as well to actually track the
+source of their food and this all
+happened with a drop in or an expulsion
+of a type of chemical called pheromone
+right so that is what the optimization
+colon is basically based upon and the
+fact that these ants are able to use the
+shortest path or the shortest route to
+their food source right so this is the
+code that we have used so we use a paper
+and the paper is actually using the same
+and Colony optimization together with
+another idea that they call the fuzzy
+acts right so I'm dropping in the paper
+here quickly before we jump onto the
+code
+so the paper is over here which is
+titled a novel and column algorithm for
+solving shortest path problems with
+fuzzy Arc weight so it's just another
+Improvement on top of the and calling
+optimization so the Improvement here is
+actually the fuzzy Arc weight perfect
+now let's jump onto the code and its
+implementation so over here the
+implementation was fully done with
+python using Python's framework called
+flask
+here we have all the necessary Imports
+that has been done and then we
+instantiated our flux application then
+we have a class of and so this ant is
+just a class that would be
+um instantiated we are going to
+instantiate from this class using each
+of the ants objects within their hand to
+populate population so inside of it we
+have the nodes that we are to add so
+basically
+what we are trying to find here is we
+want to find the shortest route while
+leveraging fuzzy Archway so first up
+with means we're just introducing some
+level of entropy or some level of
+Randomness so that we are not dealing
+with the same path but we are having
+varying path right so we have a function
+that we are using to add node to the
+path right so we have a path and the
+path is going to be a matrix then we are
+going to be appending each of the node
+to the path we also have a function that
+will be able to calculate the distance
+from the source to the destination so in
+otherwise moving from
+um sorry moving from Source a to Source
+B would be a path so we have to
+calculate for that distance so that at
+the end of the day we can find the
+optimal optimal distance now we have
+another function outside which we call
+choose the next node so choose the next
+node function is actually a function
+that will take in the graph the graph is
+that's basically the
+um all the parts that are possible for
+the ants to travel to to find the food
+we have the pheromone Matrix so the
+ferment Matrix is actually a matrix that
+is used to change the chemical
+composition of each path because we
+don't want the algorithm to be skewed
+right we have the current node so we
+need to track the current node where the
+ant is and also know the visited node
+where the ant is has already visited
+right and which will have the pheromone
+exponential weight so this was a varying
+number that we actually use so that
+together with what we call the pheromone
+evaporation rate we can we can vary the
+pheromone chemical level with time so
+we're not going to have the same
+pheromone level that will be on the same
+path forever but it is going to work to
+be decaying from time from the from the
+day that it was actually instantiated or
+created
+now before you can choose a next node
+what we need to do is that we need to
+actually look through all the graph all
+the paths and check if we have visited
+that note right if we haven't visited
+that room
+then we can then proceed to visit the
+number if we have visited then we are
+going to vary the variable metrics so as
+I said this following Matrix is actually
+going to be
+um the exponential of the exponential so
+it is going to be the exponential of the
+filament itself that's the pheromone
+weight set that with time it will Decay
+now if they have not visited that they
+were now going to create a probability
+right for the ants to visit the other
+paths right we need to find the
+probability that if we have five parts
+the probability of the ant visiting any
+of those five parts will be based on the
+percentage or the concentration of the
+pheromone
+um chemical basically Now we move down
+to find the another function that will
+updates the thermal Matrix right so
+we're basically just telling to we're
+taking all of the answers in the
+population so right for each of the ants
+basically for each of the ants that is
+going to take a path we are going to
+um drop a pheromone evaporation rate on
+each of the paths so if if an Antics
+path a thermal Matrix of is going to
+drop right so that when ant B is coming
+to take the same path a that and a took
+it realize that if the film 10 is going
+to reduce to 9 so that is what we need
+to do so with time we have it a constant
+evaporation rate where of a period of
+time there will not be any more
+um chemical on the path so that way it
+could help the hand the hands to take A
+New Path especially when the food that
+they were trying to track that has
+finished right so they are going to take
+a different path right now we have the
+real function which is the and cooling
+optimization so it's going to take the
+entire
+um
+geographical area on the time entire
+Matrix right we are going to have the
+number of ants that's the population of
+the ants we're going to have the maximum
+number of iterations I mean you don't
+want this particular
+um function to run forever and ever you
+need to you need to like
+um clock it at a certain rate so it
+doesn't run forever we have the initial
+pheromone that's initial chemical
+concentration we are going to drop we
+have the filament exponential weight
+then we have the ferment vibration rate
+as I said along and the number of nodes
+that you want to explore so number of
+nodes basically is all going to be the
+number of um the the paths that is going
+to be explored right now we're now going
+to find the best so we are looking for
+two things best distance and then the
+best path right now we know attribute
+over the number of iterations that is
+going to pass to this function so we're
+going to do that from this from our UI
+or we can do that from our CLI now we
+iterate
+the number of maximum number of
+iterations and then we use an and over
+the total number of ants that is going
+to be passed right so we're going to
+iterate over a total number of what the
+population right then we try to find out
+if
+the length so we're not trying to set
+um in a path isn't visited if a path is
+less if a path visitors is less than the
+number of loads it means
+that the current we're now going to set
+the current node to be the last path
+right because we are trying to explore
+all the all the nodes that's basically
+what we're doing over here then we can
+now let's calculate the distance using
+the graph right and also if the distance
+that being traveled by the and it's less
+than the best distance it means that the
+distance that the unjust travel is
+actually the optimal path then we set
+that path to be that particular distance
+traveled by the ant right now we just
+create a list of the best path and just
+I trade through all the parts and then
+append them together and they will
+return those two now the last piece has
+to the last piece of the financial has
+to do with the generator random graph so
+as I said we could do this with a static
+path right so we'll start a path asking
+like we could create a matrix where
+moving from point A to point B will just
+be 10 from B to C would be 15 right but
+the point is that we we're trying to
+have a concept we're trying to vary
+we're trying to increase some entropy or
+some Randomness such that we are not we
+are not actually making the path fixed
+because if I if we run this against this
+Matrix it means this Matrix will never
+change right it means over time you're
+going to be getting the same results and
+the same results over and over again but
+now that's not where the the fuzziness
+come in so we have the function that
+takes in the fuzziness so that is a
+value then we now use this fuzziness
+right and then create an array of
+and create a matrix using numpy whereby
+we introduce this fuzziness inside the
+um the graph right so it means that any
+sentence function runs we're going to
+generate different set of values so
+that's the kind of entropy we're trying
+to introduce in here now we're going to
+run this after that we then move into
+how this operates on a UI form so
+um remove this
+and then we can now run flux up
+this
+right so we have a UI in a template form
+so we're actually going to these are the
+key things we are going to make a post
+request just to see them from the UI
+form and that post request will have the
+population size of the and the maximum
+iteration the initial pheromone
+pheromone exponential way the third one
+is evaporation rate now the fuzziness
+which is going to be a number that will
+be varied the number of nodes right and
+then basically we then generate the what
+the graph or the path that I'm going to
+explore then we print out the best path
+and the best distance as well and that
+will render all this information back
+onto the template called index.html now
+we go to
+302 on our browser
+and let's see
+sorry okay 3002
+okay so now we have so we have
+um pre-populated values for the
+beginning so we have a population size
+of five that's five and we have the
+maximum iteration of 100 we have initial
+frame of one we have exponential weight
+evaporation with the number of moves and
+fasting and then we are going to run it
+right so when we run it we realize that
+we have the best distance of it as that
+is similar problem with 86. now if we go
+back to our terminal we realize that
+we're getting the same best distance 7
+to 4.86 then we have the best path right
+so what the best path simply means is
+that because we are not actually we are
+making this random it means that if we
+were to move from point A to point B
+right that is it could be like moving
+from zero to two the move to two to one
+then move one to three that's basically
+what is now showing over here for us and
+then we can then vary this fuzziness
+probably and put under volume Five
+run again then you have another distance
+of one third one right so that would be
+one set of 1.184 and then that will
+generate a different parts for us which
+means you have to move from path two to
+zero then move from zero to one they
+move from one to three and let's have
+one more run again by just changing the
+fuzziness to six they will have system
+three right so we have 63 that has the
+best distance 0.44 then it's been the
+platform has to move it's from three to
+two two to zero and then zero to one
+right that would be the optimal path
+that you have to take so that is it for
+us on demonstrating
+and Colony optimization using fuzzy Arc
+weights thank you and see you later

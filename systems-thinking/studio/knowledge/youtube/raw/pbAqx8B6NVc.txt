@@ -1,0 +1,694 @@
+In this video, I'm going to show you how to take the core agent concepts, tools, LLMs, memory, and events,
+and wire them together into a working personal assistant.
+This is Jarvis, my personal assistant built with Mastra.
+I use it to help me research leads and organize my content pipeline.
+What we're building today is a simpler version, scoped to meeting prep, but it uses all the same patterns.
+To build this, we're going to use Mastra, the TypeScript framework for building AI agents.
+Vercel's Chat SDK for our Slack integration,
+Exa for web research,
+and cal.com as the event source.
+When a booking comes in,
+that's going to kick everything off.
+We'll also build a lightweight scheduler
+so the agent can fire follow-up reminders
+after a meeting ends.
+The code for this video is going to be available on GitHub.
+You can get a link in my newsletter.
+Link in the description below.
+Let's dive in.
+To get started, we're going to go ahead
+and run create-mastra via npx.
+I'm going to name my project meeting assistant.
+it's going to bootstrap things for us.
+And the first thing it's going to ask is
+where we want to put the Mastra files.
+So I'm going to go ahead and choose source default.
+And then now we can choose what provider we want to use.
+So for my case, I'm going to go ahead with Anthropic.
+But as you can see here,
+you can choose OpenAI, Groq, Google,
+Cerebras, Mistral, any of those.
+Once you've selected your provider, in my case, Anthropic,
+it's going to ask me for an API key.
+So we can go into the Anthropic developer console
+to get one and then we can paste that in here.
+I'm gonna hide mine for now.
+The next question it's gonna ask us for is
+whether we wanna configure Mastra tooling for agents.
+So this means that basically they have their own skills
+library, which is what they have recommended here.
+And if we choose to select that, it will bring that in
+for us so that that's all ready.
+So that our coding agent like Claude Code or Cursor
+or whatever you're using has access to those.
+So I would recommend saying yes to that
+and choosing the skills option.
+And once you've selected,
+you can pick which model you want to go ahead
+and install it for.
+So for my case, I'm gonna set it up for Claude Code.
+you can choose whichever one that makes sense
+for your use case.
+Next is initializing a new Git repository.
+I'd recommend saying yes to this
+so that we can keep track of our history,
+keep track of our changes over time.
+Once that's done,
+We can see that now it's got the project structure created
+and it's gonna go ahead and run the npm install
+to install all of its dependencies.
+So we'll wait for that to be done.
+It's installing the Mastra CLI
+and it will bootstrap the project for us.
+There we go, our project is ready.
+We can move into the meeting assistant directory
+and run npm run dev to start up the server
+and see what happens.
+Now that's set up,
+the first thing we're gonna do
+is go ahead and create our meeting assistant agent.
+So this is gonna be our personal assistant agent
+who is gonna help us prepare for meetings.
+You can see here, we've given it an ID of meeting assistant,
+we gave it a name, meeting assistant,
+and then we're gonna set up its instructions.
+So you are a personal meeting assistant,
+your job is to help your user prepare for meetings
+by researching the people they're meeting with
+and provide concise, actionable briefs.
+I want to give information about an upcoming meeting,
+research the person and their company,
+Summarize who they are, what they do, why the meeting matters.
+Highlight any talking points or areas of mutual interest.
+Keep briefs concise and scannable.
+Bullet points over paragraphs.
+When chatting casually, be helpful, direct, and low friction.
+Remember context from previous conversations.
+If you don't know something, say so.
+Don't make things up.
+And then lastly, we're going to specify our model.
+In this case, we're using Anthropic Claude Sonnet 4.5.
+and you can specify whatever model you want to use here.
+For example, if you aren't using Anthropic,
+you can choose one of OpenAI's models or anything like that.
+The next thing we're going to do is take a look at the index file for Mastra.
+So this is where everything kind of gets wired up,
+and you configure your Mastra system.
+And so you can see here that we have set up a new Mastra instance.
+We are using their Pino Logger.
+That's something they provide.
+And we're using libSQL for storage.
+So we're using SQLite for our storage right now in this app.
+We can see here on lines seven,
+we basically plug in our assistants.
+So you can actually define multiple assistants,
+Mastra supports, agent to agent communication
+so they can delegate to one another.
+And right now we're just going to set up
+one single agent instead.
+And then we have our storage set up.
+So again, that's where we're going to store
+basically our conversation history,
+things like that in our SQLite storage.
+And we've set up our logger as well.
+So now if we go over to our terminal,
+we can start our server by running npm run dev.
+That's going to start two things.
+Mastra provides a studio for basically for your local development,
+and it provides an API as well.
+We're going to go ahead and visit the playground
+so you can see what we have so far.
+So I've gone ahead and grabbed the URL.
+I'm visiting my localhost port 4111,
+and we can see the Mastra Studio here.
+And so on the left here, there's navigation.
+We can see a list of our agents that are available,
+and we can see our meeting assistant there.
+So we can go ahead and type in a message
+and greet our assistant and see what comes back.
+So we said hello, and so we saw here that we got a,
+hey, I'm your meeting assistant.
+I'm here to help you prep for your upcoming meetings
+by researching the people you're meeting with
+and giving you quick, useful briefs.
+Some more things to see.
+On the right side, we can see, again,
+the name of our agent, meeting assistant, also the ID. We have an overview of things. So we can see
+here that we don't have memory enabled, but don't worry, we'll come back to that later.
+We have no tools available right now. There's no workflows, no skills, no scorers. But we can see
+our system prompt down there. On the bottom of our message area, we can see what model we have
+enabled and selected. And yeah, so there we have it. We have a working agent right now so far.
+We can go ahead and talk to it and it will respond, but it's not quite useful just yet.
+So we're going to build on to that next.
+And before we do anything else, let's go ahead and commit our changes here and save step one.
+So this repo will be available on GitHub.
+If you want to go back and reference what the work that was done here in this video so that you can learn from and apply for yourself.
+The next thing to do to make our meeting assistant more helpful is I'm going to set up a Slack bot that we can communicate with.
+So for our purposes, we're going to use the chat SDK.
+This was recently released by Vercel.
+It's still in beta, but it is a TypeScript SDK for building chatbots and integrates across different channels.
+So for example, you can use one interface and one bot interface for setting up a bot for Slack, Microsoft Teams, Google Chat, Discord, and I think Telegram as well.
+So we're going to use this so that we have a unified interface and can support multiple types of chatbots.
+So in order for our bot to be reachable from something like Slack to actually interact with it, we're going to need a way for at least in local development for Slack to reach out to us.
+So what we're going to do for these purposes is I'm going to go ahead and use Ngrok.
+You can set up a free account.
+This is a secure tunnel from your application to the web.
+So we'll be able to expose our local dev server to say something like Slack to reach.
+So once you've signed up, the link is in the description.
+You can go ahead and configure it following their docs.
+But it's pretty straightforward.
+You just have to install Ngrok based off your machine.
+If you're on Mac OS, it's brew install Ngrok.
+Then you run the configuration with your auth token, which they walk you through.
+and you can go ahead and have that set up.
+Once that's done, what you're gonna wanna do
+is run the ngrok command with the port
+that you want to be forwarding to.
+In our case, our server is running on port 4111,
+so we're just gonna say ngrok http 4111,
+and that will open up our secure tunnel.
+So you can see here we get a forwarding URL.
+We're gonna wanna grab that and bring that over to Slack.
+To get started with that,
+we're going to have to configure a Slack app.
+So you can grab the URL from the description,
+but we can go ahead and go to the website
+to create a new Slack bot.
+And I'm gonna create that from a manifest,
+which has all of the configuration
+that we need available to set it up.
+Again, that will also be included in the GitHub repo
+that you can grab for reference to use.
+So you're going to need to update the manifest where it says,
+replace me with the URL with your full forwarding address for ngrok.
+So if we go ahead and paste the manifest, you can see in our manifest,
+it shows your ngrok URL here.
+So you just need to go ahead and grab your forwarding address that ngrok provided you
+and replace that inside of the manifest instead.
+So you'll see here that instead of your ngrokurl/api/webhooks,
+we're gonna do your API.
+We're gonna replace that with our ngrokurl/api/webhook/slack.
+So drop that in and we can hit save
+and all of our permissions should be set up properly
+to do what we need.
+So you can see here, we have based off the manifest
+some specific auth scopes for our bots,
+what features we have enabled
+and what settings we are using for subscriptions.
+Next up, we need to install the chat SDK.
+So I'm gonna go ahead and run npm install
+with chat adapter for Slack,
+'cause that's the bot we're gonna use.
+If you were trying to use a different one,
+you can look through the docs and select the other adapters.
+And we're gonna use the state memory source.
+So what this means is it's just going to store
+all of its state in your computer's memory.
+So that works fine for a local development.
+If you were moving to say production environment,
+you're gonna wanna use something like Redis
+as the backend there instead.
+So now that that is installed,
+again, similar to Mastra,
+what I would recommend you do is run npx skills
+add vercel/chat.
+This will give your LLM, your coding agent,
+the instructions and skills it needs to work well
+with the SDK.
+So definitely add that as part of your setup process.
+In the project, you'll find a.env.example file.
+What you're gonna wanna do is you wanna copy that
+to a.env.local file instead, or a.env file,
+and go ahead and put your credentials in there.
+So you're gonna need to get the Slack bot token,
+as well as the Slack signing secret.
+The signing secret can be found
+under your basic information.
+You'll have to hit show to reveal it,
+and you can copy it from there.
+And then the bot token will be under OAuth and permissions.
+So it won't be available until you've installed your app
+onto a specific Slack workspace.
+So once you've hit that button,
+you should then see the bot user OAuth token.
+You can recognize it because it starts with a prefix
+of XOXB dash and then the rest of the token.
+So you're gonna wanna grab both of those,
+bring them in and put them into your .env file.
+Nope, never commit those to Git.
+You want that to be outside of your repo
+and these should be stored securely
+so that no one can have access to them.
+So now let's take a look at our chat.
+So we're gonna have a source chat file
+and this is going to be the core functionality
+for our chatbot.
+So to get started, like I mentioned,
+we're importing the create Slack adapter
+that enables us to utilize Slack for our chatbot
+from Vercel and we're going to use
+the memory state, this is not to be confused,
+let's say agent memory, this is more about the memory
+that the chatbot is utilizing.
+It's gonna be stored in your systems of memory and RAM.
+Again, if you're in production,
+you're gonna wanna do something different
+such as the Redis adapter instead, which they provide.
+And here we can see that where we can register our adapter.
+So when we instantiate a new chat instance,
+we can give it a username using the same name
+as our agent meeting assistant.
+We can specify the adapters,
+which adapters we wanna use.
+In our case, we're using Slack,
+but if you were using something different or multiple,
+you go ahead and instantiate and set those up here instead.
+And there we have our memory state for the chat bot.
+And so now we can see two hooks that we are setting up.
+There's bot on new mention.
+This is what will kick in whenever someone mentions the bot
+in Slack or whatever chat system you're using.
+And we basically start a subscription to that thread
+and we use the start typing functionality.
+So this can then allow the bot to indicate
+that it is doing some thinking or typing
+serves for some feedback to the user.
+Then what we do is we take the message that came in
+that is passed in as the second argument
+to the on-mentioned callback.
+That is basically the message that had the mention in it.
+We go ahead and we're gonna actually pass that off
+to our meeting assistant calling generate.
+So this is where we wire the two together.
+We're bringing in our Mastra agent
+to respond to whatever messaging came in.
+And we'll go ahead and post that back to the thread.
+Then we have unsubscribed message.
+So this is when a message comes into a thread that the bot is already subscribed to.
+It will follow along and respond to any subsequent messages in that thread.
+Next, let's take a look back at the source Mastra index file.
+Here we've updated the server.
+So by default, there is a server that is configured for Mastra.
+you can actually alter it if you want to add your own routes or endpoints. And so that's what we're
+going to do here. So we're going to take the server configuration inside of Mastra and update the API
+routes to add some API routes of our own. So here we can see that we're registering a new API route.
+We imported that from Mastra from their core server and we're defining /webhook/slack. So that is the
+endpoint that Slack will hit to send us a notification that something has happened that
+we may need to respond to. And so it's a post handler, and we just go ahead and in our handler
+call out to our bot. So we've imported our bot from the chat file, and we're going to go ahead
+and call bot.webhooks.slack. So that's the interface from the chat SDK that we can utilize,
+and basically just pass in the raw request.
+And we know that this is Slack
+because it is a route for a Slack endpoint.
+So for example, if you were doing another type of chatbot,
+you can just call bot.webhooks.discord
+and pass it the request there
+to have a single interface
+for interfacing with all these different types of chatbots.
+We do need to go ahead and configure our event subscription.
+So it'll be set up by default and it will be enabled,
+but you may need to go in and hit the button to retry
+so that it actually fires.
+One thing I did notice while building this
+is that you can't actually use /api when going through this,
+so I had to go back and edit it.
+So your manifest that you get from the GitHub repo
+should be correct,
+but if for some reason you run into any issues,
+you need to go into the event subscriptions
+and make sure that things are green there.
+Slack will try to hit your API to start
+that the URL exists.
+So if it was configured before ngrok was running
+or the dev server was running,
+the initial ping may have failed.
+So you need to make sure that that is correctly set up instead.
+So I have a demo channel here to walk through it.
+We've installed the meeting assistant bot.
+So now I just need to invite them to this channel.
+So I'm going to slash invite meeting assistant.
+If you've installed it correctly, that should work.
+And I'm going to go ahead and greet hello.
+Let's say, hey there to meeting assistant.
+And we should see a reply come through from our bots.
+And here we are.
+We have a response from our meeting assistant.
+How can I help you today?
+So we've got step two.
+We have a way to interact with our bot outside of, say, the Mastra Playground.
+So the next thing we need to do to make our chat bot useful
+is to give it some tools to do some research.
+So we're going to go ahead and use the Exa AI
+service to run some requests and do research for us on a person. So we're going to run
+npm install exa.js to get their library set up. Once that's installed, we'll go ahead and sign
+in to exa.ai. I'll leave a link in the description. And if you can set up a free account from there,
+and inside their UI, you can grab your API key on the right side. So you can go ahead and copy that
+and drop that into your.env file or.env.local, depending on what you're using,
+under exa_api_key. Again, you'll find that in the example n file that I provided in the repo.
+So now let's go ahead and create an actual tool for doing the research. So
+Mastra provides us an API for defining tools. So we're going to go ahead and import that from
+Mastra core tools. We're using Zod, which is a TypeScript first validation library for schemas,
+and we can use that to define and validate our JSON schema for our tool.
+After that, we go ahead and import EXA from the EXA.js, and we're going to define our get EXA. So
+basically what that's going to do is it's going to try to grab the API key from the environment.
+If it's not there, we're going to throw an error and otherwise we'll return a new instance of EXA
+properly configured with our API key.
+Next is where things get more interesting.
+We go ahead and define the search web tool.
+So we call out to create tool,
+and the create tool function takes a object with a few properties.
+So number one is the ID.
+We're calling it search web.
+The ID is important, similar to MCPs,
+in that when the model or the LLM decides it wants to call a tool,
+it's going to call it by the ID.
+Next, we give it a description.
+You want to make your description useful to the LLM so that it knows when to use the tool.
+So in our case, we're saying search the web for information about a person, company, or topic.
+And then we define our input schema.
+So this is where we define the inputs and what they look like for when the LLM calls the tool.
+So we're defining an object here.
+It takes a property with a query.
+That property is a string, and we give it a description, again, for giving the LLM as much information as we can
+to help it understand how to use the tools.
+Then we use numResults, so we're saying it's a number.
+This one is optional, so all the properties are required by default.
+If you want it to be optional, you call that out.
+And we're giving it a default of five.
+So the LLM can choose how many results it wants back from EXA.
+In our case, if it doesn't specify, we'll default to five.
+Then finally, we come down to the execute property,
+and this is where we actually define the logic behind how our tool functions. So in this case,
+what's going to happen is we're going to go ahead and get our instance of Exa, and we're going to
+call its search and contents function, giving it an input query. So the input query, again,
+that is the query that the LLM has decided to provide based off the request that we've made.
+And then we pass in the number of results.
+So the call to search and contents takes a number of results.
+Again, it'll be default to five unless the LLM has asked for anything different.
+And we specify the max characters that we want returned by the API.
+And live crawl is a fallback.
+Finally, in the bottom, we can see that we go ahead and call, we map over the results
+and return some simple objects that are just basically the title, the URL, and some text.
+Now let's go back to our Mastra meeting assistant and add the tool to the model so that it has it
+available. So all we have to do here is update our agent. It takes another property. After model,
+we're going to define tools. So here we can define an object of any tools that we want to provide to
+the agent so that it has access to them. So in this case, we import our search web from the tools
+folder from research tools and we pass that in to the tools for the LLM. So now it has that available
+to it to call. Let's go back to Slack and try out our new tool. So we're going to ping our meeting
+assistant and ask it to do some research on me. And after a few seconds, we'll see a response back
+to our message inside of a thread with some pretty good research that it did using Exa. So we can see
+that it found that I'm a senior software engineer, that I'm currently working at August Health,
+and different focuses on my career and things like that.
+So it did a pretty good job of doing some good research on the subject.
+One thing I didn't notice when we ran this was that there wasn't really any indication that anything was happening.
+I didn't see the typing indicator from the bot that we expected to have.
+And I think that was actually an issue with how we've configured it.
+We didn't give it enough of the permissions.
+So we actually need to give it the assistant write bot scope.
+And I'm going to go ahead and modify that so that that's correct.
+But the manifest that you downloaded from the repo will have this updated and fixed already.
+So you shouldn't have that problem.
+So now the next step to make our meeting assistant helpful is to actually have it automatically do some of this.
+So for me, I use cal.com for handling my scheduling.
+So if you're looking to book, say, a coaching call or an introductory call, my calendar is powered by cal.com.
+So one of the features that cal.com has is the ability to set up webhooks.
+So that's what we're going to do.
+We're going to go ahead and set up webhooks so that whenever a new booking comes in,
+it triggers and hits the meeting assistant.
+We will take that and trigger a kickoff of the flow to do some research on the contact
+that has scheduled a call to help me prepare ahead of time.
+In order to do this, we're going to have to go ahead and grab that ngrok URL that I had earlier,
+again, because it needs to have exposure to our endpoint.
+This webhook call is going to be
+after /webhook/cal to differentiate between it and Slack.
+And right now I'm gonna enable it
+and I'm gonna pull all of the event triggers,
+really the one we really care about right now
+is booking created.
+But for now I'm just gonna leave them all in anyway,
+they'll just get disregarded.
+If you were doing this in a production environment,
+what I would recommend is to have a secret key
+that's defined here.
+And what is going to happen is
+it will sign all webhooks with that key.
+And then on your end in your agent or your app,
+you go ahead and verify the signature
+based off of the body of the request
+and the hash that gets returned.
+So to make sure that the event is actually coming
+from a reputable source,
+that it's actually coming from cal.com
+and not a nefarious actor trying to hit your webhook endpoint.
+And for this to properly work,
+we're gonna need to define where we want these messages
+come in once an event happens from cal.com. So what I want it to do is I want whenever
+a new calendar invite comes through cal.com, I want it to post a message in this demo channel.
+So to do that, we're going to have to go ahead and grab the channel ID. You can do that by clicking
+in the top right dot dot dot of the Slack channel interface. From there, you can go ahead and click
+on open channel details. That gives you all the information of the channel. And if you scroll down
+down to the bottom, you'll find the channel ID that we can go ahead and copy. And we're going to
+take that and add that to our.env as well under slack underscore channel underscore ID.
+So the first thing we're going to need to do is set up a new server route. This one's going to be
+dedicated to the cal.com webhook. So we're going to take the payload that comes in as well and
+extract the trigger event. If it's not a booking created event, because right now I'm passing all
+them in, I could have just gone ahead and not done that. But for the purposes of this example,
+we're going to basically just return a JSON OK and skip to true back to the caller. We're going to
+go ahead and extract the first attendee out of the attendees array and see if we have an actual email.
+If for some reason we don't, then we're going to go ahead and run a 400 that no attendee was found.
+Then next, we're going to go ahead and grab the Slack channel ID from our environment so that we
+know where we want to pass this message and research into. The next part is the actual
+interesting piece where we actually set up asynchronous research so that cal.com doesn't
+time out. So typically with webhooks, you want to respond as quickly as possible and not run any
+long running code as part of the webhook response handler. So we're doing this asynchronously.
+We are grabbing the channel and passing it to bot.channel from the SDK.
+We're doing some logging just to help us with debugging in our dev server.
+Then we go ahead and get the adapter from our bot for Slack,
+and we post an initial message.
+So we post here that we are researching the attendee name for an upcoming meeting.
+Then we call an async callback where we grab the thread.
+So the thread is comprised of the original channel ID.
+And then the sent message, when we get that back, has an ID also.
+So that's how we can pass the research into the thread as opposed to just a new message in Slack.
+And then we construct a prompt.
+So the prompt here is going to be our user message that we pass to our assistant.
+I have a meeting coming up with attendee name and attendee email.
+The event payload, the event is payload.title or just called meeting.
+and then we pass it the start time of when the start time of the meeting is
+and give it the instructions that we want them to research this person
+and give me a concise meeting brief.
+We take that string and we join it with new lines
+so we can pass that as the prompt to the meeting assistant.
+Next, we get the meeting assistant and we call generate with the prompt,
+await its result using a single wait,
+and we post a message to Slack in thread with the markdown result.txt.
+So now if we go over to my website and use our calendar integration,
+go ahead and book a scoping call,
+fill out our information,
+And go ahead and submit this invite.
+We'll say that we got found on YouTube.
+Now if we go back to Slack, we can see that we have one new message waiting for us.
+It's from our meeting assistant and it's called out that it's researching Damian Galarza
+for an upcoming meeting.
+After a brief period of time, we'll see a new message come in and this is going to have
+the actual research brief based off the call that was scheduled for me, giving me all the
+information I need to prepare for this upcoming call. So the next thing we want to do is give our
+agent some memory. So Mastra has some built-in functionality for handling the different types
+of memory. We're going to start with the most basic, which is going to be some episodic memory
+or some short-term memory that keeps the last 10 messages in context so that as you're having a
+conversation, say in a chat thread, it can have that and recall it as you're working with it. So
+it's not forgetting every message along the way. So we've imported the memory package from Mastra
+and it's another property on the agent. We're just managing a new memory instance with some options.
+So the first option we're going to pass is last 10 messages so that it keeps the last 10 messages
+of in context so that the agent remembers what was said earlier in the conversation.
+Mastra has support for four different types of memory.
+It has message history, so that's what we were just talking about.
+It has a working memory where it stores persistent structured user data such as names, preferences,
+and goals, semantic recall, which will retrieve relevant messages from older conversations
+using a vector database as well as an embedding, and then it has observational memory.
+So it uses a background observer and reflector agents to maintain a dense observation log that it tracks replacing raw message history as it grows.
+So kind of a compaction strategy where as conversations get bigger, it will go ahead and try to recall and store that inside of the observational memory.
+The next thing we need to do is wire up that memory inside of our chat interface so that it can use it properly.
+So what we're going to do, we're going to make an update to our meeting assistant generate prompt.
+where we pass in some options.
+So for the memory, we're specifying a thread ID
+as well as a resource.
+So that lets us define what the memory is tied to.
+So in this case, for the, like we're saying,
+we're tracking the history of the conversation.
+That's the thread ID.
+So it's the memory of this thread of conversation.
+And then the resource right now is channel ID.
+So it's basically categorizing all the memory
+under the channel that the conversations are happening in.
+So we may adjust that in the future to actually be under the user, but for now that's fine.
+So that way it can follow the memory across the user, depending no matter where it kind of interacts with the bot.
+We're going to go ahead and do this for both the on subscribed message as well as the on new mention call.
+The next type of memory we want to set up is the working memory.
+This is memory that is essentially kind of like a persistent scratch pad for an agent.
+It updates it over time and automatically fills it in as it warrants about you.
+So another feature of Mastra is this type of memory.
+So in this case, you can define whether it's enabled, that's the first property, and then
+a template.
+So for the template, we're saying it's a user profile.
+We want it to store the person's name, their role, what company they work for, as well
+as any kind of communication preferences, meeting preferences, topics of interest.
+So really, it's up to you to define how you want this working memory to work, what kinds
+of things you would want it to track about the user over time and how that operates.
+Now let's go ahead and test our working memory.
+We're going to message our meeting assistant and tell it a little bit about me and see how
+that works.
+I'm Damian.
+I'm a software engineer in the East Coast and message it that.
+And we can see now we have our meeting assistant is typing so we can actually see some feedback.
+And if we go in there, we say our response.
+Hi, Damian.
+Nice to meet you.
+I'm here to help you prep for meetings.
+So now in a separate message, I'm going to go ahead and ping Media Assistant and ask it, what do you know about me?
+So let's see what it has recalled.
+So here we go.
+We can see that from our previous message where I told it that I was my name and that I'm a software engineer,
+that it pulled that out and stored it in its working memory.
+The next thing to do is to set up the semantic memory.
+This is going to be the memory that it uses to search across old conversations to pull out relevant information for future comp.
+for future conversations.
+So to do that, we're going to need to install
+a local embedding model, an API.
+So Mastra has a package for fast embed.
+So we're going to go ahead and run npm install on that.
+Now to actually configure this,
+we go back into our meeting assistant agent
+and we set up the semantic search.
+So to do that, we're going to need lib sql vector.
+That's going to be used for the semantic recall.
+It stores the message embedding so that the agent can search through them.
+We're going to use an embedder, which is the fast embed that we were just talking about.
+And then in options, we can actually configure how semantic recall works.
+So we can specify in the semantic recall top K, that is, we're setting it to three.
+So it's going to find the three most relevant past messages.
+And then the message range is going to define how much surrounding messages to return along with it.
+So I've set it to two.
+So what that means is that when it finds a relevant message in its memory,
+instead of just returning that message,
+it's going to, from that conversation,
+include the two messages near that conversation.
+So typically like one before that message
+and then one after that message
+to include it as part of the context when you bring back that memory.
+Let's go back to Slack and let's test out our new memory systems
+and see how they perform.
+So I'm going to go ahead and ask it,
+what meetings do I have scheduled?
+And so we can see on the first call back to the message, it tells us that it doesn't have
+access to the calendar or any information about our upcoming meetings.
+That's because the memory systems weren't set up when the initial webbooks came in.
+So in order to resolve that, I'm going to go ahead and message in this thread that,
+"Hey, I have a meeting coming up with Damien," and let it know that so that it should have
+that in its memory for the subsequent calls.
+So typically what would happen instead is the webbooks would come in.
+it would process it and those things would get added to its memory.
+But to kind of streamline things, I'm just going to message that
+and mention it in this conversation.
+See here, we have the meeting agent going ahead and doing some research for us.
+And there's the research that it found.
+If we go back to the demo channel and ping media assistant
+and ask it, who have you done research for me on so far?
+We will see now in the thread, it says,
+based off my working memory, I've researched Damian Galarza for you.
+here's a recap. So not only did it find who that it researched for me, it also gave me back
+that information about the person. That's because of that message range that it pulled in
+the nearby messages as part of that context. So now the next thing that I want to do is give our
+agent the ability to run through scheduled tasks. So following a similar pattern to OpenClaw,
+where you can kind of have cron tasks that are scheduled to fire off at different times.
+So in this case, what I want to do is I want to set up a job that will ping me after a meeting to ask me about the meeting so that it can record some information about that.
+So to do that, we're going to have to use some scheduled tasks and we're going to use a SQLite database that is separate from the default one that Mastra is using.
+So that way we don't couple ourselves to any changes that say Mastra introduces to the database.
+We're not going to have to worry about that.
+So we'll set up a separate SQLite database for this.
+And we're going to use the drizzle ORM for interfacing with the database.
+So first, let's take a look at our DB schema that I've set up.
+So here we are in the schema.
+We're going to define a table called scheduled tasks.
+Nothing too crazy here.
+It's going to have an ID, which is going to be the primary key.
+It's going to auto increment.
+We're going to give every task a name as well as a type.
+In our case, for now, it's probably going to be the follow-up type.
+We can define some different ones later.
+We can set a status.
+So we're going to use that to track whether the scheduled task is run.
+So, for example, it's going to start off as a default of pending because it needs to be run.
+Then it'll run to running completed or failed so we can track the progress of these tasks.
+Set scheduled for, that's going to be the ISO date time of when we expect this task to run.
+A payload, this is going to be the contents that are needed to process this message.
+And then some timestamps for created at and updated at.
+Next, we'll take a look at the db index file.
+This is basically just where we're going to instantiate our database client and configure how to access the database.
+Now let's look at our scheduler file and take a look at what that's going to look like. So
+every type of task, we're going to have to define a task handler. That's what our TypeScript
+definition on line five is. It's going to be a callback function that takes a payload and
+returns a promise that is not going to have any kind of return of its own. And then handlers is
+going to be a map, which is going to be a string of the key for the name of the type of task.
+that it's handling and then the actual task handler.
+From there, we're going to export a function for register task handler.
+So this is where we can specify how different tasks are handled.
+You pass in the string as well as the function, and it will add it to our map of the different handlers that we have available.
+Then we can dive into the actual body of how the scheduling works.
+So init scheduler is going to poll every 30 seconds for due tasks
+and look at our database for anything that needs to be processed.
+So once it starts, it's going to dispatch immediately to just kind of, as it started,
+check if there are any due tasks to run.
+And then otherwise, we're going to set interval for 30 seconds to run that on every 30 seconds.
+The schedule task function is going to be a function for actually setting, scheduling a task in the future.
+So all it does is takes a name for the task, the type of task,
+as well as when to schedule it for and the payload for that task.
+We insert that into our table for scheduled tasks and do some logging.
+And then dispatch do tasks is the function for actually finding any pending tasks that are due,
+marking them as running, and going through and running through them and resolving them.
+So we can see on line 51, first thing, do tasks,
+That's going to select from the database from schedule task table where it has a status of pending.
+And we're scheduled for is less than or equal to now.
+For any task that it's found, it's going to loop through it.
+It's going to update that task status to running while we process it and set the updated ad for us.
+And then it's going to get the handler.
+So in that handler mapping that we talked about, based off the task type, we're going to go fetch the handler and run it.
+So we grab it.
+If for some reason there is no handler,
+we're going to console that error and mention that there was no handler found.
+Then we're going to set that status to failed so that that's recorded in our database.
+Then we're going to go ahead and call that handler.
+So assuming we did find a handler,
+we're going to parse the task payload JSON,
+call the handler, executing it with the payload,
+and then updating that it's been completed.
+If for some reason, again, any other errors happen,
+we'll mark it as failed and go ahead and exit out of that iteration of the loop. Now if we go and
+look at the Mastra index here we can see inside of the top of the file we're going to go ahead and
+call and boot our init scheduler so that's going to set everything up and start polling every 30
+seconds then we will register our follow-up handler so this is what that handler system we
+we were talking about, we're defining for a task called follow-up that this is what it should do.
+So in this case, it's going to grab from the payload the thread ID and the message. We're going
+to use our Slack bot. It's going to get the adapter Slack, and we're going to post a message to the
+thread with the markdown message that was passed along as part of the payload. If we take a look
+at our cal.com webbook handler. We now grab and check if the payload had an end time for the
+calendar invite. Then we schedule a task reminding us to go ahead and provide some feedback on how the
+call went. So here's the schedule task example. So it's called the title or the name of it is
+follow up and then the attending name. We use the task type of follow up so that way it maps to
+that handler properly. We set the next argument is when it should run. So basically we're saying
+it should run at the end time of the event. And then the thread ID as well as the message that
+we want to pass along as part of the task when we message in Slack. What we built here is
+intentionally small. One agent, one webhook, a Slack integration, and a custom scheduler.
+But the pattern holds at any scale.
+Any business process that runs on events is a candidate for this kind of system.
+Most teams aren't there yet.
+They have access to the same models, but they're using them reactively.
+You type a prompt, you get a response, and you copy it somewhere.
+What we built today doesn't work that way.
+The trigger is external.
+The agent acts.
+The result shows up where you work.
+I help teams build these systems.
+Coaching for engineers doing it themselves, or consulting if you want it built for you.
+Link is in the description. If you want to go deeper on AI agents, you can start here.
+I'll see you in the next one.

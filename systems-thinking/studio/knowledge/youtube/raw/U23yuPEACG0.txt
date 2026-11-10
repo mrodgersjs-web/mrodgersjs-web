@@ -1,0 +1,1455 @@
+All right. Let's get started.
+Long time no see. I'm excited to be back and tell you guys about Bayesian networks.
+Um, so before we dive in,
+I wanted to do a few announcements first.
+Um, there's four things that should be on your radar.
+So the scheduling homework is due tomorrow.
+Hopefully, you guys are well aware of that.
+Um, the car assignment is, uh,
+released today, and it'll be due next Tuesday.
+So there's some, um,
+conceptual challenges here, especially if you're not to- up to speed on your probability.
+Uh, the section, uh, Thursday will,
+uh, really help you go over that. So please come to that.
+Um, then there is a final project,
+ah, you guys have- hopefully,
+have all received your feedback, uh,
+for your proposal and are actively making changes.
+So just to make sure that you guys are making progress,
+there's a progress report that is due, um, next Tuesday.
+And for this one, the,
+the guidelines are all on the,
+the website but just to kind of reemphasize, um,
+especially if you didn't, uh,
+manage to get a baseline or Oracle,
+we- we really expect that you to have that now.
+And also, we expect you to have some sort of preliminary results with, you know,
+some sort of implementation of your actual,
+um, [NOISE] procedure or algorithm or model.
+And definitely some description of what that is,
+and be as concrete as possible, um, as you can.
+Um, and finally, the exam is in about, uh, two weeks.
+Um, I would start, uh, looking at that.
+Um, and the- actually the best way I think to prepare for
+the exam is to look at the old exam problems because there is a certain style,
+um, that you have to kind of get used to when taking the exam.
+So I know this is a busy time,
+there's a lot of things going on.
+But hopefully, um, you guys will manage. Yeah?
+Progress is due Tuesday or Thursday?
+It's Tuesday, I believe. But I could be wrong.
+[inaudible] Uh, Tuesday but [inaudible]
+Yeah. Let's say it's Tuesday.
+Whatever the website says.
+It's whatever the website says.
+Oh, that says Thursday?
+Okay. Well, then we'll defer to the website on that.
+Okay. Um, okay so the next,
+uh, agenda item is the Pac-Man competition.
+So many of you, uh,
+worked hard to submit,
+um, various entries into this competition.
+In the end, only three could,
+uh, make it to, uh, the top three.
+So, um, here are the winners of the Pac-Man
+competition- because out of town but if- in the audience,
+uh, maybe you guys could come down.
+Let's give them a round of applause.
+[APPLAUSE] And we have these, uh, um,
+prizes [NOISE] which are Pac-Man themed, uh,
+Cups [LAUGHTER], um, filled with candy in case you didn't get enough for Halloween.
+So there you go.
+[NOISE] Congratulations.
+Thank you.
+Do you guys want to say a little bit about what was your secret sauce?
+Sure, called Pacman and um, actually, the  fourth one is the stupidest of all.
+And the third one is like, um, super messy.
+[NOISE] I had like all of these [inaudible] extracted from like the food, the capsule,
+the hunting ghost, and the scaredy ghost [inaudible] and all that stuff.
+But it actually turned out to be not as useful as a very simple [NOISE] method
+that- which is similar to how everybody plays Pac-Man
+if there's a hunting- uh if there's a scared ghost, then go chase it.
+[NOISE] If there isn't then go for the capsule [NOISE] or else
+look for the food and dodge the hunt- uh, the hunting ghost.
+And, um, also, um,
+I changed the- I think the distance to, um,
+[inaudible] algorithm because the Manhattan distance is different from,
+um, the [inaudible] [NOISE] algorithm.
+So lesson is, keep it simple.
+Okay. [inaudible].
+I recently experienced.
+There was a lot of variations that I went through.
+And I know mine was best due to ending up being
+a very simple model [inaudible] the policy, you want to keep the ghost
+Every once in awhile, the scared ghost is in play.
+And after, uh, eating all the capsules get included
+as good as possible for you to get [inaudible] for tracking
+down at the speed of DFS search, which I use dynamic programming so that
+everybody [inaudible] transitions and always catch that and have that robot-
+Great.
+- [inaudible]. Yeah.
+Okay. Well, great. Well, congrats again.
+[inaudible] [LAUGHTER] [APPLAUSE] Okay. All right.
+So keep it simple I guess is,
+uh, is a good, uh, lesson.
+Okay So back to our regular programming.
+Um, last week, we started talking about factor graphs.
+Just a quick review of what factor graphs are.
+Factor graphs consist a set of variables.
+These variables could denote colors of provinces of Australia or locations of,
+uh, objects at different time steps.
+Factor graphs also include a set of factors which depend on certain sets of variables,
+and these factors are meant to specify, uh,
+preferences or constraints on what values are good for these variables to take on.
+And the weight of an
+assignment is the- simply the product of all of the factors, [NOISE] right?
+So there's this theme that comes up in this class which is- I call it,
+uh, specify locally and optimize globally, right?
+So it's very easy to think about how two variables might interact and
+how you want something local, um, to happen.
+And these are defined in terms of the factors.
+But what you care about is some globally optimal solution.
+So the weight is a global function of all the var- assignment to all the variables.
+And last time, we talked about various different types of algorithms
+for finding the maximum weight assignment including backtracking search,
+beam search, Gibbs sampling,
+and so forth and so forth.
+Okay. So, um, one example we looked at was object tracking.
+And in this example,
+we have a set of variables corresponding to the location of,
+an unobserved object at time step i.
+Um, and we looked at two types of factors that captured where this object might be.
+There's transition factors which capture
+the intuition that across two successive time steps,
+the object shouldn't move if you can't teleport,
+that has to remain close.
+And tran- observation factors then incorporate the information from the sensors.
+At each position, there's going to be some factor that kind of, uh,
+encourages the position to be similar to what the sensor reading was.
+So sensor readings are noisy so it's not
+a hard constraint but it's a- but a soft constraint.
+Um, and last time,
+we saw, uh, this, uh,
+demo where you can define the factor graph and you clicked Run.
+And you see all the factors which are represented in these, uh, tables.
+And when you multiply everything together, you get, um,
+for every joint assignment to all the variables
+some number that corresponds to how good that w- uh assignment was.
+And if you look at the maximum weight assignment,
+that's what the answer you would, uh, return is.
+Okay? So so far so good,
+and you can- with this framework,
+you can do a lot with it already.
+You can define a bunch of factors,
+you can run all the algorithms that we looked at last week.
+But, you know, what is- what do these factors mean and how do you come up with them?
+Intuitively, you can define these factors just,
+you know, hack on a 2 if you like it, 1 if you don't like it.
+But, you know, philosophically,
+maybe you should be a little bit bothered by this because,
+um, these factors are kind of just arbitrary in some sense.
+So the goal of this,
+uh, lecture and, uh, um,
+next two will be to, um,
+give more meaning to the factors,
+and we're gonna talk about Bayesian networks.
+There's a way to do that. So in one sentence,
+Bayesian networks are factor graphs plus probability.
+Um, just take it, taking a step back.
+Where have we been in this course?
+This course has been a lot about designing new modeling frameworks.
+So we, uh, looked at state-based models which
+result in search problems and MDPs in games.
+And this was, uh,
+useful tools for solving a lot of, uh, problems already.
+Um, but then we looked at,
+uh, starting last week,
+cases where maybe the order of actions doesn't matter so much,
+and it's more natural to think about a set of variables that
+you want to find some assignment in any order,
+uh, uh, is, you know, permitted.
+Um, and you can think about that as going maybe stepping up in abstraction,
+kind of going from assembly to maybe C++.
+And in this lecture,
+we're gonna talk about Bayesian networks.
+You can think about loosely analog, analogizing going from C++ to Python.
+It gives you, uh, a kind of a more high level language to think about modeling,
+um, it's just another tool in your, you know, toolkit.
+Okay. So let's start with, uh, the basics.
+So just a quick review of probability.
+Usually, we see probability sort of with outcome spaces.
+I'm gonna jump directly to random variables,
+assuming that you have, uh, basic,
+um, um, CS109 knowledge.
+So random variables are things- in this example,
+are sunshine and rain.
+So they're variables whose values are unknown.
+And furthermore, there is a probability distribution over
+all the random variables that captures how they might interact.
+And, um, so this is called a joint distribution.
+Um, so we write P,
+uh, this blackboard P of,
+uh, the two random variables,
+S and R. And this is
+this entire table which specify for every possible assignment to all the variables,
+a single number which is its probability.
+So the probability that it's sunny and it's not rainy is 0.7, for example.
+Now, so I want to distinguish,
+uh, um, two things.
+One is that we're gonna use uppercase letters to denote random variables,
+and lower case letters to denote the values that the random variables can take.
+In addition, I wanna point out that when I write P,
+S equals S R equals R,
+that quantity expression represents
+a single number which is a probability, for example, 0.7.
+Whereas, if I write P of S and R,
+that expression denotes a whole distribution which is the table.
+And I know these are kind of minor, uh,
+notation differences but I think it will,
+uh, avoid a lot of confusion if you kind of pay attention to this.
+So from the do- joint distribution,
+you can use the laws of probability to derive, uh, several quantities.
+One quantity is called the marginal distribution.
+And in marginal distribution,
+you pick a subset of the variables that you care about;
+those are called the query variables,
+and you induce a distribution over them.
+So in this case,
+I've picked S. And what I'm saying is I only care about the probability of S. Um,
+I don't care about R. But R still has kind of influence on S.
+So I need to take R in to account somehow.
+And the way I do this is I look at all possible values that S can take on,
+so look at 0.
+And then I look over to the joint distribution [NOISE] and
+look at all the rows that match that particular,
+uh, S. So here,
+I'm looking at S equals 0.
+So that's the first two rows.
+And then I look at those probabilities and I summed them up.
+So 0.2 plus 0.08 is 0.28.
+And similarly, for S equals 1,
+I look at all the rows that matched S equals 1 which is the last two rows,
+and that gives me 0.72.
+Okay. So what I'm doing here is called
+marginally- marginalizing out R. Because I don't care about R,
+I'm interested in the marginal distribution over S.
+So another concept which is gonna be really important is,
+uh, the conditional distribution.
+And the conditional distribution arises when
+your interests- when you have, um, some evidence.
+So assume- let's say I observe that it's raining.
+So R equals 1.
+So I write P of S given R equals 1,
+to say this is the- I'm interested in distribution over S,
+given that it's, uh, raining.
+And to compute this, um,
+I look at this condition R equals 1,
+and I simply select all the rows which match that.
+So the second and the fourth rows.
+So now these are numbers, now probabilities.
+They don't sum to 1, right?
+Because it's only a subset of the rows.
+But what I'm gonna do is make them sum to 1 by normalizing.
+So normalizing means taking, uh,
+the relevant numbers 0.08,
+0.02, adding them up,
+and dividing by that number.
+Okay? So I'm dividing by 0.1,
+which gives me the normalized distribution 0.8 and 0.2.
+Okay? So these two concepts are gonna be really important,
+and if you remember from last week, uh,
+there- we talked about marginalization as conditioning,
+later in this lecture I'll connect these, uh, two concepts.
+Okay. Any questions about,
+uh, basic probability so far?
+Hopefully this is all uh, review.
+Okay. Let's move on.
+So suppose I have a joint distribution over some set of variables.
+So then in this example, it's, um, sunny,
+it's raining, whether there's traffic,
+and whether it's the autumn season.
+Um, the way to think about this is a p- as a probabilistic, uh, database.
+Um, for every possible assignment,
+I have a number that is either,
+uh, is- is between 0 and 1.
+Um, so I can think of it as an oracle.
+This is like a source of, you know, truth.
+I don't know what any of these variables is,
+but I know how they behave and how they operate,
+just like I know- I don't know what the outcome of a coin flip is gonna be,
+but I know that it's half and half, heads and tails.
+So the main thing that we're gonna do with
+a joint distribution is called perform probabilistic inference.
+Okay? So this is an important thing to,
+you know, understand, um,
+because we're gonna spend the whole time during probabilistic inference,
+so it's good to know what it is.
+So, um, probabilistic inference,
+the way to think about it is that,
+um, you observe some evidence.
+You wake up and you see,
+uh, okay, it's- it's autumn,
+and, um, and it's a bay area so there's traffic outside.
+So, uh, you're conditioning on some evidence,
+T equals 1 and A equals 1.
+Okay. That's what you know.
+And what you like to find out, um,
+querying this oracle is,
+you know, whether it's raining.
+So you're interested in some set of query variables.
+Okay. So the general form of a probabilistic inference, um,
+a problem or task is probability of some set of query variables conditioned on some set of,
+you know, conditioning variables which are set to particular values.
+And notice that there are some variables which are not mentioned in this query,
+such as S, and those variables are the ones that are marginalized out.
+So you can think about this query as combining
+both the marginalization and the conditioning from the previous slide.
+Okay? So this, without loss of generality,
+just captures everything that we seek to do with,
+uh, distribution for the purposes of this class.
+Okay. So at this point,
+you can actually just do probabilistic inference, right?
+If I give you a joint distribution,
+um, which is this huge table with all the,
+uh, probabilities for all the assignments,
+you can go and um,
+you can compute anything you want.
+So now, there's a, kind of,
+a slight problem here which is that,
+if you have N variables,
+and just suppose each variable takes on two values.
+How many possible- how many rows in a table are there?
+Anyone? 2 to the N. Right?
+So that's exponential, that's a lot.
+So if N is 100, then that's, I don't know, a lot.
+Um, so- so clearly,
+we can't do this naively, right?
+So the first challenge is,
+how do you even write down this joint distribution compactly, right?
+I don't want to write down 2 to the N numbers.
+So Bayesian networks is going to allow us to
+define joint distribution using the language of factor graphs.
+So this is really cool because now I have a very compact way of specifying what is,
+um, implicitly, something that's very, very large.
+The second challenge is algorithmic.
+How do you do inference, right?
+We wanna do- perform a probabilistic inference answering queries like this.
+How do we do this efficiently?
+Again, you don't want to have to, uh,
+go through to 2 to the N possibilities,
+because that would be really really slow.
+Um, and we'll see that variable elimination,
+Gibbs sampling, particle filtering,
+which is the probabilistic analog of beam search,
+all these algorithms that we, uh,
+talked about last week are actually going to come into play.
+And we're just gonna talk about the probabilistic analog of these,
+as opposed to finding the maximum weight assignment.
+Okay. All right.
+So now let's try to motivate why we need,
+uh, Bayesian networks with this following example.
+So, um, here's a setting.
+So earthqua- earthquakes and burglaries are things in the world, they are bad things.
+Um, but suppose that they're independent,
+right? That kinda makes sense.
+Um, but in your house you've ins- installed an alarm system,
+which is going to detect either,
+uh, both earthquakes and alarms.
+Okay. So one day you wake up,
+and you hear an alarm go off.
+Okay. So you should be alarmed.
+Um, but, uh, but then you turn on the radio and you hear that,
+uh, there's actually an earthquake.
+Um, so how does that affect your beliefs about whether there was a burglary or not?
+Okay. So okay.
+There's three options, does it increase the probability of a burglary?
+Does it decrease the probability of burglary or it does not change anything at all?
+Okay. So how many of you think that hearing, uh,
+the news about the earthquake on the radio increases the probability of a burglary?
+So a few say it increases,
+how many of you say it decreases?
+So many of you say it decreases.
+How many are saying it doesn't change?
+Okay. Almost as many say it doesn't change.
+Okay. That's interesting.
+So we'll answer this question,
+but you know, keep on thinking about that in your back of your head.
+And one thing I'll say is that, you know,
+I shouldn't- you shouldn't expect to necessarily find
+the right answer here just by kind of intuiting things.
+And one of the points of making things codified in
+a Bayesian network is that you don't leave anything up to a, kind of, vagueness.
+It's- you- it's- there's actually a correct answer that we can derive.
+Okay. So, um, let me talk about how to go about,
+uh, modeling this as a Bayesian network.
+So with this core example,
+so there's four steps.
+Um, the first step is defining what the variables are.
+Okay. Variables. Um, so
+what are the variables here? Yeah.
+Burglary.
+Okay. So there is a burglary-
+Earthquake.
+And alarm.
+And alarm. Okay, great.
+So these are the three things that we don't know about that are mentioned.
+Okay. So the second step is,
+um, you draw some edges.
+Okay. So these are gonna be directed edges,
+that correspond to notions of influence.
+Um, and if you- if you want cause- causality.
+But causality is a very, uh,
+more philosophical thing which we don't really need for this class.
+Um, so, but I'll- but I'll use it anyway.
+So what causes what?
+So this alarm cause burg- burglaries, no.
+Okay. I think it's the other way around, right?
+So burglaries cause alarm,
+and similarly earthquakes cause alarm.
+Um, and these two aren't,
+uh, or I said they're independent,
+so let's just leave that out.
+Okay. Okay. So now I have a direct a- acyclic graph
+that shows how all the variables are related in somehow.
+Okay. So the third step is to define local conditional distributions.
+So now I'm going to go one step further and say, um,
+how these, uh, what the probabilities of these, uh, variables are.
+Because in the end, and remember I wanted to
+define a joint distribution of all the variables.
+Okay. So um, I'm going to define
+a local conditional distribution for each of these variables.
+So here I have P of B,
+P of E, and um, P of, uh,
+A given B and E. So in general,
+a local conditional distribution is P of whatever that variable is, given its parents.
+So the parents are the variables that directly point into it.
+So the parents of A are B and E. E has no parents,
+and A, uh, B has no parents.
+Okay. So in particular,
+what I'm going to do is now- let me flesh this out a little bit more.
+So what is P of B?
+P of B is a table that specifies only what's going on in this region of the space.
+So I have B, and have P of B,
+and I just fill out this.
+What are the possible values of B?
+0, 1.
+0, 1. So let's say,
+uh, 0- 1 and 0.
+So let's say that probably of burglary is Epsilon.
+Um, Epsilon generally denotes a small number,
+which you hope to be the case, um, here.
+Um, so this must be 1 minus Epsilon,
+because it has to sum to 1.
+Um, and for simplicity,
+let's say that probability of earthquake is also Epsilon and 1 minus Epsilon,
+just for simplicity.
+And then, okay.
+So this one's a little bit more complicated.
+So I'm gonna write the parents B,
+E, and the variable itself, A.
+And I'm going to look at probability of A given B and E.
+And now I'm gonna list out all the eight possible, uh, combinations here.
+So it's 0 0 0, 0 0 1,
+uh, 0 1 0,
+0 1 1, 1 0 0,
+1 0 1, 1 1 0, 1 1 1.
+Okay? Okay. So for each of these I need to specify the probability.
+So 0 0 0.
+Um, and I should say that this alarm system you bought was,
+uh, is really good- really good.
+So it's, um, it detects earthquakes and burglaries, uh, perfectly.
+Okay. So if there is no burglary and no earthquake,
+then the probability of the alarm not going off should be 1. Right? It's perfect.
+And this is, uh,
+the failure case which is 0,
+because, um, if there is a burglary- no burglary and no earthquake,
+the alarm shouldn't be going off.
+And, um, this is- I'm not gonna bother you with the details,
+you can, uh, you can just fill in the rest of this.
+So there is a burglary and earthquake that should be,
+uh, maybe someone should check them during this, right?
+Um, this should be a 1,
+this should be a 0, and this should be a 1.
+Something like that?
+Okay? So now I've defined
+the local conditional distributions so remember I'm
+not defining the joint distribution yet.
+I'm just defining in from zooming in on a particular variable.
+How does it relate given its parents, right?
+And you can think about it like, you have a million nodes.
+I'm only, each local distribution might be only touching like a very small part.
+Okay, so finally the fourth step is to define the joint distribution.
+Okay, this is the thing we're all after, right?
+Which is, what is the joint distribution over
+all three variables here
+and the joint distribution is going to be written with a black pen.
+P is, um, B equals,
+uh, b, um, E equals e,
+A equals a so random variables equals a particular possible value,
+and this is defined to be the product of all the,
+uh, local conditional distributions.
+Okay? So P of b,
+p of e and p of a given b and e.
+[NOISE] Okay?
+So let me reveal the slide which hopefully should have the same content on this.
+Um, one thing I'll,
+I'll point out is that, um,
+there is a difference between the small p's and the big P's.
+So the small p's are local conditional distributions.
+Um, these are things that you just define, right?
+There's no right or wrong there.
+You just define them.
+They're just true.
+Um, and then there's this big P which is, um,
+the joint distribution which is
+again defined to be just the product and then from this joint distribution,
+you're going to read out things like marginals and conditionals, um,
+which might look like some of these local distributions but they're, uh,
+right now I think about them as distinct objects. Yeah, question?
+Can we find [inaudible]
+So the question is are we assuming b and e are, um, independent here?
+Um, so let's see how do I answer that?
+So yes in this one b and e are, um, independent.
+Um, and, uh, I'll show you a little bit further how we can kind of see them more clearly.
+Yeah. Okay so these are Bayesian networks.
+So what's the connection between this and factor graphs?
+Well, if you, um,
+squint a little bit,
+you see that the right hand side here is a product of
+things and the left-hand side is this kind of joint,
+uh, global thing and so what does this look like?
+Looks like weight equals product of vectors, right?
+So let's go with that analogy and it's actually much deeper than just an analogy,
+um, and let's draw this as
+an equivalent factor graph.
+Okay? So for every Bayesian network,
+we can actually draw it as a factor graph.
+So here we have b, um,
+e and a and- okay so now it's, um,
+you know, it's really important to note that how did the factors, uh, arise.
+Through there's a local conditional distribution
+remember for every variable and that is a factor.
+So for every variable,
+there is a factor right.
+It's tempting to look at these edges and draw factors on them but that's, that's wrong.
+Okay? Remember, one factor per variable.
+Okay? So this variable has a factor.
+That is P of B.
+This variable has a factor,
+that's P of E and this variable has a factor and,
+uh, this-what does this depend on,
+what is its, uh, scope?
+B, and E, and A, right?
+Okay. Now again, common mistake is
+to just put two factors here because it's really tempting.
+But one way to think about it is that if you think about your,
+your parents they- they're married and connected.
+So that's why these are your parents are connected.
+Actually the- um, I'm not making this up but there's, um,
+some people call, uh, this process,
+um moralization.
+Um, yeah.
+Can you guys use this system to compute the probability of
+alarm given just an earthquake or a probability of alarm given just a burglary.
+Yeah so the question is,
+can you use this to compute probability of alarm given earthquake alone or burglary alone?
+And the answer is you compute whatever you want and we'll- I'll show you how to do that.
+Okay. So single factor connects all the parents,
+one factor per variable, okay? Got it?
+All right, so, um,
+the joint distribution over all the variables,
+remember is the product of
+all the local conditional distributions and just for reference,
+this is what it is. Um,
+and now you can go and answer questions about this.
+So this is kind of the fun part and I'm not going to go through
+the details of how this is done but I'm just gonna show you kind of the interface,
+um, what you would expect.
+So again, this is, um,
+the definition of an alarm network, um,
+using the same machinery as a factor graph because it is a factor graph,
+um, and first we're gonna ask what is the probability of B?
+So what is that? That says in the absence of any information,
+is there a burglary or not?
+Okay? So what do you think that should be?  And epsilon here is 0.05.
+So I think I heard it 0.05.
+Someone said that, okay?
+So in D, the probability of a burglary is 0.05.
+Um, should be intuitive, um,
+and now suppose I- uh,
+the alarm went off.
+Okay? So now what's the probability of burglary?
+So what is P of B given A equals 1?
+Does it go up or down? Should go up if your alarm is working.
+Um, and indeed we see that probability of burglary given alarm equals 1 is 0.51.
+Okay? And now the moment of truth,
+what happens if we condition on the fact that there's also an earthquake?
+So let's do this and you get 0.05.
+So many of you are correct, um
+when you said that the probability of,
+uh, earthquake goes down.
+And intuitively, you can think of, uh,
+it makes sense from this phenomenon called explaining away.
+So explaining away happens when you have structures that look like this,
+and you have- suppose you have two causes, positive influencing effect?
+So by positive influence I mean that if you flip B equals from 0 to 1,
+then the probability of A goes up.
+And, um- so explaining away says I conditioned on the fact,
+conditioning on one cause reduces the probability of the other one.
+Okay? So at some level this makes sense because, you know,
+this A is either B or, uh, uh,
+is either driven by B or E and I don't
+know which one it is if I just heard an alarm go off.
+But each of these is very small proba- has very small probability.
+So the moment I can kind of, uh,
+see that one of them explained this cause, see that one of them is true then I,
+I can revert back to the my prior belief on the, you know, other one.
+Okay? So humans do this all the time when you're reasoning.
+When you're thinking about like what,
+what the cause is and you find one,
+one cause and you discount all the other ones.
+So um, now the thing that's kind of interesting here is that I did
+say that B and E are independent which is also true.
+Right? So this might have led people to
+think like well, it shouldn't change because they are independent.
+So why should the probability change?
+But the key thing is that when you condition on A,
+you actually changed, uh,
+the independent structure of the model.
+So this is why writing things down really precisely
+is helpful to kind of reconcile these seemingly,
+um, contradictory intuitions that you might get. [NOISE]
+Okay, any questions about this?
+[NOISE]
+All right, let's move on.
+So we've talked about the alarm network.
+This is your first example of a small Bayesian network.
+Hopefully, you have an idea of
+the intuition behind this and now I'm going to generalize it.
+And the generalization shouldn't be surprising.
+So in general I have n random variables usually denoted X_1 through X_n.
+And the Bayesian networks is a directed acyclic graph over
+these variables and it defines
+a joint distribution over all the variables like this, X_1 through X_n.
+And this is defined as a product of local conditional distributions,
+one for each node.
+Okay, so this is a product of all n,
+X_i given X parents of i.
+And this notation just means the values assigned to the parents of i.
+Okay, so this is a very general framework.
+Um, and, uh, just like factor graphs are a very, you know, general framework.
+But the key difference from factor graphs
+is the fact that these factors aren't arbitrary,
+right, there are local conditional distributions.
+And what does that mean? That means all factors satisfy this property.
+So if you pick up a factor for the i-th node,
+p of X_i given X parents is equal to
+1 if you sum over all the possible values that X_i can take on.
+Okay, that's what it means to be a, uh, probability distribution.
+And this is true for every setting of experiments.
+So this property has two implications which I'll
+discuss consistency of sub-Bayesian networks and consistency  conditional distributions.
+Um, and these properties are going to allow us to really,
+uh, take advantage of the probabilistic structure when we're doing inference.
+Okay, so the first thing is the question
+is suppose I have this Bayesian network, this alarm network.
+And, um, I'm going to suppose I'm interested in
+the marginal distribution of only B and E. Okay, I don't care about A.
+So remember this is, um,
+the joint distribution and by laws of probability,
+I can derive the, um, marginal distribution.
+Now, the question is what does this marginal distribution
+have to do with the- the Bayesian network, the graph here?
+Okay, so let's go through some algebra to find out.
+So this is a sum over all A and by definition
+this is just the product of all the local conditional distributions as we just discussed.
+And now I notice that P of B and P of E don't depend on A which means that I
+can pull this out and push the summation in. That's just, uh, algebraic manipulation.
+And then what is this value?
+This value is just 1 because of the previous slide.
+So I can just drop it.
+And now I have p of b times p of e. And lo and behold what is- what
+is this? This is if you had just gone and defined
+a sub- miniature of Bayesian network over
+B and E. This was exactly what you've written down.
+Okay, so that's kind of cool.
+So the general idea here is that when you're marginalizing out, uh,
+a leaf node that yields a Bayesian network just without that node.
+So marginalization produces this, um,
+this Bayesian network where you've just erased,
+um, the very- the leaf node along with its incoming edges.
+All right, so in other words,
+I've turned basically what was, would have been
+a algebraic operation into a graphical one.
+And generally those are good moves
+because it's much easier to kinda think graphically and,
+uh, make large operations then go through tons of algebra. Yeah.
+Definition equals, it seems like it's from like the probability [inaudible].
+Yeah, so the question is what about this first definition
+equals? What I mean here is by the laws of probability.
+Um, so it's not technically a definition,
+it follows from the axioms of probability.
+Yeah, thanks.
+Okay. So notice that in this world,
+P- B and E are independent.
+So this is one way you can kind of, uh,
+see that actually when you define the joint distribution,
+in that joint distribution, um,
+two variables, B and E are independent.
+So one thing to note is that if we looked at the factor graph,
+um, which is this thing.
+And remember last time we talked about marginalization in fact- factor graphs.
+And what does that look like?
+If you- what happens if you did marginalization in this factor graph?
+Okay.
+Yeah, you just
+remove A but this factor is, does it disappear?
+No, it's- it doesn't, right, because factor graphs,
+remember that factor graphs don't know anything about this factor.
+Other than that it,
+uh, returns non-negative numbers.
+So you would have to keep, hold onto this factor.
+Right, so the moral of the story here is that if you're using factor graph,
+if you convert the factor graphs too early,
+then you might lose out on opportunities that really simplify it.
+Whereas, if you look at this- the factor graph of this one,
+there is no P of a given B and E. Right.
+I mean just to go back here factor graphs will create a factor which is summation of A,
+P of A given B and E and call that a factor.
+And we know because these are local conditional distributions that's just one,
+so you can just drop it.
+Okay, so- so that's the first property.
+Just summarize, if you marginalize out leaf nodes, uh,
+you get Bayesian networks by just dropping them from the graph.
+So the second property is its consistency of local conditionals.
+As I alluded to before,
+if you have P probability of D given A and B,
+there's two versions of this that you might be thinking about.
+One is the local conditional distribution,
+which has again you just define it as such.
+And then there is the corresponding quantity
+that comes about from probabilistic inference.
+So this quantity is derived from taking the definitions,
+forming the joint distribution,
+and then using the laws of probability to derive this particular quantity.
+And this property says that don't worry about it, the two are equal.
+So, you know, it means that you can kind of
+intuitively think about there just can
+be one notion of probability in your head.
+But I wanna make this explicit but that this is- that doesn't come necessarily for free,
+you have to kind of verify that this is true.
+I'm not gonna go through the verification step, it's in the,
+uh, notes in the slides,
+but I'll just state it as such.
+Okay. So let's do another example just
+to familiari- familiarize ourselves with Bayesian networks a little bit more.
+Um, so the question here is that suppose you have, um,
+you wake up and you are coughing and you have itchy eyes
+and you're wondering, do I have a cold or do l have allergies?
+Okay, so let's follow this four-step procedure to define this Bayesian network.
+Okay, so step 1, what are the variables here?
+There's, um, coughing, let's denote that as H,
+and itchy eyes, and then cold, and allergies.
+Okay, so four random variables.
+Um, how should I connect these things up?
+Yeah, so H and I should be connected to C. So if you have a cold,
+you probably have, um,
+uh, a cough and you probably have itchy eyes.
+And here you tap into your medical knowledge and,
+um, what was that?
+Yeah, so generally, uh,
+I'm no doctor but let's just assume for now that allergies don't really cause the
+coughing, cause the itchy eyes.
+It's probably not true but let's just pretend it is.
+Um, okay, so just to make the network a little bit more interesting.
+Okay, so those are the edges,
+and now I have to specify local conditional distributions over all these.
+So what are the local conditional distributions?
+So I have P of C,
+P of A, remember one for every node, um,
+and P of H given C and here over here is P of i given C and n, right.
+So probability of a node given its parents.
+And then finally I have the joint distribution which is probability of C, A, H, I.
+And this is by definition just a product of everything.
+Um, for this example I'm not going to go through and
+define the actual tables because that's gonna take too much time.
+But I'm gonna do it in this demo here.
+Okay, so this is a Bayesian network that I just drew on the board
+and this is its- its associated factor graph.
+Remember one factor per node. Yeah.
+The PowerPoint switches the allergies and cold.
+C, A, oh, yeah, you're right. Um.
+I guess that makes sense.
+Which one makes sense?
+[inaudible]
+Yeah. Okay, I got,
+I got a little bit, uh, confused [NOISE] Okay.
+So it should be like this and then I have to adjust things, um, okay.
+So we're fixing this.
+I given a, um,
+and c and a, okay?
+Just for the record,
+I'll just make this h given c and a and i given a, okay.
+That wasn't too bad. Okay, thanks for catching that.
+Okay. So this is the factor graph, um,
+and let me show you, uh, this demo.
+So you can click on this and you can see, uh,
+this Bayesian network and this factor graph.
+Um, and to answer this question, what was the question?
+The question was if I have, uh,
+if you are coughing and have itchy eyes or do you have cold or allergies.
+So I conditioned on cough equals 1, uh,
+itchy eye equals 1,
+and I am asking for,
+uh, the probability of, um, the cold.
+Okay. And if you work it out,
+you see that the probability of a cold is 0.13.
+Um, and, you know,
+so why does this- so- okay,
+I guess I didn't really tell you enough about the actual prior probability.
+So the probability of a cold is, you know,
+0.1, um, let's say and the probability of allergies is, you know, 0.2.
+And then there's a, kind of,
+a noisy or where if you're, uh,
+if you have, um,
+a cold or allergies then you,
+you end up coughing.
+And, um, the- if you have, uh,
+itch, allergies and you have itchy eyes with probability 0.9.
+Um, and what happened here is that,
+um, if you- oops.
+Um, if you condition on, uh,
+your coughing and you have itchy eyes,
+um, there's this, kind of,
+interesting explaining way happening here.
+Um, where, you know,
+even though you didn't observe A,
+you observe evidence of A,
+and that's enough to, kind of, uh,
+lower the probability that you have a cold.
+So this is- example show something a little bit more subtle how information can
+kinda propagate along the Bayesian network in ways
+that if you try to do it just kind of intuitively,
+you will probably, um, not be able to.
+Okay. So let me summarize so far what we've done.
+So we've introduced Bayesian networks,
+where we have random variables that capture the state of the world.
+And we have edges between those variables that represent
+dependencies between, um, those variables.
+And, um, based on those dependencies,
+we go and define local conditional distributions,
+you multiply all those local conditional distributions, you get a joint distribution.
+Now, with that joint distribution,
+by laws of probability you can go and ask
+probabilistic inference queries and ask questions about the world, um, given evidence.
+And we saw that this captures interesting reasoning patterns such as explaining a way.
+And finally, all of this can be, uh,
+brought under the umbrella of
+the factor graph interpretation which we will see is very useful for,
+um, actually doing probabilistic inference in general, in a bit.
+Okay. So any questions before I move on to the next section?
+Okay. So now, I'm gonna talk about probabilistic programs.
+So this is going to be, um, kind of,
+a little bit of a whirlwind tour and hopefully give you different perspectives,
+um, and open your eyes to, kind of,
+the possibilities of Bayesian networks.
+Um, so let's look at this alarm network again.
+I can write it as on the board, um,
+just a product of all the local conditional probabilities,
+basically use math or I can think about this as a probabilistic program.
+Okay. So what I'm gonna write down is a program that it's a very simple program,
+um, it has three lines,
+one for every, uh, variable.
+And the first line is B is,
+uh, drawn from Bernoulli Epsilon.
+So this notation just means B is set to, uh,
+a random value that has, uh,
+distribution Bernoulli Epsilon, and same with, uh, earthquake.
+And then finally I set A equals B or E. Okay.
+Um, and, uh, so the idea here is that a probabilistic program is just
+simply a program with randomness in it that when you run, sets the random variables.
+So this is I, I think a really useful way to think about, um, Bayesian networks.
+And just to be very concrete about this,
+so you can think about Bernoulli of Epsilon as just a Python program that just returns,
+uh, true with a probability Epsilon.
+So here, random less than Epsilon,
+the random is a number between 0 and 1,
+has a probability of Epsilon being less than Epsilon.
+Okay. Any questions about the- what this is doing? Yeah.
+Why does the randomness help rather than [inaudible]
+So the question is why does randomness help?
+Um, the, the reason is that I want
+this program to be, put a distribution over possible assignments.
+Every time I run the program,
+it's gonna produce a different assignment.
+And the distribution over that assignment is the distribution that I'm defining.
+So, so, so this is a kind of an interesting philosophical point.
+So normally you run programs and wr- write
+programs with the intention of running them and do, do something useful.
+But here the re- programs are just a kind of artif- artifact to define a distribution.
+Uh, hopefully this will become a little bit clearer as I go through more examples. Yeah.
+Uh, if you want to define some distribution,
+can you just, uh, can you find like hard-code the table instead of doing this.
+I mean you can just hard-code Epsilon into your table instead of like
+maybe like writing this program [inaudible] Epsilon?
+Yeah. So the question is why don't you just, uh,
+hard-code- define a table directly,
+um, instead of running this program?
+So the intention here again is not to run this program
+because it's not an efficient way to do a probabilistic inference,
+but it's more of a, a metaphor or a tool to help you get more intuition about,
+um, probabilistic, uh, programs in Bayesian networks.
+So hopefully, we, we can, uh,
+come back to this question after I go through a few more examples.
+So here's a more interesting probabilistic program.
+So suppose you're doing object, um,
+tracking and you define a program which starts with X_0 equals 0, 0.
+So the initial location is at the origin,
+and then for every time-step, um,
+so I'm writing the program in kind of pseudocode here.
+Um, with probability Alpha,
+i set X_i equals X_i minus 1 plus 1, 0,
+so I'm going to the right, and with probability 1 minus Alpha I'm going down.
+Okay. So, um, now this program, you know, that I just described, um,
+it induces a particular Bayesian network structure
+where each x_i is only connected to x_i minus 1.
+Okay. So what I'm trying to ge- get you to think
+about is there's multiple ways of thinking about the same object.
+And I think when you get- when you can kind of internalize all these things,
+you kind of get a deeper understanding of what you're dealing with, right?
+We have the probabilistic, uh, view, uh, viewpoint.
+You can look at the tables, you have, you know, your equations,
+you have this graph and now I'm giving you an additional tool, uh, the programs.
+Okay. So just for fun,
+um, you can actually run this program.
+Again, this is not what you would do normally but,
+um, I can run the program in any case.
+So every time I hit Enter,
+um, this gives you a different trajectory.
+So this is a way to visualize the distribution over proba- uh,
+X_1 through X, um,
+whatever how many of- many, uh, red squares are.
+Okay. And if I change Alpha,
+that gives me distributions which are either skewed to one side or the other side.
+Um, so that's the distribution over,
+uh, um, programs, oh sorry, distribution over assignments.
+Okay. So what does probabilistic inference look like in this setting?
+So remember, what is probabilistic inference?
+I'm conditioning on some piece of evidence and I'm
+asking for the distribution over some other set of variables.
+So in case, in this case I'm conditioning on the fact that I
+spotted X of the object at 8 ,2 at time step x_10, that's it.
+And I'm interested where it could have been before that.
+So, um, here what I'm gonna do is I'm gonna run
+the former program and I'm only gonna keep
+those trajectories and show it if X_10 equals 8,2.
+So if I do that, I'm gonna- so this is 8 ,2.
+Um, I'm seeing that the set of,
+uh, possible trajectories look like this.
+So this is the distribution over,
+um, trajectories given X_10 equals 8, 2.
+Okay. So it's important- what I'm trying
+to get you to think about is that Bayesian network or probabilistic program as,
+what is the distribution?
+You can visualize the distributions by looking at samples from that distribution.
+It's another way to think about it.
+Right, because distributions are, um, think about like, ah,
+suppose you have a dish- I tell you I have a distribution over images,
+and how do you actually get a hold of that or understand that?
+Well, probably the easier- easiest way is to draw samples
+from it and look at kind of the types of images that you get. Question?
+Is this the way to specify a distribution,
+are they like- is this a way to specify distribution [inaudible].
+Uh, so question is,
+is this way a way of specifying a joint distribution?
+By this I mean- I guess you mean the- ah,
+so probabilistic programming in general.
+It is so- so for every probabilistic pro-, um,
+program, it specifies a joint distribution
+over the random variables that you set in that program.
+And vice versa. If I have a Bayesian network,
+I can write down a probabilistic program.
+Um, one thing as you'll hopefully become clear is that,
+the reason to think about in terms of programs is that you
+can inherit all the nice properties of programs like,
+the ability to define functions,
+or even have recursion,
+or, you know, you could do a lot more,
+um, fancy stuff with programs that you can't do what- I mean which will be hard to do.
+You can think about Bayesian networks as another way to think about is like,
+okay you're basically writing assembly code right,
+for every, ah, um,
+variable you specify its value,
+but if you have a million value- variables,
+sometimes it's useful to be able to structure,
+um, your- your code in some way.
+We- we'll see that over the next few examples.
+Okay. So this is going to be a march of I think around seven possible,
+um or so possible examples,
+and I just wanna give you a flavor of types of
+probabilistic programs that we're talking about here.
+So the first one is called, ah,
+just a Markov and- by- whenever I say probabilistic program think Bayesian networks or,
+um, generalizations of that.
+So Markov model, um,
+so this has a lot of applications in,
+um, you know, modeling language or time series.
+And, ah, the program works as follows,
+for every position i through n,
+I'm gonna generate a particular, ah,
+word X_i, given the previous word.
+Okay. So this is also happens to be the same type of program as for the object tracking.
+Okay? So this is this Bayesian network structure.
+Um, so here's another one.
+This is called the Hidden Markov model which, um,
+is, ah, was a very popular, ah,
+model that was, um, used, ah,
+for all sorts of things like speech recognition notably before,
+um, the rise of deep learning.
+Ah, so the idea here is that for every time step T equals 1 to
+T. I'm gonna generate an object with location HT given the previous HT minus 1.
+So this part is, just looks like a Markov model.
+Okay. But the- the reason
+why it's called a Hidden Markov Model is that I'm not actually gonna observe HT,
+I'm gonna observe sensor readings ET at each time step T given,
+ah, the hidden location.
+Okay. So this is what a hidden Markov model looks like.
+Sequence of object locations [NOISE] which I don't
+observe and sensor readings which I do observe,
+which depend respectively on the given object, ah, locations.
+And just as a convention,
+whenever I shade a variable,
+that means I, you know,
+observe it and if it's not shaded,
+that means I don't observe it.
+Okay. So this program defines a joint distribution over all of these variables.
+And now you can ask a particular question,
+you can do probabilistic inference.
+And the most, um,
+common thing that people do here is,
+given the sensor readings, where is this object?
+Which is something we've already been exposed to through the lens of
+factor graphs but this is again a way to think about it,
+um, through the lens of, um, vision algorithms.
+So now, ah, with this kind of programming metaphor,
+you can actually do, ah,
+kinda more complicated things in a very kind of succinct way.
+So to describe, uh, multiple object tracking,
+you can think about, ah,
+there being two objects A and B,
+and each position, um,
+at each time step and every object I'm gonna generate a location for the object,
+and this is going to be two independent, um,
+Markov chains which are running,
+but the thing is that, at each time step,
+I only observe one sensor reading and that sensor reading
+is going to be some combination-
+some function of the actual locations of objects at that particular time step.
+Okay. So now hopefully you can see a little bit of the vantage of thinking in
+terms of a program because I can write this kind of very simple four-line program that,
+um, very precisely nails down what the actual, you know, model is.
+Um, and in particular this factorial HM,
+as it's called, is something that you're gonna be exploring in your- the car assignment.
+Um, here's another example,
+so this is, ah,
+for- usually used for cla- classification.
+It's called naive Bayes.
+Some of you might have heard of it.
+Um, and the program looks like this.
+You first generate a label Y. Um,
+let's suppose you generate travel.
+And now you're gonna- for every word in your, ah,
+document, you're gonna generate a word,
+um, given that label.
+So if you generate travel,
+you may generate words like beach in Paris.
+Um, so now the- that
+again specifies a distribution over all the variables, what are you typically interested in?
+If you're interested in classification,
+you're given the words and now you wanna go back and,
+uh, figure out what the,
+the-, um, the class is.
+You're given a text document,
+what is, ah, the label?
+Um, here's a fancier, ah,
+model of documents called Latent Dirichlet allocation.
+Um, so here instead of how to generate a single topic,
+I'm gonna generate a distribution over topics.
+This is getting a little bit meta because
+this random variable in itself is actually a distribution but,
+you know, let's not worry too much about that.
+So this- this is a distribution, um,
+and for every position I'm going to first generate a topic like travel or Europe.
+And then for that, ah,
+topic I'm gonna generate a word given that topic.
+Okay. So this allows you to model documents which
+talk about multiple things, for example, traveling Europe.
+Okay. So this is also a very popular model that can be used to,
+if you're given a collection of documents trying to understand,
+understand the, ah, latent structure inside it.
+Um, [NOISE] so here's one that's kinda a generalization of the, uh,
+the medical diagnostics, um,
+um, uh, example on the board.
+So in general let's say you have a bunch of diseases.
+Um, you generate the activity of a particular dis- disease in a patient,
+um, according to some, you know, prior distribution.
+And now you- for every symptom that, um,
+you might obs- observe or any sort of lab test you
+have the probability of some outcome of that symptom given the diseases.
+And of course, the probabilistic inference question here is,
+if the patient has particular symptoms,
+what kind of diseases, ah,
+does or problems does he or she have?
+Okay? So I think this is f- maybe the final example.
+Um, here is a social network analysis example where,
+um, you have, um,
+a set of people,
+each person has ah,
+you know, qua- a type,
+maybe a politician or a scientist.
+Um, and these- for every pair of people,
+ah, they can either interact or not interact.
+They might be connected or not connected,
+let's say in a social network.
+And so in the end what you're given is a social network of, ah,
+connectivity and you're asked,
+what kind of types of people are there?
+So generally, you, you observe maybe some graph,
+and you want to understand, um, you know,
+what kind of features or, ah, you know,
+what is- what is a concrete way of summarizing the types of people there are.
+And there's- this called a stochastic block model but
+there's other kinda fancier models that are based on a similar idea.
+So that was a very quick, um, you know,
+overview of different types of probabilistic programs or Bayesian networks.
+And there- the point is that there are
+many many different types of models that can be written down in the literature.
+Many things, generative models can be just written
+down in a probabilistic program or equivalently a Bayesian network.
+Um, and all of them kind of have this kinda basic structure.
+If you observe carefully,
+all of them kind of look like that whereas there's some set of variables H, um,
+which you don't observe,
+and that generates or causes,
+um, a set of variables E,
+which you do observe.
+So the mindset when you're designing Bayesian networks is,
+you're coming up with stories of how the data which you- what you
+observed was generated through the quantities of interest, the output.
+So this is probably kind of maybe counter-intuitive and for
+those of you who are really used to thinking
+about just normal classification where you- it's the opposite.
+You start with the input and you think about,
+what are things to do to the input that it can, ah, you know,
+what kind of things can I do to get it to a point where I can,
+you know, classify the input precisely?
+But Bayesian networks kind of go the opposite.
+Um, it starts with the output or the structure is interested in which
+are presumably kinda more- kinda a platonic idea or something cleaner,
+and then you're trying to describe how that
+clean data gets- gives rise to this kinda messy-sorry,
+the clean structure give rise to the messy data that you observe. Question?
+Can you explain again why it's called the output?
+Right. So- why is,
+uh, this called the output?
+Um, so I'm using input output here in-
+to borrow terminology for when we talked about classification,
+where you're going from input to output.
+Input is what you are given and output is what you're outputting, I guess, producing.
+Right? And in the, the Bayesian network,
+you first define the model,
+kind of going from output to input.
+So kind of the opposite of what you would normally do.
+And now, now there's a second stage,
+where you do probablistic inference, which reverses that.
+And you go from the observations,
+which are the input to the output which is right.
+Any other questions about this?
+[NOISE] All right.
+So now let's talk about inference.
+Um, this is also gonna be the topic of next lecture but I'm just gonna start,
+[NOISE] um, [NOISE] playing around with this a little bit.
+So remember what is probabilistic inference?
+We're given a Bayesian network,
+define some joint [NOISE] distribution.
+We're also given some setting of the variables,
+which are the evidence,
+for example I saw that the alarm went off,
+um, and [NOISE] I'm interested in a subset of the variables.
+[NOISE] Okay.
+So what I'm trying to ch- produce is,
+a probability of some query variables conditioned on evidence and what this really means,
+is I want this for all values [NOISE] of,
+um, the query variables.
+Okay. So for example,
+if I have coughing, I have itchy eyes or I have a cold.
+It's an example of a probabilistic inference query.
+So let's start with this simple example.
+Suppose I have this Markov model and I asked this query,
+what is the probability of X_3,
+[NOISE] given X_2 equals 5?
+So condition X equals 5,
+I'm interested in X_3.
+Um, so at this point,
+you already have the tools to do this, um,
+and I'm gonna show you how you can just, uh,
+go through the calculations and then I'm gonna show you an easier way to do this.
+So if you were just shown this right now,
+this is probably what you would, um,
+do which might be a little bit tedious,
+uh, so by laws of probability, this,
+uh, this conditioning is equal to the joint over this, um, marginal case.
+[NOISE] This is just by definition [NOISE] of conditional probability.
+Um, and, uh, one thing I'm gonna do here is,
+um, notice that I'm only interested in distributions of X_3.
+So from that perspective,
+this blo- denominator is just a constant.
+[NOISE] It doesn't depend on X_3.
+So what I'm gonna [NOISE] write is this proportional to, which means that,
+the actual value here is this thing on the right-hand side times some constant which,
+um, I don't care about.
+And the reason I can do this and I don't care about is because I know that, um,
+the left-hand side is the distribution,
+so whatever I get on the right-hand [NOISE] side,
+if it sums to 6 or something,
+then I just divide by 6 and I get a distribution.
+Okay. So this is gonna save you a lot of work [NOISE] if you use a proportional to sign.
+But you have to use it carefully,
+otherwise you can get wrong answers.
+So let's expand this.
+So this is a marginal distribution of X_2 and X_3.
+Um, I can write it in terms of the joint,
+where I sum over the variables that I don't care about.
+So there's again, laws of probability [NOISE] um,
+and then the definition of the Bayesian network here,
+is a joint distribution is equal to the product or local conditional distributions.
+So right now, I have a lowercase p now because there're local distributions.
+Um, now I'm gonna do some algebraic manipulation.
+So notice that, um,
+this stuff doesn't depend on X_4.
+So I can push the summation of X_4 over here and then these two first two terms,
+um, [NOISE] uh, only these first two terms depend on X_1.
+So I can group this and to [NOISE] have the sum [NOISE] over X_1 apply here and then,
+I can look over here and use, what does this sum to?
+One. So I can drop it and then, what is this?
+Does this depend on X_3?
+Nope. So I can also drop that and I get a p of X_3 given X_2 equals 5.
+Right? So this hopefully shouldn't be surprising
+to anyone because remember that slide where I said, uh,
+consistency of local conditional distributions,
+this is- should be equal to this and this is just one way of verifying that.
+That's actually the case for this example.
+Okay? Um, so, you know this was- you can do this.
+I mean for this one, it's actually not that bad.
+Especially when you already know the answer.
+Um, but I promise you there are gonna be situations where you definitely don't want to
+grind through all the math because you can fill up 10 pages of equations.
+Um, I'm gonna show you kind of a faster way to do this.
+[NOISE] Um, and [NOISE] so let's start.
+So this is going to be a five-step, [NOISE] uh, procedure.
+But in many [NOISE] cases,
+not all the steps are necessary.
+Um, okay. So let me erase this.
+And the key idea is going to be [NOISE] to use the structure of the Bayesian network,
+um, and factor graphs,
+to simplify some of these operations.
+Okay? So, um, let's start with- okay,
+so you have X_1,
+um, X_2, [NOISE] X_3, X_4.
+Um, we just have four.
+Okay? All right.
+So- and I'm, um, [NOISE] conditioning on, um, X_2, right?
+Okay. So X_2, uh,
+that takes on value 5.
+So [NOISE] um,
+the f- and I'm interested in this, uh, query variable.
+So the first thing I want to do is,
+[NOISE] I want to remove as many variables as I can.
+Um, I just- because that's gonna simplify [NOISE] my life.
+So I'm going to remove or marginalize, um,
+non-ancestors [NOISE] of, uh,
+the query and the variable I'm conditioning.
+[NOISE] So by non-ancestors,
+I mean, um, anything that's upstream,
+I am gonna keep for now.
+Anything that's downstream, I can let go.
+So what can I remove here?
+X_4.
+X_4, right? So I can,
+um, let me show this.
+So I can graphically just remove X_4.
+And that corresponds to on the slide,
+basically the fact that this thing sums to 1.
+But I've done this again graphically,
+[NOISE] which hopefully should be, uh, more intuitive.
+I'm going to [NOISE] convert to a factor graph [NOISE] um,
+because, uh, one already
+takes care of- basically I'm exploiting the properties of Bayesian networks.
+But after I've done one, um,
+[NOISE] I don't- it's simpler to think about as a factor graph,
+where I want to think about [NOISE] the factors more explicitly as
+just arbitrary functions and not worry about
+which way the conditioning is going because [NOISE] it's really easy to get confused by,
+um, Bayesian networks, where you're wondering like,
+oh this is conditioning over here,
+wha- what's a marginal distribution and, um,
+factor graphs I think,
+by actually [NOISE] removing the directionality and some semantics,
+actually make things a little bit easier.
+Okay. So I'm gonna convert this into a factor graph,
+which means I have,
+um, let me actually just draw it down here again.
+[NOISE] So here's a factor graph.
+Um, remember I have, uh,
+probability of X_1, um,
+[NOISE] probability of X_2 given X_1, um. [NOISE]
+So this might look like more, ah,
+work [NOISE] right now,
+uh, because I'm making things explicit.
+Um, but you can actually do a lot of these things in your head
+if you, um, get the hang of it.
+Okay? So remember, every variable has, uh,
+is associated with a factor, um, okay.
+So now, I want to, um, you know,
+condition [NOISE] on, on the, you know, evidence.
+[NOISE] So I'm conditioning on x_2 equals 5.
+So remember what the conditioning does,
+remember from last week's lecture.
+Conditioning just removes this,
+and changes the factors to be set to the value that,
+that um, variable takes on. Yeah.
+Can [inaudible] x_4 in this?
+Sorry. Yeah. We shouldn't have x_4, good point. Okay.
+We still have factor on that other side or, uh-
+This factor should be there.
+So x_4 is- this is the factor graph corresponding to that.
+Yeah. Um, okay.
+So I'm conditioning on x_2,
+so I wipe x_2 from the face of the earth,
+and I'm going to set this- change
+this factor to be a partial evaluation of where I put our x equals to 5,
+and this factor is x_2 equals 5 given x_1.
+Okay? Um, so this connection is good. So now.
+I, um, can marginalize out the disconnected components.
+Um, and these are the components that I will- remember,
+I care about x_3.
+So this stuff is disconnected so I don't care about it.
+So I'm just going to, um,
+let's say you just cross it out.
+And that operation corresponds to the fact that,
+you know, this thing over here.
+I just can drop because it's, uh,
+not related to x_3, it's just a constant.
+Okay? So finally, um,
+the fifth step is actually,
+uh, [NOISE] do work.
+Okay? So what does that mean?
+Um, you might not be so likely to be left with just,
+you know, a single variable whether factor where,
+where that's just the answer.
+Um, in that case,
+you actually have to, um,
+actually compute, do the marginalization operations that we saw last week.
+In this case, we are fortunate that, um,
+[NOISE] this factor, this actually represents a distribution of x_3,
+so that is just the answer to, you know, the problem.
+Okay. But I'll go through some other examples where it's not as obvious.
+Okay? So this is just a general strategy that I outlined on the board here.
+And again, I think once you get kind of good at this,
+you can basically, the steps, um,
+1 and 4 should be kind of very,
+um, kind of visual because you can just see,
+uh, well, all everything downstream just to be clear, it doesn't matter.
+And when you see these,
+um, [NOISE] these are, you know,
+conditioning things, you can kind of automatically just not
+ignore things and just jump directly to 5.
+So that's the idea. I am just doing things that are more
+explicitly on the board so you can kind of see where things are coming from.
+Okay. So, um, I'm gonna do another example.
+Um, this is the alarm.
+[NOISE] So, uh, here,
+I have this vision network,
+and I- let's suppose I'm interested in probability of B.
+Okay. So this should be an easy one.
+So s- start with one,
+marginalize out non-answers.
+So which are the non-answers of B?
+So A and E, right?
+So I just removed them from the face of the earth,
+and I'm just left with the single, uh, variable B.
+And obviously, it has a factor of p of B, and then I'm done.
+Okay? Okay. So this one's maybe a little bit more,
+um, you know, complicated.
+So this is the probability of earth,
+uh, sorry, burglary, we've given A equals 1.
+Um, so let's go through this example.
+[NOISE] Um, I'll try to do it quickly. All right.
+[NOISE] So I have, um, B,
+E, and A. Um, okay.
+So marginalize out non-ancestors.
+So what am I interested in?
+I'm interested in the probability of,
+ah, B given A equals 1.
+Okay? So I have A and B that I care about.
+So what are the [NOISE] non-ancestor of these variables?
+There's none. [NOISE] Right.
+So this is the non ancestor of A, so I can't remove it.
+So I can't do anything there, too bad.
+Convert to your factor graph.
+We've done this before.
+Probability of B, um, moralized the parents.
+[NOISE] So this is probability of A given B and E,
+and then this is probability of E. Okay.
+Um, condition on the evidence now.
+So I conditioned on A equals, uh, 1.
+So I'm gonna remove this and change this factor to A equals 1 [NOISE] given, uh,
+B and E. Uh, fourth step is marginalize out anything that's [NOISE] disconnected.
+Uh, nothing's disconnected. So I can't do anything.
+And last, I have to do actual work.
+Okay. So what does actual work mean here?
+I'm interested in the probability of B.
+So I need a marginalize out E. Now,
+I have to do this kind of a hard way, um,
+based on last time, uh, last lecture.
+So, um, what I'm gonna do here is,
+you know, what happens when I marginalize out E?
+I create a new factor.
+Let, let me actually replicate this down here,
+so it doesn't get too confusing.
+Um, so I'll create a new factor,
+and this new factor that's called f of b,
+um, which is the Markov [NOISE] negative E,
+there's only one other variable B.
+And this is going to be the product of
+all the factors here that touched this variable that I'm marginalizing out.
+And the only difference between this and what we are
+doing last time is before we had a max,
+because we're doing maximum weight assignments, [NOISE] and here,
+I'm going to have a sum because we're doing probabilities in marginalizing.
+So this is going to be, uh,
+a summation over E. Okay.
+And then the final query is going to be,
+uh, just the product of those two things.
+Okay. Um, I'm not gonna have time to actually drill down into expanding these values.
+Um, but if you actually,
+uh, plug-in Epsilons into these, um,
+then you'll find that the probability of B equals 1, given, um,
+A equals 1 is 1 over 2 minus Epsilon which is,
+um, remember, 0.51 is for Epsilon equals 0.05.
+Okay. But this calculation, um, you know,
+you can look into the slides to see how this is actually done but it is just algebra.
+Okay? Um, so the- there's another example which I'm gonna defer to section to talk about.
+Um, I think in all of this,
+you just need to do some practice [NOISE] and get
+kind of comfortable doing these operations.
+[NOISE] Um, to summarize,
+to find Bayesian networks,
+uh, there's this way of,
+uh, defining models that,
+um, allow you to specify locally and optimize globally.
+Once you have a Bayesian network you can do
+probabilistic inference where you condition on evidence and query variables of interest.
+And next time, we're going to focus on number 5,
+and hopefully not do things completely
+manually but do things more automatically. Okay. That's it.

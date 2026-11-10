@@ -1,0 +1,1689 @@
+Google Stitch is completely changing how
+websites get built and you don't need to
+know a single line of code to use it.
+Now, the problem is if you've ever tried
+to build a website with a coding agent,
+you know what happens. You get something
+a lot of times that looks AI-generated.
+You either get no images or there's
+weird spacing or like placeholder blobs
+everywhere. Not something you'd ever
+want to show a client. So, I brought on
+Leon Banzo who ran a web design company
+for over 10 years and now teaches
+hundreds of people how to build real
+applications with coding agents. He's
+going to walk you through his exact
+workflow from his design system all the
+way to the finished site in just a
+couple of simple prompts. And if you
+stick around to the end, he'll show you
+how to generate custom AI images that
+actually match your brand's design
+system. You're going to love this one.
+So, tune in and listen to Leon Banzo.
+So, Leon, tell us, what is somebody
+going to learn by the end of this
+episode?
+Hey, Corey. Thanks for having me on your
+channel. You've been doing phenomenal
+work in the AI space.
+So, one thing I've noticed and one
+challenge that people still have is to
+build sort of beautiful user interfaces
+for their web apps.
+Of course, there's a lot of little tools
+that we are aware of like, you know,
+certain skills and things like that.
+But in reality, when you're dealing with
+clients, there's a certain expectation
+from the client side for you to kind of
+show the design system and the concepts
+up front. And then you need a very
+reliable way of pulling that design
+system into your actual application.
+And of course, it needs to be robust and
+consistent. So, if you ever want to add
+more pages and components, that design
+system needs to be followed by your
+agent. So, what I'm going to show you,
+you know, during the session, is
+a realistic workflow that you can use
+when dealing with clients to share the
+designs with them before before you
+touch any code. You kind of show the
+prototypes to them to maybe get their
+feedback and then pull it into your
+application. And we'll go through
+everything, you know,
+using a coding agent to to set up the
+design system for us, implement it, and
+we'll have a solid solution going
+forward. So, we'll use Claude Code,
+we'll use Stitch. Uh we'll touch on
+certain skills and MCP servers as well
+that can help us through this process.
+Perfect. And Leon, does somebody need to
+know how to code to do this? Like, does
+somebody need any previous experience to
+do what we're about to show them?
+&gt;&gt; Not Not at all. Not at all. You don't
+need any prior uh web design skills. You
+don't have to be a designer.
+Uh you don't have to have coding skills.
+Not at all. All you really need is a
+Google account to access Stitch.
+And you'll need access to some kind of
+coding agent, and it doesn't matter
+which one. It can be Claude Code,
+Cursor, whatever you prefer.
+Awesome. Well, let's dive into your
+screen and see it in action. So, we're
+really we're going to be building a
+beautiful website over the course of
+this episode. So, I'm excited to see it
+in action.
+No problem. Let me just share my screen.
+All right, then. So, what you're seeing
+here is not
+&gt;&gt; [laughter]
+&gt;&gt; what we're trying to strive for. But
+what I'm trying to show you here is the
+type of result that you get from a large
+language model or
+you know, for this example, I actually
+just asked Claude Code to build a
+website for my coffee roast roasting
+company called, you know, Ember and Oak.
+This was a This was a one-shot prompt. I
+didn't iterate it on it at all. I really
+wanted to show you what something like
+Opus 4.6, as powerful as it is, this is
+the kind of result that you would get
+out of it.
+So, look, you know, it shows a few
+colors that don't look too bad. And
+maybe the font itself is not too bad,
+either. But there are plenty of
+mistakes, you know, we've got like the
+Ember and Oak
+text [clears throat] is barely barely
+readable.
+The
+You know, there's there's like no
+images. We've got these little
+placeholder
+blobs or whatever on the page. It
+doesn't really look right. And when you
+scroll down, you see all of that sort of
+you know, the trademarks of an AI design
+solution, you know.
+So,
+it's not really good enough for client
+work.
+But
+yeah, there's subtle things that we can
+do to make this look a little bit
+better. And I'm just going to switch
+over to this example for a second. And
+this is what we'll try to build
+throughout this application. So, yes,
+this is maybe not an award-winning
+website at this stage. It's much better
+than the one we were just looking at.
+Exactly, you know,
+the immediate thing that catches your
+eye is we've got an image of a person,
+you know, and there's that psychology
+around design where you kind of want
+that that that that contact. You know,
+you want to make eye contact with
+something on screen. You know, just
+having a smile and eyes and, you know,
+a human connection immediately helps.
+And
+you know, as we scroll down, we see
+there are images on the page. Just
+basically images everywhere. And that's
+something you don't really see when
+you're when you're building something
+with with with a with a coding agent.
+Even if you had to use something like
+the front-end design skill,
+you simply don't
+You know, it won't ever give you images
+out of the box, you know, it will just
+kind of try and come up with sort of the
+segments and the layout.
+But it will never give you images out of
+the box, you know, you will kind of have
+to dive in download images and plug it
+into the application somehow.
+But what this workflow does is it
+actually generates the images for you.
+And you can just like pull these images
+into the site. So, it really is
+considering a
+you know, building an application that
+that's got images embedding as part of
+embedded in it as part of the design.
+But also, these images are optimized for
+the web as well. You know, we're not
+just generating massive AI images like
+PNGs and JPEGs and forcing them into the
+design, either. You know, these are all
+uh optimized for web. They You know,
+they can be cached. It's It's a super
+optimal little workflow that I'm going
+to show you.
+So, uh Corey, I don't know if you've got
+any questions at this point or can we
+just like jump into the workflow? Yeah,
+let's jump in. I mean, right off the
+bat, this this version looks
+significantly better than the first one.
+I mean, like you said, the one that you
+showed originally, it was so clearly
+AI-generated and it was I mean, quite
+frankly, just boring and not something
+that I as a consumer would want to spend
+any time on. But the one the the second
+variation, the one that you made using
+the workflow that we're going to see, I
+mean, much better, right? To your point,
+not like a you know, a 100 out of a 100
+award-winning website, but for 99 out of
+a 100 businesses, this is going to get
+the job done. So, let's jump in. Yeah.
+Yeah, exactly. You know, it's really a
+matter of having something that you can
+iterate on. This This is such a good
+foundation. And again, this was also a
+single prompt. And I should probably
+have led with that as well. The
+difference is, you know, the only thing
+that's similar between these two
+solutions is in both cases, it was a
+single prompt to get to the solution.
+And now you have a really strong
+foundation where you can swap out the
+background images for whatever. If you
+don't like the parallax effect that this
+has, you can kind of see the the the
+text scrolls faster than the background.
+So, that's called the parallax effect.
+You know, so if you don't like these
+little animations, you can definitely
+swap things out and make it look make it
+look way way better. But there's
+definitely a massive difference, you
+know, if I swap
+When I swap back to the first draft,
+this feels dead.
+Right. Yeah, absolutely. Yeah. So, all
+right, let's jump into this little
+workflow.
+All right.
+I'm just going to kill some of these
+sessions. They're not really too
+relevant.
+All right. So, this is the solution
+that's currently working. So, I'm just
+going to let that run on in the
+background if we do have to go back to
+it.
+But I think the
+&gt;&gt; [clears throat]
+&gt;&gt; just as a starting point,
+just so that we can build all of this
+out together. You know, I don't just
+want to
+um show you guys something at a high
+level and you don't
+and you're not You're not going and you
+don't walk away with any value from
+this. You know, I really want to show
+you step by step how how we can go
+through this process. And it's not that
+bad. I promise you, it's actually It's
+actually super straightforward.
+So, this is our starting project. This
+is a vanilla Next.js app. So, I simply
+installed Next.js using NPX create next
+app. And it set up this vanilla project
+for us. And if we run NPM run dev,
+we can
+have a look at our current
+We can have a look at our current app.
+Nothing fancy.
+It's just a simple vanilla Next.js
+landing page.
+So, we're going to modify this web app
+to represent our new business.
+Which is
+uh the Ember and Oak Roastery.
+Now, this website is Stitch. So, it's
+It's a Google product. You can sign in
+with your Google account and
+But honestly, I don't think you pay for
+a thing because I've I've been using it
+quite a lot, and I haven't paid a cent
+for it yet.
+So, if you are new to Stitch, you can
+just go to this website,
+stitch.withgoogle.com,
+and you can start a new project. The
+idea behind Stitch is that you can give
+it a prompt. So, you simply describe to
+Stitch what you're trying to build, and
+it will create a design system for you,
+and it will also create mock-up designs
+of the pages and components that you
+need.
+Now, you can be as high-level and vague
+as you want to be. So, they've got a few
+examples here. Let's just switch over to
+web.
+You can use this to build mobile apps or
+to mock up mobile apps as well. But, in
+our case, we're building a web app. So,
+you can create a really simple prompt or
+just pass a prompt like this.
+But, I think we're going to be a little
+bit more specific. So,
+I'm just going to pass something like
+design a modern, trendy
+website for a specialty coffee roastery
+called Ember and Oak.
+Then, I am actually going to provide
+some information. Remember that when
+you're designing websites for clients,
+the client will have some kind of
+you know, they'll have some kind of
+branding sheet or
+some design system or some guide guide
+guidance in terms of the color
+preferences, you know, secondary and
+primary colors and accent colors. They
+might even share a logo with you or
+something that that can help you figure
+out what sort of vibe they're going for
+and and any fonts that they prefer, you
+know. So, if you can
+get that information from the client,
+and then that's what we're passing into
+this prompt as well. Just in terms of
+I'm just calling it a brand vibe.
+And you're using specific So, you're
+you're giving it specific fonts as well,
+too.
+&gt;&gt; If it's available. Then, the the
+workflow we're going for here is we're
+trying to um and I'm trying to showcase
+how you would typically interact with
+clients. And when the client
+approaches you to to design a web app
+for them or their website, they will
+give you some kind of guidance, you
+know, even if it's just a logo. Get
+something from them. So, if you have
+this information available, try to add
+it into the prompt.
+And then, it's just a shame I can't
+really fit everything into uh the
+screen.
+But, now I'm just going to provide the
+the requirements for the pages that I'm
+trying to create.
+Uh for This is simple. We're just going
+to focus on the landing page. So, for
+the main for the main page, we need some
+kind of hero section.
+We've got some you know, navigation
+sitting at the top. And sticky just
+simply means that nav bar will be, you
+know, stuck at the top of the screen. If
+you don't have this information or you
+don't know how to prompt this, it's
+totally fine. Just try and give as much
+instructions as you can. So, whatever
+you you do have available, just try and,
+you know, throw it into the prompt at
+this stage.
+All right. So, very simple stuff. I
+simply defined sort of the basic layout
+of the landing page, and I explained
+what the nav bar should look like.
+So, I'm going to simply run this.
+And Stitch is going to do two It's going
+to do two very important things. It's
+going to create the actual design
+system, which is a critical component to
+all of this. This design system is
+something that we can store in our
+project folder, and we can instruct our
+agents going forward that whenever they
+create new pages, whatever they create
+new components, the agent needs to
+follow this design system to a T.
+And the design system includes
+everything. It's the typography, you
+know, sort of the fonts that need to be
+used. It's the all the colors, all the
+color tokens that need to be used, any
+specific rules around spacing and
+borders.
+Everything goes into this design system.
+In fact, we can already see it over
+here.
+So, this is essentially the foundation
+that you will hand a client code. So,
+instead of us going straight into client
+code and saying, "Hey, build us a
+website." and then having to iterate on
+everything, the font, the color, the
+branding, etc.
+It's like we do we come to Stitch first
+to kind of build that out first, and
+then we take what Stitch gives us, plug
+it into client code, and then building
+the actual website itself is like 100
+times easier. Is that kind of the
+thought process?
+&gt;&gt; 100% You're 100% correct. So, the you
+know, like you mentioned, we haven't
+even touched the code yet.
+Now, you know, the the way a lot of
+people go about this is they would
+start some kind of boilerplate project.
+They will then open up client code and
+say, "All right, Claude, I need you to
+use the front-end design skill or I
+don't know, you know, here's some
+guidelines on what I want. Go and build
+the UI." And then you sit there and you
+wait for 20 minutes for Claude to, you
+know, build some kind of mock-up for
+you. And then you realize that the
+design is actually not correct. So, you
+scrap everything you did, and you retry.
+Or even worse, you create multiple work
+work trees,
+and then in each work tree, you try a
+different idea. And then you just end up
+burning, you know, five times the
+amounts of credit than it takes forever.
+So, the idea here, and I mean, you can
+already see how quickly we've iterated
+just on this.
+You know, it took like maybe a minute or
+two, and we already have a design system
+in place.
+And we already have our landing page.
+And this is just a mock-up. It's not
+actual you know, it's not the actual
+code yet. But, this will give us a
+really good idea of what this
+what this website could look like, what
+the landing page could potentially look
+look like.
+And at this page, we at this stage, we
+can make iterations. So, we can simply
+chat with Stitch to ask it to make
+certain changes for us.
+In fact, I think I actually think to
+press the button to update the fonts or
+something.
+It doesn't really matter. It's just
+applying the design system again.
+But, this is really such an easy way,
+you know, just to kind of iterate on
+these different pages. And once we're
+happy with the landing page, we can move
+on to the next. We can
+It's actually just I'm just going to
+copy the menu page as well as the about
+us page.
+I'll just paste all of that into the
+chat. So, I'm just detailing, you know,
+I also want the menu page with some
+items in it, and I also want an about
+page with some items in it as well.
+Nothing too crazy.
+And Leon, is the reason that we don't
+add all those pages at the beginning is
+because it's like, well, hey, first we
+want to make sure the the home page and
+the page under that look good first, and
+then we'll iterate on those. And once we
+feel like we have those in a good place,
+then we'll do the rest instead of doing
+all at once. Is that kind of what you're
+saying?
+Exactly. So, once you know the
+you know, it's it's it's it's easier to
+iterate on a single page just to get
+that vibe, you know, just to figure out
+the vibe that we're trying to go for.
+And once we're happy with this, we can
+kind of lock in this design system, and
+just say, "All right, then let's go in
+and generate the rest of the pages." And
+you'll see in a second
+that one of the reasons we want to do
+that
+Sorry, if I go down, we can see a page
+for our story.
+And then we're also it's busy generating
+the remainder of those screens.
+The thing is, if we just kind of tell it
+to generate 20 screens, and we realize
+that we don't like the color scheme or
+we don't like the fonts, Stitch is going
+to take so much longer to now go and fix
+up the you know, all of the different
+pages. Right.
+&gt;&gt; definitely recommend start with the
+landing page, figure out the vibe and
+all of those elements. Once you're
+happy, lock it in, and generate the rest
+of these screens. That makes a lot of
+sense because you probably Well, I guess
+with Stitch is essentially free, right?
+So, it's not like you're worried as much
+about token burn here, but the concept
+applies, I think.
+&gt;&gt; Yeah, it's it's it's time, right? If
+you're not burning tokens, you'd be
+burning time if you're having to iterate
+on every page every time versus
+getting the home page right first, and
+then extrapolating that out to your
+other pages. So, that makes sense.
+Exactly.
+&gt;&gt; Exactly.
+And so, now we can see we've got our
+menu page, and we've got our about us.
+Of course, at this point, we can dive in
+and, you know, make tweaks to this.
+Uh
+but, the point is we can really quickly
+iterate on the design and find something
+that we like.
+Now, the reason I like this
+the the reason I like using this for
+client work is once I've done a little
+bit of work myself to refine this
+design,
+I can simply
+Let's go back. We can click on share,
+and we can enable sharing and then pass
+this to our client. So, we can copy the
+link. We can share it with our client,
+and this will actually allow them to to
+view these designs, and they can run
+remix on the designs as well. So, remix
+will not delete the existing screens
+that we have here. It simply creates
+variations of those of those screens.
+So, the client kind of has a say as
+well, you know, they can jump in
+make certain edits and that you Well,
+you you can decide how you want to go
+about it.
+But, this idea, you know, I can easily
+share it with the client.
+So, if you're selling this as a service,
+like you said, it's like you can once
+you kind of get to this point in the
+workflow, it's like, all right, we've
+got a design kit created with Google
+Stitch. We've got an idea of what each
+of the pages are going to look like.
+Then, I think it would make sense to
+share it with the client at this point,
+get their sign-off before you go into
+Claude Code and finalize
+&gt;&gt; 100% Right.
+&gt;&gt; Exactly. Exactly. So, that point the
+client has locked it in. They've
+confirmed that this is exactly the look
+and feel that they want to go for. So,
+you're safe to spend the time to focus
+on building the actual app.
+All right. So, let's assume then
+that the client approved this design.
+They They're happy. We can go ahead and
+now build this into an actual working
+web app.
+Right. So, let's then
+All right. So, let's just have a think
+about this.
+So, Claude Code won't be able to view
+Well, you know, so there's a few ways of
+getting these designs into Claude Code
+now. We can right-click the design
+system and download it. And it will
+download it as a design.markdown file.
+So, we can simply do that and then pull
+the design system into the project
+folder.
+Or for the landing page, there's a few
+options as well. For the pages, we can
+actually export Where is this export
+button?
+It might be hidden behind this little
+recording thing down here.
+Um Okay. So, we can do that. So, we
+could try and export this as a PNG or we
+can actually have a look at the HTML
+code sitting behind this page. And then
+we could copy this and pass it to Claude
+Code and, you know, get Claude to try
+and and implement the solution. But,
+the more elegant way is to
+give Claude Code two things so that it
+can actually connect to Stitch directly
+and interact with Stitch. It can
+actually
+you know, it can do everything you can
+with this project. It will be able to
+create projects. It can actually
+generate additional screens. It can pull
+down the assets that were generated by
+this as well. So, Claude will be able to
+have full visibility of everything
+that's sitting in this project at the
+moment. So, that's the route we will go.
+We're not going to manually pass
+anything to the project. We'll let
+Claude Code do all of the hard work for
+us.
+So, with that said, I am going to just
+link to a page. So, if anyone is
+interested
+to learn more about what I'm doing here,
+if you go to Stitch and you click on
+docs,
+you can go to MCP. Under the MCP
+section, you can go to setup and
+authentication. And this will teach you
+how to install the the Stitch MCP server
+into your Claude Code instance.
+And and how to authenticate with it. So,
+you do have to just set up an API key
+by following this instruction.
+So, I can actually just open that page
+real quick. If you go down,
+you can create a new API key and simply
+copy it.
+So, this is what allows you to use
+Stitch within Claude Code natively,
+right? That's what That's all an MCP is.
+It's like a connector. Exactly. It will
+provide all the tooling that Claude Code
+needs to connect to Stitch and to do the
+work for us.
+So, let's just go down to
+All right. They've got instructions for
+all the popular coding agentic coding
+tools. So, they've got Gemini, Cursor,
+Antigravity, VS Code, Claude Code. So,
+we'll be using Claude Code in this
+video. But, obviously, just find the
+tool that you want to use.
+Then, you can copy this command.
+And back in our project,
+we can just paste that command into the
+terminal.
+Then, we do have to replace this value
+here, this API key, with the API key
+that we copied from from Stitch.
+Now, I am going to do something off
+camera for a second.
+So, if you don't mind.
+And so, while you're doing that, again,
+just to reiterate to the audience cuz I
+think there's a lot of confusion around
+like, "Well, what is an MCP server?
+Like, that sounds difficult or that
+sounds confusing." It's basically just a
+connector, right? If you you set up the
+the Google Stitch MCP server inside of
+Claude Code or Cursor or VS Code or
+wherever you're using whichever agentic
+coding tool you're using, it just allows
+you to use Google Stitch inside that
+tool without having to physically go to
+the Google Stitch website. Like, that's
+all that an MCP server means, right?
+Exactly. It's a little connector. It's
+like a telephone line. It just connects
+your Claude Code instance to whatever
+external system it needs to talk to.
+So, by giving it this by giving Claude
+Code access to the Stitch MCP server,
+we're effectively giving it a direct
+line of communication to Stitch. So,
+Claude can say, "Hey Stitch, Leonis
+asking for the
+the design system. Please, can you send
+that to me and then I'll, you know, do
+whatever I need to do in the project
+using that." Right. All right. So, I
+just did this off camera. But, if you if
+you executed that command, it would set
+up the MCP server for you.
+I just had to manually do it because I
+don't want to share my API key
+for [laughter] for obvious reasons. Fair
+enough.
+&gt;&gt; But, what we can do now is just start up
+Claude Code. I'll run it with
+dangerously skip permissions mode.
+And let's just ask Well, firstly, we can
+see if that MCP server is
+available. We can see that Stitch is
+connected, which means that connector is
+now active.
+And if if we ask Claude,
+uh
+do you have access
+to Stitch?
+Claude will see if it's got access to
+any tools that will allow it to
+communicate to Stitch. And since that
+MCP tool is available, Claude is saying,
+"Yes."
+So, I've got access to a whole bunch of
+tools like creating projects, creating
+design systems. There's like a whole
+bunch of available tools that Claude can
+use now.
+All right, then. So,
+now that Claude can actually
+interact with Stitch, I'm going to
+first instruct Claude to pull down that
+design system.
+So, just to remind you,
+Right.
+So, what we The first thing we want to
+pull down is this design system. So,
+this dude over here. Because this is
+what's going to
+sort of create or lock in this design in
+our application. So,
+even if we ask Claude to add more
+components and pages down the line
+without using Stitch, Claude will know
+exactly what, you know, type what
+typography to use, what fonts need to be
+used. It will just understand what the
+site needs to look like going forward.
+&gt;&gt; key because I feel like a lot of time,
+especially if you're switching between
+projects or switching between sessions,
+it all tends to forget. So, by locking
+it in that one time,
+now anytime you go back to edit your
+site, you're not having to re-explain
+the fonts that you use or tell it again
+the colors that you use.
+Exactly. That's That's something that
+keeps coming up in my school community
+as well. As people
+uh say that, you know, they've they've
+kind of stored the design system in the
+project. And But, whenever they extend
+the project with additional pages, the
+agent just kind of ignores it entirely.
+So, it you know, it becomes a pain
+because then you have to maybe create
+sub agents or set up a loop or something
+that will try and reinforce that design
+system, which isn't necessarily ideal.
+So, what we're going to do now is just
+And I'm actually going to do something
+special for your channel.
+I'm going to enable fast mode.
+&gt;&gt; So, this is going to burn through my
+uh credits really quickly. But, I in the
+interest of time, I'm going to enable
+this. Yeah.
+&gt;&gt; And it's something I never use. And for
+anyone watching this, I wouldn't
+recommend it. Please, do not enable fast
+mode if you are
+if you are following along. This is
+going to cost me $30 for for a million
+input tokens and $150 for output tokens.
+But, because Corey is such a nice guy,
+I'm going to enable it for for his
+audience.
+I appreciate that.
+&gt;&gt; I'd never do something nice for you.
+&gt;&gt; All right. Let's do this. So, use the
+uh Stitch MCP
+to
+uh pull down the design system
+and then store it in
+design.md.
+So, this design.md, it is a convention.
+You don't have to use it. You can store
+it in whatever file you want. But, the
+general convention for storing design
+systems these days is to create a
+design.md file.
+It's similar to the convention we have
+with agent memory where we have Claude
+and agents.md.
+So, we're just creating a third file
+called design.md. And all of this entire
+design system design system will simply
+be copied to that file.
+And I'll show you why in a second.
+And that's what causes it not to forget,
+right?
+&gt;&gt; The design system in peace.
+Yeah.
+And for anyone confused by these memory
+files, so if anyone has been wondering,
+why do we have Claude.md and agents.md
+the
+sort of the open standard is that
+agents.md is the memory file for for
+pretty much any tool you can imagine,
+but Anthropic is just kind of
+going against the grain and they've got
+their own memory file.
+And it can be a pain because, you know,
+for every other agent, you're updating
+the agents.md file.
+I'm just going to delete this standard
+stuff.
+And which means that whenever you make a
+change to the to the agents.md file, you
+kind of want to retrofit those changes
+over to
+to the Claude.md file as well.
+Which is not ideal.
+So the sort of cheat the cheat code is
+to simply
+add this one-liner in your Claude.md
+file. Just reference the agents.md and
+that's it.
+&gt;&gt; Right.
+Now those two are paired.
+And the way that I've always explained
+it or thought about it is that agents.md
+is essentially your system prompt for
+every
+you know, coding agent that's not Claude
+code and then your Claude.md is your
+system prompt inside Claude code. Like
+it's the same same exact thing. It's
+just like you said
+Anthropic makes theirs Claude.md and
+every other agent the coding tool uses
+agents.md. It's the same same system.
+Yes, that's right.
+So So it pulled everything in here?
+Yeah, I'm just trying to check if uh if
+I pulled down
+source stitch. I actually never even
+mentioned which project it was supposed
+to pull from. So it just so happened to
+to use the correct
+&gt;&gt; which one?
+Yeah, so we were just lucky in this
+case, but
+if you are following along, definitely
+just give it the correct context. But if
+I compare these two next next to each
+other, it's exactly the same thing.
+So this is the design system that I many
+that I manually downloaded from Stitch.
+But because we've
+added that connection between Claude
+code and Stitch, Claude was able to tell
+Stitch directly to pass it the design
+system.
+So the only thing I forgot to include in
+my prompt was to say, you know, use
+uh you know, just you just specify the
+specific project.
+So in this case it would have been
+the Ember and Oak website project.
+Okay.
+Cool. So now we've got the design system
+in our application.
+The first thing I like to do is to
+force our agent to to implement that
+design system going forward.
+So I'll just add a really simple
+instruction to the agents.md file.
+I'll just call it design system
+and we'll just add a simple instruction
+to say
+whenever creating components or pages
+use the design
+system at
+And I'm actually going to flag this as
+uh critical
+instruction.
+And that's it.
+So [clears throat]
+your memory file does shouldn't actually
+be complicated, by the way. Just keep it
+really really straightforward. It should
+only really contain any important rules
+that you want to enforce.
+Historically, these files used to
+contain all sorts of crap like your file
+system and your project structure.
+That's totally unnecessary. These agents
+are good enough at exploring the code
+base. They can easily figure out what
+scripts are available from the
+package.json file.
+Just strip everything out. Only give it
+the instructions that it needs.
+All right. So this simple instruction
+will force our Claude agent to
+follow this design session this design
+system going forward.
+Right. So let's actually jump back into
+Claude. I'm going to reset it just so
+that this design system is pulled into
+its context now.
+And now, let me just find that page.
+All right. So
+now that we've hooked up Claude to
+Stitch and we've now installed the
+design system and we've given our agent
+instructions to to follow this design
+system going forward
+I think we can now convert this landing
+page from Stitch. So this concept this
+design, we're now going to convert this
+into an actual page in our application.
+And it's going to work. All of the, you
+know, menu, buttons, everything's just
+going to work.
+Now again, if we were lazy, we could
+simply just copy the, you know,
+HTML uh code.
+We could then uh pass it to the agent
+and just say, replace the landing page
+with this.
+But we don't have to because we've
+hooked up Claude to to Stitch.
+So I am just going to pass a
+a prompt
+like
+Apologies. Before before we
+before we pass the prompt
+I'm just going to copy the prompt just
+to show you what it's going to look
+like.
+&gt;&gt; [snorts]
+&gt;&gt; Convert the landing page screen in the
+Just convert the landing page screen in
+the Ember Oak website design project.
+I just want to make sure I've got the
+project name correct.
+Ember and Oak website.
+Ember
+and Oak.
+Cuz I've got two now, so I just just
+want to be really specific. Right.
+Something like that. So we can give
+we can give Claude this simple
+instruction and it's going to just know
+that it needs to go to Stitch to pull
+down everything it needs to know about
+recreating that page.
+But there's actually a really cool tip
+that I've seen to get even better
+results out of this.
+So it is optional, but I've seen make a
+big difference. Especially if you're
+working in
+if you are working in Next.js or React
+apps
+this does make a a very big difference.
+We can search for a skill
+called Well, we can just search for
+Stitch.
+Then we can search for this React
+components skill.
+And this will
+So you know, skills is just a way to
+give additional instructions to an
+agent. So if we pass a prompt like this,
+the agent is going to do its absolute
+best to
+to give us the result that it wants.
+But there's no harm in giving it
+additional instructions, you know, to
+kind of really
+um you know,
+this this skill will kind of just give
+it this additional
+feedback on how it's supposed to pull
+data from Stitch, what's the kind of
+information it needs to pull um you
+know, it it just kind of explains that
+you are able to pull down images as well
+and what Reacts. Cuz I remember we're
+actually just con- we're converting an
+HTML page to React components. So it's a
+little bit technical
+but this skill just kind of bridges that
+gap to explain in very clear terms how
+the agent should go about converting the
+Stitch design into a uh into something
+that React or Next.js can understand.
+And it follows best practices.
+So I am just going to open up a new
+terminal. Oops. I'm just going to Is
+that command now?
+This is optional, by the way. So if this
+is a little bit confusing, don't stress
+I'm sure that
+Claude will still do a really good job.
+But this is so easy to set up that, you
+know, it's just a single command that
+you run.
+Yeah, it's like why not do it,
+especially if it's just a copy and
+paste.
+Exactly, you know? Well, it's um
+let's install it.
+So this installed this new skill
+in the Claude folder.
+And now
+I am just going to restart Claude just
+to make sure that I
+just to make sure that skill takes
+effect.
+Then I'm going to run our prompt again.
+And Claude should Claude should be smart
+enough to actually use the skill and use
+the MCP server
+to download everything it needs to
+understand how to recreate that that
+And we are still in fast mode, so this
+should be interesting.
+Yep, so we see it did call that skill,
+React components.
+Yeah, there we go. So it's pulling the
+skill
+and while that's cooking, I can actually
+show you what that skill kind of looks
+like. So it's
+you know, it's got a combination of
+scripts. It's got, you know, resources,
+examples. It's really got everything
+the gold standard card
+it's really got everything it needs to
+explain to the agent how to how to
+recreate these pages from the skill from
+the Stitch designs.
+Are there any other skills that you like
+to use inside this workflow or is that
+kind of the main one?
+I would stick to this for now. I might
+combine this with a front end design
+skill from time to time,
+but you need to be comfortable giving
+very detailed prompts on
+yeah, to get the agent to perform the
+way you're expecting it to. Sometimes
+less is more.
+And not overwhelming the agent is a good
+idea.
+And so it's kind of built its own little
+plan here, right? Of what it's going to
+do actually implement the website
+designs that we created in Stitch.
+Exactly. So there's a few interesting
+things happening here.
+Now this is going to go fast. It's going
+to set up the global design system. So
+this is really where our
+where the design system from Stitch is
+playing a big role. It's the you know,
+this is where it's storing the fonts
+that need to be used. It's the
+the color tokens. Everything's going
+into this global.css file.
+It's using this mock data. dot
+TypeScript file just to store the data
+that's coming in from the actual page.
+So we can easily just, you know, replace
+the mock data what with whatever we
+want. Uh if you are building a web a
+website that needs dynamic data, so
+something that needs to maybe your site
+needs to pull data from a from a
+database or some real-time source,
+you know, we can replace this mock data
+with something real-time as well. Right.
+And so if we weren't in fast thinking
+mode, how long would this this process
+typically take? 5 10 minutes? So I did a
+I did a dry run earlier today. It takes
+around about 10 minutes to go through
+this process.
+And so do you ever use fast mode for
+anything else? Like is there anything
+you would use it for or only if you're
+in a time crunch? No, to be honest, this
+is the first time I'm using it. I'm
+trying to give you something unique.
+Yeah, I appreciate that. I know it's
+expensive. I mean, for anybody, you
+know, in the audience, there's probably
+no reason to ever use fast mode unless
+you were
+in a time crunch
+in terms of minutes, like not hours or
+days.
+It's totally unnecessary.
+I totally agree.
+Now have you done this have you gone
+through this with your own website or
+have you kind of just done this with
+clients or what's been your
+workflow with this or I guess how have
+you implemented this workflow
+specifically in in your life and
+business?
+So this is the workflow that I would use
+if I had to build websites for clients.
+I've used it for
+um basically I've used this in our
+in our school community. This is this
+has been the
+the most common workflow that people
+have pointed [snorts] out like in my
+school community where they're actually
+building pages for clients. The majority
+of the projects that I work on are
+internal dashboard projects, so they're
+not usually as sexy as this.
+Um and obviously for my SaaS
+applications, I would kind of mock them
+out like uh using this process as well.
+Right. Yeah, I agree. I think this this
+workflow makes a ton of sense for
+anything that's going to be
+client-facing where the actual design is
+important. But I mean, I agree with you.
+Like most of what I've built or live
+coded myself has been just internal
+dashboard type projects or just like
+proof of concept to kind of show people
+what's possible.
+But agreed. Like if I was building
+something for a client or if I was
+selling a design, this is 100%
+the process I would go through. Or or
+even if I wanted to update my own
+website and like really touch it up and
+make it something that you know, when
+people land on my website or clients or
+whoever, they look at it and they're
+like, oh, this is really professional or
+this is this is a legit business. Yeah.
+Well,
+just to give you a bit bit of history,
+this is something I do have a lot of
+experience in.
+Um I had a web design company for about
+10 years. Oh, okay. Yeah, so it was
+mostly man, this is going way back. But
+you know, we initially did like Joomla
+websites and we moved over to WordPress.
+Rest in peace, Joomla.
+Um and you know, so we went through the
+process with hundreds of clients in the
+past.
+And [snorts] this is a very common
+workflow that you go through with with
+clients when you're doing when you're
+building designs for them. You you kind
+of have to show the mockups beforehand
+because it it all comes down to the time
+that you're investing into something
+that might potentially be scrapped. So
+the quicker you get a design out and get
+feedback from the client, the better.
+And you know, there's usually a phase at
+the start where yes, you'll mock up the
+design, but once that's locked in, the
+client can't go and make changes
+afterwards to the design system. You
+know, now you're focusing on the
+uh you know, sort of on the copy on the
+website or you're focusing on back end
+logic.
+But if the client wants to go back and
+redesign the UI, there's a cost involved
+there.
+But this workflow is a normal this is a
+traditional workflow, but in the past,
+this was all done by hand, right? So you
+would use Figma or some kind of design
+app to put all of this together and it
+was time consuming. And now we just
+built a a mockup within minutes.
+All right, cool. So we've got our
+our landing page, apparently. So let's
+actually check it out.
+Oops, let's just run this thing.
+All right, let's pull this up.
+And cool stuff. I just want to open it
+in the same browser
+as Stitch.
+All right, so we can kind of do a side
+by side.
+And yes.
+So this little chat window is in the
+way. I'm going to try and show you.
+But it looks like
+it's the [laughter] same thing, you
+know, it's the same font that's being
+used.
+Um we've got a background image. Sort of
+hard to see in the small design.
+But it looks like a I don't know, like a
+I don't know, like a coffee cup or
+There's something at the bottom there.
+So it's the same sort of images. It just
+kept the color. It just didn't, you
+know, replace the images by any means.
+So there could be a few little issues
+here and there, but you know, we can
+just keep prompting it to fix these
+these issues.
+But we do have The thing is this is this
+is a V1 like with very minimal effort
+aside from just generating the design
+brief in Stitch. I mean, this isn't not
+a bad first run through. I mean, this is
+going to be better than
+90% of existing websites out there,
+right? And obviously you'd iterate on
+this and improve it, but still a really
+good start.
+Exactly. And as I say, we can now just
+go back to Claude to say, "Hey, actually
+you, you know, missed something or uh
+make a few edits." But yes, it can you
+can definitely iterate on it.
+Something I do want to show you though
+is what I noticed is well, there's
+actually a few issues with this design
+at the moment. So
+it's nearly there, you know, we can
+prompt it just to fix pricing or Oh, I
+see with the image. It is black and
+white. It's when you hover over it that
+the color comes back.
+All right. All right, so I didn't expect
+that. All right, cool.
+So for the most part, it's accurate to
+the mockup. But there are a few issues
+that I do want to resolve.
+Firstly, the image the home Well,
+there's
+two images and they're both related to
+images.
+The resolution of the homepage image,
+this landing image, is not great. Right?
+It's very pixelated. And that's actually
+by design. Even if I if I had to zoom in
+all the way on the Stitch design, you
+will notice that this image is pixelated
+as well.
+And that's because this is supposed to
+be a design concept. You are supposed to
+go and find a stock image or replace it
+with your own image.
+But I'll show you how you can use AI to
+actually replace this yourself.
+Uh then the second issue is that all of
+the images that this site is referencing
+are sitting online. These are actually
+hosted on some I don't know, some Google
+server somewhere.
+So it's a very expensive round trip.
+Every time someone goes to the website,
+we're going to download the images from
+some remote server, which is just slow
+and it's a a waste of bandwidth.
+So ideally, we want to optimize these
+images so that they they're stored
+locally in our project folder
+and
+they use a different format.
+I think at the moment these are
+PNG or JPEG images, so they they're
+actually large.
+So it's going to
+and all this really means is that is a
+when people visit our website and
+they're on a slower
+Excuse me. And and if they're on a
+slower internet connection, this website
+is going to take a longer time to to
+load.
+So let's actually solve the second issue
+first.
+Excuse me.
+All right, so what I'm going to do is
+say,
+"I need you to download the images for
+all pages
+uh from the
+What did we call it?
+Amber and oak stitch project.
+Store them in the
+public folder.
+So, basically this public folder is
+where all the static assets are are
+stored. So, these
+you know, all of the images and assets
+in this folder will actually be cached.
+So, they get served to the client way
+faster.
+Store them in the public folder
+convert the images to WebP.
+So, WebP is a It's such a cool format.
+It can take an image that that's like
+200 kilobytes big and, you know, convert
+it into something like that's like 20
+kilobytes.
+Oh, wow. Okay.
+Yeah, so this is a really
+Yeah, so the prompt itself is is not
+that complex.
+But, the magic it does behind the scenes
+just to optimize the performance of the
+website is
+it's phenomenal.
+So, Claude is now going to reach out to
+Stitch to say, "Hey, give me all of
+these images." Right? So, on all of
+these designs, this background image,
+this image,
+these
+It's going to just say, "Well, give me
+back everything you have."
+And it's then going to convert it into
+WebP, which is like a super
+you know, super compressed, super
+optimized format. Mhm.
+Uh Corey, do you use Stitch for your
+designs?
+So, I haven't messed around with it yet
+myself. I I used it a couple of weeks
+ago when they I don't know if they
+re-released it or if they came out with
+like a new version of Stitch, but I
+remember it was getting a lot of buzz a
+few weeks back.
+So, I popped in there just to
+like literally just mess around with it,
+create a a simple design kit. I never
+did anything with it, but I will
+absolutely be using it to redesign my
+own website when I get around to doing
+that here soon. It's fun. It's fun. You
+know, that that's the thing. If it's for
+your own projects, you probably don't
+care too much. You know, you don't you
+wouldn't mind like
+uh change
+You wouldn't mind changing the design
+like every month if you have to, you
+know, uh Right. But, when it comes to
+client work,
+they
+you know, that's the other thing. On
+larger client projects, you
+they they typically pay you at certain
+milestones. Mhm. So, you know, you have
+a cost for the for the larger project
+and then they they would do payouts at
+certain milestones. And one of the
+milestones is usually when the design
+system is locked in.
+Mhm. So, you know, you can't go through
+the pain of white coding the entire
+website for them and then, you know, you
+proud of it, you very impressed with the
+fact that you used skills and all of
+these cool little technologies. Then you
+show it to a client who doesn't give a
+damn. Right.
+&gt;&gt; And they have a look at it and they
+like, "No, that's not what we wanted."
+Yeah, exactly. It makes sense to agree
+on that scope of work up front so that
+everybody's on the same page.
+&gt;&gt; And so now it's it is going in there and
+downloading those images to the folder
+there in Claude code and then
+converting them to WebP like you said
+and then essentially replacing
+the images on the server with these new
+WebP files. Is that right? Exactly. So,
+we can see it going through all these
+different files. And as it's downloading
+them,
+it's um
+Funny enough, these images are WebP
+already. So, it might be a
+a waste of time or Claude is I could
+swear these images are like JPEGs or
+PNGs.
+So, it could be that it's just kind of
+converting them in a single step.
+Which I
+suspect is happening.
+But, sure. We can see all of these
+images being downloaded
+and being converted to WebP. Mhm.
+And I think in the interest of time,
+while this is going through
+So, while the agent is downloading these
+images,
+I'm going to just throw one more command
+at it. Oh, yes. We can see it actually
+just completed all tasks in like a
+single
+&gt;&gt; Yeah, just really
+&gt;&gt; All right, cool. So, it's downloaded all
+of the images.
+Update the
+pages and components to use these
+optimized images.
+All right, cool. So, that's basically
+how we how we can pull the images from
+this design system directly into our web
+app and optimize them. So, this page
+should load
+way way way faster.
+Now, the final thing I want to show you
+is how we can replace any image on this
+website with an actual AI generated
+image.
+So, yes, you could go to a stock website
+like Pexels or, you know, whatever else
+and download an image, upload it into
+here. But, if you want something that's
+a little bit more unique, we can use
+something like Nano Banana Pro
+and generate an image that's unique to
+our site and it actually follows the
+design system as well.
+So, we can get really creative with it.
+So, for that, I'm not going to use
+Claude code.
+As an added bonus, I'm going to pull up
+Cursor.
+And in Cursor, I'm going to switch over
+to Opus 4.6.
+And Cursor's actually got Nano Banana
+Pro
+baked into it.
+So, we can say, "Please generate
+a an image
+for our landing pages
+hero section.
+It should
+be of a female
+uh barista
+uh brewing
+coffee
+on the shelf
+in the
+uh background.
+Sorry, man.
+There should be
+coffee bags with the
+What do we call our
+brand Amber and
+&gt;&gt; Amber and oak
+branding
+on it.
+&gt;&gt; Right, let's actually just do that for
+now. Let's see what that gives us. I'm
+curious.
+&gt;&gt; And so, I like how it is looking at that
+design system that you created earlier,
+right? It's not just going to go and
+generate a design It's not just going to
+go and generate an image. It's going to
+look at our design
+requirements, specifications first,
+yeah.
+&gt;&gt; Exactly. I'm glad you noticed that. And
+that is because of this rule that we put
+in the agents.md file.
+Where we, you know, this very specific
+rule that tells it to follow the design
+the critical the this critical step.
+So, it even affects the images that it
+generates to make sure that even the
+images are in line
+with with the vibe and the
+the design system of the the website. I
+love that, yeah.
+It's really cool.
+It is really cool. So, typically I would
+replace all images on the dashboard or
+website with whatever gets generated by
+this.
+But, in the interest of time, we'll just
+do the one.
+So, by the way, all of the the uh images
+are now they're now linking to the local
+images in our project. So, they're not
+they're not pulling the the images from
+the web every time. These images are all
+being served from the public folder now.
+So, can we see those? Like are those
+going to look any different to me and
+you or is it just how they are stored on
+the back end? Like they're just going to
+&gt;&gt; They will look and feel the exact same.
+It's just the way that they that they
+stored.
+For local development, it won't make a
+big difference. But, it's usually when
+you when you deploy your website to to
+production, you get you know, there's
+basically two impacts there. The first
+is on your user, you know, if they've
+got a slow internet connection, the page
+will take longer to load because you're
+downloading all of those image assets
+and they're huge. The second impact is
+on your actual VPS or your hosting
+company. If they charge you for your
+bandwidth,
+you're actually going to breach your
+bandwidth
+bandwidth limits even faster or you're
+going to pay for it. All right, let's
+have a look at this image. How cool is
+that?
+So, we've got our barista, we've got our
+bags in the background with Amber and
+oak on it. Even the
+Even I have the Amber and oak logo.
+That actually looks really good. Like
+that's way better than what I expected.
+How unique is that? So, now we can say,
+"Replace the landing page image with
+this one."
+It actually converted the image to WebP
+already, which is really cool.
+So, while that's cooking, let's actually
+pull this up and see if there's any
+difference.
+And so, basically, it's going to swap
+out the hero image on the existing
+website with the one that we just
+created, right?
+Exactly. There we go.
+Oh, nice. Yeah. So, it's got a little
+bit of a filter over it, so we can
+probably reduce this
+this uh filter. The image is a little
+bit hard to see. I think there might be
+some kind of filter over it. Can we make
+the image a bit more brighter and
+visible?
+And just to speed things up, I'll just
+use Composer 2 fast.
+So, it should take a second or two and
+this image will be way more
+uh visible. But but but I think you you
+kind of get get the sense of it. It's
+just It gives a very unique
+uh look and feel to to the page,
+especially when your branding is
+included. So, obviously, this is just a
+fake website. We don't have an actual
+logo.
+The agent tried its best to kind of
+mimic the my I don't know, maybe the
+font that we used or something.
+But you can definitely pass your your
+logo to the agent as well. You just say,
+"Use this This is what the logo actually
+looks like. Use it."
+Right. Okay, yeah, we see it it updated
+itself automatically. And now it's So,
+now the font like it like kind of the
+font the roasted with intention brewed
+with soul like now that's a little
+harder to read, I feel like. Yeah. So,
+so I I would probably keep that filter
+on it, but uh you know, I would reduce
+the opacity a little bit of this uh you
+know, image. But I I just wanted to kind
+of demonstrate the point, right? So, you
+can get a high-resolution image pulled
+into your page
+and you can
+uh add any details like the logo and
+everything else. It makes it really
+unique to your web app.
+So, Corey, I think from my side, that's
+everything I wanted to show.
+It's a very fun workflow. I think it's a
+very practical workflow.
+And it's something that you can use when
+dealing with actual clients.
+Yeah, I love it. And I think the
+takeaway for me, Leon, is that again,
+you don't need to know how to code to do
+this stuff. You can pretty much just
+prompt Claude Code or Cursor or whatever
+tool you're using to make the changes
+needed, right? Like to swap out that
+image and to change the opacity of the
+image. Like we just told it to do that,
+it made the change, and if we need to
+tweak it further, we just tell it what
+to change. So, this has been really
+valuable.
+&gt;&gt; Exactly. And like Like you said, I mean,
+people can apply this to their own
+website if they want to beef up their
+own site or
+they could turn around and sell this as
+a service to clients and uh you know,
+make this one of their portfolio offers.
+So, Leon, this has been great. Where can
+people follow you or I know we'll
+obviously put your YouTube channel in
+the description and we'll have you as a
+collaborator on this video. So, people
+should absolutely go subscribe to Leon,
+but where else can they kind of interact
+with you, Leon?
+Uh as you mentioned, I've got my YouTube
+channel. It's Leon van Sales. So, I
+teach people how to
+build real-world solutions using coding
+agents and we cover everything from
+from tools like Claude Code, Cursor,
+and eight and we, you know, dive into
+pretty much anything AI-related. So,
+definitely check me out there.
+And I also have a school community if
+you want to dive in
+even deeper into building AI solutions.
+The community is called Agentic Labs.
+It's
+We're about 700 just over 700 members
+strong already, and it's a fantastic
+group of people. Everyone is willing to
+learn and help each other. So, if you
+want to pick people's brain or share a
+problem that you're having, you know,
+join the group. This is also how you can
+get direct access to me. So, when you
+join this
+this community, you can send me a DM.
+Um I'm very active in the conversations.
+So, you can definitely reach out to me
+We do have weekly Q&amp;A sessions. So,
+every Wednesday, we've got a live Q&amp;A.
+You can join. It's like a Zoom call. You
+can unmute yourself. You can
+uh talk to you know, ask me anything,
+share ideas, or whatever you want.
+And I also have several classrooms
+including Claude Code.
+And I just released my Agentic Coding
+Masterclass.
+And I'm quickly rolling out new videos.
+So, there's there's like new videos
+coming out every day.
+And the cool thing about this
+Masterclass is that it's interactive as
+well. So, you learn new concepts and you
+actually get to play with an interactive
+uh presentation to learn how how all of
+the stuff actually
+uh works. It's very practical as well.
+That's so cool. That's really I've never
+seen anybody do that, but that's really
+smart.
+&gt;&gt; We do things different on my channel,
+man.
+Yeah, I love
+&gt;&gt; get to just talk at a high level. We we
+here to build. We practice what we
+preach. Of course, as you should. So,
+you know, we'll have links to all of
+that in the description. And of course,
+like we said, go follow and subscribe to
+Leon on YouTube. And with that, Leon, I
+appreciate your time. And everybody in
+the audience, we will be back uh in a
+few days with a new video.
+Thank you, Corey, for having me. It was
+a lot of fun. Congrats on the channel.
+And I hope to be uh I hope you'll invite
+me again.
+Absolutely. Thanks, guys.
+Cheers. Cheers.

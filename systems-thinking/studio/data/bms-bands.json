@@ -1,0 +1,163 @@
+{
+  "schema": "rig.bms-bands.v1",
+  "purpose": "Deterministic band table for the RIG lattice A1-A4 process layer. Any task, given four routing inputs plus one shape input, maps to exactly one build mode (A1-A4) with required gates. No LLM in the routing decision path.",
+  "canonical_sources": [
+    "~/RIG-Transfer/rig-128gb-agent-os-20260621/payload/rig-agent-doctrine/rig-agent-doctrine/RIG_DOCTRINE.md (sections 3-4: A1-A4 build-mode doctrine, BMS routing thresholds, escalation rules)",
+    "~/RIG-Transfer/rig-128gb-agent-os-20260621/payload/rig-agent-doctrine/rig-agent-doctrine/RIG_A1_A4_ARCHETYPES.md (allowed/forbidden/required per mode; A1 UNKNOWN routes to A3.1)",
+    "~/RIG-Transfer/rig-128gb-agent-os-20260621/payload/rig-agent-doctrine/rig-agent-doctrine/RIG_LATTICE.md (L x D x A geometry; cell ID L{level}-D{diamond}-A{mode}-{step})",
+    "~/.hermes/skills/rig-bms-band-calculator/SKILL.md (band arithmetic: stakes + reversibility - round(evidence_density); outward forces the top band)"
+  ],
+  "inputs": {
+    "stakes": {
+      "type": "enum",
+      "values": ["low", "medium", "high"],
+      "score": {"low": 0, "medium": 1, "high": 2},
+      "definition": "Cost of being wrong: money, brand, contracts, or a compounding stock (attention, pipeline, trust) burned while unsolved."
+    },
+    "reversibility": {
+      "type": "enum",
+      "values": ["yes", "partial", "no"],
+      "score": {"yes": 0, "partial": 1, "no": 2},
+      "definition": "Can the artifact be undone cheaply after ship? yes = re-run/branch/backup restores prior state; no = one-way door (public claim, sent message, migrated data, spent money)."
+    },
+    "evidence_density": {
+      "type": "float",
+      "range": [0.0, 1.0],
+      "bucket": "floor(evidence_density + 0.5)  // round half UP; never Python banker's rounding (see failure modes)",
+      "definition": "Share of the task's grounding already present: data files, corpus, prior runs, requester-given facts. 0.9 = corpus fully mounted; 0.3 = mostly unknown."
+    },
+    "outward_action": {
+      "type": "bool",
+      "definition": "The task ends in deploy/send/publish/pay/delete/migrate - any irreversible external side effect. true forces band B4 and Gate-D regardless of index."
+    },
+    "shape_floor": {
+      "type": "enum",
+      "values": ["a1", "a2", "a3", "a4"],
+      "extension": true,
+      "note": "Lattice-local extension of the four canonical inputs (RIG_DOCTRINE.md section 4 routing signatures, made lookup-shaped). The minimum intelligence the TASK itself requires, independent of consequence weight.",
+      "signatures": {
+        "a1": "Known task, deterministic, low risk, no reasoning needed, repeatable script possible (fixed rules/thresholds produce the artifact).",
+        "a2": "Drafting/transformation; Python can validate the output against a typed schema; the LLM call is single-shot and bounded.",
+        "a3": "Multi-step workflow, tool use required, ambiguous intent, mechanism map needed, retries with feedback.",
+        "a4": "Novel strategy, contradictory evidence, open-ended research, red-team or falsification needed."
+      }
+    }
+  },
+  "scoring": {
+    "gate_index": "gate_index = stakes_score + reversibility_score - evidence_bucket",
+    "evidence_bucket_examples": {"0.9": 1, "0.6": 1, "0.5": 1, "0.4": 0, "0.35": 0, "0.0": 0},
+    "band_from_index": {
+      "<=1": "B1",
+      "2": "B2",
+      "3": "B3",
+      ">=4": "B4"
+    },
+    "outward_override": "if outward_action == true: band = B4 (always)",
+    "gate_mode_floor": {"B1": "a1", "B2": "a2", "B3": "a3", "B4": "a4"},
+    "final_mode": "mode = max(shape_floor, gate_mode_floor)  // the MINIMUM mode satisfying both task shape and consequence governance; A1-first means never start above it",
+    "bms_confidence_crosscheck": "If the mission packet already carries a doctrine BMS confidence score (0-1), route shape directly per RIG_DOCTRINE.md section 4: >=0.75 -> a1, 0.45-0.74 -> a2, 0.25-0.44 -> a3, <0.25 -> a4. The two selectors must agree; disagreement is a routing smell, resolve by taking the higher floor and recording why."
+  },
+  "table": [
+    {"stakes": "low",      "reversibility": "yes",     "evidence_bucket": 1, "gate_index": -1, "band": "B1", "gate_mode_floor": "a1", "rationale": "Reversible, low stakes, well-grounded: fast lane, deterministic."},
+    {"stakes": "low",      "reversibility": "yes",     "evidence_bucket": 0, "gate_index": 0,  "band": "B1", "gate_mode_floor": "a1", "rationale": "Thin evidence but nothing at risk and fully undoable: measure cheaply in A1, mark Unknowns."},
+    {"stakes": "low",      "reversibility": "partial", "evidence_bucket": 1, "gate_index": 0,  "band": "B1", "gate_mode_floor": "a1", "rationale": "Low stakes with partial undo: still fast lane; snapshot before write."},
+    {"stakes": "low",      "reversibility": "partial", "evidence_bucket": 0, "gate_index": 1,  "band": "B1", "gate_mode_floor": "a1", "rationale": "Low stakes, thin grounding: cheap probe, no gating weight needed."},
+    {"stakes": "low",      "reversibility": "no",      "evidence_bucket": 1, "gate_index": 1,  "band": "B1", "gate_mode_floor": "a1", "rationale": "One-way door but stakes low and grounding good: proceed deterministically, log the door."},
+    {"stakes": "low",      "reversibility": "no",      "evidence_bucket": 0, "gate_index": 2,  "band": "B2", "gate_mode_floor": "a2", "rationale": "Irreversible with thin evidence: add one bounded validation pass before committing."},
+    {"stakes": "medium",   "reversibility": "yes",     "evidence_bucket": 1, "gate_index": 0,  "band": "B1", "gate_mode_floor": "a1", "rationale": "Meaningful stakes but trivially undoable and grounded: standard lane."},
+    {"stakes": "medium",   "reversibility": "yes",     "evidence_bucket": 0, "gate_index": 1,  "band": "B1", "gate_mode_floor": "a1", "rationale": "Undoable medium stakes, thin evidence: gather evidence in A1 first."},
+    {"stakes": "medium",   "reversibility": "partial", "evidence_bucket": 1, "gate_index": 1,  "band": "B1", "gate_mode_floor": "a1", "rationale": "Medium stakes, partial undo, grounded: fast lane with artifact retained."},
+    {"stakes": "medium",   "reversibility": "partial", "evidence_bucket": 0, "gate_index": 2,  "band": "B2", "gate_mode_floor": "a2", "rationale": "Medium stakes + partial undo + thin grounding: schema-validated hybrid."},
+    {"stakes": "medium",   "reversibility": "no",      "evidence_bucket": 1, "gate_index": 2,  "band": "B2", "gate_mode_floor": "a2", "rationale": "One-way door at medium stakes with decent grounding: bounded mode with diff/replay checks."},
+    {"stakes": "medium",   "reversibility": "no",      "evidence_bucket": 0, "gate_index": 3,  "band": "B3", "gate_mode_floor": "a3", "rationale": "Irreversible, medium stakes, thin evidence: governed agent with mechanism map and audit."},
+    {"stakes": "high",     "reversibility": "yes",     "evidence_bucket": 1, "gate_index": 1,  "band": "B1", "gate_mode_floor": "a1", "rationale": "High stakes but fully reversible and grounded: still deterministic; reversibility is the cheap insurance."},
+    {"stakes": "high",     "reversibility": "yes",     "evidence_bucket": 0, "gate_index": 2,  "band": "B2", "gate_mode_floor": "a2", "rationale": "High stakes, thin evidence, but undoable: bounded hybrid to close evidence gaps fast."},
+    {"stakes": "high",     "reversibility": "partial", "evidence_bucket": 1, "gate_index": 2,  "band": "B2", "gate_mode_floor": "a2", "rationale": "High stakes + partial undo: hybrid with output diffing against the retained original."},
+    {"stakes": "high",     "reversibility": "partial", "evidence_bucket": 0, "gate_index": 3,  "band": "B3", "gate_mode_floor": "a3", "rationale": "High stakes, partially irreversible, thin evidence: governed agent, guardrails on."},
+    {"stakes": "high",     "reversibility": "no",      "evidence_bucket": 1, "gate_index": 3,  "band": "B3", "gate_mode_floor": "a3", "rationale": "High stakes one-way door, decent grounding: adversarial verification before the door."},
+    {"stakes": "high",     "reversibility": "no",      "evidence_bucket": 0, "gate_index": 4,  "band": "B4", "gate_mode_floor": "a4", "rationale": "High stakes, irreversible, ungrounded: full free-agent treatment, red-team, Gate-D on any outward step."}
+  ],
+  "bands": {
+    "B1": {
+      "mode_ceiling": "a1-default",
+      "gate": "none beyond phase checks",
+      "rationale": "Nothing expensive can go wrong. Speed and replayability dominate; deterministic code is both faster and auditable.",
+      "escalation_triggers": [
+        "A1 returns UNKNOWN for a required judgment -> route to A3.1 bounded probe (canonical: RIG_A1_A4_ARCHETYPES.md rule; if the UNKNOWN is a single schema-shaped judgment, an A2 wrapper is the cheaper intermediate - record which was chosen)"
+      ],
+      "de_escalation_triggers": [
+        "N/A - already the floor; A1 stays A1 until it returns UNKNOWN"
+      ]
+    },
+    "B2": {
+      "mode_ceiling": "a2-default",
+      "gate": "typed-schema validation + output diffing + capped token budget",
+      "rationale": "A model earns its place only inside a deterministic wrapper: forced structure, validated, diffable, with an A1 fallback path.",
+      "escalation_triggers": [
+        "Schema validation fails on 2 consecutive attempts (A2 confidence collapse -> A3, canonical)",
+        "Decomposition count > 3: the task needs more than three sub-judgments chained -> multi-step governed workflow",
+        "evidence_density drops below 0.40 mid-flight (grounding eroded; the bounded call is now guessing)"
+      ],
+      "de_escalation_triggers": [
+        "Output contract stabilizes across 3 runs (same schema, same fields) -> encode as A1 template/rule and replay",
+        "A2 call becomes unnecessary because the deterministic path now covers it"
+      ]
+    },
+    "B3": {
+      "mode_ceiling": "a3-default",
+      "gate": "state object + tool allowlist + cost/runtime budget + guardrail result + audit row + approval packet on transitions",
+      "rationale": "Multi-step agency with real teeth on failure: every transition visible, every retry logged, a named escalation path.",
+      "escalation_triggers": [
+        "Unresolved ambiguity after the bounded budget (two failed map widenings, guardrail conflict, discriminator cannot be instrumented) -> A3 unresolved ambiguity escalates to A4 (canonical)",
+        "Any outward action emerges mid-flight -> freeze, re-route to B4, Gate-D before the action"
+      ],
+      "de_escalation_triggers": [
+        "Procedure proven across runs -> re-implement as A2 schema chain or A1 rule; keep the agent only for the residue",
+        "Ambiguity resolved by a single new measurement -> drop to A2 to apply it"
+      ]
+    },
+    "B4": {
+      "mode_ceiling": "a4-default",
+      "gate": "Gate-D (typed human approval, APPROVE <run_id>) + kill switch + budget switch + audit log + red-team review",
+      "rationale": "Outward and/or one-way-door at high stakes: exploration may be free, but the ACT is not - a human types the approval.",
+      "forced_when": "outward_action == true, regardless of gate_index",
+      "escalation_triggers": [
+        "A4 exploration proposes an outward step not covered by the existing approval packet -> new Gate-D with exact target/scope/values"
+      ],
+      "de_escalation_triggers": [
+        "Strategy fixed -> execution drops to A3 governed run",
+        "Plan encoded -> replayable steps drop to A2/A1 (canonical: A4 requires A1/A2/A3 fallbacks)"
+      ]
+    }
+  },
+  "doctrine": {
+    "a1_first": "Never start at A3/A4 when A1/A2 suffices. The computed mode is the minimum satisfying shape_floor and gate_mode_floor; anything above it needs a recorded reason.",
+    "never_skip_a1": "Universal rule 1 (RIG_DOCTRINE.md): every A2/A3/A4 run still opens with its deterministic prelude (files present, inputs valid, checks runnable).",
+    "fallback_independence": "Universal rule 11: A2/A3/A4 failure must never break the A1 fallback (degraded-but-honest beats silently unreasoned).",
+    "unknown_not_guess": "A1 returns UNKNOWN instead of guessing; invention is reserved for modes that can be held accountable for it."
+  },
+  "examples": [
+    {
+      "case": "tag 853 Recall cards with systems-thinking archetypes",
+      "inputs": {"stakes": "low", "reversibility": "yes", "evidence_density": 0.9, "outward_action": false, "shape_floor": "a1"},
+      "arithmetic": "0 + 0 - 1 = -1 -> B1 -> gate floor a1; shape a1",
+      "mode": "a1",
+      "note": "Pure index transformation over a local JSON corpus; re-runnable; no model in the decision path."
+    },
+    {
+      "case": "polymath cross-domain import (phase 06 protocol)",
+      "inputs": {"stakes": "medium", "reversibility": "yes", "evidence_density": 0.6, "outward_action": false, "shape_floor": "a2"},
+      "arithmetic": "1 + 0 - 1 = 0 -> B1 -> gate floor a1; shape a2 -> mode = max(a2, a1)",
+      "mode": "a2",
+      "note": "Deterministic crosspoll seed ranks mechanisms, but the 7-step import protocol (domain choice, structural match, transfer validity >= 0.60, rejects) needs bounded reasoning behind the section+score output contract."
+    },
+    {
+      "case": "public site redesign",
+      "inputs": {"stakes": "high", "reversibility": "no", "evidence_density": 0.5, "outward_action": true, "shape_floor": "a4"},
+      "arithmetic": "2 + 2 - 1 = 3 -> B3, but outward_action -> B4 -> gate floor a4; shape a4",
+      "mode": "a4",
+      "gates": ["Gate-D before any deploy/publish"],
+      "note": "Brand-facing one-way door: free-agent exploration allowed, human types the approval before the outward act."
+    }
+  ]
+}

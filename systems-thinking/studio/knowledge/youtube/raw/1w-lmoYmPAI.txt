@@ -1,0 +1,384 @@
+Having worked with 50-plus organizations
+over the last 8 years, I'm constantly
+stunned at the amount of time and money
+that's lost in not understanding the
+test pyramid. People have way too many
+end-to-end tests, not nearly enough unit
+and integration tests, or frankly vice
+versa. Today, I want to show you a
+dashboard you can put together in
+literally an hour or less that'll give
+you unbelievable visibility into orphan
+tests, gaps, and frankly just help you
+create a more efficient test strategy.
+You'll save thousands of dollars in time
+and labor over the next few weeks alone
+just locking in where you need to focus
+and where you can frankly dial back.
+&gt;&gt; [music]
+&gt;&gt; Okay, so before we get into this, like
+why does it matter? This is not a video
+about the test pyramid, but I just want
+to briefly talk about it for a second.
+For a very long time, the test pyramid
+existed in theory, but it was very
+rarely exercised from a pragmatic
+reality perspective, and I would argue
+that's because most QA teams were not
+technical enough to really look through
+the code base. So, they would end up
+covering a bunch of things at the API
+and end-to-end level that already had
+really extensive tests at the unit,
+integration, contract level, etc.
+There's also this narrative that somehow
+like they all do different things, and I
+guess they do inherently do different
+things, but they're much closer and
+similar aligned than you would really
+expect. Like ultimately, the app that
+you interact with is just code. Like all
+it is just code. And so, if you have
+verified something within that code,
+yes, there could be a different
+environment or something like that, but
+like it's not going to magically change
+the higher you go up. And so, what I
+find is that there's a lot of QA
+departments wasting hundreds and
+hundreds of dollars cuz they don't want
+to admit that as sort of a a process or
+thousands of dollars, excuse me,
+whatever. And the goal for today is I
+want to show you basically a dashboard
+that helps illustrate this and then can
+start to dig into it. So, this is a very
+quick demo I put together. I will tell
+you that every one of the ones that we
+do is a lot more in detail when we work
+with our clients. Often times, you can
+click in, you can see all the test cases
+listed, and you can see
+version history, you can see all kinds
+of other things, you can see when it was
+pushed. What I want to show you though
+is just like how to get a very basic
+version of this thing together in an
+hour cuz in today's world, it's super
+straightforward. What we're going to
+look at is the back end of a code base.
+Um basically, this is a full stack app.
+It's like a service management system
+that we have. This works for large code
+bases, it works for small code bases, it
+works for any code base. We've done it
+all across a bunch of different
+languages, etc. The key thing is you
+want all of your stuff in one workspace,
+so AI can see across it. If not, if
+you're going to use Quad, just put it
+all in a folder that Quad can see.
+So, there's a couple key portions to
+this that we're going to do. One, we're
+going to add the user stories into a
+markdown file along with IDs. Now, you
+can, and we have in other situations,
+just pulled all of the user stories or
+test cases from third-party systems that
+have APIs, and that's totally fine, and
+then you just assign it an ID. But for
+the sake of this, I just wanted to give
+you an example, we're just going to put
+it in a markdown file.
+Then what we're going to do is we're
+going to add
+tags to all of our unit, integration,
+end-to-end coverage, etc. for all of
+those user stories. So, now what we're
+doing is we're mapping our stuff against
+the actual user stories and test cases,
+right? And what that's going to start to
+highlight is both two things. What are
+all the gaps in the test cases, and then
+what are all the areas where maybe we
+already have a lot of coverage, and we
+have too many API or end-to-end tests,
+right? Cuz the goal here is efficiency,
+right? What do you want when it comes to
+the test pyramid? What you want is
+efficiency. You want every level
+verifying just what is unique about that
+level, so then you are not creating
+duplicate work and so forth. The amazing
+thing about AI is this is all possible.
+What we're going to do is we'll just go
+ahead and we're going to say,
+let's start a new folder for our live
+dashboard.
+Put it in the root, then go ahead and
+add
+user stories for this app to the
+dashboard, cap at
+50,
+make
+them markdown and add IDs
+for each. And so, while this runs, and
+I'm probably going to skip forward in a
+second while it goes, basically what
+we're doing here is we're just creating
+like our source of truth, right? And
+once again, you can put this together in
+a like a third-party integration where
+you can just pull it, or you can just
+put it in.
+But
+why are we doing this? Because the
+number one thing that I feel like I see
+when it comes to the pyramid is that
+people don't map stories through the
+pyramid, right? So, like you have your
+thousand unit tests, right? And then you
+have like your
+500 integration tests, and you have your
+contract tests, and you have your API
+tests, and you have whatever other tests
+you have, end tests.
+And yet, there's very little mapping of
+those so that I can see, okay, so this
+discount feature has all of these unit
+tests, it has these integration tests,
+it has this API test, it has this
+component test, right? All around this
+one user story. How and then what end
+test do I need? Like probably do need to
+do it once from an end perspective just
+to make sure it flows, but if all my
+business logic and everything like that,
+and all the integrations and the moving
+parts are all covered, right? That
+allows me to create a much more informed
+decision. On the other hand, right? If
+I'm just looking at this blob of test
+coverage, I have 87% test coverage, that
+means nothing. I have a thousand tests
+with 87% test coverage. That doesn't
+allow me to optimize, that doesn't allow
+me to think about test coverage, that
+doesn't allow me to think about where
+the gaps are and so forth. And so, with
+a dashboard like this, you can make
+super super better and informed
+decisions that ultimately saves so much
+time and so much money. So, let's skip
+ahead till the AI being done, and I'll
+show you where it stops.
+Okay, great. So, you can see it's
+generated all these files that have all
+the user stories in them. I would
+generally prefer this to probably be
+just in one file, so it's like less
+broken up, but for the sake of this
+demo, like I don't have tremendously
+high needs. So, it has all the user
+stories, the acceptance criteria. Now,
+the first thing you're going to say is
+that's this, you know, production
+environment, there's hundreds if not
+thousands, which is absolutely true,
+right? And the biggest problem I have
+and why this is so important is cuz
+people aren't mapping all this stuff
+together. And frankly, yes, there are
+tools to do some of this stuff, but very
+rarely have I ever seen something that
+does like unit and integration. Like
+often times, it's usually user stories
+mapped against your test cases at the
+browser level, which is just like the
+most inefficient way to think about
+this. So, you have your test coverage,
+right? And so, next what we're going to
+do is we're just going to go to the
+prompt and we're going to say, go
+through all the existing
+unit, integration, API, etc. tests
+and add tags with the user story
+with the
+with the proper user story ID.
+If there is not one that matches, you
+can leave it blank
+as it will get caught as an orphan
+test.
+Great. So, now it's going to do this.
+Now, what I will also call out is this
+is not like a replacement for report
+like going through your test cases. Like
+you should absolutely go through your
+test cases, and just looking at a test
+case at a high level name is not enough.
+Like at some point, you do need to go
+through and verify that they're like
+doing what they say they're going to do
+and stuff like that. And so, this is not
+the end all, be all. It's the first step
+in the process.
+Let's pause for a second. We'll let the
+AI run. This is also rather embarrassing
+cuz I'm realizing that I was covering up
+a decent amount of the problems. So, I
+will change that going forward next
+time. I wonder where the best spot is. I
+wonder if up here is actually a better
+spot.
+Maybe I'll do up in the top going
+forward for some of this stuff.
+I don't know. Give me feedback in the
+comments where I should put my face. All
+right.
+We will wait. Oh, by the way, if you're
+still watching this video, please can
+subscribe. I'm going to be doing a lot
+more videos over the next like few
+weeks. I'm trying to do a video every
+few days. I have a lot of thoughts on
+quality assurance, but then also the
+software development as a whole when it
+comes to AI, things like policy as code,
+agentic pipelines, all these different
+tools that we're experimenting with on a
+daily basis. I want this channel to be
+both useful from a technology
+perspective, but then also if you're a
+manager checking this out, understanding
+what and how to hold your team
+accountable to. Mean a lot if you can
+hit subscribe. But, talk soon when the
+AI is done. See you soon.
+Great. And it's done. What you'll notice
+by the way is it's recognizing that we
+don't have nearly enough user stories,
+and so there's going to be a bunch of
+orphan tests, but that's totally fine.
+Just for the sake of this demo so you
+can understand how it works. And so,
+what we're going to do next is we're
+going to say,
+go ahead and write a scanner
+&gt;&gt; [clears throat]
+&gt;&gt; that
+scrapes all the test cases and publishes
+them to a dashboard so we can see the
+rolled
+And I'll say, and the user stories, too.
+Scrapes all of the test cases and and
+user stories and publishes them to a
+rolled view like our HTML demo
+Great. So, it's going to do this, right?
+And so, once again, the point here is
+not to show you like what our finished
+dashboards normally look like. It's to
+illustrate that I think as QA engineers,
+we have a level of engineering ability
+now available to us that we should
+absolutely be capitalizing on, right?
+Like we can do stuff like, hey, here's a
+script that just scans all of our test
+cases, or hey, here's a custom dashboard
+that has stuff rolled up, or we can even
+have it integrate, right? And so, some
+of our other ones we have for other
+clients, it's anything from like adding
+authentication and a login to making
+like an actual hosted app, which we have
+a couple clients that wanted that, so we
+did it. All the way to scan time history
+so we can see change over time. And so,
+the point here is that what I'm showing
+you is a very minimum version of it, but
+it is very much a I think illustrative
+example of what you can do and what good
+AI stats now are are showing can be
+capable of doing. All right, cool. I
+will circle back when this is done.
+Perfect. Yeah, so as we're doing this,
+it's also worth noting like we've
+actually had even had a couple
+situations where we just packaged it as
+its own node package, like NPM package
+that could be like downloaded, so it
+doesn't actually have to live in any of
+the code bases. So, once again, I will
+qualify all of this to be saying, I'm
+doing it this way just to simply show
+you how easy it is for you to set up
+yourself and like your organization
+should have this visibility literally by
+tomorrow. But,
+for [clears throat] the sake of this,
+there's a lot of optimizations you can
+do around making it a lot much more
+effective system. Great. And you can see
+it's already done its first scan. You
+can see the first scan had 222 API tests
+for 76 unit tests, right? So, on a
+signal the dashboard is meant to find,
+it's completely inverted, right? So,
+live dashboard is now open and we'll
+look at that in a second. Great. So,
+we'll say run the launch
+the dashboard.
+And just on the same page, if you have a
+bunch of API tests and very few unit
+tests, you are vastly overpaying in
+terms of the need to use all kinds of
+live data, set up all kinds of other
+things. Like all a bunch of business
+logic should be at the integration level
+and unit level. Particularly too with AI
+and like database schemas, like it's
+gotten so much better at handling data.
+To be fair, like I'm all for using API
+tests as a starting point.
+But, it's something that is always needs
+to be a starting point. So, let's hop
+over to the dashboard.
+Great. And you can see our dashboard,
+right? So, you can see we've got 45
+end-to-end tests, 222 API tests, 135
+integration tests, 76 unit tests.
+And you can start to look at sign in
+with name and password. We've got
+pre-tagged end-to-end. Right? So, you
+have none here. You've got sign up with
+organization code 01128, right? Partial.
+And the point here is that there is a
+lot of money
+in
+understanding how to write a test
+automation strategy that maximizes the
+use of integration and unit tests. And
+there's a lot of QA people who I like
+fight with all the time about the role
+of code and like they're like, "Oh, a
+developer should be doing it." And it's
+like, "Yeah, they should be." And don't
+get me wrong, but if we're sitting and
+spending 2 hours on an end-to-end test
+or even with AI knocking out a whole
+end-to-end test or something like that,
+we're able to generate seven or eight in
+a day or even 10 or 15 in a day, right?
+You can generate so much more effective
+coverage within the code and it's super
+super expand on it. And yeah, if you're
+a manager or a director and you pull
+this up and you look at this, like you
+were burning money. Hope you guys got a
+kick out of it. Hope you enjoyed it.
+Hope you found that super approachable.
+As a reminder, please and subscribe to
+the video. My name is Ben Fellows. You
+can check me out here on YouTube, also
+on LinkedIn. We'll be doing a lot more
+content coming up. All right, talk soon.
+Happy testing.

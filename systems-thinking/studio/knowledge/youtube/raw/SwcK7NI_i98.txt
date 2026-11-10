@@ -1,0 +1,595 @@
+[Music]
+hey everybody this is Kyle from data
+skeptic I'm going to go over a talk that
+I usually give when I'm ask to present
+like a lightning talk or a fill in or
+something just a quick 10 or 15 minutes
+not that technical but something that I
+think most adaa scientists should be
+more familiar with and that's good
+heart's law so let's get into the formal
+definition here good heart's law says
+roughly when a measure becomes a Target
+it ceases to become a good measure and
+this is my attempt here to visualize
+that a little bit think of this as some
+function we're trying to optimize right
+but as we get close to the peak optimal
+position we start getting a lot of just
+sort of stochastic noise what does that
+look like in principle well think of
+something like the FICO score you know
+how we rate the creditworthiness of
+people at least here in the United
+States it's obviously quite desirable to
+have a high credit rating so when you
+find out what components go into that
+calculation you might like to manipulate
+them for example me there's a credit
+card company I won't ever do business
+with again because they did something
+that I'm pretty sure is illegal but I
+don't have the time to file up and
+basically they screwed me over never
+going to do business with them again
+however I'm aware that part of my FICO
+score is calculated by the history of
+accounts that I've had open so while my
+instinct is to cancel it and let them
+know I'll never do business with them
+again I'm actually just keeping that
+card in a drawer and making them send me
+statements because I know it boosts my
+credit rating and a behavior which is
+quite natural for me to do cancel that
+card could adversely affect it so I'm
+altering my behavior as a result of an
+algorithm I know is in play this is a
+chart that tells the story of the first
+time I actually encountered this I was
+working for a small company that was
+really heavy on sales in fact I
+collaborated closely with a lot of the
+sales teams and one of their managers
+and this isn't how the pay scale worked
+but roughly speaking it was something
+like this you know sales people got a
+base pay plus some variable commission
+described below so monthly if their
+total sales were under 50K 3% commission
+this range five over 100k they got 7%
+commission something like this some
+scheme now this turned over every month
+and the one manager that overlooked all
+the sales team was constantly frustrated
+with what he described as the hockey
+stick effect that you know you'd have
+certain amount of Revenue booked and
+then in the last couple days of the
+month suddenly there'd be all these
+bookings of Revenue and his perspective
+on This was oh those sales people
+they're just trying to get over the next
+hump you know maybe if you've got 90k in
+sales you and and the end of the month
+is approaching you call up your
+customers give them a little push maybe
+even offer them a discount they didn't
+need to have been offered since the
+sales reps of this company were given
+some relatively generous ability to
+Discount items when they thought that
+would help close the deal and in those
+last few days maybe they would overd
+discount in a way that doesn't benefit
+the company as much but benefits them
+because the commission is booked before
+the end of the month earning them the
+higher commission percentage this is
+another example of people altering their
+behavior and doing things differently
+because you set an optimization Target
+all right what about more broadly
+another great example I like is the spam
+filtering arms race as people who do
+spam filtering continue to improve on
+their skills they're going to filter out
+more and more spam yet for people who
+find it profitable in some way to send
+spam they need to go up their game then
+find ways around that filter and then of
+course the filters have to turn around
+and compete again and until such time as
+the difficulty in getting around a spam
+filter is greater than the cost of
+finding the way around we're going to
+continue to see this fight although I
+think you know in my lifetime this has
+changed tremendously in the last 15
+years machine learning has won the
+problem of spam what about search engine
+ranking you can hear a lot of good
+advice from people and a lot of bad
+advice in fact I think more bad advice
+about how to do SEO properly and what
+really matters and we all know that
+incoming links matter a lot so of course
+something that happened as soon as page
+rank was introduced into the landscape
+was people started doing link share
+trading so sites that otherwise might
+not necessarily link to one another were
+agreeing to link backwards and forwards
+to each other in order to assist on
+their Mutual search engine ranking now
+of course there are aspects of
+information retrieval that study this
+phenomenon and how to counteract it but
+they only had to do that as a result of
+good heart's law coming into play here
+and getting people trying to manipulate
+their search engine results all right
+this third one I think Snopes needs to
+work on at some point cuz I'm pretty
+sure this is a myth but originally it
+was reported and I've never seen it
+verified or reproduced but the claim was
+that if you clear your cookies after
+searching for for Airlines and then
+search again you'll get better prices
+it's entirely plausible that is
+technologically possible not hard to
+implement the question is are airfare
+websites using that tactic I don't know
+but nonetheless many people are now
+clearing their cookies because they're
+thinking that can earn the better prices
+somehow whether it's true or not their
+behavior is changing they're
+manipulating a metric this is the
+example I already shared of me keeping a
+credit card in a drawer for no good
+reason except to manipulate my FICO
+score retail discounting and couponing
+strategies this is the one that I think
+is the most damaging to a couple of
+companies you know if you send out a
+nice discount or a coupon to customers
+often that'll bring in some new
+immediate business why not right some
+people were in the market and now
+they've got a coupon that motivates them
+to spend other people may have been on
+the fence but hey as long as there's a
+coupon here we'll go take a look maybe
+buy something so just about every
+campaign like this where you discount
+something is going to get some amount of
+results and if you don't know how to
+read those results correctly it can come
+off something like a drug addiction you
+know you want to go and push that button
+as many many times as you can and keep
+getting those bumps in sales and if the
+management of the company doesn't
+recognize what's going on they're just
+going to appreciate those bumps in
+Revenue they keep seeing but the reality
+is the more you discount and coupon the
+more your customers come to expect that
+the more they visit Retail Me Not and
+similar sites and the more they trade
+codes and potentially even worst case of
+all they can delay purchases because
+they're going to wait for a better price
+that they assume is coming because the
+Company discounts so much so as the
+company tries to optimize for Revenue
+through their discounting strategy their
+customers start to optimize for Discount
+last but not least bidding in adtech
+marketplaces especially first price
+auctions and auction mechanisms where
+most people are bidding like flat
+constant rates or there aren't a lot of
+people participating there tends to be a
+lot of room for saving money by
+manipulating the bid you put in I know
+this goes on tremendously in display ads
+now of course anyone working in machine
+learning ought to be doing cross
+validation for all the normal reasons
+you should be doing this anyways but I
+think this is part of how we start to
+understand good heart's law but it
+doesn't tell us the whole story you know
+if you don't understand this concept of
+good heart's law it might seem like
+cross validation is the full solution
+your hold out set should tell you if
+you're overfitting or if there's some
+aspect of the system you're not seeing
+however you can only do cross validation
+on historical data data you already have
+you can't really look at what's going to
+happen with data in the future so if you
+calculate a model based on historic data
+that model by definition didn't exist at
+the time the data was measured so if you
+now deploy that model some production
+environment customers or users or
+visitors of a site whoever's interacting
+with it may start altering their
+behavior and therefore altering the
+training set thus potentially
+invalidating or weakening that model so
+why would a model's results in a
+production environment be different from
+the training examples well I like to
+think that's in three cases first it's
+due to overfitting that's the obvious
+one secondly due to incomplete training
+when you either don't have enough
+examples in your training set or I think
+more commonly you have a limited
+training set that doesn't really reflect
+the full system you're running in the
+so-called real world so one example
+might be training your data on only
+us-based visitors and assuming that's
+going to apply internationally or
+something like that but lastly and
+perhaps most importantly certainly for
+this talk there's some deviation to good
+heart's law the results your model
+achieved on training data may not
+generalize Because the actual system you
+deploy the model into may end up
+changing as a result of the model's
+presence so here's one helpful trick
+that I want to recommend that may be
+useful to you in testing for good hearts
+law I've got this old miles per gallon
+data set that everyone's pretty familiar
+with it's built into sklearn data sets I
+think it's in the UCI machine learning
+repository as well the first set of
+columns should be familiar to most
+people who've looked at this data set
+the last one I added I just made up
+fictitious created dates of when this
+data was collected so now what you might
+be trying to predict in machine learning
+is something like the miles per gallon
+how do the number of cylinders in the
+car the horsepower the weight and all
+these other features contribute to the
+miles per gallon that car achieved
+that's a nice machine learning problem
+but I'm challenging you to solve a
+different problem add a column or
+include the column of the time at which
+the data was created now make that your
+objective function or some version of
+that maybe trim by year or whatever else
+is relevant or block it into time
+periods like quarters or months or who
+knows what depends on your data and then
+see if the features you have available
+are useful in predicting the date they
+were created if so then by definition
+your data is evolving through time the
+results are Chang changing and when it
+was recorded is sort of embedded in the
+input set if you're able to make a
+reasonably good prediction of when the
+data was created and assuming there's no
+leakage involved but if you can do that
+then you know the system you're
+describing is evolving and therefore one
+would assume that newer data is more
+predictive of the future than older data
+for starters but also you expect your
+models to constantly drift and go out of
+date well what do I mean by drift let's
+look at the left side here first this is
+our original fit blue dots are our data
+we come along we some very simple
+regression here come up with the red
+line that represents our regression we
+can now use that to make uh predictions
+about the future which might be helpful
+to us now what happens a year later when
+we collect more data and then we decide
+to go back and refit our model maybe we
+get the red model we saw previously and
+black here and a new model refit in red
+why aren't the models the same if we
+have a good prediction of a system every
+model should more or less predict the
+same results well here we get a
+difference because the data has
+fundamentally changed Now One op is that
+our original training data was
+incomplete in some way or not large
+enough to really optimize to the best
+parameters but as I've drawn it here
+it's more likely that goodhart's law is
+in play something about the business has
+changed and we need to build a new model
+to reflect that now it could also be
+that that change is just systematic it
+has nothing to do with good heart's law
+per se if your model is not impacting
+the experience of your users then it's
+probably not good heart's law this could
+reflect just changing market conditions
+but to some degree if the model is
+altering that system it's likely to
+cause drift well you've got to keep an
+eye on drift and look at it from several
+sources this fictitious plot I've done
+here is a theoretical release I would
+call it a botched release of some
+software application we have a Time
+series looking at at the response of an
+API and it was on average giving us
+about a 30 millisecond response time and
+then suddenly at time 600 whenever that
+was we saw an immediate plateaued
+release I've seen a lot of systems that
+behave like this when some code is
+released to a production system that
+either wasn't tested well enough or the
+testing couldn't adequately simulate
+what would happen in their production
+system and this is the nature of
+software errors you jump in big plateaus
+however a data scientist releasing a
+model of some kind is more likely to see
+drift along these lines something subtle
+you know you slightly change the way you
+doing recommendations or sorting offers
+or pricing Goods many people are not
+going to change their behavior they're
+working with the system in a predictable
+way that they're used to now of course
+if you double your prices overnight
+you're going to see a big Plateau but if
+you raise prices by 3% overnight only a
+minority of people are going to see
+exactly that and complain even those
+that don't like it will take time to
+find a new vendor but Market forces make
+kick in over time and just say people
+end up buying less because they find
+that the costs are just adding up over
+time too quickly this is the type of
+drift I find when machine learning
+models are deployed that exhibit
+goodhart's law in some way so how do we
+deal with good heart's law I believe
+detection is key you must be vigilant
+about monitoring and having the right
+metrics that can tell you if this is
+happening I think experiment mentation
+is also heavily required you can't be
+afraid to release models or make changes
+a failure to act is a failure to
+innovate to be successful you need agile
+methods for model deployment in most
+situations I've been in when I'm helping
+a company I work towards an environment
+where we can do continuous deployments
+anytime we want now we do those in an AB
+test fashion but I want there to be no
+friction between me and pushing out some
+experiment or some experimental version
+of a model so causal impact is one
+interesting tool I did a whole episode
+of data skeptic on this I recommend you
+guys go back into the archives and
+listen to we go into details there but
+at a high level causal impact uses
+historical data to make some predictions
+and at the time some intervention
+happens or some change or like a model
+release help you estimate the impact of
+that model release or that change which
+more or less arrives at the difference
+between what actually happened and what
+was forecasted to have happened without
+the intervention now good Hearts law
+also can manifest as what I call a
+self-fulfilling prophecy and you really
+got to be aware of this think of
+something like lead qualification you
+work for a company that has people
+filling out a form at a website and you
+get more submissions than the sales team
+can quickly respond to so you have to
+make predictions about the leads that
+are going to close and prioritize those
+or maybe route them to the agents most
+likely to close now as soon as you start
+acting on that model and prioritizing
+those leads to those customers or those
+leads to individual sales reps this can
+quickly become a self-fulfilling
+prophecy now if your model is just
+guessing at random then in theory
+nothing should change the reps are all
+randomly selecting from a pool of coming
+leads as they did before however if your
+prioritization gives any advantage over
+random guessing whatsoever then you
+should see a lift in the close rate
+those salespeople will either close more
+or be faster in closing those deals and
+because they're prioritizing them if
+time to response has any value it will
+manifest very quickly and those that
+were therefore deep prioritized put to
+the ends of cues may suffer from that
+delay whereas otherwise they could have
+been closed so if your model perfectly
+predicts that system then you've got an
+optimal ordering but if your model is
+only just doing okay like a B minus
+average then you'll demonstrate the
+value and the model may get into a
+situation where it's not able to learn
+the more complex system that's there to
+be described if you prioritize based on
+the B minus model counter examples that
+could get you into the a minus range
+might never occur this can be fought
+with maybe a bit of Randomness so
+prioritize 80% of the results based on
+these predictions you're making and 20%
+based on just random population or
+experimental populations you will never
+win against good heart's law it's just
+going to be an ongoing battle so if you
+fear you're going to face it fast
+iteration is really the key the software
+life cycle swlc these days most
+companies tend to do that in like a
+two-e Sprint so there's going to be a
+software release every two weeks we need
+to consider what do we actually mean
+when we say some system a data scientist
+is going to control typically that's
+like a microservice but it could be an
+embedded library or any number of other
+ways that some sort of middleware is set
+up my recommendation here is that you
+have to separate the actual software
+from the model itself the model should
+be serialized in some way if possible or
+at the very least you should be able to
+remotely control its State updates and
+do parameter tuning on it if you have a
+simple parameter that you need to
+experiment with putting it in a config
+file might mean that there's a change
+management person who's going to get in
+the way of you doing experiments If
+instead that's some software
+configuration controlled through an
+interface that you are able to use even
+in a browser or wherever then there
+shouldn't any real contest here now that
+is a production system so you could get
+push back but the argument should be
+that if there's concern about that
+parameter being changed the quality
+assurance team should be able to do
+whatever they want to test the changing
+of the parameter or its configurations
+run any simulations you'd like to make
+sure the software doesn't fail on a
+change and for any reasonable company
+that should alleviate the question
+you've got to be able to run experiments
+and that path has to be cleared another
+important point in the topic of good
+heart's law is being able to give
+explanatory powers to your model often
+good heart's law is only going to show
+up at least initially in some small
+subset you know raise your prices some
+people will defect immediately most
+people won't even notice but might
+recognize at the end of the month that
+their pocketbooks a little bit lighter
+and start making changes if your model
+is interpretable you can look at how
+it's changing what it's valuing
+sometimes you are fortunate enough to
+get interpretable models like this one
+here that make a great deal of intuitive
+sense and anyone in the business can
+appreciate them decision trees are often
+heralded for their interpretability for
+this reason however when you get a
+decision tree that looks like this I'm
+really not quite clear on how
+interpretable that's going to be but
+anyway if interpretability is your issue
+I'd recommend a paper called why should
+I trust you I interviewed the lead
+author on data skeptic a while back you
+should check out that episode as well
+they're developing some tools that are
+really interesting about making
+individual use cases that are
+interesting finding some local region of
+the model in describing that I won't go
+into the details here because you can
+listen to that episode but this is a
+very useful tool it's help help us in
+situations where model interpretability
+is a problem if you have an
+uninterpretable model you're a little
+bit more at risk for good heart's law if
+you have an interpretable model you can
+ask questions about logically how has it
+been evolving and that might give you
+some insight into the fact that you're
+experiencing a change as a result of the
+model itself so in summary good Hearts
+law once again when a measure becomes a
+Target it ceases to be a good measure
+businesses set kpis key performance
+indicators all the time employees get
+their bonuses and salaries is tied to it
+therefore they're definitely going to
+want that kpi to be as high as possible
+if it's truly measuring the success of
+the business that's great if it's
+measuring a quasi success or a proxy for
+Success then you might end up
+incentivizing your employees to optimize
+a little bit left of center actually
+good heart's law is really important in
+that way as a data scientist if your
+work is at all meaningful you will
+encounter it what do I mean by that well
+if your work isn't meaningful no one's
+going to make any decisions based on it
+if there are decisions being made based
+on it maybe your model even manifests as
+some microservice in our production
+environment that's getting tens of
+thousands of calls a minute each one of
+those is an important decision that's
+going to impact the results of that
+company or organization and then the
+people interacting with it may change
+their behavior that's a meaningful
+integration and one that's at risk of
+being affected by good heart's law
+there's no magic solution you've got to
+try and measure it in your data I think
+work on explanatory models will help to
+mitigate this and my last bit of advice
+don't let your average case blind you
+even if some deployment increased some
+Metric by a little bit look at the tales
+and see if good heart's law is in effect
+there all right I hope you enjoyed these
+quick thoughts if you've got any
+comments on good heart's law please
+share them with me I'd love to hear your
+anecdotes or stories maybe we'll even do
+another extended episode of data skeptic
+if people want to share their thoughts
+I'd love for you to send me a wave or
+MP3 file telling your story of an
+encounter with good heart's law you can
+find me at datas skeptic.com or on
+Twitter at datas skeptic data skeptic is
+a listener supported program to support
+the show visit datas skeptic.com and
+click on the membership tab

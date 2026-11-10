@@ -1,0 +1,671 @@
+Hello everyone, my name is Hussein.
+In this series of lecture, we are going
+to study control system 2.
+Control system 2 is essentially about
+linear control.
+That is the theory and method for
+designing controller for linear system
+in the state space framework.
+In this lecture, we will highlight
+several key control concepts. Along the
+way,
+uh we'll see how linear control provides
+both the foundations for nonlinear
+control and practical tools for
+controlling many nonlinear systems. This
+course help us analyze and design
+controller for models that obey the
+superposition principle. Control system
+has an input.
+Uh this input could be a vector.
+It could also have an output. This
+output also could be a vector.
+In this course uh we show vectors in uh
+bold face. This figure shows the
+response of a system uh to two inputs
+where one input is twice the other. As
+observed when the input is doubled the
+response is also doubled. This
+demonstrate that the system obey the
+principle of superposition and therefore
+is linear. You already know how to model
+a system in your field. uh in practice
+uh most systems are nonlinear. Also, you
+don't need to be an engineer. Go back to
+your real life experience.
+Is every system you work with linear?
+For example, when you push the throttle
+twice, does your speed become twice as
+large?
+I think that's not correct, right?
+It depends on many things.
+uh your current speed, the gear position
+and so many other parameters.
+So
+we can say that the perfect linearity
+for all inputs is not realistic.
+But the main question here is why study
+linear control when real system are
+nonlinear? The answer is that not only
+does linear theory help us have a deep
+understanding of nonlinear systems, but
+also linear control is an efficient
+approach based on a very strong
+mathematical background
+that can control nonlinear system.
+Today uh throughout this lecture I want
+to briefly introduce the intuition
+behind linear control and make a
+connection between nonlinear systems and
+and linear system theory and explain why
+linear system theory is important for
+the control of nonlinear system and from
+a practical perspective how we can use
+linear control to control nonlinear
+system. To answer these important
+questions, I will first review some
+fundamental concepts.
+The first concept is state space
+fundamentals.
+In this part, I will show how we model a
+system as a nonlinear state space
+system. I will define the state space
+and introduce the idea of trajectory and
+equilibrium point.
+In the second part, we will discuss the
+control problem in state space. We will
+see that most control problems can be
+separated into two control
+categories.
+Trajectory tracking and regulation
+around an equilibrium point. After that,
+we will move to the stability of a
+trajectories. Here
+we will define two type of stability
+leopon of stability and asymmetic
+stability. We will analyze the behavior
+of a system near a desired trajectory.
+In this part, we will drive the
+perturbation state equations and see how
+they govern the dynamic of a nonlinear
+system near a trajectory. This
+perturbation equation consists of two
+parts. A linear part and a high higher
+order part with respect to the
+perturbation states.
+Once we have these foundations,
+we will explore the intuition behind
+behind the linear control theory. Why it
+works and how it can be applied for
+nonlinear system.
+Finally, we will discuss
+the concept of linearization of
+nonlinear system and summarize
+the steps for designing a controller for
+a nonlinear system using linear control
+theory.
+At the end, I will show a flowchart of
+this design process. Keep in mind that
+this flowchart is not yet complete. We
+will expand it with other design block
+in future.
+Now I want to discuss about concept of
+state space.
+Assume uh you have a system uh model in
+your field. For example, you are a power
+system engineer and uh you model a power
+system uh with a mathematical model
+and
+as we know it's a kind of nonlinear
+system. During this this discourse we
+will represent systems in a state space
+form. Therefore, it's very important
+that you know the foundations of a state
+space and how to define your model in
+state space. Before we define the state
+space, uh we should define a state
+variable.
+The state variable is the minimal set of
+variable whose values at a given time
+together with the input uh for future
+times determine the system's future
+behavior. It's very important to pay
+attention to the word minimal. Yes, you
+can describe your system with many
+variables, but the state variables are
+the minimum sets we need to define the
+whole behavior of the system.
+When we discuss the realization of the
+system, we will uh talk about uh this
+minimal set more. Now we can define
+If the number of state variable is n,
+we can define an n dimensional state
+space
+and whose coordinate axis are x1 axis to
+xnaxis.
+Here it coordinates correspond uh to one
+of the state variables.
+This vector space is called the state
+and state can be represent
+by a point in the state space.
+Next,
+an important thing in the control
+theory, especially model based control
+theory where we assume we have a
+mathematical model of our system is the
+state space equations.
+In state space analysis, we are
+concerned with three type of variables
+involved in the modeling the dynamics.
+input
+variables, output variables and state
+variables.
+Okay, we assume uh we have our inputs m
+outputs and n states.
+When we discuss dynamics, we discuss the
+evolution of the system. This evolution
+is related to the derivatives of the
+state variables.
+Then as you can see in the state space
+we have first order differential
+equation of each state as a state
+equations. For example, x1 is equal
+f_sub_1 and f_sub_1 is a function of x1
+to xn, u1 to ur and t. Yeah, sometimes
+our state equations are a function of t.
+The presentation of this evolution in a
+state space is a state trajectory.
+we can display uh it in our n
+dimensional uh space
+where the arrow
+direction indicate the progress of time
+but not all the state variable are
+always important to us because of this
+uh we should define uh output variables.
+Output variables are the variables that
+we want to consider and focus on. These
+variables uh sometimes comes from our
+sensors and sometimes uh they are
+quantities we want to control or track
+them.
+The output variables uh can be different
+from uh the state variables.
+However, because we define the states as
+a minimal uh set that together with the
+input uh determine the future behavior
+and because the output is one part of
+the behavior of our system, the output v
+variables should be a function of the
+state and inputs.
+And it's also like uh state equations.
+It could be a function of time.
+For example, our first output variable
+can be written as a y1 equal uh g1 of
+x1
+to xn
+u1 to ur and t.
+And similarly for the other uh output
+Now we can concatenate
+all these variables and write the state
+and output equation in vector form.
+If we collect the entire set of states
+into a state vector, the outputs uh into
+a output vector and the controls in to a
+control vector, then we obtain the
+vector form of the state space
+equations.
+I want to lead you out of the abstract
+world of equation and review this
+concepts together with an example.
+We have the well-known system of a
+spring, damper and mass.
+From basic physics course, you know that
+the model of this system is a second
+order differential equation.
+If you know how to dive this model,
+that's great. If you don't know, no
+problem. Just accept this as the model
+of the system.
+In this equation, K and B are spring and
+damper coefficient. M is the mass and U
+of T uh is the excitation force or the
+input of the system.
+More real realistically
+the spring and damper coefficient are
+not constant.
+They are function of the amount of
+compression or extension they
+experience.
+Here uh we have a load cell.
+Here we have a load cell. Uh it's a kind
+of sensor that is placed between the uh
+the mass and the spring.
+The load cell measure the uh the force
+at uh this loca at this location.
+Now we define this model in a state
+space. Here we have just uh one second
+order differential equation. So we
+should have two states. We assume the
+first state is the position of mass.
+Here it's x and the second state as is
+the speed of the mass x dot.
+So x1 t is equal x dot t is equal x2
+and x.2 is equal x double lot.
+So the state equation for the first
+state is x do 1 = x2
+and the state equation for the second
+states comes from the mass spring damper
+equation.
+If we substitute
+x dot= x dot2,
+x dot=
+x2
+and x= x1, we obtain the second state
+space equation. The second state
+equation,
+the output equation here is the
+measurement of the load cell. That is
+the force that a spring apply to the
+mass. As uh you can see the output is
+the measurement of a sensor in uh our
+system.
+We summarize our example as follows. We
+define the state vector as a position
+and velocity of the mass.
+Concatenating these two variables uh
+give our state vector.
+Uh the excitation force is uh the input
+and the load cell measurement is the
+output. Based on these three elements of
+the state space uh we write the state
+equation and output equation for the
+Most control task can be divided into
+some tracking control problem. In a
+tracking problem, you have a time
+varying reference uh
+signal RT. You want to design the
+control input so that output follow
+reference signal. For example, here
+this is
+R of T.
+And you want your output YT follow this
+reference signal RT. This is
+Y of T.
+You want to design uh the control such
+that yt y oft
+uh track r oft.
+We can define the tracking error e of t
+equal reference signal uh minus output.
+When uh the error signal goes to zero,
+there exist a
+nominal uh output. We call that y bar
+such that y bar equal r of t. And also
+there exist a nominal state xar and
+output u bar uh satisfy output equation.
+the co the corresponding nominal state
+xbar and uh u bar are not generally
+unique.
+Several pairs uh may produce the same uh
+y bar. We are not discuss how to design
+nominal state and input in this course.
+This is the subject of uh trajectory
+design and it's a complete uh course in
+each field of uh engineering.
+U we only assume uh in this course we
+have uh uh the result of trajectory
+design.
+Given any such pairs uh substitute uh
+substituting uh this uh this uh into the
+state equation
+yield x dot equal x dotbar equal f of
+xar and u bar. Thus every tracking
+problem uh correspond to uh some
+trajectory in a state space. A special
+case of tracking problem is the
+regulation problem. If the desired
+signal RT is uh fix or time invariant
+then the tracking problem is called uh
+regulation. In this case when E of equal
+zero the nominal output uh is time
+invariant
+there exist time invariant state and
+input we call this X star and US star
+that satisfy the output uh equation
+because XS star is fixed it's uh
+derivative
+also uh must be zero.
+So x star is equal zero. This implies uh
+the state equation
+uh evaluates to zero
+at uh
+xar and u bar. In this sense,
+a regulation problem correspond uh to
+maintaining a point in the state space.
+Formally, we call this point in a state
+space as equilibrium point for a system
+x dot= f ofx and u and y= g of x and u.
+A state x star is an equilibrium point
+under the input usar. If when the input
+is held constant at uh u of t is equal
+uh u star and the initial state is x0 is
+equal xar. The state remain there for
+all time. In a regulation control
+problem, the goal is to design a
+controller that keeps the systems state
+close to an equilibrium point associated
+with the desired uh constant output.
+So far we have concluded that a tracking
+problem is equivalent to following a
+trajectory in a state space. Now it's
+time to define the stability of a
+trajectory.
+Let xbar uh be our desired trajectory of
+the state space.
+We say this trajectory is stable or
+leopon of stable if any other trajectory
+x prime starting from a point in a
+neighbor of xbar doesn't drift
+arbitrarily far away from it.
+In this figure uh
+the surface perpendicular to the time
+axis represent the state space.
+You can see that x prime t starting at
+t0 within a small uh radius delta around
+xbar stay within an epsilon uh
+neighborhood of xbar uh as time evolve.
+If every trajectory that start in
+epsilon neighbor of xbar
+or stay uh within an epsilon neighbor of
+xbar then we called xbar as a uh stable
+As we have seen uh in the definition of
+trajectory stability there is no
+guarantee that uh that starting near our
+desired trajectory will lead us to
+converge to it.
+The trajectory may remain close but not
+necessarily approach the desired
+For this reason we introduce the concept
+of uh asymmetric stability.
+A trajectory is asymmetically stable if
+whenever another trajectory start within
+some neighbor
+uh say within a radius B of the desired
+It's not only stay close but also
+gradually converge to the desired
+trajectory as time goes on.
+For example, uh in this figure, you can
+see the trajectory X prime which
+begins within the B neighbor of Xbar
+gradually uh converging to the desired
+trajectory over the time.
+If
+every other trajectory that started
+uh from B neighbor of uh XAR converge to
+XAR gradually then we called XAR as a
+asympto
+stable trajectory.
+In order to determine the stability of a
+trajectory XAR, we must study the nature
+of trajectories that start near XAR.
+Suppose we are on a trajectory X of T
+that is close to the nominal one.
+So we can write uh
+x of t equal xar + delta x. And
+similarly we can divide our control into
+uh two signal u bar and
+delta u of t. Here delta x and deltau u
+are perturbation from the nominal state
+and input.
+No xbar is asymmetically stable if for
+any initial perturbation
+uh delta x0 with uh the norm of delta x0
+less than b. The perturbation goes to
+zero as time increase
+and also when uh delta x of t is equals
+zero uh delta u of t is equal z.
+We need uh this second uh constraint
+because we want when x= xar u is equal u
+bar because under this condition
+uh our
+desired or output uh follow the
+reference signal.
+To analyze uh this we substitute uh x=
+xar + delta and u= u bar plus delta into
+the state uh equation.
+If expanding
+f of xar plus delta x and u bar plus
+delta u with a tailor series,
+we obtain this
+equation
+that contains an infinite service of uh
+derivative of f ofx.
+And we can express that long equation
+in a more compact uh form as follow.
+Here a of t is the jacobian of f with
+respect to x.
+It's first derivative of f with respect
+to x and b of t is the jacobian of f
+with respect to u.
+O of t is the high order term. The high
+order term are function of uh order of
+delta x and deltau u greater than two.
+After cancelling the common terms, we
+obtain the perturbation equation which
+describe how the system behave near
+This equation depends only on the
+perturbation variable delta x and
+deltau.
+It has two parts. A linear in terms of
+perturbation
+a remain
+consisting of high order terms. The high
+order term is an infinite Siri.
+The linear term generally uh gives us as
+a
+time varying linear system. But in the
+special case where the desired
+trajectory is an equilibrium point and
+the nominal input is the is the
+corresponding equilibrium input the
+linear term because uh become uh a time
+varying linear system.
+Finally as the perturbation
+uh is equals zero
+uh that is
+uh delta x and delta u are equal zero
+the high order term is equal zero but
+there is no guarantee
+there is no guarantee as perturbation
+become small the high order terms goes
+to infinite goes to zero because it's an
+infinite s and it could be diverg
+as uh delta x and delta u goes to zero.
+Now it's time to discuss the fantastic
+intuition behind linear control theory
+and explain why it works even when
+dealing with a nonlinear system.
+So far uh we have seen that around a
+desired trajectory xar and u bar the
+perturbation equation uh contains two
+parts a linear and a high order term.
+The high order term is an infinite
+series. Keep in your mind mind it's an
+infinite series.
+Suppose
+we choose a feedback for for example u
+is equal minus k of t delta x of t.
+With this feedback we link the input and
+the estate throughout a linear relation.
+Then when uh delta x is equal z u of
+equals z with this relation uh we could
+satisfy one of the constraint of uh our
+stability.
+Substituting this into the perturbation
+equation gives us a closed loop uh local
+model uh which now depend entirely on
+delta of delta x.
+If uh we ignore the high order term and
+keep only the linear term and use uh
+delta x prime for linear term. We can
+design k of t uh so that the closed loop
+perturbation delta x prime of t goes to
+zero as t goes to infinite.
+But here comes the key question.
+If the linearized perturbation delta x
+prime of t converge to zero, does this
+imply that actual nonlinear perturbation
+delta
+x of d also converge to zero?
+It means if this part
+gradually comes to zero, is there any
+guarantee that's that the high order
+term that is an infinite series
+doesn't diverge.
+This if we answer this question, we can
+answer what's the intuition behind the
+linear control theory. I want to answer
+this question using important result uh
+from nonlinear dynamical system theory.
+The key question is when does a linear
+design actually guarantee or when does
+the linear stability because why I said
+stability because uh we say
+the linear uh part
+converge to zero regardless of any
+initial condition then it's a kind of uh
+definition of uh asymptotic stability of
+this linear system.
+Now the key question is when does a
+linear design or a linear uh stability
+actually guarantee a stability of a
+nonlinear system?
+To answer this
+uh I draw on result from nonlinear
+dynamical system. I don't want to dive
+into the fullorem here but I highlight
+the condition under which convergence in
+the uh linearized model imply stability
+of the uh nonlinear system.
+It's obvious if our linear uh system
+diverge to infinite
+uh our nonlinear system uh
+is not uh stable.
+We can consider two case.
+Suppose our nominal trajectory is an
+equilibrium point. In this case, A and B
+are constant. We discussed about this
+before.
+Nonlinear system theory tell us that if
+the perturbation
+in the linearized system delta X prime
+of T converge to zero
+regardless of its initial condition
+or if we can find
+uh
+B
+that when delta x prime of t is less
+than b
+uh delta x prime of when delta
+uh x prime 0 is less than b
+uh the
+delta x prime
+goes to zero or converts to zero.
+then the actual nonlinear perturbation
+delta x of t also converge to zero.
+It means the high order term is
+converged to zero or it means the high
+order term that is a infinite series
+So this means the nonlinear closed loop
+system is locally asically
+stable near equilibrium point
+or it's locally asically stable.
+We called locally because we explore our
+system near equilibrium point and every
+conclusion
+are valid near that equilibrium point.
+This is a powerful result. It allow us
+to design the controller for nonlinear
+system by linear system around an
+equilibrium point. We can be confident
+that within some neighborhood of the
+equilibrium point the linear system will
+also be stable. So the controller can
+regulate the state to the equilibrium
+point.
+No suppose the nominal trajectory is not
+equilibrium point. It's a time varying
+uh trajectory.
+In this case, a of t and b of t are time
+varying. Here, if the linear wise
+perturbation delta x prime of t converge
+to zero, it doesn't always imply that
+the actual nonlinear perturbation delta
+x of t is also converge to zero. It
+means there is no guarantee that or high
+order terms or that infinite s converge.
+it could diverge.
+However, if the convergence of the
+linearized system is fast enough,
+especially if it decays to zero at an
+exponential rate, then the nonlinear
+closed loop system is locally asally
+stable near the trajectory.
+Formally this means that
+there exist some alpha greater than zero
+that
+the norm of delta x prime is
+proportional
+uh to an exponential function. Okay,
+let's review what established so far. We
+started from a nonlinear
+tracking problem
+and we show that the nonlinear tracking
+problem can be recast as a linear
+regulation problem.
+It's a very important
+result.
+We show that
+a nonlinear tracking
+can convert to a linear regulation
+problem. Why I why I say regulation?
+Because here we want our linear system
+stay near zero or converge to zero.
+And if you remember if when we discuss
+when we defined regulation problem we
+said regulation problem is a tracking
+problem that uh or reference signal is a
+point. Here our reference signal in a
+linear system is a point that point is
+zero.
+Okay. Now I want to define the
+linearization.
+Linearization is the process of studying
+a nonlinear system around the desired
+trajectory
+by driving the perturbation equation and
+then eliminating
+the high order term.
+what we have done until now.
+We can also linearize the output
+equation and obtain uh the perturb uh
+output equation and these two together
+uh give us linear perturbation
+state space model.
+Until now we conclude we can convert
+every nonlinear tracking problem to a
+linear regulation problem. Then we can
+easily design our system based on linear
+control theory and use that for
+nonlinear system. No I want to summarize
+design of a control for a nonlinear
+We first have a nonlinear system model.
+Then
+uh we can drive equilibrium point or
+design or desired trajectory
+and then linearize the system around
+desired trajectory and drive A of T, B
+of T, C of T and D of T and then design
+controller using linear control theory
+and apply the controller to the
+nonlinear system. That's it. It's the
+intuition behind linear control theory.

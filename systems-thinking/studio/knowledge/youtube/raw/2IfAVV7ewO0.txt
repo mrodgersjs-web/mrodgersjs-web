@@ -1,0 +1,698 @@
+This is a pretty big deal. This recent
+breakthrough by the team behind Kimmy,
+which is like another deep seek,
+completely shatters our limitation of
+building better AI models. Not only does
+this fix the amnesia problem of current
+AI, but in fact, they've kind of created
+a new architecture design which can even
+reconfigure itself and kind of learn
+things on the fly. Before we jump into
+the paper, let's understand the problem
+a bit more. Imagine you're taking the
+hardest math exam of your life. Not a
+quick quiz, but a brutal problem that
+requires like 50 steps. Now, you start
+off strong, you can easily do step one,
+step two, step three, and so on. It's
+pretty easy. But once you get to step
+48, your brain is overloaded. It's
+completely overwhelmed by the sheer
+volume of numbers you had to process.
+Your working memory just maxes out.
+You're staring at these massive
+complicated calculations, but you've
+completely lost the thread of what you
+originally set out to solve. It's like
+you kind of have localized amnesia.
+You're thinking so deeply that you're
+just drowning out your own earlier
+thoughts. This is a very common human
+problem. Our working memory has strict
+physical limits. If we think too long or
+too deep, we just get overwhelmed. And
+strangely enough, it turns out that the
+massive trillion parameter AI models
+that we use every day, like GPT or
+Gemini, they're suffering from the exact
+same amnesia. But this recent
+breakthrough actually presents a cure
+for this AI amnesia. So, the paper is
+called attention residuals by the Kimmy
+team. And this is a super fascinating
+read, but it's extremely technical. So,
+in this video, I'm going to break
+everything down for you so it's easy to
+understand. Let's jump right in. First,
+let's start with a brief background on
+the design of AI models today. To
+understand why the AI gets overwhelmed,
+we first need to look at how these
+models are actually built. When we talk
+about large language models, we're
+talking about really deep models that
+have over like a hundred sequential
+blocks or layers. And each block
+performs a ton of really complex matrix
+calculations. Conceptually, you can
+think of it like this. The first layer
+would process the raw text. The next
+layer might look at grammatical
+patterns. The next one starts to
+understand intent. The next layer might
+analyze text even deeper, and the next
+one even deeper. By the time you reach
+like the 120th layer, the model is
+performing some incredibly abstract and
+deep thinking. Now, for years, we
+couldn't actually build these models to
+be very deep. If you made the model too
+deep, it would be really hard to train.
+Really quickly, here's how an AI model
+learns. During training, the AI compares
+its response with the answer, and if it
+gets the answer wrong, then it incurs a
+loss or a penalty. And this penalty
+flows backwards through the model to
+tweak its parameters so that next time
+it would be less wrong. This is a
+process called backpropagation and
+gradient descent. However, if you build
+these models too deeply, in other words,
+if you stack too many layers together,
+this learning signal which flows
+backwards through the model would simply
+vanish before it could even reach the
+beginning of the model. So, this problem
+is called the vanishing gradient
+problem. Fortunately, in 2015,
+researchers came up with a fix called
+residual connections. The idea was
+really simple. Instead of each layer
+trying to completely transform the
+information it receives, you let the
+original data skip the layer entirely
+and add it back to the end. Think of
+this as like a shortcut or highway for
+information to zip through the network
+without much change. And it's this
+highway that allowed us to scale models
+from only a few dozen layers to hundreds
+or even thousands of layers deep. And
+this is how we design modern AI models.
+But as the Kimmy team points out in
+their new paper, this highway is
+actually a huge fundamental flaw. In
+fact, this is what leads to the amnesia
+that AI experiences when it handles a
+ton of stuff at once. Because we're just
+adding the results of every layer
+together, layer after layer, the final
+result is just one massive cumulative
+pile of data. The total magnitude of the
+signal increases the deeper it gets. As
+this signal gets larger and larger, the
+importance of any single layer's
+contribution shrinks. So, this kind of
+buries early information and makes it
+really hard to retrieve or remember.
+Essentially, we've built a system where
+the AI is thinking so hard and adding so
+many new thoughts to the pile that it
+can no longer remember what it was
+thinking at the beginning of the
+problem. Here's a nice analogy on how
+you can think of this. Imagine 50 chefs
+lined up in a kitchen representing like
+50 layers of our AI. The first chef
+chops some delicate basil and throws it
+in the empty pot. They pass it to chef
+two who dumps in a gallon of beef broth.
+Chef three adds some potatoes. Chef four
+adds tomatoes. Chef five hauls over a
+whole crate of their own ingredients.
+Chef six tips in a sack of his
+ingredients. And chef seven dumps in
+some other ingredients, and so on and so
+forth, until it reaches the 50th chef.
+Now, because it has gone through 50
+chefs, each pouring their own
+ingredients in there, not only is the
+bowl of soup just overflowing, but when
+you taste the final soup, it gets really
+hard to taste the original basil from
+the first chef. Because everything is
+just mixed into this giant slop. And
+this also creates a second problem. The
+layers in this deep AI model have to
+produce stronger and stronger signals
+just to have any noticeable influence on
+the final result. It's like these layers
+have to scream to be heard over the
+noise of earlier layers. Going back to
+our analogy, after the 50 chefs make
+this massive pot of soup, if you decide
+that it needs to be a bit saltier, well,
+you can't just add a pinch of salt
+anymore. You need to add a massive bag
+of it just to make it a bit saltier
+because of the sheer volume of the pot
+of soup. At this point, you might be
+wondering, well, if the problem is just
+the signal getting too big, can't we
+just scale it down? For example, can't
+we add a volume dial to earlier layers
+to turn down their signals and also
+volume dials to later layers to amplify
+their signals? Well, in short, we've
+already tried that. There are already
+some clever ways such as scaled residual
+paths or multi-stream recurrences. But
+in short, none of these actually solved
+the core issue. They all had the same
+fundamental flaw with each layer getting
+the single aggregated result of all the
+previous layers. Everything was just
+mixed and compressed together like a
+giant pot of soup with so many
+ingredients, you can't make out
+anything. Now, the proposal from this
+paper from the Kimmy team is absolutely
+brilliant. They took a step back and
+actually realized that we already have a
+solution to this. Now, before I go over
+the solution, it's important to give you
+a brief history of AI language models.
+You see, current AI models are based off
+of this transformer architecture, and
+this allows AI to do some incredible
+stuff like writing a poem for you or
+writing an essay or even a complete
+research report. It's able to understand
+natural language so well because the
+transformer is able to understand
+context. For example, take the sentence
+the cat didn't cross the street because
+it was too tired. Note that it could
+refer to the street or the cat. But when
+we humans read it, we know that it's
+referring to the cat because of context.
+Now, before transformers came out, it
+was actually really hard for a language
+model to actually understand this
+context. Before transformers, the best
+thing we had was recurrent neural
+networks or RNN for short. The
+architecture looks something like this.
+And these models processed text one word
+at a time. It basically compresses
+everything that it sees before inside a
+hidden state, which you can think of as
+like a memory. Now, if you give an RNN a
+huge amount of text to process, then it
+suffers heavily from the same kind of
+amnesia. By the time the model reached
+the end of your paragraph, it would
+easily forget earlier parts. That's
+because it's compressing the past
+information so much. As it reads the
+paragraph, it keeps compressing and
+compressing that eventually its memory
+just becomes overloaded and it fails to
+remember the earliest stuff. But
+transformers, on the other hand, was
+able to fix this issue by introducing
+this attention mechanism. Instead of
+passing along a single compressed
+memory, the model can look back at any
+previous word directly and see which
+ones are relevant to the current word.
+That means it could selectively get
+exactly the information it needed. And
+this was the breakthrough that made
+modern AI possible. In fact, if you're
+curious about the technical details on
+how a transformer actually works,
+definitely see this video where I did a
+deep dive on the transformer. Anyways,
+the design of this transformer led to
+the aha moment from the Kimmy
+researchers. Modern transformer models
+already solved this amnesia problem of
+older recurrent neural networks by
+processing text using attention. But
+instead of the text dimension in a
+paragraph, what if they applied the same
+fix for the depth dimension of an AI
+model? After all, an AI model that's
+hundreds of thousands of layers deep is
+pretty much the same thing as a
+paragraph of text. And the way it's
+currently designed is like a recurrent
+neural network. As data flows forward,
+it compresses all its calculations into
+one cumulative signal, layer after
+layer, which makes it suffer from
+amnesia. Signals get diluted,
+intermediate steps get entangled, and by
+the time you reach the final layers, the
+original signal is barely recoverable.
+Just like an RNN fails to process a long
+piece of text. So, it seems like we
+might have the answer hiding in plain
+sight. What if we added attention to
+these residual connections of a very
+deep AI model. Hence, the name of the
+paper, attention residuals. So, here's
+how the Kimi team designed it. It's a
+lot of math under the hood, but let me
+explain this to you in simple terms.
+Instead of just being a conveyor belt
+where information flows from one end to
+the other linearly, now for every layer,
+it can actually reach back and look at
+any previous layers output. This
+prevents the AI from getting confused or
+forgetting its earlier thoughts as it
+thinks deeper. Now, to do this, the
+model uses a system of query, key, and
+value vectors, or QKV for short, exactly
+like the attention mechanism of the
+transformer. Again, if you're not
+familiar with the transformer, I highly
+recommend you watch this video first.
+But anyways, you can think of each layer
+as having a specific query or question.
+It's like they're each asking, "Okay,
+what do I need from all the previous
+layers before me? What information am I
+looking for?" And then, the key is like
+a label for each previous layer
+describing its contents. The key is like
+each layer raising its hand and saying,
+"All right, here's where I am. Here's
+what I represent. See if your query
+matches what I have to offer." And then,
+the value is the actual information
+inside each layer. So, how it works is,
+let's say this is our current layer
+that's processing data. Well, it could
+compare its query to every layer's key
+before it and see how well they match.
+And if it's a good match, that means
+that previous layer would have some
+relevant information for the current
+layer. And then, it would mix in the
+value of that layer with the output.
+This brilliant design allows the AI to
+stay perfectly focused on the most
+important details, no matter how many
+steps of thinking it has to do, no
+matter how many layers the model has.
+Each layer can selectively choose which
+layer's information to use instead of
+just using an incredibly messy
+cumulative signal. Going back to our
+chef analogy, now instead of just each
+chef throwing their ingredients into a
+massive pot of soup and mixing
+everything together, with this attention
+residual method, it's like each layer
+walks into a buffet. Every previous
+layer lays out its output in a clean
+separate dish. One tray for potatoes,
+one for carrots, one for tomatoes, and
+so on. Each layer gets to selectively
+choose exactly what it needs. Some
+layers matter a lot, while others get
+ignored entirely. And that's the beauty
+of this design. Each layer can adjust
+what it searches based on what it's
+processing. If the model sees a word
+like therefore, it might pull heavily
+from the layers that specialize in logic
+or order. Or when it sees the word
+betrayed, it might shift its focus
+toward layers that involve emotion or
+relationships. At least conceptually,
+that's how you can think of this. And in
+theory, this should solve the amnesia
+problem, right? Well, just when you
+think we solved it, reality slaps you
+hard in the face. You see, when we scale
+this to the size of the top AI models
+with hundreds of billions or even over a
+trillion parameters, you run straight
+into a brick wall of physics
+limitations. If you've been keeping up
+with AI lately, you've probably seen a
+ton of tools that can spit out wild
+videos or avatars in seconds. But here's
+the real question, can you actually turn
+any of that into something useful?
+That's the problem I have. These AI
+clips are great, but I still need to
+stitch everything together and edit them
+further myself. You still need editing
+skills, a voiceover, music, captions,
+branding, etc. Well, that's where
+Wondercraft comes in. Wondercraft is an
+AI video studio built to help you create
+complete polished videos that are
+actually ready to publish. It's a full
+platform with templates and workflows
+designed for anyone who wants complete
+high-quality videos. And ready to
+publish means ready to monetize. These
+are kinds of videos you can actually
+upload, run ads on, sell courses with,
+or use for client work. Here's how it
+works. You start by picking a workflow.
+Things like explainers or onboarding,
+training videos, promotional videos,
+even video podcasts. Then, you add your
+idea and answer a few questions, and
+Wondercraft generates a full first draft
+for you. For example, let's select the
+explainer video workflow, and let's get
+it to create a short kids video
+explaining the history of the Roman
+Empire. Let's press run. And then, here
+I can select different custom styles.
+So, for example, let's select this
+playful pastel style. You can also
+select all these different languages,
+the video type, format, duration, and
+the pace. And here's our result. Long
+ago, the story of Rome began with twin
+brothers, Romulus and Remus, raised by a
+wolf.
+Rome grew from a small village into a
+powerful republic, where senators made
+laws for everyone.
+Soon, great emperors ruled. The Roman
+army was very strong, marching across
+many far-off lands. In one go,
+Wondercraft generates the video with
+B-roll, captions, music, and a
+voiceover. From there, I can refine it
+further in the studio, just like a video
+editor. I can move things around, or I
+can also just chat with this AI to edit
+it for me. It's not just a one-off clip.
+You can edit it, brand it, and turn it
+into something you'd actually upload and
+make money from. Wondercraft is trusted
+by big teams at companies like Amazon
+and Spotify, and it's just as useful for
+small businesses, agencies, or solo
+creators. If you want to automate
+complete high-quality videos with AI,
+check out Wondercraft. Use my link in
+the description below, and go make your
+first video for free. You see, a
+state-of-the-art model like GPT or
+Gemini is usually so big that one
+top-tier GPU can't fit the entire model.
+After all, even the H100 GPU only has 80
+GB of memory, whereas these top AI
+models might be over a terabyte in size.
+So, how the AI labs overcome this is
+currently the model lives inside
+multiple racks in a data center. This is
+also called pipeline parallelism, where
+they slice the model up. For example,
+layers 1 to 10 might be on server rack
+A, 11 to 20 might be on the next server
+rack in a different part of the data
+center, and they would each be connected
+by fiber optic cables. Now,
+traditionally, this ain't a problem.
+When server A finishes its work, it's
+just one single compressed output that
+would be sent to the next data server.
+And then, once that block finishes, it
+would send one output to the next
+server, and so on. It's just one linear
+sequence. But with this new buffet style
+of attention residuals, where every
+layer needs to inspect the previous
+layers to make its decision, suddenly
+you aren't sending one output in one
+direction anymore. If for each layer, it
+has to talk to all the previous layers
+before it, then the data traffic just
+explodes. It requires a lot more
+communication between different server
+racks, which makes it extremely
+inefficient. So, with this current
+attention residuals design, you can't
+actually apply this to huge models in a
+data center. We also need to consider
+the infrastructure limitations. So, the
+Kimi team came up with something
+brilliant called block attention
+residuals. In simple terms, the model is
+basically broken down into separate
+blocks, and within each block, we have
+these new attention residuals, which can
+understand context, but between
+different blocks, we just have the old
+linear communication. The layers inside
+each block combine their work into one
+representative summary, and only this is
+sent to the next server rack. So, this
+way, it includes the benefits of these
+attention residuals, where each layer
+can look at previous layers outputs in a
+buffet style, but it can also be
+efficiently applied to multiple server
+racks without having an insane amount of
+data transfer back and forth, which
+slows everything down. So, it's awesome
+that the Kimi team didn't just publish
+something theoretical. They even applied
+it to real-life infrastructure to make
+sure it works. All right, so that's the
+design of everything, but how well does
+this work? Well, the results were pretty
+shocking. Here's one figure from the
+paper for your reference. The blue line
+is the base model without attention
+residuals. The red line is with full
+attention residuals. The orange line is
+with block attention residuals, where
+you segment the model based on server
+racks. And you can see that for both
+models with attention residuals, they
+achieve the same amount of performance
+during training while using 1.25 times
+less compute. This might not sound huge
+at first, but at the scale of modern AI,
+where a single training run can cost
+tens or even hundreds of millions of
+dollars, that difference is massive. It
+means saving millions of dollars or
+building significantly more powerful
+models for the exact same budget. In
+fact, here it says that this new
+attention residual method even
+outperforms DeepSeek's recent
+breakthrough called MHC, which stands
+for manifold constraint
+hyperconnections. So, this is a huge
+breakthrough, but efficiency isn't the
+most exciting part. The real
+breakthrough shows up in reasoning. In
+GPQA Diamond, which is like a really
+hard benchmark filled with
+graduate-level science questions, the
+model with attention residuals jumps by
+7.5 points, which is a huge leap. This
+shows that the model actually performs
+better, especially for multi-step
+reasoning tasks. And if you look at
+MMLU, which is another benchmark
+designed to evaluate world knowledge and
+reasoning capabilities. So, this covers
+things from STEM subjects, humanities,
+social sciences, law, and more. Again,
+the model with attention residuals
+performs better. In terms of all these
+general knowledge benchmarks, the model
+with attention residuals just scores
+better than the base model. The same
+pattern applies if you look at
+specialized tasks in math and coding.
+These are tasks that require really long
+multi-step reasoning, not just pattern
+matching, and that's exactly where this
+new architecture shines. Now, under the
+hood, what's really happening is that
+the model fixes the core issue we talked
+about earlier, which is signal dilution.
+Instead of letting internal
+representations grow uncontrollably as
+they pass through layer after layer, as
+you can see from this red line from a
+normal model, adding attention residuals
+would keep the signal bounded and
+stable. You can see this green line
+looks a lot more stable. It doesn't just
+explode exponentially, and the earlier
+signal doesn't get buried. And because
+of that, something subtle but incredibly
+important happens. The learning process
+itself becomes more balanced. So, if you
+look at this other figure from the
+paper, these are the gradients, so the
+signals that tell the model how to
+improve, and as you can see, with
+attention residuals, this signal is also
+distributed more evenly across all
+layers. Every part of the network gets a
+clear, usable learning signal. The
+entire system becomes healthier. But
+we're not done yet. This breakthrough
+also changes how we design models.
+Traditionally, going deeper was quite
+risky. Too many layers and the signal
+would collapse. Researchers were
+terrified of making networks too deep
+because the amnesia would take over.
+They were forced to build wider models
+instead. But these were slow and
+inefficient. But now, with attention
+residuals, that constraint disappears.
+Now, we can actually build deeper and
+deeper models without this amnesia
+problem. But this brings us to the next
+question, which is should we build wider
+models or deeper models? Which ones
+actually perform better? Well, the Kimi
+researchers also took that into
+consideration, and they ran a massive
+experiment. They trained 25 different
+models with different shapes. Some of
+them are short and wide, others deep and
+narrow, but all of them had the same
+number of parameters so that it's an
+equal comparison. And the goal was to
+see which models performed better. So,
+here is the result. This is figure seven
+from the paper. It's quite a technical
+figure, but the takeaway here is that
+both architectures improved as they
+became deeper, not wider. But the base
+models without attention residuals hit a
+wall. If you go too deep, the
+performance collapsed. However, the
+models with attention residuals pushed
+this even further. They kept improving,
+and you can build even deeper models. In
+other words, depth is no longer a
+limitation. It's an advantage. And this
+unlocks something powerful. Now, you can
+build models that think in longer
+chains, models that specialize layer by
+layer, models that don't lose their
+earlier reasoning as they go deeper. In
+fact, the most fascinating part is when
+you actually take a look inside the
+model. The researchers visualized the
+attention patterns across different
+layers, essentially mapping how each
+layer pulls information from other
+layers. And what they found almost looks
+like a brain scan. First, there's
+locality. So, most layers still rely on
+their immediate neighbors. That's the
+default, step-by-step processing. But
+then you see something new. You see some
+sudden long-range connections. A layer
+deep in the network would suddenly reach
+all the way back to like the earlier
+layers, completely skipping everything
+in between. It's like the model
+realizes, wait, I need to revisit the
+original premise. And it dynamically
+rewires itself to do exactly that. It
+creates its own residual connections on
+the fly. And then there's
+specialization. Different types of
+layers behave differently. Some act like
+short-term memory, focusing locally.
+Others act like global coordinators,
+pulling information from across the
+entire network. The system isn't uniform
+anymore. It's structured, organized,
+almost hierarchical in function, exactly
+like how the human brain works. And this
+leads to a profound shift in how we
+think about neural networks. With
+attention residuals, they're no longer
+static pipelines. They're actually
+dynamic systems. Instead of a fixed
+sequence of operations, the model can
+now constantly reconfigure itself based
+on what it receives. For every input it
+receives, it builds a custom pathway
+through its layers, uses it, and then
+discards it. It's not just computing,
+but it's like it's routing and selecting
+and deciding. And this brings up a
+really fascinating insight. By using
+these attention residuals, they don't
+just improve performance, but they
+change the nature of the system itself.
+This turns a static structure into
+something fluid and adaptive. If you
+zoom out, it starts to look strangely
+familiar. It starts to resemble the
+human brain. Because when humans think,
+we don't just accumulate thoughts
+blindly. We pause, we go back, and we
+retrieve past information. We also
+ignore irrelevant ideas and focus on
+what matters. We kind of manage our own
+internal attention. And that's exactly
+what these attention residuals do. And
+also, as we learn, our brain is
+constantly rewiring itself,
+strengthening useful connections,
+pruning away the noise, and also
+building new connections that it finds
+would be relevant. This ability is known
+as neural plasticity. And now, with
+these attention residuals, AI can kind
+of do the same thing. It's not just
+remembering better, but deciding what to
+remember. It can rewire its own
+connections based on context. Perhaps
+this might be the next step in designing
+self-improving AI that can continuously
+learn over time. All right, that was
+quite the deep dive. As you can see,
+this paper is incredibly deep and
+technical, so I had to simplify a ton of
+stuff, but that is the gist of it.
+Hopefully, I've made it easy enough for
+you to understand, and and I hope you
+can see how this can change how we
+design better AI models in the future.
+Let me know in the comments what you
+think of this. As always, I will be on
+the lookout for the top AI news and
+tools to share with you. So, if you
+enjoyed this video, remember to like,
+share, subscribe, and stay tuned for
+more content. Also, there's just so much
+happening in the world of AI every week.
+I can't possibly cover everything on my
+YouTube channel. So, to really stay up
+to date with all that's going on in AI,
+be sure to subscribe to my free weekly
+newsletter. The link to that will be in
+the description below. Thanks for
+watching, and I'll see you in the next
+one.

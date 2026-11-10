@@ -1,0 +1,488 @@
+Large language models for all their
+intelligence have the memory of a
+goldfish. I could write that I like
+bikes,
+&gt;&gt; [music]
+&gt;&gt; then ask for facts about them, and it's
+like I'm talking to the guy from
+Memento.
+The most common, albeit naive, type of
+agent memory is conversation history.
+This is where, with each request to the
+model, the client includes a list of
+previous [music] messages. It works well
+for 10 or maybe 20 messages, but
+eventually the history will become too
+large, and the model won't be able to
+handle it.
+Furthermore, if I start a new thread,
+we're talking to the [music] same agent,
+but there's no history in this thread,
+so therefore there's no memory.
+Every session starts from scratch, and
+that does not feel like intelligence.
+[music]
+My name's Alex, and I'm an AI engineer
+building Mastra, which is a TypeScript
+framework for building AI agents. Memory
+being so important is something the team
+have thought about a lot. And in this
+video, I'm going to walk you through the
+four levels of agent memory.
+We've covered the most common, which is
+conversation history. I'm going to show
+you working memory, semantic recall, and
+then I'm saving the most sophisticated
+memory for last. This is a memory system
+modeled on how the human brain works,
+and it's currently the leader on the
+hardest memory benchmark in the
+industry.
+The reason conversation history works is
+because when we send the request to the
+LLM, we're including a historical view
+of the previous messages. Here we wrote
+I like bikes.
+The agent responded. I input tell me
+facts about them, and it's because the
+model can see this, but it knows I'm
+talking about bikes and responds like
+so. But this will only take you so far.
+The more you put into this input, the
+more you're giving the model to reckon
+with, and that can result in context
+drift and rods, and eventually you will
+exceed the context window limit size.
+Doesn't seem like a big deal right now,
+but when you're dealing with lots of
+tool calls in particular, you'll get to
+that drift a lot quicker than you
+expect. So, it's for that reason that
+when we configure message history, we
+only send the last 10, 20, 30 messages.
+Maybe that's okay, but what if the
+user's goal was the first message, and
+then there's 30 more messages? The
+window sort of drops, right? That's
+where working memory can be very
+helpful. With working memory, you give
+your agent a little scratchpad with
+predefined fields, but no values. This
+essentially gives the agent a clue that
+it should look out for values to fill
+in, and then it will remember them
+throughout every future interaction,
+even many hundreds of messages later in
+the same conversation. While some memory
+systems replace the need for
+conversation history, working memory is
+more of like a supplementation. It makes
+conversation history go further, and
+it's quite simple. So, for example, if I
+tell my agent to build a 10 mil SaaS,
+and I hate mistakes, it's going to
+quickly realize that my preference is to
+avoid mistakes, and my goal is to build
+a $10 SaaS. So, think about this as
+being very useful for things like coding
+agents, or any agent that does something
+over a long task horizon. Working memory
+is also great for capturing facts that
+don't change, such as my name, as well
+as stable user preferences. For example,
+maybe you tell the agent you prefer
+concise responses. The way this works,
+basically, and we can just peel back the
+curtain real quick, is that the memory
+system augments the system instruction.
+This is something that's never rendered
+to the user, but the model can see.
+Let's render this a bit more tidily, so
+we can see what's going on. The agent
+gets the memory template, and then it
+gets the current data, and that's the
+data it will rely on in future
+responses.
+We also let the agent know to watch out
+for potential values for those fields,
+and that there's a tool available called
+update working memory to update the
+values. The advantages here of it is
+quite simple, and it keeps continuity
+throughout the conversation. Working
+memory is not designed for much data,
+and certainly not long-term data. You
+also have to predefine the fields, which
+doesn't feel very agentic. Ideally, the
+agent doesn't need direction about what
+to remember, it should just know.
+Let's now graduate to semantic [music]
+recall. The way semantic recall works is
+by looking up semantically relevant
+messages in the message history, and
+then selectively including them in the
+input to the LLM. In other words, it
+adds them to the context window. Here I
+wrote I like dogs, mine is called Nas
+Barkley. In a very simple message
+system, I could ask about dogs, and it
+could just do a very simple search to
+find dogs. But with this is a bit more
+sophisticated, being that it's rooted in
+semantics, or meaning, is I can ask it
+about what animals do I like. And when I
+do so, the system is going to create an
+embedding, search the vector database,
+and then retrieve relevant information,
+such that it has memory. The really cool
+thing about this type of memory system,
+and this would apply to working memory
+as well, is that it can exist across
+threads. In this new thread, I can ask
+what is my dog called, and it should
+recall Nas Barkley.
+Cool. If you're familiar with the
+traditional idea behind rag, then this
+is going to feel very familiar. It's
+just that it happens automatically.
+Every time you send a message through
+the memory system, it creates that
+embedding and stores it in the database,
+and then when you send future messages,
+it will also try and query that database
+to find relevant context. The best way
+to illustrate this in Mastra is by
+literally just typing the query, in this
+case animals. You can see I'm typing in
+the text box at the bottom, but the
+semantic recall component on the right
+is filling in. This is what the memory
+system found in the database that it
+wants to pull in to the context window.
+And actually, once again, in the spirit
+of showing how things work under the
+hood, you can see that if I poke in
+here, we have the system instruction
+that we give to our agent, and then we
+have an additional system instruction
+injected by the memory system that says
+the following messages are remembered
+from a different conversation, and it's
+literally just pulling in those three
+messages from the database. The key part
+here, obviously, is that they were
+looked up semantically. This is much
+more automatic than working memory,
+because we're not predefining fields. I
+wouldn't say it's fire and forget,
+though. There are some things to watch
+out for here. The main thing is that
+recall can be imprecise.
+You want to dial in a couple of things.
+First is the top K, which is a term from
+the machine learning world, which
+basically means like how many top hits
+do you want to return, in this case
+three. And then we also specify a
+message range. It can occasionally be
+that you're putting in too much
+information, and then it's harder for
+the model to discern what's going on.
+But conversely, if you make that number
+too low, you're not going to pull in
+enough information. So, it's really
+important you dial this in according to
+your particular use case. I think the
+other sort of elephant in the room here
+is that we're now introducing an
+embedder and a vector store. This
+introduces moving parts and maybe costs
+if you're paying for a SaaS, and a
+little bit of latency as well. The other
+kind of downside here is that because we
+are changing the system instruction with
+every turn based on the query, the
+prompt prefix is never going to be
+stable enough to hit the cache, which
+means you're not going to benefit from
+caching those input tokens, which
+honestly is the biggest source of
+savings in production. I don't mean
+[clears throat] to poo-poo on semantic
+recall. I think we just segued into the
+cons first. There are some huge pros
+here as well. The fact that we can
+retrieve things based on meaning, the
+cross-thread recall, and unlike the
+previous memory levels we looked at,
+semantic recall can scale very well to
+long histories, and just selectively
+pull in what is relevant. I think then
+we're ready to graduate to observational
+memory. This new memory system, modeled
+on the way that humans remember, but
+also how they forget.
+Okay, let's jump over to the
+observational memory demo, and I'll show
+you the most sophisticated and the final
+level of memory in action. By the way,
+[clears throat] if you're thinking,
+"Alex, where's the code for all this?
+How do I use this?" Go to the Mastra
+docs. We have pages on each of these
+memory systems, including a quick start
+and all the information you could need.
+The really interesting thing about
+looking at this list and presenting the
+memory systems in this order of levels
+is that it's more or less the order we
+released these memory systems in Mastra,
+each one building on the learnings from
+the last. We benchmark these memory
+systems against the industry's toughest
+benchmark called Long Mem Eval. It gives
+you a score between 0 and 100%, and it's
+designed to break memory systems by
+tripping it up with contradicting
+information and questions that require
+the agent memory systems to reason about
+time and this kind of thing. We scored,
+I think, 55% with working memory, but
+that was never really designed for
+long-term memory, so kind of not
+applicable. And then we scored 80% with
+semantic recall in its most recent
+iteration. The new memory system that
+I'm going to show you now, observational
+memory, scored 84 or so percent using
+the same model as the previous
+benchmarks to keep it fair. So, you
+could say it's just a baseline 4 to 5%
+better than previous systems, but you
+can also benefit from the newer models
+since then. If you use a newer model
+like Gemini 2.5 flash for example, you
+will score 95% on the benchmark, which
+is the highest recorded that's
+verifiable. So, how does this work and
+what does it have to do with human
+memory? Essentially, observational
+memory introduces two ambient agents.
+They're always there, but not always
+running necessarily. When the
+conversation history crosses a certain
+threshold, an observer agent kicks in
+and condenses the message history into a
+dense list of observations, each of
+priority indicators and annotations
+about the date and time so that the
+agent can do a better job at reasoning
+about time. So, just like our brains
+don't really process every single word
+that was ever said or every pixel that
+we observe in the world, it kind of just
+focuses on the important parts as long
+as we need them to accomplish something.
+And then over time, we naturally forget
+because it's no longer serving us, it's
+no longer relevant. Observational
+memory, and we're just talking at a very
+high level right now, works that same
+way. So, here's an observational memory
+agent I set up, and you can see on the
+right-hand panel here two progress bars.
+Here's the messages progress bar.
+Once the messages in the context window
+cross 2K tokens, the observer agent's
+going to kick in and compress those
+messages.
+We'll talk about the observation
+threshold and the reflector after. Let
+me just show you that if I say a stable
+preference or fact like my name,
+and then challenge the agent to use its
+fetch page tool to query Maestro's
+llms.txt file, pretty enormous file by
+the way, we just want to find the
+documentation link for observational
+memory. You can see the tokens tick up
+here with the inputs, but when we get
+that tool callback, you can see that it
+contained 10.1K tokens, blowing past the
+2K token limits and invoking the
+observer. The really interesting thing
+here is that we just care about a sliver
+of information in that tool call
+response to accomplish our goal. So, we
+want the agent to remember that, but
+forget all the details we don't care
+about like all the other links in this
+case. You can see that the observer
+managed to reduce those 10K or so tokens
+into 160, a modest 63x reduction. And
+so, on the left is like the full
+conversation history. This is just
+pulled from the database, right? And on
+the right is the observations that have
+been condensed and will now be sent to
+the model with the inputs. You can see I
+stated my name, and then it pulls in
+information like the link to the
+observational memory docs. Now,
+eventually you will run out of context,
+albeit a lot more slowly because this is
+more efficient. At that point, the
+observations threshold will pass.
+500 tokens is artificially low. They
+should be a lot higher, 40, 50, 60K
+tokens perhaps. At that point, the
+reflector agent looks at the observation
+blocks and replaces them all with a
+condenser compressed version of the
+observations. It's a bit tricky to
+illustrate here because we'd have to
+chat back and forth with Studio a lot.
+So, I built a little demo to show you
+how it works.
+So, here's a little agent that will help
+plan a trip, in this case to Tokyo. And
+we go back and forth for a little bit
+with some tool calls, and you can see
+the messages bar at the bottom growing
+and growing and growing, nearing that 3K
+threshold.
+As we continue to chat, we cross the 3K
+token observation threshold and the
+observer readies.
+Now, it runs automatically in practice,
+but we're going to click the button just
+to show you it happening gradually.
+And as you can see, this entire
+conversation history on the left has
+been condensed into this dense list of
+observations.
+In this case, it's going from 3.1K
+tokens to just 480. Now, both here and
+in Studio, we just showed one
+observation cycle so far, but in
+practice, the observer's going to run
+over and over again and each time
+replace the messages with the
+observations. The important thing to
+note here is that unlike semantic
+recall, which changes the system
+instruction at the top every single
+time, the observations are stable. This
+means everything here can be cached. Now
+that the observer has run a few times,
+we've used up the entire observations
+window. Basically, this purple progress
+bar indicates the same thing as this
+green one in Studio. And now the
+reflector runs. So, we've got all these
+blocks of observations. Let's run the
+reflector, and they've been compressed
+into a more condensed list. So, two
+things I noticed is that observations
+with a green emoji were dropped cuz they
+weren't too important, and then it's
+combined the user preferences onto one
+line. We now continue chatting with the
+agent, and at some point, the messages
+threshold will cross again, the observer
+will kick in, it will repeat the cycle
+indefinitely, and your users will have a
+more cohesive experience and your agent
+will be more capable. The really
+interesting thing by the way is that the
+origin of this project was an engineer
+at Maestro, talented fellow named Tyler
+Barnes, building a coding agent and
+realizing that memory is the biggest
+unlock in building high-performance deep
+agents that run on long time horizons.
+And now Maestro code, which is an
+open-source coding agent harness we
+built, is using observational memory.
+So, you can see here that it's using the
+same thresholds at the bottom.
+The really beautiful thing about this is
+that unlike something similar to Claude
+code, you don't hit compaction, which is
+very different because it loses
+important information and it interrupts
+the user flow. You have to wait maybe a
+minute, maybe more for the compaction to
+happen. Even though what we observed was
+synchronous, it just so happens to have
+happened synchronously. When working in
+a more practical environment as opposed
+to a demo, the agent runs in the
+background asynchronously and is
+non-blocking. So, for the most part,
+your user's experience is never
+interrupted. So, as you saw with the
+tool call from the llms.txt call and
+from what I'm showing you with the
+coding agent, it's pretty obvious that
+this type of system is fantastic when
+dealing with noisy tool call results.
+It's also very good for just like
+general agents. For example, here's a
+workshop helper agent I built. So, we
+host a workshop at Maestro every
+Thursday. You should come and hang out
+one day. We talk about stuff like this.
+I love hosting them. I love engaging
+with people. I love the amazing guests
+we have. I do not like writing the
+descriptions, especially when I know an
+agent can do a good job at it. So, I
+built this agent to help me write the
+descriptions and update the Luma page,
+which is the platform we use for events.
+And I've enabled observational memory.
+So, over the period of like many weeks,
+I've just been building up all these
+observations. And what's really cool is
+because this relates to writing, it sort
+of learns things like my preferences.
+For example, maybe I'm quite
+matter-of-fact. Maybe I don't want too
+much hyperbolic language, that kind of
+thing. And it will also remember little
+details like if I'm talking about
+Maestro code, it now knows the link is
+uh code.maestro.ai. And just as a little
+exercise, I asked the agent what it's
+learned about me based on the
+observations, and it writes that okay, I
+want to only write in second person in
+these descriptions. I care a lot about
+the hook. I want things to be brief. And
+so, the agent is like improving with me
+as I continue to use it in a way that no
+other memory system we talked about
+today really can. Not to the same
+caliber and not with the same
+simplicity. So, there you have it, four
+levels of agent memory, conversation
+history, working memory, semantic
+recall, and [music] observational
+memory, where we spent the most time
+because it is the most sophisticated and
+replaces the need for those other memory
+systems in Maestro today. If you would
+like to learn more about these features,
+I'm linking docs for each in the
+description below. [music] They work
+best with the Maestro framework today,
+but there's nothing about these ideas
+that couldn't be adopted.
+I've been Alex Becker at Maestro. Thank
+you so much for watching. If you enjoyed
+this deep dive, please let us know that
+we should make more like this in the
+comments. Leave a like and subscribe for
+more.
+Until next time.

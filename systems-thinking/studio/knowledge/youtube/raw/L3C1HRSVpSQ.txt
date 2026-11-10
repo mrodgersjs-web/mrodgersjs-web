@@ -1,0 +1,594 @@
+In this video, we're going to be using
+Hermes Agent to automate some cold
+outreach for an app that I built called
+the Magic Hand. The Magic Hand is an AI
+photo editor for real estate agents.
+Essentially, real estate agents can drag
+and drop their photos and then click one
+button and their photos come out
+upscaled and automatically edited in 4K.
+You can also transform your photos into
+videos. So, the goal of this video is to
+use Hermes Agent to build out a workflow
+that can do cold outreach to agents on
+Instagram and as well as doing cold
+outreach on email. Hermes Agent over
+something say an open claw setup to do
+this is because I built my open claw
+setup to produce content, something that
+is totally different than this project
+here called the Magic Hand. So, I want
+to keep them separate. And the one thing
+that I like about the Hermes Agent is
+that it has a self-recurring
+learning loop. It also builds skills on
+demand. So, as we do cold outreach, it's
+going to learn and work on what's
+performed well and discard what has
+performed poorly. So, as we start
+getting responses and getting people to
+actually pay for our product, we're
+going to double down on what's working
+and ignore the stuff that's not working.
+And you're going to see me build this
+out live in just a few minutes. It's
+going to be easy. It's going to be
+straightforward. Follow along if you're
+trying to build out something similar
+and I'll try to deep dive as much as I
+can. So, I have Open Claw working on my
+Mac mini and I also have Hermes on my
+Mac mini as well. These are going to run
+24/7 around the clock. And with Hermes,
+there's a bunch of different ways you
+can access it. You can just use it right
+in the terminal. You can chat through
+Discord, Telegram, or you can use this
+Hermes workspace. I'll put the link to
+it down below. It has a lot of pre-built
+skills, a lot of pre-built prompts ready
+to go to start building. And it comes
+with a nice little UI where you can
+visualize all your work. So, the first
+thing that we're going to do is we're
+actually going to connect our Telegram
+because I want daily reports, who it
+outreached to, how many responses it's
+gotten, and how many sales we made from
+those responses. So, I can start to keep
+track of who is responding to these
+direct messages. So, the thing that I
+like with Hermes is that it just figures
+stuff out. I should back up and say we
+are using my Open AI plan and I'm using
+ChatGPT 5.5 for all the work. You know,
+if you've watched the channel for a
+while, I'm loving Opus 4.7, but it uses
+a lot of tokens where GPT 5.5 can help
+cut down and help me spare some of my
+Anthropic tokens for my Open Claw setup
+and we can use Open AI for Hermes. So,
+let's get it going. I just use Whisper
+Flow. I think everyone should be using
+Whisper Flow voice dictation software.
+Check it out. I'll put a link down
+below. It's going to help you be more
+productive when you're talking to these
+LLMs. So, hello. My name is Bo Johnson.
+I'm looking to automate my product
+called The Magic Hand.io. It is an AI
+photo real estate app. Real quick,
+before we keep going, if you're watching
+this and you want to actually build with
+some of these tools, not just watch
+videos about them, then you're going to
+want to check out our community down
+below, Shipping School. We have a full
+Claude code course, a full Open Claw
+course, and four live bootcamps every
+single week where we actually help you
+get set up from scratch. Like actually
+set this thing up, not just watch a
+tutorial and figure it out by yourself.
+And we also provide one-on-one coaching
+so you could book a call with me, we
+could share screens, and I can help you
+get Claude code or Open Claw running on
+your machine. That's it. No fluff. I
+built this community because watching
+YouTube's only gets you so far. We
+launched it just 3 days ago and we have
+over 55 members. You need people around
+you who are actually building, people
+who hold you accountable, and coaches
+who can help you when you get stuck.
+I'll put the link in the description
+down below. Get in now before the price
+goes up. That helps real estate agents
+edit photos within seconds. I need help
+from you doing marketing. We're going to
+be doing cold outreach via DM on
+Instagram and on email. Let's focus on
+Instagram now first and build that
+pipeline out. I want this to happen
+daily. I want at least 10 DMs sent per
+day regarding our app with a link to our
+app saying that they should use it
+because they get free 10 credits upon
+sign up. So, the first thing though, we
+need you to be able to communicate with
+me on Telegram because I want daily
+updates on who you reached out to as
+well as who has converted into a sale.
+And we're just going to send that prompt
+and see what it does. And that took 15
+seconds. So, it says, "Hi Bo. Got it. I
+can help build the out Instagram
+outreach pipeline for the Magic Hand and
+I have noted the key product context, AI
+real estate photo editing app targeting
+targeting real estate agents. We do
+offer a free
+10 credits upon sign up. But before we
+automate and send everything or send
+anything, we need two things in place,
+Telegram communication. So, yes, if
+you're already talking to me from
+Telegram, great. I'm not. I'm using the
+Hermes workspace. If not, you need to
+connect Hermes to Telegram. So, we'll do
+that right now. All right. So, I just
+configured the Telegram so I can get the
+daily reports. Here's some other things
+we need to figure out before we start
+this automation. So, the report is going
+to include the Instagram handles to the
+agents that we reached out, messages
+sent, profile notes, and lead type,
+replies received, follow-ups needed, and
+then sign up
+conversions, which is huge. So, yes,
+this is great. This is great. Something
+to note is Instagram outreach
+constraints. This is why we're choosing
+just to send 10 messages a day. We don't
+want to get our account banned. So, we
+want to keep the volume low. And then
+what it needs from me is the app URL,
+which it already has it correct there.
+So, we'll just put that there. I'm
+talking with you through the Hermes
+workspace and I have Telegram connected
+with you as well. The Instagram
+is The Magic Hand.io,
+which I have pulled up here. Nothing
+really going on here. The Magic Hand.io
+target profile criteria. We want to
+target real estate agents inside the US.
+And yes, realtors posting listings. We
+want to target brokerages, luxury
+agents, also agents using poor quality
+listing photos, maybe houses that, you
+know, are being done as fix and flips.
+And then, yeah, we want to ideally
+target agents with 1,000 to 5 to 50,000
+followers. And then, yes, we can
+do conversion tracking through Stripe or
+I have a polar.sh
+dashboard I can give you access to.
+Maybe for now we just track it all
+manually in a spreadsheet or build out
+our own CRM. Cool. Let's let it cook.
+That's enough context. What I like,
+since I've been using Opus 4.7 for a lot
+of the building today, it's been kind of
+slow and
+this is quick. GPT 5.5, I use it for all
+my cron jobs in my Open Claw, but I
+don't use it as like a main agent like
+this. It's been pretty quick, which is
+nice. And if you aren't using Hermes,
+there's web there's Open Web UI, which
+works the same as like this workspace.
+It's just a great way to visualize the
+work being done. Yes, you can use
+Discord or Telegram, but I just like
+this so much better. You got files that
+you can manage here. You can go right
+into the terminal. You can see what cron
+jobs are created, tasks, and memory,
+skills, and profiles as well. You can
+start a new session. I just like the
+interface a bit better. So, here's what
+it got back. Let's see. Perfect. We have
+enough to define the first version of
+the Instagram outreach system. I also
+created a local CRM template. Perfect.
+It's got the product, the offer.
+Perfect. Who it's targeting. Suggested
+DM structure. We should avoid sounding
+like spam. Yes. The messages should be
+short, relevant, and tied to their
+actual listing content. Yep, exactly.
+And this is great. This is pretty
+impressive. It's pretty easy, which is
+what I've been hearing about Hermes
+Agent. It's just simple to set up and
+have it attack one automation. And
+that's the thing. With the Magic Hand, I
+just need help with one thing. That's
+outreach. So, very cool. I like the the
+different variants it came up with. And
+then the manual CRM, I think that's
+perfect. Important Instagram automation
+automation note. So, it says that it is
+uh on the automation note for Instagram,
+which was going to be the tricky part.
+Um the Instagram DM automation is risky
+if done with raw browser automation or
+unofficial bots. Accounts can get rate
+limited or challenged for safety.
+Human-approved semi-automation. I don't
+want that, but we'll we'll correct that
+here. Yeah, that all sounds good. It
+looks great. But I want to clarify I
+want this happen on autopilot. I don't
+want to be in the loop at all. I want
+you just to do it and figure it out. I
+know we can use Playwright or Puppeteer
+for the browser automation. Also, look
+into Comet browser as I heard that that
+was good for browser use without being
+bot detected. Or look into Claude
+browser to be able to help us with this.
+Okay. So, change of plan. We're going to
+start with email first and then we'll
+figure out the Instagram strategy later
+because it is not wanting to break the
+rules. Okay, then change of plan. Let's
+do it with email first and start with 10
+emails a day. Maybe we could scrape
+their data from Instagram or Zillow
+listings. Okay, so email is something we
+can automate easier. It's just I didn't
+start with email because real estate
+agents get so many emails every day.
+It's going to be harder to stand out. My
+other thought too is that we could sign
+up If you're struggling to keep up with
+content, what I'm about to save you
+about 40 days' worth of work. [music] I
+built something called content machine.
+It's 10 AI agents that run on the open
+claw orchestration and they handle
+everything. Scripts, thumbnails, X
+[music] posts, blogs, outreach, clips,
+newsletters, all of it. So, I went from
+1,000 subscribers to 4,000 subscribers
+on YouTube in 7 days using this exact
+system. Every single morning I wake up
+[music] and the content's already done.
+I spend maybe 15-20 minutes reviewing
+and approving them and I move on with my
+day. [music] It works for any niche,
+fitness, finance, real estate,
+marketing, [music] whatever you are
+building and it is 100% completely
+customizable to your use case. So, you
+get the mission control dashboard, all
+of the cron jobs, everything I've built
+over the last 40 days helping me gain
+more and more people to subscribe and
+join the community. So, you plug in your
+own thing and it molds it to you, it
+learns how you talk and it writes so it
+doesn't sound like AI
+$97 one time, it's not a subscription.
+I'll put the link down below and you'll
+thank me later. With a separate account
+through the X API, connect that to my
+magic hand account and start doing cold
+DMs through TikTok, through X. So,
+that's another option. So, it's going to
+use Zillow listing pages as discovery
+sources and then Instagram as a
+discovery source only as well. Agent
+brokerage websites. Okay, this all looks
+really good. I think for now I'm just
+going to give it my magic hand Gmail.
+Actually, let's use resend. Let's use
+resend. Simple. What I like with resend
+is you can just essentially blast emails
+out really quickly in bulk. So, if you
+go to resend, you can set up a bunch of
+different automations. Let's see if we
+could go to the actual site. So, here it
+is. Email for developers and it's very,
+very cheap, very cost effective. So,
+it'll allow us to at least get the ball
+rolling on this. Maybe we could switch
+to something in the future so we could
+have email warm-up happen automatically
+cuz that's the problem with sending
+emails in bulk is you will be
+bought spammed detected very quickly if
+you start selling out multiple hundreds
+of emails per day. So, it's very cheap
+on the pricing, too. You can send out
+3,000 emails a month for $0. So, let's
+just get it going and see how it
+implements this. So, it's set up the
+resend side of the pipeline, which is
+awesome, looks great. So, it needs the
+resend API key. Okay, I set up my DNS
+records for the magic hand email. Here
+is my email. I think it might take a few
+hours to update. Here's more
+information. The whole goal of this
+video is just to start getting some
+automation for the outreach for our
+product, the magic hand. Like I said,
+it's a great app, it works amazing, but
+I don't have distribution and that's the
+hardest part when building and shipping
+apps is now I built my app, now nobody
+knows about it. How do I get some more
+traction? Yes, I could create content
+around it, but right now I just want to
+go direct to the source, start drumming
+up business by outreaching to agents.
+Unfortunately, we're going to have to
+just use email for our first target.
+This is going to be an ongoing series
+and we can see how this works out for us
+amongst other automations we could build
+with Hermes, but for now let's focus on
+this being episode one. We automated
+email. Let's focus on automating maybe
+cold outreach on X using the X API,
+which is very cost effective now cuz
+it's pay per use instead of a $200 a
+month subscription plan. And then maybe
+we could start to figure out how can we
+have content happen on autopilot as
+well. So, I think in combination between
+all of these is going to help us get
+more users. We do have already a few
+sales on here. Let's see if I can log
+into the admin dashboard. This is like
+the history of the magic hand and I
+haven't even advertised at all. So,
+we've had 86 total users. We have 42
+active users, three recent sign-ups and
+unfortunately it doesn't say. So, 1,272
+credits have been purchased. Let's see
+if I could pull up my polar dashboard.
+So, this is all time and we launched the
+app back in late September and we made
+$400. Um also the profit margins are
+very cheap or very good on here. It's
+like 90% profit margins. So, for an app
+that took me a week and a half to two
+weeks to build and some refinement along
+the way. Um you know, it's made $400.
+That means people have paid for it and
+you've used it and kept coming back. So,
+that's amazing. Whether we turn it into
+a monthly subscription or not right now,
+our plans are just pay for a credit pack
+and they use it as they need. But, yeah,
+that's can also be refined down the
+road, but let's see what Hermes said.
+Let's see what Hermes said. Okay, done.
+I configured it. From Bo, the magic
+hand. Bo@themagichand.io.
+One important DNS issue. I checked the
+current DNS right now and there are two
+SPF text records, one for lead
+connector. That's a problem. A domain
+should only have one. Okay, so let's fix
+that. Okay, so I had to verify the
+domain through resend. I had to plug in
+and update the DNS records. I had to get
+the magic hand email connected to my
+domain. Now that we have all that
+connected, we are seeing what the next
+steps are going to be. I think at 10
+emails a day, we can start to test and
+then circle back to this episode to see
+where that leads us and maybe I make
+videos every week keeping you guys up to
+date. Maybe we do 100 emails a day and
+maybe we look to integrate the X API to
+start reaching out to agents on X and
+then go from there.
+Um I think that, you know, just wanting
+to show the power of Hermes agent to be
+able to handle cold outreach is very
+doable and there's many ways to go about
+it. That's why I wanted to build this
+setup live in front of you to just show
+you that you don't need to be technical,
+you don't need to get into the terminal
+to start figuring out these workflows.
+You connect in GPT-5.5 or Opus, whatever
+you want to use for your main agent and
+tell it what you want to build and go
+from there. I mean, what? It's been 18
+minutes and we've made a ton of progress
+already. Okay, so after and what I like
+is this has been really fast. Just
+compared to using Opus all day today,
+it's been much faster in the responses.
+So, I just asked, domain has been
+verified through resend, everything's
+been looking good. And what's the next
+steps? It says, great, the next step is
+lead generation plus first live daily
+send. It also tested the resend sending
+already through the API and accepted and
+returned a successful message ID. So,
+sending works. I then fixed the sender
+script to use the working resend request
+method and verified it runs cleanly.
+Beautiful. The daily job will run at
+9:00 a.m. daily. It will find public
+business emails for qualified real
+estate leads and then it will add them
+to the outreach CSV, draft personalized
+outreach emails, send up to 10 through
+resend and then update the CRM rows as
+sent. It'll produce a daily report.
+Recommended next immediate step. We
+should run the job once manually now to
+seed the CRM to confirm the first batch
+works. I can do that next. But, because
+this will potentially send real outbound
+emails, run the first email outreach
+batch now. Yes, I want to test now to
+see if it works and also I want you to
+send the reports to me on Telegram. I
+think you have the information already.
+It's the magic hand agent bot, I
+believe. Also, where are you getting the
+emails from? Zillow, Instagram? Another
+thing, too, that has always been a
+problem for me, especially when it comes
+to open claw, is the memory issue. But,
+with Hermes agent, it has a memory
+system called Hancho and basically,
+okay, sorry. I was in the middle of an
+interview. But, Hancho memory is really
+useful because with open claw, you have
+to really take the time to set up your
+memory correctly between lossless claw,
+QMD, active memory, memory wiki and all
+these other plugins. It's like, really?
+I got to get all this set up just for my
+agent to remember who I am. What I've
+noticed with Hermes is that it just
+remembers and I don't even need to tell
+it to remember, it just picks up where I
+left off. I just went on my Telegram and
+chatted with my Hermes and I said, do
+you know what we're working on? And
+boom, right away it knew that we're
+building out an email integration for
+the magic hand. So, quickly, Hancho
+memory for Hermes agent is persistent
+cross-session memory and user modeling.
+So, Hermes agent is an open source AI
+agent from new research with tool
+calling, terminal access and with
+Hancho, it gives Hermes persistent
+cross-session memory. So, I love that.
+What Hancho provides is it acts as a
+long-term memory system and user model
+layer alongside Hermes with built-in
+memory files. It gives Hermes these
+three capabilities. Prompt time context
+injection, which is durable context
+about user loaded into prompt before
+generating response, cross-session
+continuity, it recalls of stable
+preferences, project history and working
+context across conversations and durable
+write-back, which is stable facts
+learned during a conversation stored
+back for future turns. These sit along
+Hermes local session history and session
+history remembers the current
+conversation and Hancho remembers what
+should still matter later. Very cool.
+I've noticed it has just worked
+flawlessly and yes, you can integrate it
+with your open claw, but I love that it
+just works and I don't need to tell it
+to work. Okay, awesome. So, that all
+worked. Secondary discovery signals,
+current day workflow. Every day the job
+will try to find qualified real estate
+leads, verify that the email is public
+business contact info, and then dedupe
+in the CRM so we don't sell send
+doubles. Very cool, very cool. Reports
+to Telegram. The real first daily batch
+is scheduled for tomorrow. Okay, number
+answered. Where are we getting Oh, maybe
+it did answer. Okay, here it is here it
+is here it is. So, primary sources are
+public agent websites, public brokerage
+roster, public real estate listing
+pages, Google index public business
+pages, and then Zillow and Instagram. I
+love it. This is sweet. This is awesome.
+I'm going to report back and keep this
+thing going. Maybe we'll just do a
+weekly one-off series of Hermes and me,
+what are we building? I think if we just
+keep it related to our product here, the
+magic hand, it can keep consistent. Um,
+so we'll see if we can get any more
+sign-ups just doing 10 a day. Um, let me
+ask Hermes, what do you think the limit
+is we could what we can send per day
+without going into the spam folder cuz
+we haven't warmed up any emails. 10 a
+day is great, but can we push it even
+more? See what it says. Okay, that was
+quick, like 5 seconds. For brand new
+sending setup, I would not push much
+higher yet. My recommendation is start
+with 10 a day, 15 a day, 25 a day, and
+then by week four we'll do 50 a day. Um,
+why I would not jump higher immediately
+even with resend and verified DNS, your
+domain sender reputation is still new
+for cold outbound. The biggest spam
+folder risks are new domain sending
+identity, cold recipients, low
+engagement, similar copy across many
+messages, link to the first email. Um,
+your domain is now technically set up,
+but mailbox providers still need to
+learn that people want to mail though.
+Okay. Um, safe warm-up plan is just to
+prove deliverability and then track the
+bounce rate, compliant rate, replies,
+even negative replies. Oh, that'll be
+fun. And um, and then we'll scale it up
+from there. And we'll just keep this as
+a series. We'll circle back and see what
+it uh what it did. Um, those tools.
+Yeah, so we could do instantly, but that
+costs like $500 a month. Well, I'm just
+trying to be cheap here and get this
+going, right?
+Um, so yeah, I like it. I like it. One
+improvement for deliverability, I'd test
+a version with no link in the first
+email because links can hurt cold
+deliverability. Hmm. Yeah, I said just
+keep it the same. That is our first
+installation in setting up Hermes and
+getting it going for cold outreach. Like
+I said, we're going to make this into a
+series, so if you want to see more, I'm
+going to be releasing a weekly videos
+keeping you up to date. Make sure you
+hit subscribe, and if you want to build
+out AI automation workflows like this,
+whether it's through OpenClaw or Hermes,
+I run a school community with over 200
+members, and I launched that community
+about 35 days ago, and we do nine live
+boot camp calls every single week. In
+addition to that, we have one-on-one
+coaching, and that is unlimited. You can
+book thousands of one-on-one calls if
+you're subscribed to our school
+community. Millions, if you want.
+Lifetime one-on-one calls for the rest
+of your life, join the community, and
+we'll see you in the next one. Have a
+blessed day. Bye-bye.

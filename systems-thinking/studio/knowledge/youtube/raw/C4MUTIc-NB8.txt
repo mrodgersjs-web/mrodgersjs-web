@@ -1,0 +1,217 @@
+today I tried Evolution
+strategies it's a different way to train
+your agent in reinforcement learning and
+it's cool because it's really simple you
+don't need gradients and it's highly
+parallelizable if you have thousands of
+computers to run it on now this is
+coming from a blog post by open Ai and
+their mission is to discover an enact
+the path to Safe artificial general
+intelligence so they have quite a lot on
+their hands but it seems like they're
+doing good work so far in the typical
+reinforcement learning scenario you have
+some environment and you have an agent
+and the agent can take an action which
+affects the environment which then spits
+out a reward and a new state of itself
+that goes back to the agent now we want
+to change the way the agent behaves to
+increase the total amount of reward that
+it
+receives now when solving something like
+a tari your state is the games pixels it
+could be like a width by height by time
+step Matrix you take that as your state
+transform it by some differentiable
+function typically a neural
+network transform it into a distribution
+over the actions that you can take and
+then you sample from that distribution
+that becomes your action which then you
+feed back into to the game engine which
+gives you a new state and a
+reward so as the agent plays certain
+actions will lead to positive rewards
+and that's these green squares here so
+from this time step to this time step
+you want to look at the action that the
+agent took and increase its
+probability so the way you can increase
+the probability of a certain action is
+use a cross entropy cost function and
+the target would be a one for this
+action and zeros for the rest
+and you can take the gradient of that
+cross entry cost function with respect
+to all your network parameters and that
+will tell you how to change your
+Network's parameters now this has all
+been classic reinforcement learning
+where you have a differentiable function
+here that Maps state to
+actions but we're talking about
+Evolution strategies in this video so
+Evolution strategies is a lot simpler
+than the classic method the way it works
+is you start at some settings for your
+parameters and add noise to them and you
+get the reward at each one of these
+random offsets from your starting point
+and then you just make a weighted
+average of these directions using that
+reward that you got for each which will
+ultimately lead you towards parameters
+that give you more reward and that's it
+that's the whole idea behind Evolution
+strategies now Evolution strategies is
+based off an idea called finite
+differences so finite difference may
+sound a bit complicated but you're
+likely already familiar with it and the
+ideas behind it are pretty simple we
+have some function f this wavy thing
+here and we want to get an idea of how
+it changes over a small change in its
+input so all we do is evaluate it at a
+point w and we get this blue line here
+and then we evaluate it at a point w + H
+and we get this blue line and then we
+just take the difference of the two and
+so this is the change in the function's
+output for a small change in the
+function's input so this H is the same
+as the noise we've been adding to our
+weights um and that's the change in the
+function's input but typically we're
+concerned with where we are with W the
+starting point so you can see the finite
+difference right now is 34 and if I go
+over here and it's now negative you may
+notice that it kind of corresponds with
+the slope of the function and that's
+what we use the finite difference for in
+evolution strategies it's a way to
+approximate
+the slope or derivative of our reward
+function and if we have that we can use
+it to update the weights of our agent to
+increase the reward so here I'm taking a
+small fraction of the finite difference
+and adding it to W every uh time step so
+if I start W off over here you can see
+we work our way up to this peak and if I
+start us off over here the finite
+difference is negative so I'm adding a
+fraction of a negative number and we
+again work oursel up to this peak so
+here we're using information from the
+finite difference to find peaks of our
+reward function and therefore get more
+reward so I like that blog post so much
+and the example that they created for it
+that I made a simple one in JavaScript
+and basically what you see here is some
+random setting of parameters so we have
+two parameters you know this one on the
+horizontal axis and this one on the
+vertical axis and wherever we're at with
+our current parameters we take a bunch
+of samples so we take a 100 samples here
+just by adding gaussian noise to where
+we currently are and then for each
+sample it looks at the background color
+and if there's blue in the background
+color it'll consider that a reward and
+if there's not it'll consider that zero
+so right now it's getting no reward but
+if I draw some
+blue you can see that it shoots right to
+where there's most reward
+so I can keep drawing blue here and our
+little guy will walk towards where the
+blue is darkest you know where there's
+most reward and you can think of the way
+this works you know if I draw this blue
+some samples will get reward that have
+the direction pointing towards the
+reward and some samples will get no
+reward that are pointing away from the
+reward and so the ones that get reward
+we're going to move in their Direction
+so if I just bring this close enough
+there you go
+so it's a really nice simple idea and I
+think this uh is just fun to play around
+with I'll I'll put the code for this in
+the description so I wanted to try
+Evolution strategies on one more problem
+something a little more complicated and
+so we have this kind of robot arm here
+and the way it works is basically it
+takes my mouse position feeds it through
+the the weights of its brain and then
+spits out some angles which become the
+angles of these joints and I want to
+train this arm to move this blue point
+as close to the mouse as possible so
+this is like an inverse kinematics
+problem I want to through changing just
+the joint angles move this blue point in
+the X and Y plane to be close to the
+mouse so I can train
+this and the red you see is the arm but
+under the influence of Weights that have
+had random noise added to them so that's
+kind of like the exploration of the arm
+now there's a faint cloud of points in
+the background and those are random
+Target points that I want the arm to
+move towards now every time step I take
+a sample of a thousand I believe Target
+points and I start the arm off in a
+position then I modify the weights by
+noise and get a new n position right
+which is the red square and if that red
+square is closer to the Target than the
+arm was before I give that a positive
+reward I do this a thousand times
+keeping track of the noise that I had
+applied and the rewards and then I use
+the rewards to create a weighted average
+of that noise and that becomes my update
+to my parameters and over time you can
+see it's kind of forming this average
+shape and if I stop
+training now the arm follows my cursor
+pretty well you know it's getting pretty
+close
+there now if I wanted to improve the
+tracking of the arm I could lower the
+learning rate or lower the standard
+deviation of the exploration so that it
+would kind of hone in and track my mouse
+better but you know I'm pretty happy
+with this it seems like it's working so
+I'll put the code for this little robot
+arm in the description as well and
+what's cool about this is It's really
+simple to change you know I can change
+the number of segments on the arm the
+length of the segments um I can change
+the number of parameters how I transform
+the features to control the arm and
+evolution strategies doesn't even care
+it's it's very simple to
+apply so that's about it for this first
+episode of today I tried let me know in
+the comments if there's any kind of cool
+ideas you want me to try out and you
+know I'll try to understand them make
+some working examples and communicate
+how they work to you guys but anyways uh
+thanks for watching and I'll see you in
+the next video
+bye-bye see you
+later kind of like a crazy leg here

@@ -1,0 +1,496 @@
+[Music]
+foreign
+welcome back so this is the third
+lecture on the series of eigenvalues
+eigenvectors and how to solve systems of
+differential equations this is one of my
+absolute favorites because this is where
+it all comes together so I'm staying
+late just for this lecture in the last
+few we have talked about why we have you
+know these ordinary these systems of
+ordinary differential equations x dot
+equals ax X is a vector a is a matrix
+and these Dynamics are coupled but it's
+a lot easier to solve this system of
+equations if a was a diagonal matrix so
+we try to find a coordinate
+transformation some Matrix T some
+invertible Matrix T into some new
+coordinate system Z so that Z dot equals
+a diagonal matrix Z because this is way
+way easier to solve this system where D
+is diagonal and the Dynamics are
+decoupled then this system here where a
+is not diagonal and specifically we
+derived the eigenvalue eigenvector
+equation for the t's and the D's where
+this is possible specifically
+a times T equals T times D this is the
+eigenvalue problem Columns of T are
+eigenvectors of a the diagonal elements
+of D are eigenvalues of a so so the the
+coordinate transformation that
+diagonalizes a are specifically The
+Matrix of eigenvectors of a and the D
+the diagonal system that you get after
+doing that these diagonal entries of D
+are the eigenvalues of a good so I think
+I want to just show a couple of things
+I'm going to do a little bit of python
+Matlab demonstration here just to
+convince you that yes in fact d
+equals what did I have t inverse a t is
+true and also conversely that if I had D
+and T
+um
+that a would equal
+uh
+T times d
+times T inverse okay and it's really
+really really easy to compute
+eigenvalues and eigenvectors in Matlab
+and python so I'm just going to show you
+that real quick and then what I'm going
+to do kind of the culmination of this
+set of lectures is I'm going to use I'm
+going to assume that we've gotten a
+we've decomposed a into its eigenvectors
+T and its eigenvalues D so you know
+however means you know python or Matlab
+we started with a and we solved for T
+and d and then I'm going to show you
+that with those matrices I can solve my
+original system of equations up here so
+this is like my favorite lecture in
+differential equations so far and so I'm
+just going to show you right now
+so the first thing I'm going to do is
+I'm literally just going to
+confirm in fact that you know it's easy
+to get eigenvalues and eigenvectors okay
+so I'm going to start in Matlab so I'm
+creating an a matrix 0 1 negative 2
+negative 3 and all I'm going to do is
+get its eigenvectors T and its
+eigenvalues D using the IG command the
+built-in IG command so it's literally
+one line to get all of the eigenvectors
+and all of the eigenvalues so I'm just
+going to uh run that
+and so T our eigenvectors one okay so it
+normalizes them so that they have length
+one so if you take you know this entry
+squared plus this entry squared it'll
+have length one same with this but
+um essentially you can think of this as
+you know the one negative One Direction
+and this is the I guess it looks like
+the minus one two direction
+and what I'm going to confirm for you
+and then our eigenvalues are negative
+one and negative two
+so I'm going to confirm these two
+expressions here
+so if I take
+in of T times a times T that had better
+equal my diagonal matrix
+and yes in fact it does minus one zero
+zero minus two and I'll confirm the
+other one that if I take T times my
+diagonal matrix times the inv of T that
+should equal my original a matrix and in
+fact it equals 0 1 minus 2 minus 3. good
+quick sanity check it's real easy to get
+eigenvalues and eigenvectors one line of
+Matlab and these properties that we
+think should hold do in fact hold
+let's just do kind of similar things in
+in Python here again you can you know
+import numpy as NP I actually don't need
+these other ones this is just from
+another script so I'm going to create an
+array the same array 0 1 minus two minus
+3 and it's just as easy to get
+eigenvalues and eigenvectors it's just
+you know from NP Lin alge it's again the
+IG command so just I give a and it spits
+out eigenvalues and eigenvectors in
+these these structures so I'll just run
+this run run edit printed out the
+eigenvalues if I want to uh what's
+happening
+if I want to print the E the IG Vex that
+should also work and again it is
+normalizing them to be unit
+um unit Norm so you can Define your
+eigenvector any Vector along an
+eigenvector direction is technically an
+eigenvector we usually pick the
+convention that our eigenvector has a
+unit length that uniquely determines it
+okay and these are the same as before
+and so clearly these are also going to
+hold
+good um that's all I wanted to show you
+in code so now what I'm going to do
+is we are going to use these um diagonal
+matrix D and these eigenvectors T to
+solve our differential equation
+okay
+um and so we know
+that it's quite easy to compute
+um it's easy to compute the solution of
+this this is just
+Z of T equals e to the Matrix D time
+times whatever initial conditions I have
+I should probably write down my initial
+conditions I have you know X at time 0
+are my initial conditions and those
+initial conditions are going to you know
+have a corresponding initial condition
+in Z this is literally
+Z naught is T inverse X naught that's
+pretty simple
+and I'm
+mentions x dot equal s Lambda X if I had
+um if I had x dot equals Lambda X for a
+scalar X and for a number Lambda
+and I had some initial condition
+then the solution would be X at time T
+equals e to the Lambda t
+times my initial condition e to the
+Lambda T times x naught and so here I'm
+guessing
+that I get something similar that X my
+Vector X at time T is probably going to
+be e to the Matrix a
+times time
+the vector of initial conditions okay
+now the question is how do I compute
+this Matrix exponential I haven't shown
+you how to do this and so that's kind of
+one of the things I'm going to show you
+in this lecture is how do you compute
+this Matrix exponential and how do you
+use T
+and D to make it really easy to compute
+this thing
+so
+I shouldn't have erased all of my stuff
+so we know that a
+is equal to
+t d
+T inverse
+what do I want to to do here I want to
+tell you that this Matrix exponential
+sorry I'm skipping a step here this
+Matrix exponential e to the A
+T and I'm going to drop the under bars
+we know that a is a matrix
+I told you before that you can take the
+power series expansion for the
+exponential e to the X and you can
+substitute in this Matrix a t every time
+you see that variable X so the power
+series expansion of exponential says
+that this should be
+I'll write e to the X so e to the x is
+just 1 plus X Plus x squared over 2
+factorial plus X cubed over three
+factorial plus x to the fourth over four
+factorial plus Dot
+and so this
+this is going to be a matrix this isn't
+going to be a scalar so instead of one
+it's going to be the identity
+and instead of X it's going to be I'm
+going to substitute in a t every time I
+see an X so plus a t plus a squared t
+squared over 2 factorial plus a cubed T
+cubed over three factorial plus dot dot
+dot dot forever and ever and ever
+now
+Computing these Matrix Powers is going
+to get pretty tedious pretty fast like
+matrix multiplication is not cheap for
+big matrices so I don't want to be
+actually Computing all of these Matrix
+powers and so I'm going to use T and d
+and special properties of those to make
+it really really easy to compute these
+things that's that's kind of uh what I'm
+going to show you now
+Okay so um
+we already know that a equals T DT
+inverse that's fine we computed this
+using you know the IG command and python
+or Matlab and now I can write that a
+squared this is where it gets pretty fun
+a squared is just this thing times
+itself so it's t d
+times t d
+but notice that I have a t inverse times
+T so these actually cancel out
+and this equals
+T times my diagonal matrix squared
+times T inverse
+and this is actually not so bad to
+compute D Squared is easy I just Square
+all of the diagonal entries right like a
+diagonal matrix times itself a diagonal
+matrix squared is just the square of the
+diagonal entries okay it's another
+diagonal matrix where the entries are
+squared so this is actually easier to
+compute similarly we can compute A3
+a cubed that is uh t d t inverse times t
+d t inverse times T I hope you're seeing
+the pattern here T inverse
+again all of these in the middle cancel
+and I'm left with
+t
+D to the third power
+T inverse again this is really easy to
+compute D cubed that's just a diagonal
+matrix with all of the entries of D
+cubed so that's nice and I can do this
+add nauseum if I wanted
+dot dot dot
+a to the power n the nth power of a is
+just going to be the same exact thing
+it's going to be t
+D to the power n
+and so basically every single term in
+here whenever I see an A or an a squared
+or an A cubed or so on and so forth I
+can plug in these expressions in terms
+of its eigen decomposition in terms of
+its eigenvectors and eigenvalues
+sometimes I call that it's eigen
+decomposition this is the eigen
+decomposition of a
+and I'm going to use one more fact which
+is that this identity
+I
+can be written as t
+times T inverse okay that's all we need
+to write this down
+so what I'm going to write is that this
+expression here equals maybe I'll use
+pink since most of these here are pink
+so this equals uh
+T times T inverse
+Plus
+T times D times T inverse little time
+plus T times D squared times T inverse
+little times squared over 2 factorial
+T times D cubed T inverse little time
+cubed over 3 factorial plus dot dot dot
+forever and ever and ever
+and now what I can do is I can say that
+every single term in this has a big T on
+the left
+and a big T inverse on the right this
+scalar thing I can move that anywhere
+because it's just a scalar so the Matrix
+part of this has a big T on the left and
+a t inverse on the right for every
+single term in this expansion
+and so that equals Big T
+times identity
+plus dot a bunch of stuff
+times T inverse and this is the stuff
+inside is the identity plus a diagonal
+matrix t plus a diagonal matrix squared
+t squared over 2 factorial plus a
+diagonal matrix cubed T cubed over three
+factorial Plus
+and now you'll see so like if that was
+too fast just pause and convince
+yourself that this equals this I
+literally just popped this big T on the
+left from all of these and this big T
+inverse on the right from all of these
+and then I collected all the stuff in
+the middle identity Big D times T Big D
+Squared t squared over two factorial D
+cubed T cubed over three factorial
+and now
+actually really really easy all of the
+stuff in the middle is the power series
+expansion the the representation of e to
+the diagonal matrix t
+but we know that this is actually really
+easy to compute all of these matrices
+all of these powers of D are just
+still diagonal matrices and so to get
+this e to the power Matrix D times t
+this is literally just a diagonal matrix
+you know e to the Lambda 1 t e to the
+Lambda 2T dot dot dot dot with zeros
+everywhere else I can just write this
+Matrix exponential down for this
+diagonal matrix I don't even have to
+compute this this is just I can write
+this down okay it's a diagonal matrix
+with e to the Lambda T's
+and so now I hope you're seeing that
+instead of computing this infinite set
+of powers of a which is going to be
+heinous to do now all I have to do is
+compute the eigen decomposition I get T
+and D
+I compute e to the DT and I multiply it
+on the left with Big T and on the right
+with Big T inverse and that is my
+solution my solution X at time T I'm
+going to write this down maybe I'll
+write it down in green
+X at time t
+is equal to Big T
+e
+to the diagonal matrix times time
+times Big T inverse that's e to the a t
+all of this is e to the a t
+times
+X naught
+okay this is the solution this is
+the solution
+to x dot equals a x
+with this initial condition X naught
+original differential equation that was
+really hard to solve maybe I could have
+you know guessed that this is the form
+of the solution but still how do I
+compute this Matrix exponential this is
+going to be a nightmare to do for a
+generic a matrix so instead what we do
+is we think well it would be a lot
+easier if this was diagonal so let's
+find a coordinate transformation into a
+coordinate system Z where my Dynamics
+are diagonal
+and decoupled so I know how to solve
+that easily it's easy to compute e to
+the
+diagonal matrix T I do that by finding
+my eigenvalues and eigenvectors of this
+a matrix so my eigenvectors T my
+eigenvalue is D and then I also find
+that those eigenvalues and eigenvectors
+make it much much easier for me to
+compute this Matrix exponential I can
+kind of write every time I see an a
+matrix I can write it in terms of its
+eigenvalues and eigenvectors I can split
+terms and collect terms and get this
+very simple expression that that Matrix
+exponential e to the Matrix a times time
+is a matrix I know times a really easy
+diagonal exponential Matrix times
+another Matrix I know I can compute all
+three of these terms very very easily
+whereas I could not compute all of these
+infinitely many terms easily so this is
+much much nicer
+okay one last thing I want to show you
+this is kind of uh for me one of the
+highlights of this lecture is now we're
+going to interpret this expression this
+solution so this is a big deal this is
+the solution we're going to interpret
+this step by step okay
+so this T inverse times x naught
+T inverse times x naught is literally Z
+naught so this term here is
+Z naught
+so essentially what we're doing is we
+are taking our initial conditions in the
+x coordinate system in my original
+coordinate system that I you know I
+wrote down my Dynamics in my original x
+coordinate system for some reason I must
+have had a good reason so now what I'm
+going to do is I'm going to take my
+initial conditions
+I'm going to map them through T inverse
+into a set of initial conditions in my
+nice Z coordinate system so this is you
+know I'm writing I'm writing
+my initial conditions
+uh in Z coordinates in Z coordinates
+then what I'm doing
+is I'm multiplying by e to the Matrix d
+t so this whole thing e to the Matrix
+the diagonal matrix D times time times Z
+naught
+this is literally
+Z at some future time T this is z of t
+so what I've done is I've taken my
+initial condition I've mapped it into Z
+coordinates where it's easy to to write
+down the solution it's easy to write
+down Z of T in these Z coordinates it's
+just you know my initial condition times
+this diagonal matrix that's Z of t
+so this is my uh solution
+in Z coordinates
+which is easy
+and then finally what I do is now I have
+the solution in Z coordinates but again
+I wanted it in x coordinates in the
+first place I care I started in x
+coordinates and so to get back to x
+coordinates I just multiply by a big T
+that's multiplied by Big T and now I'm
+back in X so now we're back to the
+solution
+in x
+coordinates and I think this is just
+really really cool like this for me is
+one of my favorite pictures in uh in
+differential equations is
+this solution here and this real
+physical interpretation these matrices T
+and D are not magic okay this is not uh
+eigenvalues and eigenvectors don't come
+out of nowhere they are very very simple
+and intuitive matrices that are useful
+for solving systems of differential
+equations the T inverse Matrix Maps me
+from x coordinates into Z coordinates my
+initial condition X naught into Z naught
+in those Z coordinates my Dynamics are
+diagonal this diagonal matrix are my
+eigenvalues of my a matrix and so it's
+easy to write e to the DT to solve to
+move Z naught forward in time to Z at
+some future time
+and then to go back to my original
+coordinates I just multiply by T again
+so very very intuitive very very kind of
+simple in terms of eigenvectors and
+eigenvalues how you solve x of t Okay
+um good that was it that was a big
+lecture I'm ready to go home now
+in the next lectures we're going to look
+at specific a matrices that have certain
+structure that have really interesting
+eigenvalues and eigenvectors so for
+example when these eigenvectors are
+purely real and negative this will be a
+stable system when they're purely real
+and positive it'll be an unstable system
+when they are imaginary I'll have a
+rotating system you know kind of
+oscillating system cosines and Sines and
+I'm going to build up all of your
+intuition for these systems of
+differential equations for the whole
+menagerie of of ordinary differential
+equations you can have in terms of these
+eigenvalues and eigenvectors this is the
+new language we're going to use to
+understand these systems of equations
+okay that's all coming up soon thank you

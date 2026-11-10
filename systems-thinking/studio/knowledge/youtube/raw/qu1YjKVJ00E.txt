@@ -1,0 +1,323 @@
+hello viewers in this video
+we are going to talk about the
+betweenness centrality of a node
+betweenness centrality helps to evaluate
+the importance of a node
+based on the fact that how much
+information flows through this node
+so if a node occurs to be in the
+shortest paths of
+most of the other pairs of nodes then
+that node is very important because
+whenever those two nodes communicate
+they have to communicate
+through this node so in terms of
+information flow the importance of a
+node is calculated through betweenness
+centrality
+we are going to calculate it with the
+help of an example
+graph
+so before we continue let's write down
+the formula for betweenness centrality
+for any node i between the centrality
+can be calculated as
+summation of j not equal to k
+so we are going to pass through all
+pairs of nodes
+calling them j and k where they must not
+be the same node so this is inequality
+that j should not be equal to k
+or in other words the two nodes for
+which we are finding the
+shortest path must not be the same node
+this is the shortest path between j
+and k that has the node i in them and
+this is the
+shortest paths that we have between j
+and k
+so it's the summation of shortest paths
+of
+all nodes that has the node i
+divided by the sum of all shortest paths
+of all other pairs of nodes ignoring the
+node
+i now let's just evaluate it
+for an example graph
+so if we have this graph let's say we
+have node a
+b c d
+e and we have these edges between them
+okay so in order to calculate the
+betweenness centrality for node a
+we first need to find out all the nodes
+that are having a path between them if
+two nodes do not have a path between
+them
+we may just simply ignore those nodes
+so the betweenness centrality of node a
+is going to be
+the sum of all pairs of nodes that are
+having shortest paths
+and whether it has a so in order to make
+sure that we don't
+miss any of these pairs so let's just
+write them down
+and again i repeat we have to ignore the
+node a
+so we can have the shortest path between
+b and c and since it's an undirected
+graph so we don't need to
+evaluate it for the shortest path from c
+to b because obviously that is going to
+be the same
+then b to d and
+b to e c to d
+and c to e and then finally
+d to e so these are all the pairs of
+nodes that are going to be
+helpful in calculating the betweenness
+centrality for the node
+a now let's just find out the shortest
+path between c
+and between b and c so the shortest path
+between b
+and c is this one it has just one
+shortest path having
+having one hop so the shortest path
+and c is one and it does not
+include a so it's going to be zero by
+one
+it does not include a so we have zero
+over here
+because this considers all the shortest
+paths between j and k
+that has the node i in it i in our case
+is a
+so we have a total of one shortest path
+and c and that does not contain the node
+a
+so it's going to be zero by one plus
+now you have to go look for this one b
+and d so
+again the shortest path between b and d
+is this one
+it's one hop so we have just one
+shortest path between b
+and d and that does not have a in it
+so it's going to be zero divided by one
+the shortest path between b and e
+so now we have multiple shortest paths
+and
+the shortest path between b and e can be
+this one
+so this is one shortest path and this is
+another shortest path
+they both have the cost of
+two there isn't any other
+in fact we have a third one also and
+that is
+from b to c and then from c to e
+so all these three paths are the
+shortest paths they all have
+cost of two so we basically have
+three shortest paths between b and e
+and a happens to be in one of them
+that is b a e and it does not
+occur in the other two shortest paths so
+it's going to be
+one by three now we have to calculate it
+for
+c to d so c to d again we have just one
+shortest path
+and it does not contain
+a so it's going to be zero by one and
+for c to e we have
+again this one shortest path and that
+does not contain
+a so it's again zero by one
+and for d to e we have just one shortest
+path and it does not contain a
+so that will be another zero by one so
+if we add that up
+it's zero plus zero plus so it's
+basically one by three
+so this is the betweenness centrality of
+the node
+apart from this value everything else is
+and this is basically the between a
+centrality for node a
+let's just calculate it for one more
+node so
+the betweenness centrality
+so if we have to calculate the
+betweenness centrality for the node
+let's say
+d so all the pairs of nodes that we
+have to consider are a to b
+a to c a to e
+b to c b to d
+and b to e
+oh sorry we have to ignore d
+so it's going to be b to e
+c to e and
+that's it so these are all the pairs
+that we have to consider that we have to
+consider
+so now looking for the shortest path
+between a and b
+we have this shortest path between
+a and b and it does not contain d
+so it's going to be 0 by 1
+plus the shortest path between a and c
+so we have this shortest path between a
+and c which is
+a b c and then we have this shortest
+path also from a to e
+and e to c so we have two shortest paths
+between
+a and c and they both do not contain
+d so it's going to be zero by two
+plus from a to e
+we have the shortest path that does not
+contain d so it's 0 by
+1 plus from b to c
+this is the shortest path and it does
+not contain d so it's again zero by
+one plus b to e
+so b to e has this path that is
+through a then this is also the shortest
+path having two
+cost or two hops that is b d e and then
+we can go through b
+c and e as well so from b to e there are
+three shortest paths they all have a
+cost of two
+so there are three shortest paths and d
+happens to be
+in one of them plus the shortest path
+c and e c and e again
+can be directly connected through this
+edge so they have a cost of
+one and d does not happens to be in this
+path so it's 0 by 1.
+so these are all the values and again
+this is the only non-zero value so the
+betweenness centrality
+of node d is also
+one by three so that's how we can
+calculate the betweenness centrality of
+an undirected graph now if the graph is
+directed
+everything remains to be the same
+however we have to be careful
+that the paths that we are following
+must be
+through the directed edges and therefore
+we have to look for nodes
+that cannot be reached from another node
+and we can simply ignore those nodes
+so now we'll just redraw this graph
+and add some directions to it so we have
+a b c
+d e
+and this time we are going to have some
+directions on these edges so
+some of the edges may be bi-directional
+so we have added directions to all the
+edges and now we can calculate the
+for this directed graph
+let's say if you want to calculate it
+for the node
+b so again we'll
+have to write down all the pairs of node
+in order not to miss on them so
+the pairs are a to c
+a to d a to e
+b sorry we do not have to consider b
+so then c to d and c to e
+and then d to e so these are all the
+possible note pairs that we have to look
+to
+so a to c from a
+we can go to b then d and then c
+so this is one way of getting to c that
+has a cost
+of three let's see if we have another
+from a we can go to e d and e
+and then from a we can go to e and we
+can go to c so basically this is the
+shortest path that is
+having two hops that is from
+a to e and then from e to
+c so this is the only shortest path all
+the other parts have a cost higher than
+this this is the only
+path that has the cost of two it does
+not contain b
+so it's going to be 0 by
+1 for a to d
+we can go from a to d that is through e
+and we can do the same through b also
+so there are two shortest paths from a
+to d
+and b happens to be in one of them so
+this is
+one by two plus a to e
+so from a to e we have only one shortest
+path
+and b is not part of it now
+c to d from c we have to go to b
+and then d so this is one shortest path
+in fact this is the only shortest path
+so there is only one shortest path and b
+is part of it
+then c to e
+from c to e uh we have to go through
+b d uh sorry we cannot go through that
+in fact from c we cannot reach e and
+this is what
+i wanted you to be careful about so
+there is no path from c
+to e so we can simply ignore this or
+even if we introduce some smoothing
+value
+that is still not going to have any
+effect on
+how we differentiate between nodes based
+on their between a centrality so just
+ignoring this
+pair of node is not going to make any
+difference so
+just to have reduced computational cost
+we can simply get rid of it because
+as you can see from here we do not have
+any path that could take us from c to
+e now from d to e
+again from d to e again we do not have
+any shortest path so we can just simply
+ignore this pair also
+so the between the centrality score for
+the node b is
+1 by 2 plus 1 which is going to be
+1.5 so this is the between the
+b when the graph is directed and that's
+how we can calculate between the
+the betweenness centrality formula that
+we are using is
+introduced somewhere around 1970s
+there are other variants of it so this
+isn't the only way how between a
+centrality can be calculated
+so keep watching and let me know if you
+want me to make
+more videos on such related topics this
+video also was requested by some of the
+viewers
+that the previous video on between a
+centrality was
+too short and we skipped many in between
+steps so therefore
+this one is more detailed and is going
+to help you to calculate betweenness
+for your crafts thanks for watching

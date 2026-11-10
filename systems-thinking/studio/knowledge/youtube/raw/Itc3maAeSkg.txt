@@ -1,0 +1,568 @@
+[Music]
+foreign
+just starting out I'm going to be
+actually going over some of the same
+ground that Jeff did earlier although
+with a little bit of a different bent so
+um
+don't be surprised about that and as a
+quick disclaimer there are a number of
+people here who are much more qualified
+on the technical details I'm going to
+present so if that's you please do jump
+in and correct me if I don't get
+anything quite right that said let's get
+started
+so those of you who have played shooting
+up levels on Eterna are probably
+familiar with this image here showing
+the lack of our trusty energy numbers
+and you're probably lamenting the loss
+of this really invaluable tool for
+making progress when solving puzzles
+particularly the tricky more tricky ones
+and I've already talked a bit in the
+past in town halls and Forum posts about
+why but I'm going to go a little bit
+deeper into what's going on here why
+we're probably going to see this more
+and more going forward and what might
+actually be a good thing
+so we're going to talk about a few
+different things first off some high
+level discussion about how our folding
+engines work under the hood and how
+we're moving beyond just looking at free
+energy how we can reframe our approach
+to solving puzzles under this new
+paradigm and finally how we can evolve
+the ways we visualize RNA to match that
+so first up a refresher on
+thermodynamics that is hopefully
+accessible to the near human uh like I'd
+like to claim myself to be and if you're
+interested in this topic I do recommend
+taking a look at uh Nando's
+Eternal contact from 2016 which is on
+eterna's YouTube channel as well as this
+addictional lecture that he recorded and
+puts in the Eternal Wiki not directly
+related to what I'm going to talk about
+but just as far as
+interworkings of the energy model and
+some interesting learnings that we can
+take from it I I found these to be very
+interesting and reframed some things uh
+just even just as I was putting together
+this talk
+now when we talk about free energy
+what do we mean by that we have this
+magical number that somehow going more
+in the negative is better okay
+but what what does this mean what
+you one way of looking at it is how much
+energy is required for something to
+happen with the familiar metaphor of
+magnets when you have two magnets with
+the same polarity pointing to each other
+like to uh you know Northern the this
+this North polarity
+if you've ever played with Magnus before
+right that one's being kind of hard to
+do you get a bunch of resistance they're
+actively trying to not be together but
+if you flip them around not only do they
+naturally want to come together but if
+you you know I don't know took two
+weights on the end of the Magnus they'll
+actually move those weights so they're
+exerting force and they are instead of
+needing energy to be put into the system
+of two magnets to get them to do
+something you actually have energy
+leaving the the system
+and through scientific experiments we
+have measurements of the energy involved
+in forming different RNA structures so
+you know when you have cross gu pairs
+remember that gu super boost or you have
+a CG next to an au pair in a stack or a
+GCE next to a touch loop with with a G
+boosting it right we know how much
+energy is being exerted or how much
+energy you have to put in to make these
+structures and those are the numbers
+that you see in Eterna which are
+conventionally called nearest neighbor
+free energies and if you have a positive
+number that means energy is required and
+negative energy or that the negative
+number means that the RNA is actively
+working to form that shape and this is
+the foundation of thermodynamic models
+like Fiona or new pack which is what you
+turned on originally started with
+now once we this is all fine and good
+but how do we actually get predicted
+structures out of that and that's
+actually a pretty difficult task for our
+models they actually wind up going
+and looking through all possible
+different pairs the RNA can make all the
+different possible structures for this
+given sequence and it calculates the
+energy of so for each individual
+structure it will go through and
+calculate the energy of each kind of
+substructure so each Loop or quad so two
+stacks together and it'll sum up all the
+the substructure energies all the
+nearest neighbor free energies in that
+structure and we'll compare it for
+all of these different possible
+structures in a bit of a smart way using
+some fancy dynamic programming tricks in
+in the actual algorithms themselves to
+make it more efficient
+but the it winds up trying to figure out
+what is the structure with the lowest
+total free energy which we call the
+minimum free energy structure and that's
+what you end up seeing in natural mode
+and all of these different possible
+structures together we call the ensemble
+and when an RNA is actually synthesized
+there will be multiple copies of that
+same sequence in
+the experiment and even in nature you
+know
+when you have different copies of the
+same sequence they're not always going
+to be folding into the same structure
+and they'll be even changing between
+them over time
+and that's where we take a quick
+diversion into statistical mechanics and
+don't worry this isn't going to be on
+the test there's not going to be a test
+but
+anyways as it turns out the probability
+of forming a particular secondary
+structure
+is correlated to its free energy
+and this is what's in particularly
+correlated in what's called a bolt spin
+probability distribution so let's
+actually reflects the underlying
+chemistry where the electrons are
+hanging out on the atoms in these
+molecules
+why do the rnas behave this way it's
+because that's how the chemistry behaves
+and the top equation here
+is called the partition function which
+you may have heard that term before and
+what we do is we sum What's called the
+boltzmann factor this bit on the right
+which is
+derived from the free energy in the
+temperature specifically you have
+Euler's number raised to the power of
+the negative free energy divided by the
+bull spin constant times the temperature
+and
+on the and so we've done that over all
+the different possible structures and
+that's what's called the partition
+function and we can use that in this
+bottom equation to say hey we have a
+particular structure we can take the
+boltzmann factor of that structure
+and compare it to
+this the the output of the partition
+function so all the structures and
+that's going to be the probability that
+that structure shows up right and when
+we talked about the entire ensemble of
+structures not only is this useful when
+we're actually looking at predictions
+from algorithms saying oh well there's
+it's more or less likely to show up this
+is actually when you're actually
+synthesizing them this is the percentage
+of time a given sequence or a given
+structure will wind up or if the
+percentage of time uh one of these this
+sequence that we're looking at will fold
+into the particular structure that we're
+looking at or when you have a bunch of
+different uh
+copies the percentage that are going to
+be folding into these different
+structures
+so to oversimplify this a little bit
+the free energy of a given sequence
+or of a given structure
+for a sequence compared to the total
+free energy looking at all different top
+different possible structures gives you
+the structure the possibility of that
+structure occurring and this winds up
+giving rise to a lot of different
+interesting properties in RNA switches
+and RNA kinetics but that's beyond the
+scope that we're talking about here
+and also this is where our Dot Plot
+comes from what is the probability that
+two different bases will pair given the
+probabilities of all the different
+possible substructures so
+looking at all the diff you know when
+we're talking about this
+pair here
+right and what percentage so out of all
+the different
+possible structures which ones include
+the space pair and then when we sum up
+the probability of all those different
+structures what winds up being the
+probability that you know it's going to
+be one of those
+now that being said we have a new kid on
+the Block which is machine learning
+based models as riju was talking a bit
+about before you've probably heard the
+terms machine learning and artificial
+intelligence thrown around a lot lately
+but it winds up being quite useful now
+it's a little bit magic with a bit of
+statistics and a lot of data
+computers can determine complex
+relationships that would be really hard
+to come up with just by hand and it's
+not foolproof and it takes a lot of work
+to come up with something that's not
+completely
+meaningless but it winds up being done
+well it provides a really powerful tool
+that we can use
+models like Eternal fold and Contra fold
+which is based on wind up using this
+approach and instead of measuring the
+parameters for different types of pairs
+or different Loop sizes we take
+some known structures right where we
+what it should roughly fold up to uh
+when when synthesized because you know
+we've done those experiments
+and then
+takes those sequences comes up with
+their The Ensemble structures
+and then says hey we have all these
+parameters and we want to just come up
+with the values of those parameters that
+such that
+no matter what sequence we throw into it
+that the correct structure always comes
+out on top
+and because of the boltzmann
+distribution that we saw before we can
+actually use that in Reverse so when we
+so the output of models like Contra sold
+and eternal fold wind up being
+probabilities and we can take those
+probabilities and go back to
+free Energies
+so then what's with the free energy not
+being available
+well first off bugs uh and this is in
+particular with
+um new pack
+energy calculation is straight up broken
+in a number of different ways in the
+best case the results are completely
+bogus in the worst case it crashes just
+again specifically with pseudo knots if
+we ignore pseudonyms for a minute the
+Eternal fold energy calculation you
+might know actually have noticed that
+it's not quite right there are some
+situations where the minimum free energy
+structure has a higher
+energy than the target structure which
+shouldn't be possible as far as I can
+tell that's due to some sort of bug in
+the way that the energies are calculated
+from the probabilities or maybe a
+difference in the ways that the
+different parameters work I'm not
+entirely sure
+but then when we look at our thresh not
+based predictions or suited that so
+winds up being a little bit more
+interesting because thresh not doesn't
+use free energy in the same way that
+these other models do
+even in the way that Eternal folding
+Contra fold do and the natural mode
+it's not a free minimum free energy
+structure at all
+so what fresnot does is it takes those
+face pairing probabilities that we saw
+before and in the case if you turn a
+full thresh shot they're actually the
+probability is coming from Eternal fold
+not even taking into account certain
+other structures and it comes up fresh
+not comes up with the structure saying
+as long as so when we look at a given
+pair
+as long as it's greater than some cut
+off and we wind up using 0.15
+as long as the the probability is
+greater than that cut off and it's the
+most likely uh pair for both
+both of the bases involved so in this
+case both the the highest value for both
+the row and the column then we'll use
+that as part of our structure
+and that means that the structure that
+we wind up getting out of it
+might not be the one with the lowest
+energy
+we don't even have calculations
+we don't have numbers for the these uh
+structures that are involved in
+pseudonauts so when uh you know we know
+we know how to come up with energy
+numbers from Eternal fold
+or through Eternal we can come up with
+with them for non-seaternity structures
+but we don't when it's forming these
+pseudonym regions we don't actually have
+those numbers in the first place
+and also the default behavior for
+Eternal fold which we don't use
+is actually kind of winds up being even
+without taking students into account why
+is it doing something similar to the
+threshnet algorithm
+and it provides What's called the
+instead of a minimum free energy
+structure it provides a maximum expected
+accuracy structure so we choose some
+pairs or lack of pairs based off of
+whatever makes the probability across
+all the bases and pairs on the entire
+the highest
+instead of whatever makes the
+probability
+of the structure itself the highest
+and again this might not be the minimum
+free energy structure
+and this approaches wound up being more
+accurate so
+going back to
+this
+we don't have energies in some cases
+because
+that the energy is broken in some cases
+we're coming up with calculations that
+we don't have the data and at the very
+least when you're looking at the Delta
+the Delta is going to be meaningless
+anyways if we're using a way of getting
+a structure that is not related to
+finding the structure with the lowest
+back to machine learning we're seeing
+some newer methods that may not even be
+based around the likelihood of
+Computing probabilities or energies for
+substructures in a way that we can turn
+it back into an energy at all and it
+might use some more opaque calculations
+so for example we might take some
+strategies from text and image
+processing doing something like taking
+overlapping sequence regions and
+throwing them through multiple layers of
+calculations that wind up getting
+combined together and we need to find a
+way to work with
+people to solve puzzles
+well we don't have that trusted tool of
+energy and the energy Delta but at least
+so far
+the tools that that are being developed
+we can still have some form of base
+pairing probabilities
+and as it turns out the way that we
+currently approach puzzle solving trying
+to come up with the minimum free energy
+structure it's actually pretty
+complicated and non-intuitive
+I like to describe the current situation
+as an adversarial Sudoku so imagine
+instead of dating a zero to nine in
+every box row and column that's the
+normal Sudoku you need to come up with a
+set of numbers where you plug plug them
+in a particular order you take that you
+put it into a massive chart of formulas
+you get a number and you can't have an
+arrangement of those numbers that you
+chose such that there is an entry in the
+chart that adds up to an even lower
+number or that there winds up being a
+lower number and by the way we have
+multiple sets of these magic formulas
+and none of them are easily accessible
+for you to figure out what they are if
+you ask me that's pretty Bonkers I think
+Eternal players are
+insane for being able to do as well as
+they have and it's no wonder that new
+players get really confused when they're
+going and solving puzzles and they say
+like why did this whole puzzle blow up
+when I just made one small change to
+this area over here well because
+what you're doing is not actually just
+changing the behavior of the target
+structure it's not just well I flip this
+pair so the target structure behaves
+differently you're actually changing all
+these this entire ensemble structures
+which we don't really surface anywhere
+but maybe it's better to instead of
+Sudoku maybe it's better to compare this
+to I'm not sure if anybody's seen this
+this thing that's making around it's
+making its rounds uh and there's a steam
+game 5D chess with Multiverse time
+travel
+um so maybe it's not quite this bad
+but instead of our typical approaches of
+getting the energy Delta down to zero
+and relying on
+sub sections and branches of an RNA
+staying intact we make changes to one
+region when it's not causing
+interactions with some other regions
+what if we looked back at the Dot Plot
+which is kind of an easily overlooked
+tool but it's proven really important in
+success in the lab
+and if we focus more on this instead of
+our the energies I think this actually
+gets us closer to what our goal has been
+the entire time in puzzle solving and
+especially doing well in the lab which
+is increasing the likelihood of our
+Target structure when we compare it to
+the entire ensemble
+and we actually get a few benefits here
+so first off we get a continuous scale
+of improvement rather than just solve it
+or not you as you're solving a puzzle
+and you haven't gotten the predictive
+structure to match you have an idea of
+progress I mean you kind of get that
+with the Delta but you have a better
+idea of I'm getting closer to getting
+this structure correct and especially on
+you know at the level of individual
+bases
+and then even after you have matched the
+one predicted structure you can even
+work on improving it further to get it
+more and more likely that it's going to
+work correctly
+additionally we this means there's a
+higher visibility into the Ensemble
+which means more insight into for
+players into how the RNA actually
+operates plus also
+I think it winds up being a better
+intuition when you're solving puzzles
+instead of as I said before instead of
+flipping Pairs and magical structure
+solves you can directly see how the
+changes that you make are impacting the
+outcome by seeing how you're changing
+the likelihood of interacting with
+different bases across the entire RNA
+but we have one more thing to deal with
+which is how do we visualize this
+information The Dot Plot is not exactly
+the most intuitive
+one option could be taking the example
+provided by J nickel with his Dot Plot
+puzzles using and actually coloring the
+individual bases based on their
+probability of being correct or maybe
+Anderson Lee's Arc plot booster which we
+saw before
+which is you know what one way that you
+can do it is just basically like the Dot
+Plot but also these
+arcs and the Rings give you a better
+intuition for how individual bases are
+kind of connecting to each other it's a
+bit less abstract
+maybe we could also do something that's
+a little bit more Dynamic and something
+that you can play around with a little
+bit more
+let's take the idea of the arc not
+or the arc plot and actually overlay it
+directly on our existing 2D
+representation you don't want to see all
+the lines all the time or else you're
+not going to be able to actually see
+anything but what if you said hey just
+show me the probabilities of different
+interactions with just one base or show
+me all of the probabilities above a
+certain likelihood or below a certain
+likelihood
+or maybe what are the possible pairings
+across in you know when you're looking
+at an entire stem for example
+or maybe we
+get a little even more abstract and we
+say hey let's look at our RNA not as
+individual bases in pairs but as higher
+stems and loops and say hey what when
+we're looking at the Target structure
+what's the the probability of this
+entire stem and what other you know is
+it
+having issues internally or is it
+potentially interacting with some other
+larger region of the RNA and then you
+can
+collapse instead of having all these
+arcs going all over the place to kind of
+collapse that information down a little
+and you can zoom into and work on
+individual sectors from the smaller
+level
+maybe there's a way we can start
+exposing more of the individual
+sub-optimal structures than what you see
+in the actual mode or maybe it's
+something that no one has thought of yet
+and I think there's a lot of potential
+it's an area that we have but really I
+don't think thought too much about and I
+think there's a lot we could potentially
+do
+we have point being we have a
+challenging problem at hand but I think
+we also have some powerful tools that
+are exposed at our disposal and um uh
+the chance to explore some exciting
+ideas and maybe we can take our 5D chess
+and turn it into something a little bit
+more manageable thanks

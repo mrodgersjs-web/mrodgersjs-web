@@ -1,0 +1,563 @@
+In today's video,
+we're going to be building what I'm
+calling Hermes
+front end, probably.
+It's listed as Hermes Canvas here, but I
+think I'm calling it Hermes front end.
+But, I haven't quite settled on the
+name, but the idea is a dashboard
+plugin. I think it's going to be a
+plugin. I'm not exactly sure, like I
+said.
+Um but, this is going to be for Hermes
+Agent that turns an existing web
+dashboard into a live front end creation
+studio.
+So, the basic idea is to have a use the
+current dashboard, I think is the best
+way to do this.
+So, like this is the
+the dashboard, Hermes dashboard, that
+you start up.
+If you you just do Hermes dashboard,
+and you'll get something like this. And
+these are very customizable. I did This
+is um another plugin.
+And this is the one I built in the one
+uh video you've seen earlier.
+The idea is going to be to when you're
+building a project in Hermes Agent,
+I want to create something that has a
+like a chat here.
+And then, over here is going to be
+an image of your front end,
+what you're working on, what you're
+building. And usually, when you're
+building front ends on local dev,
+you will start a local server, which I'm
+sure you've seen uh npm dev or
+pnp
+pm dev dev, those kind of things. And it
+starts a local server that you can look
+at in your browser.
+And then, as you work on the the file in
+whatever tool you're using,
+it will change. So, the idea is to do
+this for Hermes Agent, similar in spirit
+to like law design,
+which I've been using to build some
+front ends, but I thought this would be
+an interesting
+tool to do in Hermes Agent itself, where
+we could chat with Hermes, your agent
+here,
+and help design the front end.
+And you would have all of the Hermes
+skills and
+all the memories and knowledge about
+your projects, and you should could just
+do it here. So, that's the idea.
+Um I think it'd be a good front-end
+tool,
+but I'm not sure if it's possible.
+And I don't know if this kind of web the
+web UI plugin is the best use case for
+this. I've seen people do chats, so I
+know you can build in a chat plugin.
+So, the question is if I can do like a
+local server plugin
+as well, and how well this will link up.
+Ideally, it would be really similar to
+Cloud Design where you could do have a
+feedback I could press something on the
+on the um the front end
+and tell
+Hermes then,
+"Hey, I want you to change this." But,
+that's getting ahead of myself.
+And if you like this video, please
+subscribe to my free weekly newsletter,
+where I give my honest thoughts about
+the week's AI news that I can't share
+here, as well as interesting research
+and papers that I found, and what
+projects I've been building behind the
+scenes.
+There's a link in the description, or go
+to on chain AI garage.com.
+Every word is written by me, mistakes
+and all. So, if you're sick of AI slop
+articles or all hype with no substance,
+subscribe and give AI garage weekly
+shot. Now, back to the video. This is
+the spec.
+It is
+I said, the core experience, like I
+said, user opens Hermes dashboard,
+clicks canvas, or I think I might call
+it just front end
+to keep it simple.
+Front end preview iframe.
+So, the shrimp verdict was shrimp yes.
+This is the um the spec that my other
+Hermes agent wrote for me that often
+does
+these kind of brainstorms. This is
+Scampi,
+who you may have seen. It's a shrimp
+character agent that I that I had from
+for a long time. I migrated it from Open
+Claw to Hermes.
+And I've been using Scampi to brainstorm
+these kind of ideas.
+So,
+um this is what Scampi found the
+research.
+She seems pretty convinced it's
+possible.
+So, we're going to try to build this
+out. I thought since this is a Hermes
+tool, instead of using Claude code or
+Codex,
+we're going to use
+um
+Hermes agent itself.
+Right? That makes sense.
+I don't you I usually do heavier coding
+jobs in like I said Codex or a Claude
+code, but
+I think it makes sense just
+environment-wise try it in here. And
+we're going to try it with a Kimi K 2.6
+model.
+I'm going to have to pay for this API
+through Open Router, but
+um it shouldn't cost us that much. I did
+a first look at Kimi K 2.6 and I was
+pretty impressed, especially with the
+front-end skills.
+Uh but also it did a good job with the
+coding, so it should be able to handle
+this
+task even though I'm not sure
+how easy it will be. But let's try. If
+we need to
+move over to something else, we can do
+that.
+Uh so, let's see. Opening prompt here.
+Okay, so the opening prompt uh please
+review Hermes Canvas Hackathon spec.md
+in the directory. Do any necessary
+research. Then plan out this project.
+Please check the following pages for
+details about the dashboard. So, you can
+see if this is the best option. That's
+this the link to the
+the new research Hermes agent uh docs
+about the dashboard.
+Um this may if I can finish it in time,
+it'll be a a submission to new research
+at a creative
+uh hackathon. And this is cuz it's a
+design tool, I think it falls under
+creative.
+But we only have like a week for that.
+So, even if I don't make it in time for
+the hackathon, though, I think this is a
+useful tool
+and something I I'd like to make anyway.
+Okay, came back with the plan.
+Research complete.
+The dashboard plugin system is mature
+and exactly what the spec assumes. The
+dashboard plugin is the correct choice.
+It handles all theming, shell
+navigation, and back end route mounting.
+So, no need no need to rebuild any of
+that, hopefully. Front end pattern
+confirmed.
+Back end pattern confirmed. Specs as
+well lined.
+Only minor re-refinements needed around
+build tooling.
+We saved its plan. Plan highlights front
+end strategy.
+Plain JS
+uh using react.create element.
+No bundler for hackathon. I hope it's
+not. Sometimes these LLMs have tendency
+to
+try to take shortcuts and like build the
+MVP instead of actually building it
+properly.
+Hopefully, that's not in the spec.
+Um
+Agent integration spawn Hermes chat as a
+sub-process with front end editing
+system prompt.
+So, one week schedule locked.
+Let's Let's just do this one week
+schedule in one day.
+Open questions. Does your environment
+have node NPM available?
+Yes, I have node NPM.
+I'm actually not sure if I have it on
+WSL. I think I do. But, I would have to
+What's the exact Hermes chat CLI syntax
+in your on your version?
+Two, I'm not sure. I don't What does
+that mean by that? I'm not sure.
+Proceed with the plan.
+You know, if you have any
+questions or run into any
+issues, we're going
+to proper
+the build out the entire
+plugin. Please don't take
+shortcuts.
+I often had to do do this
+[clears throat] with um like cloud code
+or even codex when I'm using it. Cuz
+it'll try to build
+like a smallest possible version.
+And it usually is not actually useful.
+So.
+Asking which Hermes version I have, I
+guess.
+So I was a little worried about the the
+cost, but all that planning and research
+only took 20 cents, so
+we should be fine building this out as
+long as it doesn't become an extended
+extended thing. I've been working on
+this for 10 minutes now, so
+should be okay.
+Okay, it's starting to write out the
+manifest.
+I guess we can just call it Hermes
+canvas.
+It gets to the point. It's probably more
+better name than Hermes front end, which
+I was thinking about.
+Okay, you can see
+the demo flow.
+I wonder if it's testing it. So this is
+the structure.
+I guess testing it right now.
+This is the address for the
+for the dashboard.
+This is why I wanted to do it in Hermes
+agent itself in WSL, so it could do this
+locally without me having to test it.
+I'm I'm going to have to test it myself
+anyway, but at least it can do this
+stuff.
+Okay, I guess it ran some issues while
+testing, so it actually patched it up
+and trying again.
+I didn't have to do much with this.
+This might be a quicker video than I was
+expecting.
+You can kind of see what it's trying to
+do. I haven't touched it at all.
+It's trying to add like in the Hermes
+chat
+like add a footer with copyright text. I
+think it's trying to see
+if that applies to the
+the um the front end that you're
+building.
+Taking a picture
+of the browser.
+Using a lot of tools here.
+That's kind of why I wanted to use Kimi
+K 2.6 for this.
+It does a good job of this kind of
+visual
+analysis.
+As well as being good at building front
+ends.
+Okay, so I hit the tool usage uh budget.
+So it has to summarize first and then
+probably get back to work. I built I
+fully built and tested the Hermes canvas
+dashboard plugin. Here's the current
+state of what works. The back end.
+Um front end split pane pane layout.
+Looks like a lot of this template.
+I open the Hermes dashboard and
+navigated to the canvas tab. Created a
+temporary canvas test project.
+Successfully start the dev server.
+Uh Vite launched on port 5173. I frame
+preview rendered.
+Dev server's logged. Displayed Vite
+startup message. The fire up files. This
+is all the files I built out.
+The current dashboard process should be
+running cleanly if you're seeing canvas
+tab load.
+And the status endpoint. Okay, so let's
+actually take a look at this before we
+continue a little bit.
+So you can see here, this is the um
+we are in the dashboard. So this is
+The sparkle.
+Nice.
+Okay, this is yeah, this is kind of what
+I wanted, right?
+Dev server is running.
+Hermes canvas
+preview selection note open in browser.
+I open it separately in browser. Oh,
+that's a nice feature as well. So, this
+must have been a test
+like front page that they did.
+Live creative front page.
+This is actually far much farther along
+than I had expected. I thought this is
+going to be tough.
+So, let me see if I can just change
+something by prompt Hermes.
+so, this is the current project we're
+in.
+Let me just see if I can change the
+colors on this.
+Uh change the button
+color to red.
+Send to Hermes.
+But, you can see
+it went down here, change the button
+Uh okay, so the prompt box is wired up,
+but there's a bug where Hermes edits the
+wrong directory. I need to fix this.
+What I found during testing.
+The plugin correctly responds from
+Hermes chat,
+but Hermes has its own project detection
+logic.
+Force Hermes to stay scoped in the
+project directory.
+Um yeah, so good.
+Go ahead.
+Cuz it wasn't turning the button red
+even though it is registered in here.
+Uh but, this looks pretty pretty good.
+Like you can see here selection mode,
+and you can like click
+certain items specifically.
+The idea would be like if I click this
+and then tell Hermes, you know,
+change this to something else, you know.
+Hey, figured out a way. It works with
+get in it and get commit and work tree.
+Hermes correctly edited the right
+um about the script file, changed the
+heading to red.
+And now I need to update the back end
+and auto initialize Git when creating or
+opening a project. So, work tree works
+every time. So, it's just a path issue.
+You could see it's still testing right
+here, but one of the things was make the
+hero heading say Hermes Studio instead
+of Hermes Canvas.
+And it did it. You see Hermes This hot
+reloaded.
+Say Hermes Studio.
+So, some of the changes are going
+through that it did through the prompt.
+Okay, so
+you type the prompt Canvas UI make the
+hero heading say Hermes Studio.
+Here's the flow. Type a prompt in prompt
+Hermes text area, send to Hermes. Hermes
+spawns and edits the project files.
+Changes automatically sync back to the
+main directory.
+And then it hot reloads.
+Yeah. Okay, let's try
+Let's try it.
+So, let's do uh change the color
+of the
+get started
+button to red.
+Simple enough, right?
+There we go. Took a minute, but it did
+it. Changed the color, cleaned it up.
+Beautiful.
+Now we have a red button.
+It's exactly what I wanted.
+Let's see if selection mode works.
+Selection mode on.
+let's
+uh
+click this button. You can see selected
+element button.
+And this has all the source prompt
+Hermes.
+Uh change the text
+&gt;&gt; Follow on X.
+Some type something like that. So, send
+that to Hermes. There we go. Very nice.
+Follow on X. Oh, this went back though.
+Let me see. Let me ask about that.
+Let's ask the agent here. So, I asked
+for two changes. One was to turn a
+button red. It did that. Then I asked it
+to change the text of the other button,
+but when it did that, the first change
+was reverted back.
+Uh that's a real problem. It happens
+because each work tree creates a new
+isolated branch from the original head
+commit.
+The fix is to commit the synced changes
+back to the main repo after each job.
+The next work tree station
+starts from the last state. That's the
+right fix for this.
+Okay, that took like 2 seconds. Yeah.
+So, that should work now.
+Apply the fix. Restart Hermes dashboard
+so it reloads. Okay, I'm going to have
+to restart the dashboard.
+And if you're curious on how much that
+cost, $4.
+It'll do that whole task. And I've been
+working for this for like an hour, a
+little over an hour.
+Okay. So, let's see if this works.
+let's do selection mode.
+Uh
+give
+this card a thick
+gold border.
+Something like that.
+There we go. Got your gold border on
+this card.
+That worked nicely. So, now let's try
+one more change and see if this can
+actually keep this element. So, let's do
+selection on again.
+Let's change this one.
+give this card
+a thick
+red border.
+Nice, very good. So it kept this border
+and didn't revert this change. That's
+very good.
+Okay, you can see I took an existing
+website that I have,
+Tombio Tombio Studio site,
+and I dropped it into Hermes Agent's
+directory
+and opened it up and this is what we
+get.
+This is the the site.
+You've seen this if you've seen
+on tombiostudio.com you can see the full
+thing here.
+There we go.
+Open our browser and it looks like a
+proper
+And now you can edit this in
+inside your Hermes Agent. Like let's do
+remove the on chain experiments brought
+to life
+header.
+Okay, it went through.
+So the prompt was should be down here.
+Remove the on chain experiments brought
+to to life header
+at the top.
+Let's see if that actually works.
+Okay, and you can see it removed that
+that line from the top there.
+It's good.
+You don't need the selection mode in the
+HTML version.
+I don't think it's going to be possible.
+I think it requires that that higher
+structure JSON file.
+But you're still able to do it just by
+simple prompts and telling
+telling Hermes what to do.
+Let me try to make a few more little
+tweaks and then I think we'll be ready
+to package this.
+I'm going to have to do some debugging.
+Open browser.
+But
+I feel like the the core functionality
+is definitely there.
+This is just what I wanted basically,
+like a chat over here.
+And then to have a preview on this side.
+So, let me try to make this side a
+little bit bigger and this side a little
+bit smaller. We have more of the screen
+for the actual
+uh preview of the website.
+Okay, we made the the change here.
+Okay, nice. That's much
+much better, a lot more space.
+We have the project here. You can create
+a new project.
+Uh I might tweak around with this little
+bit.
+Uh but this gives you a a good look. If
+you And if you want to see it in the
+browser, you just click that and have
+the full
+full view.
+And what are we up to? $7.
+This has been a long session and then a
+lot of work, so
+that's actually probably cheap,
+certainly cheap compared to if you're
+using the API for
+for like Opus or something.
+Yes, I'll continue to tweak this, uh
+make little stuff like this, but you can
+see the core functionality is definitely
+there.
+And this will be an open-source project
+and one
+I will be submitting the hackathon. A
+lot of talented people. Probably won't
+win, but
+it'd be fun to participate.
+And hopefully the community finds this
+useful. Think having something here
+like this, uh we could select different
+items
+and directly change it in one
+uh dashboard is kind of a useful tool.
+So, once I tweak it a little bit more,
+it'll be open-source, certainly. It'll
+be on Tom B. Studio GitHub {slash} um
+probably Hermes
+{dash}canvas.
+So, look at that, Hermes {dot}
+{dash}canvas
+on my GitHub.
+And this is uh
+went a lot easier than I thought I When
+I started this, I didn't even know if it
+was possible.
+So, building this all out
+here in Hermes Agent using Kimi K2.6 and
+it went pretty well.
+So, that's going to be it for this
+video. Hope you found it interesting.
+Uh way to build this little tool
+in Hermes Agent.
+Uh if you like this video, please leave
+a like, leave a comment.
+Let me know what you're what you've been
+Let me know what features are
+what your thoughts are about this little
+project.
+And I will see you in the next one.
+Thank you for watching.

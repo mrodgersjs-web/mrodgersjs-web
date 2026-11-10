@@ -1,0 +1,781 @@
+Today we're going to build an AI
+research assistant that can help you
+with writing papers or thesis for
+example in Python using LangChain. So
+the idea is we can provide a topic, we
+can provide research questions and maybe
+even filters like I only am interested
+in the papers of 2025 and 2026 and then
+we're going to get interesting papers
+that are relevant to our subject. We're
+going to get formulas if applicable and
+we're also going to get a simple trend
+analysis. In the first step we're going
+to build the whole thing as a simple CLI
+application. Then we're going to vibe
+code a graphical user interface around
+it to make it look good and then in the
+third step we're going to ground it in
+actual scientific literature using
+consensus. This is going to be a very
+interesting project. So if you like this
+video, let me know by hitting the like
+button and subscribing. But now let us
+get right into it.
+&gt;&gt; [music]
+&gt;&gt; All right. So what we're going to do in
+this video today is we're going to build
+an AI research assistant in Python. As I
+mentioned, we're going to do that in
+LangChain. That is going to be our
+agentic framework behind the scenes.
+We're also going to use OpenAI's GPT-5
+model as the intelligence for that
+agent. And in addition to that we're
+going to use Pydantic for structured
+output. Now, why do we need structured
+output? The reason is because if we want
+to build a UI around it, we need to be
+able to expect certain fields, certain
+information to be present. We cannot
+just get randomly structured free form
+text from the model and then build a UI
+around it. We need to have certain
+fields that are always there and because
+of this we're going to define a schema,
+a model with a couple of papers, with
+metadata fields. We're going to have
+formulas if applicable. We're going to
+have trend analysis and maybe some part
+that is free text. But for this we're
+going to use Pydantic to allow us to
+define a structured output model that
+the agent can then follow. Now we're
+going to do this in three steps. The
+first step will be a minimal CLI
+application. So just a proof of concept,
+just a basic agent. We can provide a
+topic, research questions, a time frame
+maybe for the papers and the model is
+going to return the structured output,
+the JSON object then. And that's going
+to be the first part. The second part is
+going to be a UI around this model. Now
+this part is going to be vibe coded.
+We're not going to write HTML, CSS and
+JavaScript ourselves because I don't
+want to teach that. I don't want to
+teach you design and animation here. I
+want to teach you the functional part,
+the agentic part. So we're going to of
+course do everything that is related to
+the actual intelligence, to the actual
+AI part. We're going to do it by hand,
+but every design aspect of it we're
+going to just vibe code. And then in the
+third step we're going to see that the
+results contain a lot of hallucinations
+or sometimes misinformation or don't
+find any real papers after a certain
+knowledge cutoff date. And because of
+that we're going to use consensus to
+actually ground or to be precise here,
+Consensus MCP, the MCP server, to ground
+our model in the actual scientific
+peer-reviewed literature. So the idea is
+we're going to see what the model gives
+us without consensus and then also with
+consensus. Now for the sake of
+transparency here, Consensus is
+sponsoring this video. You will find a
+link to them in the description down
+below. All right. So let us get started.
+I'm going to go into my tutorial
+directory here in the terminal. Let me
+go full screen and I'm going to say UV
+init to create a new UV project. Now you
+don't have to do that. You can also just
+work with your basic Python installation
+and you can install packages using pip
+install. That's not a problem at all.
+You can do the exact same thing that I
+do here without UV. I just prefer to
+work with UV. So I do UV init and then
+to install packages I do UV add. In your
+case you can just go directly and say
+pip or pip three install if you have
+this on your system.
+And otherwise you can also create a
+virtual environment if you know how to
+do that and if you want to do that. So
+in my case here as I said I'm going to
+do UV add and the packages we're going
+to need are on the one hand LangChain
+with OpenAI support. So LangChain and
+then in square brackets OpenAI. Then of
+course also Pydantic. I'm also going to
+need a package called python.env to load
+the OpenAI API key into the environment
+from a .env file and I think that's
+actually it for the packages. So UV add
+LangChain OpenAI Pydantic and
+python.env.
+Now in my case here I already have a
+.env file. This is what it's called dot
+and then env.
+What is in that file is basically, let
+me create a second one. Let's call it
+.env fake. What I'm going to have here
+is OpenAI_API_KEY
+written like this then equals and then
+the OpenAI API key that you get from
+OpenAI. So usually starts with SK and
+then whatever.
+So that is what the file contains. You
+want to call it .env and you want to put
+the OpenAI API key in there. Once you've
+done that, we can go into the main.py
+file. I'm going to delete everything
+here that is created automatically. If
+you don't have such a file, you just
+want to create it. And here now I'm
+going to start with some basic Python
+imports. I'm going to use JSON. I'm
+going to also use asyncio.
+Then I'm going to say from .env import
+load_dotenv.
+From LangChain.agents
+I want to use create_agent.
+Or actually since we're not going to
+even use any tools here, I'm just going
+to go with init_chat_model. So I'm going
+to say from LangChain
+chat_models
+I'm going to say init_chat_model.
+And then also from Pydantic
+import BaseModel.
+I'm going to put it here because I like
+to have the sizes in order.
+So to explain it briefly, we're going to
+use asyncio especially because we're
+going to need it later with the MCP
+adapters. This is an additional package
+that we need to add later on for
+consensus. Not for consensus per se, but
+for using any MCP server. And we're
+going to use Consensus MCP.
+So we're going to need that. We're going
+to also load_dotenv here. So the the
+.env file contains the API key. To have
+it in the environment, we need to
+actually call load_dotenv. So now this
+takes the API keys from the .env file
+and puts them into or pulls them into
+the application, into the Python script.
+We're going to use Pydantic as I said
+for the structured output model. This is
+the next thing that we're going to do
+here. And then down below we're going to
+initialize the chat model which is going
+to be GPT-5 with LangChain. So let us
+get started with the structured output
+model. For this I'm going to say class
+paper. That's going to be the first
+thing. I want to have in the end a
+report that contains papers, formulas
+and everything. But I also need the
+individual papers. So for the report to
+contain multiple papers, I need to
+define what an individual paper looks
+like. So I'm going to say paper
+BaseModel. And then I can say title is a
+string. Then I can say authors is a list
+of strings. So I can say list and then
+string. Then I can say year is going to
+be an integer. And these are required
+fields. Now if I want to make a field
+not required, I can use the pipe symbol
+here and say or none. Which basically
+means it's an integer or it's not
+present. So for example, we can say
+venue is going to be a string or it's
+going to be none. And I can also set a
+default which is none. Now we're going
+to do the same thing for the URL of this
+paper. And then we can also add some
+free free form text like relevance which
+is going to be a string.
+And for this actually I need to import
+also second class called field. So here
+we can now add a description to instruct
+the model what to do with this specific
+with this specific field. So we can say
+that this is a string and it's a field.
+And the field has a description and we
+can say why this paper is relevant
+to the topic or research
+questions. So you get the idea. We can
+define our structured output like this.
+Now for the rest I'm going to just copy
+paste it because I don't want to be
+typing fields here for hours. But
+basically what we have now here is we
+have a class formula. Formula same as
+paper. We have name as a string. LaTeX
+is string. This is basically the LaTeX
+code. So it's it's basically if you
+don't know LaTeX, it's something like if
+you want to have a fraction, you do
+backslash frac and then curly brackets
+one two. That would be the same as
+rendering one over two.
+And then you can actually render it into
+an image which is very useful often
+times especially in papers. But here we
+can get just LaTeX formulas or the LaTeX
+source for the formula that is provided
+here. We can get a description and we
+also get the reference. So actually
+where this formula comes from. For the
+trend we just have title, description
+and again where it comes from. And then
+we have the report. This one is
+interesting because here we provide the
+classes from above as types. So we say
+that our report has a topic, research
+questions, time frame. And then we have
+the papers that we found, the formulas
+that we found and the trends that we
+found. And here you can already see I
+said five A. Let's go with five to 10.
+Actually makes more sense. Five to 10
+most relevant papers. So this is now
+basically our structured output schema
+or model, whatever you want to call it.
+And now we're going to define a chat
+model and we're going to force it to use
+this model when giving a response. So
+I'm going to say async def main. Let's
+maybe say put this at the top. Async def
+main.
+And here I want to get the topic. The
+topic is going to be a user input. I
+want to ask the user what is the topic
+for the paper
+or thesis. And then we want to strip the
+input of all
+spaces and I think new lines as well.
+Not actually entirely sure if this is
+done by default. But then we're going to
+do the same thing with the questions.
+These are going to be the research
+questions. So we can say what are the
+key
+research questions. Then we can say time
+frame is going to be what time frame
+should the papers be from. And all of
+this is free text. So we don't have to
+provide a number. We can just provide
+anything that the model can understand.
+We're working with language models here.
+So you can also just provide any
+instructions you like. Now for the task
+here, this is basically just a
+multi-line string. I'm also going to
+copy paste that because I don't want to
+type all of this out here. But But it's
+a formatted string. So we have F here,
+we have topic, research questions, and
+time frame. So this is what the model
+will get as input. It will get the task.
+So it will get a topic, then the
+questions, and then it knows either no
+specific focus or what the time frame
+for the paper should be. And then gather
+five to 10 highly relevant papers,
+identify the most important mathematical
+formulas for the subject and recent
+trends, and then populate the report
+schema fully. So these are the
+instructions. Now for the model, we're
+going to say model is equal to init chat
+model, and then I'm going to provide
+here OpenAI/GPT-5,
+and I'm going to say with underscore
+structured output, and then I can
+provide a schema, which is the report
+schema. Now to actually get a response
+now from the model, that's the last part
+actually. We just need to say result is
+equal to the model A invoke,
+asynchronous invoke, and then we can
+just pass a message history. So we have
+this typical structure of having a list
+of dictionaries with role and content.
+So role is going to be system, and then
+we have the system prompt here. So
+that's going to say you are a thorough
+IT research assistant helping write
+academic papers and theses. And then all
+we have to do here is we need to copy
+that. We need to say role user, and the
+content is going to be the task. So we
+don't need quotation marks here. We can
+just say task. And now to actually print
+the structured output, all we have to do
+is we need to say print, and then
+json.dumps
+as dump into string basically,
+and we're going to take the
+result.model_dump,
+and we can say indentation level is
+going to be two. That's basically it.
+The only thing left to do is to say
+asyncio.run
+and then main
+like this.
+That is our proof of concept. So again,
+what do we do here? We define our
+schema, our structured output model.
+This is what our response should look
+like. We want to have a topic, research
+question, time frame, and then we want
+to have a bunch of papers that look like
+this. We want to have a bunch of
+formulas that look like this, and we
+want to have a bunch of trends that look
+like this. That is what we define. Here
+we have our prompt. Here we get user
+input, and our model then just reads the
+task, uh extracts information, and fills
+the structured output model, returns it,
+and then we print it. That's basically
+it. Okay. Now before we run this
+actually, I need to fix three mistakes
+here. One is we need to add a comma
+here. Also, second one is we cannot just
+use a slash. We need to use a colon. So
+OpenAI:GPT-5,
+not / GPT-5. And then also very
+important, we need to of course await
+the asynchronous call.
+So A invoke is asynchronous, so we need
+to say await that.
+So I'm going to save this, and now we
+can say uvi run main.py, or if you're
+not using uvi, you can also just say
+python or python3 main.py. In my case,
+uvi run main.py. Then we can specify the
+topic and the other stuff. So let's
+start with recommender system
+systems based
+exclusively on embedding similarity.
+That is my research topic. The questions
+here are
+does it outperform or do they outperform
+conventional
+state-of-the-art
+models? Question mark. And two could be
+what are useful beyond accuracy
+metrics? And then I can say only 2026
+papers, please. Now this will take a
+while now, and then we're going to get a
+big JSON object. So there you go. We
+have now the JSON object. You can see we
+have right now here we are in the
+formula section. We also have topic
+here. We have the time frame.
+We have all the formulas. It didn't find
+a single paper here for 2026, and also
+yeah, we basically have a bunch of
+trends here, but I'm not sure if all of
+these papers actually exist. We're going
+to take a look at all this, but for now
+I want to build a UI around it, so it's
+easier to look at. So what I'm going to
+say now is I'm going to run a Claude
+code instance here, and I'm going to say
+look at main.py. This works perfectly
+fine. Now I need a UI around this
+that shows the results in a nice way.
+Use the Pydantic model or models, I
+should say, as guidance. Build a simple,
+minimal, but good-looking UI
+and Flask application for this script.
+So now we're going to vibe code some UI
+around it. You can do that yourself in a
+different way if you want to. I just
+want to show the difference in a nice UI
+and not in the terminal. All right. So
+it says it's done. Let's see if it
+works. It wrote some basic index.html,
+result.html, and an app.py. Of course,
+we are going to take a look at the code,
+especially at the back-end code. I don't
+really care about the design too much.
+But first of all, I want to see if this
+actually works. So uvi run app.py. The
+reason we're going to take a look at the
+code is because we need to change
+something about it to use Consensus to
+ground it in the actual science. So here
+we have the same functionality, but a
+different interface. Let's go again.
+Recommender systems based exclusively on
+embedding similarity. Research questions
+are the same as before, and then I can
+say again, only 2026 papers.
+Generate report. And there you go. We
+get the output. We get some papers here,
+five papers, uh also with links. So we
+can actually click on this and see if
+this makes sense. Okay, this one doesn't
+have a link. This one does have a link.
+There we have a link. Now this one
+doesn't exist somehow. I mean, it's not
+found. Not found.
+Not found. And I wouldn't be surprised
+if this one also doesn't exist. Okay, it
+gets me to some shopping page.
+So this didn't work out very well. I'm
+not even sure if these papers exist at
+all, if they just have a different link.
+Um not really. This exact paper does not
+exist. Um maybe there's a similar one,
+but you can see the problem here. The
+tool itself looks nice. We have papers.
+We have formulas also down here with the
+LaTeX representation even being rendered
+here in our Flask application. We also
+have current trends here. I mean, cosine
+similarity makes sense, but that's not
+really an evaluation metric uh for our
+model. This is actually not beyond
+accuracy, so it doesn't really perform
+very well.
+Um but yeah, the concept is useful. Now
+what we're going to do is we're going to
+add Consensus MCP to actually ground it
+in the literature. So we're going to
+force it to use tools provided by the
+MCP server to find actual papers and
+useful papers and to give us a
+reasonable response. But of course, for
+this first of all, we need to explore
+what this is about. And actually, this
+is not even a prepared part for the
+video because I don't know what I vibe
+coded right now. So I have to see what
+it actually does. So we can explore this
+together now. And in the app.py is where
+the magic happens. We still have the
+same base model. We still have a
+generate report function, an
+asynchronous one, same prompt as before,
+init chat model, structured output,
+asynchronous invoke. That's basically
+it. So yeah, actually it's the same code
+that we had before. Nothing new.
+The question is now, how do we add the
+MCP server? And there are multiple parts
+to this because on the one hand, we have
+to add the MCP server using a package
+that we don't have installed yet, but
+also we need to authenticate ourselves
+with the MCP server, which doesn't work
+out of the box in LangChain. So we
+actually need to use an additional tool
+in order to do that. But let's do one
+thing after another. So we're going to
+close this here, and I'm going to
+install the package called
+LangChain-MCP-Adapters.
+And again, you can either say pip
+install, or in my case, uvi at.
+And of course, you should not misspell
+it.
+Adapters, like this. So then we're going
+to go into our app.py, and we're going
+to change now how the function here
+works. So we're still going to get the
+information here. We're going to define
+the same system prompt, but then we're
+going to create an instance here of an
+MCP client. And for this, of course, we
+need to first do the imports. So we're
+going to say from
+LangChain-MCP-Adapters,
+and then dot client import
+and then multi-server MCP client, and
+then also here from this.tools
+load_mcp_tools.
+So these are the two imports, and then
+down here we're going to create a
+client. Client is equal to multi-server
+MCP client,
+and that is going to now contain the
+config for the Consensus MCP. So we're
+going to use a dictionary here with
+curly brackets, and I'm going to say
+first of all, Consensus
+is going to point to another dictionary.
+So that's going to be the MCP
+server name here. And in here we're
+going to say transport.
+Now this is interesting because if you
+use that with Claude code, if you use
+the Consensus MCP server with Claude
+code, you would use the transport HTTP.
+But here we're going to use a tool that
+allows us to work with STDIO, with
+standard input output. And this tool
+will be called using NPX. So actually
+not NPX here, but command is going to be
+NPX.
+And maybe before we finish writing this,
+let's take a look at this tool. And this
+tool is called MCP remote. I think it's
+quite well known. Basically, it allows
+us to use STDIO um the STDIO transport
+to communicate with the MCP server. It
+handles the authentication for us. Of
+course, for this to work, you need to be
+logged in to Consensus. So you need to
+have a Consensus account. You need to be
+authenticated. Then you want to install
+this tool. So you can just do it in your
+in your code the way we're doing it now,
+or you can also do it in the command
+line. In this case, what you would do is
+you would just run the command NPX-Y
+MCP remote,
+and then at latest, and then the MCP
+server. So, I could just run this and
+this would run the authentication
+discovering OAuth server configuration.
+It
+finds that. You can then say control
+control C to exit. And then you're
+authenticated basically and you can also
+do that here in LangChain and it will do
+the authentication for you with the NPX
+command. So, essentially the same
+arguments down here we can say arcs is
+equal to a list. Start with dash Y and
+MCP remote at latest and then https
+colon slash slash mcp.consensus.app
+slash mcp. So, that is the configuration
+of this client. Now, what we also want
+to do is want to create a session and
+then in the session we're going to do
+everything else. Now, another thing that
+we need to change is we can no longer
+just work with a simple chat model. We
+need to use an agent because now we have
+tool use. We have MCP. So, what I'm
+going to do is I'm going to replace this
+here by saying from LangChain agents
+import create agents.
+And then from LangChain
+agents.structured_output
+we're going to use the tool strategy.
+So, these two imports are what we're
+going to use now.
+And we're going to replace our model
+here by saying agent is equal to create
+agent and then I'm going to say
+model is equal to OpenAI GPT. Actually
+not 4 O but 5. I'm not sure why I
+changed the model. Did I use 4 O before?
+I think I used 5. But yeah, we can do it
+like this or actually even better. Sorry
+for improvising now, but we can keep the
+model.
+We can remove the structured output. I'm
+still going to use 5 not 4 O.
+And we can just use this model now in an
+agent. Now, for this of course I need to
+make sure that I still import the
+previous things. So, LangChain
+chat models and then init chat model
+will still be imported. I can go back
+down and I can say agent is equal to
+create agent.
+And then I can say model is equal to
+model. This is possible. Also, I want to
+say
+parallel tool calls is equal to false
+just because I had some issues with
+that. But what I actually want to do now
+is I want to create a session. So, with
+this client now here I want to create a
+new session that uses the MCP tools. So,
+async with client.session.
+Let's call this one consensus and as
+session. We're going to do all of this
+within this context. And what I want to
+do is I want to load the tools that are
+available. So, tools is going to be
+equal to and now I want to load the
+consensus tools from the MCP server. So,
+await
+and then load MCP tools
+for the session. The session is related
+to the client. The client knows the MCP
+server. So, the last thing that we need
+to do is we need to change how we do the
+asynchronous invoke. We need to change
+where the system prompt is. So, I'm
+going to actually take this text here.
+I'm going to copy it. I'm going to say
+that that is the system prompt. So,
+system prompt is going to be equal to
+what I just copied. Then also I want to
+say tools is equal to tools.
+I know usually you don't leave spaces
+around the equal sign, but now I want to
+just do it. And then for the response
+format since we don't have this with
+structured output anymore for the
+response format
+we're going to say tool strategy
+of report.
+And of course don't forget all the
+commas. Then last but not least we're
+going to get rid of this. I'm going to
+say result is equal to
+await agent
+asynchronous invoke. I'm going to pass
+you a dictionary containing messages.
+Messages is going to point to a list of
+dictionaries. We're only going to have
+one entry here. The role is going to be
+the user role and the content is going
+to be the task. And now we need to just
+return the structured output field of
+the result. So, result and then
+structured output. I hope I didn't make
+mistakes, but let's see. It's going to
+tell us if I did. Let's go and do UV run
+app.py.
+Now, we have the same thing as before. I
+can just use the same stuff that I had
+before. So, we have here again
+recommender systems based exclusively on
+embedding similarity. Do they outperform
+conventional state-of-the-art models?
+Useful What are useful metrics and then
+2026 papers only. Now, you can already
+see that the MCP remote here uses the
+MCP server. So, we can see the
+authentication here in the logs. And of
+course I did a mistake because I said
+structured output even though the field
+is called structured response. You need
+to be accurate with stuff like this.
+So, structured response is the field
+we're looking for. Let's try again. So,
+same input generate report. And there
+you go. We get some results and here we
+have 10 papers, 11 formulas, seven
+trends. This looks much more
+professional. We have a bunch of papers
+all of them from 2026.
+All of them seem to have a link leading
+to consensus. So, I can click on this
+here rethinking ANN based retrieval and
+it takes me to a consensus page. We can
+see here also
+the abstract. We can see the year, the
+actual publication date, the people that
+are involved here. So, this is not
+hallucination. This is actual an actual
+research paper. Now, this is not a
+well-known one. It has zero citations,
+but we can look at the references of
+this paper
+and and all that. But yeah, obviously if
+it's such a niche topic and it's 2026
+only we're not going to get the
+state-of-the-art best papers published
+in all the
+greatest journals. We see here unknown
+journal for most of them. I mean here we
+have computers in education. Let's click
+on this one.
+But it also doesn't have really any
+citations. But these are real papers and
+if I don't limit it to 2026 I'm also
+going to get more interesting ones. When
+we go to the formulas you can see that
+we actually have more reasonable metrics
+here. Yeah, this is exactly what I was
+expecting. Now, this one I would still
+consider like accuracy, but intra-list
+diversity, novelty via self-information,
+catalog coverage. These are exactly the
+things that I'm looking for here. So,
+I'm not looking for precision and
+recall. I'm definitely not looking for
+cosine similarity even though this one
+was also listed here. But you can see
+that um
+these here I can also see where they
+come from. So, I can copy this maybe and
+Google it. Okay, so maybe that's the
+paper that this is referring to, but I
+didn't require an actual URL to the
+paper. So, that's fine. And then we have
+also current trends. Embedding first
+retrieval is increasingly state of
+practice often matching or exceeding
+prior state-of-the-art in retrieval
+candidate generation. And we have here
+the two papers that
+seem to indicate that.
+So, I can also type them into Google and
+we can see that there is an actual
+archive paper actually published in
+2026. And this is like day and night
+difference in in the quality of the
+results that we get here. Now, to be
+fair this is a very simplistic tool. I
+only get some papers, formulas, and
+trends. You can make this much more
+complicated. You can save the stuff. You
+can then maybe ask the AI to rewrite
+something or to to write part of your
+thesis, but it's very important that
+when you do scientific work you don't
+get hallucinations. You don't get papers
+that don't exist and this is what allows
+you basically to build reliable research
+technology or research agents. So, yeah,
+this is what Consensus does here. To
+recap what did we do? We had a LangChain
+agent. LangChain is the agentic
+framework that just coordinates
+everything. We have a Pydantic
+structured output model that defines
+what we're expecting from the model. We
+use GPT-5 for the actual generation. And
+we added the Consensus MCP server so
+that we can actually access real papers,
+real research, and not just
+hallucinations or I think I remember a
+paper from 2004
+even though I asked for 2026. So, that's
+it for this video today. I hope you
+enjoyed it and hope you learned
+something. If so, let me know by hitting
+the like button and leaving a comment in
+the comment section down below. Also, as
+I mentioned check out Consensus the
+sponsor of this video today. You will
+find a link to them in the description
+down below. And besides that, don't
+forget to subscribe to this channel and
+hit the notification bell to not miss a
+single future video for free. Other than
+that, thank you very much for watching.
+See you in the next video and bye.

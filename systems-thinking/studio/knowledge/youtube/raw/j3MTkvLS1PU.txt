@@ -1,0 +1,181 @@
+- Hello everybody and
+welcome to this video
+in our series about graph data science.
+In this video,
+we're going to learn about
+centrality algorithms,
+which are one of the
+traditional categories
+of graph algorithms.
+As I said, centrality algorithms are used
+to try and work out what
+are the important nodes
+in their graph.
+And there are lots of different ways
+of determining importance.
+It could be that it's based
+on the number of connections
+as in degree centrality,
+or perhaps it's just which node
+is the most easily reachable
+within a graph or sub-graph.
+Or perhaps what we're interested
+in is finding which node
+has the most control
+over flow in a graph.
+Or perhaps it's the transitive importance
+of a node that's important to us.
+So let's go through those one by one.
+So degree centrality,
+I think this is probably the
+simplest of the algorithms.
+And the idea here is we're
+counting the number of incoming
+or outgoing relationships from a node,
+and we're using it to find
+popular nodes in a graph.
+And so that could be used
+as to find something like
+which is the most popular Twitter user.
+So maybe we find out Katy Perry
+has got 45 million followers,
+and that would be a way
+of using degree centrality
+to work out who are the important users
+on the Twitter social graph.
+Or perhaps it's used
+for detecting fraudsters
+from legitimate users in
+an online auction site.
+Perhaps they're doing
+way more transactions
+than a normal user would.
+The next one is closeness centrality.
+Now here, it's a way of detecting those
+that are able to spread
+information efficiently
+through a sub-graph.
+Let's just quickly have
+a look at the formula
+that's used to compute this.
+So what we're working
+out is we want to know
+what are the number of hops from each node
+to every other node in the graph.
+And then we're gonna sum those up,
+and then we'll divide it by one.
+And so what we get is what
+we call the average farness
+of a node web.
+A far-ness of one would mean
+that you can reach
+every node with one hop.
+So there's a direct link
+from you to every node,
+and then a lower number would mean
+you're much further away.
+So the higher numbers are better here.
+And this algorithm can be used
+to help maybe detect individuals
+in favorable positions to
+control and acquire information
+in an organization.
+Or it could be used maybe as a heuristic
+for estimating arrival time
+in a package delivery network.
+Betweenness centrality is the
+next one we're gonna look up.
+And again, here, we're looking at,
+it's a way of detecting
+the amount of influence
+that a node has over the flow
+of information in a graph.
+And it's often sometimes useful
+for finding out which are bridge nodes,
+which ones are sitting on the intersection
+of lots of different sub-graphs.
+If we took our Twitter example, again,
+maybe there's a community
+of people talking about Java
+and a community of
+people talking about EFJ,
+and we're trying to find out
+what's the person sitting
+on that intersection.
+And again, there's a
+formula that we can use
+to compute this.
+And so what we're saying here
+is that we wanna work out
+for every pair of nodes
+in the complete case,
+for each pair of nodes,
+find out how many shortest paths there are
+between those nodes,
+and then find out how
+many times each node,
+a specific node, fits on that path.
+So we're trying to see, like,
+for a particular (indistinct)
+how many times are you
+sitting on the shortest path
+between other pairs of nodes in the graph?
+Now betweenness centrality,
+the complete version generally
+takes very, very long to run
+'cause it's gotta
+compute the shortest path
+between all pairs of
+nodes in the whole graph,
+which doesn't really scale to big graphs.
+And so you'll usually use an
+approximate solution here.
+And again, it's useful
+for finding influencers,
+and they're not necessarily the people
+that are sitting in management positions.
+It can also be useful for
+finding the transfer points
+in a network, such as an electrical grid
+or perhaps for micro blogs to figure out
+how can they spread
+their blog around Twitter
+into other sub-graphs.
+And then the last one
+that we're gonna look at
+is called PageRank,
+and this one slightly
+different than the others
+in that this time we're trying
+to find the transitive influence.
+We don't just wanna know
+our influence on our own.
+We wanna know are we connected
+to other important nodes?
+And so this one originates
+from the Google search engine.
+And it can be used for recommendations.
+So Twitter have a variant of this
+called Personalized PageRank
+for one of their recommendation systems.
+Or it can be used in,
+it's often used in anomaly
+and fraud detection systems.
+And there are a couple of variants
+of this algorithm as well.
+So I guess you could consider
+actually PageRank is a variant
+of eigenvector centrality,
+where we were interested in the direction
+of the relationships.
+And then there's another
+variant called ArticleRank,
+which is similar
+but is quite a bit better
+suited to some use cases.
+So that's the end of this
+video on centrality algorithms.
+And hopefully you've now
+got a better understanding
+of how to find the
+important nodes in a graph.

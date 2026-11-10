@@ -1,0 +1,271 @@
+This screencast is a brief introduction
+to small world graph models done for my
+network science class. It assumes that
+you've already read about them and um it
+will give a brief uh introduction to
+some of the properties of small world
+models in uh iiggraph in R and then we
+will try to model a graph with a small
+world model.
+First we'll review how the watts robots
+model works and then we're going to look
+at the clustering distance trade-off.
+Okay, I'm going to go through this
+fairly quickly because you should have
+already reviewed this. Uh, we make a
+small world with sample small world. Um,
+this is the number of dimensions. This
+is the number of vertices in each
+dimension. The number of neighbors and
+the probability of rewiring. Uh, this is
+the example from sand. Uh, just a quick
+visualization to remind ourselves that a
+small world is a lattice that has been
+rewired with some probability. So the
+lattice part is the connection to the
+five neighbors that you see around there
+and then the rewirings tend to cross
+that and it has high transitivity and it
+has short distance. So we can see uh
+looking at the uh setting ourselves up
+for the trade-off here. Here I'm going
+to make a small world model of one
+dimension and 100 vertices five
+neighborhood neighbors but no rewiring
+and um going to graph that and compare
+it to one with rewiring. Uh so let's uh
+give it two columns in the graph and
+plot it.
+And now here you see the links to the
+neighbors being drawn in and there won't
+be any crossings because we have
+specified zero probability of rewiring
+and that of course gives us very high
+transitivity down here and uh high
+distances for this graph. Okay, got 10
+and 5.5. Now the same thing but let's
+just rewire uh 5% of the edges. Okay,
+and so let's plot that one.
+So you see the crossing edges coming in
+here along with some of the close
+neighbor edges and it looks like that.
+And now let's compare uh the
+transitivity for this one has dropped
+from 6 to about 4. Uh while the
+distances have gotten a lot shorter
+diameter of five instead of 10. We've
+cut the distances in half with just a
+rewiring of uh 0.05.
+So noticing that the unrewired graph has
+high transitivity and high distances and
+the modified one still has moderately
+high transitivity and shorter distances.
+We wonder how much do we have to rewire
+to get the distances while preserving
+transitivity. So this leads to the
+question of what the trade-off is and
+that's what we're going to study here.
+So what we're going to do is a little
+program here. We're going to make some
+uh powers of 10 with seek that says
+start at minus4 go up to minus 0.5 in
+steps of 0.1. So here's a bunch of
+numbers in a sequence and uh there are
+36 of them. So we're testing 36 possible
+powers of 10. Uh these powers of 10 will
+give us the probabilities from very low
+probability of rewiring to fairly high
+probability. Okay. So here is um we're
+going to make a list of um 13 zeros
+which is where we're going to accumulate
+the clustering results from each of
+these 13 powers. We're going to run
+trials for each of the 13. And the same
+for for path length. PL is path length
+or distance. And here we're going to run
+only 10 trials just for um time sake.
+100 might be better. Okay. So here's the
+code. I'll explain explain it briefly.
+We're going to run a loop and an inner
+loop. The outer loop will be for the 36
+powers of 10. And we're going to print
+something out just to let us know it's
+running. And we're going to make
+temporary versions of these results
+vectors here in which we restore the
+clustering and path length for this
+power of 10. We're going to run the the
+n trials, which is 10 trials. Uh so
+here's the call as a sample world. U
+we're going to run a thousand vertices
+with 10 neighbors and we'll get the
+power 10 out of here. Uh and then when
+we get these 10 trials, we're going to
+take their average and uh first we're
+going to store them in here. When we get
+out of the loop, we're going to take
+their average and store them in a
+results to get the mean value for those
+10 trials. And again, 100 would be
+better, but uh just to make it quick. So
+there it goes. It's running through
+printing out each outer loop for
+different powers of 10.
+And now it's done.
+Okay. So now we're going to plot the
+results. So we're going to make a window
+here for the results. And uh this is
+straight out of the sandbook with some
+minor modifications. And there's your
+result. Uh this shows that we only have
+to do a very small amount of rewiring to
+greatly uh reduce the distance. We in
+fact we can reduce the distance a fair
+amount without hardly touching
+transitivity at all. uh right here is
+like the sweet spot where you get uh
+almost the original transitivity but
+much shorter distances and then as you
+do too much rewiring it gets more like a
+random graph and then the clustering
+coefficient or transitivity plummets.
+So this is the original graph that they
+had in the Watts Strogots uh paper
+nature 1998 or it's a version of similar
+to what they had showing this trade-off.
+Now let's move on to modeling a graph
+with a small world.
+So we're back in R. I've already loaded
+in this graph the yeast graph which you
+can get from the sand data set or load
+from your directory as I did in the
+previous video on random graph modeling.
+So we're continuing from the previous
+video here. Uh when we model a small
+world, we want to know how many vertices
+are because we want to match that and uh
+try to approximate the number of edges.
+So here I'm going to tell it I want one
+dimension a circular lattice with uh the
+number of the vertices required and I'm
+going to take a guess that if I put in
+four neighbors I'll get the right number
+of edges and we'll just take the 0.05 uh
+rewiring parameter. By the way this
+wiring parameter you can adjust it once
+you get the number of vertices correct
+then you can adjust it to try to get the
+right trade-off between transitivity and
+uh distance as we showed in this graph
+here. I'm not going to actually do that
+in today's demo, but just remember that
+that once you've get the vertices and
+edges right, you can then start to play
+with this to tune it um uh with this
+trade-off here to hit something that
+matches the uh actual graph you're
+modeling. So, let's go ahead and make
+that and um look at the um the graph.
+So, we had the correct number of
+vertices and uh we're within a thousand
+of the number of edges. I've actually
+tried three and five here and it uh gets
+a little bit further away. So I'm going
+to go ahead and go with this particular
+watt stro random graph. Okay. So the
+whole point here was the model
+transitivity. So let's compare uh what
+we got to here's the transitivity of the
+original data
+46. Here's the transitivity of the best
+thing we got in the random graph uh
+models in the previous video which was
+10 times too small. And here's the one
+we just did, which is much much closer
+to the um the natural graph. So that's
+pretty good. Um you can actually um
+increase transitivity again by this
+trade-off chart here by decreasing the
+model probability. You know, if I just
+uh if I was really really concerned
+about getting that 0.01, I could like
+maybe make this probability a little bit
+smaller to slide more to the left on the
+graph. Now uh let's see similar with the
+uh the average of the local clustering
+coefficient we had a 38 and the rewired
+was again about 10 or 10 times too small
+and this graph um is a little high on
+that but I tend to prefer the global um
+the global metric but again if you
+wanted to reduce this the way you would
+reduce this is you might um increase the
+wiring parameter but then that would
+adjust the distances. Let's take a look
+at the distances as well. The original
+had diameter 15. Uh the yeast rewired we
+had eight. And this small world one has
+a diameter of nine. Um so it's actually
+shorter than the original graph uh for
+the diameter. Mean distance is probably
+more important. We have five uh the
+rewiring head 3.5 and our current model
+is actually pretty close. So this is a
+fairly good model. Uh again, if I so if
+I wanted to reduce the probability
+slightly um uh actually if I increase
+the probability of of rewiring, I could
+tweak that distance down, but then that
+would uh drop the transitivity a bit.
+And so that's the trade-off there. Uh
+but it this doesn't um match so much in
+other ways. The original graph had
+components and this one is almost always
+connected. It would be very small
+probability that some node through the
+rewiring would become disconnected. And
+also let's look at the degree
+distributions. So um here we have uh
+we'll make two columns. Here's the
+original graph and here is the small
+world graph. So you know the power law
+and something crazy. It's got this sort
+of normal well actually what's going on
+here is you know most of them have very
+similar degree because they it was a
+very regular lattice. So that's why you
+have this very peaky uh distribution at
+one particular point. Uh I've written it
+out in uh GraphML using this command
+already and I've already read it into
+gey. Uh so we'll take a look in gy here.
+Um again from the previous video I
+showed that this is the uh a
+visualization of the original graph
+where I've um given the nodes the
+attribute for color for the um class um
+of protein that they're in which is and
+the node size is the degree of the
+vertices. And with the small world, um,
+we get something, uh, really bizarrely
+different. Uh, because it was a circular
+lattice, we had a thousand nodes wired
+mainly to their neighbors. And remember,
+you got that circular structure, but
+we've disrupted it by making cross
+edges. So when, uh, Gy lays it out with
+force atlas 2, it doesn't draw it as a
+circle. I've tried drawing it a circle,
+and it doesn't um, doesn't really make
+much sense here. I think I've already
+done degree. Yeah, no node size is
+already um uh adjusted to degrees. So
+you see here the very small variation in
+degree distribution uh as um which we
+saw in uh this most of them have the
+same degree as compared to the more uh
+distributed um in the yeast network.
+Okay, that's the end of our quick
+introduction to small world models. Swat
+Strogat small world models and how to
+match it to a graph.
