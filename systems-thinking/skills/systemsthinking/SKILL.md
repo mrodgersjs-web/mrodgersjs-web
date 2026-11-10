@@ -10,7 +10,7 @@ causal map, leverage point, archetype, doom loop, stock and flow, GTM/sales/foun
 **Engine:** Systems Thinking Studio (`studio` CLI, `python3 ~/Developer/rig-intelligence/packages/systems-thinking-studio/scripts/studio.py`), 8-phase contract in
 `processes/phases.md`. **Source of truth in git:** `github.com/mrodgersjs-web/mrodgersjs-web` → `systems-thinking/`.
 **Owner:** iris-strategy. **Jev:** `/jev-everywhere` (ladder CODE → JEV → SYSTEM 2 → HUMAN) and `/jevharness`
-(the 8 phases as a switch domain with typed questions, replayable).
+(a switch domain with typed questions and replay is planned, not implemented).
 
 ## Commands
 | Command | Does | Steps |
@@ -95,4 +95,4 @@ causal map, leverage point, archetype, doom loop, stock and flow, GTM/sales/foun
 | 64 | Operate | `st-ops-refresh-corpus` | Refresh the Recall card index and pack, then studio doctor. | CODE: doctor green |
 | 65 | Operate | `st-ops-publish` | Commit + push the studio and outputs to mrodgersjs-web/mrodgersjs-web systems-thinking/. Secrets scan first. | CODE: secret scan clean |
 
-Work Canvas: "Systems Thinking OS · /systemsthinking" on :4912 (one card per step, loops/KPIs/goals filled).
+Work Canvas: "Systems Thinking OS · /systemsthinking" on :4912 (one card per step, loops/KPIs/goals proposed, not registered or instrumented).
