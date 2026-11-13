@@ -1,12 +1,12 @@
 {
   "schema": 1,
-  "date": "2026-11-12",
-  "generated_at": "2026-11-12T19:18:14Z",
+  "date": "2026-11-13",
+  "generated_at": "2026-11-13T18:55:09Z",
   "criteria_sha256": "7a55570a78754c52119f10678e41d6203051a49d9cdf6fdf8b6c0a46b2a927cc",
   "summary": {
     "total": 100,
-    "green": 66,
-    "red": 29,
+    "green": 65,
+    "red": 30,
     "null": 5
   },
   "criteria": [
@@ -92,14 +92,14 @@
       "check": "gh",
       "description": "README does not contain a repo count that differs from `gh repo list --json isPrivate` public length",
       "status": "red",
-      "evidence": "live public count=36; fleet total=366; static claims=[34, 366, 366, 34]"
+      "evidence": "live public count=37; fleet total=366; static claims=[34, 366, 366, 34]"
     },
     {
       "id": "public-cap",
       "check": "gh",
       "description": "public repo count ≤ 35 (raised 2026-10-29 when jev-route shipped; the cap exists to stop sprawl, not to freeze a healthy count)",
       "status": "red",
-      "evidence": "public repository count=36"
+      "evidence": "public repository count=37"
     },
     {
       "id": "every-desc",
@@ -113,7 +113,7 @@
       "check": "gh",
       "description": "every public repo has a LICENSE file (Contents API)",
       "status": "red",
-      "evidence": "repositories without LICENSE=['recruiting-calendar', 'stageshow']"
+      "evidence": "repositories without LICENSE=['recruiting-calendar', 'rig-free-agent-kit', 'stageshow']"
     },
     {
       "id": "no-empty-stub",
@@ -183,14 +183,14 @@
       "check": "gh",
       "description": "every public repo topics include the 7 baseline",
       "status": "red",
-      "evidence": "repositories missing baseline topics=['recruiting-calendar', 'stageshow']"
+      "evidence": "repositories missing baseline topics=['recruiting-calendar', 'rig-free-agent-kit', 'stageshow']"
     },
     {
       "id": "topics-specific",
       "check": "gh",
       "description": "every public repo has ≥10 topics (7 baseline + ≥3 specific)",
       "status": "red",
-      "evidence": "repositories with fewer than 10 topics=['recruiting-calendar', 'stageshow']"
+      "evidence": "repositories with fewer than 10 topics=['recruiting-calendar', 'rig-free-agent-kit', 'stageshow']"
     },
     {
       "id": "desc-no-typo",
@@ -245,8 +245,8 @@
       "id": "live-ci-badge",
       "check": "regex",
       "description": "if `.github/workflows` exists, README badge URL contains `github/actions/workflow/status`",
-      "status": "green",
-      "evidence": "repositories without live CI badge=[]"
+      "status": "red",
+      "evidence": "repositories without live CI badge=['rig-free-agent-kit']"
     },
     {
       "id": "license-badge-match",
@@ -603,7 +603,7 @@
       "check": "gh",
       "description": "if `rig-agent-directory` is public, its listed repo count equals live public count",
       "status": "red",
-      "evidence": "directory claims=[34]; live=36"
+      "evidence": "directory claims=[34]; live=37"
     },
     {
       "id": "no-star-farming",
@@ -652,7 +652,7 @@
       "check": "file",
       "description": "`steward/scoreboard/$(date -u +%F).json` exists after the daily run",
       "status": "green",
-      "evidence": "this run atomically writes steward/scoreboard/2026-11-12.json"
+      "evidence": "this run atomically writes steward/scoreboard/2026-11-13.json"
     },
     {
       "id": "latest-pointer",
@@ -687,14 +687,14 @@
       "check": "gh",
       "description": "when latest.red > 0, an open issue labeled `github-steward` exists (checked the day after Orca run)",
       "status": "red",
-      "evidence": "2026-11-11 red criteria without open issue=['every-license', 'no-empty-stub', 'no-pycache', 'clone-org', 'license-badge-match', 'test-count-honest', 'no-raw-json-tables', 'hero-ok', 'languages-honest', 'local-57-unadvertised', 'mcp-no-plaintext-tokens']"
+      "evidence": "2026-11-12 red criteria without open issue=['every-license', 'no-empty-stub', 'no-pycache', 'clone-org', 'license-badge-match', 'test-count-honest', 'no-raw-json-tables', 'hero-ok', 'languages-honest', 'local-57-unadvertised', 'mcp-no-plaintext-tokens']"
     },
     {
       "id": "readme-receipts-fresh",
       "check": "regex",
       "description": "profile README `recent_receipts` block date ≥ yesterday UTC",
       "status": "green",
-      "evidence": "latest receipt date=2026-11-11; threshold=2026-11-11"
+      "evidence": "latest receipt date=2026-11-12; threshold=2026-11-12"
     },
     {
       "id": "no-direct-main-from-orca",
