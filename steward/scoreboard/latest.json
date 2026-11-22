@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "date": "2026-11-21",
-  "generated_at": "2026-11-21T18:26:25Z",
+  "date": "2026-11-22",
+  "generated_at": "2026-11-22T18:48:43Z",
   "criteria_sha256": "7a55570a78754c52119f10678e41d6203051a49d9cdf6fdf8b6c0a46b2a927cc",
   "summary": {
     "total": 100,
@@ -92,14 +92,14 @@
       "check": "gh",
       "description": "README does not contain a repo count that differs from `gh repo list --json isPrivate` public length",
       "status": "red",
-      "evidence": "live public count=37; fleet total=366; static claims=[34, 366, 366, 34]"
+      "evidence": "live public count=38; fleet total=366; static claims=[34, 366, 366, 34]"
     },
     {
       "id": "public-cap",
       "check": "gh",
       "description": "public repo count ≤ 35 (raised 2026-10-29 when jev-route shipped; the cap exists to stop sprawl, not to freeze a healthy count)",
       "status": "red",
-      "evidence": "public repository count=37"
+      "evidence": "public repository count=38"
     },
     {
       "id": "every-desc",
@@ -183,14 +183,14 @@
       "check": "gh",
       "description": "every public repo topics include the 7 baseline",
       "status": "red",
-      "evidence": "repositories missing baseline topics=['recruiting-calendar', 'rig-free-agent-kit', 'stageshow']"
+      "evidence": "repositories missing baseline topics=['agentic-architectures', 'recruiting-calendar', 'rig-free-agent-kit', 'stageshow']"
     },
     {
       "id": "topics-specific",
       "check": "gh",
       "description": "every public repo has ≥10 topics (7 baseline + ≥3 specific)",
       "status": "red",
-      "evidence": "repositories with fewer than 10 topics=['recruiting-calendar', 'rig-free-agent-kit', 'stageshow']"
+      "evidence": "repositories with fewer than 10 topics=['agentic-architectures', 'recruiting-calendar', 'rig-free-agent-kit', 'stageshow']"
     },
     {
       "id": "desc-no-typo",
@@ -603,7 +603,7 @@
       "check": "gh",
       "description": "if `rig-agent-directory` is public, its listed repo count equals live public count",
       "status": "red",
-      "evidence": "directory claims=[34]; live=37"
+      "evidence": "directory claims=[34]; live=38"
     },
     {
       "id": "no-star-farming",
@@ -617,7 +617,7 @@
       "check": "gh",
       "description": "at least one public push or Action on profile repo in last 7 days",
       "status": "green",
-      "evidence": "recent public events=5"
+      "evidence": "recent public events=4"
     },
     {
       "id": "contact-path",
@@ -652,7 +652,7 @@
       "check": "file",
       "description": "`steward/scoreboard/$(date -u +%F).json` exists after the daily run",
       "status": "green",
-      "evidence": "this run atomically writes steward/scoreboard/2026-11-21.json"
+      "evidence": "this run atomically writes steward/scoreboard/2026-11-22.json"
     },
     {
       "id": "latest-pointer",
@@ -687,14 +687,14 @@
       "check": "gh",
       "description": "when latest.red > 0, an open issue labeled `github-steward` exists (checked the day after Orca run)",
       "status": "green",
-      "evidence": "2026-11-20 red criteria without open issue=[]"
+      "evidence": "2026-11-21 red criteria without open issue=[]"
     },
     {
       "id": "readme-receipts-fresh",
       "check": "regex",
       "description": "profile README `recent_receipts` block date ≥ yesterday UTC",
       "status": "green",
-      "evidence": "latest receipt date=2026-11-20; threshold=2026-11-20"
+      "evidence": "latest receipt date=2026-11-21; threshold=2026-11-21"
     },
     {
       "id": "no-direct-main-from-orca",
