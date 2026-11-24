@@ -98,7 +98,7 @@ class StaticReadmeContractTests(unittest.TestCase):
         competencies = readme.split("## Competencies\n", 1)[1].split("## Credentials\n", 1)[0]
         self.assertEqual(
             [line.split("**", 2)[1] for line in competencies.splitlines() if line.startswith("| **")],
-            ["Python", "TypeScript", "Postgres"],
+            ["Python", "TypeScript", "Postgres", "AWS", "Azure", "OCI", "LangChain", "n8n"],
         )
 
         credentials = readme.split("## Credentials\n", 1)[1].split("## Boundaries", 1)[0]

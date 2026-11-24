@@ -63,7 +63,8 @@ Not a repo list — an infrastructure. The machine-readable inventory is [`stewa
 | Network | **Tailscale** tailnet-only for every service; published ports via `tailscale serve`, never 0.0.0.0 | this very URL space; documented outage postmortems |
 | Edge | **Cloudflare** installed and ready (zone migration pending — stated as pending, not claimed as running); **Vercel** live: the console demo at rig-os-agency-demo.vercel.app | `dig NS`, the demo itself |
 | Observability | Prometheus + node_exporter + Grafana dashboards; swap-pressure alerts that caught a real thrash before ssh died | metrics endpoints, incident notes in commit history |
-| Agent tooling | **MCP** (3 public servers + a six-designer driver), n8n, Flowise, Dify, Trigger.dev, LangGraph core, CrewAI, LangChain ecosystem in evals | each named tool has a repo, config, or run log — no exceptions |
+| Agent tooling | **MCP** (3 public servers + a six-designer driver), n8n, Flowise, Dify, Trigger.dev, LangGraph core, CrewAI, LangChain ecosystem in evals | n8n: [execution 21, success](https://github.com/mrodgersjs-web/agentic-workflows/blob/main/results/n8n-run.json). LangGraph: [HELLO-AGENT-LANGGRAPH-OK](https://github.com/mrodgersjs-web/agentic-workflows/blob/main/results/langgraph-run.json), 2026-10-28. Public langchain repos on this account are forks, not original work. |
+| Cloud platforms | **AWS** and **Azure** are hands-on (career record and the public resume, including Bedrock and Azure AI). **OCI** is named on the public resume only. No checked-in AWS, Azure, or OCI execution receipt in this fleet. | [resume cloud line](https://github.com/mrodgersjs-web/resume/blob/main/RESUME.md) |
 | CI/CD | GitHub Actions on 33 of 34 public repos, fmt/clippy/sanitizer matrices, gitleaks, catalog verify | the badges on this page, all live |
 
 ### Recent operating work
@@ -167,6 +168,11 @@ Steward score. **62 of 100 checks green**, 33 red, 5 not measured. Measured `202
 | **Python** | Harnesses, MCP servers, evals, the nightly profile steward itself. The working language of every pinned system that isn't TypeScript. |
 | **TypeScript** | `ai-user-testing-mcp` (pnpm monorepo, CI-tested), `rig-os-agency` (Next.js 16 console), `mrodgersjs-web-teammate` (`npx`-installable). The delivery surface for the Forward-Deployed bar. |
 | **Postgres** | Agency data layer behind the console, catalog persistence, and the prediction store; migrations are reversible by rule, not by hope. |
+| **AWS** | Hands-on cloud for AI features and agents, named with Google Cloud as a pair in the career record. Bedrock is on that same record. No public execution receipt in this fleet. Check the [resume cloud line](https://github.com/mrodgersjs-web/resume/blob/main/RESUME.md). |
+| **Azure** | Azure and Azure AI, same career record: built AI features and agents on AWS and Azure. No public execution receipt in this fleet. |
+| **OCI** | Named on the public resume cloud line. Not a fleet proof: no public run receipt. |
+| **LangChain** | LangGraph has a checked-in run ([HELLO-AGENT-LANGGRAPH-OK](https://github.com/mrodgersjs-web/agentic-workflows/blob/main/results/langgraph-run.json), 2026-10-28). LangChain is hands-on in the career record. The public langchain repos on this account are forks. |
+| **n8n** | Checked-in workflow run, execution 21, status success ([n8n-run.json](https://github.com/mrodgersjs-web/agentic-workflows/blob/main/results/n8n-run.json)). |
 
 Rust and JavaScript ride alongside: `jev-route` ships the routing policy as a dependency-free binary, and the JavaScript claim is the npx surface above.
 
