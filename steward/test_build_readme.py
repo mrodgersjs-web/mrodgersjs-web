@@ -104,10 +104,10 @@ class StaticReadmeContractTests(unittest.TestCase):
         credentials = readme.split("## Credentials\n", 1)[1].split("## Boundaries", 1)[0]
         credential_lines = [line for line in credentials.splitlines() if line.startswith("- ")]
         for required in (
-            "- U.S. Army Counterintelligence veteran",
-            "- B.S. Industrial Engineering, Iowa State University",
-            "- Six Sigma Black Belt",
-            "- Project Management Professional (PMP)",
+            "- B.S. Industrial Engineering, Iowa State University, with Distinction",
+            "- Lean/Six Sigma Black Belt",
+            "- Project Management Certification & Lean Facilitator/Coordinator Certification (Actuant Corporation)",
+            "- U.S. Army National Guard (1998–2004), Radio/COMSEC Repairer (MOS 35E), honorable",
         ):
             self.assertIn(required, credential_lines)
         self.assertNotIn("clearance", readme.lower())
@@ -150,10 +150,10 @@ class StaticReadmeContractTests(unittest.TestCase):
         root = Path(__file__).resolve().parents[1]
         readme = (root / "README.md").read_text(encoding="utf-8")
         for credential in (
-            "U.S. Army Counterintelligence veteran",
-            "B.S. Industrial Engineering, Iowa State University",
-            "Six Sigma Black Belt",
-            "Project Management Professional (PMP)",
+            "B.S. Industrial Engineering, Iowa State University, with Distinction",
+            "Lean/Six Sigma Black Belt",
+            "Project Management Certification & Lean Facilitator/Coordinator Certification (Actuant Corporation)",
+            "U.S. Army National Guard (1998–2004), Radio/COMSEC Repairer (MOS 35E), honorable",
         ):
             self.assertIn(credential, readme)
         self.assertNotIn("clearance", readme.lower())

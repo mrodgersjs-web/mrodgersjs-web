@@ -55,11 +55,20 @@ A technology can appear in both operational and research records. The case study
 3. Use a [fleet case study](fleet-case-studies.md) to discuss the operating constraint, decision, observed result, and remaining acceptance work.
 4. Separate Mike's architecture and operating ownership from AI-assisted implementation and from third-party software used in the solution.
 
+## Client delivery & verified builds (2025–2026)
+
+- **Client AI practice (RIG, 01/2025–Present):** 13 client AI deployments (6 live client AI applications under written reference architecture) across banking/financial services, payments/e-commerce, quote-to-cash, healthcare, and HR (4+ HR/employee-support AI assistants, Workday HCM/HR integrations, classic ML classification/forecasting/scoring); up to 80% end-user adoption, ~20% measured cost/handling/cycle cut, 8 IT activate/buy/build feasibility reviews, 6 third-party AI vendors vetted for model risk, ~30% engineering time on feedback-driven self-learning systems.
+- **Verified production builds:** Blackwell tensor-parallel-3 inference (3 RTX PRO 6000 GPUs; 522.988 tok/s median, 1,446.4 tok/s aggregate at concurrency 8; 10 automated tool-call cycles); multi-client LiteLLM control plane (6 agent clients, 43 model roles, 31 fallback chains, 15/15 and 12/12 catalog checks, 4x context-window fix); 48-server MCP permission layer (555- and 276-line stdio servers, `.unref()` leak fix, 21 live tools); Vercel web platform (56 routes: 31 Next.js/React pages, 23 TypeScript APIs, 1,147 Python modules, 159 test suites, 61,987-page / 116,158-chunk pgvector at 100% embedding coverage); governed delivery stack (252 automated tests, fail-closed control plane, 66/66 container images and 21 routines migrated); TransformFit Flutter/Dart mobile AI coach (Supabase PostgreSQL, Edge Functions, ES256 Sign in with Apple JWT, 5/5 voice routes HTTP 200 in 1.4s–3.6s); 3 patent families in preparation (`RIG-DE-001`, `RIG-LAT-002`, `RIG-PHR-003`).
+- **Enterprise & industrial operating record:** Oracle Health ($6B BU, 150+ daily AI competitive-intelligence signals, 12-use-case intake with top 4 funded, 8 Finance business cases, 3 vendor evaluations, HIPAA/compliance review); EmOpti ($1M year-one revenue, $10M Series A, 6 focus groups across Advocate Health, HCA, Jefferson Memorial); Advocate Health / 83 Tech Harbor (clinical AI/ML since 2019 with ~15% faster radiology read prioritization, 6-project digital-health CoE, 5 health systems / 14 EDs / 130,000+ patients, 28 direct reports with 3 promoted, $27M budgets, $28M ventures, 5 revenue workstreams, $16M downstream revenue, $5M value-stream transformations, $3.4M time-to-fill savings); Actuant (20% cost cut, $12M acquisition integration, $3.4M restructuring savings), Caterpillar ($1.8M line expansion, $200K+ inventory cut, 18 direct reports on 150/195-ton mining truck line), Becton Dickinson ($500K verified savings, ISO 9000 approvals).
+
 ## Background
 
-- U.S. Army Counterintelligence veteran
-- B.S. Industrial Engineering, Iowa State University
-- Six Sigma Black Belt
-- Project Management Professional (PMP)
+- B.S. Industrial Engineering, Iowa State University, with Distinction
+- Lean/Six Sigma Black Belt
+- Project Management Certification & Lean Facilitator/Coordinator Certification (Actuant Corporation)
+- ISO 9000 Process Validation & Quality Approvals (Becton, Dickinson & Company)
+- Manufacturers Professional Development Program (consistently promoted through annual rankings)
+- U.S. Army National Guard (1998–2004), Radio/COMSEC Repairer (MOS 35E), honorable
+- Executive Board Member & Chairman, Milwaukee Tech Hub Coalition (09/2017–06/2020) — 40% YoY market reach growth; launched Founder's Circle (75+ local tech startup founders)
 
 [Discuss a role](mailto:mrodgersjs@gmail.com) · [LinkedIn](https://www.linkedin.com/in/mike-rodgers-ai/)
