@@ -70,6 +70,16 @@ Not a repo list — an infrastructure. The machine-readable inventory is [`stewa
 | Cloud platforms | **AWS** (incl. Bedrock), **Google Cloud**, **Azure** (incl. Azure AI), and **OCI**; OpenAI API, PyTorch, Workday HCM/HR AI integrations, SQL Server (SSIS), Power BI, Tableau, Microsoft 365 Copilot / Copilot Studio, Power Platform | [resume cloud line](https://github.com/mrodgersjs-web/resume/blob/main/RESUME.md) (no checked-in AWS/Azure/GCP/OCI execution receipt in this public fleet) |
 | CI/CD | GitHub Actions on **33 of 36** original public systems, fmt/clippy/sanitizer matrices, gitleaks, catalog verify, TDD (**159- and 252-test suites**) | the badges on this page, all live |
 
+### Fleet homelab & architecture diagrams
+
+Redacted public-safe topology generated with [homelab-diagram](https://github.com/mrodgersjs-web/homelab-diagram) and collision-checked system diagrams generated with [open-diagram](https://github.com/mrodgersjs-web/open-diagram) (0 layout problems). [Full high-res visual gallery →](docs/architecture-and-floorplans.md)
+
+![RIG AI Fleet Homelab Network Diagram (Redacted)](assets/diagrams/rig-homelab.png)
+
+| Control Plane Architecture (Request to ProofPacket) | Enterprise FDE Delivery Architecture (13 Deployments) |
+|---|---|
+| ![RIG AI Control Plane Architecture](assets/diagrams/rig-control-plane.png) | ![Forward-Deployed Enterprise AI Delivery Architecture](assets/diagrams/rig-delivery-pipeline.png) |
+
 ### Selected production builds & verified systems (receipt-backed telemetry)
 
 Every build below carries dated verification telemetry and states its scope honestly:
@@ -101,6 +111,36 @@ Also live, also verifiable, not pinned (six pins is the cap): [mesh-studio](http
 ![rigforge demo: a forged "BUILD COMPLETE" claim caught by the signature check](https://raw.githubusercontent.com/mrodgersjs-web/rigforge/main/docs/rigforge-demo.gif)
 
 <sub>rigforge in action: an agent reports "BUILD COMPLETE", the signature check rejects the forged packet. Reproduce it with the command above.</sub>
+
+### Codebase Floorplans — how every pinned repo works
+
+Interactive architecture maps generated with Floorplan (100% file and route coverage across all six pinned systems):
+
+| [rigforge](https://github.com/mrodgersjs-web/rigforge) (73 files · 23 endpoints) | [proof-studio](https://github.com/mrodgersjs-web/proof-studio) (81 files · 23 endpoints) |
+|---|---|
+| ![rigforge Floorplan codebase map](assets/floorplans/floorplan-rigforge.png) | ![proof-studio Floorplan codebase map](assets/floorplans/floorplan-proof-studio.png) |
+
+| [communications-studio](https://github.com/mrodgersjs-web/communications-studio) (40 files · 6 modules) | [deviatrix-genesis](https://github.com/mrodgersjs-web/deviatrix-genesis) (89 files · 8 modules) |
+|---|---|
+| ![communications-studio Floorplan codebase map](assets/floorplans/floorplan-communications-studio.png) | ![deviatrix-genesis Floorplan codebase map](assets/floorplans/floorplan-deviatrix-genesis.png) |
+
+| [ai-user-testing-mcp](https://github.com/mrodgersjs-web/ai-user-testing-mcp) (163 files · 1,849 pinned) | [jev-route](https://github.com/mrodgersjs-web/jev-route) (Rust + WASM · 11 files) |
+|---|---|
+| ![ai-user-testing-mcp Floorplan codebase map](assets/floorplans/floorplan-ai-user-testing-mcp.png) | ![jev-route Floorplan codebase map](assets/floorplans/floorplan-jev-route.png) |
+
+### Animated demos — remaining top repositories
+
+| [mesh-studio](https://github.com/mrodgersjs-web/mesh-studio) (Fleet Orchestrator + MCP) | [jake-studio](https://github.com/mrodgersjs-web/jake-studio) (Builder-vs-Verifier OS) |
+|---|---|
+| ![mesh-studio animated demo](assets/demos/mesh-studio-demo.gif) | ![jake-studio animated demo](assets/demos/jake-studio-demo.gif) |
+
+| [latency-probe](https://github.com/mrodgersjs-web/latency-probe) (C++17 · 32 ns/observe) | [agentic-workflows](https://github.com/mrodgersjs-web/agentic-workflows) (6-Engine Router) |
+|---|---|
+| ![latency-probe animated demo](assets/demos/latency-probe-demo.gif) | ![agentic-workflows animated demo](assets/demos/agentic-workflows-demo.gif) |
+
+| [fde-portfolio](https://github.com/mrodgersjs-web/fde-portfolio) (13 Client Deployments) | [rig-os-agency](https://github.com/mrodgersjs-web/rig-os-agency) (Next.js 16 · 56 Routes) |
+|---|---|
+| ![fde-portfolio animated demo](assets/demos/fde-portfolio-demo.gif) | ![rig-os-agency animated demo](assets/demos/rig-os-agency-demo.gif) |
 
 ## Which requirement each system answers
 
