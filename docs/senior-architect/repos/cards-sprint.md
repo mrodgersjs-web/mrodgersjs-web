@@ -1,0 +1,82 @@
+# Senior Architect Scan-Mode Note — `cards-sprint`
+
+## Synthesis (Reader Priority — Rule 19)
+- **Critical/High Findings:** None identified at remote root/README/manifest inspection depth.
+- **Primary Recommendation:** Address the top Low finding first — committed backup files (1 `.bak*` artifact) tracked in git — by cloning `cards-sprint` locally for direct verification before applying the proposed smallest safe correction (subject to owner approval).
+
+## Intake, Pass Control & Inspection Scope
+- **Repository:** `mrodgersjs-web/cards-sprint` (https://github.com/mrodgersjs-web/cards-sprint)
+- **Pass Level:** `Scan Mode` (default per Rule 0)
+- **Promotion Trigger:** None — remain in Scan Mode (no Critical/High trigger observed at root/manifest level; clone locally if active modification is planned).
+- **Inspection Limitation:** Remote GitHub API root/README/manifest inspection only; not cloned locally.
+- **MCP 2 (`2026-07-28`) Status:** `No MCP surface observed`
+- **Output Path:** `/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/cards-sprint.md`
+
+## Architecture Area Classification
+- **Frontend:** Not observed
+- **Backend:** Observed (language Python)
+- **Database:** Not observed
+- **AI or background processes:** Not observed
+- **External services:** Not observed
+- **Infrastructure:** Not observed
+- **Shared modules:** Observed (`tools/`)
+- **Tests and quality gates:** Observed (`evidence/`/`proof/`)
+- **Unknown or unclear areas:** Internal source modules, runtime call graphs, dependency trees, and live deployment bindings were not inspected (remote GitHub API root/README/manifest inspection only; not cloned locally).
+
+## Evidence Checked & Skipped Areas
+### Evidence Checked
+- GitHub repository metadata via `shard_remote_4.json` (visibility: `private`, primary language: `Python`, default branch: `main`, last pushed: `2026-11-09T20:19:52Z`).
+- Root directory listing (27 entries: `.gitignore`, `.local-handle`, `.orca-repo-id`, `=`, `AXY6-NOTES.md`, `AXY6-NOTES.md.bak-20261026-academy-companyos`, `LANE-RULES-rejudge-local-48.md`, `LANE-RULING.md`, `LEDGER.jsonl`, `PRE-FLIGHT-rejudge-local-48.md`, `REJUDGE-SAMPLE50-RESULTS.md`, `SHARED.md`, `WORKER-REPORT-local-01a17ad7.md`, `blocked/`, `drafts/`, `eng/`, `evidence/`, `gtm/`, ... (+9 more)).
+- README head (not present / empty).
+
+### Skipped Areas
+- Source file internals, git commit history, local runtime execution, test execution, and full lockfile/dependency trees were skipped because this is a read-only remote Scan-Mode pass (not cloned locally).
+
+## Confirmed Facts (`Direct`)
+- **Repository identity (`Direct`):** `mrodgersjs-web/cards-sprint` (https://github.com/mrodgersjs-web/cards-sprint), private, default branch `main`, primary language `Python`, last pushed `2026-11-09T20:19:52Z`.
+- **Description / Topics (`Direct`):** No GitHub description set. No topics set.
+- **Root surface (`Direct`):** 27 top-level entries observed.
+- **MCP 2 (2026-07-28) status (`Direct`):** `No MCP surface observed` (no `mcp/` directory or `.mcp.json` at root).
+
+## Inferences & Assumptions (`Inferred` / `Assumed`)
+- **Operational role (`Inferred`):** Inferred from repository name `cards-sprint` and root layout (.gitignore, .local-handle, .orca-repo-id, =, AXY6-NOTES.md, AXY6-NOTES.md.bak-20261026-academy-companyos). Verify first: Yes.
+- **Internal module boundaries (`Assumed`):** Standard Python module boundaries are assumed inside uninspected subdirectories until a local clone permits direct file reading.
+
+## Findings
+### 1. Committed backup files (1 `.bak*` artifact) tracked in git
+- **Dimension:** Project convention drift / Architecture debt
+- **Severity:** `Low`
+- **Confidence:** `Direct`
+- **Evidence:** Direct GitHub API listing shows committed backup file(s): AXY6-NOTES.md.bak-20261026-academy-companyos.
+- **Impact:** Creates competing copies of specs/scripts in the working tree, increases confusion for agents/humans over which file is authoritative, and duplicates git history.
+- **Smallest Safe Correction:** Proposed (requires approval): Remove committed `.bak*` files (relying on git history instead) and add `*.bak-*` to `.gitignore`.
+
+### 2. Stray shell-artifact file named `=` committed at repo root
+- **Dimension:** Project convention drift
+- **Severity:** `Low`
+- **Confidence:** `Direct`
+- **Evidence:** Direct root listing includes a file literally named `=` alongside `.local-handle` and `.orca-repo-id`.
+- **Impact:** Indicates unreviewed workspace commits that can break shell globbing or automated tooling.
+- **Smallest Safe Correction:** Proposed (requires approval): Delete the stray `=` file and add workspace scratch markers to `.gitignore`.
+
+### 3. No `README.md` at repository root
+- **Dimension:** Architecture debt (handoff readiness)
+- **Severity:** `Low`
+- **Confidence:** `Direct`
+- **Evidence:** Direct root listing (27 entries) contains no `README.md` (entry context is split across `JOB.md`, `DONE.txt`, or unlisted files).
+- **Impact:** Slows human and AI-agent orientation when inspecting or cloning the repository.
+- **Smallest Safe Correction:** Proposed (requires approval): Add a concise root `README.md` documenting purpose, entry points, and verification command.
+
+## Open Questions
+- Is this repository actively deployed or superseded by a newer consolidated studio/monorepo?
+
+## Risks
+- **Inspection blind spot:** Because this repository was not cloned locally, internal coupling, dead paths, secret sprawl inside subdirectories, and test pass rates remain unobserved.
+
+## Safe Next Actions
+- **Read-only next step:** Keep this note as the Scan-Mode baseline; promote to Focus or Full Mode only after cloning locally and confirming an active work trigger.
+
+## Step-8 Validation Gate Answers
+1. **Claim traceability:** Yes. Every fact and finding traces directly to `shard_remote_4.json` metadata, root listings, README heads, or targeted read-only `gh api` GET responses (`Direct`), with non-inspected details explicitly labeled `Inferred`, `Assumed`, or `Not observed`.
+2. **Scope alignment:** Yes. Output remains strictly within Scan Mode (one compact architecture note, read-only against GitHub) and explicitly notes that cloning locally is required before any Focus/Full promotion.
+3. **Handoff readiness:** Yes. Unknowns, inspection limitations, MCP 2 status, and Gate-D-compliant safe next actions are explicitly documented with no blank sections.

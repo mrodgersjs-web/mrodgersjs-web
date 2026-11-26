@@ -1260,6 +1260,35 @@ class ScoringContext:
                         dynamic = True
             ok = bool(transports) and not dynamic and set(transports) == {"stdio"}
             return ok, f"catalog transports={transports}; dynamic={dynamic}"
+        if identifier == "mcp2-protocol-only":
+            v1_pin_re = re.compile(
+                r"""(?:mcp\[cli\]\s*<\s*2|\bmcp\s*(?:>=?[^,\s"']+\s*,\s*)?<\s*2\b|@modelcontextprotocol/sdk["']?\s*[:@]\s*["']?[\^~]?1\.)""",
+                re.IGNORECASE,
+            )
+            bad_files: list[str] = []
+            for path in sorted(self.root.rglob("*")):
+                if not path.is_file():
+                    continue
+                rel_parts = path.relative_to(self.root).parts
+                if any(p in {".git", "blueprints", "node_modules", ".venv", "__pycache__"} for p in rel_parts):
+                    continue
+                if path.suffix not in {".py", ".md", ".toml", ".json", ".yml", ".yaml", ".txt"}:
+                    continue
+                try:
+                    text = path.read_text(encoding="utf-8", errors="ignore")
+                except OSError:
+                    continue
+                if v1_pin_re.search(text):
+                    bad_files.append(str(path.relative_to(self.root)))
+            missing_mcp2: list[str] = []
+            for rel in ("steward/catalog_mcp.py", "mcp/server.py"):
+                fp = self.root / rel
+                if fp.is_file():
+                    src = fp.read_text(encoding="utf-8", errors="ignore")
+                    if "2026-07-28" not in src or "server/discover" not in src or "-32022" not in src:
+                        missing_mcp2.append(rel)
+            ok = not bad_files and not missing_mcp2
+            return ok, f"v1_pins={bad_files}; non_mcp2_servers={missing_mcp2}"
         if identifier == "mcp-no-plaintext-tokens":
             bad = []
             token_pattern = re.compile(

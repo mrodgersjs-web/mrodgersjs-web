@@ -1,0 +1,3529 @@
+{
+  "generated_at": "2026-11-26T18:55:34.669Z",
+  "owner": "mrodgersjs-web",
+  "total_active_owned_repos": 149,
+  "local_inspected": 103,
+  "remote_api_inspected": 46,
+  "archived_excluded": 5,
+  "forks_excluded_from_mutation": 421,
+  "missing_docs": 0,
+  "doc_bytes_min": 2705,
+  "doc_bytes_max": 10207,
+  "mcp2_status_breakdown": {
+    "Strict MCP 2": 39,
+    "Legacy MCP v1 (upgrade needed)": 15,
+    "No MCP surface observed": 89,
+    "MCP surface present — verify protocol after clone": 6
+  },
+  "total_critical_high_findings": 41,
+  "total_medium_low_findings": 155,
+  "repos_with_critical_high": 33,
+  "promotion_triggers_flagged": 149,
+  "repositories": [
+    {
+      "repo": "agency-studio",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None identified (Scan Mode sufficient for current bounded scope).",
+      "architecture_areas": [
+        "Backend/CLI",
+        "MCP Surface",
+        "Infrastructure",
+        "Tests & Quality Gates"
+      ],
+      "mcp2_status": "Strict MCP 2",
+      "critical_high_findings": 0,
+      "medium_low_findings": 0,
+      "primary_recommendation": "Maintain current Scan-Mode baseline; no immediate architectural changes required.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/agency-studio.md",
+      "evidence_files_count": 13
+    },
+    {
+      "repo": "agentic-designers",
+      "source": "remote_api",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "Focus Promotion Triggered (clone locally first): Direct Legacy MCP v1 (`2024-11-05`) protocol finding requires local clone to upgrade and verify MCP 2 (`2026-07-28`) compliance.",
+      "architecture_areas": [
+        "Backend",
+        "AI or background processes",
+        "External services",
+        "Infrastructure",
+        "Shared modules",
+        "Tests and quality gates"
+      ],
+      "mcp2_status": "Legacy MCP v1 (upgrade needed)",
+      "critical_high_findings": [
+        {
+          "title": "Legacy MCP v1 protocol version (`2024-11-05`) in `mcp/ad_mcp.py`",
+          "severity": "High",
+          "confidence": "Direct",
+          "evidence": "Direct inspection of `mcp/ad_mcp.py` via GitHub API confirmed protocol string `2024-11-05` in the custom stdio JSON-RPC 2.0 shim."
+        }
+      ],
+      "medium_low_findings": [
+        {
+          "title": "Committed backup files (1 `.bak*` artifact) tracked in git",
+          "severity": "Low",
+          "confidence": "Direct",
+          "evidence": "Direct GitHub API listing shows committed backup file(s): mcp/ad_mcp.py.bak-20261103-agentflux."
+        },
+        {
+          "title": "No `README.md` at repository root",
+          "severity": "Low",
+          "confidence": "Direct",
+          "evidence": "Direct root listing (12 entries) contains no `README.md` (entry context is split across `JOB.md`, `DONE.txt`, or unlisted files)."
+        }
+      ],
+      "primary_recommendation": "Address the top High finding first — legacy mcp v1 protocol version (`2024-11-05`) in `mcp/ad_mcp.py` — by cloning `agentic-designers` locally for direct verification before applying the proposed smallest safe correction (subject to owner approval).",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/agentic-designers.md",
+      "evidence_files_count": 2
+    },
+    {
+      "repo": "agentic-workflows",
+      "source": "remote_api",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "Focus Promotion Triggered (clone locally first): Direct Legacy MCP v1 (`2024-11-05`) protocol finding requires local clone to upgrade and verify MCP 2 (`2026-07-28`) compliance.",
+      "architecture_areas": [
+        "Backend",
+        "AI or background processes",
+        "External services",
+        "Shared modules"
+      ],
+      "mcp2_status": "Legacy MCP v1 (upgrade needed)",
+      "critical_high_findings": [
+        {
+          "title": "Legacy MCP v1 protocol version (`2024-11-05`) in `mcp/agentic_mcp.py`",
+          "severity": "High",
+          "confidence": "Direct",
+          "evidence": "Direct inspection of `mcp/agentic_mcp.py` via GitHub API confirmed protocol string `2024-11-05` in the custom stdio JSON-RPC 2.0 shim."
+        }
+      ],
+      "medium_low_findings": [],
+      "primary_recommendation": "Address the top High finding first — legacy mcp v1 protocol version (`2024-11-05`) in `mcp/agentic_mcp.py` — by cloning `agentic-workflows` locally for direct verification before applying the proposed smallest safe correction (subject to owner approval).",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/agentic-workflows.md",
+      "evidence_files_count": 3
+    },
+    {
+      "repo": "ai-user-testing-mcp",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "Focus/Full Mode candidate — 5 architecture areas, 861 files, or High/Critical findings (0).",
+      "architecture_areas": [
+        "Backend/CLI",
+        "AI/Agents",
+        "MCP Surface",
+        "Infrastructure",
+        "Tests & Quality Gates"
+      ],
+      "mcp2_status": "Strict MCP 2",
+      "critical_high_findings": 0,
+      "medium_low_findings": 0,
+      "primary_recommendation": "Maintain current Scan-Mode baseline; no immediate architectural changes required.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/ai-user-testing-mcp.md",
+      "evidence_files_count": 37
+    },
+    {
+      "repo": "alex-recruiting-rebuilt",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "Focus/Full Mode candidate — 5 architecture areas, 298 files, or High/Critical findings (0).",
+      "architecture_areas": [
+        "Frontend",
+        "Backend/CLI",
+        "Database",
+        "AI/Agents",
+        "Tests & Quality Gates"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": 0,
+      "medium_low_findings": 2,
+      "primary_recommendation": "Confirm .gitignore covers all local .env* files.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/alex-recruiting-rebuilt.md",
+      "evidence_files_count": 16
+    },
+    {
+      "repo": "app-factory-studio",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None identified (Scan Mode sufficient for current bounded scope).",
+      "architecture_areas": [
+        "Backend/CLI",
+        "Infrastructure",
+        "Tests & Quality Gates"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": 0,
+      "medium_low_findings": 0,
+      "primary_recommendation": "Maintain current Scan-Mode baseline; no immediate architectural changes required.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/app-factory-studio.md",
+      "evidence_files_count": 7
+    },
+    {
+      "repo": "aside",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None identified (Scan Mode sufficient for current bounded scope).",
+      "architecture_areas": [
+        "Tests & Quality Gates"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": 0,
+      "medium_low_findings": 0,
+      "primary_recommendation": "Maintain current Scan-Mode baseline; no immediate architectural changes required.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/aside.md",
+      "evidence_files_count": 4
+    },
+    {
+      "repo": "aside-ui-build-repo",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "Focus/Full Mode candidate — 5 architecture areas, 282 files, or High/Critical findings (1).",
+      "architecture_areas": [
+        "Frontend",
+        "Backend/CLI",
+        "AI/Agents",
+        "MCP Surface",
+        "Tests & Quality Gates"
+      ],
+      "mcp2_status": "Legacy MCP v1 (upgrade needed)",
+      "critical_high_findings": 1,
+      "medium_low_findings": 2,
+      "primary_recommendation": "Upgrade MCP server/client surface to Strict MCP 2 (2026-07-28) with server/discover and add rig-lattice MCP2 CI check.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/aside-ui-build-repo.md",
+      "evidence_files_count": 17
+    },
+    {
+      "repo": "autark-boring-consumables",
+      "source": "remote_api",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None — remain in Scan Mode (no Critical/High trigger observed at root/manifest level; clone locally if active modification is planned).",
+      "architecture_areas": [
+        "AI or background processes",
+        "Shared modules"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": [],
+      "medium_low_findings": [
+        {
+          "title": "No automated CI workflow or root test suite observed in generated Autark team repo",
+          "severity": "Low",
+          "confidence": "Direct",
+          "evidence": "Direct root listing contains the 8-entry Autark template (`README.md`, `agents/`, `blueprints/`, `brand/`, `gtm/`, `offer/`, `product/`, `scripts/`) with no `.github/` workflows or `tests/` directory."
+        }
+      ],
+      "primary_recommendation": "Address the top Low finding first — no automated ci workflow or root test suite observed in generated autark team repo — by cloning `autark-boring-consumables` locally for direct verification before applying the proposed smallest safe correction (subject to owner approval).",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/autark-boring-consumables.md",
+      "evidence_files_count": 2
+    },
+    {
+      "repo": "autark-leadership",
+      "source": "remote_api",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None — remain in Scan Mode (no Critical/High trigger observed at root/manifest level; clone locally if active modification is planned).",
+      "architecture_areas": [
+        "AI or background processes",
+        "Shared modules"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": [],
+      "medium_low_findings": [
+        {
+          "title": "No automated CI workflow or root test suite observed in generated Autark team repo",
+          "severity": "Low",
+          "confidence": "Direct",
+          "evidence": "Direct root listing contains the 8-entry Autark template (`README.md`, `agents/`, `blueprints/`, `brand/`, `gtm/`, `offer/`, `product/`, `scripts/`) with no `.github/` workflows or `tests/` directory."
+        }
+      ],
+      "primary_recommendation": "Address the top Low finding first — no automated ci workflow or root test suite observed in generated autark team repo — by cloning `autark-leadership` locally for direct verification before applying the proposed smallest safe correction (subject to owner approval).",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/autark-leadership.md",
+      "evidence_files_count": 2
+    },
+    {
+      "repo": "autark-rig-ai-products-devtools",
+      "source": "remote_api",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None — remain in Scan Mode (no Critical/High trigger observed at root/manifest level; clone locally if active modification is planned).",
+      "architecture_areas": [
+        "AI or background processes",
+        "Shared modules"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": [],
+      "medium_low_findings": [
+        {
+          "title": "No automated CI workflow or root test suite observed in generated Autark team repo",
+          "severity": "Low",
+          "confidence": "Direct",
+          "evidence": "Direct root listing contains the 8-entry Autark template (`README.md`, `agents/`, `blueprints/`, `brand/`, `gtm/`, `offer/`, `product/`, `scripts/`) with no `.github/` workflows or `tests/` directory."
+        }
+      ],
+      "primary_recommendation": "Address the top Low finding first — no automated ci workflow or root test suite observed in generated autark team repo — by cloning `autark-rig-ai-products-devtools` locally for direct verification before applying the proposed smallest safe correction (subject to owner approval).",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/autark-rig-ai-products-devtools.md",
+      "evidence_files_count": 2
+    },
+    {
+      "repo": "autark-rig-enterprise-prime-contracting",
+      "source": "remote_api",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None — remain in Scan Mode (no Critical/High trigger observed at root/manifest level; clone locally if active modification is planned).",
+      "architecture_areas": [
+        "AI or background processes",
+        "Shared modules"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": [],
+      "medium_low_findings": [
+        {
+          "title": "No automated CI workflow or root test suite observed in generated Autark team repo",
+          "severity": "Low",
+          "confidence": "Direct",
+          "evidence": "Direct root listing contains the 8-entry Autark template (`README.md`, `agents/`, `blueprints/`, `brand/`, `gtm/`, `offer/`, `product/`, `scripts/`) with no `.github/` workflows or `tests/` directory."
+        }
+      ],
+      "primary_recommendation": "Address the top Low finding first — no automated ci workflow or root test suite observed in generated autark team repo — by cloning `autark-rig-enterprise-prime-contracting` locally for direct verification before applying the proposed smallest safe correction (subject to owner approval).",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/autark-rig-enterprise-prime-contracting.md",
+      "evidence_files_count": 2
+    },
+    {
+      "repo": "autark-rig-federal-defense",
+      "source": "remote_api",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None — remain in Scan Mode (no Critical/High trigger observed at root/manifest level; clone locally if active modification is planned).",
+      "architecture_areas": [
+        "AI or background processes",
+        "Shared modules"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": [],
+      "medium_low_findings": [
+        {
+          "title": "No automated CI workflow or root test suite observed in generated Autark team repo",
+          "severity": "Low",
+          "confidence": "Direct",
+          "evidence": "Direct root listing contains the 8-entry Autark template (`README.md`, `agents/`, `blueprints/`, `brand/`, `gtm/`, `offer/`, `product/`, `scripts/`) with no `.github/` workflows or `tests/` directory."
+        }
+      ],
+      "primary_recommendation": "Address the top Low finding first — no automated ci workflow or root test suite observed in generated autark team repo — by cloning `autark-rig-federal-defense` locally for direct verification before applying the proposed smallest safe correction (subject to owner approval).",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/autark-rig-federal-defense.md",
+      "evidence_files_count": 2
+    },
+    {
+      "repo": "autark-rig-field-clinic-systems",
+      "source": "remote_api",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None — remain in Scan Mode (no Critical/High trigger observed at root/manifest level; clone locally if active modification is planned).",
+      "architecture_areas": [
+        "AI or background processes",
+        "Shared modules"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": [],
+      "medium_low_findings": [
+        {
+          "title": "No automated CI workflow or root test suite observed in generated Autark team repo",
+          "severity": "Low",
+          "confidence": "Direct",
+          "evidence": "Direct root listing contains the 8-entry Autark template (`README.md`, `agents/`, `blueprints/`, `brand/`, `gtm/`, `offer/`, `product/`, `scripts/`) with no `.github/` workflows or `tests/` directory."
+        }
+      ],
+      "primary_recommendation": "Address the top Low finding first — no automated ci workflow or root test suite observed in generated autark team repo — by cloning `autark-rig-field-clinic-systems` locally for direct verification before applying the proposed smallest safe correction (subject to owner approval).",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/autark-rig-field-clinic-systems.md",
+      "evidence_files_count": 2
+    },
+    {
+      "repo": "autark-traject-career-grokbots",
+      "source": "remote_api",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None — remain in Scan Mode (no Critical/High trigger observed at root/manifest level; clone locally if active modification is planned).",
+      "architecture_areas": [
+        "AI or background processes",
+        "Shared modules"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": [],
+      "medium_low_findings": [
+        {
+          "title": "No automated CI workflow or root test suite observed in generated Autark team repo",
+          "severity": "Low",
+          "confidence": "Direct",
+          "evidence": "Direct root listing contains the 8-entry Autark template (`README.md`, `agents/`, `blueprints/`, `brand/`, `gtm/`, `offer/`, `product/`, `scripts/`) with no `.github/` workflows or `tests/` directory."
+        }
+      ],
+      "primary_recommendation": "Address the top Low finding first — no automated ci workflow or root test suite observed in generated autark team repo — by cloning `autark-traject-career-grokbots` locally for direct verification before applying the proposed smallest safe correction (subject to owner approval).",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/autark-traject-career-grokbots.md",
+      "evidence_files_count": 2
+    },
+    {
+      "repo": "autark-transformfit",
+      "source": "remote_api",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None — remain in Scan Mode (no Critical/High trigger observed at root/manifest level; clone locally if active modification is planned).",
+      "architecture_areas": [
+        "AI or background processes",
+        "Shared modules"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": [],
+      "medium_low_findings": [
+        {
+          "title": "No automated CI workflow or root test suite observed in generated Autark team repo",
+          "severity": "Low",
+          "confidence": "Direct",
+          "evidence": "Direct root listing contains the 8-entry Autark template (`README.md`, `agents/`, `blueprints/`, `brand/`, `gtm/`, `offer/`, `product/`, `scripts/`) with no `.github/` workflows or `tests/` directory."
+        }
+      ],
+      "primary_recommendation": "Address the top Low finding first — no automated ci workflow or root test suite observed in generated autark team repo — by cloning `autark-transformfit` locally for direct verification before applying the proposed smallest safe correction (subject to owner approval).",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/autark-transformfit.md",
+      "evidence_files_count": 2
+    },
+    {
+      "repo": "autark-webforge-site-transform",
+      "source": "remote_api",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None — remain in Scan Mode (no Critical/High trigger observed at root/manifest level; clone locally if active modification is planned).",
+      "architecture_areas": [
+        "AI or background processes",
+        "Shared modules"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": [],
+      "medium_low_findings": [
+        {
+          "title": "No automated CI workflow or root test suite observed in generated Autark team repo",
+          "severity": "Low",
+          "confidence": "Direct",
+          "evidence": "Direct root listing contains the 8-entry Autark template (`README.md`, `agents/`, `blueprints/`, `brand/`, `gtm/`, `offer/`, `product/`, `scripts/`) with no `.github/` workflows or `tests/` directory."
+        }
+      ],
+      "primary_recommendation": "Address the top Low finding first — no automated ci workflow or root test suite observed in generated autark team repo — by cloning `autark-webforge-site-transform` locally for direct verification before applying the proposed smallest safe correction (subject to owner approval).",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/autark-webforge-site-transform.md",
+      "evidence_files_count": 2
+    },
+    {
+      "repo": "behavioral-science-studio",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "Focus/Full Mode candidate — 5 architecture areas, 336 files, or High/Critical findings (1).",
+      "architecture_areas": [
+        "Backend/CLI",
+        "AI/Agents",
+        "MCP Surface",
+        "Infrastructure",
+        "Tests & Quality Gates"
+      ],
+      "mcp2_status": "Legacy MCP v1 (upgrade needed)",
+      "critical_high_findings": 1,
+      "medium_low_findings": 2,
+      "primary_recommendation": "Upgrade MCP server/client surface to Strict MCP 2 (2026-07-28) with server/discover and add rig-lattice MCP2 CI check.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/behavioral-science-studio.md",
+      "evidence_files_count": 18
+    },
+    {
+      "repo": "billion-context",
+      "source": "remote_api",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None — remain in Scan Mode (empty repository; decide whether to populate or archive before any deeper pass).",
+      "architecture_areas": [],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": [
+        {
+          "title": "Empty remote repository with zero branches and zero files",
+          "severity": "High",
+          "confidence": "Direct",
+          "evidence": "Direct GitHub API check of `repos/mrodgersjs-web/billion-context/branches` returned `[]` and root listing is empty, despite repo description claiming RIG compress-parser fixes."
+        }
+      ],
+      "medium_low_findings": [],
+      "primary_recommendation": "Address the top High finding first — empty remote repository with zero branches and zero files — by cloning `billion-context` locally for direct verification before applying the proposed smallest safe correction (subject to owner approval).",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/billion-context.md",
+      "evidence_files_count": 1
+    },
+    {
+      "repo": "birch-rig-boots",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None identified (Scan Mode sufficient for current bounded scope).",
+      "architecture_areas": [
+        "Backend/CLI",
+        "MCP Surface",
+        "Infrastructure"
+      ],
+      "mcp2_status": "Strict MCP 2",
+      "critical_high_findings": 0,
+      "medium_low_findings": 1,
+      "primary_recommendation": "Add smoke tests for primary entrypoints.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/birch-rig-boots.md",
+      "evidence_files_count": 3
+    },
+    {
+      "repo": "bravesales",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "Focus/Full Mode candidate — 3 architecture areas, 1810 files, or High/Critical findings (0).",
+      "architecture_areas": [
+        "Backend/CLI",
+        "AI/Agents",
+        "Tests & Quality Gates"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": 0,
+      "medium_low_findings": 1,
+      "primary_recommendation": "Add minimal CI workflow running tests/linting.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/bravesales.md",
+      "evidence_files_count": 21
+    },
+    {
+      "repo": "cards-sprint",
+      "source": "remote_api",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None — remain in Scan Mode (no Critical/High trigger observed at root/manifest level; clone locally if active modification is planned).",
+      "architecture_areas": [
+        "Backend",
+        "Shared modules",
+        "Tests and quality gates"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": [],
+      "medium_low_findings": [
+        {
+          "title": "Committed backup files (1 `.bak*` artifact) tracked in git",
+          "severity": "Low",
+          "confidence": "Direct",
+          "evidence": "Direct GitHub API listing shows committed backup file(s): AXY6-NOTES.md.bak-20261026-academy-companyos."
+        },
+        {
+          "title": "Stray shell-artifact file named `=` committed at repo root",
+          "severity": "Low",
+          "confidence": "Direct",
+          "evidence": "Direct root listing includes a file literally named `=` alongside `.local-handle` and `.orca-repo-id`."
+        },
+        {
+          "title": "No `README.md` at repository root",
+          "severity": "Low",
+          "confidence": "Direct",
+          "evidence": "Direct root listing (27 entries) contains no `README.md` (entry context is split across `JOB.md`, `DONE.txt`, or unlisted files)."
+        }
+      ],
+      "primary_recommendation": "Address the top Low finding first — committed backup files (1 `.bak*` artifact) tracked in git — by cloning `cards-sprint` locally for direct verification before applying the proposed smallest safe correction (subject to owner approval).",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/cards-sprint.md",
+      "evidence_files_count": 1
+    },
+    {
+      "repo": "client-engine-4",
+      "source": "remote_api",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None — remain in Scan Mode (no Critical/High trigger observed at root/manifest level; clone locally if active modification is planned).",
+      "architecture_areas": [
+        "Backend",
+        "Database",
+        "AI or background processes",
+        "External services",
+        "Infrastructure",
+        "Shared modules",
+        "Tests and quality gates"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": [],
+      "medium_low_findings": [
+        {
+          "title": "Committed backup files (2 `.bak*` artifacts) tracked in git",
+          "severity": "Low",
+          "confidence": "Direct",
+          "evidence": "Direct GitHub API listing shows committed backup file(s): JOB.md.bak-20261027-heyreach-override, JOB.md.bak-20261027-relaunch."
+        }
+      ],
+      "primary_recommendation": "Address the top Low finding first — committed backup files (2 `.bak*` artifacts) tracked in git — by cloning `client-engine-4` locally for direct verification before applying the proposed smallest safe correction (subject to owner approval).",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/client-engine-4.md",
+      "evidence_files_count": 2
+    },
+    {
+      "repo": "clients-ai-jobs",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "Focus/Full Mode candidate — 5 architecture areas, 649 files, or High/Critical findings (0).",
+      "architecture_areas": [
+        "Frontend",
+        "Backend/CLI",
+        "Database",
+        "AI/Agents",
+        "Tests & Quality Gates"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": 0,
+      "medium_low_findings": 3,
+      "primary_recommendation": "Triage, commit, or gitignore uncommitted files before handoff.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/clients-ai-jobs.md",
+      "evidence_files_count": 23
+    },
+    {
+      "repo": "commit-book",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None identified (Scan Mode sufficient for current bounded scope).",
+      "architecture_areas": [
+        "Frontend"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": 0,
+      "medium_low_findings": 0,
+      "primary_recommendation": "Maintain current Scan-Mode baseline; no immediate architectural changes required.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/commit-book.md",
+      "evidence_files_count": 3
+    },
+    {
+      "repo": "communications-studio",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "Focus/Full Mode candidate — 5 architecture areas, 108 files, or High/Critical findings (0).",
+      "architecture_areas": [
+        "Frontend",
+        "Backend/CLI",
+        "MCP Surface",
+        "Infrastructure",
+        "Tests & Quality Gates"
+      ],
+      "mcp2_status": "Strict MCP 2",
+      "critical_high_findings": 0,
+      "medium_low_findings": 0,
+      "primary_recommendation": "Maintain current Scan-Mode baseline; no immediate architectural changes required.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/communications-studio.md",
+      "evidence_files_count": 18
+    },
+    {
+      "repo": "design-studio",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "Focus/Full Mode candidate — 5 architecture areas, 84 files, or High/Critical findings (0).",
+      "architecture_areas": [
+        "Backend/CLI",
+        "AI/Agents",
+        "MCP Surface",
+        "Infrastructure",
+        "Tests & Quality Gates"
+      ],
+      "mcp2_status": "Strict MCP 2",
+      "critical_high_findings": 0,
+      "medium_low_findings": 1,
+      "primary_recommendation": "Document or consolidate `rigds_mcp/` vs `mcp/server.py` ownership.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/design-studio.md",
+      "evidence_files_count": 20
+    },
+    {
+      "repo": "deviatrix-genesis",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None identified (Scan Mode sufficient for current bounded scope).",
+      "architecture_areas": [
+        "Backend/CLI",
+        "MCP Surface",
+        "Infrastructure",
+        "Tests & Quality Gates"
+      ],
+      "mcp2_status": "Strict MCP 2",
+      "critical_high_findings": 0,
+      "medium_low_findings": 0,
+      "primary_recommendation": "Maintain current Scan-Mode baseline; no immediate architectural changes required.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/deviatrix-genesis.md",
+      "evidence_files_count": 15
+    },
+    {
+      "repo": "doctrine",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None identified (Scan Mode sufficient for current bounded scope).",
+      "architecture_areas": [
+        "Backend/CLI",
+        "Infrastructure",
+        "Tests & Quality Gates"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": 0,
+      "medium_low_findings": 0,
+      "primary_recommendation": "Maintain current Scan-Mode baseline; no immediate architectural changes required.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/doctrine.md",
+      "evidence_files_count": 11
+    },
+    {
+      "repo": "doneseal",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None identified (Scan Mode sufficient for current bounded scope).",
+      "architecture_areas": [
+        "Backend/CLI",
+        "Infrastructure",
+        "Tests & Quality Gates"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": 0,
+      "medium_low_findings": 0,
+      "primary_recommendation": "Maintain current Scan-Mode baseline; no immediate architectural changes required.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/doneseal.md",
+      "evidence_files_count": 10
+    },
+    {
+      "repo": "fde",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None identified (Scan Mode sufficient for current bounded scope).",
+      "architecture_areas": [
+        "Tests & Quality Gates"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": 0,
+      "medium_low_findings": 0,
+      "primary_recommendation": "Maintain current Scan-Mode baseline; no immediate architectural changes required.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/fde.md",
+      "evidence_files_count": 17
+    },
+    {
+      "repo": "fde-portfolio",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "Focus/Full Mode candidate — 5 architecture areas, 70 files, or High/Critical findings (0).",
+      "architecture_areas": [
+        "Backend/CLI",
+        "AI/Agents",
+        "MCP Surface",
+        "Infrastructure",
+        "Tests & Quality Gates"
+      ],
+      "mcp2_status": "Strict MCP 2",
+      "critical_high_findings": 0,
+      "medium_low_findings": 0,
+      "primary_recommendation": "Maintain current Scan-Mode baseline; no immediate architectural changes required.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/fde-portfolio.md",
+      "evidence_files_count": 18
+    },
+    {
+      "repo": "gbrain",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "Focus/Full Mode candidate — 5 architecture areas, 2235 files, or High/Critical findings (1).",
+      "architecture_areas": [
+        "Backend/CLI",
+        "AI/Agents",
+        "MCP Surface",
+        "Infrastructure",
+        "Tests & Quality Gates"
+      ],
+      "mcp2_status": "Legacy MCP v1 (upgrade needed)",
+      "critical_high_findings": 1,
+      "medium_low_findings": 0,
+      "primary_recommendation": "Upgrade MCP server/client surface to Strict MCP 2 (2026-07-28) with server/discover and add rig-lattice MCP2 CI check.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/gbrain.md",
+      "evidence_files_count": 65
+    },
+    {
+      "repo": "getnewideas",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None identified (Scan Mode sufficient for current bounded scope).",
+      "architecture_areas": [
+        "Database",
+        "AI/Agents"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": 0,
+      "medium_low_findings": 0,
+      "primary_recommendation": "Maintain current Scan-Mode baseline; no immediate architectural changes required.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/getnewideas.md",
+      "evidence_files_count": 1
+    },
+    {
+      "repo": "goals-variant-b-console",
+      "source": "remote_api",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None — remain in Scan Mode (no Critical/High trigger observed at root/manifest level; clone locally if active modification is planned).",
+      "architecture_areas": [
+        "Frontend",
+        "Backend",
+        "Database",
+        "AI or background processes",
+        "External services",
+        "Infrastructure",
+        "Shared modules",
+        "Tests and quality gates"
+      ],
+      "mcp2_status": "MCP surface present — verify protocol after clone",
+      "critical_high_findings": [],
+      "medium_low_findings": [
+        {
+          "title": "Hardcoded local machine path and unpinned MCP SDK version in `mcp/server.py`",
+          "severity": "Medium",
+          "confidence": "Direct",
+          "evidence": "Direct inspection of `mcp/server.py` shows `RIG_LOOP = Path.home() / \"Developer/rig-capabilities/bin/rig-loop\"` and `from mcp.server.fastmcp import FastMCP` without a declared MCP 2 (`2026-07-28`) version pin."
+        }
+      ],
+      "primary_recommendation": "Address the top Medium finding first — hardcoded local machine path and unpinned mcp sdk version in `mcp/server.py` — by cloning `goals-variant-b-console` locally for direct verification before applying the proposed smallest safe correction (subject to owner approval).",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/goals-variant-b-console.md",
+      "evidence_files_count": 5
+    },
+    {
+      "repo": "golive-runtime",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None identified (Scan Mode sufficient for current bounded scope).",
+      "architecture_areas": [
+        "Backend/CLI",
+        "Infrastructure"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": 0,
+      "medium_low_findings": 2,
+      "primary_recommendation": "Confirm .gitignore covers all local .env* files.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/golive-runtime.md",
+      "evidence_files_count": 2
+    },
+    {
+      "repo": "grokbot-academy",
+      "source": "remote_api",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None — remain in Scan Mode (no Critical/High trigger observed at root/manifest level; clone locally if active modification is planned).",
+      "architecture_areas": [
+        "Backend",
+        "Database",
+        "AI or background processes",
+        "Shared modules",
+        "Tests and quality gates"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": [],
+      "medium_low_findings": [
+        {
+          "title": "No `README.md` at repository root",
+          "severity": "Low",
+          "confidence": "Direct",
+          "evidence": "Direct root listing (14 entries) contains no `README.md` (entry context is split across `JOB.md`, `DONE.txt`, or unlisted files)."
+        }
+      ],
+      "primary_recommendation": "Address the top Low finding first — no `readme.md` at repository root — by cloning `grokbot-academy` locally for direct verification before applying the proposed smallest safe correction (subject to owner approval).",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/grokbot-academy.md",
+      "evidence_files_count": 1
+    },
+    {
+      "repo": "gtm-open-outreach",
+      "source": "remote_api",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "Focus Promotion Triggered (clone locally first): 4 committed SQLite DB/backup files and 108 root entries require local clone + Focus data/boundary cleanup pass.",
+      "architecture_areas": [
+        "Backend",
+        "Database",
+        "External services",
+        "Shared modules",
+        "Tests and quality gates"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": [
+        {
+          "title": "Runtime SQLite database files and backups committed at repo root (app.db.bak-20261028T135046Z, jobsflow.db.bak-20261028T135046Z, openoutreach.sqlite3, send-refusal.sqlite3)",
+          "severity": "High",
+          "confidence": "Direct",
+          "evidence": "Direct root listing includes `app.db.bak-20261028T135046Z`, `jobsflow.db.bak-20261028T135046Z`, `openoutreach.sqlite3`, `send-refusal.sqlite3` alongside 108 total root entries."
+        }
+      ],
+      "medium_low_findings": [
+        {
+          "title": "Committed backup files (2 `.bak*` artifacts) tracked in git",
+          "severity": "Low",
+          "confidence": "Direct",
+          "evidence": "Direct GitHub API listing shows committed backup file(s): app.db.bak-20261028T135046Z, jobsflow.db.bak-20261028T135046Z."
+        },
+        {
+          "title": "High root directory sprawl (108 top-level entries)",
+          "severity": "Medium",
+          "confidence": "Direct",
+          "evidence": "Direct root listing contains 108 top-level files and directories, mixing code, operational reports, logs/backups, and configuration."
+        },
+        {
+          "title": "No `README.md` at repository root",
+          "severity": "Low",
+          "confidence": "Direct",
+          "evidence": "Direct root listing (108 entries) contains no `README.md` (entry context is split across `JOB.md`, `DONE.txt`, or unlisted files)."
+        }
+      ],
+      "primary_recommendation": "Address the top High finding first — runtime sqlite database files and backups committed at repo root (app.db.bak-20261028t135046z, jobsflow.db.bak-20261028t135046z, openoutreach.sqlite3, send-refusal.sqlite3) — by cloning `gtm-open-outreach` locally for direct verification before applying the proposed smallest safe correction (subject to owner approval).",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/gtm-open-outreach.md",
+      "evidence_files_count": 1
+    },
+    {
+      "repo": "harness-optimizer-fleet-20261025",
+      "source": "remote_api",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None — remain in Scan Mode (no Critical/High trigger observed at root/manifest level; clone locally if active modification is planned).",
+      "architecture_areas": [],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": [],
+      "medium_low_findings": [
+        {
+          "title": "No `README.md` at repository root",
+          "severity": "Low",
+          "confidence": "Direct",
+          "evidence": "Direct root listing (4 entries) contains no `README.md` (entry context is split across `JOB.md`, `DONE.txt`, or unlisted files)."
+        }
+      ],
+      "primary_recommendation": "Address the top Low finding first — no `readme.md` at repository root — by cloning `harness-optimizer-fleet-20261025` locally for direct verification before applying the proposed smallest safe correction (subject to owner approval).",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/harness-optimizer-fleet-20261025.md",
+      "evidence_files_count": 1
+    },
+    {
+      "repo": "heycatch",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None identified (Scan Mode sufficient for current bounded scope).",
+      "architecture_areas": [
+        "AI/Agents",
+        "Tests & Quality Gates"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": 0,
+      "medium_low_findings": 0,
+      "primary_recommendation": "Maintain current Scan-Mode baseline; no immediate architectural changes required.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/heycatch.md",
+      "evidence_files_count": 3
+    },
+    {
+      "repo": "heycatch-clone",
+      "source": "remote_api",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None — remain in Scan Mode (no Critical/High trigger observed at root/manifest level; clone locally if active modification is planned).",
+      "architecture_areas": [
+        "Frontend",
+        "Tests and quality gates"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": [],
+      "medium_low_findings": [
+        {
+          "title": "Committed backup files (2 `.bak*` artifacts) tracked in git",
+          "severity": "Low",
+          "confidence": "Direct",
+          "evidence": "Direct GitHub API listing shows committed backup file(s): JOB.md.bak-20261027-relaunch, JOB.md.bak-20261028-cdpguard."
+        },
+        {
+          "title": "No `README.md` at repository root",
+          "severity": "Low",
+          "confidence": "Direct",
+          "evidence": "Direct root listing (13 entries) contains no `README.md` (entry context is split across `JOB.md`, `DONE.txt`, or unlisted files)."
+        }
+      ],
+      "primary_recommendation": "Address the top Low finding first — committed backup files (2 `.bak*` artifacts) tracked in git — by cloning `heycatch-clone` locally for direct verification before applying the proposed smallest safe correction (subject to owner approval).",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/heycatch-clone.md",
+      "evidence_files_count": 1
+    },
+    {
+      "repo": "higgsfield-studio-os",
+      "source": "remote_api",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "Focus Promotion Triggered (clone locally first): Multi-runtime monorepo with 3 MCP servers (`unified-api`, `unlimited-pool`, `reverse-engineer`) and no root CI requires local clone to verify MCP 2 protocol and cross-package boundaries.",
+      "architecture_areas": [
+        "Backend",
+        "AI or background processes",
+        "External services",
+        "Infrastructure",
+        "Shared modules"
+      ],
+      "mcp2_status": "MCP surface present — verify protocol after clone",
+      "critical_high_findings": [],
+      "medium_low_findings": [
+        {
+          "title": "Multi-language monorepo (Python `uv` + Node `pnpm` + Rust `mcp/reverse-engineer`) with no `.github/` CI observed",
+          "severity": "Medium",
+          "confidence": "Direct",
+          "evidence": "Direct root and `mcp/` inspection shows `pyproject.toml`, `uv.lock`, `pnpm-workspace.yaml`, `pnpm-lock.yaml`, and 3 MCP sub-packages (`unified-api`, `unlimited-pool`, `reverse-engineer` with `Cargo.toml`), with no root `.github/` directory."
+        }
+      ],
+      "primary_recommendation": "Address the top Medium finding first — multi-language monorepo (python `uv` + node `pnpm` + rust `mcp/reverse-engineer`) with no `.github/` ci observed — by cloning `higgsfield-studio-os` locally for direct verification before applying the proposed smallest safe correction (subject to owner approval).",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/higgsfield-studio-os.md",
+      "evidence_files_count": 5
+    },
+    {
+      "repo": "home-assistant-big-birch",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "Focus/Full Mode candidate — 5 architecture areas, 148 files, or High/Critical findings (0).",
+      "architecture_areas": [
+        "Backend/CLI",
+        "AI/Agents",
+        "MCP Surface",
+        "Infrastructure",
+        "Tests & Quality Gates"
+      ],
+      "mcp2_status": "Strict MCP 2",
+      "critical_high_findings": 0,
+      "medium_low_findings": 1,
+      "primary_recommendation": "Confirm .gitignore covers all local .env* files.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/home-assistant-big-birch.md",
+      "evidence_files_count": 16
+    },
+    {
+      "repo": "human-agency-goals",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "Focus/Full Mode candidate — 6 architecture areas, 265 files, or High/Critical findings (0).",
+      "architecture_areas": [
+        "Frontend",
+        "Backend/CLI",
+        "AI/Agents",
+        "MCP Surface",
+        "Infrastructure",
+        "Tests & Quality Gates"
+      ],
+      "mcp2_status": "Strict MCP 2",
+      "critical_high_findings": 0,
+      "medium_low_findings": 1,
+      "primary_recommendation": "Confirm .gitignore covers all local .env* files.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/human-agency-goals.md",
+      "evidence_files_count": 15
+    },
+    {
+      "repo": "jacob-film-studio",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None identified (Scan Mode sufficient for current bounded scope).",
+      "architecture_areas": [
+        "Documentation/Artifacts"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": 0,
+      "medium_low_findings": 0,
+      "primary_recommendation": "Maintain current Scan-Mode baseline; no immediate architectural changes required.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/jacob-film-studio.md",
+      "evidence_files_count": 1
+    },
+    {
+      "repo": "jacob-x-studio",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "Focus/Full Mode candidate — 6 architecture areas, 3320 files, or High/Critical findings (0).",
+      "architecture_areas": [
+        "Frontend",
+        "Backend/CLI",
+        "AI/Agents",
+        "MCP Surface",
+        "Infrastructure",
+        "Tests & Quality Gates"
+      ],
+      "mcp2_status": "Strict MCP 2",
+      "critical_high_findings": 0,
+      "medium_low_findings": 1,
+      "primary_recommendation": "Triage, commit, or gitignore uncommitted files before handoff.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/jacob-x-studio.md",
+      "evidence_files_count": 45
+    },
+    {
+      "repo": "jacob-x-weekly",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None identified (Scan Mode sufficient for current bounded scope).",
+      "architecture_areas": [
+        "Backend/CLI",
+        "AI/Agents",
+        "Tests & Quality Gates"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": 0,
+      "medium_low_findings": 1,
+      "primary_recommendation": "Triage, commit, or gitignore uncommitted files before handoff.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/jacob-x-weekly.md",
+      "evidence_files_count": 11
+    },
+    {
+      "repo": "jake-brain-wire",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "Focus/Full Mode candidate — 3 architecture areas, 358 files, or High/Critical findings (1).",
+      "architecture_areas": [
+        "Backend/CLI",
+        "MCP Surface",
+        "Tests & Quality Gates"
+      ],
+      "mcp2_status": "Legacy MCP v1 (upgrade needed)",
+      "critical_high_findings": 1,
+      "medium_low_findings": 2,
+      "primary_recommendation": "Upgrade MCP server/client surface to Strict MCP 2 (2026-07-28) with server/discover and add rig-lattice MCP2 CI check.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/jake-brain-wire.md",
+      "evidence_files_count": 15
+    },
+    {
+      "repo": "jake-pai-mcp",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None identified (Scan Mode sufficient for current bounded scope).",
+      "architecture_areas": [
+        "Backend/CLI",
+        "MCP Surface",
+        "Tests & Quality Gates"
+      ],
+      "mcp2_status": "Strict MCP 2",
+      "critical_high_findings": 0,
+      "medium_low_findings": 1,
+      "primary_recommendation": "Add minimal CI workflow running tests/linting.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/jake-pai-mcp.md",
+      "evidence_files_count": 6
+    },
+    {
+      "repo": "jake-studio",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None identified (Scan Mode sufficient for current bounded scope).",
+      "architecture_areas": [
+        "Backend/CLI",
+        "MCP Surface",
+        "Infrastructure",
+        "Tests & Quality Gates"
+      ],
+      "mcp2_status": "Strict MCP 2",
+      "critical_high_findings": 0,
+      "medium_low_findings": 0,
+      "primary_recommendation": "Maintain current Scan-Mode baseline; no immediate architectural changes required.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/jake-studio.md",
+      "evidence_files_count": 14
+    },
+    {
+      "repo": "jakebrain",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "Focus/Full Mode candidate — 4 architecture areas, 85726 files, or High/Critical findings (1).",
+      "architecture_areas": [
+        "Backend/CLI",
+        "AI/Agents",
+        "MCP Surface",
+        "Tests & Quality Gates"
+      ],
+      "mcp2_status": "Legacy MCP v1 (upgrade needed)",
+      "critical_high_findings": 1,
+      "medium_low_findings": 1,
+      "primary_recommendation": "Upgrade MCP server/client surface to Strict MCP 2 (2026-07-28) with server/discover and add rig-lattice MCP2 CI check.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/jakebrain.md",
+      "evidence_files_count": 60
+    },
+    {
+      "repo": "jev-route",
+      "source": "remote_api",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None — remain in Scan Mode (no Critical/High trigger observed at root/manifest level; clone locally if active modification is planned).",
+      "architecture_areas": [
+        "Backend",
+        "AI or background processes",
+        "Infrastructure",
+        "Tests and quality gates"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": [],
+      "medium_low_findings": [],
+      "primary_recommendation": "Keep `jev-route` in Scan Mode; no Critical/High architectural defects were observed from remote root/README/manifest inspection. Clone locally only when active feature or maintenance work is scheduled.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/jev-route.md",
+      "evidence_files_count": 4
+    },
+    {
+      "repo": "job-campaign-buildout-repo",
+      "source": "remote_api",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None — remain in Scan Mode (no Critical/High trigger observed at root/manifest level; clone locally if active modification is planned).",
+      "architecture_areas": [
+        "Backend",
+        "AI or background processes",
+        "Infrastructure",
+        "Tests and quality gates"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": [],
+      "medium_low_findings": [],
+      "primary_recommendation": "Keep `job-campaign-buildout-repo` in Scan Mode; no Critical/High architectural defects were observed from remote root/README/manifest inspection. Clone locally only when active feature or maintenance work is scheduled.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/job-campaign-buildout-repo.md",
+      "evidence_files_count": 3
+    },
+    {
+      "repo": "job-plays",
+      "source": "remote_api",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None — remain in Scan Mode (no Critical/High trigger observed at root/manifest level; clone locally if active modification is planned).",
+      "architecture_areas": [
+        "Backend",
+        "Tests and quality gates"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": [],
+      "medium_low_findings": [
+        {
+          "title": "Committed backup files (10 `.bak*` artifacts) tracked in git",
+          "severity": "Medium",
+          "confidence": "Direct",
+          "evidence": "Direct GitHub API listing shows committed backup file(s): check.py.bak-20261027-boilerplate, check.py.bak-20261027-runsmd, jobplays.py.bak-20261027-boilerplate, jobplays.py.bak-20261027-receiptpath, match.py.bak-20261027-pre-realrun (+5 more)."
+        },
+        {
+          "title": "No `README.md` at repository root",
+          "severity": "Low",
+          "confidence": "Direct",
+          "evidence": "Direct root listing (24 entries) contains no `README.md` (entry context is split across `JOB.md`, `DONE.txt`, or unlisted files)."
+        }
+      ],
+      "primary_recommendation": "Address the top Medium finding first — committed backup files (10 `.bak*` artifacts) tracked in git — by cloning `job-plays` locally for direct verification before applying the proposed smallest safe correction (subject to owner approval).",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/job-plays.md",
+      "evidence_files_count": 1
+    },
+    {
+      "repo": "job-search-os",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "Focus/Full Mode candidate — 5 architecture areas, 2881 files, or High/Critical findings (1).",
+      "architecture_areas": [
+        "Backend/CLI",
+        "AI/Agents",
+        "MCP Surface",
+        "Infrastructure",
+        "Tests & Quality Gates"
+      ],
+      "mcp2_status": "Strict MCP 2",
+      "critical_high_findings": 1,
+      "medium_low_findings": 1,
+      "primary_recommendation": "Upgrade MCP server/client surface to Strict MCP 2 (2026-07-28) with server/discover and add rig-lattice MCP2 CI check.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/job-search-os.md",
+      "evidence_files_count": 49
+    },
+    {
+      "repo": "latency-probe",
+      "source": "remote_api",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None — remain in Scan Mode (no Critical/High trigger observed at root/manifest level; clone locally if active modification is planned).",
+      "architecture_areas": [
+        "Backend",
+        "Infrastructure",
+        "Shared modules",
+        "Tests and quality gates"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": [],
+      "medium_low_findings": [],
+      "primary_recommendation": "Keep `latency-probe` in Scan Mode; no Critical/High architectural defects were observed from remote root/README/manifest inspection. Clone locally only when active feature or maintenance work is scheduled.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/latency-probe.md",
+      "evidence_files_count": 3
+    },
+    {
+      "repo": "mesh-studio",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None identified (Scan Mode sufficient for current bounded scope).",
+      "architecture_areas": [
+        "Backend/CLI",
+        "MCP Surface",
+        "Infrastructure",
+        "Tests & Quality Gates"
+      ],
+      "mcp2_status": "Strict MCP 2",
+      "critical_high_findings": 0,
+      "medium_low_findings": 0,
+      "primary_recommendation": "Maintain current Scan-Mode baseline; no immediate architectural changes required.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/mesh-studio.md",
+      "evidence_files_count": 18
+    },
+    {
+      "repo": "mike-personal-brand",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None identified (Scan Mode sufficient for current bounded scope).",
+      "architecture_areas": [
+        "Documentation/Artifacts"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": 0,
+      "medium_low_findings": 0,
+      "primary_recommendation": "Maintain current Scan-Mode baseline; no immediate architectural changes required.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/mike-personal-brand.md",
+      "evidence_files_count": 1
+    },
+    {
+      "repo": "mike-rodgers-site",
+      "source": "remote_api",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None — remain in Scan Mode (no Critical/High trigger observed at root/manifest level; clone locally if active modification is planned).",
+      "architecture_areas": [
+        "Frontend",
+        "Backend",
+        "AI or background processes",
+        "External services",
+        "Infrastructure",
+        "Shared modules",
+        "Tests and quality gates"
+      ],
+      "mcp2_status": "MCP surface present — verify protocol after clone",
+      "critical_high_findings": [],
+      "medium_low_findings": [
+        {
+          "title": "Hardcoded local machine path and unpinned MCP SDK version in `mcp/server.py`",
+          "severity": "Medium",
+          "confidence": "Direct",
+          "evidence": "Direct inspection of `mcp/server.py` shows `RIG_LOOP = Path.home() / \"Developer/rig-capabilities/bin/rig-loop\"` and `from mcp.server.fastmcp import FastMCP` without a declared MCP 2 (`2026-07-28`) version pin."
+        },
+        {
+          "title": "Repository marked as legacy/consolidation candidate still carrying active automation surface",
+          "severity": "Medium",
+          "confidence": "Direct",
+          "evidence": "Direct description and README badge state `consolidation-candidate` / legacy predecessor version, while `.github/workflows/rig-lattice.yml`, `mcp/server.py`, and `install.sh` remain active at root."
+        }
+      ],
+      "primary_recommendation": "Address the top Medium finding first — hardcoded local machine path and unpinned mcp sdk version in `mcp/server.py` — by cloning `mike-rodgers-site` locally for direct verification before applying the proposed smallest safe correction (subject to owner approval).",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/mike-rodgers-site.md",
+      "evidence_files_count": 4
+    },
+    {
+      "repo": "mrodgersjs-web",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "Focus/Full Mode candidate — 5 architecture areas, 2513 files, or High/Critical findings (1).",
+      "architecture_areas": [
+        "Frontend",
+        "Backend/CLI",
+        "MCP Surface",
+        "Infrastructure",
+        "Tests & Quality Gates"
+      ],
+      "mcp2_status": "Legacy MCP v1 (upgrade needed)",
+      "critical_high_findings": 1,
+      "medium_low_findings": 0,
+      "primary_recommendation": "Upgrade MCP server/client surface to Strict MCP 2 (2026-07-28) with server/discover and add rig-lattice MCP2 CI check.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/mrodgersjs-web.md",
+      "evidence_files_count": 13
+    },
+    {
+      "repo": "mrodgersjs-web-teammate",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None (bounded zero-dependency CLI + Strict MCP 2 server; Scan Mode sufficient)",
+      "architecture_areas": [
+        "CLI / Backend (bin/ zero-dependency Node CLI)",
+        "Data / Knowledge Base (data/)",
+        "AI / MCP Surface (mcp/server.py Strict MCP 2)",
+        "Tests & Quality Gates (test/, ci.yml, rig-lattice.yml)",
+        "Documentation (docs/architecture.md, AGENTS.md)",
+        "Frontend / Database (Not observed)"
+      ],
+      "mcp2_status": "Strict MCP 2",
+      "critical_high_findings": [],
+      "medium_low_findings": [
+        {
+          "severity": "Medium",
+          "confidence": "Direct",
+          "title": "Convention Drift — Uncommitted MCP 2 & Lattice Retrofit",
+          "evidence": "3 dirty files in git status: `M .github/workflows/rig-lattice.yml`, `M mcp/server.py`, `M rig.repos.json`.",
+          "proposed_correction": "Review `git diff` on the 3 files, run `test/` suite, and commit/push on approval."
+        },
+        {
+          "severity": "Low",
+          "confidence": "Direct",
+          "title": "Architecture Debt — Polyglot Runtime Split (Node CLI + Python MCP)",
+          "evidence": "`package.json` + `bin/` + `test/*.test.js` (JavaScript) alongside `mcp/server.py` (Python) with no `pyproject.toml`.",
+          "proposed_correction": "Document the Python stdlib-only requirement for `mcp/server.py` in `docs/architecture.md` or add a lightweight smoke check in `ci.yml`."
+        }
+      ],
+      "primary_recommendation": "Review and seal the 3 uncommitted MCP 2 / lattice retrofit files (`mcp/server.py`, `rig-lattice.yml`, `rig.repos.json`) after running the `test/` suite.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/mrodgersjs-web-teammate.md",
+      "evidence_files_count": 7
+    },
+    {
+      "repo": "n8n",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None (clean catalog and skill distribution repo with existing `docs/ARCHITECTURE.md`)",
+      "architecture_areas": [
+        "Catalog & Data (catalog/ merged 31-fork index)",
+        "CLI / Tooling (bin/)",
+        "Skills & Docs (skill/, docs/ARCHITECTURE.md)",
+        "Backend / Frontend / Database / Tests / CI (Not observed)"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": [],
+      "medium_low_findings": [
+        {
+          "severity": "Medium",
+          "confidence": "Direct",
+          "title": "Architecture Debt — Missing Automated Validation & CI",
+          "evidence": "No test files (`tests: 0`) and no `.github/workflows/` observed at repo root.",
+          "proposed_correction": "Add a lightweight smoke test and CI workflow validating `catalog/` integrity and `bin/` execution."
+        }
+      ],
+      "primary_recommendation": "Add a lightweight catalog-integrity smoke test and GitHub Actions workflow to prevent index or skill drift across the 31 merged forks.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/n8n.md",
+      "evidence_files_count": 2
+    },
+    {
+      "repo": "nanobrowser",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "Focus Mode recommended before feature work — Trigger: multi-package browser extension monorepo (`chrome-extension/`, `pages/`, 6+ `packages/*`) with no observed test suite and 2 dirty governance files. Risk of staying in Scan Mode: silent regressions across extension background/storage/UI boundaries.",
+      "architecture_areas": [
+        "Frontend / Browser Extension (`chrome-extension/`, `pages/`)",
+        "Shared Modules (`packages/dev-utils`, `hmr`, `i18n`, `schema-utils`, `shared`, `storage`)",
+        "Build / Infrastructure (`package.json`, `.turbo/`, `.husky/`, `.github/workflows/rig-lattice.yml`)",
+        "Backend / Database / Tests / MCP (Not observed)"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": [],
+      "medium_low_findings": [
+        {
+          "severity": "Medium",
+          "confidence": "Direct",
+          "title": "Architecture Debt — No Automated Test Suite Observed",
+          "evidence": "0 test files observed across `chrome-extension/`, `pages/`, and `packages/`; only `.github/workflows/rig-lattice.yml` present.",
+          "proposed_correction": "Add unit tests for `packages/schema-utils` and `packages/storage` plus a build/typecheck CI workflow."
+        },
+        {
+          "severity": "Low",
+          "confidence": "Direct",
+          "title": "Project Convention Drift — Duplicate Environment Templates",
+          "evidence": "Both `.env.example` and `.example.env` exist at repo root.",
+          "proposed_correction": "Consolidate into a single `.env.example` and remove the duplicate template."
+        },
+        {
+          "severity": "Low",
+          "confidence": "Direct",
+          "title": "Convention Drift — Uncommitted Governance Files",
+          "evidence": "2 dirty files: `M .github/workflows/rig-lattice.yml`, `M rig.repos.json`.",
+          "proposed_correction": "Review and commit the 2 modified governance files."
+        }
+      ],
+      "primary_recommendation": "Promote to Focus Mode before code changes; add a build/typecheck CI workflow, consolidate duplicate env templates (`.env.example` vs `.example.env`), and commit the 2 dirty governance files.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/nanobrowser.md",
+      "evidence_files_count": 5
+    },
+    {
+      "repo": "NeoMatrix",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "Focus Mode recommended — Trigger: two unrelated subsystems (legacy HTML/JS Sucrose wallpaper app + Python `RIG_v100`/`rig_orca` agent runtimes) coexist in one repository without root package manifests. Risk of staying in Scan Mode: boundary confusion and brittle dependency resolution.",
+      "architecture_areas": [
+        "Frontend / Browser Visual App (`index.html`, `css/`, `js/index.js`, `fonts/`, `images/`, `Sucrose*.json`)",
+        "AI / Agent Runtimes (`RIG_v100/`, `rig_orca/rlm/cli.py`, `rig_orca/v10/cli.py`)",
+        "MCP Surface (`mcp/server.py` Strict MCP 2)",
+        "Tests & Quality Gates (`RIG_v100/tests/`, `rig_orca/tests/`, `.github/workflows/rig-lattice.yml`)",
+        "Database / Package Manifests (Not observed at root)"
+      ],
+      "mcp2_status": "Strict MCP 2",
+      "critical_high_findings": [
+        {
+          "severity": "High",
+          "confidence": "Direct",
+          "title": "Separation of Concerns — Unrelated Subsystems Co-located Without Root Manifest",
+          "evidence": "Root contains both static wallpaper assets (`index.html`, `SucroseCompatible.json`, `js/index.js`) and Python agent runtimes (`RIG_v100/`, `rig_orca/`, `mcp/server.py`) with no root `pyproject.toml` or `package.json`.",
+          "proposed_correction": "Define explicit package boundary (`pyproject.toml` for `RIG_v100`/`rig_orca`) or split RIG Python runtimes into their own repo on approval."
+        }
+      ],
+      "medium_low_findings": [
+        {
+          "severity": "Medium",
+          "confidence": "Direct",
+          "title": "Convention Drift — Uncommitted MCP 2 & Lattice Retrofit",
+          "evidence": "3 dirty files: `M .github/workflows/rig-lattice.yml`, `M mcp/server.py`, `M rig.repos.json`.",
+          "proposed_correction": "Review `git diff` and commit the 3 modified files after running `RIG_v100/tests/`."
+        },
+        {
+          "severity": "Medium",
+          "confidence": "Direct",
+          "title": "Architecture Debt — No Python Test CI Workflow",
+          "evidence": "12+ test files exist (`RIG_v100/tests/`, `rig_orca/tests/`) but only `rig-lattice.yml` is in `.github/workflows/`.",
+          "proposed_correction": "Add a `ci.yml` workflow running pytest over `RIG_v100/tests/` and `rig_orca/tests/`."
+        }
+      ],
+      "primary_recommendation": "Resolve the dual-purpose repo boundary by adding a root `pyproject.toml` + pytest CI for `RIG_v100`/`rig_orca` (or splitting from the legacy wallpaper assets), and commit the 3 dirty MCP 2 files.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/NeoMatrix.md",
+      "evidence_files_count": 6
+    },
+    {
+      "repo": "openbot-channel",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "Focus Mode recommended before modifying channel/agent boundaries — Trigger: polyglot TypeScript (`server.ts`/`app/`) + Python (`agent/main.py`) knowledge-work agent with human-in-the-loop flows and 6 deployment/GitOps workflows. Risk of staying in Scan Mode: breaking Slack/Teams event handling or Kite GitOps release automation.",
+      "architecture_areas": [
+        "Backend / Channel Server (`server.ts`, `app/`, `app/commands/`, `app/human-in-the-loop/`)",
+        "AI Agent Runtime (`agent/main.py`, `agent/tests/`)",
+        "MCP Surface (`mcp/server.py` Strict MCP 2)",
+        "Infrastructure & Deployment (`deployment/`, `.railway/`, `.copilotkit/`, 6 GitHub workflows)",
+        "Tests & Quality Gates (`vitest.config.ts`, `e2e/`, `agent/tests/`, `ci.yml`)",
+        "Database (Not directly observed at root)"
+      ],
+      "mcp2_status": "Strict MCP 2",
+      "critical_high_findings": [],
+      "medium_low_findings": [
+        {
+          "severity": "Medium",
+          "confidence": "Direct",
+          "title": "Convention Drift — Uncommitted MCP 2 & Lattice Retrofit",
+          "evidence": "3 dirty files: `M .github/workflows/rig-lattice.yml`, `M mcp/server.py`, `M rig.repos.json`.",
+          "proposed_correction": "Review `git diff`, run `vitest` and `agent/tests/`, and commit the 3 files."
+        }
+      ],
+      "primary_recommendation": "Seal the 3 uncommitted MCP 2 / lattice files after verifying `vitest` and `agent/tests/`, and promote to Focus Mode before changing Slack/Teams or Kite deployment flows.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/openbot-channel.md",
+      "evidence_files_count": 14
+    },
+    {
+      "repo": "openbot-one-setup",
+      "source": "remote_api",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None — remain in Scan Mode (no Critical/High trigger observed at root/manifest level; clone locally if active modification is planned).",
+      "architecture_areas": [
+        "Backend",
+        "Tests and quality gates"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": [],
+      "medium_low_findings": [
+        {
+          "title": "Committed backup files (6 `.bak*` artifacts) tracked in git",
+          "severity": "Medium",
+          "confidence": "Direct",
+          "evidence": "Direct GitHub API listing shows committed backup file(s): INBOX.md.bak-20261027-claimtopo, JOB.md.bak-20261027-relaunch, bulk_import.py.bak-20261028-shim, import_cutover.py.bak-20261028-persona, import_cutover.py.bak-20261028-shim (+1 more)."
+        },
+        {
+          "title": "No `README.md` at repository root",
+          "severity": "Low",
+          "confidence": "Direct",
+          "evidence": "Direct root listing (35 entries) contains no `README.md` (entry context is split across `JOB.md`, `DONE.txt`, or unlisted files)."
+        }
+      ],
+      "primary_recommendation": "Address the top Medium finding first — committed backup files (6 `.bak*` artifacts) tracked in git — by cloning `openbot-one-setup` locally for direct verification before applying the proposed smallest safe correction (subject to owner approval).",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/openbot-one-setup.md",
+      "evidence_files_count": 1
+    },
+    {
+      "repo": "openseo-library",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None (clean, well-documented content/operating library; Scan Mode sufficient)",
+      "architecture_areas": [
+        "Documentation & Architecture (`ARCHITECTURE.md`, `blueprints/BLUEPRINT.md`, `CATALOG.md`, `GATES.md`, `ATTRIBUTION.md`)",
+        "Knowledge Library (`library/`)",
+        "Skills & Workflows (`skills/`, `workflows/`, `sources/`)",
+        "Backend / Frontend / Database / Tests / CI / MCP (Not observed)"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": [],
+      "medium_low_findings": [
+        {
+          "severity": "Low",
+          "confidence": "Direct",
+          "title": "Architecture Debt — No Automated Link/Schema Validation",
+          "evidence": "0 test files and 0 CI workflows observed despite structured `CATALOG.md`, `GATES.md`, and `skills/`.",
+          "proposed_correction": "Add a lightweight markdown/frontmatter lint check in CI."
+        }
+      ],
+      "primary_recommendation": "Clarify canonical ownership boundary between `openseo-library` and `openseo-os` to avoid catalog duplication, and add a lightweight frontmatter/link lint CI check.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/openseo-library.md",
+      "evidence_files_count": 14
+    },
+    {
+      "repo": "openseo-os",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None (clean build-out repo; Scan Mode sufficient unless `workflows/runner/run.py` expands into external API execution)",
+      "architecture_areas": [
+        "Workflows & Runner (`workflows/runner/run.py`)",
+        "Knowledge Cards & Skills (`library/cards/`, `skills/`, `resources/`)",
+        "Governance & Audits (`audits/`, `CATALOG.md`, `ATTRIBUTION.md`)",
+        "Backend / Frontend / Database / Tests / CI / MCP (Not observed)"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": [],
+      "medium_low_findings": [
+        {
+          "severity": "Medium",
+          "confidence": "Direct",
+          "title": "Architecture Debt — Unpackaged Python Runner Without Tests or CI",
+          "evidence": "`workflows/runner/run.py` exists with no `pyproject.toml`/`requirements.txt`, 0 tests, and 0 CI workflows.",
+          "proposed_correction": "Add `pyproject.toml` (or declare stdlib-only) and a minimal smoke test + CI check for `workflows/runner/run.py`."
+        },
+        {
+          "severity": "Low",
+          "confidence": "Inferred",
+          "title": "Architecture Debt — Structural Overlap with `openseo-library`",
+          "evidence": "Both `openseo-os` and `openseo-library` contain `CATALOG.md`, `ATTRIBUTION.md`, `library/`, `skills/`, and `workflows/` (`Verify first: Yes`).",
+          "proposed_correction": "Document which repo is the single source of truth for cards/skills vs runtime runner."
+        }
+      ],
+      "primary_recommendation": "Add a smoke test and dependency declaration for `workflows/runner/run.py`, and document the single-source-of-truth boundary with `openseo-library`.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/openseo-os.md",
+      "evidence_files_count": 14
+    },
+    {
+      "repo": "openwork",
+      "source": "remote_api",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "Focus Promotion Triggered (clone locally first): 24 CI workflows, 45 root entries, committed `.env.dev`, and MCP surface require local clone before making architecture changes.",
+      "architecture_areas": [
+        "Frontend",
+        "Backend",
+        "AI or background processes",
+        "External services",
+        "Infrastructure",
+        "Shared modules",
+        "Tests and quality gates"
+      ],
+      "mcp2_status": "MCP surface present — verify protocol after clone",
+      "critical_high_findings": [
+        {
+          "title": "Non-example environment file(s) committed at repo root (.env.dev)",
+          "severity": "High",
+          "confidence": "Inferred (Verify first: Yes)",
+          "evidence": "Direct root listing contains `.env.dev`."
+        }
+      ],
+      "medium_low_findings": [
+        {
+          "title": "Hardcoded local machine path and unpinned MCP SDK version in `mcp/server.py`",
+          "severity": "Medium",
+          "confidence": "Direct",
+          "evidence": "Direct inspection of `mcp/server.py` shows `RIG_LOOP = Path.home() / \"Developer/rig-capabilities/bin/rig-loop\"` and `from mcp.server.fastmcp import FastMCP` without a declared MCP 2 (`2026-07-28`) version pin."
+        },
+        {
+          "title": "High root directory sprawl (45 top-level entries)",
+          "severity": "Medium",
+          "confidence": "Direct",
+          "evidence": "Direct root listing contains 45 top-level files and directories, mixing code, operational reports, logs/backups, and configuration."
+        }
+      ],
+      "primary_recommendation": "Address the top High finding first — non-example environment file(s) committed at repo root (.env.dev) — by cloning `openwork` locally for direct verification before applying the proposed smallest safe correction (subject to owner approval).",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/openwork.md",
+      "evidence_files_count": 5
+    },
+    {
+      "repo": "operation-get-a-job",
+      "source": "remote_api",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None — remain in Scan Mode (no Critical/High trigger observed at root/manifest level; clone locally if active modification is planned).",
+      "architecture_areas": [
+        "Backend",
+        "AI or background processes",
+        "Infrastructure",
+        "Tests and quality gates"
+      ],
+      "mcp2_status": "MCP surface present — verify protocol after clone",
+      "critical_high_findings": [],
+      "medium_low_findings": [
+        {
+          "title": "Hardcoded local machine path and unpinned MCP SDK version in `mcp/server.py`",
+          "severity": "Medium",
+          "confidence": "Direct",
+          "evidence": "Direct inspection of `mcp/server.py` shows `RIG_LOOP = Path.home() / \"Developer/rig-capabilities/bin/rig-loop\"` and `from mcp.server.fastmcp import FastMCP` without a declared MCP 2 (`2026-07-28`) version pin."
+        }
+      ],
+      "primary_recommendation": "Address the top Medium finding first — hardcoded local machine path and unpinned mcp sdk version in `mcp/server.py` — by cloning `operation-get-a-job` locally for direct verification before applying the proposed smallest safe correction (subject to owner approval).",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/operation-get-a-job.md",
+      "evidence_files_count": 4
+    },
+    {
+      "repo": "patents",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None (clean public status surface with explicit IP boundary and `smoke.yml`)",
+      "architecture_areas": [
+        "Documentation & Status Surface (`docs/architecture.md`, `docs/evaluation-strategy.md`, `docs/non-cloneable-ip.md`, `README.md`)",
+        "Scripts & CI (`scripts/`, `.github/workflows/smoke.yml`)",
+        "Backend / Frontend / Database / MCP (Not observed)"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": [],
+      "medium_low_findings": [],
+      "primary_recommendation": "No architecture changes needed; maintain the existing `smoke.yml` public-boundary enforcement.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/patents.md",
+      "evidence_files_count": 8
+    },
+    {
+      "repo": "patents-vault",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None (minimal 4-entry private access-controlled index; Scan Mode sufficient)",
+      "architecture_areas": [
+        "Private Index & Documentation (`docs/ACCESS.md`, `families/`, `README.md`)",
+        "Scripts (`scripts/`)",
+        "Backend / Frontend / Database / Tests / CI / MCP (Not observed)"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": [],
+      "medium_low_findings": [
+        {
+          "severity": "Low",
+          "confidence": "Direct",
+          "title": "Architecture Debt — No Automated Boundary/Secret Check",
+          "evidence": "0 workflows and 0 tests observed on a sensitive IP index repository.",
+          "proposed_correction": "Add a lightweight pre-commit or CI check verifying `docs/ACCESS.md` policy compliance."
+        }
+      ],
+      "primary_recommendation": "Keep minimal; optionally add a lightweight automated boundary check mirroring `patents/.github/workflows/smoke.yml`.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/patents-vault.md",
+      "evidence_files_count": 2
+    },
+    {
+      "repo": "proof-gate-action",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None (clean, tested GitHub Action repo with existing `docs/architecture.md` and 2 CI workflows)",
+      "architecture_areas": [
+        "GitHub Action Surface (`action.yml`, `package.json`, `examples/`, `graft/`)",
+        "Tests & Quality Gates (`test/repo-hygiene.test.js`, `test/verify-native.test.js`, `test/verify.test.js`, `ci.yml`, `smoke.yml`)",
+        "Documentation (`docs/architecture.md`, `AGENTS.md`, `SECURITY.md`)",
+        "Frontend / Database / MCP (Not observed)"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": [],
+      "medium_low_findings": [],
+      "primary_recommendation": "No architecture defects identified; maintain current hygiene, native verification tests, and CI workflows.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/proof-gate-action.md",
+      "evidence_files_count": 7
+    },
+    {
+      "repo": "proof-studio",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "Focus Mode recommended for MCP surface consolidation — Trigger: dual MCP server implementations with conflicting protocol versions (`mcp/server.py` Strict MCP 2 `2026-07-28` vs `packages/rigforge/rigforge/mcp_server.py` using legacy `mcp>=1.0`). Risk of staying in Scan Mode: clients connecting to `rigforge` MCP surface bypass MCP 2 compliance.",
+      "architecture_areas": [
+        "CLI & Core Package (`proof_studio/cli.py`, `pyproject.toml`)",
+        "Embedded Package (`packages/rigforge/rigforge/mcp_server.py`)",
+        "MCP Surface (`mcp/server.py` Strict MCP 2 + legacy `packages/rigforge/rigforge/mcp_server.py`)",
+        "Tests & Quality Gates (`tests/`, `ci.yml`, `smoke.yml`, `rig-lattice.yml`)",
+        "Documentation (`docs/architecture.md`, `docs/evaluation-strategy.md`, `docs/public-boundary.md`)",
+        "Frontend / Database (Not observed)"
+      ],
+      "mcp2_status": "Strict MCP 2",
+      "critical_high_findings": [
+        {
+          "severity": "High",
+          "confidence": "Direct",
+          "title": "Flow Conflict / Convention Drift — Dual MCP Servers With Protocol Mismatch",
+          "evidence": "Root `mcp/server.py` enforces Strict MCP 2 (`PROTOCOL_VERSION = \"2026-07-28\"`), while `packages/rigforge/rigforge/mcp_server.py` uses legacy `mcp>=1.0` without `2026-07-28` enforcement.",
+          "proposed_correction": "Upgrade `packages/rigforge/rigforge/mcp_server.py` to Strict MCP 2 (`2026-07-28`) or deprecate/delegate it through root `mcp/server.py`."
+        }
+      ],
+      "medium_low_findings": [
+        {
+          "severity": "Medium",
+          "confidence": "Direct",
+          "title": "Convention Drift — Uncommitted MCP 2 & Lattice Retrofit",
+          "evidence": "3 dirty files: `M .github/workflows/rig-lattice.yml`, `M mcp/server.py`, `M rig.repos.json`.",
+          "proposed_correction": "Review `git diff`, run `tests/`, and commit the 3 modified files."
+        }
+      ],
+      "primary_recommendation": "Resolve the dual-MCP protocol mismatch by upgrading or retiring `packages/rigforge/rigforge/mcp_server.py` to match Strict MCP 2 (`2026-07-28`), and commit the 3 dirty retrofit files.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/proof-studio.md",
+      "evidence_files_count": 13
+    },
+    {
+      "repo": "recruiting-calendar",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "Focus Mode recommended — Trigger: 152 uncommitted/modified files across active Next.js routes (`app/[...slug]/page.tsx`, `app/api/chat/route.ts`, `app/api/copilotkit/route.ts`), coexisting `app/` and `site/` surfaces, and no CI workflows. Risk of staying in Scan Mode: deploying broken chat/billing routes or losing uncommitted work.",
+      "architecture_areas": [
+        "Frontend / Next.js App (`app/`, `components/`, `lib/`, `vercel.json`, `tsconfig.json`)",
+        "Static Site Surface (`site/index.html`, `site/about/`, `site/billing/`, `site/account/`)",
+        "API Routes (`app/api/chat/route.ts`, `app/api/copilotkit/route.ts`)",
+        "Tests (`tests/chatbot.spec.ts`, `tests/redesign.spec.ts`, `funnel/test/funnel.test.js`, `.e2e/`)",
+        "CI / MCP / Database (CI & MCP not observed; persistence not directly observed at root)"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": [
+        {
+          "severity": "High",
+          "confidence": "Direct",
+          "title": "Architecture Debt — Large Uncommitted Working Tree (152 Dirty Files) Without CI",
+          "evidence": "152 modified/untracked files including `app/[...slug]/page.tsx`, `app/api/chat/route.ts`, `app/api/copilotkit/route.ts`; 0 `.github/workflows/` observed.",
+          "proposed_correction": "Triage and commit/stash the 152 dirty files in logical slices, and add a CI workflow running typecheck + `tests/`."
+        }
+      ],
+      "medium_low_findings": [
+        {
+          "severity": "Medium",
+          "confidence": "Inferred",
+          "title": "Separation of Concerns — Parallel `app/` and `site/` Web Surfaces",
+          "evidence": "Both Next.js `app/` (`app/[...slug]/page.tsx`) and static `site/*.html` (`site/index.html`, `site/billing/index.html`, `site/account/index.html`) coexist at root (`Verify first: Yes`).",
+          "proposed_correction": "Verify `vercel.json` routing rules and archive or remove unused legacy static pages."
+        }
+      ],
+      "primary_recommendation": "Triage and commit the 152 uncommitted files in bounded slices, clarify `app/` vs `site/` routing ownership, and add a CI build/test workflow.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/recruiting-calendar.md",
+      "evidence_files_count": 12
+    },
+    {
+      "repo": "resume",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None (bounded document + Strict MCP 2 repo with smoke CI; Scan Mode sufficient)",
+      "architecture_areas": [
+        "Document Artifacts (`RESUME.md`, `Mike-Rodgers-Forward-Deployed-Engineer.{docx,html,pdf}`)",
+        "Scripts & Automation (`scripts/`)",
+        "MCP Surface (`mcp/server.py` Strict MCP 2)",
+        "CI & Quality Gates (`.github/workflows/smoke.yml`, `.github/workflows/rig-lattice.yml`)",
+        "Documentation (`docs/architecture.md`, `docs/public-boundary.md`, `AGENTS.md`)",
+        "Backend / Frontend / Database (Not observed)"
+      ],
+      "mcp2_status": "Strict MCP 2",
+      "critical_high_findings": [],
+      "medium_low_findings": [
+        {
+          "severity": "Medium",
+          "confidence": "Direct",
+          "title": "Convention Drift — Uncommitted Resume Artifacts & MCP 2 Retrofit",
+          "evidence": "6 dirty files including `M Mike-Rodgers-Forward-Deployed-Engineer.docx`, `M Mike-Rodgers-Forward-Deployed-Engineer.pdf`, `M mcp/server.py`, `M .github/workflows/rig-lattice.yml`.",
+          "proposed_correction": "Verify `RESUME.md` matches the rendered `.docx`/`.pdf`/`.html` outputs, run `smoke.yml` checks locally, and commit on Mike's approval (public artifact)."
+        }
+      ],
+      "primary_recommendation": "Verify parity between `RESUME.md` and the modified `.docx`/`.pdf` artifacts, then seek approval to commit and push the 6 pending files.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/resume.md",
+      "evidence_files_count": 9
+    },
+    {
+      "repo": "resume-doctrine-gate",
+      "source": "remote_api",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None — remain in Scan Mode (no Critical/High trigger observed at root/manifest level; clone locally if active modification is planned).",
+      "architecture_areas": [
+        "Backend",
+        "Tests and quality gates"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": [],
+      "medium_low_findings": [
+        {
+          "title": "No `README.md` at repository root",
+          "severity": "Low",
+          "confidence": "Direct",
+          "evidence": "Direct root listing (6 entries) contains no `README.md` (entry context is split across `JOB.md`, `DONE.txt`, or unlisted files)."
+        }
+      ],
+      "primary_recommendation": "Address the top Low finding first — no `readme.md` at repository root — by cloning `resume-doctrine-gate` locally for direct verification before applying the proposed smallest safe correction (subject to owner approval).",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/resume-doctrine-gate.md",
+      "evidence_files_count": 1
+    },
+    {
+      "repo": "rig-academy",
+      "source": "remote_api",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None — remain in Scan Mode (no Critical/High trigger observed at root/manifest level; clone locally if active modification is planned).",
+      "architecture_areas": [
+        "Backend",
+        "Shared modules",
+        "Tests and quality gates"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": [],
+      "medium_low_findings": [
+        {
+          "title": "No `README.md` at repository root",
+          "severity": "Low",
+          "confidence": "Direct",
+          "evidence": "Direct root listing (12 entries) contains no `README.md` (entry context is split across `JOB.md`, `DONE.txt`, or unlisted files)."
+        }
+      ],
+      "primary_recommendation": "Address the top Low finding first — no `readme.md` at repository root — by cloning `rig-academy` locally for direct verification before applying the proposed smallest safe correction (subject to owner approval).",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/rig-academy.md",
+      "evidence_files_count": 1
+    },
+    {
+      "repo": "rig-actor",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None (well-structured local actor platform with Strict MCP 2 and E2E tests; Scan Mode sufficient)",
+      "architecture_areas": [
+        "Backend / Actor Runtime (`src/`, `bin/`, `actors/`)",
+        "Frontend / Console (`console/index.html`)",
+        "MCP Surface (`src/mcp.mjs` Strict MCP 2 `2026-07-28`)",
+        "Infrastructure (`docker/`, `launchd/`, `scripts/`)",
+        "Tests (`e2e/tests/agent.e2e.ts`, `api.e2e.ts`, `console.e2e.ts`)",
+        "Documentation (`docs/BRIEF.md`, `docs/DECISIONS.md`, `docs/FIXLOG.md`, `docs/STORIES.md`)"
+      ],
+      "mcp2_status": "Strict MCP 2",
+      "critical_high_findings": [],
+      "medium_low_findings": [
+        {
+          "severity": "Medium",
+          "confidence": "Direct",
+          "title": "Architecture Debt — No CI Workflow Enforcing Existing E2E Suite",
+          "evidence": "3 E2E test suites exist (`e2e/tests/{agent,api,console}.e2e.ts`), but 0 `.github/workflows/` files observed.",
+          "proposed_correction": "Add a CI workflow (or local pre-push check) executing the E2E suite."
+        },
+        {
+          "severity": "Low",
+          "confidence": "Direct",
+          "title": "Convention Drift — Uncommitted MCP Server Edit",
+          "evidence": "1 dirty file: `M src/mcp.mjs`.",
+          "proposed_correction": "Review `git diff src/mcp.mjs`, run `e2e/tests/`, and commit."
+        }
+      ],
+      "primary_recommendation": "Review and commit the pending `src/mcp.mjs` change after running `e2e/tests/`, and add a CI workflow to enforce the existing E2E suite.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/rig-actor.md",
+      "evidence_files_count": 10
+    },
+    {
+      "repo": "rig-agent-directory",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None (clean, well-tested Python crawler/catalog repo with Strict MCP 2; Scan Mode sufficient)",
+      "architecture_areas": [
+        "Backend / Crawler & CLI (`rig_directory/cli.py`, `pyproject.toml`)",
+        "Data / Generated Catalog (`catalog/`, `INDEX.md`)",
+        "MCP Surface (`mcp/server.py` Strict MCP 2)",
+        "Tests & CI (`tests/`, `ci.yml`, `refresh.yml`, `rig-lattice.yml`)",
+        "Documentation (`docs/architecture.md`, `AGENTS.md`)",
+        "Frontend / Database (Not observed)"
+      ],
+      "mcp2_status": "Strict MCP 2",
+      "critical_high_findings": [],
+      "medium_low_findings": [
+        {
+          "severity": "Medium",
+          "confidence": "Direct",
+          "title": "Convention Drift — Uncommitted MCP 2 & Lattice Retrofit",
+          "evidence": "3 dirty files: `M .github/workflows/rig-lattice.yml`, `M mcp/server.py`, `M rig.repos.json`.",
+          "proposed_correction": "Review `git diff`, run `pytest` (`tests/`), and commit the 3 files."
+        }
+      ],
+      "primary_recommendation": "Review and commit the 3 pending MCP 2 / lattice retrofit files after running `tests/`.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/rig-agent-directory.md",
+      "evidence_files_count": 8
+    },
+    {
+      "repo": "rig-agent-firm",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None (bounded Python package + agent specs with Strict MCP 2 and CI; Scan Mode sufficient)",
+      "architecture_areas": [
+        "Backend / CLI (`agent_firm/cli.py`, `pyproject.toml`)",
+        "Agent Specifications (`agents/`, `CONSTITUTION.md`)",
+        "MCP Surface (`mcp/server.py` Strict MCP 2)",
+        "Tests & CI (`tests/test_firm.py`, `tests/test_repo_hygiene.py`, `ci.yml`, `heartbeat.yml`, `rig-lattice.yml`)",
+        "Frontend / Database (Not observed)"
+      ],
+      "mcp2_status": "Strict MCP 2",
+      "critical_high_findings": [],
+      "medium_low_findings": [
+        {
+          "severity": "Medium",
+          "confidence": "Direct",
+          "title": "Convention Drift — Uncommitted MCP 2 & Lattice Retrofit",
+          "evidence": "3 dirty files: `M .github/workflows/rig-lattice.yml`, `M mcp/server.py`, `M rig.repos.json`.",
+          "proposed_correction": "Review `git diff`, run `tests/`, and commit the 3 files."
+        },
+        {
+          "severity": "Low",
+          "confidence": "Direct",
+          "title": "Documentation Gap — No Dedicated `docs/architecture.md`",
+          "evidence": "Only `AGENTS.md` and `CONSTITUTION.md` observed; no `docs/architecture.md` unlike sibling RIG repos.",
+          "proposed_correction": "Add a brief `docs/architecture.md` linking `agent_firm/cli.py`, `agents/`, and `heartbeat.yml`."
+        }
+      ],
+      "primary_recommendation": "Commit the 3 pending MCP 2 / lattice retrofit files after running `tests/`, and add a brief `docs/architecture.md`.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/rig-agent-firm.md",
+      "evidence_files_count": 7
+    },
+    {
+      "repo": "rig-ai-engineering",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None (clean, well-tested offline prompt scorer with Strict MCP 2; Scan Mode sufficient)",
+      "architecture_areas": [
+        "Backend / CLI (`rig_ai/cli.py`, `pyproject.toml`)",
+        "MCP Surface (`mcp/server.py` Strict MCP 2)",
+        "Tests & CI (`test/test_axes.py`, `test_calibration.py`, `test_cli.py`, `ci.yml`, `rig-lattice.yml`)",
+        "Documentation (`docs/architecture.md`, `docs/axes.md`, `AGENTS.md`)",
+        "Frontend / Database (Not observed)"
+      ],
+      "mcp2_status": "Strict MCP 2",
+      "critical_high_findings": [],
+      "medium_low_findings": [
+        {
+          "severity": "Medium",
+          "confidence": "Direct",
+          "title": "Convention Drift — Uncommitted MCP 2 & Lattice Retrofit",
+          "evidence": "3 dirty files: `M .github/workflows/rig-lattice.yml`, `M mcp/server.py`, `M rig.repos.json`.",
+          "proposed_correction": "Review `git diff`, run `test/`, and commit the 3 files."
+        },
+        {
+          "severity": "Low",
+          "confidence": "Direct",
+          "title": "Workspace Hygiene — Multiple Local Virtualenvs",
+          "evidence": "Both `.venv/` and `.venv311/` exist in the repo root.",
+          "proposed_correction": "Keep one canonical `.venv/` and remove the unused `.venv311/` locally."
+        }
+      ],
+      "primary_recommendation": "Commit the 3 pending MCP 2 / lattice retrofit files after running `test/`, and clarify shared-core boundaries with `rig-ai-engineering-forge`.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/rig-ai-engineering.md",
+      "evidence_files_count": 8
+    },
+    {
+      "repo": "rig-ai-engineering-forge",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "Focus Mode recommended — Trigger: polyglot TS/React workbench + browser extension + Python MCP server (`python/rig/rig-mcp-server.py` on legacy MCP v1) with 22 dirty files and no CI workflows. Risk of staying in Scan Mode: broken MCP v1 handshakes and unverified extension/workbench contract drift.",
+      "architecture_areas": [
+        "Frontend / Workbench & Extension (`apps/rig-prompt-master/`, `src/webview/app.ts`, `extension/`)",
+        "Backend / Python CLI & MCP (`python/rig/rig-mcp-server.py`, `scripts/`, `workflows/`)",
+        "Data & Catalogs (`catalogs/`, `data/`, `archon/`)",
+        "Tests (`tests/`, `apps/rig-prompt-master/tests/`, `vitest.config.ts`)",
+        "CI Workflows / Database (CI workflows & DB not observed)"
+      ],
+      "mcp2_status": "Strict MCP 2",
+      "critical_high_findings": [
+        {
+          "severity": "High",
+          "confidence": "Direct",
+          "title": "MCP 2 Compliance — Legacy MCP v1 Server Requires Upgrade",
+          "evidence": "`python/rig/rig-mcp-server.py` exposes stdio JSON-RPC tools (`rig_score_prompt`, etc.) without Strict MCP 2 (`2026-07-28`) `server/discover` or `_meta[\"io.modelcontextprotocol/protocolVersion\"]` enforcement.",
+          "proposed_correction": "Upgrade `python/rig/rig-mcp-server.py` to Strict MCP 2 (`2026-07-28`) and add an MCP 2 contract test."
+        },
+        {
+          "severity": "High",
+          "confidence": "Direct",
+          "title": "Architecture Debt — 22 Uncommitted Files Across Extension/Workbench Without CI",
+          "evidence": "22 dirty files (including `extension/background.js`, `extension/common.js`, `extension/icons/icon128.png`) and 0 `.github/workflows/` observed.",
+          "proposed_correction": "Review and commit the 22 dirty files in logical slices and add a CI workflow running `vitest` and Python tests."
+        }
+      ],
+      "medium_low_findings": [],
+      "primary_recommendation": "Upgrade `python/rig/rig-mcp-server.py` to Strict MCP 2 (`2026-07-28`), commit the 22 dirty extension/workbench files, and wire existing `vitest`/Python tests into CI.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/rig-ai-engineering-forge.md",
+      "evidence_files_count": 13
+    },
+    {
+      "repo": "rig-build",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None (minimal 2-entry skill pack repo; Scan Mode sufficient)",
+      "architecture_areas": [
+        "Skills & Governance (`skills/architect-loop/`, `skills/github-well-architected/`, `skills/skills-for-architects/`)",
+        "Documentation (`README.md`)",
+        "Backend / Frontend / Database / Tests / CI / MCP (Not observed)"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": [],
+      "medium_low_findings": [
+        {
+          "severity": "Low",
+          "confidence": "Direct",
+          "title": "Architecture Debt — No Frontmatter Validation CI",
+          "evidence": "0 tests and 0 CI workflows; last commit (`1be9452`) fixed YAML quoting in 8 skill frontmatters.",
+          "proposed_correction": "Add a minimal CI check parsing YAML frontmatter for every `skills/*/SKILL.md`."
+        }
+      ],
+      "primary_recommendation": "Add a lightweight CI workflow validating YAML frontmatter across `skills/*/SKILL.md` to prevent parser regressions like commit `1be9452`.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/rig-build.md",
+      "evidence_files_count": 14
+    },
+    {
+      "repo": "rig-capabilities",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "Full Mode recommended — Trigger: canonical estate capability store serving all harnesses with Legacy MCP v1 (`2024-11-05`/`2025-03-26`/`2025-06-18`), an untracked `.signing.key` at repo root, 13 dirty runtime files, and no CI workflows in this worktree (`rc-s11-wt`). Risk of staying in Scan Mode: fleet-wide MCP breakage or accidental key exposure.",
+      "architecture_areas": [
+        "Backend / Capability Store & CLI (`bin/`, `rig_capabilities/`, `pyproject.toml`, `capability_register.csv`)",
+        "MCP Surface (`rig_capabilities/mcp_stdio.py`, `mcp_wire.py`, `server.py`, `tests/test_mcp_wire.py` — Legacy MCP v1)",
+        "Capabilities Assets (`capabilities/`, `agents/`, `acl_policy.json`)",
+        "Tests (`tests/`, `capabilities/hooks/rig-loop-hooks.test.ts`, `rig_capabilities/done_tests.py`)",
+        "CI Workflows / Frontend / Database (CI workflows not observed in worktree)"
+      ],
+      "mcp2_status": "Legacy MCP v1 (upgrade needed)",
+      "critical_high_findings": [
+        {
+          "severity": "Critical",
+          "confidence": "Direct",
+          "title": "Security / Secret Hygiene — Untracked `.signing.key` Present in Repo Root",
+          "evidence": "`.signing.key` exists as an untracked file at `/Users/rig128gb/Developer/rc-s11-wt/.signing.key` (contents not read/printed).",
+          "proposed_correction": "Verify `.signing.key` is in `.gitignore`, move it outside the repo tree (e.g. `~/.rig/keys/` or Keychain), and rotate if ever exposed."
+        },
+        {
+          "severity": "High",
+          "confidence": "Direct",
+          "title": "MCP 2 Compliance — Legacy MCP v1 Protocol Versions Hardcoded",
+          "evidence": "`rig_capabilities/mcp_stdio.py` hardcodes `SUPPORTED_PROTOCOL_VERSIONS = (\"2024-11-05\", \"2025-03-26\", \"2025-06-18\")` and `LATEST_PROTOCOL_VERSION = \"2025-06-18\"`.",
+          "proposed_correction": "Upgrade `rig_capabilities/mcp_stdio.py` and `tests/test_mcp_wire.py` to Strict MCP 2 (`2026-07-28`)."
+        }
+      ],
+      "medium_low_findings": [
+        {
+          "severity": "Medium",
+          "confidence": "Direct",
+          "title": "Architecture Debt — Runtime Audit Logs Dirtying Worktree + No CI Observed",
+          "evidence": "13 dirty files including `audit_hash_chain.jsonl`, `brier_history.jsonl`, `_last_recal.txt`; 0 `.github/workflows/` observed in worktree.",
+          "proposed_correction": "Relocate runtime run logs out of tracked paths (or `.gitignore` them) and verify CI workflows on `main`."
+        }
+      ],
+      "primary_recommendation": "Immediately relocate untracked `.signing.key` out of this public repo root, then upgrade `rig_capabilities/mcp_stdio.py` from legacy v1 (`2025-06-18`) to Strict MCP 2 (`2026-07-28`).",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/rig-capabilities.md",
+      "evidence_files_count": 27
+    },
+    {
+      "repo": "rig-community-skool",
+      "source": "remote_api",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None — remain in Scan Mode (no Critical/High trigger observed at root/manifest level; clone locally if active modification is planned).",
+      "architecture_areas": [
+        "Backend",
+        "Tests and quality gates"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": [],
+      "medium_low_findings": [
+        {
+          "title": "No `README.md` at repository root",
+          "severity": "Low",
+          "confidence": "Direct",
+          "evidence": "Direct root listing (14 entries) contains no `README.md` (entry context is split across `JOB.md`, `DONE.txt`, or unlisted files)."
+        }
+      ],
+      "primary_recommendation": "Address the top Low finding first — no `readme.md` at repository root — by cloning `rig-community-skool` locally for direct verification before applying the proposed smallest safe correction (subject to owner approval).",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/rig-community-skool.md",
+      "evidence_files_count": 1
+    },
+    {
+      "repo": "rig-company-os",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None (clean, well-governed consolidation hub with 4 CI workflows and 6 selftests; Scan Mode sufficient)",
+      "architecture_areas": [
+        "Governance & Contracts (`AGENTS.md`, `HARNESS.md`, `OWNERS.yaml`, `floors.yaml`, `contracts/`, `proof.json`)",
+        "Harnesses & Blueprints (`blueprints/`, `canvas/`, `harnesses/`, `metaharness/`, `metaskills/`, `golden/`)",
+        "Catalog (`catalog/merged-repos/` 29 sourced agency-OS repos)",
+        "Tests & CI (`scripts/selftests/test-01..03*.sh`, 4 GitHub workflows: `canvas-verify.yml`, `governance.yml`, `offline-safety.yml`, `ownership.yml`)",
+        "MCP / Database (Not observed)"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": [],
+      "medium_low_findings": [],
+      "primary_recommendation": "No architecture defects identified; maintain the 4 existing governance/canvas/ownership CI workflows.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/rig-company-os.md",
+      "evidence_files_count": 23
+    },
+    {
+      "repo": "rig-d87da613-be7e-4175-945d-d0237a2526ee",
+      "source": "remote_api",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None — remain in Scan Mode (no Critical/High trigger observed at root/manifest level; clone locally if active modification is planned).",
+      "architecture_areas": [
+        "Backend",
+        "AI or background processes"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": [],
+      "medium_low_findings": [],
+      "primary_recommendation": "Keep `rig-d87da613-be7e-4175-945d-d0237a2526ee` in Scan Mode; no Critical/High architectural defects were observed from remote root/README/manifest inspection. Clone locally only when active feature or maintenance work is scheduled.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/rig-d87da613-be7e-4175-945d-d0237a2526ee.md",
+      "evidence_files_count": 2
+    },
+    {
+      "repo": "rig-design-studio-corpus",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None (bounded design-reference corpus and capture scripts; Scan Mode sufficient)",
+      "architecture_areas": [
+        "Capture Scripts (`build.mjs`, `offer.mjs`)",
+        "Corpus Data (`sites/` 21+ captured sites, `competitors/lane-1..4/blueprint.md`)",
+        "Documentation (`INDEX.md`, `PATTERNS.md`, `README.md`)",
+        "Backend / Frontend / Database / Tests / CI / MCP (Not observed)"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": [],
+      "medium_low_findings": [
+        {
+          "severity": "Medium",
+          "confidence": "Direct",
+          "title": "Architecture Debt — Runtime Logs & Unpackaged Scripts at Root",
+          "evidence": "`build.log` and `offer.log` sit at repo root alongside `build.mjs`/`offer.mjs` with no `package.json` or tests.",
+          "proposed_correction": "Add a minimal `package.json` declaring script dependencies and `.gitignore` `*.log` files."
+        },
+        {
+          "severity": "Low",
+          "confidence": "Direct",
+          "title": "Convention Drift — Uncommitted Capture Edits",
+          "evidence": "2 dirty files: `M sites/blueorbit-ai/README.md`, `M sites/blueorbit-ai/offerings.md`.",
+          "proposed_correction": "Review and commit the 2 modified `sites/blueorbit-ai/` files."
+        }
+      ],
+      "primary_recommendation": "Add a `package.json` for `build.mjs`/`offer.mjs`, move `*.log` to `.gitignore`, and commit the 2 dirty `sites/blueorbit-ai/` files.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/rig-design-studio-corpus.md",
+      "evidence_files_count": 7
+    },
+    {
+      "repo": "rig-deviate",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None (clean, tested Python CLI + Strict MCP 2 server; Scan Mode sufficient)",
+      "architecture_areas": [
+        "Backend / CLI (`rig_deviate/cli.py`, `pyproject.toml`)",
+        "MCP Surface (`mcp/server.py` Strict MCP 2)",
+        "Tests & CI (`test/` 5 suites, `ci.yml`, `smoke.yml`, `rig-lattice.yml`)",
+        "Documentation (`docs/architecture.md`, `AGENTS.md`, `examples/`)",
+        "Frontend / Database (Not observed)"
+      ],
+      "mcp2_status": "Strict MCP 2",
+      "critical_high_findings": [],
+      "medium_low_findings": [
+        {
+          "severity": "Medium",
+          "confidence": "Direct",
+          "title": "Convention Drift — Uncommitted MCP 2 & Lattice Retrofit",
+          "evidence": "6 dirty files including `M .github/workflows/rig-lattice.yml`, `M mcp/server.py`, `M rig.repos.json`.",
+          "proposed_correction": "Review `git diff`, run `pytest test/`, and commit the 6 modified files."
+        }
+      ],
+      "primary_recommendation": "Review and commit the 6 uncommitted MCP 2 / lattice retrofit files after running `pytest test/`.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/rig-deviate.md",
+      "evidence_files_count": 8
+    },
+    {
+      "repo": "rig-doctrine-overlay",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None (clean, tested shell/template overlay repo; Scan Mode sufficient)",
+      "architecture_areas": [
+        "Overlay Scripts (`apply-overlay.sh`, `uninstall-overlay.sh`, `scripts/`)",
+        "Templates & Specs (`templates/AGENTS.md`, `templates/CLAUDE.md`, `spec/`)",
+        "Tests & CI (`tests/test_overlay.py`, `tests/test_rig_checks.py`, `pyproject.toml`, `ci.yml`)",
+        "Frontend / Database / MCP (Not observed)"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": [],
+      "medium_low_findings": [],
+      "primary_recommendation": "No architecture defects identified; maintain current pytest coverage and CI workflow.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/rig-doctrine-overlay.md",
+      "evidence_files_count": 7
+    },
+    {
+      "repo": "rig-domain-agents",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None (static markdown agent-persona library; Scan Mode sufficient)",
+      "architecture_areas": [
+        "Agent Specifications (16 department folders: `academic/`, `design/`, `engineering/`, `finance/`, `game-development/`, `gis/`, `marketing/`, `paid-media/`, `product/`, `project-management/`, `specialized/`, etc.)",
+        "Documentation (`INDEX.md`, `docs/DEPARTMENTS.md`, `README.md`)",
+        "Backend / Frontend / Database / Tests / CI / MCP (Not observed — `specialized/specialized-mcp-builder.md` is a persona doc, not an executable MCP server)"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": [],
+      "medium_low_findings": [
+        {
+          "severity": "Low",
+          "confidence": "Direct",
+          "title": "Architecture Debt — No Index/Frontmatter Validation CI",
+          "evidence": "0 tests and 0 CI workflows; `INDEX.md` and `docs/DEPARTMENTS.md` track 232 markdown specs across 16 directories.",
+          "proposed_correction": "Add a lightweight CI script verifying `INDEX.md` parity with department markdown files."
+        },
+        {
+          "severity": "Low",
+          "confidence": "Direct",
+          "title": "Convention Drift — Staged/Uncommitted Doc Updates",
+          "evidence": "2 dirty staged files: `M README.md`, `A docs/DEPARTMENTS.md`.",
+          "proposed_correction": "Review and commit `README.md` and `docs/DEPARTMENTS.md`."
+        }
+      ],
+      "primary_recommendation": "Commit the 2 staged documentation files (`README.md`, `docs/DEPARTMENTS.md`) and add a lightweight index-parity CI check.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/rig-domain-agents.md",
+      "evidence_files_count": 21
+    },
+    {
+      "repo": "rig-enhanced-agent-ops",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None (well-tested Python package with Strict MCP 2 and CI; Scan Mode sufficient)",
+      "architecture_areas": [
+        "Backend / Action Gate & Audit Trail (`src/cli.py`, `src/`, `scripts/`, `pyproject.toml`)",
+        "MCP Surface (`mcp/server.py` Strict MCP 2; client configs `.mcp.json`, `.omp/mcp.json`)",
+        "Tests & CI (`test/` 12+ suites incl. `test_action_gate.py`, `test_audit_trail.py`, `ci.yml`, `rig-lattice.yml`)",
+        "Documentation (`docs/architecture.md`, `AGENTS.md`, `spec/`)",
+        "Frontend / Database (Not observed)"
+      ],
+      "mcp2_status": "Strict MCP 2",
+      "critical_high_findings": [],
+      "medium_low_findings": [
+        {
+          "severity": "Medium",
+          "confidence": "Direct",
+          "title": "Convention Drift — Uncommitted MCP 2 & Lattice Retrofit",
+          "evidence": "4 dirty files including `M .github/workflows/rig-lattice.yml`, `M mcp/server.py`, `M rig.repos.json`.",
+          "proposed_correction": "Review `git diff`, run `pytest test/`, and commit the 4 files."
+        },
+        {
+          "severity": "Low",
+          "confidence": "Direct",
+          "title": "Project Convention Drift — Multiple Harness MCP Client Configs",
+          "evidence": "Both `.mcp.json` and `.omp/mcp.json` exist at repo root without explicit `2026-07-28` version pinning.",
+          "proposed_correction": "Verify `.mcp.json` and `.omp/mcp.json` point to the exact `mcp/server.py` Strict MCP 2 entrypoint."
+        }
+      ],
+      "primary_recommendation": "Review and commit the 4 pending MCP 2 / lattice retrofit files after running `pytest test/`.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/rig-enhanced-agent-ops.md",
+      "evidence_files_count": 9
+    },
+    {
+      "repo": "rig-enhanced-evals",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None (well-tested Python eval package with Strict MCP 2 and 3 CI workflows; Scan Mode sufficient)",
+      "architecture_areas": [
+        "Backend / Eval Engine & CLI (`src/cli.py`, `src/`, `pyproject.toml`)",
+        "MCP Surface (`mcp/server.py` Strict MCP 2)",
+        "Tests & CI (`test/` 8 suites, `ci.yml`, `smoke.yml`, `rig-lattice.yml`)",
+        "Documentation (`docs/architecture.md`, `AGENTS.md`, `spec/`)",
+        "Frontend / Database (Not observed)"
+      ],
+      "mcp2_status": "Strict MCP 2",
+      "critical_high_findings": [],
+      "medium_low_findings": [
+        {
+          "severity": "Medium",
+          "confidence": "Direct",
+          "title": "Convention Drift — Uncommitted MCP 2 & Lattice Retrofit",
+          "evidence": "7 dirty files including `M .github/workflows/rig-lattice.yml`, `M .gitignore`, `M mcp/server.py`.",
+          "proposed_correction": "Review `git diff`, run `pytest test/`, and commit the 7 modified files."
+        }
+      ],
+      "primary_recommendation": "Review and commit the 7 pending MCP 2 / `.gitignore` retrofit files after running `pytest test/`.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/rig-enhanced-evals.md",
+      "evidence_files_count": 8
+    },
+    {
+      "repo": "rig-enhanced-guardrails",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None (clean, tested Python guardrails package with Strict MCP 2 and 3 CI workflows; Scan Mode sufficient)",
+      "architecture_areas": [
+        "Backend / Guardrails Engine (`src/`, `pyproject.toml`)",
+        "MCP Surface (`mcp/server.py` Strict MCP 2)",
+        "Tests & CI (`test/test_guard.py`, `test_validators.py`, `test_repo_hygiene.py`, `ci.yml`, `smoke.yml`, `rig-lattice.yml`)",
+        "Documentation (`docs/architecture.md`, `AGENTS.md`, `spec/`)",
+        "Frontend / Database (Not observed)"
+      ],
+      "mcp2_status": "Strict MCP 2",
+      "critical_high_findings": [],
+      "medium_low_findings": [
+        {
+          "severity": "Medium",
+          "confidence": "Direct",
+          "title": "Convention Drift — Uncommitted MCP 2 & Lattice Retrofit",
+          "evidence": "3 dirty files: `M .github/workflows/rig-lattice.yml`, `M mcp/server.py`, `M rig.repos.json`.",
+          "proposed_correction": "Review `git diff`, run `pytest test/`, and commit the 3 files."
+        }
+      ],
+      "primary_recommendation": "Review and commit the 3 pending MCP 2 / lattice retrofit files after running `pytest test/`.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/rig-enhanced-guardrails.md",
+      "evidence_files_count": 8
+    },
+    {
+      "repo": "rig-free-agent-kit",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None (clean 5-entry static HTML/prompt lead-magnet kit; Scan Mode sufficient)",
+      "architecture_areas": [
+        "Frontend / Static Starter Kit (`index.html`, `guide.html`)",
+        "Content Assets (`prompts/`, `sample/`, `README.md`)",
+        "Backend / Database / Tests / CI / MCP (Not observed)"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": [],
+      "medium_low_findings": [],
+      "primary_recommendation": "No architecture defects identified; keep minimal as a static starter kit.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/rig-free-agent-kit.md",
+      "evidence_files_count": 1
+    },
+    {
+      "repo": "rig-grokbots-delivery",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "Focus Mode recommended before production delivery edits — Trigger: live signup/delivery API endpoints (`api/jobsearch-signup.mjs`, `api/jobsearch-deliver.mjs`) with 6 dirty files, stale backup directories (`tiers.bak-*`), no `package.json`, and no CI workflow. Risk of staying in Scan Mode: unverified changes breaking user signup/email delivery.",
+      "architecture_areas": [
+        "Backend / Delivery API (`api/jobsearch-signup.mjs`, `api/jobsearch-deliver.mjs`, `email/`, `scripts/`)",
+        "Bot Specs & Tiers (`bots/01..04*/SPEC.md`, `tiers/`)",
+        "Build Output (`dist/`)",
+        "Tests (`test/harness.mjs`, `test/signup.test.mjs`)",
+        "CI / Package Manifest / Database / MCP (Not observed)"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": [],
+      "medium_low_findings": [
+        {
+          "severity": "Medium",
+          "confidence": "Direct",
+          "title": "Architecture Debt — Stale Backup Directories Coexisting With Active `tiers/`",
+          "evidence": "Two backup folders (`tiers.bak-20261105T182813/`, `tiers.bak-bots-support-1793933630/`) sit at repo root alongside `tiers/`.",
+          "proposed_correction": "Remove or archive the two `tiers.bak-*` directories once confirmed unneeded."
+        },
+        {
+          "severity": "Medium",
+          "confidence": "Direct",
+          "title": "Architecture Debt — Missing `package.json` & CI Workflow for Active API",
+          "evidence": "0 manifests (`package.json`) and 0 `.github/workflows/` observed; 6 dirty files (`M api/jobsearch-deliver.mjs`, `M api/jobsearch-signup.mjs`, `M test/signup.test.mjs`).",
+          "proposed_correction": "Run `test/signup.test.mjs`, commit the 6 dirty files, and add `package.json` + a CI test workflow."
+        }
+      ],
+      "primary_recommendation": "Run `test/signup.test.mjs` and commit the 6 pending API edits, remove the two stale `tiers.bak-*` backup folders, and add a `package.json` + CI test workflow.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/rig-grokbots-delivery.md",
+      "evidence_files_count": 20
+    },
+    {
+      "repo": "rig-gtm-studio-v2",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "Full Mode recommended — Trigger: sprawling 141-root-entry monorepo spanning 12+ active code/agent directories, multiple client sites, Legacy MCP v1 (`mcp/server.py`), and 0 GitHub Actions CI workflows. Risk of staying in Scan Mode: unmapped cross-module coupling and MCP v1 compliance failures.",
+      "architecture_areas": [
+        "Backend / CLI & API (`api/`, `bin/`, `cli/`, `creator_platform/cli.py`, `src/`, `l7_core/SERVER.py`)",
+        "Frontend / Client Sites (`frontend/`, `clients/*`, `gtm-cpa-ads/landing/`, `docs/index.html`)",
+        "AI / Agents & Harnesses (`agents/`, `harnesses/`, `skills/`, `workflows/`, `tools/`)",
+        "MCP Surface (`mcp/server.py` Legacy MCP v1; client design-extract `*-mcp.json` files)",
+        "Infrastructure (`Makefile`, `Dockerfile`, `vercel.json`, `requirements.txt`, `CRON_SETUP.md`)",
+        "Tests (`tests/`, `ads/tests/`, `bin/tests/`)",
+        "CI Workflows (Not observed)"
+      ],
+      "mcp2_status": "Legacy MCP v1 (upgrade needed)",
+      "critical_high_findings": [
+        {
+          "severity": "High",
+          "confidence": "Direct",
+          "title": "MCP 2 Compliance — Legacy MCP v1 Server Requires Upgrade",
+          "evidence": "`mcp/server.py` implements the canonical RIG Studio read-only MCP without Strict MCP 2 (`2026-07-28`) `server/discover` or `_meta[\"io.modelcontextprotocol/protocolVersion\"]` enforcement.",
+          "proposed_correction": "Upgrade `mcp/server.py` to Strict MCP 2 (`2026-07-28`) and add an MCP 2 handshake test."
+        },
+        {
+          "severity": "High",
+          "confidence": "Direct",
+          "title": "Architecture Debt — Severe Root Sprawl (141 Entries) Without CI Gating",
+          "evidence": "141 top-level entries mixing runtime code, PNG artifacts (`.hero-check.png`, `.teaser-preview-hero.png`), audit docs, client extracts, and 12 source dirs; 0 `.github/workflows/` observed.",
+          "proposed_correction": "Add a CI workflow running pytest suites and consolidate root PNG/doc scratch files into `docs/` or `artifacts/`."
+        }
+      ],
+      "medium_low_findings": [
+        {
+          "severity": "Low",
+          "confidence": "Direct",
+          "title": "Project Convention Drift — Local Folder Name Mismatch",
+          "evidence": "Repo `rig-gtm-studio-v2` is checked out at `/Users/rig128gb/Developer/professional-ai-increment-3`.",
+          "proposed_correction": "Document the path mapping or align directory naming/symlink."
+        }
+      ],
+      "primary_recommendation": "Upgrade `mcp/server.py` to Strict MCP 2 (`2026-07-28`), wire existing pytest suites into CI, and promote to Full Mode before refactoring the 141-entry root layout.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/rig-gtm-studio-v2.md",
+      "evidence_files_count": 40
+    },
+    {
+      "repo": "rig-harness-tools",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None (clean, tested context-budget utility repo with CI; Scan Mode sufficient)",
+      "architecture_areas": [
+        "Backend / CLI (`src/harness_tools/cli.py`, `pyproject.toml`, `skill-index.py`, `resolve.ts`)",
+        "Skills & Recall (`harness-recall/`, `skill-index-skill/`, `include_patterns.json`)",
+        "Tests & CI (`tests/test_budget.py`, `test_cli.py`, `test_index.py`, `ci.yml`)",
+        "Frontend / Database / MCP (Not observed)"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": [],
+      "medium_low_findings": [
+        {
+          "severity": "Low",
+          "confidence": "Direct",
+          "title": "Project Convention Drift — Root-Level Scripts Outside `src/`",
+          "evidence": "`skill-index.py` and `resolve.ts` sit at repo root alongside packaged `src/harness_tools/` (`pyproject.toml`, no `package.json`).",
+          "proposed_correction": "Move `skill-index.py` into `src/harness_tools/` (or document why it is standalone) and declare runtime requirements for `resolve.ts`."
+        }
+      ],
+      "primary_recommendation": "Confirm whether root `resolve.ts` is still active (and add a runtime/test check if so); otherwise keep the clean Python CLI and CI as-is.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/rig-harness-tools.md",
+      "evidence_files_count": 3
+    },
+    {
+      "repo": "rig-intelligence",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "Full Mode strongly recommended — Trigger: 73-entry canonical engineering monorepo with 1,746 dirty/untracked files, 14 untracked `.env`/`.env.bak-*` secret files under `platform/`, and Legacy MCP v1 surfaces (`2024-11-05`/`2025-06-18`). Risk of staying in Scan Mode: secret leakage, silent cross-platform regressions, and broken MCP 2 fleet bridges.",
+      "architecture_areas": [
+        "Monorepo Platform (`apps/`, `packages/`, `harnesses/`, `platform/`, `departments/`, `governance/`, `scripts/`, `tools/`)",
+        "AI / Agent & Fleet Surfaces (`platform/openbot/`, `platform/opendots/`, `platform/fusion-harness/`, `platform/memory-service/`, `platform/remote-ai-workstation/`)",
+        "MCP Surface (`platform/fleet-mcp/fleet_mcp_stdio.py`, `platform/automation-foundry/rig_foundry/consensus_mcp.py` — Legacy MCP v1; `.mcp.json`, `.cursor/mcp.json`, `.kiro/settings/mcp.json`)",
+        "Tests & CI (`tests/`, `.github/workflows/copilot-setup-steps.yml`)",
+        "Database / Package Manifests (No root manifest observed)"
+      ],
+      "mcp2_status": "Strict MCP 2",
+      "critical_high_findings": [
+        {
+          "severity": "Critical",
+          "confidence": "Direct",
+          "title": "Security / Secret Hygiene — 14 Untracked `.env` and `.env.bak-*` Files Inside Platform Tree",
+          "evidence": "14 untracked `.env` / `.env.bak-*` files exist under `platform/fusion-harness/`, `platform/memory-service/`, `platform/openbot/` (8 files), `platform/opendots/` (3 files), and `platform/openmuse/` (contents not read/printed).",
+          "proposed_correction": "Verify `.gitignore` covers `*.env*` / `.env.bak-*`, relocate active env files to `~/.rig/secrets/` or Keychain, and delete stale `.env.bak-*` backups."
+        },
+        {
+          "severity": "High",
+          "confidence": "Direct",
+          "title": "MCP 2 Compliance — Legacy MCP v1 Servers & Client Bridges",
+          "evidence": "`platform/automation-foundry/rig_foundry/consensus_mcp.py` uses `2024-11-05` and `platform/fleet-mcp/fleet_mcp_stdio.py` lacks Strict MCP 2 (`2026-07-28`) enforcement.",
+          "proposed_correction": "Upgrade `platform/fleet-mcp/fleet_mcp_stdio.py` and `consensus_mcp.py` to Strict MCP 2 (`2026-07-28`)."
+        },
+        {
+          "severity": "High",
+          "confidence": "Direct",
+          "title": "Architecture Debt — 1,746 Dirty/Untracked Files & Minimal CI Coverage",
+          "evidence": "`git status` reports 1,746 modified/untracked entries (incl. `.gitignore`, `governance/repository-policy.yaml`, `card-index.json`) and only `copilot-setup-steps.yml` in `.github/workflows/`.",
+          "proposed_correction": "Clean up scratch directories, triage dirty files into bounded commits, and add a CI workflow for `tests/` and secret scanning."
+        }
+      ],
+      "medium_low_findings": [],
+      "primary_recommendation": "Immediately secure/purge the 14 untracked `.env`/`.env.bak-*` files under `platform/`, upgrade `platform/fleet-mcp/` to Strict MCP 2 (`2026-07-28`), and triage the 1,746-file dirty tree before any structural work.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/rig-intelligence.md",
+      "evidence_files_count": 40
+    },
+    {
+      "repo": "rig-jevrouter",
+      "source": "remote_api",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None — remain in Scan Mode (no Critical/High trigger observed at root/manifest level; clone locally if active modification is planned).",
+      "architecture_areas": [
+        "Backend",
+        "AI or background processes",
+        "Tests and quality gates"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": [],
+      "medium_low_findings": [
+        {
+          "title": "No `README.md` at repository root",
+          "severity": "Low",
+          "confidence": "Direct",
+          "evidence": "Direct root listing (12 entries) contains no `README.md` (entry context is split across `JOB.md`, `DONE.txt`, or unlisted files)."
+        },
+        {
+          "title": "Potential overlap with public `jev-route` Rust router repository",
+          "severity": "Medium",
+          "confidence": "Inferred (Verify first: Yes)",
+          "evidence": "Direct root listing shows a Rust crate (`Cargo.toml`, `Cargo.lock`, `lanes.toml`, `src/`, `done-test.sh`) alongside sibling repo `jev-route` in the same account, with no `README.md` clarifying ownership."
+        }
+      ],
+      "primary_recommendation": "Address the top Low finding first — no `readme.md` at repository root — by cloning `rig-jevrouter` locally for direct verification before applying the proposed smallest safe correction (subject to owner approval).",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/rig-jevrouter.md",
+      "evidence_files_count": 2
+    },
+    {
+      "repo": "rig-jobsearch-grokbots",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None (clean canonical source repo with tests under `sources/app/tests/`; Scan Mode sufficient)",
+      "architecture_areas": [
+        "Sources / Bot Suite (`sources/app/`, `sources/grokbot-library/`)",
+        "Tests (`sources/app/tests/caps.test.mjs`, `clientsai_daily_check_test.py`, `discovery.test.mjs`, 12+ test files)",
+        "Documentation (`README.md`)",
+        "CI / Root Manifests / MCP / Database (Not observed at root)"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": [],
+      "medium_low_findings": [
+        {
+          "severity": "Medium",
+          "confidence": "Direct",
+          "title": "Architecture Debt — 12+ Tests Exist Without CI Workflow",
+          "evidence": "12+ test files exist under `sources/app/tests/` (Node `.mjs` and Python `.py`), but 0 `.github/workflows/` files observed.",
+          "proposed_correction": "Add a GitHub Actions workflow running both Node and Python tests under `sources/app/tests/`."
+        }
+      ],
+      "primary_recommendation": "Add a GitHub Actions CI workflow to automatically run the 12+ existing Node and Python tests under `sources/app/tests/`.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/rig-jobsearch-grokbots.md",
+      "evidence_files_count": 1
+    },
+    {
+      "repo": "rig-jobsearch-strategy",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None (strategy, skills, and Strict MCP 2 repo; Scan Mode sufficient)",
+      "architecture_areas": [
+        "Strategy & Operating Docs (`MASTER-STRATEGY.md`, `MASTER-INDEX.md`, `DO-THIS-FIRST.md`, `EXECUTIVE-ACTION-BOARD.md`, `JULIE-WEEKLY-CADENCE.md`, `SHARED-CONTEXT.md`)",
+        "Analysis & Implementation (`analysis/`, `implementation/`, `jen/`, `jen-visual/`)",
+        "Skills & MCP Surface (`skills/`, `mcp/server.py` Strict MCP 2)",
+        "CI (`.github/workflows/rig-lattice.yml`)",
+        "Backend / Database / Tests (Tests not observed)"
+      ],
+      "mcp2_status": "Strict MCP 2",
+      "critical_high_findings": [],
+      "medium_low_findings": [
+        {
+          "severity": "Medium",
+          "confidence": "Direct",
+          "title": "Convention Drift — Uncommitted MCP 2 & Lattice Retrofit",
+          "evidence": "3 dirty files: `M .github/workflows/rig-lattice.yml`, `M mcp/server.py`, `M rig.repos.json`.",
+          "proposed_correction": "Review `git diff` and commit the 3 modified files."
+        },
+        {
+          "severity": "Low",
+          "confidence": "Direct",
+          "title": "Architecture Debt — No Automated Smoke/Link Test",
+          "evidence": "0 test files observed; `MASTER-INDEX.md` links across root strategy docs, `analysis/`, and `implementation/`.",
+          "proposed_correction": "Add a lightweight smoke test verifying `mcp/server.py` discovery and `MASTER-INDEX.md` links."
+        }
+      ],
+      "primary_recommendation": "Review and commit the 3 pending MCP 2 / lattice retrofit files (`mcp/server.py`, `rig-lattice.yml`, `rig.repos.json`).",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/rig-jobsearch-strategy.md",
+      "evidence_files_count": 6
+    },
+    {
+      "repo": "rig-linkedin-studio-luca",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "Full Mode candidate — 170 root entries, 84 root dirs, multi-runtime (Python studio/daemon/cockpit-v2 + Electron/desktop + macOS RIG Studio.app), and 34 uncommitted dirty files",
+      "architecture_areas": [
+        "Frontend (cockpit, cockpit-v2, desktop)",
+        "Backend (studio/, daemon/, campaign_engine/, alfred/)",
+        "AI/Background (agents/, engines/, content_intel/)",
+        "Infrastructure (.github/workflows/, deploy/, bin/)",
+        "Tests & Quality Gates (tests/, .testsprite/, .playwright-mcp/)"
+      ],
+      "mcp2_status": "Legacy MCP v1 (upgrade needed)",
+      "critical_high_findings": 2,
+      "medium_low_findings": 1,
+      "primary_recommendation": "Consolidate root sprawl (86 root files, 84 root dirs) and align root mcp_server.py with the Strict MCP 2 (2026-07-28) contract enforced by .github/workflows/rig-lattice.yml.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/rig-linkedin-studio-luca.md",
+      "evidence_files_count": 17
+    },
+    {
+      "repo": "rig-marketplace",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None (clean bounded Python package with clear src/rigmarket, packs/, mcp/server.py, and CI)",
+      "architecture_areas": [
+        "Backend/CLI (src/rigmarket/)",
+        "Shared Modules (packs/, .claude-plugin/)",
+        "External Services/MCP (mcp/server.py)",
+        "Infrastructure (.github/workflows/ci.yml, rig-lattice.yml)",
+        "Tests & Quality Gates (tests/ with 11 test modules)"
+      ],
+      "mcp2_status": "Strict MCP 2",
+      "critical_high_findings": 0,
+      "medium_low_findings": 1,
+      "primary_recommendation": "Maintain current clean package boundary and resolve the 3 dirty working-tree files before next release.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/rig-marketplace.md",
+      "evidence_files_count": 8
+    },
+    {
+      "repo": "rig-memory-fabric",
+      "source": "remote_api",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None — remain in Scan Mode (no Critical/High trigger observed at root/manifest level; clone locally if active modification is planned).",
+      "architecture_areas": [
+        "Backend",
+        "AI or background processes",
+        "Tests and quality gates"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": [],
+      "medium_low_findings": [
+        {
+          "title": "No `README.md` at repository root",
+          "severity": "Low",
+          "confidence": "Direct",
+          "evidence": "Direct root listing (16 entries) contains no `README.md` (entry context is split across `JOB.md`, `DONE.txt`, or unlisted files)."
+        }
+      ],
+      "primary_recommendation": "Address the top Low finding first — no `readme.md` at repository root — by cloning `rig-memory-fabric` locally for direct verification before applying the proposed smallest safe correction (subject to owner approval).",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/rig-memory-fabric.md",
+      "evidence_files_count": 1
+    },
+    {
+      "repo": "rig-memory-os",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "Full Mode candidate — 92 dirty files, 28 root dirs spanning founder_runtime/, products/rig-memory-os/, platform/founder-runtime/, prime-jake-pai/, and .artifacts/",
+      "architecture_areas": [
+        "Backend (founder_runtime/, products/rig-memory-os/, services/)",
+        "Database (migrations/, SQLite ledger)",
+        "AI/Background (prime-jake-pai/, prompts/, tools/)",
+        "External Services/MCP (.mcp.json, founder_runtime/mcp_server.py, products/rig-memory-os/src/rig_memory_os/mcp_server.py)",
+        "Tests & Quality Gates (tests/, root test_jake_*.py)"
+      ],
+      "mcp2_status": "Legacy MCP v1 (upgrade needed)",
+      "critical_high_findings": 2,
+      "medium_low_findings": 1,
+      "primary_recommendation": "Resolve the 92-file dirty working tree and dual MCP server split (founder_runtime/mcp_server.py vs products/rig-memory-os/src/rig_memory_os/mcp_server.py), and upgrade to Strict MCP 2 (2026-07-28).",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/rig-memory-os.md",
+      "evidence_files_count": 8
+    },
+    {
+      "repo": "rig-model-router",
+      "source": "remote_api",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None — remain in Scan Mode (no Critical/High trigger observed at root/manifest level; clone locally if active modification is planned).",
+      "architecture_areas": [
+        "Backend",
+        "AI or background processes",
+        "Infrastructure",
+        "Tests and quality gates"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": [],
+      "medium_low_findings": [
+        {
+          "title": "Committed backup files (27 `.bak*` artifacts) tracked in git",
+          "severity": "Medium",
+          "confidence": "Direct",
+          "evidence": "Direct GitHub API listing shows committed backup file(s): INBOX.md.bak-20261027-claimtopo, INBOX.md.bak-20261028-gateway, JOB.md.bak-20261027-relaunch, MODELS.md.bak-20261028-b96, MODELS.md.bak-20261028-gateway (+22 more)."
+        },
+        {
+          "title": "High root directory sprawl (48 top-level entries)",
+          "severity": "Medium",
+          "confidence": "Direct",
+          "evidence": "Direct root listing contains 48 top-level files and directories, mixing code, operational reports, logs/backups, and configuration."
+        },
+        {
+          "title": "No `README.md` at repository root",
+          "severity": "Low",
+          "confidence": "Direct",
+          "evidence": "Direct root listing (48 entries) contains no `README.md` (entry context is split across `JOB.md`, `DONE.txt`, or unlisted files)."
+        }
+      ],
+      "primary_recommendation": "Address the top Medium finding first — committed backup files (27 `.bak*` artifacts) tracked in git — by cloning `rig-model-router` locally for direct verification before applying the proposed smallest safe correction (subject to owner approval).",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/rig-model-router.md",
+      "evidence_files_count": 1
+    },
+    {
+      "repo": "rig-omniscout-l2",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None (clean bounded Python package with rig_omniscout/, mcp/server.py, dashboard/, and rig-lattice.yml)",
+      "architecture_areas": [
+        "Backend/Pipeline (rig_omniscout/, Prefect >=3.0)",
+        "Frontend (dashboard/)",
+        "External Services/MCP (mcp/server.py, rig_omniscout/consensus_mcp.py)",
+        "Infrastructure (.github/workflows/rig-lattice.yml, .rig/hooks/)",
+        "Tests & Quality Gates (Not observed)"
+      ],
+      "mcp2_status": "Strict MCP 2",
+      "critical_high_findings": 1,
+      "medium_low_findings": 1,
+      "primary_recommendation": "Add a dedicated tests/ suite to cover the Prefect pipeline and consensus_mcp.py, and reconcile the 3 dirty working-tree files.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/rig-omniscout-l2.md",
+      "evidence_files_count": 5
+    },
+    {
+      "repo": "rig-os-agency",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "Focus Mode candidate — Next.js app (src/) coexists with 25+ root Python/JS ops scripts, Docker/Vercel configs, and 42 root files",
+      "architecture_areas": [
+        "Frontend/Backend (Next.js src/app, src/components, src/lib)",
+        "AI/Background (scripts/1000x_engine.py, dept_bridge.py, modal/)",
+        "External Services/MCP (mcp/server.py, src/lib/rig-mcp-registry.ts, hermesMcp.ts)",
+        "Infrastructure (Dockerfile, docker-compose.yml, vercel.json, ecosystem.config.cjs, .github/workflows/)",
+        "Tests & Quality Gates (Not observed)"
+      ],
+      "mcp2_status": "Strict MCP 2",
+      "critical_high_findings": 1,
+      "medium_low_findings": 1,
+      "primary_recommendation": "Isolate root-level operational/OAuth scripts and markdown handoffs out of the Next.js root and add automated smoke/unit tests.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/rig-os-agency.md",
+      "evidence_files_count": 13
+    },
+    {
+      "repo": "rig-pattern-engines",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None (clean, well-tested offline Python package; 0 dirty files)",
+      "architecture_areas": [
+        "Backend/Library (rig_pattern_engines/)",
+        "Documentation (docs/architecture.md, docs/engines.md)",
+        "Infrastructure (.github/workflows/ci.yml, smoke.yml)",
+        "Tests & Quality Gates (tests/ with 5 test modules + fixtures)"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": 0,
+      "medium_low_findings": 0,
+      "primary_recommendation": "Keep current clean offline library architecture; optionally expose via unified-engines-repo or add Strict MCP 2 wrapper only if standalone agent calls are needed.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/rig-pattern-engines.md",
+      "evidence_files_count": 5
+    },
+    {
+      "repo": "rig-site-transform",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "Focus Mode candidate — houses stx CLI/MCP, webforge tools, skills/, and a live incident report (INCIDENT-R1-20261030-personal-mailbox.md)",
+      "architecture_areas": [
+        "Backend/CLI (bin/stx, stx/mcp_server.py)",
+        "AI/Skills (skills/site-transform-os, stx-*)",
+        "Tools (tools/webforge/)",
+        "External Services/MCP (.mcp.json, stx/mcp_server.py)",
+        "Tests & Quality Gates (tests/test_smoke.sh, test_units.py)"
+      ],
+      "mcp2_status": "Strict MCP 2",
+      "critical_high_findings": 1,
+      "medium_low_findings": 1,
+      "primary_recommendation": "Upgrade stx/mcp_server.py from legacy JSON-RPC 2.0 v1 to Strict MCP 2 (2026-07-28), add pyproject.toml + GitHub CI, and clean .bak files in tests/.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/rig-site-transform.md",
+      "evidence_files_count": 7
+    },
+    {
+      "repo": "rig-skills",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None (pure markdown/asset skill catalog; 15 dirty files to triage)",
+      "architecture_areas": [
+        "Shared Modules/Knowledge (doctrine/, engineering/, engines/, fleet/, knowledge/, platform/, pmm-*, studios/, staged/)",
+        "Assets (assets/)",
+        "Tests & Quality Gates (Not observed)"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": 0,
+      "medium_low_findings": 2,
+      "primary_recommendation": "Add a lightweight skill-manifest/frontmatter lint check in CI and triage the 15 uncommitted local changes.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/rig-skills.md",
+      "evidence_files_count": 1
+    },
+    {
+      "repo": "rig-soar-intelligent-ui",
+      "source": "remote_api",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None — remain in Scan Mode (no Critical/High trigger observed at root/manifest level; clone locally if active modification is planned).",
+      "architecture_areas": [
+        "Frontend",
+        "Backend",
+        "AI or background processes",
+        "Shared modules",
+        "Tests and quality gates"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": [],
+      "medium_low_findings": [
+        {
+          "title": "No `README.md` at repository root",
+          "severity": "Low",
+          "confidence": "Direct",
+          "evidence": "Direct root listing (8 entries) contains no `README.md` (entry context is split across `JOB.md`, `DONE.txt`, or unlisted files)."
+        }
+      ],
+      "primary_recommendation": "Address the top Low finding first — no `readme.md` at repository root — by cloning `rig-soar-intelligent-ui` locally for direct verification before applying the proposed smallest safe correction (subject to owner approval).",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/rig-soar-intelligent-ui.md",
+      "evidence_files_count": 1
+    },
+    {
+      "repo": "rig-soar-switch",
+      "source": "remote_api",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None — remain in Scan Mode (no Critical/High trigger observed at root/manifest level; clone locally if active modification is planned).",
+      "architecture_areas": [
+        "Backend",
+        "AI or background processes",
+        "Infrastructure",
+        "Shared modules",
+        "Tests and quality gates"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": [],
+      "medium_low_findings": [
+        {
+          "title": "No `README.md` at repository root",
+          "severity": "Low",
+          "confidence": "Direct",
+          "evidence": "Direct root listing (11 entries) contains no `README.md` (entry context is split across `JOB.md`, `DONE.txt`, or unlisted files)."
+        }
+      ],
+      "primary_recommendation": "Address the top Low finding first — no `readme.md` at repository root — by cloning `rig-soar-switch` locally for direct verification before applying the proposed smallest safe correction (subject to owner approval).",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/rig-soar-switch.md",
+      "evidence_files_count": 1
+    },
+    {
+      "repo": "rig-studio-factory",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None (clean scaffold/factory repo with clear module boundaries and 0 dirty files)",
+      "architecture_areas": [
+        "Backend/Factory (factory/scaffold.py)",
+        "AI/Orchestration (langchain_runtime/deterministic_pipeline.py, n8n/)",
+        "Data/Scraping (scraper/visual_good_scraper.py, studios_registry/)",
+        "Frontend/Canvas (canvas/studio-factory/)",
+        "Infrastructure (.github/workflows/ci.yml)",
+        "Tests & Quality Gates (tests/ with 3 test modules)"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": 0,
+      "medium_low_findings": 1,
+      "primary_recommendation": "Add a root pyproject.toml to formalize Python dependencies and entrypoints for factory/, langchain_runtime/, and scraper/.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/rig-studio-factory.md",
+      "evidence_files_count": 5
+    },
+    {
+      "repo": "rig-studios",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "Focus Mode candidate — private monorepo aggregating 9 studio packages, git submodules, and 7 MCP servers",
+      "architecture_areas": [
+        "Shared Modules (packages/common/, packages/*-studio/)",
+        "External Services/MCP (MCP-SERVERS.json, scripts/mcp-serve, scripts/mcp-setup)",
+        "Infrastructure (scripts/assemble.py, .gitmodules, pytest.ini)",
+        "Tests & Quality Gates (tests/test_invariants.py)"
+      ],
+      "mcp2_status": "Legacy MCP v1 (upgrade needed)",
+      "critical_high_findings": 1,
+      "medium_low_findings": 1,
+      "primary_recommendation": "Audit MCP-SERVERS.json and scripts/mcp-serve against Strict MCP 2 (2026-07-28) and add a local/CI workflow to run tests/test_invariants.py + gitleaks automatically.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/rig-studios.md",
+      "evidence_files_count": 4
+    },
+    {
+      "repo": "rig-swan",
+      "source": "remote_api",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None — remain in Scan Mode (no Critical/High trigger observed at root/manifest level; clone locally if active modification is planned).",
+      "architecture_areas": [
+        "Backend",
+        "Shared modules",
+        "Tests and quality gates"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": [],
+      "medium_low_findings": [
+        {
+          "title": "No `README.md` at repository root",
+          "severity": "Low",
+          "confidence": "Direct",
+          "evidence": "Direct root listing (20 entries) contains no `README.md` (entry context is split across `JOB.md`, `DONE.txt`, or unlisted files)."
+        }
+      ],
+      "primary_recommendation": "Address the top Low finding first — no `readme.md` at repository root — by cloning `rig-swan` locally for direct verification before applying the proposed smallest safe correction (subject to owner approval).",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/rig-swan.md",
+      "evidence_files_count": 1
+    },
+    {
+      "repo": "rig-tac-system",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "Focus Mode candidate — active v0.1.0 control plane with 17 root dirs, 18 dirty files, and FastAPI/Typer/catalog subsystems",
+      "architecture_areas": [
+        "Backend/CLI (src/rig_tac/, FastAPI, Typer)",
+        "AI/Agents (.claude/, .codex/, .omp/, adapters/, workflows/)",
+        "Shared Modules (catalog/, contracts/, blueprints/, floorplan/)",
+        "Tests & Quality Gates (tests/ with 11 test modules + fixtures)"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": 0,
+      "medium_low_findings": 2,
+      "primary_recommendation": "Reconcile README status ('BUILD READY, NOT IMPLEMENTED') with the implemented src/rig_tac/ + tests/ suite, and triage the 18 uncommitted files.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/rig-tac-system.md",
+      "evidence_files_count": 6
+    },
+    {
+      "repo": "rig-vote",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None (compact single-purpose service; 0 dirty files)",
+      "architecture_areas": [
+        "Backend (rigvote.py)",
+        "Frontend (web/index.html)",
+        "Infrastructure (launchd/, verify.py)",
+        "Tests & Quality Gates (tests/test_rigvote.py, evidence/shots/)"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": 0,
+      "medium_low_findings": 1,
+      "primary_recommendation": "Clean up the backup HTML file (web/index.html.bak-20261026-onetap) and keep the compact stdlib/JSONL design intact.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/rig-vote.md",
+      "evidence_files_count": 4
+    },
+    {
+      "repo": "rig-website",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "Focus Mode candidate — 66 dirty files, mixed release overlay + SEO/measurement tools + momentic/Playwright QA",
+      "architecture_areas": [
+        "Frontend (web/, publish/, publish-trimmed/, staging/, alternatives-2026/)",
+        "Backend/Tools (tools/*.mjs, seo-48h/mcp.py)",
+        "Infrastructure (package.json, release-manifest.json, momentic.config.yaml)",
+        "Tests & Quality Gates (tests/*.test.mjs, frontend-qa.cjs)"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": 1,
+      "medium_low_findings": 1,
+      "primary_recommendation": "Triage the 66 dirty working-tree files and separate transient QA/report outputs (test-results/, jev-seo-reports/) from source/overlay files.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/rig-website.md",
+      "evidence_files_count": 5
+    },
+    {
+      "repo": "rigdots-company",
+      "source": "remote_api",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None — remain in Scan Mode (no Critical/High trigger observed at root/manifest level; clone locally if active modification is planned).",
+      "architecture_areas": [
+        "Backend",
+        "AI or background processes",
+        "Infrastructure",
+        "Shared modules",
+        "Tests and quality gates"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": [],
+      "medium_low_findings": [
+        {
+          "title": "No `README.md` at repository root",
+          "severity": "Low",
+          "confidence": "Direct",
+          "evidence": "Direct root listing (26 entries) contains no `README.md` (entry context is split across `JOB.md`, `DONE.txt`, or unlisted files)."
+        }
+      ],
+      "primary_recommendation": "Address the top Low finding first — no `readme.md` at repository root — by cloning `rigdots-company` locally for direct verification before applying the proposed smallest safe correction (subject to owner approval).",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/rigdots-company.md",
+      "evidence_files_count": 1
+    },
+    {
+      "repo": "rigdots-soar",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "Focus Mode candidate — 38 root files with 20+ .bak-* files from 2026-10-26..28 merges, plus bridge/, core/, soar/, web/",
+      "architecture_areas": [
+        "Frontend (web/ React/Vite)",
+        "Backend (soar/, bridge/, core/)",
+        "Infrastructure (launchd/, graft/)",
+        "Tests & Quality Gates (tests/ with 9 test files + fakes)"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": 0,
+      "medium_low_findings": 1,
+      "primary_recommendation": "Archive or prune the 25+ dated .bak-* files in root and tests/ to restore repository clarity.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/rigdots-soar.md",
+      "evidence_files_count": 5
+    },
+    {
+      "repo": "rigforge",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None (clean, well-documented, 0 dirty files, CI + threat model + Strict MCP 2)",
+      "architecture_areas": [
+        "Backend/Library (rigforge/)",
+        "Contracts (contracts/, evals.xml)",
+        "External Services/MCP (rigforge/mcp_server.py)",
+        "Infrastructure (.github/workflows/ci.yml, smoke.yml, scripts/smoke.sh)",
+        "Tests & Quality Gates (rigforge/tests/test_mcp_server.py, .pre-commit-config.yaml)"
+      ],
+      "mcp2_status": "Strict MCP 2",
+      "critical_high_findings": 0,
+      "medium_low_findings": 1,
+      "primary_recommendation": "Maintain current clean architecture; verify rigforge/tests/ runs in ci.yml alongside scripts/smoke.sh.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/rigforge.md",
+      "evidence_files_count": 6
+    },
+    {
+      "repo": "RIGTaste",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None (design-phase consolidation repo; 7 dirty files)",
+      "architecture_areas": [
+        "Documentation & Architecture (docs/architecture/01..05, blueprints/rigtaste/)",
+        "Shared Sources (sources/design-taste, taste-skill, tasteful-llm, tasteful-ui-skill)",
+        "Backend/Frontend/Tests (Not observed — pre-build)"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": 0,
+      "medium_low_findings": 1,
+      "primary_recommendation": "Complete blueprint validation and resolve the 7 dirty files before writing any runtime orchestration code.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/RIGTaste.md",
+      "evidence_files_count": 1
+    },
+    {
+      "repo": "robonuggets-rpa",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "Focus Mode candidate — dual Python/Node project with .vendor/langchain/, blueprints/, 15+ test files, and Legacy MCP v1",
+      "architecture_areas": [
+        "Backend/CLI (src/rnpa/, scripts/)",
+        "AI/Agents (agents/, skills/, .vendor/langchain/)",
+        "Shared Modules (blueprints/rpa-pack/, seeds/)",
+        "External Services/MCP (mcp.json, tests/test_mcp_contract.py)",
+        "Tests & Quality Gates (tests/ with 15+ test modules)"
+      ],
+      "mcp2_status": "Strict MCP 2",
+      "critical_high_findings": 1,
+      "medium_low_findings": 1,
+      "primary_recommendation": "Upgrade rnpa.mcp_server and mcp.json to Strict MCP 2 (2026-07-28), add .github/workflows/ CI, and verify .env is gitignored.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/robonuggets-rpa.md",
+      "evidence_files_count": 12
+    },
+    {
+      "repo": "robonuggets-vault",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None (private local content vault + skill scripts; 0 dirty files)",
+      "architecture_areas": [
+        "Data/Corpus (lessons/, MANIFEST.csv, templates/)",
+        "AI/Skills (agent/meta/, agent/references/, agent/scripts/)",
+        "Infrastructure (scripts/pull_vault.sh, capture_*.py)",
+        "Tests & Quality Gates (Not observed)"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": 0,
+      "medium_low_findings": 1,
+      "primary_recommendation": "Keep repo strictly private/local-only as documented in README.md and add a basic manifest integrity test for MANIFEST.csv.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/robonuggets-vault.md",
+      "evidence_files_count": 2
+    },
+    {
+      "repo": "route-check",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None (2-file test/probe fixture repo; 0 dirty files)",
+      "architecture_areas": [
+        "Infrastructure/Fixture (.gitignore, JOB.md)",
+        "Frontend/Backend/Database/Tests (Not observed)"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": 0,
+      "medium_low_findings": 0,
+      "primary_recommendation": "Archive or mark as a synthetic routing smoke-test fixture; no architectural work needed.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/route-check.md",
+      "evidence_files_count": 0
+    },
+    {
+      "repo": "scrappers",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None (compact, well-tested Python package; 1 dirty file)",
+      "architecture_areas": [
+        "Backend/CLI (scrappers/cli.py, catalog.py, adapters/)",
+        "Data/Sources (sources/catalog.json, omniscout/, open-scraper-stack/, skool/)",
+        "Infrastructure (Makefile, pyproject.toml)",
+        "Tests & Quality Gates (tests/ with 5 test modules)"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": 0,
+      "medium_low_findings": 1,
+      "primary_recommendation": "Add a GitHub Actions CI workflow running `make` (catalog validate + pytest + test_security.py) and resolve the 1 dirty file.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/scrappers.md",
+      "evidence_files_count": 3
+    },
+    {
+      "repo": "soar-live-20261027",
+      "source": "remote_api",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None — remain in Scan Mode (no Critical/High trigger observed at root/manifest level; clone locally if active modification is planned).",
+      "architecture_areas": [
+        "Frontend",
+        "Backend",
+        "AI or background processes",
+        "Tests and quality gates"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": [],
+      "medium_low_findings": [
+        {
+          "title": "Committed backup files (1 `.bak*` artifact) tracked in git",
+          "severity": "Low",
+          "confidence": "Direct",
+          "evidence": "Direct GitHub API listing shows committed backup file(s): CAMPAIGN-STATUS.md.bak-20261027-soar-live-scribe2."
+        },
+        {
+          "title": "No `README.md` at repository root",
+          "severity": "Low",
+          "confidence": "Direct",
+          "evidence": "Direct root listing (9 entries) contains no `README.md` (entry context is split across `JOB.md`, `DONE.txt`, or unlisted files)."
+        }
+      ],
+      "primary_recommendation": "Address the top Low finding first — committed backup files (1 `.bak*` artifact) tracked in git — by cloning `soar-live-20261027` locally for direct verification before applying the proposed smallest safe correction (subject to owner approval).",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/soar-live-20261027.md",
+      "evidence_files_count": 1
+    },
+    {
+      "repo": "Startup-Intelligence-OS",
+      "source": "remote_api",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "Focus/Full Promotion Triggered (clone locally first): Critical hardcoded Bearer token in `.mcp.json`, 206 root entries, 8 CI workflows, and committed `.env.*` files require local clone + Focus security/boundary audit.",
+      "architecture_areas": [
+        "Frontend",
+        "Backend",
+        "Database",
+        "AI or background processes",
+        "External services",
+        "Infrastructure",
+        "Shared modules",
+        "Tests and quality gates"
+      ],
+      "mcp2_status": "MCP surface present — verify protocol after clone",
+      "critical_high_findings": [
+        {
+          "title": "Hardcoded Bearer credential committed in `.mcp.json`",
+          "severity": "Critical",
+          "confidence": "Direct",
+          "evidence": "Direct inspection of `.mcp.json` via GitHub API shows a hardcoded `Authorization: Bearer <redacted>` header for `mcp.instantly.ai/mcp` committed in version control."
+        },
+        {
+          "title": "Non-example environment file(s) committed at repo root (.env.clawswarm, .env.langfuse)",
+          "severity": "High",
+          "confidence": "Inferred (Verify first: Yes)",
+          "evidence": "Direct root listing contains `.env.clawswarm`, `.env.langfuse`."
+        }
+      ],
+      "medium_low_findings": [
+        {
+          "title": "Hardcoded local machine path and unpinned MCP SDK version in `mcp/server.py`",
+          "severity": "Medium",
+          "confidence": "Direct",
+          "evidence": "Direct inspection of `mcp/server.py` shows `RIG_LOOP = Path.home() / \"Developer/rig-capabilities/bin/rig-loop\"` and `from mcp.server.fastmcp import FastMCP` without a declared MCP 2 (`2026-07-28`) version pin."
+        },
+        {
+          "title": "Committed backup files (1 `.bak*` artifact) tracked in git",
+          "severity": "Low",
+          "confidence": "Direct",
+          "evidence": "Direct GitHub API listing shows committed backup file(s): claw_config.yaml.clawswarm.bak."
+        },
+        {
+          "title": "High root directory sprawl (206 top-level entries)",
+          "severity": "Medium",
+          "confidence": "Direct",
+          "evidence": "Direct root listing contains 206 top-level files and directories, mixing code, operational reports, logs/backups, and configuration."
+        }
+      ],
+      "primary_recommendation": "Address the top Critical finding first — hardcoded bearer credential committed in `.mcp.json` — by cloning `Startup-Intelligence-OS` locally for direct verification before applying the proposed smallest safe correction (subject to owner approval).",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/Startup-Intelligence-OS.md",
+      "evidence_files_count": 5
+    },
+    {
+      "repo": "strategy-studio",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None (mature, well-tested Python package with Strict MCP 2, CI, and 15 test modules)",
+      "architecture_areas": [
+        "Backend/CLI (src/strategy_studio/, rigstrategy/)",
+        "Shared Modules (blueprints/, corpus/, examples/)",
+        "External Services/MCP (mcp/server.py)",
+        "Infrastructure (.github/workflows/rig-lattice.yml, smoke.yml, Makefile)",
+        "Tests & Quality Gates (tests/ with 15 test modules)"
+      ],
+      "mcp2_status": "Strict MCP 2",
+      "critical_high_findings": 0,
+      "medium_low_findings": 2,
+      "primary_recommendation": "Clarify boundary between src/strategy_studio/ and root rigstrategy/ package, and triage the 3 dirty working-tree files.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/strategy-studio.md",
+      "evidence_files_count": 10
+    },
+    {
+      "repo": "traject-jen-rodgers",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "Focus Mode candidate — single-tenant Next.js + Supabase + Vercel app with custom env-isolation scripts and no tests/ dir",
+      "architecture_areas": [
+        "Frontend/Backend (Next.js src/app, src/components, src/lib, src/middleware.ts)",
+        "Database (supabase/)",
+        "Infrastructure (vercel.json, scripts/sanitize-inherited-env.cjs, verify-owner-isolation.mts)",
+        "Tests & Quality Gates (scripts/verify-*.mjs; no tests/ dir)"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": 1,
+      "medium_low_findings": 1,
+      "primary_recommendation": "Add automated CI running typecheck + owner-isolation verification scripts, and clean up .scratch-probe.mts at root.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/traject-jen-rodgers.md",
+      "evidence_files_count": 8
+    },
+    {
+      "repo": "transformfit-agent",
+      "source": "remote_api",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None — remain in Scan Mode (no Critical/High trigger observed at root/manifest level; clone locally if active modification is planned).",
+      "architecture_areas": [
+        "Frontend",
+        "AI or background processes",
+        "Shared modules",
+        "Tests and quality gates"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": [],
+      "medium_low_findings": [
+        {
+          "title": "No `README.md` at repository root",
+          "severity": "Low",
+          "confidence": "Direct",
+          "evidence": "Direct root listing (15 entries) contains no `README.md` (entry context is split across `JOB.md`, `DONE.txt`, or unlisted files)."
+        }
+      ],
+      "primary_recommendation": "Address the top Low finding first — no `readme.md` at repository root — by cloning `transformfit-agent` locally for direct verification before applying the proposed smallest safe correction (subject to owner approval).",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/transformfit-agent.md",
+      "evidence_files_count": 1
+    },
+    {
+      "repo": "transformfit-flutter",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "Full Mode candidate — 92 root dirs/files, Flutter multi-platform (web/ios/macos/android), Supabase/Deno, Codemagic, visual gates, and Strict MCP 2",
+      "architecture_areas": [
+        "Frontend (Flutter lib/, web/, ios/, macos/, android/)",
+        "Backend/Database (supabase/, deno.json, hosting/)",
+        "AI/Coaching (lib/engine/, tools/visual_reference_gate.py)",
+        "External Services/MCP (mcp/server.py)",
+        "Infrastructure (.github/workflows/ 5 workflows, codemagic.yaml, vercel.json, scripts/)",
+        "Tests & Quality Gates (test/, integration_test/, e2e/, tests/)"
+      ],
+      "mcp2_status": "Strict MCP 2",
+      "critical_high_findings": 1,
+      "medium_low_findings": 1,
+      "primary_recommendation": "Archive or consolidate the 25+ root-level status/audit markdown files under docs/ so root stays focused on Flutter, Supabase, and release configs.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/transformfit-flutter.md",
+      "evidence_files_count": 16
+    },
+    {
+      "repo": "transformfit-full-testing",
+      "source": "remote_api",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "Focus Promotion Triggered (clone locally first): Committed `.magic-link` and `.sim-udid` files require local clone to audit potential credential exposure.",
+      "architecture_areas": [
+        "Frontend",
+        "Tests and quality gates"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": [
+        {
+          "title": "Committed `.magic-link` and `.sim-udid` runtime artifacts at repo root",
+          "severity": "High",
+          "confidence": "Inferred (Verify first: Yes)",
+          "evidence": "Direct root listing contains `.magic-link` and `.sim-udid`."
+        }
+      ],
+      "medium_low_findings": [
+        {
+          "title": "Committed backup files (2 `.bak*` artifacts) tracked in git",
+          "severity": "Low",
+          "confidence": "Direct",
+          "evidence": "Direct GitHub API listing shows committed backup file(s): CLOUD-DEVICE.md.bak-20261027-paid, CLOUD-DEVICE.md.bak-20261028-0016."
+        },
+        {
+          "title": "No `README.md` at repository root",
+          "severity": "Low",
+          "confidence": "Direct",
+          "evidence": "Direct root listing (36 entries) contains no `README.md` (entry context is split across `JOB.md`, `DONE.txt`, or unlisted files)."
+        }
+      ],
+      "primary_recommendation": "Address the top High finding first — committed `.magic-link` and `.sim-udid` runtime artifacts at repo root — by cloning `transformfit-full-testing` locally for direct verification before applying the proposed smallest safe correction (subject to owner approval).",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/transformfit-full-testing.md",
+      "evidence_files_count": 1
+    },
+    {
+      "repo": "transformfit-landing",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None (static marketing site + Jev/Playwright verification scripts)",
+      "architecture_areas": [
+        "Frontend (site/*.html, chat.js, fighter.css, variants/)",
+        "Tests & Quality Gates (verify.py, jev_batch.py, tools/cta_verify.mjs, flow.mjs, shots.mjs)",
+        "Infrastructure (site/api/, build_g.py, build_variants.py)"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": 0,
+      "medium_low_findings": 1,
+      "primary_recommendation": "Add a root package.json or Makefile unifying tools/cta_verify.mjs and verify.py, and remove root screenshot/output artifacts (MIKE-IPHONE-SCREENSHOT-20261027.jpg, verify.out).",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/transformfit-landing.md",
+      "evidence_files_count": 1
+    },
+    {
+      "repo": "unified-business-repo",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None (clean P7 adapter service; 0 dirty files)",
+      "architecture_areas": [
+        "Frontend (web/panel.html, panel.js, panel.css)",
+        "Backend/Adapters (ubiz/, ubiz/mcpclient.py)",
+        "Infrastructure (launchd/, bundle/)",
+        "Tests & Quality Gates (tests/ with 6 test modules, tools/jev.py, cdp.mjs)"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": 0,
+      "medium_low_findings": 1,
+      "primary_recommendation": "Verify ubiz/mcpclient.py handles Strict MCP 2 (2026-07-28) server responses as upstream owners upgrade from MCP v1.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/unified-business-repo.md",
+      "evidence_files_count": 5
+    },
+    {
+      "repo": "unified-canvas-repo",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None (clean P2 Node canvas server; 0 dirty files)",
+      "architecture_areas": [
+        "Frontend (web/index.html, app.js, canvas.css, rig-theme.js)",
+        "Backend (ucanvas/server.mjs, cli.mjs)",
+        "Infrastructure (launchd/com.rig.unified-canvas.plist)",
+        "Tests & Quality Gates (tests/unit.test.mjs, acceptance.test.mjs, snapshots.test.mjs)"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": 0,
+      "medium_low_findings": 1,
+      "primary_recommendation": "Remove the .pre-theme-parity.bak files in web/ and add a minimal package.json so node --test scripts are discoverable.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/unified-canvas-repo.md",
+      "evidence_files_count": 4
+    },
+    {
+      "repo": "unified-engines-repo",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None (clean P3 engines facade; 0 dirty files)",
+      "architecture_areas": [
+        "Frontend (web/index.html, panel.js)",
+        "Backend/CLI (rigengines/, uem/)",
+        "External Services/MCP (.mcp.json, rigengines/mcp_server.py, tools/mcp_chat.py)",
+        "Infrastructure (launchd/)",
+        "Tests & Quality Gates (tests/ with 10 test modules)"
+      ],
+      "mcp2_status": "Legacy MCP v1 (upgrade needed)",
+      "critical_high_findings": 1,
+      "medium_low_findings": 1,
+      "primary_recommendation": "Upgrade pyproject.toml (`mcp>=1.2,<2` pin) and rigengines/mcp_server.py (FastMCP) to Strict MCP 2 (2026-07-28), and fix the hardcoded .mcp.json path pointing to unified-engines-media.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/unified-engines-repo.md",
+      "evidence_files_count": 6
+    },
+    {
+      "repo": "unified-governance-repo",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None (clean P9 governance service; 0 dirty files)",
+      "architecture_areas": [
+        "Frontend (web/panel.html, panel.js)",
+        "Backend/CLI (ugov/, governance/, hooks/, qa-rules/)",
+        "Infrastructure (launchd/, bundle/)",
+        "Tests & Quality Gates (tests/ with 8 test modules)"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": 0,
+      "medium_low_findings": 1,
+      "primary_recommendation": "Add a CI workflow to run the 8 pytest modules in tests/ automatically on push.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/unified-governance-repo.md",
+      "evidence_files_count": 5
+    },
+    {
+      "repo": "unified-media-repo",
+      "source": "remote_api",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None — remain in Scan Mode (no Critical/High trigger observed at root/manifest level; clone locally if active modification is planned).",
+      "architecture_areas": [
+        "Backend",
+        "Shared modules",
+        "Tests and quality gates"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": [],
+      "medium_low_findings": [],
+      "primary_recommendation": "Keep `unified-media-repo` in Scan Mode; no Critical/High architectural defects were observed from remote root/README/manifest inspection. Clone locally only when active feature or maintenance work is scheduled.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/unified-media-repo.md",
+      "evidence_files_count": 3
+    },
+    {
+      "repo": "unified-org-repo",
+      "source": "remote_api",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None — remain in Scan Mode (no Critical/High trigger observed at root/manifest level; clone locally if active modification is planned).",
+      "architecture_areas": [
+        "Backend",
+        "Shared modules",
+        "Tests and quality gates"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": [],
+      "medium_low_findings": [
+        {
+          "title": "No `README.md` at repository root",
+          "severity": "Low",
+          "confidence": "Direct",
+          "evidence": "Direct root listing (10 entries) contains no `README.md` (entry context is split across `JOB.md`, `DONE.txt`, or unlisted files)."
+        }
+      ],
+      "primary_recommendation": "Address the top Low finding first — no `readme.md` at repository root — by cloning `unified-org-repo` locally for direct verification before applying the proposed smallest safe correction (subject to owner approval).",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/unified-org-repo.md",
+      "evidence_files_count": 2
+    },
+    {
+      "repo": "unified-shell-repo",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "Focus Mode candidate — 17 dirty files and .pre-theme-sync backup dirs",
+      "architecture_areas": [
+        "Backend/CLI (ushell/ loopback :4917 + agent.sock)",
+        "Frontend/Bundle (bundle/, design/)",
+        "Infrastructure (launchd/)",
+        "Tests & Quality Gates (tests/ with 7 test modules, tools/contrast.py, grid_lint.py)"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": 0,
+      "medium_low_findings": 2,
+      "primary_recommendation": "Triage the 17 dirty working-tree files and remove .pre-theme-sync-20261030-052704/ and .bak files in tests/.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/unified-shell-repo.md",
+      "evidence_files_count": 3
+    },
+    {
+      "repo": "unified-voice-repo",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None (clean P5 Jarvis voice layer; 0 dirty files)",
+      "architecture_areas": [
+        "Frontend (web/panel.html, panel.js, rig-theme.js)",
+        "Backend/CLI (uvoice/)",
+        "Infrastructure (launchd/)",
+        "Tests & Quality Gates (tests/ with 7 test modules, tools/panel_driver.mjs)"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": 0,
+      "medium_low_findings": 1,
+      "primary_recommendation": "Remove web/panel.html.pre-theme-parity.bak and add a root pyproject.toml for uvoice/.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/unified-voice-repo.md",
+      "evidence_files_count": 4
+    },
+    {
+      "repo": "unified-workspaces-repo",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None (clean P6 workspaces bundle; 0 dirty files)",
+      "architecture_areas": [
+        "Frontend (web/thread.html, thread.js, thread.css)",
+        "Backend/CLI (uws/, bundle/)",
+        "Infrastructure (launchd/)",
+        "Tests & Quality Gates (tests/ with 8 test modules, tools/jev.py, cdp.mjs)"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": 0,
+      "medium_low_findings": 1,
+      "primary_recommendation": "Add a root pyproject.toml and CI workflow to formalize and gate the 8 pytest modules.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/unified-workspaces-repo.md",
+      "evidence_files_count": 4
+    },
+    {
+      "repo": "upwork-mcp",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None (clean inward-facing FastMCP server; 0 dirty files)",
+      "architecture_areas": [
+        "Backend/MCP (src/upwork_mcp/server.py)",
+        "AI/Skills (skills/upwork-*)",
+        "Tests & Quality Gates (tests/test_server.py)"
+      ],
+      "mcp2_status": "Legacy MCP v1 (upgrade needed)",
+      "critical_high_findings": 1,
+      "medium_low_findings": 1,
+      "primary_recommendation": "Upgrade pyproject.toml (`mcp>=1.2,<2`) and src/upwork_mcp/server.py (FastMCP) to Strict MCP 2 (2026-07-28) when ready to drop v1 pin.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/upwork-mcp.md",
+      "evidence_files_count": 5
+    },
+    {
+      "repo": "vibe-production-gauntlet",
+      "source": "local",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "Focus Mode candidate — 6-package TypeScript pnpm workspace + Python Strict MCP 2 + 21 root governance/proof files",
+      "architecture_areas": [
+        "Backend/Libraries (packages/chain, corpus, gauntlet, lanes, packets, router)",
+        "External Services/MCP (mcp/server.py)",
+        "Infrastructure (pnpm-workspace.yaml, vitest.config.ts, .github/workflows/ci.yml, rig-lattice.yml, weekly-evolution.yml)",
+        "Tests & Quality Gates (vitest, scripts/check-coverage-refs.mjs, GATES.md)"
+      ],
+      "mcp2_status": "Strict MCP 2",
+      "critical_high_findings": 0,
+      "medium_low_findings": 2,
+      "primary_recommendation": "Add explicit package-level test coverage checks alongside `pnpm -r build && typecheck` and triage the 3 dirty local files.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/vibe-production-gauntlet.md",
+      "evidence_files_count": 9
+    },
+    {
+      "repo": "workflow-design-studio-repo",
+      "source": "remote_api",
+      "pass_level": "Scan Mode",
+      "promotion_trigger": "None — remain in Scan Mode (no Critical/High trigger observed at root/manifest level; clone locally if active modification is planned).",
+      "architecture_areas": [
+        "Backend",
+        "Tests and quality gates"
+      ],
+      "mcp2_status": "No MCP surface observed",
+      "critical_high_findings": [],
+      "medium_low_findings": [],
+      "primary_recommendation": "Keep `workflow-design-studio-repo` in Scan Mode; no Critical/High architectural defects were observed from remote root/README/manifest inspection. Clone locally only when active feature or maintenance work is scheduled.",
+      "doc_path": "/Users/rig128gb/Desktop/Projects/mrodgersjs-web/docs/senior-architect/repos/workflow-design-studio-repo.md",
+      "evidence_files_count": 3
+    }
+  ],
+  "reconciled_at": "2026-11-26T19:00:07.870Z"
+}

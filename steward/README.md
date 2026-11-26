@@ -12,20 +12,16 @@ The unavailable code review setting is not claimed as enabled.
 
 `.github/copilot-instructions.md` is present in the profile repository and all six pinned repositories: `rigforge`, `proof-studio`, `proof-gate-action`, `mesh-studio`, `doctrine`, and `fde-portfolio`.
 
-## Claude Desktop stdio
+## Strict MCP 2 (`2026-07-28`) stdio
 
-Install `uv`, clone the profile repository, and replace the example `cwd` with that clone's path. `uv` supplies the MCP package for the otherwise stdlib catalog server.
+Clone the profile repository and replace the example `cwd` with that clone's path. `steward/catalog_mcp.py` implements strict **MCP 2 (`2026-07-28`)** (`server/discover`, per-request `_meta`, `-32022` on legacy `initialize`) using Python 3 stdlib only — no external `mcp` install is required.
 
 ```json
 {
   "mcpServers": {
     "github-public-catalog": {
-      "command": "uv",
+      "command": "/usr/bin/python3",
       "args": [
-        "run",
-        "--with",
-        "mcp[cli]<2",
-        "python",
         "steward/catalog_mcp.py"
       ],
       "cwd": "/path/to/mrodgersjs-web"
@@ -34,7 +30,7 @@ Install `uv`, clone the profile repository, and replace the example `cwd` with t
 }
 ```
 
-The resulting stdio command is `uv run --with "mcp[cli]<2" python steward/catalog_mcp.py`, launched from the profile clone.
+The resulting stdio command is `/usr/bin/python3 steward/catalog_mcp.py`, launched from the profile clone. Legacy-capped clients (`2025-11-25` or earlier) connect via `/Users/rig128gb/.rig/bin/mcp2-bridge -- /usr/bin/python3 steward/catalog_mcp.py`.
 
 ## Per-repo scorecard (Measure + Pick)
 
