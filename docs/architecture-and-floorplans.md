@@ -39,11 +39,11 @@ Interactive codebase maps generated with Floorplan (100% file and route coverage
 
 | Repository | Animated Architecture & Verified Smoke Run |
 |---|---|
-| [**mesh-studio**](https://github.com/mrodgersjs-web/mesh-studio)<br />Python fleet orchestrator + MCP (100 launchd services, 66/66 images, 21 routines) | ![mesh-studio animated demo](../assets/demos/mesh-studio-demo.gif) |
-| [**jake-studio**](https://github.com/mrodgersjs-web/jake-studio)<br />Independent Builder-vs-Verifier OS (252 control-plane tests, fail-closed gates) | ![jake-studio animated demo](../assets/demos/jake-studio-demo.gif) |
-| [**latency-probe**](https://github.com/mrodgersjs-web/latency-probe)<br />Header-only C++17 p99/p999 histogram (32 ns/observe, ASan/UBSan CI) | ![latency-probe animated demo](../assets/demos/latency-probe-demo.gif) |
-| [**agentic-workflows**](https://github.com/mrodgersjs-web/agentic-workflows)<br />6-engine workflow router (n8n exec 21, LangGraph, CrewAI, Dify, Flowise, Trigger.dev) | ![agentic-workflows animated demo](../assets/demos/agentic-workflows-demo.gif) |
-| [**fde-portfolio**](https://github.com/mrodgersjs-web/fde-portfolio)<br />FDE playbooks & field record (13 client deployments, 6 live apps, up to 80% adoption) | ![fde-portfolio animated demo](../assets/demos/fde-portfolio-demo.gif) |
-| [**rig-os-agency**](https://github.com/mrodgersjs-web/rig-os-agency)<br />Next.js 16 + TypeScript console (56 routes, 116k pgvector chunks, 159 test suites) | ![rig-os-agency animated demo](../assets/demos/rig-os-agency-demo.gif) |
+| [**mesh-studio**](https://github.com/mrodgersjs-web/mesh-studio)<br />Python fleet orchestrator + MCP (100 launchd services, 66/66 images, 21 routines) | ![mesh-studio animated demo](../assets/demos/mesh-studio-demo.gif)<br />[Watch HD 720p MP4](../assets/demos/mesh-studio-demo.mp4) |
+| [**jake-studio**](https://github.com/mrodgersjs-web/jake-studio)<br />Independent Builder-vs-Verifier OS (252 control-plane tests, fail-closed gates) | ![jake-studio animated demo](../assets/demos/jake-studio-demo.gif)<br />[Watch HD 720p MP4](../assets/demos/jake-studio-demo.mp4) |
+| [**latency-probe**](https://github.com/mrodgersjs-web/latency-probe)<br />Header-only C++17 p99/p999 histogram (32 ns/observe, ASan/UBSan CI) | ![latency-probe animated demo](../assets/demos/latency-probe-demo.gif)<br />[Watch HD 720p MP4](../assets/demos/latency-probe-demo.mp4) |
+| [**agentic-workflows**](https://github.com/mrodgersjs-web/agentic-workflows)<br />6-engine workflow router (n8n exec 21, LangGraph, CrewAI, Dify, Flowise, Trigger.dev) | ![agentic-workflows animated demo](../assets/demos/agentic-workflows-demo.gif)<br />[Watch HD 720p MP4](../assets/demos/agentic-workflows-demo.mp4) |
+| [**fde-portfolio**](https://github.com/mrodgersjs-web/fde-portfolio)<br />FDE playbooks & field record (13 client deployments, 6 live apps, up to 80% adoption) | ![fde-portfolio animated demo](../assets/demos/fde-portfolio-demo.gif)<br />[Watch HD 720p MP4](../assets/demos/fde-portfolio-demo.mp4) |
+| [**rig-os-agency**](https://github.com/mrodgersjs-web/rig-os-agency)<br />Next.js 16 + TypeScript console (56 routes, 116k pgvector chunks, 159 test suites) | ![rig-os-agency animated demo](../assets/demos/rig-os-agency-demo.gif)<br />[Watch HD 720p MP4](../assets/demos/rig-os-agency-demo.mp4) |
 
 [Return to profile](../README.md)
